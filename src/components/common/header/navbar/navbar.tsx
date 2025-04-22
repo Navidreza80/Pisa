@@ -11,7 +11,7 @@ export default function Navbar() {
   ];
   const pathname = usePathname()
   return (
-    <div className="flex justify-center gap-14 p-1">
+    <div className="flex justify-center gap-14 p-1 max-[600px]:hidden">
         {navItems.map((item, index) => {
             return (
                 <Link key={index} href={item.url} className={`${pathname == item.url ? "border-b-2" : "border-none"} font-bold`}>{item.text}</Link>

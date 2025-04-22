@@ -1,9 +1,10 @@
+import MobileNav from "../mobile-nav/mobile-nav";
+
 export default function Logo() {
   return (
-    <div className="w-[13%] flex justify-end">
+    <div className="flex justify-end items-center gap-x-3">
       <svg
-        width="54"
-        height="19"
+        className="w-[54px] h-[19px] max-[600px]:w-[112px] max-[600px]:h-[39px]"
         viewBox="0 0 54 19"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +14,7 @@ export default function Logo() {
           fill="black"
         />
       </svg>
+      <MobileNav />
     </div>
   );
 }

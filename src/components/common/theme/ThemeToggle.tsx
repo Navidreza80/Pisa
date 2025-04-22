@@ -8,7 +8,7 @@ import { MoonIcon, SunIcon } from "lucide-react";
 export default function ThemeNLanguage() {
   // Redux states for recognizing the app theme
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
+  const isDarkMode = useSelector((state: { theme: { isDarkMode: boolean } }) => state.theme.isDarkMode);
   
   return (
     <div className={`items-center min-[900px]:flex gap-1 p-1 bg-white/5 rounded-full`}>

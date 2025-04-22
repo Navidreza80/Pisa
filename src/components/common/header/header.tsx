@@ -5,7 +5,7 @@ import Navbar from "./navbar/navbar";
 export default function Header() {
   return (
     <div
-      className="h-20 w-full py-6 flex items-center justify-between"
+      className="h-20 w-full py-6 flex items-center justify-between max-[600px]:h-28"
     >
       <LoginBtn />
       <Navbar />

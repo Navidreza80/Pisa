@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/common/header/header";
 import { ReduxProvider } from "@/utils/providers/redux-provider";
+import Footer from "@/components/common/footer/footer";
 
 // metadata
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main className="w-[85.5%] ">
             <Header />
             {children}
+            <Footer />
           </main>
         </ReduxProvider>
       </body>
