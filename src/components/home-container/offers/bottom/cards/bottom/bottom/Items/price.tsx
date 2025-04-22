@@ -11,7 +11,7 @@ function Price({ price }: PriceProps) {
         <p className='text-[12px] font-[700] my-auto'>تومان</p>
       </div>
 
-      <div className='bg-[#FF5555] top-[17px] absolute w-[117px] h-[2px] rotate-[-9.3deg]'></div>
+      <div className='bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]'></div>
     </div>
   )
 }
