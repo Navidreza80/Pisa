@@ -1,5 +1,5 @@
-export default function Home() {
-  return (
-    <div>Hello</div>
-  );
+import HomeContainer from "@/components/home-container/home-container";
+
+export default async function Home() {
+  return <HomeContainer />;
 }
