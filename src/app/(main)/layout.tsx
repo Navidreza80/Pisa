@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 // Css imports
 import "./globals.css";
+import Header from "@/components/common/header/header";
+import { ReduxProvider } from "@/utils/providers/redux-provider";
 
 // metadata
 export const metadata: Metadata = {
@@ -16,8 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className="bg-white flex justify-center">
+        <ReduxProvider>
+          <main className="w-[85.5%] ">
+            <Header />
+            {children}
+          </main>
+        </ReduxProvider>
       </body>
     </html>
   );
