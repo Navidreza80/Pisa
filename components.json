@@ -1,9 +1,0 @@
-{
-  "tailwind": {
-    "config": "tailwind.config.ts",
-    "css": "src/app/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": false,
-    "prefix": ""
-  }
-}
