@@ -4,10 +4,10 @@ import Bottom from './bottom/bottom'
 
 function Offers() {
     return (
-        <>
+        <div className='my-[180px]'>
             <Top />
             <Bottom />
-        </>
+        </div>
     )
 }
 
