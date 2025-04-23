@@ -14,7 +14,7 @@ export default function Search() {
   ];
   const [tabId, setTabId] = useState(3);
   return (
-    <div className="absolute w-full min-h-[135px] bg-surface dark:bg-surface-dark border border-[#EAEAEA]  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex">
+    <div className="absolute w-full min-h-[135px] bg-background dark:bg-surface-dark border border-[#EAEAEA]  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex">
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item) => {
           return (

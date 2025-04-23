@@ -70,5 +70,4 @@ function Bottom() {
     </div>
   )
 }
-
 export default Bottom
