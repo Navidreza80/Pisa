@@ -20,7 +20,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <body className="bg-white flex justify-center font-yekan">
+      <body className="bg-background dark:bg-background-dark text-text dark:text-text-dark flex justify-center font-yekan">
         <ReduxProvider>
           <main className="w-[85.5%] ">
             <Header />

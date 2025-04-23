@@ -5,10 +5,32 @@ body {
   padding: 0;
 }
 
+
 @theme {
   --font-yekan: "Yekan", "sans-serif";
   --font-yekannum: "Yekannum", "sans-serif";
 
+  --color-background: #fff;
+  --color-surface: #f5f7ff;
+  --color-border: #eaeaea;
+  --color-primary: #586cff;
+  --color-primary-light: #7f9cf5;
+  --color-accent: #63b3ed;
+  --color-text: #181a20;
+  --color-text-secondary: #727272;
+  --color-muted: #f3f4f6;
+  --color-input: #f5f7ff;
+
+  --color-background-dark: #181a20;
+  --color-surface-dark: #23262f;
+  --color-border-dark: #2d3142;
+  --color-primary-dark: #586cff;
+  --color-primary-light-dark: #7f9cf5;
+  --color-accent-dark: #63b3ed;
+  --color-text-dark: #f5f6fa;
+  --color-text-secondary-dark: #a0aec0;
+  --color-muted-dark: #3b3f4a;
+  --color-input-dark: #23262f;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

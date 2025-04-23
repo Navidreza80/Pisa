@@ -72,10 +72,10 @@ export default async function HeroSection() {
         </div>
       </div>
       <div className="flex justify-start items-end flex-wrap flex-col mt-7">
-        <h1 className="text-[#000000] text-4xl font-bold text-right">
+        <h1 className="text-4xl font-bold text-right">
           راحت ترین راه برای پیدا کردن <br /> خونه مورد علاقت
         </h1>
-        <h2 className="text-right text-base text-[#727272] font-semibold mt-8">
+        <h2 className="text-right text-base text-text-secondary dark:text-text-secondary-dark font-semibold mt-8">
           رزور ، رهن ، اجاره و حتی خرید و فروش ملک مورد نظرتون <br /> مثل آب
           خوردن فقط در پیزا
         </h2>
