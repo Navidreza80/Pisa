@@ -14,7 +14,7 @@ function Person({ person }: PersonProps) {
             </svg>
 
             <div className='flex flex-row-reverse gap-[3px]'>
-                <h1>{person}</h1>
+                <h1 className='font-yekannum'>{person}</h1>
                 <h1>نفر</h1>
             </div>
         </div>

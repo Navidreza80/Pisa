@@ -4,3 +4,49 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@theme {
+  --font-yekan: "Yekan", "sans-serif";
+  --font-yekannum: "Yekannum", "sans-serif";
+
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanweblight.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebregular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebmedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebbold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekannum";
+  src: url("../../../public/fonts/iranyekanwebboldfanum.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

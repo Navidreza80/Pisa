@@ -2,12 +2,13 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import hero from "../../../assets/images/landing/heroImage.png";
 import Search from "./search/search";
+import BuildingsSvg from "@/components/svg/buildings";
 
 export default async function HeroSection() {
   return (
-    <div className="my-8 flex flex-row justify-between relative">
+    <div className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative">
       <Search />
-      <div className="w-[497px] h-[594px] relative">
+      <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden">
         <Image
           src={hero}
           width={497}
@@ -82,6 +83,7 @@ export default async function HeroSection() {
           <ArrowLeft style={{ fontSize: "20px" }} />
           رهن و اجاره ملک
         </button>
+        <BuildingsSvg width={400} height={350} />
       </div>
     </div>
   );

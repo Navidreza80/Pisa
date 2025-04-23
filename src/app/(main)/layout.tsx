@@ -1,10 +1,10 @@
 // Next built in imports
 import type { Metadata } from "next";
 // Css imports
-import "./globals.css";
+import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
 import { ReduxProvider } from "@/utils/providers/redux-provider";
-import Footer from "@/components/common/footer/footer";
+import "./globals.css";
 
 // metadata
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white flex justify-center">
+      <body className="bg-white flex justify-center font-yekan">
         <ReduxProvider>
           <main className="w-[85.5%] ">
             <Header />

@@ -49,11 +49,11 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
         {/* Column 1 - Contact Info */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-[#1E1E1E]">راه ارتباطی دلتا</h3>
+          <h3 className="font-bold mb-4 text-[#1E1E1E]  text-right">راه ارتباطی دلتا</h3>
           {contactInfo.map((item, index) => (
             <p
               key={`contact-${index}`}
-              className={`text-[#AAAAAA] ${item.className}`}
+              className={`text-[#AAAAAA]  text-right ${item.className}`}
             >
               {item.text}
             </p>
@@ -62,11 +62,11 @@ export default function Footer() {
 
         {/* Column 2 - Customer Services */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-[#1E1E1E]">خدمات مشتریان</h3>
+          <h3 className="font-bold mb-4 text-[#1E1E1E]  text-right">خدمات مشتریان</h3>
           {customerServices.map((item, index) => (
             <p
               key={`service-${index}`}
-              className={`text-[#AAAAAA] ${item.className}`}
+              className={` text-right text-[#AAAAAA] ${item.className}`}
             >
               {item.text}
             </p>
@@ -75,11 +75,11 @@ export default function Footer() {
 
         {/* Column 3 - How to Use */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-[#1E1E1E]">نحوه رزرو اقامتگاه</h3>
+          <h3 className="font-bold mb-4 text-right text-[#1E1E1E]">نحوه رزرو اقامتگاه</h3>
           {howToUse.map((item, index) => (
             <p
               key={`howto-${index}`}
-              className={`${item.className} ${
+              className={` text-right ${item.className} ${
                 index == 0 ? "text-[#1E1E1E]" : "text-[#AAAAAA]"
               }`}
             >
@@ -89,8 +89,8 @@ export default function Footer() {
         </div>
 
         {/* Column 4 - About */}
-        <div className="flex flex-col items-end max-w-md">
-          <p className="text-[#1E1E1E] leading-6 text-right">
+        <div className="flex flex-col items-end md:w-auto lg:max-w-md">
+          <p className="text-[#1E1E1E] leading-6 text-right mb-5">
             ما در پیزا متعهد به ارائه خدمات متنوع برای راحتی و آسایش شما هستیم،
             از سیستم‌های هوشمند خانگی و رزرو خانه گرفته تا رزرو هتل. با ما،
             زندگی ساده‌تر، هوشمندتر و لذت‌بخش‌تر می‌شود. خدمات ما شامل پلتفرمی
