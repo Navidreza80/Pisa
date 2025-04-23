@@ -11,6 +11,8 @@ body {
 
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "Yekan";
   src: url("../../../public/fonts/iranyekanweblight.woff") format("woff");

@@ -5,6 +5,7 @@ import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
 import { ReduxProvider } from "@/utils/providers/redux-provider";
 import "./globals.css";
+import FloatingActions from "@/components/common/FAB/fab";
 
 // metadata
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body className="bg-white flex justify-center font-yekan">
         <ReduxProvider>
           <main className="w-[85.5%] ">
@@ -26,6 +27,7 @@ export default async function RootLayout({
             {children}
             <Footer />
           </main>
+          <FloatingActions />
         </ReduxProvider>
       </body>
     </html>
