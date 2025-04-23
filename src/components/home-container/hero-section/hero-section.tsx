@@ -3,8 +3,10 @@ import Image from "next/image";
 import hero from "../../../assets/images/landing/heroImage.png";
 import Search from "./search/search";
 import BuildingsSvg from "@/components/svg/buildings";
+import { getTranslations } from "next-intl/server";
 
 export default async function HeroSection() {
+  const t = await getTranslations("HomePage");
   return (
     <div className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative">
       <Search />
@@ -73,7 +75,9 @@ export default async function HeroSection() {
       </div>
       <div className="flex justify-start items-end flex-wrap flex-col mt-7">
         <h1 className="text-4xl font-bold text-right">
-          راحت ترین راه برای پیدا کردن <br /> خونه مورد علاقت
+          {t.rich("title", {
+            br: () => <br />,
+          })}
         </h1>
         <h2 className="text-right text-base text-text-secondary dark:text-text-secondary-dark font-semibold mt-8">
           رزور ، رهن ، اجاره و حتی خرید و فروش ملک مورد نظرتون <br /> مثل آب

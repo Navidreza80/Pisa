@@ -1,5 +1,8 @@
 // Next built in imports
 import type { Metadata } from "next";
+// next-intl
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 // Css imports
 import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
@@ -15,20 +18,29 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  // Ensure that the incoming `locale` is valid
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    return "not found";
+  }
   return (
-    <html lang="en" className="">
+    <html lang={locale}>
       <body className="bg-background dark:bg-background-dark text-text dark:text-text-dark flex justify-center font-yekan">
-        <ReduxProvider>
-          <main className="w-[85.5%] ">
-            <Header />
-            {children}
-            <Footer />
-          </main>
-          <FloatingActions />
-        </ReduxProvider>
+        <NextIntlClientProvider>
+          <ReduxProvider>
+            <main className="w-[85.5%] ">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+            <FloatingActions />
+          </ReduxProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
