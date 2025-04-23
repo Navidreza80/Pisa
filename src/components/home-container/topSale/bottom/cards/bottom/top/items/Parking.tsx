@@ -17,7 +17,7 @@ function Parking({ parking }: ParkingProps) {
 
 
             <div className='flex flex-row-reverse gap-[3px]'>
-                <h1>{parking}</h1>
+                <h1 className=' font-[yekannum]'>{parking}</h1>
                 <h1>پارکینگ</h1>
             </div>
         </div>

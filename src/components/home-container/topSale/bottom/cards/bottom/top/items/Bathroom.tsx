@@ -15,7 +15,7 @@ function Bathroom({ bathroom }: BathroomProps) {
             </svg>
 
             <div className='flex flex-row-reverse gap-[3px]'>
-                <h1>{bathroom}</h1>
+                <h1 className=' font-[yekannum]'>{bathroom}</h1>
                 <h1>حمام</h1>
             </div>
         </div>
