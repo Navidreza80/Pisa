@@ -17,17 +17,17 @@ function Bottom() {
         <div className="container mx-auto p-4">
             <div className="flex flex-wrap justify-between gap-6 mb-6">
                 {cardData.slice(0, 6).map((card) => (
-                    <div key={card.id} className="flex-1 hover:scale-[1.1] transition-transform duration-300 cursor-pointer bg-white border-[1px] border-[#EAEAEA]  p-[12px] rounded-[20px] min-h-[235] max-h-[235] min-w-[389px] max-w-[389px]">
+                    <div key={card.id} className="dark:bg-surface-dark flex-1 hover:scale-[1.1] transition-transform duration-300 cursor-pointer bg-white border-[1px] border-border dark:border-border-dark p-[12px] rounded-[20px] min-h-[235] max-h-[235] min-w-[389px] max-w-[389px]">
                         <img 
                             src={card.image.src} 
                             alt={card.name}
                             className="w-full min-h-[153px] max-h-[153px] rounded-[20px] bg-cover"
                         />
                         <div className="p-4 flex flex-row-reverse justify-between text-center">
-                            <p className="text-lg text-[20px] font-[600] text-black">{card.name}</p>
+                            <p className="text-lg text-[20px] font-[600] text-text dark:text-text-dark">{card.name}</p>
                             <div className='flex gap-[2px] flex-row-reverse text-[16px] font-[600] text-[#848484]'>
-                                )<p className='text-[16px] font-[yekannum] font-[600] text-[#848484]'>{card.count}</p>
-                                <p className='text-[16px] font-[600] text-[#848484]'>مورد</p>(
+                                )<p className='text-[16px] font-[yekannum] font-[600] text-text-secondary dark:text-text-secondary-dark'>{card.count}</p>
+                                <p className='text-[16px] font-[600] text-text-secondary dark:text-text-secondary-dark'>مورد</p>(
                             </div>
                         </div>
                     </div>

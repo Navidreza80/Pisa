@@ -1,8 +1,10 @@
+import { getTranslations } from 'next-intl/server'
 import React from 'react'
 
-function Top() {
+async function Top() {
+  const t = await getTranslations('HomePage')
   return (
-    <div className='text-right text-[28px] font-[700]'>دسته بندی ها</div>
+    <div className='text-right text-[28px] font-[700]'>{t('category')}</div>
   )
 }
 

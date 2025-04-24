@@ -1,9 +1,9 @@
+import { getTranslations } from 'next-intl/server'
 import React from 'react'
 
-function Title() {
+export default async function Title() {
+  const t = await getTranslations('HomePage')
   return (
-    <div className='font-bold text-[28px]'>تخفیفات ویژه</div>
+    <div className='font-bold text-[28px]'>{t('offer')}</div>
   )
 }
-
-export default Title
