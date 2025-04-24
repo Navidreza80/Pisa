@@ -3,6 +3,7 @@
 import { Input } from 'antd'
 
 import React, { useRef, useState, useEffect } from "react";
+import Button from '../Items/Button';
 
 const EMAIL = "Example@gmail.com";
 const CODE_LENGTH = 5;
@@ -69,7 +70,7 @@ function Register2() {
     const timerStr = `0${Math.floor(timer / 60)}:${(timer % 60).toString().padStart(2, "0")}`;
 
     return (
-        <div className="w-[390px] max-w-[390px] mx-auto flex flex-col items-center justify-center min-h-[100vh] bg-white" dir="rtl">
+        <div className="max-[1300px]:w-[80%] max-[600px]:w-[100%]  max-[1300px]:justify-center w-[390px] max-w-[390px] mx-auto flex flex-col items-center justify-center min-h-[100vh] bg-white" dir="rtl">
             <div className="w-full flex flex-col gap-[32px]">
                 <div dir='rtl'>
                     <svg width="71" height="24" viewBox="0 0 71 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +109,7 @@ function Register2() {
                                 onChange={e => handleChange(e, idx)}
                                 onKeyDown={e => handleKeyDown(e, idx)}
                                 onPaste={handlePaste}
-                                className="w-[66px] h-[66px] text-center text-2xl border font-yekannum border-[#E0E0E0] rounded-[16px] bg-[#fff] focus:border-[#586CFF] outline-none transition-all font-bold"
+                                className="w-[66px] h-[66px] max-[345px]:h-[45px] max-[600px]:w-[100%] text-center text-2xl border font-yekannum border-[#E0E0E0] rounded-[16px] bg-[#fff] focus:border-[#586CFF] outline-none transition-all font-bold"
                                 style={{ direction: 'ltr' }}
                                 pattern="[0-9۰-۹]*"
                             />
@@ -127,13 +128,7 @@ function Register2() {
 
                         </span>
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full h-[48px] bg-[#586CFF] rounded-[16px] text-white font-bold text-[18px] transition-all "
-                        disabled={code.some(d => !d) || timer === 0}
-                    >
-                        ارسال
-                    </button>
+                    <Button text="ارسال" />
                 </form>
             </div>
         </div>
