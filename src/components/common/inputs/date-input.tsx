@@ -1,9 +1,11 @@
 import { DatePicker } from "antd";
+import { useTranslations } from "next-intl";
 
 export default function InputDate() {
+  const t = useTranslations('HomePage')
   return (
     <DatePicker
-      placeholder="انتخاب کنید"
+      placeholder={t('choose')}
       suffixIcon={
         <svg
           width="24"

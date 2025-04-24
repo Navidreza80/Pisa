@@ -10,7 +10,7 @@ export default async function HeroSection() {
   return (
     <div className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative">
       <Search />
-      <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden">
+      <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-[var(--animation-fade-in-left)]">
         <Image
           src={hero}
           width={497}
@@ -18,7 +18,7 @@ export default async function HeroSection() {
           className="rounded-4xl"
           alt="hero image"
         />
-        <div className="bg-white border border-[#EAEAEA] absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around">
+        <div className="bg-white border border-border dark:border-border-dark absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
           <svg
             width="32"
             height="32"
@@ -54,7 +54,7 @@ export default async function HeroSection() {
               strokeLinejoin="round"
             />
           </svg>
-          <p className="mt-2 font-semibold text-sm text-black">اسکرول کنید</p>
+          <p className="mt-2 font-semibold text-sm text-black">{t("scroll")}</p>
           <svg
             width="20"
             height="20"
@@ -73,19 +73,20 @@ export default async function HeroSection() {
           </svg>
         </div>
       </div>
-      <div className="flex justify-start items-end flex-wrap flex-col mt-7">
-        <h1 className="text-4xl font-bold text-right">
+      <div className="flex justify-start items-end flex-wrap flex-col mt-7 animate-[var(--animation-fade-in-right)]">
+        <h1 className="text-4xl font-bold text-right animate-[var(--animation-fade-in-up)] [animation-delay:0.1s]">
           {t.rich("title", {
             br: () => <br />,
           })}
         </h1>
-        <h2 className="text-right text-base text-text-secondary dark:text-text-secondary-dark font-semibold mt-8">
-          رزور ، رهن ، اجاره و حتی خرید و فروش ملک مورد نظرتون <br /> مثل آب
-          خوردن فقط در پیزا
+        <h2 className="text-right text-base text-text-secondary dark:text-text-secondary-dark font-semibold mt-8 animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
+          {t.rich("subTitle", {
+            br: () => <br />,
+          })}
         </h2>
-        <button className="mt-8 w-[160px] h-[48px] bg-[#586CFF] rounded-2xl text-white flex justify-center items-center gap-2 font-semibold text-base">
+        <button className="mt-8 px-3 h-[48px] bg-[#586CFF] rounded-2xl text-white flex justify-center items-center gap-2 font-semibold text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
           <ArrowLeft style={{ fontSize: "20px" }} />
-          رهن و اجاره ملک
+          {t("button")}
         </button>
         <BuildingsSvg width={400} height={350} />
       </div>

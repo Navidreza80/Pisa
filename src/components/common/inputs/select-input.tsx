@@ -1,10 +1,12 @@
 import { Select } from "antd";
+import { useTranslations } from "next-intl";
 
 export default function InputSelect() {
+  const t = useTranslations("HomePage");
   return (
     <Select
       options={[{ value: "sample", label: <span>sample</span> }]}
-      placeholder="انتخاب کنید"
+      placeholder={t("choose")}
       suffixIcon={
         <svg
           width="20"

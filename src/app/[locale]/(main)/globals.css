@@ -5,7 +5,6 @@ body {
   padding: 0;
 }
 
-
 @theme {
   --font-yekan: "Yekan", "sans-serif";
   --font-yekannum: "Yekannum", "sans-serif";
@@ -31,6 +30,89 @@ body {
   --color-text-secondary-dark: #a0aec0;
   --color-muted-dark: #3b3f4a;
   --color-input-dark: #23262f;
+  --animation-fade-in-up: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-fade-in: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-slide-in-right: slide-in-right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-pulse: pulse 1s cubic-bezier(0.4, 0, 0.6, 1);
+  --animation-curtain-open: curtain-open 800ms cubic-bezier(0.4, 0, 0.2, 1)
+    forwards;
+  --animation-building-appear: building-appear 600ms
+    cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes curtain-open {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  40% {
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+@keyframes building-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

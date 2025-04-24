@@ -1,9 +1,15 @@
-import React from 'react'
+import { getTranslations } from "next-intl/server";
+import React from "react";
 
-function Top() {
+async function Top() {
+  const t = await getTranslations("HomePage");
   return (
-    <div className='text-right text-[28px] font-[700]'>اجاره ویلا در<br />محبوب‌ترین مقاصد این ماه</div>
-  )
+    <div className="text-right text-[28px] font-[700]">
+      {t.rich("rentTitle", {
+        br: () => <br />,
+      })}
+    </div>
+  );
 }
 
-export default Top
+export default Top;

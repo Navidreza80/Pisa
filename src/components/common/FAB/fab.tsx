@@ -1,11 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Moon, Sun, MessageCircle, Globe } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export default function FloatingActions() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const [lang, setLang] = useState<"fa" | "en">("fa");
+
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const html = document.documentElement;
@@ -45,11 +50,18 @@ export default function FloatingActions() {
           </button>
           {/* Language Switch */}
           <button
-            onClick={() => setLang((l) => (l === "fa" ? "en" : "fa"))}
+            onClick={() => {
+              const newLocale = locale === "fa" ? "en" : "fa";
+              // Replace the locale in the current path
+              const segments = pathname.split("/");
+              segments[1] = newLocale;
+              const newPath = segments.join("/") || "/";
+              router.push(newPath);
+            }}
             className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100"
           >
             <Globe className="w-5 h-5 text-purple-500" />
-            <span>{lang === "fa" ? "English" : "فارسی"}</span>
+            <span>{locale === "fa" ? "English" : "فارسی"}</span>
           </button>
         </div>
       )}

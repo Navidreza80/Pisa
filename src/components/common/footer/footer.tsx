@@ -2,8 +2,10 @@ import Image from "next/image";
 import icon1 from "../../../assets/images/footer/5083a983cba6cfdb03395e9c5f3affccc79f623b.png";
 import icon2 from "../../../assets/images/footer/c82fd62437e1e6142434fb2e1fcb4f77a4d849b0.png";
 import icon3 from "../../../assets/images/footer/cea34e5ab426cc28c323d8f6355265cccb1e7ec9.png";
+import { getTranslations } from "next-intl/server";
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations("HomePage");
   // Contact info data
   const contactInfo = [
     { text: "۰۲۱۲۳۴۵۶۷۸۹ - ۰۹۱۲۳۴۵۶۷۸۹", className: "mb-2" },
@@ -31,7 +33,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="w-full border-t border-[#000000] my-10 flex flex-col py-10">
+    <div className="w-full border-t border-border dark:border-border-dark my-10 flex flex-col py-10">
       <div className="flex justify-end mb-10">
         <svg
           width="106"
@@ -49,11 +51,11 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
         {/* Column 1 - Contact Info */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-[#1E1E1E]  text-right">راه ارتباطی دلتا</h3>
+          <h3 className="font-bold mb-4 text-text dark:text-text-dark text-right">راه ارتباطی دلتا</h3>
           {contactInfo.map((item, index) => (
             <p
               key={`contact-${index}`}
-              className={`text-[#AAAAAA]  text-right ${item.className}`}
+              className={`text-text-secondary dark:text-text-secondary-dark  text-right ${item.className}`}
             >
               {item.text}
             </p>
@@ -62,11 +64,11 @@ export default function Footer() {
 
         {/* Column 2 - Customer Services */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-[#1E1E1E]  text-right">خدمات مشتریان</h3>
+          <h3 className="font-bold mb-4 text-text dark:text-text-dark  text-right">خدمات مشتریان</h3>
           {customerServices.map((item, index) => (
             <p
               key={`service-${index}`}
-              className={` text-right text-[#AAAAAA] ${item.className}`}
+              className={` text-right text-text-secondary dark:text-text-secondary-dark ${item.className}`}
             >
               {item.text}
             </p>
@@ -75,12 +77,12 @@ export default function Footer() {
 
         {/* Column 3 - How to Use */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-right text-[#1E1E1E]">نحوه رزرو اقامتگاه</h3>
+          <h3 className="font-bold mb-4 text-right text-text dark:text-text-dark">نحوه رزرو اقامتگاه</h3>
           {howToUse.map((item, index) => (
             <p
               key={`howto-${index}`}
               className={` text-right ${item.className} ${
-                index == 0 ? "text-[#1E1E1E]" : "text-[#AAAAAA]"
+                index == 0 ? "text-[#1E1E1E] dark:text-[#c8c8c8]" : "text-text-secondary dark:text-text-secondary-dark"
               }`}
             >
               {item.text}
@@ -90,12 +92,8 @@ export default function Footer() {
 
         {/* Column 4 - About */}
         <div className="flex flex-col items-end md:w-auto lg:max-w-md">
-          <p className="text-[#1E1E1E] leading-6 text-right mb-5">
-            ما در پیزا متعهد به ارائه خدمات متنوع برای راحتی و آسایش شما هستیم،
-            از سیستم‌های هوشمند خانگی و رزرو خانه گرفته تا رزرو هتل. با ما،
-            زندگی ساده‌تر، هوشمندتر و لذت‌بخش‌تر می‌شود. خدمات ما شامل پلتفرمی
-            آسان، راه‌حل‌های شخصی‌سازی‌شده، و پشتیبانی ۲۴/۷ است. به دنیای نوآوری
-            و کیفیت خوش آمدید!
+          <p className="text-text dark:text-text-dark leading-6 text-right mb-5">
+            {t('footerAbout')}
           </p>
         </div>
       </div>

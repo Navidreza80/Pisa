@@ -1,9 +1,15 @@
-import React from 'react'
+import { getTranslations } from "next-intl/server";
+import React from "react";
 
-function Title() {
+async function Title() {
+  const t = await getTranslations("HomePage");
   return (
-    <div className='font-bold text-right text-[28px]'>خرید و فروش های داغ<br /> این هفته</div>
-  )
+    <div className="font-bold text-right text-[28px]">
+      {t.rich("hot", {
+        br: () => <br />,
+      })}
+    </div>
+  );
 }
 
-export default Title
+export default Title;

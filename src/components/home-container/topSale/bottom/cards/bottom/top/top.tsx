@@ -16,15 +16,15 @@ function Top({ yard, room, bathroom,parking }: TopProps) {
             <Room
                 room={room}
             />
-            <div className='bg-[#EAEAEA] w-[1px]' />
+            <div className='bg-border dark:bg-border-dark w-[1px]' />
             <Bathroom
                 bathroom={bathroom}
             />
-            <div className='bg-[#EAEAEA] w-[1px]' />
+            <div className='bg-border dark:bg-border-dark w-[1px]' />
             <Yard
                 yard={yard}
             />
-            <div className='bg-[#EAEAEA] w-[1px]' />
+            <div className='bg-border dark:bg-border-dark w-[1px]' />
             <Parking
                 parking={parking}
             />

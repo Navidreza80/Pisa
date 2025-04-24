@@ -1,1 +1,33 @@
-{ "HomePage": { "title": "Hello" } }
+{
+  "HomePage": {
+    "title": "The easiest way to find<br></br> your dream home",
+    "subTitle": "Reserve, mortgage, rent, and even buy/sell your desired property<br></br> as easy as drinking water, only in Piza",
+    "button": "Mortgage and rent property",
+    "scroll": "Scroll down",
+    "sell": "Buy/Sell",
+    "rent": "Mortgage/Rent",
+    "reserve": "Property reservation",
+    "destination": "Select destination",
+    "count": "Number of people",
+    "enter": "Enter",
+    "start": "Check-in date",
+    "end": "Check-out date",
+    "result": "View results",
+    "choose": "Choose",
+    "offer": "Special discounts",
+    "spring": "Spring",
+    "seeMore": "See all",
+    "category": "Categories",
+    "hot": "Hot deals this week",
+    "rank": "Top-ranked among <br></br> Iran's reservation and <br></br> rental websites",
+    "rankDesc": "Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. It's used in printing and typesetting industries, as well as in web design, to fill spaces where real content will eventually be placed. The passage is derived from classical Latin literature, though the exact meaning is not relevant to its modern usage.",
+    "rentTitle": "Villa rentals in <br></br> this month's most popular destinations",
+    "footerAbout": "At Piza, we are committed to providing diverse services for your comfort and convenience—from smart home systems and house reservations to hotel bookings. With us, life becomes simpler, smarter, and more enjoyable. Our services include an easy-to-use platform, personalized solutions, and 24/7 support. Welcome to a world of innovation and quality!"
+  },
+  "Header": {
+    "login": "Sign up/Login",
+    "about": "About us",
+    "home": "Home",
+    "blogs": "Articles"
+  }
+}
