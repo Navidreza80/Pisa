@@ -1,25 +1,13 @@
-// import Auth from '@/components/auth/auth'
-// import React from 'react'
-// import "../(main)/globals.css"
-
-// export default function AuthLayout({ children }: { children: React.ReactNode }) {
-//     return (
-//         <html>
-//             <body className=''>
-//                 <div className='px-[40px] flex justify-between'><Auth />{children}</div>
-//             </body>
-//         </html>
-//     )
-// }
-
 // Next built in imports
 import type { Metadata } from "next";
 // next-intl
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-// Css imports
+// Redux provider
 import { ReduxProvider } from "@/utils/providers/redux-provider";
+// Css imports
 import "../(main)/globals.css";
+// Third party components
 import FloatingActions from "@/components/common/FAB/fab";
 import Auth from "@/components/auth/auth";
 

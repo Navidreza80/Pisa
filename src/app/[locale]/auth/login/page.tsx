@@ -1,10 +1,9 @@
+// Third party components
 import Login from '@/components/auth/login/Login'
-import React from 'react'
 
-function LoginPage() {
+export default function LoginPage() {
   return (
     <Login />
   )
 }
 
-export default LoginPage

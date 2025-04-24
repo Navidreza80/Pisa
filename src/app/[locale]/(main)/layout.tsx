@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 // next-intl
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-// Css imports
+// Third party components
 import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
-import { ReduxProvider } from "@/utils/providers/redux-provider";
-import "./globals.css";
 import FloatingActions from "@/components/common/FAB/fab";
+// Redux provider
+import { ReduxProvider } from "@/utils/providers/redux-provider";
+// Css imports
+import "./globals.css";
 
 // metadata
 export const metadata: Metadata = {
@@ -23,7 +25,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }>) {
-  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     return "not found";
