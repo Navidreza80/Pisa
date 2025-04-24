@@ -5,7 +5,7 @@ import Comment from './Items/Comment'
 
 function Auth() {
     return (
-        <div>
+        <div className='max-[1300px]:hidden'>
             <div className='relative'>
                 <Image width={704} height={720} src={jangal} alt='جنگل گلستان' className='max-h-[720px] rounded-[32px]' />
                 <div className='flex gap-[8px] absolute top-[5%] right-[5%]'>
