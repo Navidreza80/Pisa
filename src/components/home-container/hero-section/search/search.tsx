@@ -3,8 +3,10 @@
 import InputDate from "@/components/common/inputs/date-input";
 import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-inputs";
+import { getAllHouse } from "@/utils/service/house/get-all-house";
 import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import ResultButton from "../result-button/result-button";
 
 export default function Search() {
   const t = useTranslations("HomePage");
@@ -14,10 +16,16 @@ export default function Search() {
     { text: t("reserve"), id: 3 },
   ];
   const [tabId, setTabId] = useState(3);
-  const [mounted, setMounted] = useState(false);
-  
+  const [houses, setHouses] = useState([]);
+
+  const getHouses = async () => {
+    const data = await getAllHouse(null, null, null, null, null, null);
+    setHouses(data);
+    console.log(data)
+  };
+
   useEffect(() => {
-    setMounted(true);
+    getHouses();
   }, []);
 
   return (
@@ -25,9 +33,11 @@ export default function Search() {
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item, index) => {
           return (
-            <div 
-              key={item.id} 
-              className={`flex flex-col gap-1.5 animate-[var(--animation-fade-in)] [animation-delay:${0.5 + index * 0.1}s] [animation-fill-mode:both] opacity-0`}
+            <div
+              key={item.id}
+              className={`flex flex-col gap-1.5 animate-[var(--animation-fade-in)] [animation-delay:${
+                0.5 + index * 0.1
+              }s] [animation-fill-mode:both] opacity-0`}
             >
               <div
                 className={`w-full h-1.5 ${
@@ -72,9 +82,7 @@ export default function Search() {
             </div>
           </>
         )}
-        <button className="w-[133px] h-[48px] rounded-2xl bg-[#586CFF] text-white hover:bg-[#4A5FE3] transition-colors duration-300 ease-in-out animate-[var(--animation-pulse)] [animation-delay:1.3s] [animation-iteration-count:1] [animation-fill-mode:both]">
-          {t("result")}
-        </button>
+        <ResultButton houses={houses} />
       </div>
     </div>
   );
