@@ -18,7 +18,7 @@ export default function MobileNav() {
   };
 
   const navItems = [
-    { text: "درباره ما", url: "/about", icon: <User /> },
+    { text: "درباره ما", url: "/about-us", icon: <User /> },
     { text: "مقالات", url: "/blogs", icon: <Book /> },
     { text: "خانه", url: "/", icon: <Home /> },
   ];

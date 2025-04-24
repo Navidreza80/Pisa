@@ -1,4 +1,3 @@
-import { HouseInterFace } from "@/types/house";
 import http from "@/utils/interceptor";
 
 const getAllHouse = async (
@@ -11,9 +10,7 @@ const getAllHouse = async (
 ) => {
   try {
     const result = await http.get(
-      `/houses?page=1&limit=10${sort && "sort=sort"}${order && "&order=order"}${
-        address && "&address=address"
-      }${capacity && "&capacity=capacity"}`
+      `/houses?page=${pageNumber}&limit=${limit}${sort && "sort="+sort}${order && "&order="+order}${address && "&adress="+address}${capacity && "&capacity="+capacity}`
     );
     return result;
   } catch (error) {
@@ -22,3 +19,4 @@ const getAllHouse = async (
 };
 
 export { getAllHouse };
+

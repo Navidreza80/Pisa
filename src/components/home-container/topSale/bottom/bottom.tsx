@@ -52,7 +52,7 @@ const cardData: CardData[] = [
 
 function Bottom() {
   return (
-    <div className="flex justify-between">
+    <div className="flex gap-[30px] justify-center flex-wrap flex-row">
       {cardData.map((card) => (
         <Card 
           key={card.id}

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Time() {
     return (
-        <div className='bg-[#FF5454] py-[8px] px-[16px] rounded-[16px] flex flex-row-reverse gap-[8px]'>
+        <div className='bg-[#FF5454] py-[12px] px-[16px] hidden lg:flex md:flex rounded-[16px] h-[50px] flex-row-reverse gap-[8px] font-yekannum'>
             <h1 className='my-auto text-white text-[20px] font-[600]'>2:20:25</h1>
             <svg className='my-auto' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 12H12V6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

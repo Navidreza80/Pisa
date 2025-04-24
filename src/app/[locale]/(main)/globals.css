@@ -94,6 +94,17 @@ body {
   }
 }
 
+@keyframes fall {
+  from {
+    background: white;
+    transform: rotate(0);
+  }
+  to {
+    background: red;
+    transform: rotate(-13.08deg);
+  }
+}
+
 @keyframes slide-in-right {
   0% {
     opacity: 0;
