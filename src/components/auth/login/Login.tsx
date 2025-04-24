@@ -7,9 +7,9 @@ import Button from '../Items/Button'
 
 function Login() {
     return (
-        <div className='max-[1300px]:w-[80%] max-[600px]:w-[100%]  max-[1300px]:justify-center my-auto w-[390px] flex flex-wrap flex-col gap-[32px]'>
+        <>
             <WelcomeTitle title='ورود به پیزا' desc='برای ورود به حساب کاربری آلفا میتوانید با اکانت گوگل خود و یا با ایمیل و رمزعبور خود اقدام کنید' />
-            <div className='flex flex-col flex-wrap gap-[24px]'>
+            <div className='flex flex-col flex-wrap gap-[20px]'>
                 <button className='h-[48px] bg-black border border-[#E0E0E0] rounded-[24px] flex items-center justify-center gap-2 text-[16px] font-bold text-black hover:bg-[#f5f5f5] transition-all'></button>
                 <OrUnderline />
                 <InputAuth name='ایمیل' placeHolder='ایمیل خود را وارد کنید' icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,11 +28,11 @@ function Login() {
                 } />
                 <Button text="ورود به حساب" />
             </div>
-            <div className='flex justify-center mt-2 gap-[5px]'>
+            <div className='flex justify-center gap-[5px]'>
                 <a href='#' className='text-[#586CFF] text-[14px] font-[600]  mx-1 underline'>ورود به حساب</a>
                 <span className='text-[14px] font-[500] text-[#222]'>حساب کاربری دارید؟ </span>
             </div>
-        </div>
+        </>
     )
 }
 

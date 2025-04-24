@@ -14,7 +14,7 @@ function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
                 </svg>
             </div>
             <div className='max-[600px]:w-[100%]'>
-                <h1 className='text-[36px] text-right font-[700] text-[#000000] mb-[30px]'>{title}</h1>
+                <h1 className='text-[36px] text-right font-[700] text-[#000000] mb-[24px]'>{title}</h1>
                 <p className='text-[14px] text-right  font-[600] text-[#767676]'>{desc}</p>
             </div>
         </>
