@@ -3,7 +3,7 @@
 import { Input } from 'antd'
 
 import React, { useRef, useState, useEffect } from "react";
-import Button from '../Items/Button';
+import Button from '../common/button';
 
 const EMAIL = "Example@gmail.com";
 const CODE_LENGTH = 5;

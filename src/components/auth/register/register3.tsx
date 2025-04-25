@@ -1,8 +1,8 @@
 import { Input } from "antd";
 import React from "react";
-import InputAuth from "../Items/InputAuth";
-import WelcomeTitle from "../Items/WelcomeTitle";
-import Button from "../Items/Button";
+import InputAuth from "../common/input-auth";
+import WelcomeTitle from "../common/welcome-title";
+import Button from "../common/button";
 
 function Register3() {
   return (

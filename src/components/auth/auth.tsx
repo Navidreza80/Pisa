@@ -1,7 +1,7 @@
 import React from 'react'
 import jangal from "@/assets/images/auth/jangal.png"
 import Image from 'next/image'
-import Comment from './Items/Comment'
+import Comment from './common/comment'
 
 function Auth() {
     return (

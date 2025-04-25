@@ -1,9 +1,9 @@
 import { Input } from 'antd'
 import React from 'react'
-import InputAuth from '../Items/InputAuth'
-import WelcomeTitle from '../Items/WelcomeTitle'
-import OrUnderline from '../Items/OrUnderline'
-import Button from '../Items/Button'
+import InputAuth from '../common/input-auth'
+import WelcomeTitle from '../common/welcome-title'
+import OrUnderline from '../common/or-underline'
+import Button from '../common/button'
 
 function Register1() {
     return (
