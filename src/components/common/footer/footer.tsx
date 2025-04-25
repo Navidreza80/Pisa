@@ -1,7 +1,10 @@
+// Next built in
 import Image from "next/image";
+// Icons
 import icon1 from "../../../assets/images/footer/e-namad.png";
 import icon2 from "../../../assets/images/footer/etemad.png";
 import icon3 from "../../../assets/images/footer/e-box.png";
+// Change lang
 import { getTranslations } from "next-intl/server";
 
 export default async function Footer() {
