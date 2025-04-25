@@ -1,7 +1,7 @@
 import Image from "next/image";
-import icon1 from "../../../assets/images/footer/5083a983cba6cfdb03395e9c5f3affccc79f623b.png";
-import icon2 from "../../../assets/images/footer/c82fd62437e1e6142434fb2e1fcb4f77a4d849b0.png";
-import icon3 from "../../../assets/images/footer/cea34e5ab426cc28c323d8f6355265cccb1e7ec9.png";
+import icon1 from "../../../assets/images/footer/e-namad.png";
+import icon2 from "../../../assets/images/footer/etemad.png";
+import icon3 from "../../../assets/images/footer/e-box.png";
 import { getTranslations } from "next-intl/server";
 
 export default async function Footer() {
@@ -51,7 +51,9 @@ export default async function Footer() {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
         {/* Column 1 - Contact Info */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-text dark:text-text-dark text-right">راه ارتباطی دلتا</h3>
+          <h3 className="font-bold mb-4 text-text dark:text-text-dark text-right">
+            راه ارتباطی دلتا
+          </h3>
           {contactInfo.map((item, index) => (
             <p
               key={`contact-${index}`}
@@ -64,7 +66,9 @@ export default async function Footer() {
 
         {/* Column 2 - Customer Services */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-text dark:text-text-dark  text-right">خدمات مشتریان</h3>
+          <h3 className="font-bold mb-4 text-text dark:text-text-dark  text-right">
+            خدمات مشتریان
+          </h3>
           {customerServices.map((item, index) => (
             <p
               key={`service-${index}`}
@@ -77,12 +81,16 @@ export default async function Footer() {
 
         {/* Column 3 - How to Use */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-right text-text dark:text-text-dark">نحوه رزرو اقامتگاه</h3>
+          <h3 className="font-bold mb-4 text-right text-text dark:text-text-dark">
+            نحوه رزرو اقامتگاه
+          </h3>
           {howToUse.map((item, index) => (
             <p
               key={`howto-${index}`}
               className={` text-right ${item.className} ${
-                index == 0 ? "text-[#1E1E1E] dark:text-[#c8c8c8]" : "text-text-secondary dark:text-text-secondary-dark"
+                index == 0
+                  ? "text-[#1E1E1E] dark:text-[#c8c8c8]"
+                  : "text-text-secondary dark:text-text-secondary-dark"
               }`}
             >
               {item.text}
@@ -93,7 +101,7 @@ export default async function Footer() {
         {/* Column 4 - About */}
         <div className="flex flex-col items-end md:w-auto lg:max-w-md">
           <p className="text-text dark:text-text-dark leading-6 text-right mb-5">
-            {t('footerAbout')}
+            {t("footerAbout")}
           </p>
         </div>
       </div>

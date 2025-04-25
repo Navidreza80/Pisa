@@ -40,6 +40,8 @@ body {
     cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @keyframes curtain-open {
   0% {
     clip-path: inset(0 0 100% 0);
@@ -94,6 +96,17 @@ body {
   }
 }
 
+@keyframes fall {
+  from {
+    background: white;
+    transform: rotate(0);
+  }
+  to {
+    background: red;
+    transform: rotate(-13.08deg);
+  }
+}
+
 @keyframes slide-in-right {
   0% {
     opacity: 0;
@@ -114,8 +127,6 @@ body {
     transform: scale(1.05);
   }
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: "Yekan";

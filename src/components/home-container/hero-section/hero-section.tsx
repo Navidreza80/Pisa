@@ -84,9 +84,14 @@ export default async function HeroSection() {
             br: () => <br />,
           })}
         </h2>
-        <button className="mt-8 px-3 h-[48px] bg-[#586CFF] rounded-2xl !text-white flex justify-center items-center gap-2 font-semibold text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
-          <ArrowLeft style={{ fontSize: "20px" }} />
+        <button className="mt-8 group px-3 h-[48px] overflow-hidden bg-[#586CFF] rounded-2xl !text-white flex justify-center items-center gap-2 font-semibold text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
+          <div className="relative right-0 group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
+            <ArrowLeft style={{ fontSize: "20px" }} />
+          </div>
           {t("button")}
+          <div className="relative group-hover:right-[151px] right-[-100px] transition-all ease-out duration-200 opacity-0 group-hover:opacity-100">
+            <ArrowLeft style={{ fontSize: "20px" }} />
+          </div>
         </button>
         <BuildingsSvg width={400} height={350} />
       </div>

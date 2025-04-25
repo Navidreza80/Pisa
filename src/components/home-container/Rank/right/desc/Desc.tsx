@@ -4,7 +4,7 @@ import DescBottom from './desc/Desc'
 
 function Desc() {
   return (
-    <div className='flex flex-col justify-end flex-wrap gap-[24px]'>
+    <div className='flex flex-col lg:justify-end md:justify-center justify-center flex-wrap gap-[24px]'>
         <Title />
         <DescBottom />
     </div>

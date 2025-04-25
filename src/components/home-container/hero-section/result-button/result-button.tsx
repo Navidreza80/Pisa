@@ -1,9 +1,8 @@
 "use client";
 
-import { Modal, Carousel } from "antd";
+import { Carousel, Modal } from "antd";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function ResultButton({ houses }) {
   const t = useTranslations("HomePage");
@@ -37,8 +36,15 @@ export default function ResultButton({ houses }) {
         cancelText={t("cancel")}
         className="custom-modal"
         width={700}
+        styles={{
+          body: {
+            maxHeight: '500px',
+            overflow: 'auto',
+            padding: '16px'
+          }
+        }}
       >
-        <div className="py-4 text-right">
+        <div className="py-4 text-right" dir="rtl">
           {houses && houses.length > 0 ? (
             <div className="grid grid-cols-1 gap-6">
               {houses.map((item, index) => (
@@ -53,11 +59,11 @@ export default function ResultButton({ houses }) {
                         className="rounded-lg overflow-hidden"
                         style={{ height: "200px" }}
                       >
-                        {item.photos.map((photo, photoIndex) => (
-                          <div key={photoIndex} className="h-[200px] relative">
-                            <Image
+                        {item.photos.map((photo, index) => (
+                          <div key={index} className="h-[200px] relative">
+                            <img
                               src={photo}
-                              alt={`${item.title} - تصویر ${photoIndex + 1}`}
+                              alt={`${item.title} - تصویر ${index + 1}`}
                               className="w-full h-full object-cover"
                             />
                           </div>
@@ -110,7 +116,7 @@ export default function ResultButton({ houses }) {
                       <div className="flex items-center gap-1 text-sm text-gray-600">
                         <span>🚿</span>
                         <span className="font-yekannum">
-                          {item.bathrooms} حمام
+                          {item.bathrooms} {t("bathrooms")}
                         </span>
                       </div>
                     )}
@@ -118,7 +124,7 @@ export default function ResultButton({ houses }) {
                       <div className="flex items-center gap-1 text-sm text-gray-600">
                         <span>👤</span>
                         <span className="font-yekannum">
-                          {item.capacity} نفر
+                          {item.capacity} {t("capacity")}
                         </span>
                       </div>
                     )}

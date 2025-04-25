@@ -18,7 +18,7 @@ const cardData = [
 function Bottom() {
     return (
         <div className="container mx-auto p-4">
-            <div className="flex flex-wrap justify-between gap-6 mb-6">
+            <div className="flex flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
                 {cardData.slice(0, 6).map((card) => (
                     <div key={card.id} className="flex-1 hover:scale-[1.1] transition-transform duration-300 bg-black relative rounded-[20px] max-h-[190px] min-w-[389px] max-w-[389px]">
                         <img 

@@ -4,7 +4,7 @@ import Left from './left/left'
 
 function Top() {
     return (
-        <div className='flex justify-between mb-[32px]'>
+        <div className='flex flex-wrap justify-between items-center mb-[32px]'>
             <Left />
             <Right />
         </div>

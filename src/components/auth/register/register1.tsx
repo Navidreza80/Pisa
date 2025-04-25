@@ -1,15 +1,15 @@
 import { Input } from 'antd'
 import React from 'react'
-import InputAuth from '../Items/InputAuth'
-import WelcomeTitle from '../Items/WelcomeTitle'
-import OrUnderline from '../Items/OrUnderline'
-import Button from '../Items/Button'
+import InputAuth from '../common/input-auth'
+import WelcomeTitle from '../common/welcome-title'
+import OrUnderline from '../common/or-underline'
+import Button from '../common/button'
 import { getTranslations } from 'next-intl/server'
 
 async function Register1() {
     const t = await getTranslations("Auth");
     return (
-        <div className='max-[1300px]:w-[80%] max-[600px]:w-[100%]  max-[1300px]:justify-center my-auto w-[390px] flex flex-wrap flex-col gap-[32px]'>
+        <>
             <WelcomeTitle title={t("SignUpTitle")} desc={t("SignUpDesc1")} />
             <div className='flex flex-col flex-wrap gap-[24px]'>
                 <button className='h-[48px] bg-black border border-[#E0E0E0] rounded-[24px] flex items-center justify-center gap-2 text-[16px] font-bold text-black hover:bg-[#f5f5f5] transition-all'></button>
@@ -25,7 +25,7 @@ async function Register1() {
                 <a href='#' className='text-[#586CFF] text-[14px] font-[600]  mx-1 underline'>{t("loginAccount")}</a>
                 <span className='text-[14px] font-[500] text-[#222]'>{t("HaveAccount")} </span>
             </div>
-        </div>
+        </>
     )
 }
 

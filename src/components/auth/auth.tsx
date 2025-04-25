@@ -1,13 +1,13 @@
 import React from 'react'
 import jangal from "@/assets/images/auth/jangal.png"
 import Image from 'next/image'
-import Comment from './Items/Comment'
+import Comment from './common/comment'
 
 function Auth() {
     return (
         <div className='max-[1300px]:hidden'>
             <div className='relative'>
-                <Image width={704} height={720} src={jangal} alt='جنگل گلستان' className='max-h-[720px] rounded-[32px]' />
+                <Image width={704} height={720} src={jangal} alt='جنگل گلستان' className='max-h-[calc(100vh-32px)] rounded-[32px]' />
                 <div className='flex gap-[8px] absolute top-[5%] right-[5%]'>
                     <h1 className='text-white text-[14px] font-[700]'>جنگل گلستان</h1>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

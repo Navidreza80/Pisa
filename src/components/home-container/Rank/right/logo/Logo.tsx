@@ -2,7 +2,7 @@ import React from 'react'
 
 function Logo() {
     return (
-        <div className='flex justify-end'>
+        <div className='flex lg:justify-end md:justify-center justify-center'>
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="62" height="62" rx="31" fill="white" />
                 <rect x="1" y="1" width="62" height="62" rx="31" stroke="#F5FF6D" strokeWidth="2" />

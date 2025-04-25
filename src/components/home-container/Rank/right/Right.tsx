@@ -4,7 +4,7 @@ import Desc from './desc/Desc'
 
 function Right() {
     return (
-        <div className='flex flex-col flex-wrap gap-[24px]'>
+        <div className='flex flex-col flex-wrap gap-[24px] lg:w-auto md:w-full w-full'>
             <Logo />
             <Desc />
         </div>

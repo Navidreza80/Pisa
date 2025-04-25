@@ -4,7 +4,7 @@ import Left from './left/Left'
 
 function Rank() {
     return (
-        <div className='flex flex-row-reverse justify-between'>
+        <div className='flex flex-row-reverse gap-4 lg:justify-between w-full'>
             <Right />
             <Left />
         </div>
