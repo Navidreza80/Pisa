@@ -1,11 +1,12 @@
-import { Input } from 'antd'
 import React from 'react'
 import InputAuth from '../Items/InputAuth'
 import WelcomeTitle from '../Items/WelcomeTitle'
 import OrUnderline from '../Items/OrUnderline'
 import Button from '../Items/Button'
+import { getTranslations } from 'next-intl/server'
 
-function Login() {
+async function Login() {
+    const t = await getTranslations("Auth");
     return (
         <div className='max-[1300px]:w-[80%] max-[600px]:w-[100%]  max-[1300px]:justify-center my-auto w-[390px] flex flex-wrap flex-col gap-[32px]'>
             <WelcomeTitle title='ورود به پیزا' desc='برای ورود به حساب کاربری آلفا میتوانید با اکانت گوگل خود و یا با ایمیل و رمزعبور خود اقدام کنید' />
