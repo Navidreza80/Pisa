@@ -1,5 +1,5 @@
 'use client'
-
+// Change lang
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 

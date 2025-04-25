@@ -1,11 +1,15 @@
 "use client";
-
+// Third party components
 import { TransitionLink } from "@/utils/helper/TransitionLink";
+// Change lang
 import { useTranslations } from "next-intl";
+// Next built in
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const t = useTranslations("Header");
+
+  // Header NavBar Items
   const navItems = [
     { text: t("about"), url: "/about-us" },
     { text: t("blogs"), url: "/blogs" },

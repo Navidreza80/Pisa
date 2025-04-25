@@ -1,20 +1,29 @@
 import { Select } from "antd";
 import { useTranslations } from "next-intl";
 
-export default function InputSelect({ items, onChange, value }) {
+export default function InputSelect({
+  items,
+  onChange,
+  value,
+}: {
+  onChange: () => void;
+  value: "string";
+}) {
   const t = useTranslations("HomePage");
-  
+
   const handleChange = (selectedValue) => {
     if (onChange) {
       onChange(selectedValue);
     }
   };
-  
+
   return (
     <Select
-      options={items.map(item => ({
+      options={items.map((item) => ({
         value: item.value || item.id || item.text,
-        label: <span className="font-yekan">{item.area_name || item.text}</span>
+        label: (
+          <span className="font-yekan">{item.area_name || item.text}</span>
+        ),
       }))}
       placeholder={t("choose")}
       onChange={handleChange}

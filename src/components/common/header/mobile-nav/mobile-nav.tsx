@@ -1,9 +1,13 @@
 "use client";
-
+// Icons
 import { MenuOutlined } from "@ant-design/icons";
+// antd components
 import { Button, Drawer } from "antd";
+// Icons
 import { Book, Home, User } from "lucide-react";
+// Next built in components
 import Link from "next/link";
+// React built in components
 import { useState } from "react";
 
 export default function MobileNav() {
@@ -17,6 +21,7 @@ export default function MobileNav() {
     setOpen(false);
   };
 
+  // Navigation items
   const navItems = [
     { text: "درباره ما", url: "/about-us", icon: <User /> },
     { text: "مقالات", url: "/blogs", icon: <Book /> },

@@ -6,6 +6,7 @@ import { ReactNode, useState } from "react";
 interface TransitionLinkProps extends LinkProps {
   children: ReactNode;
   href: string;
+  className: string;
 }
 
 function sleep(ms: number): Promise<void> {

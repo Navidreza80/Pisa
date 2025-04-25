@@ -1,6 +1,7 @@
+// Third party components
 import MobileNav from "../mobile-nav/mobile-nav";
 
-export default function Logo() {
+export default async function Logo() {
   return (
     <div className="flex justify-end items-center gap-x-3">
       <svg
