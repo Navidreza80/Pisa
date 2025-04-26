@@ -119,23 +119,23 @@ const ChatAssistant = ({ isOpen, setIsOpen }) => {
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 animate-fade-in">
-          <div className="w-[400px] rounded-2xl shadow-2xl overflow-hidden bg-white dark:bg-surface-dark border border-border dark:border-border-dark">
+          <div className="w-[400px] rounded-2xl shadow-2xl overflow-hidden bg-white  border border-border ">
             {/* Chat Header */}
-            <div className="p-4 flex justify-between items-center border-b border-border dark:border-border-dark">
-              <h2 className="text-lg font-bold flex items-center gap-2 text-text dark:text-text-dark">
+            <div className="p-4 flex justify-between items-center border-b border-border ">
+              <h2 className="text-lg font-bold flex items-center gap-2 text-text ">
                 <MessageSquare className="text-[#586CFF]" />
                 Chat
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 text-text-secondary dark:text-text-secondary-dark"
+                className="p-2 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 text-text-secondary "
               >
                 <X size={20} />
               </button>
             </div>
 
             {/* Chat Messages */}
-            <div className="p-4 h-[400px] overflow-y-auto space-y-4 bg-white dark:bg-surface-dark">
+            <div className="p-4 h-[400px] overflow-y-auto space-y-4 bg-white ">
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -148,13 +148,13 @@ const ChatAssistant = ({ isOpen, setIsOpen }) => {
                     className={`p-3 rounded-2xl max-w-[75%] ${
                       msg.role === "user"
                         ? "bg-[#586CFF] text-white"
-                        : "bg-background-secondary dark:bg-surface-secondary-dark text-text dark:text-text-dark border border-border dark:border-border-dark"
+                        : "bg-background-secondary dark:bg-surface-secondary-dark text-text  border border-border "
                     }`}
                   >
                     {msg.content}
                   </div>
                   {msg.timestamp && (
-                    <span className="text-xs mt-1 text-text-secondary dark:text-text-secondary-dark">
+                    <span className="text-xs mt-1 text-text-secondary ">
                       {formatTimestamp(msg.timestamp)}
                     </span>
                   )}
@@ -164,7 +164,7 @@ const ChatAssistant = ({ isOpen, setIsOpen }) => {
             </div>
 
             {/* Chat Input */}
-            <div className="p-4 flex gap-2 border-t border-border dark:border-border-dark">
+            <div className="p-4 flex gap-2 border-t border-border ">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

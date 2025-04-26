@@ -47,7 +47,6 @@ export default function Search() {
       filters.address
     );
     setHouses(data);
-    console.log(data)
   };
 
   const getLocations = async () => {
@@ -72,7 +71,7 @@ export default function Search() {
   };
 
   return (
-    <div className="absolute w-full min-h-[135px] bg-background dark:bg-surface-dark border border-border dark:border-border-dark bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-[var(--animation-fade-in-up)] [animation-delay:0.3s] [animation-fill-mode:both] opacity-0">
+    <div className="absolute w-full min-h-[135px] bg-background  border border-border  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-[var(--animation-fade-in-up)] [animation-delay:0.3s] [animation-fill-mode:both] opacity-0">
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item, index) => {
           return (
@@ -92,7 +91,7 @@ export default function Search() {
                 className={`${
                   tabId == item.id
                     ? "text-[#586CFF]"
-                    : "text-text-secondary dark:text-text-secondary-dark"
+                    : "text-text-secondary "
                 } cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#586CFF]/80`}
               >
                 {item.text}

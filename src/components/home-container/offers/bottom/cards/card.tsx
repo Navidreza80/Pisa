@@ -16,13 +16,13 @@ interface CardProps {
 function Card({ title, Location, imageUrl, bathroom, person, room,offer, price,}: CardProps) {
     return (
         <>
-            <div className='flex flex-col flex-wrap justify-between border-[1px] w-[391px] p-[16px] rounded-[40px] h-[438px] border-border dark:border-border-dark dark:bg-surface-dark'>
+            <div className='flex flex-col flex-wrap lg:justify-between md:justify-center justify-center border-[1px] min-w-[391px] w-[calc(33.3%-20px)] p-[16px] rounded-[40px] h-[438px] border-border  '>
                 <Top
                     title={title}
                     location={Location}
                     imageUrl={imageUrl}
                 />
-                <div className='bg-border dark:bg-border-dark h-[1px]'></div>
+                <div className='bg-border  h-[1px]'></div>
                 <Bottom 
                     bathroom={bathroom}
                     person={person}

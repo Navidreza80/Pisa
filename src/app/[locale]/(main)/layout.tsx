@@ -10,7 +10,7 @@ import FloatingActions from "@/components/common/FAB/fab";
 // Redux provider
 import { ReduxProvider } from "@/utils/providers/redux-provider";
 // Css imports
-import "./globals.css";
+import "../globals.css";
 
 // metadata
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale}>
-      <body className="bg-background dark:bg-background-dark text-text dark:text-text-dark flex justify-center font-yekan">
+      <body className="bg-background text-text  flex justify-center font-yekan">
         <NextIntlClientProvider>
           <ReduxProvider>
             <main className="w-[85.5%] ">

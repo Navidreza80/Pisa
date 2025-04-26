@@ -37,20 +37,20 @@ export default async function Footer() {
   ];
 
   return (
-    <div className="w-full border-t border-border dark:border-border-dark my-10 flex flex-col py-10">
+    <div className="w-full border-t border-border  my-10 flex flex-col py-10">
       <div className="flex justify-end mb-10">
         <LogoSVG width={106} height={36} />
       </div>
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
         {/* Column 1 - Contact Info */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-text dark:text-text-dark text-right">
+          <h3 className="font-bold mb-4 text-text  text-right">
             راه ارتباطی دلتا
           </h3>
           {contactInfo.map((item, index) => (
             <p
               key={`contact-${index}`}
-              className={`text-text-secondary dark:text-text-secondary-dark  text-right ${item.className}`}
+              className={`text-text-secondary   text-right ${item.className}`}
             >
               {item.text}
             </p>
@@ -59,13 +59,13 @@ export default async function Footer() {
 
         {/* Column 2 - Customer Services */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-text dark:text-text-dark  text-right">
+          <h3 className="font-bold mb-4 text-text   text-right">
             خدمات مشتریان
           </h3>
           {customerServices.map((item, index) => (
             <p
               key={`service-${index}`}
-              className={` text-right text-text-secondary dark:text-text-secondary-dark ${item.className}`}
+              className={` text-right text-text-secondary  ${item.className}`}
             >
               {item.text}
             </p>
@@ -74,7 +74,7 @@ export default async function Footer() {
 
         {/* Column 3 - How to Use */}
         <div className="flex flex-col items-end">
-          <h3 className="font-bold mb-4 text-right text-text dark:text-text-dark">
+          <h3 className="font-bold mb-4 text-right text-text ">
             نحوه رزرو اقامتگاه
           </h3>
           {howToUse.map((item, index) => (
@@ -83,7 +83,7 @@ export default async function Footer() {
               className={` text-right ${item.className} ${
                 index == 0
                   ? "text-[#1E1E1E] dark:text-[#c8c8c8]"
-                  : "text-text-secondary dark:text-text-secondary-dark"
+                  : "text-text-secondary "
               }`}
             >
               {item.text}
@@ -93,7 +93,7 @@ export default async function Footer() {
 
         {/* Column 4 - About */}
         <div className="flex flex-col items-end md:w-auto lg:max-w-md">
-          <p className="text-text dark:text-text-dark leading-6 text-right mb-5">
+          <p className="text-text  leading-6 text-right mb-5">
             {t("footerAbout")}
           </p>
         </div>

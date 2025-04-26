@@ -36,7 +36,7 @@ export const TransitionLink = ({
   return (
     <>
       {isTransitioning && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background dark:bg-surface-dark animate-[var(--animation-curtain-open)]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background  animate-[var(--animation-curtain-open)]">
           <div className="animate-[var(--animation-building-appear)] [animation-delay:0.1s] [animation-fill-mode:both] opacity-0">
             <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 22H23" stroke="#586CFF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
