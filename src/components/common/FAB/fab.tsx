@@ -4,7 +4,9 @@ import { Moon, Sun, MessageCircle, Globe } from "lucide-react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import ChatAssistant from "../chat/ai-assistant";
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, Transition } from "@headlessui/react";
+import { useDispatch } from "react-redux";
+import { toggleDarkMode } from "@/utils/hooks/themeSlice";
 
 export default function FloatingActions() {
   const [open, setOpen] = useState(false);
@@ -15,28 +17,31 @@ export default function FloatingActions() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const html = document.documentElement;
     dark ? html.classList.add("dark") : html.classList.remove("dark");
   }, [dark]);
 
   const changeLanguage = (newLocale: string) => {
-    router.push(pathname, {locale: newLocale});
+    router.push(pathname, { locale: newLocale });
   };
 
   const languages = [
-    { code: 'fa', name: 'فارسی', dir: 'rtl' },
-    { code: 'en', name: 'English', dir: 'ltr' },
-    { code: 'tr', name: 'Türkçe', dir: 'ltr' },
-    { code: 'ar', name: 'العربية', dir: 'rtl' },
+    { code: "fa", name: "فارسی", dir: "rtl" },
+    { code: "en", name: "English", dir: "ltr" },
+    { code: "tr", name: "Türkçe", dir: "ltr" },
+    { code: "ar", name: "العربية", dir: "rtl" },
   ];
 
-  const currentLanguage = languages.find(lang => lang.code === locale) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === locale) || languages[0];
 
   return (
     <>
       <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
-      
+
       <div className="fixed z-50 bottom-8 right-8 flex flex-col items-end gap-3">
         {open && (
           <div className="flex flex-col items-end gap-3 mb-2 animate-fade-in">
@@ -65,8 +70,12 @@ export default function FloatingActions() {
                         {({ active }) => (
                           <button
                             onClick={() => changeLanguage(language.code)}
-                            className={`${active ? 'bg-purple-100 dark:bg-gray-700' : ''} ${
-                              locale === language.code ? 'bg-purple-200 dark:bg-purple-900' : ''
+                            className={`${
+                              active ? "bg-purple-100 dark:bg-gray-700" : ""
+                            } ${
+                              locale === language.code
+                                ? "bg-purple-200 dark:bg-purple-900"
+                                : ""
                             } group flex w-full items-center rounded-md px-4 py-2 text-sm text-gray-900 dark:text-gray-100`}
                           >
                             {language.name}
@@ -81,7 +90,10 @@ export default function FloatingActions() {
 
             {/* Dark Mode Toggle */}
             <button
-              onClick={() => setDark((d) => !d)}
+              onClick={() => {
+                setDark((d) => !d);
+                dispatch(toggleDarkMode())}
+              }
               className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100"
             >
               {dark ? (
@@ -91,7 +103,7 @@ export default function FloatingActions() {
               )}
               <span>{dark ? "Light Mode" : "Dark Mode"}</span>
             </button>
-            
+
             {/* Chat Box */}
             <button
               onClick={() => setChatOpen(true)}
@@ -108,7 +120,11 @@ export default function FloatingActions() {
           className="w-16 h-16 rounded-full bg-gradient-to-br from-[#586CFF] to-[#7F9CF5] shadow-2xl flex items-center justify-center text-white text-3xl hover:scale-110 transition-all border-4 border-white dark:border-gray-800"
           aria-label="Open actions"
         >
-          <span className={`transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
+          <span
+            className={`transition-transform duration-300 ${
+              open ? "rotate-45" : ""
+            }`}
+          >
             +
           </span>
         </button>

@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/common/button/button";
 import { Carousel, Modal } from "antd";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -21,12 +22,12 @@ export default function ResultButton({ houses }) {
   };
   return (
     <>
-      <button
-        onClick={showModal}
-        className="w-[133px] h-[48px] rounded-2xl bg-[#586CFF] text-white hover:bg-[#4A5FE3] transition-colors duration-300 ease-in-out animate-[var(--animation-pulse)] [animation-delay:1.3s] [animation-iteration-count:1] [animation-fill-mode:both]"
+      <Button
+        handleClick={showModal}
+        className="transition-colors duration-300 ease-in-out animate-[var(--animation-pulse)] [animation-delay:1.3s] [animation-iteration-count:1] [animation-fill-mode:both]"
       >
         {t("result")}
-      </button>
+      </Button>
       <Modal
         title={t("searchResults")}
         open={isModalOpen}

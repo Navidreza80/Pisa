@@ -4,6 +4,7 @@ import { ReactNode, useRef } from "react";
 // button sizes
 const SIZES = {
   md: "w-[133px] h-12 px-4 py-[9px]",
+  lg: "py-3.5 px-4 min-w-[129px] max-[600px]:py-4 max-[600px]:px-5",
 };
 // button colors
 const COLORS = {
@@ -11,6 +12,7 @@ const COLORS = {
 };
 // button border radius
 const Radiuses = {
+  sm: "rounded-xl",
   md: "rounded-2xl",
 };
 
@@ -48,7 +50,7 @@ export default function Button({
       type="submit"
       ref={buttonRef}
       onClick={handleClick}
-      className={`flex items-center justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center hover:bg-[#4A5FE3] justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
         SIZES[size]
       } ${Radiuses[radius]}`}

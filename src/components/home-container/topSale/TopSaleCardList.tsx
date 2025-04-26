@@ -15,11 +15,11 @@ interface TopSaleCardListProps {
 
 export default function TopSaleCardList({ data }: TopSaleCardListProps) {
   return (
-    <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap flex-row">
+    <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
       {data.map((card: HouseItemsInterface, index: number) => (
         <div
           key={index}
-          className="flex flex-col flex-wrap justify-between border-[1px] min-w-[391px] w-[calc(33.3%-20px)] p-[16px] rounded-[40px] h-[438px] border-border "
+          className="flex flex-col flex-wrap justify-between border min-w-[391px] w-[calc(33.3%-20px)] p-4 rounded-[40px] h-[438px] border-border"
         >
           <div className="overflow-hidden w-full h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
             <Slider

@@ -1,17 +1,20 @@
+"use client"
+import { useSelector } from "react-redux";
 
-export default async function LogoSVG({
+export default function LogoSVG({
   width,
   height,
 }: {
   width?: number;
   height?: number;
 }) {
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   return (
     <svg
       width={width ? width : "71"}
       height={height ? height : "24"}
       viewBox="0 0 71 24"
-      fill="currentColor"
+      fill={isDarkMode ? "white" : "currentColor"}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

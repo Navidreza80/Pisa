@@ -93,7 +93,7 @@ async function Offers() {
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="flex flex-col flex-wrap lg:justify-between md:justify-center justify-center border-[1px] min-w-[391px] w-[calc(33.3%-20px)] p-[16px] rounded-[40px] h-[438px] border-border  "
+            className="flex flex-col flex-wrap lg:justify-between md:justify-center justify-center border-[1px] min-w-[391px] w-[calc(33.3%-20px)] p-[16px] rounded-[40px] h-[438px] border-border dark:border-border-dark "
           >
             <img
               className="w-full h-[221px] rounded-b-[16px] rounded-t-[24px]"

@@ -1,14 +1,22 @@
 // Third party components
-import LoginBtn from "./login-btn/login-btn";
-import Logo from "./logo/logo";
+import { getTranslations } from "next-intl/server";
+import MobileNav from "./mobile-nav/mobile-nav";
 import Navbar from "./navbar/navbar";
+import LogoSVG from "../svg/logo";
+import Button from "../button/button";
 
 export default async function Header() {
+  const t = await getTranslations("Header");
   return (
     <div className="h-20 w-full py-6 flex items-center justify-between max-[600px]:h-28">
-      <LoginBtn />
+      <Button radius="sm" size="lg" >
+        {t("login")}
+      </Button>
       <Navbar />
-      <Logo />
+      <div className="flex justify-end items-center gap-x-3">
+        <LogoSVG />
+        <MobileNav />
+      </div>
     </div>
   );
 }

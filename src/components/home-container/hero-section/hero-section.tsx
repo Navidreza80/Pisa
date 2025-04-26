@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import hero from "../../../assets/images/landing/heroImage.png";
 import Search from "./search/search";
+import Button from "@/components/common/button/button";
 
 export default async function HeroSection() {
   const t = await getTranslations("HomePage");
@@ -14,7 +15,7 @@ export default async function HeroSection() {
         animationTimeline: "view()",
         animationRange: "exit 0% exit 50%"
       }}
-      className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative"
+      className="my-8 flex lg:justify-between md:justify-center justify-center relative"
     >
       <Search />
       <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-[var(--animation-fade-in-left)]">
@@ -91,7 +92,7 @@ export default async function HeroSection() {
             br: () => <br />,
           })}
         </h2>
-        <button className="mt-8 group px-3 h-[48px] overflow-hidden bg-[#586CFF] rounded-2xl !text-white flex justify-center items-center gap-2 font-semibold text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
+        <Button className="mt-8 group overflow-hidden gap-2 !w-auto text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
           <div className="relative right-0 group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
             <ArrowLeft style={{ fontSize: "20px" }} />
           </div>
@@ -99,7 +100,7 @@ export default async function HeroSection() {
           <div className="relative group-hover:right-[151px] right-[-100px] transition-all ease-out duration-200 opacity-0 group-hover:opacity-100">
             <ArrowLeft style={{ fontSize: "20px" }} />
           </div>
-        </button>
+        </Button>
         <BuildingsSvg width={400} height={350} />
       </div>
     </div>

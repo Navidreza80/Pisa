@@ -19,7 +19,7 @@ export default async function Popular() {
           {locations.map((card) => (
             <div
               key={card.id}
-              className=" flex-1 transition-transform duration-300 cursor-pointer bg-white border-[1px] border-border  p-[12px] rounded-[20px] min-w-[389px] w-[calc(33.3%-22px)]"
+              className=" flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border  p-[12px] rounded-[20px] min-w-[389px] w-[calc(33.3%-22px)]"
             >
               <div className="w-full h-[153px] rounded-[20px] overflow-hidden bg-black">
                 <img
