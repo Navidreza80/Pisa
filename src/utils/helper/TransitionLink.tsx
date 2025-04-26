@@ -1,6 +1,7 @@
 "use client";
-import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import type { LinkProps } from "next/link";
+import { useRouter } from "@/i18n/navigation";
 import { ReactNode, useState } from "react";
 
 interface TransitionLinkProps extends LinkProps {

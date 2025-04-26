@@ -23,6 +23,20 @@ export default function LanguageSwitcher() {
       >
         EN
       </Link>
+      <Link 
+        href="/" 
+        locale="tr"
+        className={`text-sm font-medium ${locale === 'tr' ? 'text-primary dark:text-primary' : 'text-gray-600 dark:text-gray-400'}`}
+      >
+        Tr
+      </Link>
+      <Link 
+        href="/" 
+        locale="ar"
+        className={`text-sm font-medium ${locale === 'ar' ? 'text-primary dark:text-primary' : 'text-gray-600 dark:text-gray-400'}`}
+      >
+        Ar
+      </Link>
     </div>
   );
 }

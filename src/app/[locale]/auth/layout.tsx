@@ -29,8 +29,21 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     return "not found";
   }
+
+  const direction = () => {
+    switch(locale) {
+      case 'fa':
+      case 'ar':
+        return 'ltr';
+      case 'tr':
+      case 'en':
+      default:
+        return 'rtl';
+    }
+  };  
+
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={direction()}>
       <body className="bg-background dark:bg-background-dark text-text dark:text-text-dark flex justify-center font-yekan">
         <NextIntlClientProvider>
           <ReduxProvider>

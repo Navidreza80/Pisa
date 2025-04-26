@@ -6,12 +6,18 @@ import { Button, Drawer } from "antd";
 // Icons
 import { Book, Home, User } from "lucide-react";
 // Next built in components
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 // React built in components
 import { useState } from "react";
+// For language detection
+import { useLocale } from "next-intl";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  const locale = useLocale();
+  
+  // Determine direction based on locale
+  const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 
   const showDrawer = () => {
     setOpen(true);
@@ -43,8 +49,8 @@ export default function MobileNav() {
         open={open}
         width={250}
         className="max-[600px]:block hidden"
-        style={{ direction: "rtl" }}
-        styles={{ body: { paddingRight: "20px", paddingTop: 0 } }}
+        style={{ direction: direction }}
+        styles={{ body: { paddingRight: direction === "rtl" ? "20px" : "0", paddingLeft: direction === "ltr" ? "20px" : "0", paddingTop: 0 } }}
       >
         <div className="flex flex-col">
           {navItems.map((item, index) => {
@@ -53,7 +59,7 @@ export default function MobileNav() {
                 {item.icon}{" "}
                 <Link
                   href={item.url}
-                  className="py-4 hover:bg-gray-100 text-right dark:hover:bg-gray-800 dark:text-white text-base"
+                  className={`py-4 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-white text-base ${direction === "rtl" ? "text-right" : "text-left"}`}
                   onClick={onClose}
                 >
                   {item.text}

@@ -4,7 +4,7 @@ import { TransitionLink } from "@/utils/helper/TransitionLink";
 // Change lang
 import { useTranslations } from "next-intl";
 // Next built in
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 export default function Navbar() {
   const t = useTranslations("Header");
