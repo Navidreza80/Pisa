@@ -2,9 +2,8 @@
 import Link from "next/link";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import "./[locale]/(main)/globals.css";
+import "./[locale]/globals.css";
 
-// متن‌های ترجمه‌شده برای فارسی و انگلیسی
 const translations = {
   fa: {
     title: "صفحه پیدا نشد",
@@ -30,7 +29,6 @@ export default function Custom404() {
     const current = window.location.pathname.startsWith("/en") ? "en" : "fa";
     setLocale(current);
 
-    // بررسی حالت دارک مود ذخیره‌شده
     if (localStorage.getItem("theme") === "dark") {
       document.documentElement.classList.add("dark");
       setIsDark(true);

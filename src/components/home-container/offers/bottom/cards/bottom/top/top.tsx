@@ -14,11 +14,11 @@ function Top({ person, room, bathroom }: TopProps) {
             <Room
                 room={room}
             />
-            <div className='bg-border dark:bg-border-dark w-[1px]' />
+            <div className='bg-border  w-[1px]' />
             <Bathroom
                 bathroom={bathroom}
             />
-            <div className='bg-border dark:bg-border-dark w-[1px]' />
+            <div className='bg-border  w-[1px]' />
             <Person
                 person={person}
             />

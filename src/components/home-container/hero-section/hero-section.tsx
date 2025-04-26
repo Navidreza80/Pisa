@@ -8,7 +8,14 @@ import Search from "./search/search";
 export default async function HeroSection() {
   const t = await getTranslations("HomePage");
   return (
-    <div className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative">
+    <div
+      style={{
+        animation: "var(--animation-disappear-scroll)",
+        animationTimeline: "view()",
+        animationRange: "exit 0% exit 50%"
+      }}
+      className="my-8 flex flex-row lg:justify-between md:justify-center sm:justify-center relative"
+    >
       <Search />
       <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-[var(--animation-fade-in-left)]">
         <Image
@@ -18,7 +25,7 @@ export default async function HeroSection() {
           className="rounded-4xl"
           alt="hero image"
         />
-        <div className="bg-white border border-border dark:border-border-dark absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
+        <div className="bg-white border border-border  absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
           <svg
             width="32"
             height="32"
@@ -79,7 +86,7 @@ export default async function HeroSection() {
             br: () => <br />,
           })}
         </h1>
-        <h2 className="text-right text-base text-text-secondary dark:text-text-secondary-dark font-semibold mt-8 animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
+        <h2 className="text-right text-base text-text-secondary  font-semibold mt-8 animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
           {t.rich("subTitle", {
             br: () => <br />,
           })}

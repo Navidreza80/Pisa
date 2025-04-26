@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 // Redux provider
 import { ReduxProvider } from "@/utils/providers/redux-provider";
 // Css imports
-import "../(main)/globals.css";
+import "../globals.css";
 // Third party components
 import FloatingActions from "@/components/common/FAB/fab";
 import Auth from "@/components/auth/auth";
@@ -44,7 +44,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background dark:bg-background-dark text-text dark:text-text-dark flex justify-center font-yekan">
+      <body className="bg-background  text-text  flex justify-center font-yekan">
         <NextIntlClientProvider>
           <ReduxProvider>
             <main className="w-[100%] max-h-screen ">

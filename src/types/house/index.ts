@@ -7,3 +7,15 @@ export interface HouseInterFace {
     address?: string;
 
 }
+
+export interface HouseItemsInterface {
+    id: number;
+    title: string;
+    address: string;
+    photos: string[];
+    bathrooms: number;
+    parking: number;
+    rooms: number;
+    price: number;
+    yard_type: boolean;
+  }

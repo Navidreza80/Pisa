@@ -78,7 +78,7 @@ export default function ResultButton({ houses }) {
                         {item.title}
                       </h3>
                       {item.address && (
-                        <p className="text-text-secondary dark:text-text-secondary-dark text-sm mb-2 font-yekan">
+                        <p className="text-text-secondary  text-sm mb-2 font-yekan">
                           {item.address}
                         </p>
                       )}
@@ -149,7 +149,7 @@ export default function ResultButton({ houses }) {
               ))}
             </div>
           ) : (
-            <p className="text-center text-text-secondary dark:text-text-secondary-dark">
+            <p className="text-center text-text-secondary ">
               نتیجه‌ای یافت نشد
             </p>
           )}

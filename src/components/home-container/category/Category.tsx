@@ -1,40 +1,50 @@
 // Images
 import aparteman from "@/assets/images/landing/category/aparteman.png";
-import bomgardi from "@/assets/images/landing/category/bomgardi.png";
 import estakhr from "@/assets/images/landing/category/estakhr.png";
 import kolbe from "@/assets/images/landing/category/kolbei.png";
-import sahel from "@/assets/images/landing/category/saheli.png";
 import Villa from "@/assets/images/landing/category/vilaii.png";
+import getAllCategories from "@/utils/service/categories/categories";
 // Change lang
 import { getTranslations } from "next-intl/server";
 
-async function Category() {
-  const cardData = [
-    { id: 1, name: "آپارتمانی", image: aparteman },
-    { id: 2, name: "ساحلی", image: sahel },
-    { id: 3, name: "استخردار", image: estakhr },
-    { id: 4, name: "کلبه ای", image: kolbe },
-    { id: 5, name: "بومگردی", image: bomgardi },
-    { id: 6, name: "ویلایی", image: Villa },
-  ];
+export default async function Category() {
+  const categories = await getAllCategories();
   const t = await getTranslations("HomePage");
   return (
     <div>
       <div className="text-right text-[28px] font-[700]">{t("category")}</div>
       <div className="container mx-auto p-4">
-        <div className="flex flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
-          {cardData.slice(0, 6).map((card) => (
+        <div className="flex grow flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
+          {categories.map((card, index) => (
             <div
               key={card.id}
-              className="flex-1 hover:scale-[1.1] transition-transform duration-300 bg-black relative rounded-[20px] max-h-[190px] min-w-[389px] max-w-[389px]"
+              className={`flex-1 transition-all duration-500 ease-in-out bg-black relative rounded-[20px] overflow-hidden ${
+                categories.length == 4 && index == 3
+                  ? "max-h-[300px]"
+                  : "max-h-[190px]"
+              } min-w-[calc(33.3%-24px)] group`}
             >
               <img
-                src={card.image.src}
+                src={
+                  card.name == "ویلا"
+                    ? Villa.src
+                    : card.name == "مسکونی"
+                    ? estakhr.src
+                    : card.name == "آپارتمان"
+                    ? aparteman.src
+                    : kolbe.src
+                }
                 alt={card.name}
-                className="w-full  opacity-[0.8] h-full rounded-[20px] bg-cover"
+                className="w-full h-full rounded-[20px] object-cover opacity-75
+                transition-all duration-500 ease-in-out 
+                group-hover:opacity-60 group-hover:scale-110"
               />
-              <div className="p-4 text-center">
-                <p className="text-lg  absolute bottom-[5%] right-[5%] text-[24px] font-[700] text-white">
+              <div className="p-4 text-center absolute inset-0 flex items-end justify-end">
+                <p
+                  className="text-lg text-[24px] font-[700] text-white 
+                   transition-all duration-500 ease-in-out
+                   group-hover:translate-y-[-10px]"
+                >
                   {card.name}
                 </p>
               </div>
@@ -45,5 +55,3 @@ async function Category() {
     </div>
   );
 }
-
-export default Category;
