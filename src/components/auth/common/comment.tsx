@@ -12,7 +12,7 @@ export default async function Comment() {
       <div className="flex justify-end">
         <QuoteSVG />
       </div>
-      <p dir="rtl" className="text-right text-[16px] font-[600]">
+      <p dir="rtl" className="text-right text-[#232323] text-[16px] font-[600]">
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
         از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
         سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
