@@ -38,5 +38,29 @@
     "about": "About us",
     "home": "Home",
     "blogs": "Articles"
-  }
+  },
+  "Auth": {
+    "loginTitle": "Login to Piza",
+    "loginDesc": "To access your Alpha account, you can use your Google account or your email and password",
+    "email": "Email",
+    "emailDesc": "Enter your email",
+    "password": "Password",
+    "passwordDesc": "Enter your password",
+    "loginAccount": "Login to account",
+    "NoAccount": "Don't have an account?",
+    "HaveAccount": "Already have an account?",
+    "SignUpTitle": "Register on Piza",
+    "SignUpDesc1": "To register on Alpha, you can use your Google account or request a verification code sent to your email",
+    "SignUpDesc2": "Enter the verification code sent to Example@gmail.com",
+    "SignUpDesc3": "Please fill in the required information",
+    "SendVerificationCode": "Send verification code",
+    "VerificationCode": "Verification code",
+    "Send": "Send",
+    "Number": "Phone number",
+    "NumberDesc": "Enter your phone number",
+    "ConfirmPassword": "Confirm password",
+    "ConfirmPasswordDesc": "Re-enter your password",
+    "Register": "Register",
+    "Or": "Or"
+}
 }

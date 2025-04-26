@@ -10,11 +10,11 @@ export default async function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
         <LogoSVG />
       </div>
       <div className="max-[600px]:w-[100%]">
-        <h1 className="text-[36px] text-right font-[700] text-[#000000] mb-[24px]">
+        <h1 className="text-[36px] text-right font-[700] text-[#000000] dark:text-white mb-[24px]">
           {title}
         </h1>
         {desc && (
-          <p className="text-[14px] text-right  font-[600] text-[#767676]">
+          <p className="text-[14px] text-right font-[600] text-[#767676] dark:text-[#aaa]">
             {desc}
           </p>
         )}
@@ -22,3 +22,4 @@ export default async function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
     </>
   );
 }
+

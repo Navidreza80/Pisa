@@ -6,28 +6,39 @@ import Button from "../common/button";
 import InputAuth from "../common/input-auth";
 import OrUnderline from "../common/or-underline";
 import WelcomeTitle from "../common/welcome-title";
+import { getTranslations } from "next-intl/server";
 
-function Login() {
+async function Login() {
+  const t = await getTranslations("Auth");
+
   return (
     <>
       <WelcomeTitle
-        title="ورود به پیزا"
-        desc="برای ورود به حساب کاربری آلفا میتوانید با اکانت گوگل خود و یا با ایمیل و رمزعبور خود اقدام کنید"
+        title={t("loginTitle")}
+        desc={t("loginDesc")}
       />
       <div className="flex flex-col flex-wrap gap-[20px]">
         <button className="h-[48px] bg-black border border-[#E0E0E0] rounded-[24px] flex items-center justify-center gap-2 text-[16px] font-bold text-black hover:bg-[#f5f5f5] transition-all"></button>
         <OrUnderline />
         <InputAuth
-          name="ایمیل"
-          placeHolder="ایمیل خود را وارد کنید"
+          name={t("email")}
+          placeHolder={t("emailDesc")}
           icon={<EmailSVG />}
         />
         <InputAuth
-          name="رمزعبور"
-          placeHolder="رمزعبور خود را وارد کنید"
+          name={t("password")}
+          placeHolder={t("passwordDesc")}
           icon={<Password />}
         />
-        <Button text="ورود به حساب" />
+        <Button text={t("loginAccount")} />
+      </div>
+      <div className="flex justify-center mt-2 gap-[5px]">
+        <span className="text-[14px] font-[500] underline text-[#586CFF] dark:text-[#8b9bff]">
+          {t("SignUpTitle")}
+        </span>
+        <span className="text-[14px] font-[500] text-[#222] dark:text-[white]">
+          {t("NoAccount")}
+        </span>
       </div>
     </>
   );
