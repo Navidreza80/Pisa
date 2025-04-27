@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./language-direction.css";
 
 body {
   margin: 0;
