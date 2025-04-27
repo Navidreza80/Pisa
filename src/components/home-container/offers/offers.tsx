@@ -25,7 +25,7 @@ async function Offers({ data }) {
               animationRange: "contain 50% contain 100%",
             }}
           >
-            <p className="my-0  text-white text-[28px] p-[8px] w-[74px] text-center h-[52px] flex items-center font-bold fallAnimation">
+            <p className="my-0  text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold fallAnimation">
               {t("spring")}
             </p>
           </div>

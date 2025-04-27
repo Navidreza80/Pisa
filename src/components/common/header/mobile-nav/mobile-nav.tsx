@@ -38,7 +38,7 @@ export default function MobileNav() {
     <div className="hidden max-[600px]:block">
       <Button
         type="text"
-        icon={<MenuOutlined style={{ fontSize: "32px" }} />}
+        icon={<MenuOutlined className="dark:!text-white" style={{ fontSize: "32px" }} />}
         onClick={showDrawer}
         className="flex items-center justify-center w-[112px] h-[112px]"
       />

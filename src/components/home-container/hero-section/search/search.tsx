@@ -71,27 +71,26 @@ export default function Search() {
   };
 
   return (
-    <div className="absolute w-full min-h-[135px] bg-background  border border-border  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-[var(--animation-fade-in-up)] [animation-delay:0.3s] [animation-fill-mode:both] opacity-0">
+    <div className="absolute w-full min-h-[135px] bg-background border border-border  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-[var(--animation-fade-in-up)] [animation-delay:0.3s] [animation-fill-mode:both] opacity-0">
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item, index) => {
           return (
             <div
+              dir={tabId == item.id ? "rtl" : "ltr"}
               key={item.id}
-              className={`flex flex-col gap-1.5 animate-[var(--animation-fade-in)] [animation-delay:${
+              className={`flex overflow-hidden flex-col gap-1.5 animate-[var(--animation-fade-in)] [animation-delay:${
                 0.5 + index * 0.1
-              }s] [animation-fill-mode:both] opacity-0`}
+              }s]`}
             >
               <div
-                className={`w-full h-1.5 ${
-                  tabId == item.id && "bg-[#586CFF]"
+                className={`w-0 h-1.5 relative ${
+                  tabId == item.id && "bg-[#586CFF] w-full right-0"
                 } rounded-b-2xl transition-all duration-300 ease-in-out`}
               ></div>
               <span
                 onClick={() => setTabId(item.id)}
                 className={`${
-                  tabId == item.id
-                    ? "text-[#586CFF]"
-                    : "text-text-secondary "
+                  tabId == item.id ? "text-[#586CFF]" : "text-text-secondary "
                 } cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#586CFF]/80`}
               >
                 {item.text}

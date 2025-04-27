@@ -5,6 +5,7 @@ import TopSales from "./topSale/TopSale";
 import Rank from "./Rank/Rank";
 import Popular from "./locations/locations";
 import { getAllHouse } from "@/utils/service/house/get-all-house";
+import TestimonialsCarousel from "./comments";
 
 export default async function HomeContainer() {
   const data = await getAllHouse(1, 3, "rate", "DESC", "", "");
@@ -17,6 +18,7 @@ export default async function HomeContainer() {
         <TopSales data={data} />
         <Rank />
         <Popular />
+        {/* <TestimonialsCarousel /> */}
       </div>
     </div>
   );

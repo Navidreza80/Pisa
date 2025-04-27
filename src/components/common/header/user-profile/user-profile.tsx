@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Button from "../../button/button";
+import { useEffect, useRef, useState } from "react";
 
 interface UserProfileProps {
   user: {
     name?: string;
     email?: string;
-    avatar?: string;
+    profilePicture?: string;
   };
 }
 
@@ -18,7 +17,6 @@ export default function UserProfile({ user }: UserProfileProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -33,14 +31,10 @@ export default function UserProfile({ user }: UserProfileProps) {
   }, []);
 
   const handleLogout = () => {
-    // Clear cookies/localStorage
-    document.cookie = "serverAccessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    
     if (typeof window !== "undefined") {
       localStorage.removeItem("accessToken");
     }
     
-    // Redirect to login page
     router.push("/login");
     router.refresh();
   };
@@ -52,16 +46,16 @@ export default function UserProfile({ user }: UserProfileProps) {
         className="flex items-center gap-2 rounded-full border border-border dark:border-border-dark p-1 pr-3 hover:bg-surface dark:hover:bg-surface-dark transition-colors"
       >
         <div className="w-8 h-8 rounded-full overflow-hidden bg-surface dark:bg-surface-dark">
-          {user.avatar ? (
+          {user.profilePicture ? (
             <Image 
-              src={user.avatar} 
+              src={user.profilePicture}
               alt={user.name || "User"} 
               width={32} 
               height={32}
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-primary text-white font-bold">
+            <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gray-700 text-text border-border font-bold">
               {user.name ? user.name.charAt(0).toUpperCase() : "U"}
             </div>
           )}
@@ -70,7 +64,7 @@ export default function UserProfile({ user }: UserProfileProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark overflow-hidden z-10">
+        <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark overflow-hidden z-10">
           <div className="p-3 border-b border-border dark:border-border-dark">
             <p className="font-medium">{user.name || "User"}</p>
             <p className="text-xs text-text-secondary dark:text-text-secondary-dark truncate">{user.email || ""}</p>
