@@ -7,9 +7,11 @@ import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import { HouseItemsInterface } from "@/types/house";
+import { Heart } from "lucide-react";
+import { Fragment, useState } from "react";
 import { SwiperSlide } from "swiper/react";
 import PersonSVG from "../svg/person";
-import { Fragment } from "react";
+import Favorite from "./favorite";
 
 interface TopSaleCardListProps {
   card: HouseItemsInterface;
@@ -19,6 +21,7 @@ interface TopSaleCardListProps {
   showBathrooms?: boolean;
   showParking?: boolean;
   discount?: boolean;
+  userId?: number;
 }
 
 interface FeatureItem {
@@ -37,6 +40,7 @@ export default function HouseCardList({
   showBathrooms,
   showParking,
   discount,
+  userId,
 }: TopSaleCardListProps) {
   const featureItems: FeatureItem[] = [
     {
@@ -77,12 +81,12 @@ export default function HouseCardList({
   ];
 
   // Filter only visible features
-  const visibleFeatures = featureItems.filter(item => item.show);
+  const visibleFeatures = featureItems.filter((item) => item.show);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className="flex flex-col flex-wrap overflow-hidden justify-between border min-w-[391px] w-[calc(33.3%-20px)] p-4 rounded-[40px] h-[438px] border-border"
-    >
+    <div className="flex flex-col flex-wrap overflow-hidden justify-between border min-w-[391px] w-[calc(33.3%-20px)] p-4 rounded-[40px] h-[438px] border-border">
       <div className="overflow-hidden w-full h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
         <Slider
           className="w-[359px] h-[221px] overflow-hidden"
@@ -128,51 +132,68 @@ export default function HouseCardList({
           </Fragment>
         ))}
       </div>
-      
+
       {!discount ? (
-        <div className="flex gap-1" dir="rtl">
-          <div className="flex flex-row-reverse gap-[10px]">
-            <div className="relative">
-              <div className="flex flex-row-reverse gap-[5px] ">
-                <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
-                  {card.price}
-                </h1>
+        <div dir="rtl" className="flex justify-between">
+          <div className="flex gap-1" dir="rtl">
+            <div className="flex flex-row-reverse gap-[10px]">
+              <div className="relative">
+                <div className="flex flex-row-reverse gap-[5px] ">
+                  <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
+                    {card.price}
+                  </h1>
+                </div>
               </div>
             </div>
+            <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+              تومان
+            </p>
           </div>
-          <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-            تومان
-          </p>
+
+          <Favorite
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            userId={userId}
+            id={card.id}
+          />
         </div>
       ) : (
-        <div className="flex flex-row-reverse gap-[10px]">
-          <div className="relative opacity-[0.5]">
-            <div className="flex flex-row-reverse gap-[5px] ">
+        <div dir="rtl" className="flex justify-between">
+          <div className="flex flex-row-reverse gap-[10px]">
+            <div className="relative opacity-[0.5]">
+              <div className="flex flex-row-reverse gap-[5px] ">
+                <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+                  {card.price}
+                </h1>
+                <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+                  تومان
+                </p>
+              </div>
+
+              <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
+            </div>
+            <p className="text-[16px] font-[700] my-auto">/</p>
+            <div className="flex flex-row-reverse gap-[5px]">
               <h1 className="text-[20px] font-[700] my-auto font-yekannum">
-                {card.price}
+                {(card.price * 50) / 100}
               </h1>
               <p className="text-[12px] font-[700] my-auto text-text-secondary ">
                 تومان
               </p>
             </div>
-
-            <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
+            <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
+              <h1 className="text-white text-[16px] font-[700] font-yekannum">
+                50
+              </h1>
+              <h1 className="text-white text-[16px] font-[700]">%</h1>
+            </div>
           </div>
-          <p className="text-[16px] font-[700] my-auto">/</p>
-          <div className="flex flex-row-reverse gap-[5px]">
-            <h1 className="text-[20px] font-[700] my-auto font-yekannum">
-              {(card.price * 50) / 100}
-            </h1>
-            <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-              تومان
-            </p>
-          </div>
-          <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
-            <h1 className="text-white text-[16px] font-[700] font-yekannum">
-              50
-            </h1>
-            <h1 className="text-white text-[16px] font-[700]">%</h1>
-          </div>
+          <Favorite
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            userId={userId}
+            id={card.id}
+          />
         </div>
       )}
     </div>

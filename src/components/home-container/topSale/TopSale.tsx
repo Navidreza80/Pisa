@@ -5,7 +5,7 @@ import HouseCardList from "@/components/common/house/HouseCardList";
 import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
 
-export default async function TopSales({ data }) {
+export default async function TopSales({ data, userId }) {
   const t = await getTranslations("HomePage");
 
   return (
@@ -29,6 +29,7 @@ export default async function TopSales({ data }) {
             showRooms
             showParking
             card={card}
+            userId={userId}
           />
         ))}
       </div>

@@ -30,6 +30,7 @@ type ButtonProps = {
   variant?: "bordered" | "solid";
   radius?: keyof typeof Radiuses;
   handleClick?: () => void;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -42,6 +43,7 @@ export default function Button({
   className,
   handleClick,
   radius = "md",
+  disabled,
 }: ButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -49,7 +51,7 @@ export default function Button({
     <button
       type="submit"
       ref={buttonRef}
-      onClick={handleClick}
+      onClick={disabled ? () => "" : handleClick}
       className={`flex items-center hover:bg-[#4A5FE3] justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
         SIZES[size]

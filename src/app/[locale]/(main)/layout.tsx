@@ -11,6 +11,8 @@ import FloatingActions from "@/components/common/FAB/fab";
 import { ReduxProvider } from "@/utils/providers/redux-provider";
 // Css imports
 import "../globals.css";
+// Toaster
+import { ToastContainer } from 'react-toastify';
 
 // metadata
 export const metadata: Metadata = {
@@ -50,6 +52,7 @@ export default async function RootLayout({
               <Header />
               {children}
               <Footer />
+              <ToastContainer />
             </main>
             <FloatingActions />
           </ReduxProvider>

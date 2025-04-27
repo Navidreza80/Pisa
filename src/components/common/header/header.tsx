@@ -12,7 +12,6 @@ export default async function Header() {
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
   const decodedUser = typeof token == 'string' && jwtDecode(token);
-  console.log(decodedUser)
   
   return (
     <div className="h-20 w-full py-6 flex items-center justify-between max-[600px]:h-28">
