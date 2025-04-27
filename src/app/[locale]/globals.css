@@ -26,6 +26,7 @@ body {
     cubic-bezier(0.4, 0, 0.2, 1) forwards;
   --animation-disappear-scroll: disappear 1s linear both;
   --animation-content-pop: linear content-pop both;
+  --animation-fall: linear fall;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -38,6 +39,12 @@ body {
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes fall {
+  to {
+    transform: rotate(-13deg);
   }
 }
 

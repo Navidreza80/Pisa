@@ -9,6 +9,7 @@ import ParkSVG from "@/components/common/svg/park";
 import { HouseItemsInterface } from "@/types/house";
 import { SwiperSlide } from "swiper/react";
 import PersonSVG from "../svg/person";
+import { Fragment } from "react";
 
 interface TopSaleCardListProps {
   card: HouseItemsInterface;
@@ -115,16 +116,16 @@ export default function HouseCardList({
       <div className="bg-border h-[1px]"></div>
       <div className="flex flex-row-reverse justify-between">
         {visibleFeatures.map((feature, index) => (
-          <>
-            {index > 0 && <div key={`divider-${index}`} className="bg-border w-[1px]" />}
-            <div key={feature.id} className="flex flex-row-reverse gap-[5px]">
+          <Fragment key={feature.id}>
+            {index > 0 && <div className="bg-border w-[1px]" />}
+            <div className="flex flex-row-reverse gap-[5px]">
               {feature.icon}
               <div className="flex flex-row-reverse gap-[3px]">
                 <h1 className="font-yekannum">{feature.value}</h1>
                 {feature.label && <h1>{feature.label}</h1>}
               </div>
             </div>
-          </>
+          </Fragment>
         ))}
       </div>
       
