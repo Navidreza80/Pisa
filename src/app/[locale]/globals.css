@@ -12,7 +12,7 @@ body {
 
   /* Light mode (default) */
   --color-background: #fff;
-  --color-surface: #fff;
+  --color-surface: #f5f7ff;
   --color-border: #eaeaea;
   --color-text: #181a20;
   --color-text-secondary: #727272;
@@ -27,7 +27,6 @@ body {
     cubic-bezier(0.4, 0, 0.2, 1) forwards;
   --animation-disappear-scroll: disappear 1s linear both;
   --animation-content-pop: linear content-pop both;
-  --animation-fall: linear fall;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -40,26 +39,6 @@ body {
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.25s;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fall {
-  to {
-    transform: rotate(-13deg);
   }
 }
 
@@ -194,46 +173,4 @@ body {
   --color-border: #2d3142;
   --color-text: #f5f6fa;
   --color-text-secondary: #a0aec0;
-}
-
-html[dir="rtl"] {
-  text-align: left;
-}
-
-html[dir="rtl"] .text-right {
-  text-align: left !important;
-}
-
-html[dir="rtl"] .text-left {
-  text-align: right !important;
-}
-
-html[dir="rtl"] .flex-row-reverse {
-  flex-direction: row !important;
-}
-
-html[dir="ltr"] {
-  text-align: right;
-}
-
-html[dir="ltr"] .text-left {
-  text-align: right !important;
-}
-
-html[dir="ltr"] .text-right {
-  text-align: right !important;
-}
-
-html[dir="ltr"] .flex-row {
-  flex-direction: row-reverse !important;
-}
-
-html[dir="rtl"] .menu-items {
-  left: 0;
-  right: auto;
-}
-
-html[dir="ltr"] .menu-items {
-  right: 0;
-  left: auto;
 }

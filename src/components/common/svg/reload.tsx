@@ -1,4 +1,4 @@
-export default async function Reload() {
+export default function Reload() {
   return (
     <svg
       className="my-auto"
