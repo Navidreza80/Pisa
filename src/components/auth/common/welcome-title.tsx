@@ -3,7 +3,7 @@ import WelcomeTitleProps from "@/types/auth";
 // SVGs
 import LogoSVG from "@/components/common/svg/logo";
 
-export default async function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
+export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
     <>
       <div dir="rtl" className="max-[600px]:w-[100%]">

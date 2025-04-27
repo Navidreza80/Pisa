@@ -1,4 +1,4 @@
-export default async function Password() {
+export default function Password() {
   return (
     <svg
       width="24"

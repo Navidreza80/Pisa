@@ -11,7 +11,7 @@ body {
 
   /* Light mode (default) */
   --color-background: #fff;
-  --color-surface: #f5f7ff;
+  --color-surface: #fff;
   --color-border: #eaeaea;
   --color-text: #181a20;
   --color-text-secondary: #727272;
