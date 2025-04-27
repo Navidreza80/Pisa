@@ -1,0 +1,179 @@
+"use client";
+
+import Slider from "@/components/common/slider/Slider";
+import BathroomSVG from "@/components/common/svg/bathroom";
+import BedSVG from "@/components/common/svg/bed";
+import CarSVG from "@/components/common/svg/car";
+import MapSVG from "@/components/common/svg/map";
+import ParkSVG from "@/components/common/svg/park";
+import { HouseItemsInterface } from "@/types/house";
+import { SwiperSlide } from "swiper/react";
+import PersonSVG from "../svg/person";
+
+interface TopSaleCardListProps {
+  card: HouseItemsInterface;
+  showYard?: boolean;
+  showCapacity?: boolean;
+  showRooms?: boolean;
+  showBathrooms?: boolean;
+  showParking?: boolean;
+  discount?: boolean;
+}
+
+interface FeatureItem {
+  id: string;
+  icon: React.ReactNode;
+  value: number | string;
+  label: string;
+  show?: boolean;
+}
+
+export default function HouseCardList({
+  card,
+  showYard,
+  showCapacity,
+  showRooms,
+  showBathrooms,
+  showParking,
+  discount,
+}: TopSaleCardListProps) {
+  const featureItems: FeatureItem[] = [
+    {
+      id: "rooms",
+      icon: <BedSVG />,
+      value: card.rooms,
+      label: "خواب",
+      show: showRooms,
+    },
+    {
+      id: "bathrooms",
+      icon: <BathroomSVG />,
+      value: card.bathrooms,
+      label: "حمام",
+      show: showBathrooms,
+    },
+    {
+      id: "yard",
+      icon: <ParkSVG />,
+      value: card.yard_type,
+      label: "",
+      show: showYard,
+    },
+    {
+      id: "parking",
+      icon: <CarSVG />,
+      value: card.parking,
+      label: "پارکینگ",
+      show: showParking,
+    },
+    {
+      id: "capacity",
+      icon: <PersonSVG />,
+      value: card.capacity,
+      label: "نفر",
+      show: showCapacity,
+    },
+  ];
+
+  // Filter only visible features
+  const visibleFeatures = featureItems.filter(item => item.show);
+
+  return (
+    <div
+      className="flex flex-col flex-wrap overflow-hidden justify-between border min-w-[391px] w-[calc(33.3%-20px)] p-4 rounded-[40px] h-[438px] border-border"
+    >
+      <div className="overflow-hidden w-full h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
+        <Slider
+          className="w-[359px] h-[221px] overflow-hidden"
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          loop
+        >
+          {(card.photos && card.photos.length > 0
+            ? card.photos
+            : [card.imageUrl]
+          ).map((photo, idx) => (
+            <SwiperSlide key={idx} className="w-full h-[221px] relative">
+              <img
+                className="object-cover w-full h-full"
+                src={photo}
+                alt={`${card.title} - تصویر ${idx + 1}`}
+              />
+            </SwiperSlide>
+          ))}
+        </Slider>
+      </div>
+      <h1 className="font-[600] text-right text-[20px] text-text ">
+        {card.title}
+      </h1>
+      <div className="flex justify-end gap-[5px]">
+        <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
+          {card.address}
+        </h1>
+        <MapSVG color="gray" />
+      </div>
+      <div className="bg-border h-[1px]"></div>
+      <div className="flex flex-row-reverse justify-between">
+        {visibleFeatures.map((feature, index) => (
+          <>
+            {index > 0 && <div key={`divider-${index}`} className="bg-border w-[1px]" />}
+            <div key={feature.id} className="flex flex-row-reverse gap-[5px]">
+              {feature.icon}
+              <div className="flex flex-row-reverse gap-[3px]">
+                <h1 className="font-yekannum">{feature.value}</h1>
+                {feature.label && <h1>{feature.label}</h1>}
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
+      
+      {!discount ? (
+        <div className="flex gap-1" dir="rtl">
+          <div className="flex flex-row-reverse gap-[10px]">
+            <div className="relative">
+              <div className="flex flex-row-reverse gap-[5px] ">
+                <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
+                  {card.price}
+                </h1>
+              </div>
+            </div>
+          </div>
+          <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+            تومان
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-row-reverse gap-[10px]">
+          <div className="relative opacity-[0.5]">
+            <div className="flex flex-row-reverse gap-[5px] ">
+              <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+                {card.price}
+              </h1>
+              <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+                تومان
+              </p>
+            </div>
+
+            <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
+          </div>
+          <p className="text-[16px] font-[700] my-auto">/</p>
+          <div className="flex flex-row-reverse gap-[5px]">
+            <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+              {(card.price * 50) / 100}
+            </h1>
+            <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+              تومان
+            </p>
+          </div>
+          <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
+            <h1 className="text-white text-[16px] font-[700] font-yekannum">
+              50
+            </h1>
+            <h1 className="text-white text-[16px] font-[700]">%</h1>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

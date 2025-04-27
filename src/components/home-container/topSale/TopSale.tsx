@@ -1,14 +1,13 @@
 // Third party components
 import Button from "@/components/common/button/button";
-// API
-import { getAllHouse } from "@/utils/service/house/get-all-house";
 // Change lang
-import TopSaleCardList from "@/components/home-container/topSale/TopSaleCardList";
+import HouseCardList from "@/components/common/house/HouseCardList";
+import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
 
-export default async function TopSales() {
+export default async function TopSales({ data }) {
   const t = await getTranslations("HomePage");
-  const data = await getAllHouse(1, 3, "rate", "DESC", "", "");
+
   return (
     <div>
       <div className="flex justify-between items-center mb-[32px]">
@@ -21,7 +20,19 @@ export default async function TopSales() {
           </div>
         </div>
       </div>
-      <TopSaleCardList data={data} />
+      <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
+        {data.map((card: HouseItemsInterface, index: number) => (
+          <HouseCardList
+            key={index}
+            showBathrooms
+            showYard
+            showRooms
+            showParking
+            card={card}
+          />
+        ))}
+      </div>
+      <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap"></div>
     </div>
   );
 }

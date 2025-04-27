@@ -1,4 +1,4 @@
-export default async function EmailSVG() {
+export default function EmailSVG() {
   return (
     <svg
       width="24"

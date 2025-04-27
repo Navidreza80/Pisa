@@ -1,18 +1,20 @@
 import { Input } from "antd";
 import InputAuthProps from "@/types/auth";
 
-export default async function InputAuth({
-  name,
+export default function InputAuth({
+  text,
   placeHolder,
   icon,
+  ...props
 }: InputAuthProps) {
   return (
     <div className="max-[600px]:w-[100%]">
       <p className="text-[14px] font-[500] text-right mb-[15px] text-black dark:text-white">
-        {name}
+        {text}
       </p>
       <div className="relative h-[48px]">
         <Input
+          {...props}
           dir="rtl"
           size="large"
           className="h-full max-[600px]:h-[56px] max-[600px]:w-[100%] 
@@ -30,4 +32,3 @@ export default async function InputAuth({
     </div>
   );
 }
-
