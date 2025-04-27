@@ -7,6 +7,7 @@ import icon3 from "../../../assets/images/footer/e-box.png";
 // Change lang
 import { getTranslations } from "next-intl/server";
 import LogoSVG from "../svg/logo";
+import ContactForm from "./contact-form";
 
 export default async function Footer() {
   const t = await getTranslations("HomePage");
@@ -97,6 +98,9 @@ export default async function Footer() {
             {t("footerAbout")}
           </p>
         </div>
+      </div>
+      <div>
+        <ContactForm />
       </div>
       <div className="flex flex-wrap gap-10 justify-end items-center">
         <div className="w-[56px] h-[56px] bg-[#232323] rounded-2xl flex justify-center items-center">

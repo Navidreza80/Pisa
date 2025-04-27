@@ -4,7 +4,7 @@ import CountdownTimer from "@/components/common/timer/CountdownTimer";
 import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
 
-async function Offers({ data }) {
+async function Offers({ data, userId }) {
   const t = await getTranslations("HomePage");
 
   // Set target date to 3 days from now
@@ -37,6 +37,7 @@ async function Offers({ data }) {
       <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
         {data.map((card: HouseItemsInterface, index: number) => (
           <HouseCardList
+            userId={userId}
             key={index}
             discount
             showRooms
