@@ -1,4 +1,4 @@
-// app/components/auth/Auth.tsx
+
 import Image from "next/image";
 import MapSVG from "../common/svg/map";
 import Comment from "./common/comment";

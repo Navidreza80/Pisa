@@ -1,4 +1,4 @@
-export default async function QuoteSVG() {
+export default function QuoteSVG() {
   return (
     <svg
       width="20"
