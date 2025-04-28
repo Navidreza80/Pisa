@@ -69,7 +69,7 @@ export default function ContactForm() {
           ) : null}
         </div>
 
-        <div className="w-full md:w-2/5 flex flex-col">
+        <div className="w-full md:w-2/5 flex ">
           <Input
             id="message"
             name="message"
