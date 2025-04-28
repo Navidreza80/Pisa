@@ -73,13 +73,9 @@ export default function CommentsSwiper() {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 text-right">
       {loading ? (
-        <div className="w-full flex justify-center items-center py-10">
-          <span className="inline-block w-8 h-8 border-4 border-gray-400 border-t-transparent rounded-full animate-spin"></span>
-        </div>
+        <></>
       ) : error ? (
-        <div className="text-center py-10 text-red-500 font-bold">
-          {error}
-        </div>
+        <></>
       ) : (
         <div
           onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
