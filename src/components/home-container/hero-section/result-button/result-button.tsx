@@ -1,11 +1,14 @@
 "use client";
-
+// Third party components
 import Button from "@/components/common/button/button";
-import { Carousel, Modal } from "antd";
+import HouseCard from "@/components/common/house/house-card";
+import { HouseItemsInterface } from "@/types/house";
+import { Modal } from "antd";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-export default function ResultButton({ houses }) {
+export default function ResultButton({ houses }: { houses: Array<HouseItemsInterface> }) {
+  // Hooks
   const t = useTranslations("HomePage");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,6 +23,7 @@ export default function ResultButton({ houses }) {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  
   return (
     <>
       <Button
@@ -49,108 +53,11 @@ export default function ResultButton({ houses }) {
           {houses && houses.length > 0 ? (
             <div className="grid grid-cols-1 gap-6">
               {houses.map((item, index) => (
-                <div
-                  key={index}
-                  className="border border-border p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  {item.photos && item.photos.length > 0 && (
-                    <div className="mb-4">
-                      <Carousel
-                        autoplay
-                        className="rounded-lg overflow-hidden"
-                        style={{ height: "200px" }}
-                      >
-                        {item.photos.map((photo, index) => (
-                          <div key={index} className="h-[200px] relative">
-                            <img
-                              src={photo}
-                              alt={`${item.title} - تصویر ${index + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        ))}
-                      </Carousel>
-                    </div>
-                  )}
-
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-bold mb-2 font-yekan">
-                        {item.title}
-                      </h3>
-                      {item.address && (
-                        <p className="text-text-secondary  text-sm mb-2 font-yekan">
-                          {item.address}
-                        </p>
-                      )}
-                    </div>
-                    {item.rate && (
-                      <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-md">
-                        <span className="text-yellow-500">★</span>
-                        <span className="font-yekannum">{item.rate}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 my-2">
-                    {item.tags &&
-                      item.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full font-yekan"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2 my-3">
-                    {item.rooms && (
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <span>🛏️</span>
-                        <span className="font-yekannum">
-                          {item.rooms} {t("rooms")}
-                        </span>
-                      </div>
-                    )}
-                    {item.bathrooms && (
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <span>🚿</span>
-                        <span className="font-yekannum">
-                          {item.bathrooms} {t("bathrooms")}
-                        </span>
-                      </div>
-                    )}
-                    {item.capacity && (
-                      <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <span>👤</span>
-                        <span className="font-yekannum">
-                          {item.capacity} {t("capacity")}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
-                    {item.price && (
-                      <span className="font-medium font-yekannum text-[#586CFF]">
-                        {parseInt(item.price).toLocaleString()} تومان
-                        {item.transaction_type === "rental" && (
-                          <span className="text-xs text-gray-500 mr-1">
-                            / شب
-                          </span>
-                        )}
-                      </span>
-                    )}
-                    <button className="bg-[#586CFF] text-white px-4 py-2 rounded-lg text-sm font-yekan hover:bg-[#4A5FE3] transition-colors">
-                      {t("viewDetails")}
-                    </button>
-                  </div>
-                </div>
+                <HouseCard key={index} item={item} />
               ))}
             </div>
           ) : (
-            <p className="text-center text-text-secondary ">
+            <p className="text-center text-text-secondary">
               نتیجه‌ای یافت نشد
             </p>
           )}

@@ -1,21 +1,43 @@
 export interface HouseInterFace {
-    pageNumber: number;
-    limit: number;
-    sort?: string;
-    order?: string;
-    capacity?: number;
-    address?: string;
-
+  pageNumber: number;
+  limit: number;
+  sort?: string;
+  order?: string;
+  capacity?: number;
+  address?: string;
 }
 
 export interface HouseItemsInterface {
-    id: number;
-    title: string;
-    address: string;
-    photos: string[];
-    bathrooms: number;
-    parking: number;
-    rooms: number;
-    price: number;
-    yard_type: boolean;
-  }
+  id: number;
+  yard_type?: boolean;
+  capacity?: number | undefined;
+  title?: string;
+  address?: string;
+  rate?: number;
+  photos?: string[];
+  tags?: string[];
+  rooms?: number;
+  bathrooms?: number;
+  price?: string;
+  transaction_type?: 'rental' | string;
+}
+
+export interface TopSaleCardListProps {
+  card: HouseItemsInterface;
+  showYard?: boolean;
+  showCapacity?: boolean;
+  showRooms?: boolean;
+  showBathrooms?: boolean;
+  showParking?: boolean;
+  discount?: boolean;
+  userId?: number;
+  capacity?: number;
+}
+
+export interface FeatureItem {
+  id: string;
+  icon: React.ReactNode;
+  value: number | string | undefined | boolean;
+  label: string;
+  show?: boolean;
+}

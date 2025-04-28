@@ -13,12 +13,15 @@ import { useState } from "react";
 import { useLocale } from "next-intl";
 
 export default function MobileNav() {
+  // State
   const [open, setOpen] = useState(false);
+  // Change lang
   const locale = useLocale();
   
   // Determine direction based on locale
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 
+  // Menu visibility
   const showDrawer = () => {
     setOpen(true);
   };

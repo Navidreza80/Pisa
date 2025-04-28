@@ -1,22 +1,20 @@
 "use client";
-
+// Types
+import { UserProfileProps } from "@/types/user";
+// Image
 import Image from "next/image";
+// Change lang
 import { useRouter } from "next/navigation";
+// React
 import { useEffect, useRef, useState } from "react";
 
-interface UserProfileProps {
-  user: {
-    name?: string;
-    email?: string;
-    profilePicture?: string;
-  };
-}
-
 export default function UserProfile({ user }: UserProfileProps) {
+  // hooks
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  // UseEffects
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -30,6 +28,7 @@ export default function UserProfile({ user }: UserProfileProps) {
     };
   }, []);
 
+  // Logout
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("accessToken");

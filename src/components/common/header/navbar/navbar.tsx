@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 
 export default function Navbar() {
+  // Hooks
   const t = useTranslations("Header");
 
   // Header NavBar Items

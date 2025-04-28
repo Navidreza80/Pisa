@@ -1,36 +1,21 @@
 "use client";
-
+// Components
 import Slider from "@/components/common/slider/Slider";
+// SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
-import { HouseItemsInterface } from "@/types/house";
-import { Heart } from "lucide-react";
-import { Fragment, useState } from "react";
-import { SwiperSlide } from "swiper/react";
 import PersonSVG from "../svg/person";
+// React
+import { Fragment, useState } from "react";
+// Swiper
+import { SwiperSlide } from "swiper/react";
+// Third party components
 import Favorite from "./favorite";
-
-interface TopSaleCardListProps {
-  card: HouseItemsInterface;
-  showYard?: boolean;
-  showCapacity?: boolean;
-  showRooms?: boolean;
-  showBathrooms?: boolean;
-  showParking?: boolean;
-  discount?: boolean;
-  userId?: number;
-}
-
-interface FeatureItem {
-  id: string;
-  icon: React.ReactNode;
-  value: number | string;
-  label: string;
-  show?: boolean;
-}
+// Types
+import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 
 export default function HouseCardList({
   card,
@@ -42,6 +27,7 @@ export default function HouseCardList({
   discount,
   userId,
 }: TopSaleCardListProps) {
+  // Feature items
   const featureItems: FeatureItem[] = [
     {
       id: "rooms",
@@ -83,6 +69,7 @@ export default function HouseCardList({
   // Filter only visible features
   const visibleFeatures = featureItems.filter((item) => item.show);
 
+  // Hooks
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -96,8 +83,9 @@ export default function HouseCardList({
         >
           {(card.photos && card.photos.length > 0
             ? card.photos
-            : [card.imageUrl]
-          ).map((photo, idx) => (
+            : "../../../assets/images/auth/jangal.png"
+          ).map((photo: string, idx: number) => (
+
             <SwiperSlide key={idx} className="w-full h-[221px] relative">
               <img
                 className="object-cover w-full h-full"

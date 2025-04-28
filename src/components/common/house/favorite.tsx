@@ -6,13 +6,23 @@ import Button from "../button/button";
 import { toast } from "react-toastify";
 import deleteFavorite from "@/utils/service/favourites/delete";
 
-export default function Favorite({userId, id, setIsOpen, isOpen}) {
+export default function Favorite({
+  userId,
+  id,
+  setIsOpen,
+  isOpen,
+}: {
+  userId: string | number | undefined;
+  id: string | number;
+  setIsOpen: (value: boolean) => void;
+  isOpen: boolean;
+}) {
   return (
     <>
       <Heart
         onClick={async () => {
           const res = await postFavorite(userId, id);
-          if (res.message) {
+          if ((res as { message?: string }).message) {
             setIsOpen(true);
           } else {
             toast.success("به لیست مورد علاقه اضافه شد");
