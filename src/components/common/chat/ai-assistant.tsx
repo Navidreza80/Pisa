@@ -5,16 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Input } from "antd";
 // Icons
 import { Loader2, MessageSquare, Send, X } from "lucide-react";
+import { Message } from "@/types/chat";
 // Redux for state management
 
-// Types
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-  timestamp?: Date;
-}
-
-const ChatAssistant = ({ isOpen, setIsOpen }) => {
+const ChatAssistant = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void }) => {
   // State to save message of the user
   const [messages, setMessages] = useState<Message[]>([]);
   // State to save the value of the input

@@ -1,4 +1,6 @@
+// antd
 import { Select } from "antd";
+// Change lang
 import { useTranslations } from "next-intl";
 
 export default function InputSelect({
@@ -6,12 +8,15 @@ export default function InputSelect({
   onChange,
   value,
 }: {
-  onChange: () => void;
+  items: { text: string; area_name: string; value: number; id: number }[];
+  onChange: (selectedValue: number | string) => void;
   value: "string";
 }) {
+  // Hooks
   const t = useTranslations("HomePage");
 
-  const handleChange = (selectedValue) => {
+  // HandleChange
+  const handleChange = (selectedValue: number | string) => {
     if (onChange) {
       onChange(selectedValue);
     }

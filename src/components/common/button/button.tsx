@@ -52,7 +52,7 @@ export default function Button({
       type="submit"
       ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
-      className={`flex items-center hover:bg-[#4A5FE3] justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center hover:bg-[#4A5FE3] whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
         SIZES[size]
       } ${Radiuses[radius]}`}

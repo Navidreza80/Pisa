@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import hero from "../../../assets/images/landing/heroImage.png";
-import Search from "./search/search";
+import Search from "./search";
 import Button from "@/components/common/button/button";
 import ArrowDownSVG from "@/components/common/svg/arrow-down";
 import Scroll from "@/components/common/svg/scroll";

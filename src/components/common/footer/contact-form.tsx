@@ -1,12 +1,18 @@
 "use client";
-
+// API
 import postMessage from "@/utils/service/contact-us/post";
+// antd
 import { Input } from "antd";
+// Formik
 import { useFormik } from "formik";
+// Toast
 import { toast } from "react-toastify";
+// Yup
 import * as Yup from "yup";
+// Third party components
 import Button from "../button/button";
 
+// Schema
 const ContactSchema = Yup.object().shape({
   title: Yup.string().required("عنوان الزامی است"),
   message: Yup.string()
@@ -15,6 +21,7 @@ const ContactSchema = Yup.object().shape({
 });
 
 export default function ContactForm() {
+  // Hooks
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -29,8 +36,8 @@ export default function ContactForm() {
           error: "خطا!",
         });
         resetForm();
-      } catch (e) {
-        toast.error("خطا در ارسال پیام", e);
+      } catch {
+        toast.error("خطا در ارسال پیام");
       }
     },
   });

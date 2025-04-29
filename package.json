@@ -29,6 +29,7 @@
     "photo-sphere-viewer": "^4.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0-rc.2",
     "react-photo-sphere-viewer": "^6.2.3",
     "react-redux": "^9.2.0",
     "react-slick": "^0.30.3",

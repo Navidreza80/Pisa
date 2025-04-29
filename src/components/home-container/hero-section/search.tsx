@@ -6,7 +6,7 @@ import { getAllHouse } from "@/utils/service/house/get-all-house";
 import { getAllLocations } from "@/utils/service/location/location";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import ResultButton from "../result-button/result-button";
+import ResultButton from "./result-button";
 
 export default function Search() {
   const t = useTranslations("HomePage");

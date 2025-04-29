@@ -1,38 +1,28 @@
 "use client";
-
+// Components
 import Slider from "@/components/common/slider/Slider";
+// SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
-import { HouseItemsInterface } from "@/types/house";
-import { Heart } from "lucide-react";
-import { Fragment, useState } from "react";
-import { SwiperSlide } from "swiper/react";
 import PersonSVG from "../svg/person";
+// React
+import { Fragment, useState } from "react";
+// Swiper
+import { SwiperSlide } from "swiper/react";
+// Third party components
 import Favorite from "./favorite";
-
-interface TopSaleCardListProps {
-  card: HouseItemsInterface;
-  showYard?: boolean;
-  showCapacity?: boolean;
-  showRooms?: boolean;
-  showBathrooms?: boolean;
-  showParking?: boolean;
-  discount?: boolean;
-  userId?: number;
-}
-
-interface FeatureItem {
-  id: string;
-  icon: React.ReactNode;
-  value: number | string;
-  label: string;
-  show?: boolean;
-}
+// Types
+import { FeatureItem, TopSaleCardListProps } from "@/types/house";
+import LocationSVG from "../svg/location";
 
 export default function HouseCardList({
+  showOnMap,
+  showFacilities = true,
+  width,
+  minWidth,
   card,
   showYard,
   showCapacity,
@@ -42,6 +32,7 @@ export default function HouseCardList({
   discount,
   userId,
 }: TopSaleCardListProps) {
+  // Feature items
   const featureItems: FeatureItem[] = [
     {
       id: "rooms",
@@ -83,11 +74,18 @@ export default function HouseCardList({
   // Filter only visible features
   const visibleFeatures = featureItems.filter((item) => item.show);
 
+  // Hooks
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col flex-wrap overflow-hidden justify-between border min-w-[391px] w-[calc(33.3%-20px)] p-4 rounded-[40px] h-[438px] border-border">
-      <div className="overflow-hidden w-full h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
+    <div
+      className={`flex flex-col flex-wrap overflow-hidden justify-between border ${
+        minWidth ? minWidth : "min-w-[391px]"
+      } ${
+        width ? width : "w-[calc(33.3%-20px)]"
+      } p-4 rounded-[40px] gap-[13px] border-border`}
+    >
+      <div className="overflow-hidden w-full relative h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
         <Slider
           className="w-[359px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -96,8 +94,8 @@ export default function HouseCardList({
         >
           {(card.photos && card.photos.length > 0
             ? card.photos
-            : [card.imageUrl]
-          ).map((photo, idx) => (
+            : "../../../assets/images/auth/jangal.png"
+          ).map((photo: string, idx: number) => (
             <SwiperSlide key={idx} className="w-full h-[221px] relative">
               <img
                 className="object-cover w-full h-full"
@@ -107,31 +105,41 @@ export default function HouseCardList({
             </SwiperSlide>
           ))}
         </Slider>
+        {showOnMap && <div className="bg-[#586CFF] absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"><LocationSVG /></div>}
       </div>
-      <h1 className="font-[600] text-right text-[20px] text-text ">
-        {card.title}
-      </h1>
-      <div className="flex justify-end gap-[5px]">
-        <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
-          {card.address}
+      <div className="flex gap-[9px] flex-wrap justify-end">
+        <h1 className="font-[600] w-full text-right text-[20px] text-text ">
+          {card.title}
         </h1>
-        <MapSVG color="gray" />
+        <div className="flex justify-end gap-[5px]">
+          <div className="flex gap-1.5">
+            <MapSVG color="gray" />
+            <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
+              {card.address}
+            </h1>
+          </div>
+        </div>
       </div>
+
       <div className="bg-border h-[1px]"></div>
-      <div className="flex flex-row-reverse justify-between">
-        {visibleFeatures.map((feature, index) => (
-          <Fragment key={feature.id}>
-            {index > 0 && <div className="bg-border w-[1px]" />}
-            <div className="flex flex-row-reverse gap-[5px]">
-              {feature.icon}
-              <div className="flex flex-row-reverse gap-[3px]">
-                <h1 className="font-yekannum">{feature.value}</h1>
-                {feature.label && <h1>{feature.label}</h1>}
-              </div>
-            </div>
-          </Fragment>
-        ))}
-      </div>
+      {showFacilities && (
+        <>
+          <div className="flex flex-row-reverse justify-between">
+            {visibleFeatures.map((feature, index) => (
+              <Fragment key={feature.id}>
+                {index > 0 && <div className="bg-border w-[1px]" />}
+                <div className="flex flex-row-reverse gap-[5px]">
+                  {feature.icon}
+                  <div className="flex flex-row-reverse gap-[3px]">
+                    <h1 className="font-yekannum">{feature.value}</h1>
+                    {feature.label && <h1>{feature.label}</h1>}
+                  </div>
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </>
+      )}
 
       {!discount ? (
         <div dir="rtl" className="flex justify-between">

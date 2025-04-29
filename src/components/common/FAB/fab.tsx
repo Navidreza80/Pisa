@@ -1,28 +1,29 @@
 "use client";
+// React
 import { useState, useEffect, Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+// Icons
 import { Moon, Sun, MessageCircle, Globe } from "lucide-react";
+// Change lang
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
+// Third party components
 import ChatAssistant from "../chat/ai-assistant";
-import { Menu, Transition } from "@headlessui/react";
+// Redux
 import { useDispatch } from "react-redux";
+// Types
 import { toggleDarkMode } from "@/utils/hooks/themeSlice";
 
 export default function FloatingActions() {
+  // States
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
+  // Change lang
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const html = document.documentElement;
-    dark ? html.classList.add("dark") : html.classList.remove("dark");
-  }, [dark]);
 
   const changeLanguage = (newLocale: string) => {
     router.push(pathname, { locale: newLocale });
@@ -37,6 +38,19 @@ export default function FloatingActions() {
 
   const currentLanguage =
     languages.find((lang) => lang.code === locale) || languages[0];
+
+  // Redux
+  const dispatch = useDispatch();
+
+  // UseEffects
+  useEffect(() => {
+    const html = document.documentElement;
+    if (dark) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  }, [dark]);
 
   return (
     <>
@@ -92,8 +106,8 @@ export default function FloatingActions() {
             <button
               onClick={() => {
                 setDark((d) => !d);
-                dispatch(toggleDarkMode())}
-              }
+                dispatch(toggleDarkMode());
+              }}
               className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100"
             >
               {dark ? (
@@ -128,21 +142,6 @@ export default function FloatingActions() {
             +
           </span>
         </button>
-        <style jsx global>{`
-          .animate-fade-in {
-            animation: fadeIn 0.25s;
-          }
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-        `}</style>
       </div>
     </>
   );

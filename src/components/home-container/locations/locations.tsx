@@ -16,7 +16,7 @@ export default async function Popular() {
       </div>
       <div className="container mx-auto p-4">
         <div className="flex flex-wrap justify-center md:justify-center lg:justify-between gap-[22px] mb-6">
-          {locations.map((card) => (
+          {(locations as Array<{id: number, name: string, area_name: string}>).map((card) => (
             <div
               key={card.id}
               className=" flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border  p-[12px] rounded-[20px] min-w-[389px] w-[calc(33.3%-22px)]"
