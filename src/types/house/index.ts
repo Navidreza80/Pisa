@@ -19,10 +19,14 @@ export interface HouseItemsInterface {
   rooms?: number;
   bathrooms?: number;
   price?: string;
-  transaction_type?: 'rental' | string;
+  transaction_type?: "rental" | string;
 }
 
 export interface TopSaleCardListProps {
+  showOnMap?: boolean;
+  showFacilities?: boolean;
+  minWidth?: string;
+  width?: string;
   card: HouseItemsInterface;
   showYard?: boolean;
   showCapacity?: boolean;
@@ -30,7 +34,7 @@ export interface TopSaleCardListProps {
   showBathrooms?: boolean;
   showParking?: boolean;
   discount?: boolean;
-  userId?: number;
+  userId?: number | null;
   capacity?: number;
 }
 

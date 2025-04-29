@@ -3,14 +3,16 @@
 import Button from "@/components/common/button/button";
 import HouseCard from "@/components/common/house/house-card";
 import { HouseItemsInterface } from "@/types/house";
-import { Modal } from "antd";
+import { Input, Modal } from "antd";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { Search } from "lucide-react";
 
 export default function ResultButton({ houses }: { houses: Array<HouseItemsInterface> }) {
   // Hooks
   const t = useTranslations("HomePage");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -23,6 +25,16 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  
+  // Filter houses based on search query
+  const filteredHouses = houses?.filter(house => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      (house.title && house.title.toLowerCase().includes(searchLower)) ||
+      (house.address && house.address.toLowerCase().includes(searchLower)) ||
+      (house.tags && house.tags.some(tag => tag.toLowerCase().includes(searchLower)))
+    );
+  });
   
   return (
     <>
@@ -50,15 +62,25 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
         }}
       >
         <div className="py-4 text-right" dir="rtl">
-          {houses && houses.length > 0 ? (
+          <div className="mb-4">
+            <Input
+              placeholder="جستجو در نتایج..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              suffix={<Search size={18} className="text-gray-400" />}
+              className="rounded-lg"
+            />
+          </div>
+          
+          {filteredHouses && filteredHouses.length > 0 ? (
             <div className="grid grid-cols-1 gap-6">
-              {houses.map((item, index) => (
+              {filteredHouses.map((item, index) => (
                 <HouseCard key={index} item={item} />
               ))}
             </div>
           ) : (
             <p className="text-center text-text-secondary">
-              نتیجه‌ای یافت نشد
+              {searchQuery ? "نتیجه‌ای برای جستجوی شما یافت نشد" : "نتیجه‌ای یافت نشد"}
             </p>
           )}
         </div>

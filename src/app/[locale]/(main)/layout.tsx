@@ -45,10 +45,10 @@ export default async function RootLayout({
   };  
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background text-text  flex justify-center font-yekan">
+      <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <ReduxProvider>
-            <main className="w-[85.5%] ">
+            <main className="w-full flex-wrap">
               <Header />
               {children}
               <Footer />

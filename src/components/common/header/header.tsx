@@ -13,6 +13,7 @@ import UserProfile from "./user-profile/user-profile";
 import LogoSVG from "../svg/logo";
 // Types
 import { JwtPayload } from "@/types/user";
+import Container from "../container/container";
 
 export default async function Header() {
   // Hooks
@@ -22,25 +23,28 @@ export default async function Header() {
     typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
 
   return (
-    <div className="h-20 w-full py-6 flex items-center justify-between max-[600px]:h-28">
-      {!decodedUser ? (
-        <Button radius="sm" size="lg">
-          {t("login")}
-        </Button>
-      ) : (
-        <UserProfile
-          user={{
-            name: decodedUser.name,
-            email: decodedUser.email,
-            profilePicture: decodedUser.profilePicture,
-          }}
-        />
-      )}
-      <Navbar />
-      <div className="flex justify-end items-center gap-x-3">
-        <LogoSVG />
-        <MobileNav />
+    <Container>
+      {" "}
+      <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28">
+        {!decodedUser ? (
+          <Button radius="sm" size="lg">
+            {t("login")}
+          </Button>
+        ) : (
+          <UserProfile
+            user={{
+              name: decodedUser.name,
+              email: decodedUser.email,
+              profilePicture: decodedUser.profilePicture,
+            }}
+          />
+        )}
+        <Navbar />
+        <div className="flex justify-end items-center gap-x-3">
+          <LogoSVG />
+          <MobileNav />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }

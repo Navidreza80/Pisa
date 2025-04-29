@@ -14,6 +14,7 @@ export default function Navbar() {
   const navItems = [
     { text: t("about"), url: "/about-us" },
     { text: t("blogs"), url: "/blogs" },
+    { text: t("rent"), url: "/reserve" },
     { text: t("home"), url: "/" },
   ];
   const pathname = usePathname();

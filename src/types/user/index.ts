@@ -10,4 +10,5 @@ export interface JwtPayload {
   name?: string;
   email?: string;
   profilePicture?: string;
+  id?: number;
 }
