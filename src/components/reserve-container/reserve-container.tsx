@@ -1,22 +1,27 @@
-import { JwtPayload } from "@/types/user";
+"use client";
 import { getAllHouse } from "@/utils/service/house/get-all-house";
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
-import { jwtDecode } from "jwt-decode";
 import Button from "../common/button/button";
 import HouseCardList from "../common/house/HouseCardList";
+import SearchSVG from "../common/svg/search";
 import Map from "./map";
 import "./scrollbar.css";
-import { Search } from "lucide-react"; // or use any SVG/icon you prefer
-import SearchSVG from "../common/svg/search";
+import { useEffect, useState } from "react";
 
-export default async function ReserveContainer() {
-  const houses = await getAllHouse(1, 3, null, null, null, null);
-  const token = await getServerCookie("serverAccessToken");
-  const decodedUser =
-    typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+export default function ReserveContainer() {
+  const [currentLoc, setCurrentLoc] = useState([36.570797, 53.058983]);
+  const [houses, setHouses] = useState();
+  const fetchHouses = async () => {
+    const data = await getAllHouse(1, 3, null, null, null, null);
+    console.log(data);
+    setHouses(data);
+  };
+  useEffect(() => {
+    fetchHouses();
+  }, []);
+
   return (
     <div className="h-[calc(100vh-80px)] w-[calc(100%-7.25%)] flex">
-      <Map />
+      <Map currentLoc={currentLoc} houses={houses} />
       <div className="flex-grow">
         <div className="h-[62px] w-full pb-6 pl-7 flex gap-4">
           <div className="relative w-[calc(100%-101px)]">
@@ -35,16 +40,16 @@ export default async function ReserveContainer() {
           dir="rtl"
           className="overflow-y-scroll w-full pl-[22px] custom-scrollbar h-[calc(100vh-142px)] flex flex-wrap gap-[24.95px] justify-between"
         >
-          {houses.map((item, index) => {
+          {houses?.map((item, index) => {
             return (
               <HouseCardList
+                setCurrentLoc={setCurrentLoc}
                 showOnMap
                 width="w-[calc(50%-24.95px)]"
                 minWidth="min-w-[315px]"
                 key={index}
                 showFacilities={false}
                 card={item}
-                userId={decodedUser && decodedUser.id}
               />
             );
           })}

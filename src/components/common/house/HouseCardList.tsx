@@ -19,6 +19,7 @@ import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
 
 export default function HouseCardList({
+  setCurrentLoc,
   showOnMap,
   showFacilities = true,
   width,
@@ -105,7 +106,16 @@ export default function HouseCardList({
             </SwiperSlide>
           ))}
         </Slider>
-        {showOnMap && <div className="bg-[#586CFF] absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"><LocationSVG /></div>}
+        {showOnMap && (
+          <button
+            onClick={() => {
+              setCurrentLoc([card.location.lat, card.location.lng]);
+            }}
+            className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"
+          >
+            <LocationSVG />
+          </button>
+        )}
       </div>
       <div className="flex gap-[9px] flex-wrap justify-end">
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">

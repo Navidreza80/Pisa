@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export interface HouseInterFace {
   pageNumber: number;
   limit: number;
@@ -23,6 +25,7 @@ export interface HouseItemsInterface {
 }
 
 export interface TopSaleCardListProps {
+  setCurrentLoc: SetStateAction<Array<number>>;
   showOnMap?: boolean;
   showFacilities?: boolean;
   minWidth?: string;
