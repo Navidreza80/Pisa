@@ -22,6 +22,8 @@ export default function VirtualTour() {
   }, []);
 
   return (
+    <div className='px-[20px]'>
       <div className='rounded-[13px] overflow-hidden' ref={containerRef} style={{ width: '100%', height: '100vh' }} />
+    </div>
   );
 }
