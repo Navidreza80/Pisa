@@ -55,7 +55,7 @@ export default async function Footer() {
     <Container>
       <div className="border-t w-[85.5%] border-border my-10 flex flex-col py-10">
         <div className="flex justify-end mb-10">
-          <LogoSVG width={106} height={36} />
+          <LogoSVG size="w-[106px] h-[36px]" />
         </div>
         <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
           {footerColumns.map((column, index) => (

@@ -26,7 +26,7 @@ export default function Navbar() {
             key={index}
             href={item.url}
             className={`${
-              pathname == item.url ? "border-b-2" : "border-none"
+              pathname == item.url ? "border-b-2 border-text" : "border-none"
             } font-bold`}
           >
             {item.text}

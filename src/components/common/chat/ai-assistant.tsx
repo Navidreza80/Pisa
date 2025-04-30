@@ -1,14 +1,20 @@
 "use client";
 // React built in hooks
 import { useEffect, useRef, useState } from "react";
-// Ant Design components
-import { Button, Input } from "antd";
 // Icons
 import { Loader2, MessageSquare, Send, X } from "lucide-react";
 import { Message } from "@/types/chat";
-// Redux for state management
+// shadcn components
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-const ChatAssistant = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void }) => {
+const ChatAssistant = ({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}) => {
   // State to save message of the user
   const [messages, setMessages] = useState<Message[]>([]);
   // State to save the value of the input
@@ -67,7 +73,8 @@ const ChatAssistant = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (isO
             messages: [
               {
                 role: "system",
-                content: "You're use full website support for real state and reserving house and hotels, the website name is pizza help user by his messages:",
+                content:
+                  "You're use full website support for real state and reserving house and hotels, the website name is pizza help user by his messages:",
               },
               ...messages.map(({ role, content }) => ({ role, content })),
               { role: "user", content: input },

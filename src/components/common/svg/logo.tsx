@@ -2,18 +2,15 @@
 import { useSelector } from "react-redux";
 
 export default function LogoSVG({
-  width,
-  height,
+  size,
 }: {
-  width?: number;
-  height?: number;
+  size: string;
 }) {
   const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   return (
     <svg
-      width={width ? width : "71"}
-      height={height ? height : "24"}
       viewBox="0 0 71 24"
+      className={`${size}`}
       fill={isDarkMode ? "white" : "currentColor"}
       xmlns="http://www.w3.org/2000/svg"
     >

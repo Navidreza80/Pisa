@@ -1,8 +1,9 @@
 "use client";
 // Types
 import { HouseItemsInterface } from "@/types/house";
-// antd
-import { Carousel } from "antd";
+// Shadcn components
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+// Change lang
 import { useTranslations } from "use-intl";
 
 // Feature item component
@@ -30,20 +31,20 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
     <div className="border border-border p-4 rounded-lg hover:bg-gray-50 transition-colors">
       {item.photos && item.photos.length > 0 && (
         <div className="mb-4">
-          <Carousel
-            autoplay
-            className="rounded-lg overflow-hidden"
-            style={{ height: "200px" }}
-          >
-            {item.photos.map((photo, index) => (
-              <div key={index} className="h-[200px] relative">
-                <img
-                  src={photo}
-                  alt={`${item.title} - تصویر ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
+          <Carousel className="rounded-lg overflow-hidden h-[200px]">
+            <CarouselContent>
+              {item.photos.map((photo, index) => (
+                <CarouselItem key={index}>
+                  <div className="h-[200px] relative">
+                    <img
+                      src={photo}
+                      alt={`${item.title} - تصویر ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
           </Carousel>
         </div>
       )}

@@ -1,34 +1,28 @@
 "use client";
 // Icons
 import { MenuOutlined } from "@ant-design/icons";
-// antd components
-import { Button, Drawer } from "antd";
 // Icons
 import { Book, Home, User } from "lucide-react";
 // Next built in components
 import { Link } from "@/i18n/navigation";
-// React built in components
-import { useState } from "react";
 // For language detection
 import { useLocale } from "next-intl";
+// shadcn/ui Sheet
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 export default function MobileNav() {
-  // State
-  const [open, setOpen] = useState(false);
   // Change lang
   const locale = useLocale();
-  
+
   // Determine direction based on locale
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
-
-  // Menu visibility
-  const showDrawer = () => {
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
 
   // Navigation items
   const navItems = [
@@ -39,39 +33,43 @@ export default function MobileNav() {
 
   return (
     <div className="hidden max-[600px]:block">
-      <Button
-        type="text"
-        icon={<MenuOutlined className="dark:!text-white" style={{ fontSize: "32px" }} />}
-        onClick={showDrawer}
-        className="flex items-center justify-center w-[112px] h-[112px]"
-      />
-      <Drawer
-        title="منو"
-        placement="right"
-        onClose={onClose}
-        open={open}
-        width={250}
-        className="max-[600px]:block hidden"
-        style={{ direction: direction }}
-        styles={{ body: { paddingRight: direction === "rtl" ? "20px" : "0", paddingLeft: direction === "ltr" ? "20px" : "0", paddingTop: 0 } }}
-      >
-        <div className="flex flex-col">
-          {navItems.map((item, index) => {
-            return (
-              <div key={index} className="flex items-center justify-start gap-3">
-                {item.icon}{" "}
-                <Link
-                  href={item.url}
-                  className={`py-4 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-white text-base ${direction === "rtl" ? "text-right" : "text-left"}`}
-                  onClick={onClose}
-                >
-                  {item.text}
-                </Link>
+      <Sheet>
+        <SheetTrigger asChild>
+          <MenuOutlined
+            className="dark:!text-white !text-black"
+            style={{ fontSize: "50px" }}
+          />
+        </SheetTrigger>
+        <SheetContent
+          side={direction === "rtl" ? "right" : "left"}
+          className="max-[600px]:block w-[250px]"
+          style={{ direction }}
+        >
+          <SheetHeader>
+            <SheetTitle className="font-yekan text-lg px-2 pt-5 pb-4">منو</SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col mt-2 gap-2 px-2 pb-4">
+            {navItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors px-3 py-3"
+              >
+                <span className="text-xl">{item.icon}</span>
+                <SheetClose asChild>
+                  <Link
+                    href={item.url}
+                    className={`font-yekan text-base dark:text-white ${
+                      direction === "rtl" ? "text-right" : "text-left"
+                    }`}
+                  >
+                    {item.text}
+                  </Link>
+                </SheetClose>
               </div>
-            );
-          })}
-        </div>
-      </Drawer>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 // API
 import postMessage from "@/utils/service/contact-us/post";
-// antd
-import { Input } from "antd";
 // Formik
 import { useFormik } from "formik";
 // Toast
@@ -11,6 +9,8 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 // Third party components
 import Button from "../button/button";
+// ShadCn components
+import { Input } from "@/components/ui/input";
 
 // Schema
 const ContactSchema = Yup.object().shape({

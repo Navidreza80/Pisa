@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Input } from "@/components/ui/input";
 import InputAuthProps from "@/types/auth";
 
 export default function InputAuth({
@@ -16,7 +16,6 @@ export default function InputAuth({
         <Input
           {...props}
           dir="rtl"
-          size="large"
           className="h-full max-[600px]:h-[56px] max-[600px]:w-[100%] 
                      placeholder:text-gray-500 dark:placeholder:!text-[#a7a7a7] 
                      !bg-white dark:!bg-[#2b2b2b] 
