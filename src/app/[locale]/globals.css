@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@theme {
+  --font-yekan: "Yekan", "sans-serif";
+  --font-yekannum: "Yekannum", "sans-serif";
+
+  /* Light mode (default) */
+  --color-background: #fff;
+  --color-surface: #f5f7ff;
+  --color-border: #eaeaea;
+  --color-text: #181a20;
+  --color-text-secondary: #727272;
+  --color-primary: #586cff;
+
+  --animation-fade-in-up: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-fade-in: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-slide-in-right: slide-in-right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-pulse: pulse 1s cubic-bezier(0.4, 0, 0.6, 1);
+  --animation-curtain-open: curtain-open 800ms cubic-bezier(0.4, 0, 0.2, 1)
+    forwards;
+  --animation-building-appear: building-appear 600ms
+    cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --animation-disappear-scroll: disappear 1s linear both;
+  --animation-content-pop: linear content-pop both;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes content-pop {
+  from {
+    transform: translateY(100px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes curtain-open {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  40% {
+    clip-path: inset(0 0 0 0);
+  }
+  60% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+@keyframes building-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanweblight.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebregular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebmedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/iranyekanwebbold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekannum";
+  src: url("../../../public/fonts/iranyekanwebboldfanum.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dark mode overrides */
+:root.dark,
+.dark :root {
+  --color-background: #181a20;
+  --color-surface: #23262f;
+  --color-border: #2d3142;
+  --color-text: #f5f6fa;
+  --color-text-secondary: #a0aec0;
+  --color-primary: #586cff;
+}
