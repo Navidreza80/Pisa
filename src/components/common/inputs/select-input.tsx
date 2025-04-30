@@ -45,9 +45,9 @@ export default function InputSelect({
         <SelectValue placeholder={t("choose")} />
       </SelectTrigger>
       <SelectContent className="rounded-[16px] font-yekan">
-        {items?.map((item) => (
+        {items?.map((item, index) => (
           <SelectItem
-            key={item.id}
+            key={index}
             value={String(item.value ?? item.id ?? item.text)}
             className="font-yekan"
           >

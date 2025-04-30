@@ -8,7 +8,7 @@ import { Moon, Sun, MessageCircle, Globe } from "lucide-react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 // Third party components
-import ChatAssistant from "../chat/ai-assistant";
+import { ChatAssistant } from "../chat/ai-assistant";
 // Redux
 import { useDispatch } from "react-redux";
 // Types

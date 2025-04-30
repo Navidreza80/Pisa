@@ -74,7 +74,7 @@ const ChatAssistant = ({
               {
                 role: "system",
                 content:
-                  "You're use full website support for real state and reserving house and hotels, the website name is pizza help user by his messages:",
+                  "You're usefull website support for real state and reserving house and hotels, the website name is pizza. You should guide user to reserve house. Help user by his messages:",
               },
               ...messages.map(({ role, content }) => ({ role, content })),
               { role: "user", content: input },
@@ -201,4 +201,3 @@ const ChatAssistant = ({
 };
 
 export { ChatAssistant };
-export default ChatAssistant;
