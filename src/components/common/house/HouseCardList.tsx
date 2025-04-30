@@ -9,7 +9,7 @@ import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import PersonSVG from "../svg/person";
 // React
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 // Swiper
 import { SwiperSlide } from "swiper/react";
 // Third party components
@@ -17,9 +17,6 @@ import Favorite from "./favorite";
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { RefreshToken } from "@/utils/service/login/RefreshToken";
-import { jwtDecode } from "jwt-decode";
 
 export default function HouseCardList({
   setCurrentLoc,
@@ -35,18 +32,6 @@ export default function HouseCardList({
   showParking,
   discount,
 }: TopSaleCardListProps) {
-  const token = getClientCookie("clientAccessToken");
-  useEffect(() => {
-    if (token) {
-      const intervalId = setInterval(() => {
-        RefreshToken();
-      }, 9000);
-
-      // Clean up the interval on component unmount.
-      return () => clearInterval(intervalId);
-    }
-  }, []);
-  const decoded = typeof token == "string" && jwtDecode(token);
   // Feature items
   const featureItems: FeatureItem[] = [
     {
@@ -131,7 +116,7 @@ export default function HouseCardList({
           </button>
         )}
       </div>
-      <div className="flex gap-[9px] flex-wrap justify-end">
+      <div className="flex gap-[9px] flex-wrap justify-start">
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
@@ -185,7 +170,6 @@ export default function HouseCardList({
           <Favorite
             setIsOpen={setIsOpen}
             isOpen={isOpen}
-            userId={decoded.id}
             id={card.id}
           />
         </div>
@@ -223,7 +207,6 @@ export default function HouseCardList({
           <Favorite
             setIsOpen={setIsOpen}
             isOpen={isOpen}
-            userId={decoded.id}
             id={card.id}
           />
         </div>

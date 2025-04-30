@@ -1,20 +1,19 @@
 "use client";
 import { getAllHouse } from "@/utils/service/house/get-all-house";
+import { getAllLocations } from "@/utils/service/location/location";
+import { useEffect, useState } from "react";
 import Button from "../common/button/button";
 import HouseCardList from "../common/house/HouseCardList";
+import InputSelect from "../common/inputs/select-input";
 import SearchSVG from "../common/svg/search";
 import Map from "./map";
 import "./scrollbar.css";
-import { useEffect, useState } from "react";
-import InputSelect from "../common/inputs/select-input";
-import { getAllLocations } from "@/utils/service/location/location";
 // Add shadcn dialog imports
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
 } from "@/components/ui/dialog";
 
 export default function ReserveContainer() {
@@ -22,6 +21,17 @@ export default function ReserveContainer() {
   const [houses, setHouses] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [locations, setLocations] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
+  // Filter houses based on search query
+  const filteredHouses = houses?.filter((house) => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      (house.title && house.title.toLowerCase().includes(searchLower)) ||
+      (house.address && house.address.toLowerCase().includes(searchLower)) ||
+      (house.tags &&
+        house.tags.some((tag) => tag.toLowerCase().includes(searchLower)))
+    );
+  });
   const fetchData = async () => {
     const dataHouses = await getAllHouse(1, 3, null, null, null, null);
     setHouses(dataHouses);
@@ -33,14 +43,16 @@ export default function ReserveContainer() {
   }, []);
 
   return (
-    <div className="h-[calc(100vh-80px)] w-[calc(100%-7.25%)] flex">
+    <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
       <Map currentLoc={currentLoc} houses={houses} />
       <div className="flex-grow">
-        <div className="h-[62px] w-full pb-6 pl-7 flex gap-4">
+        <div className="h-[62px] w-full pb-6 lg:pl-7 md:pl-0 pl-0 flex gap-4">
           <div className="relative w-[calc(100%-101px)]">
             <input
               className="h-12 border rounded-2xl border-border px-4 py-3 w-full pr-16"
               dir="rtl"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="جستجو کنید ..."
             />
             <span className="absolute right-6 top-3.5">
@@ -54,41 +66,36 @@ export default function ReserveContainer() {
             فیلتر ها
           </Button>
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent className="max-w-[310px] z-[1200]">
+            <DialogContent className="!max-w-[310px] z-[1200]">
               <DialogHeader>
-                <DialogTitle className="text-base font-yekan">مقصد هتل شما</DialogTitle>
+                <DialogTitle className="text-base font-yekan"></DialogTitle>
               </DialogHeader>
-              <div className="pt-2">
+              <div className="pt-2" dir="rtl">
+                <h2 className="pb-3">مقصد هتل شما</h2>
                 <InputSelect width={262} items={locations} />
               </div>
-              <DialogFooter>
-                <Button
-                  handleClick={() => setIsModalOpen(false)}
-                  className="w-full mt-4"
-                >
-                  بستن
-                </Button>
-              </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
         <div
           dir="rtl"
-          className="overflow-y-scroll w-full pl-[22px] custom-scrollbar h-[calc(100vh-142px)] flex flex-wrap gap-[24.95px] justify-between"
+          className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full lg:pl-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center"
         >
-          {houses?.map((item, index) => {
-            return (
-              <HouseCardList
-                setCurrentLoc={setCurrentLoc}
-                showOnMap
-                width="w-[calc(50%-24.95px)]"
-                minWidth="min-w-[315px]"
-                key={index}
-                showFacilities={false}
-                card={item}
-              />
-            );
-          })}
+          {filteredHouses &&
+            filteredHouses.length > 0 &&
+            filteredHouses.map((item, index) => {
+              return (
+                <HouseCardList
+                  setCurrentLoc={setCurrentLoc}
+                  showOnMap
+                  width="lg:w-[calc(50%-24.95px)] md:w-[calc(50%-10px)] w-full"
+                  minWidth="min-w-[315px]"
+                  key={index}
+                  showFacilities={false}
+                  card={item}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

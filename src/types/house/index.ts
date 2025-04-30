@@ -37,7 +37,6 @@ export interface TopSaleCardListProps {
   showBathrooms?: boolean;
   showParking?: boolean;
   discount?: boolean;
-  userId?: number | null;
   capacity?: number;
 }
 

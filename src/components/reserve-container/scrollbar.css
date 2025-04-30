@@ -47,9 +47,6 @@
   z-index: 1;
 }
 
-.leaflet-tile-pane {
-  z-index: -10 !important;
-}
 
 .marker-pointer {
   width: 20px;

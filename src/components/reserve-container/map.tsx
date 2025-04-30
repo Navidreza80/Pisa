@@ -20,9 +20,9 @@ function RecenterMap({ center }) {
 
 export default function Map({ houses, currentLoc }) {
   return (
-    <div className="min-w-[45%] aspect-square overflow-hidden">
+    <div className="lg:max-w-[45%] md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none lg:rounded-tr-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
       <MapContainer
-        className="!h-[calc(100vh-80px)] rounded-tr-3xl !-z-10"
+        className="!z-10 h-full w-full"
         center={currentLoc}
         zoom={13}
         scrollWheelZoom={false}
@@ -41,8 +41,8 @@ export default function Map({ houses, currentLoc }) {
                 <div class="marker-pointer"></div>
               </div>
             `,
-            iconSize: [48, 60], // Adjusted for pointer
-            iconAnchor: [24, 60], // Center bottom
+            iconSize: [48, 60],
+            iconAnchor: [24, 60],
           });
           return (
             <Marker
@@ -50,7 +50,7 @@ export default function Map({ houses, currentLoc }) {
               position={[house.location.lat, house.location.lng]}
               icon={customIcon}
             >
-              <Popup className="custom-leaflet-popup">
+              <Popup>
                 <div className="popup-content overflow-hidden" dir="rtl">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
