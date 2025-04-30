@@ -14,7 +14,7 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
           {title}
         </h1>
         {desc && (
-          <p className="text-[14px] text-right font-[600] text-[#767676] dark:text-[#aaa]">
+          <p className="text-[14px] text-right mb-6 font-[600] text-[#767676] dark:text-[#aaa]">
             {desc}
           </p>
         )}
