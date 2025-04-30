@@ -7,7 +7,7 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
     <>
       <div dir="rtl" className="max-[600px]:w-[100%]">
-        <LogoSVG />
+        <LogoSVG size="w-[106px] h-[36px]" />
       </div>
       <div className="max-[600px]:w-[100%]">
         <h1 className="text-[36px] text-right font-[700] text-[#000000] dark:text-white mb-[24px]">

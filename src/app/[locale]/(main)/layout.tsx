@@ -13,6 +13,7 @@ import { ReduxProvider } from "@/utils/providers/redux-provider";
 import "../globals.css";
 // Toaster
 import { ToastContainer } from 'react-toastify';
+import TokenRefresher from "@/components/common/TokenRefresher";
 
 // metadata
 export const metadata: Metadata = {
@@ -55,6 +56,7 @@ export default async function RootLayout({
               <ToastContainer />
             </main>
             <FloatingActions />
+            <TokenRefresher />
           </ReduxProvider>
         </NextIntlClientProvider>
       </body>
