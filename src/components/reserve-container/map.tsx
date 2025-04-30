@@ -22,7 +22,7 @@ export default function Map({ houses, currentLoc }) {
   return (
     <div className="min-w-[45%] aspect-square overflow-hidden">
       <MapContainer
-        className="!h-[calc(100vh-80px)] rounded-tr-3xl"
+        className="!h-[calc(100vh-80px)] rounded-tr-3xl !-z-10"
         center={currentLoc}
         zoom={13}
         scrollWheelZoom={false}
