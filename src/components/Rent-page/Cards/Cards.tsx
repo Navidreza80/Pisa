@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import React from 'react'
 
 async function Cards() {
-    const data = await getAllHouse(1, 12, "", "", "", "");
+    const data = await getAllHouse(1, 12, "", "", "", "","");
     const token = await getServerCookie("serverAccessToken");
     const { id: userId } = typeof token == "string" && jwtDecode(token);
     return (
