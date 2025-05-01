@@ -12,3 +12,8 @@ export interface JwtPayload {
   profilePicture?: string;
   id?: number;
 }
+
+export interface LoginUser {
+  accessToken?: string;
+  refreshToken?: string;
+}

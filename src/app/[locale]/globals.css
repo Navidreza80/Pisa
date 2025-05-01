@@ -167,6 +167,35 @@ body {
   font-display: swap;
 }
 
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 /* Dark mode overrides */
 :root.dark,
 .dark :root {
@@ -176,4 +205,46 @@ body {
   --color-text: #f5f6fa;
   --color-text-secondary: #a0aec0;
   --color-primary: #586cff;
+}
+
+html[dir="rtl"] {
+  text-align: left;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+html[dir="rtl"] .flex-row-reverse {
+  flex-direction: row !important;
+}
+
+html[dir="ltr"] {
+  text-align: right;
+}
+
+html[dir="ltr"] .text-left {
+  text-align: right !important;
+}
+
+html[dir="ltr"] .text-right {
+  text-align: right !important;
+}
+
+html[dir="ltr"] .flex-row {
+  flex-direction: row-reverse !important;
+}
+
+html[dir="rtl"] .menu-items {
+  left: 0;
+  right: auto;
+}
+
+html[dir="ltr"] .menu-items {
+  right: 0;
+  left: auto;
 }

@@ -1,6 +1,8 @@
+// Change land
 import { useTranslations } from "next-intl";
 
 export default function OrUnderline() {
+  // Hooks
   const t = useTranslations("Auth");
   return (
     <div className="flex justify-between max-[600px]:w-[100%] items-center">

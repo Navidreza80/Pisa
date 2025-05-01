@@ -1,24 +1,33 @@
 "use client";
-
 // SVG
 import EmailSVG from "@/components/common/svg/email";
 import Password from "@/components/common/svg/password";
-// Third party components
+// Next hooks 
+import { useRouter } from "next/navigation";
+// API
 import { login } from "@/utils/service/login/login";
+// Cookies
 import { setClientCookie } from "@/utils/service/storage/client-cookie";
+import { setServerCookie } from "@/utils/service/storage/server-cookie";
+// Formik hooks
 import { useFormik } from "formik";
+// Change lang
 import { useTranslations } from "next-intl";
+// Third party components
 import Button from "../common/button";
 import InputAuth from "../common/input-auth";
 import OrUnderline from "../common/or-underline";
 import WelcomeTitle from "../common/welcome-title";
-import { setServerCookie } from "@/utils/service/storage/server-cookie";
+// Toast
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { LoginUser } from "@/types/user";
+
 
 function Login() {
+  // hooks
   const router = useRouter();
   const t = useTranslations("Auth");
+  // formik hook handler
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,7 +37,7 @@ function Login() {
     onSubmit: async (value) => {
       toast.promise(
         async () => {
-          const user = await login(value);
+          const user: LoginUser = await login(value);
           if (typeof user.accessToken == "string") {
             await setServerCookie("serverAccessToken", user.accessToken);
             await setServerCookie("serverRefreshToken", user.refreshToken);
