@@ -31,7 +31,6 @@ export default function HouseCardList({
   showBathrooms,
   showParking,
   discount,
-  userId,
 }: TopSaleCardListProps) {
   // Feature items
   const featureItems: FeatureItem[] = [
@@ -117,7 +116,7 @@ export default function HouseCardList({
           </button>
         )}
       </div>
-      <div className="flex gap-[9px] flex-wrap justify-end">
+      <div className="flex gap-[9px] flex-wrap justify-start">
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
@@ -171,7 +170,6 @@ export default function HouseCardList({
           <Favorite
             setIsOpen={setIsOpen}
             isOpen={isOpen}
-            userId={userId}
             id={card.id}
           />
         </div>
@@ -209,7 +207,6 @@ export default function HouseCardList({
           <Favorite
             setIsOpen={setIsOpen}
             isOpen={isOpen}
-            userId={userId}
             id={card.id}
           />
         </div>

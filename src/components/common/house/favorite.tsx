@@ -12,23 +12,25 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { jwtDecode } from "jwt-decode";
 
 export default function Favorite({
-  userId,
   id,
   setIsOpen,
   isOpen,
 }: {
-  userId: string | number | undefined;
   id: string | number;
   setIsOpen: (value: boolean) => void;
   isOpen: boolean;
 }) {
+  const token = getClientCookie("clientAccessToken");
+  const decoded = typeof token == "string" && jwtDecode(token);
   return (
     <>
       <Heart
         onClick={async () => {
-          const res = await postFavorite(userId, id);
+          const res = await postFavorite(decoded.id, id);
           if ((res as { message?: string }).message) {
             setIsOpen(true);
           } else {
@@ -59,7 +61,7 @@ export default function Favorite({
               <Button
                 className="min-w-[100px] bg-red-500 hover:bg-red-600"
                 handleClick={async () => {
-                  toast.promise(deleteFavorite(userId, id), {
+                  toast.promise(deleteFavorite(decoded.id, id), {
                     pending: "در حال پردازش",
                     success: "از لیست مورد علاقه حذف شد",
                     error: "خطا!",
