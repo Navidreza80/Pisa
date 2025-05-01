@@ -5,12 +5,13 @@ const getAllHouse = async (
   limit,
   sort,
   order,
-  capacity,
-  address
+  address,
+  type,
+  propertyType,
 ) => {
   try {
     const result = await http.get(
-      `/houses?page=${pageNumber}&limit=${limit}${sort && "&sort="+sort}${order && "&order="+order}${address && "&address="+address}${capacity && "&capacity="+capacity}`
+      `/houses?page=${pageNumber}&propertyType=${propertyType}&limit=${limit}&transactionType=${type}${sort && "&sort="+sort}${order && "&order="+order}${address && "&address="+address}`
     );
     return result;
   } catch (error) {

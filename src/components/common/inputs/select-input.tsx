@@ -37,19 +37,19 @@ export default function InputSelect({
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
-        className={`font-yekan !h-[48px] rounded-[16px] border-[#EAEAEA] ${
+        className={`font-yekan !h-[48px] z-50 rounded-[16px] border-[#EAEAEA] ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}
         style={{ width: width ? width : 162 }}
       >
         <SelectValue placeholder={t("choose")} />
       </SelectTrigger>
-      <SelectContent className="rounded-[16px] font-yekan">
+      <SelectContent className="rounded-[16px] z-50 font-yekan">
         {items?.map((item) => (
           <SelectItem
             key={item.id}
             value={String(item.value ?? item.id ?? item.text)}
-            className="font-yekan"
+            className="font-yekan z-50"
           >
             {item.area_name || item.text}
           </SelectItem>

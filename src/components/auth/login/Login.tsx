@@ -15,6 +15,7 @@ import WelcomeTitle from "../common/welcome-title";
 import { setServerCookie } from "@/utils/service/storage/server-cookie";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function Login() {
   const router = useRouter();
@@ -32,7 +33,7 @@ function Login() {
           if (typeof user.accessToken == "string") {
             await setServerCookie("serverAccessToken", user.accessToken);
             await setServerCookie("serverRefreshToken", user.refreshToken);
-            setClientCookie("clientAccessToken", user.accessToken,15)
+            setClientCookie("clientAccessToken", user.accessToken, 15);
             router.push("/");
           }
         },
@@ -74,7 +75,7 @@ function Login() {
       </div>
       <div className="flex justify-center mt-2 gap-[5px]">
         <span className="text-[14px] font-[500] underline text-[#586CFF] dark:text-[#8b9bff]">
-          {t("SignUpTitle")}
+          <Link href="/auth/register/step-1">{t("SignUpTitle")}</Link>
         </span>
         <span className="text-[14px] font-[500] text-[#222] dark:text-[white]">
           {t("NoAccount")}
