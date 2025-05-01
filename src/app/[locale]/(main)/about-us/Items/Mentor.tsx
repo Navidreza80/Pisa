@@ -1,21 +1,23 @@
 import FallbackImage from '@/components/common/image/FallbackImage'
 import React from 'react'
 import sobhan from '@/assets/images/about-us/sobhan.jpg';
+import { useTranslations } from 'next-intl';
 
 function Mentor() {
+    const t = useTranslations("AboutUs");
     return (
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg mb-[20px]">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-8 rounded-2xl shadow-lg mb-[20px]">
             <div className="flex flex-col md:flex-row items-center gap-8">
                 <FallbackImage
                     src={sobhan.src}
-                    alt="سبحان عرب خزائلی"
+                    alt={t('mentor')}
                     className="w-40 h-40 object-cover rounded-full shadow-lg border-4 border-white"
                     fallbackSrc="https://via.placeholder.com/150"
                 />
                 <div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">سبحان عرب خزائلی</h3>
-                    <p className="text-blue-600 font-semibold mb-4">مدیر ارشد فنی و منتور</p>
-                    <p className="text-gray-600 mb-4">با سال‌ها تجربه در زمینه توسعه نرم‌افزار و مدیریت پروژه‌های فناوری، هدایت تیم ما را بر عهده دارد.</p>
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">{t('mentor')}</h3>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4">{t('mentorTitle')}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">{t('mentorDesc')}</p>
                     <div className="flex gap-4">
                         <a href="https://github.com/sobhan" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition">
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

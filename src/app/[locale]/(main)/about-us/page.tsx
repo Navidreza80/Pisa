@@ -1,7 +1,5 @@
 'use client';
 
-import FallbackImage from '@/components/common/image/FallbackImage';
-
 import navid from '@/assets/images/about-us/navid.jpg';
 import taha from '@/assets/images/about-us/taha.jpg';
 import elmira from '@/assets/images/about-us/elmira.jpg';
@@ -15,57 +13,106 @@ import Mentor from './Items/Mentor';
 import Features from './Items/Features';
 import Question from './Items/Question';
 import Input from './Items/Input';
+import { useTranslations } from 'next-intl';
 
 
 export default function AboutUs() {
-    useEffect(() => {
-        const map = L.map('map').setView([36.67809, 53.058983], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([60.5658, 53.0588]).addTo(map)
-            .bindPopup(' آکادمی سپهر')
-            .openPopup();
-
-        return () => {
-            map.remove();
-        };
-    }, []);
+    const t = useTranslations("AboutUs")
+        useEffect(() => {
+            if (typeof window !== 'undefined') {
+                const map = L.map('map', {
+                    zoomControl: false,
+                    attributionControl: false
+                }).setView([36.597443366463594, 53.06466700125748], 15);
+    
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+    
+                const customIcon = L.divIcon({
+                    className: 'custom-marker-icon',
+                    iconSize: [48, 60],
+                    iconAnchor: [24, 60]
+                });
+    
+                const marker = L.marker([36.597443366463594, 53.06466700125748], { icon: customIcon }).addTo(map);
+                
+                const popupContent = `
+                    <div style="background: #586cff; border-radius: 16px; padding: 16px; min-width: 250px; color: white; box-shadow: 0 4px 24px 0 rgba(88, 108, 255, 0.18); text-align: center;">
+                        <h2 style="margin: 0 0 10px 0; font-size: 18px; font-weight: bold;">آکادمی سپهر</h2>
+                        <p style="margin: 0 0 10px 0; font-size: 14px;">مازندران، ساری، جاده دریا</p>
+                        <a href="https://maps.app.goo.gl/LXEFzbgQbXkMmuNTA" target="_blank" style="display: inline-block; background: white; color: #586cff; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; transition: all 0.3s ease;">
+                            مشاهده در گوگل مپ
+                        </a>
+                    </div>
+                `;
+                
+                const customOptions = {
+                    className: 'custom-popup',
+                    closeButton: false,
+                    maxWidth: 300
+                };
+                
+                marker.bindPopup(popupContent, customOptions).openPopup();
+    
+                const style = document.createElement('style');
+                style.textContent = `
+                    .custom-popup .leaflet-popup-content-wrapper {
+                        background: transparent;
+                        box-shadow: none;
+                        border: none;
+                    }
+                    .custom-popup .leaflet-popup-content {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .custom-popup .leaflet-popup-tip {
+                        background: #586cff;
+                    }
+                `;
+                document.head.appendChild(style);
+    
+                return () => {
+                    map.remove();
+                    document.head.removeChild(style);
+                };
+            }
+        }, []);
     return (
-        <main className="min-h-screen py-[20px] px-4">
+        <main className="min-h-screen py-[20px] px-4 dark:bg-gray-900">
             <div className="container mx-auto">
                 <div className="mb-20 max-w-6xl mx-auto">
-                    <Mentor />
+                    <Mentor name={t('navid')} job={t('frontendDeveloper')} profile={navid.src}/>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <ProfileNextElites name='Navid Abbaszadeh' job='Frontend Developer' profile={navid.src} />
-                        <ProfileNextElites name='Taha Talebi ' job='Frontend Developer' profile={taha.src} />
-                        <ProfileNextElites name='Elmira Shirkhani' job='Frontend Developer' profile={elmira.src} />
+                        <ProfileNextElites name={t('navid')} job={t('frontendDeveloper')} profile={navid.src} />
+                        <ProfileNextElites name={t('taha')} job={t('frontendDeveloper')} profile={taha.src} />
+                        <ProfileNextElites name={t('elmira')} job={t('frontendDeveloper')} profile={elmira.src} />
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
                     <div className="relative">
-                        <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-600 rounded-2xl"></div>
+                        <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-600 dark:bg-blue-800 rounded-2xl"></div>
                         <img
                             src={nextElites.src}
-                            alt="Next Elites Team"
+                            alt={t('nextElitesTeamAlt')}
                             className="w-full h-auto object-cover rounded-2xl shadow-lg relative z-10"
                         />
                     </div>
 
-                    <div className="bg-white p-8 rounded-2xl shadow-lg">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">داستان ما</h2>
-                        <p className="text-gray-700 mb-6 leading-relaxed">
-                            به <span className="font-bold text-blue-600">Next Elites</span> خوش آمدید! ما یک تیم متخصص در توسعه وب هستیم که با استفاده از فناوری‌های پیشرفته، راه‌حل‌های نوآورانه در زمینه املاک ارائه می‌دهیم.
+                    <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">{t('ourStory')}</h2>
+                        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                            {t.rich('storyDesc1', {
+                                span: (chunks) => <span className="font-bold text-blue-600 dark:text-blue-400">{chunks}</span>
+                            })}
                         </p>
-                        <p className="text-gray-700 mb-6 leading-relaxed">
-                            ما به ساخت تجربه‌های مدرن، مقیاس‌پذیر و کاربرپسند وب متعهد هستیم. تیم ما همواره در تلاش برای ارائه نوآوری و کیفیت در هر پروژه است.
+                        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                            {t('storyDesc2')}
                         </p>
-                        <p className="text-gray-700 mb-8 leading-relaxed">
-                            در زمینه املاک، ما پلتفرمی ایجاد کرده‌ایم که خرید، فروش و اجاره ملک را برای مشتریان آسان‌تر می‌کند. با استفاده از فناوری‌های پیشرفته، ما امکان جستجوی هوشمند، مشاهده تصاویر با کیفیت بالا و ارتباط مستقیم با مشاوران املاک را فراهم می‌کنیم.
+                        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+                            {t('storyDesc3')}
                         </p>
 
                         <div className="flex flex-wrap gap-4">
@@ -73,50 +120,50 @@ export default function AboutUs() {
                                 href="/contact"
                                 className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md"
                             >
-                                تماس با ما
+                                {t('contactUs')}
                             </a>
                             <a
                                 href="/"
-                                className="px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition"
+                                className="px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition"
                             >
-                                صفحه اصلی
+                                {t('homePage')}
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-16 bg-white p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">خدمات املاک ما</h2>
-                    <p className="text-gray-700 mb-6 leading-relaxed">
-                        در Next Elites، ما مجموعه‌ای از خدمات املاک را ارائه می‌دهیم که به مشتریان کمک می‌کند تا بهترین انتخاب را برای سرمایه‌گذاری، خرید یا اجاره ملک داشته باشند. تیم ما با تجربه و دانش گسترده در بازار املاک، راهنمایی‌های ارزشمندی را به مشتریان ارائه می‌دهد.
+                <div className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">{t('realEstateServices')}</h2>
+                    <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        {t('servicesDesc1')}
                     </p>
-                    <p className="text-gray-700 mb-6 leading-relaxed">
-                        پلتفرم ما امکان جستجوی پیشرفته بر اساس موقعیت، قیمت، متراژ و سایر ویژگی‌ها را فراهم می‌کند. همچنین، با استفاده از هوش مصنوعی، پیشنهادهای شخصی‌سازی شده برای هر کاربر ارائه می‌دهیم که متناسب با نیازها و ترجیحات آن‌ها است.
+                    <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        {t('servicesDesc2')}
                     </p>
-                    <p className="text-gray-700 mb-6 leading-relaxed">
-                        ما همچنین خدمات مشاوره حقوقی در زمینه معاملات املاک، ارزیابی ملک، و مدیریت اجاره را ارائه می‌دهیم. هدف ما ایجاد یک تجربه بدون دردسر و شفاف برای تمام مشتریان است.
+                    <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        {t('servicesDesc3')}
                     </p>
                 </div>
 
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <Features title='کیفیت' desc='ما به ارائه محصولات با کیفیت بالا و بدون نقص متعهد هستیم' icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Features title={t('quality')} desc={t('qualityDesc')} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>} />
 
-                    <Features title='نوآوری' desc='همیشه به دنبال راه‌های جدید و خلاقانه برای حل مشکلات هستیم' icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Features title={t('innovation')} desc={t('innovationDesc')} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>} />
 
-                    <Features title='همکاری' desc='با مشتریان و مشاوران املاک خود همکاری نزدیک داریم تا بهترین نتایج را به دست آوریم' icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Features title={t('collaboration')} desc={t('collaborationDesc')} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>} />
                 </div>
 
-                <div className="mt-24 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">تماس با ما</h2>
+                <div className="mt-24 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
+                    <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">{t('contactUs')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-4">اطلاعات تماس</h3>
+                            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">{t('contactInfo')}</h3>
                             <div className="space-y-4">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center ml-3">
@@ -125,8 +172,8 @@ export default function AboutUs() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="font-medium text-gray-800">تلفن</p>
-                                        <p className="text-gray-600">۰۲۱-۸۸۷۷۶۶۵۵</p>
+                                        <p className="font-medium text-gray-800 dark:text-gray-100">{t('phone')}</p>
+                                        <p className="text-gray-600 dark:text-gray-400">{t('phoneNumber')}</p>
                                     </div>
                                 </div>
 
@@ -137,8 +184,8 @@ export default function AboutUs() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="font-medium text-gray-800">ایمیل</p>
-                                        <p className="text-gray-600">NextElites@gmail.com</p>
+                                        <p className="font-medium text-gray-800 dark:text-gray-100">{t('email')}</p>
+                                        <p className="text-gray-600 dark:text-gray-400">{t('emailAddress')}</p>
                                     </div>
                                 </div>
 
@@ -150,14 +197,14 @@ export default function AboutUs() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="font-medium text-gray-800">آدرس</p>
-                                        <p className="text-gray-600">مازندران, ساری, جاده دریا,100 متر جلوتر از دنیای آرزو ها,ساختمان سپهر</p>
+                                        <p className="font-medium text-gray-800 dark:text-gray-100">{t('address')}</p>
+                                        <p className="text-gray-600 dark:text-gray-400">{t('addressText')}</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mt-8">
-                                <h3 className="text-xl font-bold text-gray-800 mb-4">ما را در شبکه‌های اجتماعی دنبال کنید</h3>
+                                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">{t('followUs')}</h3>
                                 <div className="flex space-x-4">
                                     <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition">
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -183,25 +230,25 @@ export default function AboutUs() {
                             </div>
                         </div>
 
-                        <div className="bg-white p-6 rounded-xl shadow-md">
-                            <h3 className="text-xl font-bold text-gray-800 mb-4">ارسال پیام</h3>
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">{t('sendMessage')}</h3>
                             <form className="space-y-4">
-                                <Input title='نام و نام خانوادگی' placeholder='نام خود را وارد کنید' id='name' type='text' />
-                                <Input title='ایمیل' placeholder='ایمیل خود را وارد کنید' id='email' type='email' />
-                                <Input title='موضوع' placeholder='موضوع پیام' id='subject' type='text' />
+                                <Input title={t('fullName')} placeholder={t('enterYourName')} id='name' type='text' />
+                                <Input title={t('email')} placeholder={t('enterYourEmail')} id='email' type='email' />
+                                <Input title={t('subject')} placeholder={t('messageSubject')} id='subject' type='text' />
 
                                 <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">پیام</label>
+                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('message')}</label>
                                     <textarea
                                         id="message"
                                         rows={4}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="پیام خود را بنویسید"
+                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                        placeholder={t('writeYourMessage')}
                                     ></textarea>
                                 </div>
 
                                 <button type="submit" className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md">
-                                    ارسال پیام
+                                    {t('sendMessage')}
                                 </button>
                             </form>
                         </div>
@@ -209,19 +256,19 @@ export default function AboutUs() {
                 </div>
 
                 <div className="mt-24 max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">سوالات متداول</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-12">{t('faq')}</h2>
                     <div className="space-y-6">
-                        <Question title='چگونه می‌توانم ملک مورد نظرم را پیدا کنم؟' desc='شما می‌توانید با استفاده از فیلترهای جستجوی پیشرفته در وبسایت ما، ملک مورد نظر خود را بر اساس موقعیت، قیمت، متراژ و سایر ویژگی‌ها پیدا کنید. همچنین می‌توانید با مشاوران املاک ما تماس بگیرید تا به شما در یافتن بهترین گزینه کمک کنند' />
-                        <Question title='چگونه می‌توانم ملک خود را برای فروش یا اجاره در سایت شما قرار دهم؟' desc='برای ثبت ملک خود در سایت ما، ابتدا باید در سایت ثبت‌نام کنید. سپس از طریق پنل کاربری، می‌توانید اطلاعات و تصاویر ملک خود را آپلود کنید. پس از تأیید توسط تیم ما، ملک شما در سایت قرار می‌گیرد' />
-                        <Question title='آیا خدمات مشاوره حقوقی هم ارائه می‌دهید؟' desc='بله، ما خدمات مشاوره حقوقی در زمینه معاملات املاک را ارائه می‌دهیم. مشاوران حقوقی ما می‌توانند در تمام مراحل خرید، فروش یا اجاره ملک به شما کمک کنند' />
+                        <Question title={t('faq1Question')} desc={t('faq1Answer')} />
+                        <Question title={t('faq2Question')} desc={t('faq2Answer')} />
+                        <Question title={t('faq3Question')} desc={t('faq3Answer')} />
                     </div>
                 </div>
 
                 <div className="mt-24 max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">موقعیت ما</h2>
-                    <div className="bg-white p-4 rounded-xl shadow-lg">
-                        <div className="h-96 bg-gray-200 rounded-lg">
-                            <div id="map" className="w-full h-full rounded-lg"></div>
+                    <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">{t('ourLocation')}</h2>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg">
+                        <div className="h-96 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                            <div id="map" className="w-full h-full rounded-lg dark:border dark:border-gray-700"></div>
                         </div>
                     </div>
                 </div>

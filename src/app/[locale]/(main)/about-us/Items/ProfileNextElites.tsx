@@ -10,17 +10,17 @@ interface ProfileProps{
 
 function ProfileNextElites({profile ,name ,job }:ProfileProps) {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105">
         <div className="h-40 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
         <div className="relative px-6 pb-6">
             <FallbackImage
                 src={profile}
                 alt={name}
-                className="w-32 h-32 object-cover rounded-full mx-auto -mt-16 border-4 border-white shadow-md"
+                className="w-32 h-32 object-cover rounded-full mx-auto -mt-16 border-4 border-white dark:border-gray-700 shadow-md"
                 fallbackSrc="https://via.placeholder.com/150"
             />
-            <h3 className="text-xl font-bold text-center text-gray-800 mt-4 mb-2">{name}</h3>
-            <p className="text-blue-600 text-center font-medium mb-4">{job}</p>
+            <h3 className="text-xl font-bold text-center text-gray-800 dark:text-gray-100 mt-4 mb-2">{name}</h3>
+            <p className="text-blue-600 dark:text-blue-400 text-center font-medium mb-4">{job}</p>
             <div className="flex justify-center gap-4 mt-4">
                 <a href={`https://github.com/${name}`} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
