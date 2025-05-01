@@ -6,27 +6,26 @@ import { jwtDecode } from 'jwt-decode';
 import React from 'react'
 
 async function Cards() {
-    const data = await getAllHouse(1, 12, "", "", "", "");
+    const data = await getAllHouse(1, 12, "", "", "", "", "");
     const token = await getServerCookie("serverAccessToken");
-    const { id: userId } = typeof token == "string" && jwtDecode(token);
+    const { id: userId } = typeof token === "string" ? jwtDecode(token) : { id: null };
+
     return (
-        <div className='flex justify-between'>
-            {
-                data.map((card: HouseItemsInterface, index: number) => (
-                    <HouseCardList
-                        userId={userId}
-                        key={index}
-                        discount
-                        showRooms
-                        showBathrooms
-                        showParking
-                        card={card}
-                        setCurrentLoc={[]}
-                    />
-                ))
-            }
+        <div className='flex justify-between flex-wrap'>
+            {data.map((card: HouseItemsInterface, index: number) => (
+                <HouseCardList
+                    userId={userId}
+                    key={index}
+                    discount
+                    showRooms
+                    showBathrooms
+                    showParking
+                    card={card}
+                    setCurrentLoc={[]}
+                />
+            ))}
         </div>
     )
 }
 
-export default Cards
+export default Cards;

@@ -1,11 +1,14 @@
 'use client'
 
+import Button from '@/components/common/button/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useState } from 'react';
 
 const filters = ['حیاط دار', 'پارکینگ دار', 'عکس دار', 'گران‌ترین', 'ارزان‌ترین', 'محبوب‌ترین', 'همه'];
 
 export default function Filter() {
     const [selectedFilter, setSelectedFilter] = useState('همه');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="flex flex-row-reverse flex-wrap justify-end gap-[16px] p-4">
@@ -24,9 +27,19 @@ export default function Filter() {
             <span className='h-[24px] w-[1px] my-auto bg-[#EAEAEA]' />
 
             <div className=" flex gap-2">
-                <button className={`bg-[#586CFF] text-white px-4 py-[14px] rounded-[16px] text-[16px] transition font-[600] `}>
-                    فیلترها
-                </button>
+                <Button
+                    handleClick={() => setIsModalOpen(!isModalOpen)}
+                    className="!w-[85px] my-auto cursor-pointer"
+                >
+                    فیلتر ها
+                </Button>
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                    <DialogContent className="!max-w-[310px] z-[1200]">
+                        <DialogHeader>
+                            <DialogTitle className="text-base font-yekan">یالله</DialogTitle>
+                        </DialogHeader>
+                    </DialogContent>
+                </Dialog>
             </div>
 
             <span className='h-[24px] w-[1px] my-auto bg-[#EAEAEA]' />
