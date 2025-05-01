@@ -7,13 +7,14 @@ import InputSelect from "../common/inputs/select-input";
 import SearchSVG from "../common/svg/search";
 import Map from "./map";
 import "./scrollbar.css";
-// Add shadcn dialog imports
+// Add shadCn dialog imports
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+// Slider
 import { Slider } from "../ui/slider";
 
 export default function ReserveContainer() {
@@ -21,8 +22,8 @@ export default function ReserveContainer() {
   const [houses, setHouses] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [priceFrom, setPriceFrom] = useState();
-  const [priceTo, setPriceTo] = useState();
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
   // Filter houses based on search query
   const filteredHouses = houses?.filter((house) => {
     const searchLower = searchQuery.toLowerCase();
@@ -40,8 +41,10 @@ export default function ReserveContainer() {
       filters.sort,
       filters.order,
       filters.address,
-      "rental",
-      filters.propertyType
+      "",
+      filters.propertyType,
+      priceTo,
+      priceFrom
     );
     setHouses(data);
   };
@@ -77,7 +80,7 @@ export default function ReserveContainer() {
 
   useEffect(() => {
     getHouses();
-  }, [filters]);
+  }, [filters, priceFrom, priceTo]);
 
   return (
     <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
@@ -125,8 +128,8 @@ export default function ReserveContainer() {
               </div>
               <Slider
                 defaultValue={[33]}
-                max={100}
-                step={1}
+                max={5000000}
+                step={1000000}
                 onValueChange={(e) => setPriceFrom(e)}
               />
               <div className="flex gap-2" dir="rtl">
@@ -136,18 +139,10 @@ export default function ReserveContainer() {
 
               <Slider
                 defaultValue={[33]}
-                max={100}
-                step={1}
+                max={5000000}
+                step={1000000}
                 onValueChange={(e) => setPriceTo(e)}
               />
-              <div className="pt-2" dir="rtl">
-                <h2 className="pb-3">امکانات هتل</h2>
-                <InputSelect width={262} items={locations} />
-              </div>
-              <div className="pt-2" dir="rtl">
-                <h2 className="pb-3">امتیاز هتل</h2>
-                <InputSelect width={262} items={locations} />
-              </div>
             </DialogContent>
           </Dialog>
         </div>

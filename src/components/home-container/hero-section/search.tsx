@@ -54,7 +54,9 @@ export default function Search() {
       filters.order,
       filters.address,
       tab.type,
-      filters.propertyType
+      filters.propertyType,
+      "",
+      ""
     );
     setHouses(data);
   };
@@ -118,9 +120,9 @@ export default function Search() {
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.9s] [animation-fill-mode:both] opacity-0">
           <p>{t("count")}</p>
           <InputSelect
-            width={262}
-            items={sortItems}
-            onChange={(value) => handleFilterChange("sort", value)}
+            items={propertyOptions}
+            onChange={(value) => handleFilterChange("propertyType", value)}
+            value={filters.propertyType}
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:1s] [animation-fill-mode:both] opacity-0">
