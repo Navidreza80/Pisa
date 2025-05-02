@@ -12,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 async function Register1() {
     const t = await getTranslations("Auth");
     return (
-        <>
+        <form>
             <WelcomeTitle
                 title={t("SignUpTitle")}
                 desc={t("SignUpDesc1")}
@@ -25,14 +25,13 @@ async function Register1() {
                     placeHolder={t("emailDesc")}
                     icon={<EmailSVG />}
                 />
-            </div>
-
-            <Link
+                            <Link
                 href="/auth/login"
                 className="text-[#586CFF] text-[14px] font-[600] mx-1 underline dark:text-[#8b9bff]"
             >
                 <Button text={t("loginAccount")} />
             </Link>
+            </div>
 
             <div className="flex justify-center mt-2 gap-[5px]">
                 <span className="text-[14px] font-[500] underline text-[#586CFF] dark:text-[#8b9bff]">
@@ -42,7 +41,7 @@ async function Register1() {
                     {t("HaveAccount")}
                 </span>
             </div>
-        </>
+        </form>
     );
 }
 

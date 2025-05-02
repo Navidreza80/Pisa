@@ -6,9 +6,9 @@ import { jwtDecode } from "jwt-decode";
 import { getTranslations } from "next-intl/server";
 // Third party components
 import Button from "../button/button";
-import MobileNav from "./mobile-nav/mobile-nav";
-import Navbar from "./navbar/navbar";
-import UserProfile from "./user-profile/user-profile";
+import MobileNav from "./mobile-nav";
+import Navbar from "./navbar";
+import UserProfile from "./user-profile";
 // SVGs
 import LogoSVG from "../svg/logo";
 // Types

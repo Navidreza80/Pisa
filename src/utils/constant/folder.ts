@@ -40,3 +40,8 @@ export const propertyOptions = [
   { id: 2, value: "ویلا", text: "ویلا" },
   { id: 3, value: "روستایی", text: "روستایی" },
 ];
+
+export const transactionTypeOptions = [
+  { id: 1, text: "رهن", value: "mortgage" },
+  { id: 2, text: "اجاره", value: "rental" },
+]

@@ -10,22 +10,20 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { setFilters } from "@/utils/hooks/react-redux/store/slices/filter-slices";
+import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import { useHouses } from "@/utils/hooks/use-houses";
-import { FilterModal } from "../common/house/filter";
+import { FilterModal } from "../common/house/filter-reserve";
 import HouseSkeleton from "../common/skeleton/house-skeleton";
 
 export default function ReserveContainer() {
   const [currentLoc, setCurrentLoc] = useState([36.570797, 53.058983]);
-  const { data: houses, isLoading, isError } = useHouses();
-  const filters = useAppSelector((state) => state.filters);
+  const { data: houses, isLoading } = useHouses();
+  const filters = useAppSelector((state) => state.reserveFilters);
   const dispatch = useAppDispatch();
 
   const handleChange = (name: string, value: any) => {
-    dispatch(setFilters({ [name]: value }));
+    dispatch(setReserveFilters({ [name]: value }));
   };
-
-  if (isError) return <div>Error fetching data</div>;
 
   return (
     <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">

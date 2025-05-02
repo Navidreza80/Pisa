@@ -13,7 +13,6 @@ import { Fragment, useState } from "react";
 // Swiper
 import { SwiperSlide } from "swiper/react";
 // Third party components
-import Favorite from "./favorite";
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
@@ -73,9 +72,6 @@ export default function HouseCardList({
 
   // Filter only visible features
   const visibleFeatures = featureItems.filter((item) => item.show);
-
-  // Hooks
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
@@ -166,12 +162,6 @@ export default function HouseCardList({
               تومان
             </p>
           </div>
-
-          <Favorite
-            setIsOpen={setIsOpen}
-            isOpen={isOpen}
-            id={card.id}
-          />
         </div>
       ) : (
         <div dir="rtl" className="flex justify-between">
@@ -204,11 +194,6 @@ export default function HouseCardList({
               <h1 className="text-white text-[16px] font-[700]">%</h1>
             </div>
           </div>
-          <Favorite
-            setIsOpen={setIsOpen}
-            isOpen={isOpen}
-            id={card.id}
-          />
         </div>
       )}
     </div>

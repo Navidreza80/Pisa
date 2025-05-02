@@ -6,7 +6,7 @@ import LogoSVG from "@/components/common/svg/logo";
 export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
     <>
-      <div dir="rtl" className="max-[600px]:w-[100%]">
+      <div dir="rtl" className="max-[600px]:w-[100%] mb-6">
         <LogoSVG size="w-[106px] h-[36px]" />
       </div>
       <div className="max-[600px]:w-[100%]">
@@ -14,7 +14,7 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
           {title}
         </h1>
         {desc && (
-          <p className="text-[14px] text-right font-[600] text-[#767676] dark:text-[#aaa]">
+          <p className="text-[14px] text-right mb-6 font-[600] text-[#767676] dark:text-[#aaa]">
             {desc}
           </p>
         )}

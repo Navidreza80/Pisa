@@ -12,17 +12,17 @@ import {
     useAppDispatch,
     useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { resetFilters, setFilters } from "@/utils/hooks/react-redux/store/slices/filter-slices";
+import { resetReserveFilters, setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import InputSelect from "../inputs/select-input";
 import { facilityOptions, locationOptions, ratingOptions, sortOptions } from "@/utils/constant/folder";
 
 export function FilterModal() {
   const dispatch = useAppDispatch();
-  const filters = useAppSelector((state) => state.filters);
+  const filters = useAppSelector((state) => state.reserveFilters);
 
 
   const handleChange = (name: string, value: any) => {
-    dispatch(setFilters({ [name]: value }));
+    dispatch(setReserveFilters({ [name]: value }));
   };
 
   return (
@@ -119,7 +119,7 @@ export function FilterModal() {
           </div>
 
           <div className="flex justify-end gap-2 pt-4">
-            <Button className="text-white" onClick={() => dispatch(resetFilters())}>
+            <Button className="text-white" onClick={() => dispatch(resetReserveFilters())}>
               حذف فیلترها
             </Button>
           </div>

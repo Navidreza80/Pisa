@@ -1,33 +1,33 @@
 "use client";
-import Button from "@/components/common/button/button";
 import HouseCardList from "@/components/common/house/HouseCardList";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { HouseItemsInterface } from "@/types/house";
-import { useHouses } from "@/utils/hooks/use-houses";
+import {
+  useAppDispatch
+} from "@/utils/hooks/react-redux/store/hook";
+import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slice";
+import { useRentHouses } from "@/utils/hooks/use-houses";
 import { useState } from "react";
+import { FilterModal } from "../common/house/filter-rent";
+import HouseSkeleton from "../common/skeleton/house-skeleton";
 
 function Rent() {
   const filtersItems = [
-    "حیاط دار",
-    "پارکینگ دار",
-    "عکس دار",
-    "گران‌ترین",
-    "ارزان‌ترین",
-    "محبوب‌ترین",
-    "همه",
+    { text: "گران‌ترین", value: "price", order: "DESC" },
+    { text: "ارزان‌ترین", value: "price", order: "ASC" },
+    { text: "محبوب‌ترین", value: "rate", order: "DESC" },
+    { text: "همه", value: null, order: null },
   ];
   const [selectedFilter, setSelectedFilter] = useState("همه");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: houses } = useHouses();
+  const { data: houses, isLoading } = useRentHouses();
+  const dispatch = useAppDispatch();
+
+  const handleChange = (name: string, value: any) => {
+    dispatch(setRentFilters({ [name]: value }));
+  };
   return (
-    <div className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
+    <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       <div>
-        <div dir="rtl" className="flex gap-[8px] mb-[32px]">
+        <div className="flex gap-[8px] mb-[32px]">
           <h1 className="text-black text-[36px] font-[700]">
             رهن و اجاره آپارتمان
           </h1>
@@ -39,42 +39,30 @@ function Rent() {
           dir="rtl"
           className="flex flex-row-reverse flex-wrap justify-end gap-[16px] p-4"
         >
-          {filtersItems.map((filter) => (
+          {filtersItems.map((item) => (
             <button
-              key={filter}
+              key={item.text}
               onClick={() => {
-                setSelectedFilter(filter);
+                setSelectedFilter(item.text);
+                handleChange("sort", item.value);
+                handleChange("order", item.order);
               }}
-              className={`px-4 py-[14px] rounded-[16px] border text-[16px] transition cursor-pointer
+              className={`px-4 py-3.5 h-12 flex items-center text-center rounded-[16px] border text-[16px] transition cursor-pointer
             ${
-              selectedFilter === filter
+              selectedFilter === item.text
                 ? "bg-[#586CFF] text-white"
                 : "bg-white text-[#272727] border-[#EAEAEA] border-[1.5px]"
             }
           `}
             >
-              {filter}
+              {item.text}
             </button>
           ))}
 
           <span className="h-[24px] w-[1px] my-auto bg-[#EAEAEA]" />
 
           <div className=" flex gap-2">
-            <Button
-              handleClick={() => setIsModalOpen(!isModalOpen)}
-              className="!w-[85px] my-auto cursor-pointer"
-            >
-              فیلتر ها
-            </Button>
-            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-              <DialogContent className="!max-w-[310px] z-[1200]">
-                <DialogHeader>
-                  <DialogTitle className="text-base font-yekan">
-                    یالله
-                  </DialogTitle>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+            <FilterModal />
           </div>
 
           <span className="h-[24px] w-[1px] my-auto bg-[#EAEAEA]" />
@@ -127,6 +115,14 @@ function Rent() {
       </div>
       <span className="h-[1px] w-full my-auto bg-[#EAEAEA]" />
       <div className="flex justify-between flex-wrap">
+        {isLoading &&
+          [...Array(6)].map((_, i) => (
+            <HouseSkeleton
+              width="w-[calc(33.3%-20px)]"
+              minWidth="min-w-[391px]"
+              key={i}
+            />
+          ))}
         {houses?.map((card: HouseItemsInterface, index: number) => (
           <HouseCardList
             key={index}

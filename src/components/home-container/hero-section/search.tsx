@@ -11,11 +11,12 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { setFilters } from "@/utils/hooks/react-redux/store/slices/filter-slices";
-import { useHouses } from "@/utils/hooks/use-houses";
+import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+import { useLandingHouses } from "@/utils/hooks/use-houses";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ResultButton from "./result-button";
+import { setLandingFilters } from "@/utils/hooks/react-redux/store/slices/landing-slice";
 
 export default function Search() {
   const t = useTranslations("HomePage");
@@ -26,18 +27,17 @@ export default function Search() {
   ];
 
   const [tab, setTab] = useState(filterItems[2]);
-  const { data: houses } = useHouses();
+  const { data: houses } = useLandingHouses();
 
   const dispatch = useAppDispatch();
-  const filters = useAppSelector((state) => state.filters);
+  const filters = useAppSelector((state) => state.landingFilters);
 
   useEffect(() => {
-    handleChange("transactionType", tab.type)
-  }, [tab])
-  
+    handleChange("transactionType", tab.type);
+  }, [tab]);
 
   const handleChange = (name: string, value: any) => {
-    dispatch(setFilters({ [name]: value }));
+    dispatch(setLandingFilters({ [name]: value }));
   };
 
   return (
@@ -78,17 +78,17 @@ export default function Search() {
           <InputSelect
             items={locationOptions}
             value={filters.search || ""}
-            onChange={(value) => handleChange("facilities", value)}
+            onChange={(value) => handleChange("search", value)}
             width={161}
             dir="rtl"
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.9s] [animation-fill-mode:both] opacity-0">
-          <p>نوع</p>
+          <p> نوع ملک</p>
           <InputSelect
             items={propertyOptions}
             value={filters.propertyType || ""}
-            onChange={(value) => handleChange("propertyOptions", value)}
+            onChange={(value) => handleChange("propertyType", value)}
             width={161}
             dir="rtl"
           />

@@ -21,16 +21,16 @@ const initialState: HouseFilters = {
   rate: undefined
 };
 
-const filterSlice = createSlice({
-  name: 'filters',
+const filterLandingSlice = createSlice({
+  name: 'landingFilter',
   initialState,
   reducers: {
-    setFilters: (state, action: PayloadAction<Partial<HouseFilters>>) => {
+    setLandingFilters: (state, action: PayloadAction<Partial<HouseFilters>>) => {
       return { ...state, ...action.payload };
     },
-    resetFilters: () => initialState
+    resetLandingFilters: () => initialState
   }
 });
 
-export const { setFilters, resetFilters } = filterSlice.actions;
-export default filterSlice.reducer;
+export const { setLandingFilters, resetLandingFilters } = filterLandingSlice.actions;
+export default filterLandingSlice.reducer;
