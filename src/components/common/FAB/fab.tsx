@@ -12,7 +12,7 @@ import ChatAssistant from "../chat/ai-assistant";
 // Redux
 import { useDispatch } from "react-redux";
 // Types
-import { toggleDarkMode } from "@/utils/hooks/themeSlice";
+import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 
 export default function FloatingActions() {
   // States
