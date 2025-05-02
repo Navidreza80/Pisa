@@ -1,6 +1,6 @@
 'use client'
 // Redux for state management
-import { store } from "../hooks/store";
+import { store } from "../hooks/react-redux/store";
 import { Provider } from 'react-redux';
 
 export function ReduxProvider({ children }: { children: React.ReactNode }) {

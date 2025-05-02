@@ -10,10 +10,11 @@ export const setClientCookie = (name: string, value: string, eMin: number) => {
 };
 
 // Function for reading and getting cookies
-export const getClientCookie = (name: string) => {
-  // console.log(document.cookie);
+export function getClientCookie(name: string) {
+  if (typeof document === "undefined") return null;
+  console.log(document.cookie);
   const nameEQ = name + "=";
-  const ca = document.cookie.split(";");
+  const ca = typeof window != "undefined" && document.cookie.split(";");
   const cookieValue = ca
     .map((c) => c.trim())
     .find((c) => c.indexOf(nameEQ) === 0);

@@ -40,6 +40,26 @@ export interface TopSaleCardListProps {
   capacity?: number;
 }
 
+export interface HouseFilters {
+  page?: number;
+  sort?: string;
+  order?: 'ASC' | 'DESC';
+  search?: string;
+  location?: string;
+  propertyType?: string;
+  maxPrice?: number | null;
+  minRent?: number | null;
+  maxRent?: number | null;
+  minMortgage?: number | null;
+  maxMortgage?: number | null;
+  minArea?: number | null;
+  maxArea?: number | null;
+  limit?: number;
+  transactionType?: string;
+  minPrice?: number;
+  rate?: number;
+}
+
 export interface FeatureItem {
   id: string;
   icon: React.ReactNode;

@@ -1,19 +1,18 @@
 // Next built in imports
 import type { Metadata } from "next";
 // next-intl
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 // Third party components
+import FloatingActions from "@/components/common/FAB/fab";
 import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
-import FloatingActions from "@/components/common/FAB/fab";
 // Redux provider
-import { ReduxProvider } from "@/utils/providers/redux-provider";
 // Css imports
 import "../globals.css";
 // Toaster
-import { ToastContainer } from 'react-toastify';
-import TokenRefresher from "@/components/common/TokenRefresher";
+import { ToastContainer } from "react-toastify";
+import Providers from "@/provider/provider";
 
 // metadata
 export const metadata: Metadata = {
@@ -34,21 +33,21 @@ export default async function RootLayout({
   }
 
   const direction = () => {
-    switch(locale) {
-      case 'fa':
-      case 'ar':
-        return 'ltr';
-      case 'tr':
-      case 'en':
+    switch (locale) {
+      case "fa":
+      case "ar":
+        return "ltr";
+      case "tr":
+      case "en":
       default:
-        return 'rtl';
+        return "rtl";
     }
-  };  
+  };
   return (
     <html lang={locale} dir={direction()}>
       <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
-          <ReduxProvider>
+          <Providers>
             <main className="w-full flex-wrap">
               <Header />
               {children}
@@ -56,8 +55,7 @@ export default async function RootLayout({
               <ToastContainer />
             </main>
             <FloatingActions />
-            <TokenRefresher />
-          </ReduxProvider>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

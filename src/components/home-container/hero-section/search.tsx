@@ -1,7 +1,18 @@
 "use client";
 
 import InputSelect from "@/components/common/inputs/select-input";
-import { getAllHouse } from "@/utils/service/house/get-all-house";
+import {
+  locationOptions,
+  orderOptions,
+  propertyOptions,
+  sortOptions,
+} from "@/utils/constant/folder";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/utils/hooks/react-redux/store/hook";
+import { setFilters } from "@/utils/hooks/react-redux/store/slices/filter-slices";
+import { useHouses } from "@/utils/hooks/use-houses";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ResultButton from "./result-button";
@@ -14,66 +25,19 @@ export default function Search() {
     { text: t("reserve"), id: 3, type: "reservation" },
   ];
 
-  const locations = [
-    { text: "تهران", value: "تهران" },
-    { text: "شیراز", value: "شیراز" },
-    { text: "اصفهان", value: "اصفهان" },
-  ];
-
-  const propertyOptions = [
-    { text: "آپارتمان", value: "آپارتمان" },
-    { text: "ویلا", value: "ویلا" },
-    { text: "روستایی", value: "روستایی" },
-  ];
-
-  const orderItems = [
-    { text: "نزولی", value: "DESC" },
-    { text: "صعودی", value: "ASC" },
-  ];
-
-  const sortItems = [
-    { text: "قیمت", value: "price" },
-    { text: "امتیاز", value: "rate" },
-  ];
-
   const [tab, setTab] = useState(filterItems[2]);
-  const [houses, setHouses] = useState([]);
+  const { data: houses } = useHouses();
 
-  const [filters, setFilters] = useState({
-    sort: "price",
-    order: "DESC",
-    address: "",
-    propertyType: "",
-  });
-
-  const getHouses = async () => {
-    const data = await getAllHouse(
-      1,
-      10,
-      filters.sort,
-      filters.order,
-      filters.address,
-      tab.type,
-      filters.propertyType,
-      "",
-      ""
-    );
-    setHouses(data);
-  };
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector((state) => state.filters);
 
   useEffect(() => {
-    getHouses();
-  }, []);
+    handleChange("transactionType", tab.type)
+  }, [tab])
+  
 
-  useEffect(() => {
-    getHouses();
-  }, [filters, tab]);
-
-  const handleFilterChange = (key, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+  const handleChange = (name: string, value: any) => {
+    dispatch(setFilters({ [name]: value }));
   };
 
   return (
@@ -112,33 +76,41 @@ export default function Search() {
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.8s] [animation-fill-mode:both] opacity-0">
           <p>{t("destination")}</p>
           <InputSelect
-            items={locations}
-            onChange={(value) => handleFilterChange("address", value)}
-            value={filters.address}
+            items={locationOptions}
+            value={filters.search || ""}
+            onChange={(value) => handleChange("facilities", value)}
+            width={161}
+            dir="rtl"
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.9s] [animation-fill-mode:both] opacity-0">
-          <p>{t("count")}</p>
+          <p>نوع</p>
           <InputSelect
             items={propertyOptions}
-            onChange={(value) => handleFilterChange("propertyType", value)}
-            value={filters.propertyType}
+            value={filters.propertyType || ""}
+            onChange={(value) => handleChange("propertyOptions", value)}
+            width={161}
+            dir="rtl"
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:1s] [animation-fill-mode:both] opacity-0">
           <p>{t("start")}</p>
           <InputSelect
-            items={sortItems}
-            onChange={(value) => handleFilterChange("sort", value)}
-            value={filters.sort}
+            items={sortOptions}
+            value={filters.sort || ""}
+            onChange={(value) => handleChange("sort", value)}
+            width={161}
+            dir="rtl"
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:1.1s] [animation-fill-mode:both] opacity-0">
           <p>{t("end")}</p>
           <InputSelect
-            items={orderItems}
-            onChange={(value) => handleFilterChange("order", value)}
-            value={filters.order}
+            items={orderOptions}
+            value={filters.order || ""}
+            onChange={(value) => handleChange("order", value)}
+            width={161}
+            dir="rtl"
           />
         </div>
         <ResultButton houses={houses} />

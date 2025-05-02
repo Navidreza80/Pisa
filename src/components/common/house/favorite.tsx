@@ -1,3 +1,4 @@
+
 import postFavorite from "@/utils/service/favourites/post";
 import { Heart } from "lucide-react";
 import WarningSVG from "../svg/warning";
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
 export default function Favorite({
   id,
@@ -24,8 +26,14 @@ export default function Favorite({
   setIsOpen: (value: boolean) => void;
   isOpen: boolean;
 }) {
-  const token = getClientCookie("clientAccessToken");
-  const decoded = typeof token == "string" && jwtDecode(token);
+  useEffect(() => {
+    // This code only runs on the client
+    const value = document.cookie.match('(^|;)\\s*' + 'clientAccessToken' + '\\s*=\\s*([^;]+)');
+    // setCookieValue(value ? value.pop() : null);
+  }, []);
+  // const token = getClientCookie("clientAccessToken");
+  // const decoded = typeof token == "string" && jwtDecode(token);
+
   return (
     <>
       <Heart
