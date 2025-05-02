@@ -1,15 +1,14 @@
 // Next built in imports
 import type { Metadata } from "next";
 // next-intl
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-// Redux provider
-import { ReduxProvider } from "@/utils/providers/redux-provider";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 // Css imports
 import "../globals.css";
 // Third party components
-import FloatingActions from "@/components/common/FAB/fab";
 import Auth from "@/components/auth/auth";
+import FloatingActions from "@/components/common/FAB/fab";
+import Providers from "@/provider/provider";
 
 // metadata
 export const metadata: Metadata = {
@@ -31,22 +30,22 @@ export default async function RootLayout({
   }
 
   const direction = () => {
-    switch(locale) {
-      case 'fa':
-      case 'ar':
-        return 'ltr';
-      case 'tr':
-      case 'en':
+    switch (locale) {
+      case "fa":
+      case "ar":
+        return "ltr";
+      case "tr":
+      case "en":
       default:
-        return 'rtl';
+        return "rtl";
     }
-  };  
+  };
 
   return (
     <html lang={locale} dir={direction()}>
       <body className="bg-background  text-text  flex justify-center font-yekan">
         <NextIntlClientProvider>
-          <ReduxProvider>
+          <Providers>
             <main className="w-[100%] max-h-screen ">
               <div className="flex justify-center max-h-screen p-[16px]">
                 <Auth />
@@ -58,7 +57,7 @@ export default async function RootLayout({
               </div>
             </main>
             <FloatingActions />
-          </ReduxProvider>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

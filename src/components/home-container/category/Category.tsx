@@ -1,11 +1,7 @@
-// Images
-import aparteman from "@/assets/images/landing/category/aparteman.png";
-import estakhr from "@/assets/images/landing/category/estakhr.png";
-import kolbe from "@/assets/images/landing/category/kolbei.png";
-import Villa from "@/assets/images/landing/category/vilaii.png";
 import getAllCategories from "@/utils/service/categories/categories";
 // Change lang
 import { getTranslations } from "next-intl/server";
+import CategoryImage from "./category-image";
 
 export default async function Category() {
   // API
@@ -28,25 +24,11 @@ export default async function Category() {
                     : "max-h-[190px]"
                 } min-w-[calc(33.3%-24px)] group`}
               >
-                <img
-                  src={
-                    card.name == "ویلا"
-                      ? Villa.src
-                      : card.name == "مسکونی"
-                      ? estakhr.src
-                      : card.name == "آپارتمان"
-                      ? aparteman.src
-                      : kolbe.src
-                  }
-                  alt={card.name}
-                  className="w-full h-full rounded-[20px] object-cover opacity-75
-                transition-all duration-500 ease-in-out 
-                group-hover:opacity-60 group-hover:scale-110"
-                />
+                <CategoryImage name={card.name} />
                 <div className="p-4 text-center absolute inset-0 flex items-end justify-end">
                   <p
                     className="text-lg text-[24px] font-[700] text-white 
-                   transition-all duration-500 ease-in-out
+                   transition-all duration-500 ease-in-out relative z-30
                    group-hover:translate-y-[-10px]"
                   >
                     {card.name}

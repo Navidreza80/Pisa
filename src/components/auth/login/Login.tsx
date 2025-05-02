@@ -4,21 +4,18 @@
 import EmailSVG from "@/components/common/svg/email";
 import Password from "@/components/common/svg/password";
 // Third party components
-import { login } from "@/utils/service/login/login";
-import { setClientCookie } from "@/utils/service/storage/client-cookie";
+import { useLoginUser } from "@/utils/service/login/post";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import Button from "../common/button";
 import InputAuth from "../common/input-auth";
 import OrUnderline from "../common/or-underline";
 import WelcomeTitle from "../common/welcome-title";
-import { setServerCookie } from "@/utils/service/storage/server-cookie";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import GoogleSVG from "@/components/common/svg/google";
 
 function Login() {
-  const router = useRouter();
+  const { mutate } = useLoginUser();
   const t = useTranslations("Auth");
   const formik = useFormik({
     initialValues: {
@@ -27,22 +24,7 @@ function Login() {
     },
     // validationSchema: loginValidations,
     onSubmit: async (value) => {
-      toast.promise(
-        async () => {
-          const user = await login(value);
-          if (typeof user.accessToken == "string") {
-            await setServerCookie("serverAccessToken", user.accessToken);
-            await setServerCookie("serverRefreshToken", user.refreshToken);
-            setClientCookie("clientAccessToken", user.accessToken, 15);
-            router.push("/");
-          }
-        },
-        {
-          pending: "در حال پردازش",
-          success: "خوش آمدید!",
-          error: "ایمیل یا پسوورد اشتباه می باشد!",
-        }
-      );
+      mutate(value);
     },
   });
 
@@ -50,7 +32,7 @@ function Login() {
     <form onSubmit={formik.handleSubmit}>
       <WelcomeTitle title={t("loginTitle")} desc={t("loginDesc")} />
       <div className="flex flex-col flex-wrap gap-[20px]">
-        <button className="h-[48px] bg-black border border-[#E0E0E0] rounded-[24px] flex items-center justify-center gap-2 text-[16px] font-bold text-black hover:bg-[#f5f5f5] transition-all"></button>
+                <button className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"><h1>ثبت نام در پیزا با گوگل</h1><GoogleSVG /> </button>
         <OrUnderline />
         <InputAuth
           text={t("email")}

@@ -29,6 +29,7 @@
     "embla-carousel-react": "^8.6.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.9.2",
+    "input-otp": "^1.4.2",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",

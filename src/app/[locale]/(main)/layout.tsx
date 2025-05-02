@@ -11,7 +11,6 @@ import Header from "@/components/common/header/header";
 // Css imports
 import "../globals.css";
 // Toaster
-import { ToastContainer } from "react-toastify";
 import Providers from "@/provider/provider";
 
 // metadata
@@ -52,7 +51,6 @@ export default async function RootLayout({
               <Header />
               {children}
               <Footer />
-              <ToastContainer />
             </main>
             <FloatingActions />
           </Providers>

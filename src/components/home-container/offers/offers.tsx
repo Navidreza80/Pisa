@@ -3,6 +3,7 @@ import HouseCardList from "@/components/common/house/HouseCardList";
 import CountdownTimer from "@/components/common/timer/CountdownTimer";
 import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 async function Offers({ data }) {
   const t = await getTranslations("HomePage");
@@ -14,7 +15,9 @@ async function Offers({ data }) {
   return (
     <div>
       <div className="flex flex-wrap justify-between items-center mb-[32px]">
-        <Button>{t("seeMore")}</Button>
+        <Button>
+          <Link href="/rent">{t("seeMore")}</Link>
+        </Button>
         <div className="flex flex-row-reverse gap-[20px]">
           <div className="font-bold text-[28px]">{t("offer")}</div>
           <div

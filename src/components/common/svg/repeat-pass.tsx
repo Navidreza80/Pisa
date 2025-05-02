@@ -1,4 +1,4 @@
-export default async function RepeatPassword() {
+export default function RepeatPassword() {
   return (
     <svg
       width="24"
