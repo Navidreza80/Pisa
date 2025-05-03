@@ -9,30 +9,35 @@ import { useRentHouses } from "@/utils/hooks/use-houses";
 import { useState } from "react";
 import { FilterModal } from "../common/house/filter-rent";
 import HouseSkeleton from "../common/skeleton/house-skeleton";
+import { useTranslations } from 'next-intl';
 
 function Rent() {
+  const t = useTranslations('rent');
+  
   const filtersItems = [
-    { text: "گران‌ترین", value: "price", order: "DESC" },
-    { text: "ارزان‌ترین", value: "price", order: "ASC" },
-    { text: "محبوب‌ترین", value: "rate", order: "DESC" },
-    { text: "همه", value: null, order: null },
+    { text: t('mostExpensive'), value: "price", order: "DESC" },
+    { text: t('cheapest'), value: "price", order: "ASC" },
+    { text: t('mostPopular'), value: "rate", order: "DESC" },
+    { text: t('all'), value: null, order: null },
   ];
-  const [selectedFilter, setSelectedFilter] = useState("همه");
+  
+  const [selectedFilter, setSelectedFilter] = useState(t('all'));
   const { data: houses, isLoading } = useRentHouses();
   const dispatch = useAppDispatch();
 
   const handleChange = (name: string, value: any) => {
     dispatch(setRentFilters({ [name]: value }));
   };
+
   return (
     <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       <div>
         <div className="flex gap-[8px] mb-[32px]">
           <h1 className="text-black text-[36px] font-[700]">
-            رهن و اجاره آپارتمان
+            {t('apartmentRentTitle')}
           </h1>
           <div className="bg-[#586CFF] rounded-[16px] text-white p-[8px] text-[28px] font-[700]">
-            رشت
+            {t('rasht')}
           </div>
         </div>
         <div
@@ -48,12 +53,12 @@ function Rent() {
                 handleChange("order", item.order);
               }}
               className={`px-4 py-3.5 h-12 flex items-center text-center rounded-[16px] border text-[16px] transition cursor-pointer
-            ${
-              selectedFilter === item.text
-                ? "bg-[#586CFF] text-white"
-                : "bg-white text-[#272727] border-[#EAEAEA] border-[1.5px]"
-            }
-          `}
+                ${
+                  selectedFilter === item.text
+                    ? "bg-[#586CFF] text-white"
+                    : "bg-white text-[#272727] border-[#EAEAEA] border-[1.5px]"
+                }
+              `}
             >
               {item.text}
             </button>
@@ -70,7 +75,7 @@ function Rent() {
           <div className="h-[48px] w-[306px] my-auto relative">
             <input
               type="text"
-              placeholder="جستجو کنید..."
+              placeholder={t('searchPlaceholder')}
               className="w-full h-full border border-gray-300 rounded-[16px] p-4 pr-[48px] text-sm outline-none placeholder:text-[#A6A6A6]"
             />
             <svg

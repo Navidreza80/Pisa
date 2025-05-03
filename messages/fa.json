@@ -161,5 +161,14 @@
   },
   "Input": {
     "enter": "وارد کنید"
+  },
+  "rent": {
+    "mostExpensive": "گران‌ترین",
+    "cheapest": "ارزان‌ترین",
+    "mostPopular": "محبوب‌ترین",
+    "all": "همه",
+    "apartmentRentTitle": "رهن و اجاره آپارتمان",
+    "rasht": "رشت",
+    "searchPlaceholder": "جستجو کنید..."
   }
 }

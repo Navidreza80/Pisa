@@ -32,7 +32,7 @@
     "rooms": "rooms",
     "bathrooms": "bathrooms",
     "capacity": "people",
-    "parking": "پارکینگ",
+    "parking": "parking",
     "property": "Property Type"
   },
   "Header": {
@@ -162,5 +162,14 @@
   },
   "Input": {
     "enter": "Enter"
+  },
+  "rent": {
+    "mostExpensive": "Most Expensive",
+    "cheapest": "Cheapest",
+    "mostPopular": "Most Popular",
+    "all": "All",
+    "apartmentRentTitle": "Apartment Rent",
+    "rasht": "Rasht",
+    "searchPlaceholder": "Search..."
   }
 }

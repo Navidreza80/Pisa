@@ -161,5 +161,14 @@
   },
   "Input": {
     "enter": "Girin"
+  },
+  "rent": {
+    "mostExpensive": "En Pahalı",
+    "cheapest": "En Ucuz",
+    "mostPopular": "En Popüler",
+    "all": "Tümü",
+    "apartmentRentTitle": "Daire Kiralama",
+    "rasht": "Reşt",
+    "searchPlaceholder": "Ara..."
   }
 }
