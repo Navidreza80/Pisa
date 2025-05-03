@@ -1,11 +1,15 @@
-interface InputProps {
-  id: string;
-  placeholder: string;
-  title: string;
-  type: string;
-}
+// Types
+import AboutUsInputProps from "@/types/about-us";
 
-function Input({ id, placeholder, title, type }: InputProps) {
+/**
+ * About us input for contact us section
+ *
+ * @component
+ * @param {AboutUsInputProps} props - Component props
+ * @returns {JSX.Element} - Rendered about us input
+ */
+
+function Input({ id, placeholder, title, type }: AboutUsInputProps) {
   return (
     <div>
       <label

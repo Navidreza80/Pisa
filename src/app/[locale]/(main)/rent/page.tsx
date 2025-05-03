@@ -1,13 +1,26 @@
+// Third party components
 import Rent from '@/components/Rent-page/Rent'
-import React from 'react'
 
-function RentPage() {
+/**
+ * rent page - Displays houses that are for rent
+ * 
+ * @page
+ * @route /rent
+ * 
+ * Features:
+ * - Rent & mortgage houses display
+ * - Live filter and search
+ * - Responsive
+ * - DarkMode
+ * - 4 language support
+ * - Loading skeleton for loading statement
+ * 
+ */
+
+export default function RentPage() {
   return (
     <div className='flex justify-center'>
       <Rent />
     </div>
-
   )
 }
-
-export default RentPage
