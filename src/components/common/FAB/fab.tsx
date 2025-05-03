@@ -1,20 +1,21 @@
 "use client";
 // React
-import { useState, useEffect, Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import { Fragment, useEffect, useState } from "react";
 // Icons
-import { Moon, Sun, MessageCircle, Globe } from "lucide-react";
+import { Globe, MessageCircle, Moon, Sun } from "lucide-react";
 // Change lang
-import { useRouter, usePathname } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 // Third party components
 import ChatAssistant from "../chat/ai-assistant";
 // Redux
 import { useDispatch } from "react-redux";
 // Types
-import { toggleDarkMode } from "@/utils/hooks/themeSlice";
+import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 
 export default function FloatingActions() {
+  const t = useTranslations();
   // States
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
@@ -115,7 +116,7 @@ export default function FloatingActions() {
               ) : (
                 <Moon className="w-5 h-5 text-blue-500" />
               )}
-              <span>{dark ? "Light Mode" : "Dark Mode"}</span>
+              <span>{dark ? t("Fab.dark") : t("Fab.dark")}</span>
             </button>
 
             {/* Chat Box */}
@@ -124,7 +125,7 @@ export default function FloatingActions() {
               className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100"
             >
               <MessageCircle className="w-5 h-5 text-green-500" />
-              <span>Chat</span>
+              <span>{t("Assistant.chat")}</span>
             </button>
           </div>
         )}

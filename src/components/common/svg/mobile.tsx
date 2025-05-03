@@ -1,4 +1,4 @@
-export default async function MobileSVG() {
+export default function MobileSVG() {
   return (
     <svg
       width="24"

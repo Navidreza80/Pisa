@@ -9,14 +9,15 @@ import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import PersonSVG from "../svg/person";
 // React
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 // Swiper
 import { SwiperSlide } from "swiper/react";
 // Third party components
-import Favorite from "./favorite";
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
+import { useTranslations } from "next-intl";
+import Tilt from 'react-parallax-tilt';
 
 export default function HouseCardList({
   setCurrentLoc,
@@ -32,20 +33,20 @@ export default function HouseCardList({
   showParking,
   discount,
 }: TopSaleCardListProps) {
-  // Feature items
+  const t = useTranslations("HomePage")
   const featureItems: FeatureItem[] = [
     {
       id: "rooms",
       icon: <BedSVG />,
       value: card.rooms,
-      label: "خواب",
+      label: t("rooms"),
       show: showRooms,
     },
     {
       id: "bathrooms",
       icon: <BathroomSVG />,
       value: card.bathrooms,
-      label: "حمام",
+      label: t("bathrooms"),
       show: showBathrooms,
     },
     {
@@ -59,14 +60,14 @@ export default function HouseCardList({
       id: "parking",
       icon: <CarSVG />,
       value: card.parking,
-      label: "پارکینگ",
+      label: t("parking"),
       show: showParking,
     },
     {
       id: "capacity",
       icon: <PersonSVG />,
       value: card.capacity,
-      label: "نفر",
+      label: t("capacity"),
       show: showCapacity,
     },
   ];
@@ -74,13 +75,11 @@ export default function HouseCardList({
   // Filter only visible features
   const visibleFeatures = featureItems.filter((item) => item.show);
 
-  // Hooks
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <div
-      className={`flex flex-col flex-wrap overflow-hidden justify-between border ${
-        minWidth ? minWidth : "min-w-[391px]"
+    <Tilt
+    transitionSpeed={2500}
+      className={`flex flex-col hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
+        minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
       } ${
         width ? width : "w-[calc(33.3%-20px)]"
       } p-4 rounded-[40px] gap-[13px] border-border`}
@@ -120,7 +119,7 @@ export default function HouseCardList({
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
-        <div className="flex justify-end gap-[5px]">
+        <div className="flex w-full justify-end gap-[5px]">
           <div className="flex gap-1.5">
             <MapSVG color="gray" />
             <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
@@ -166,12 +165,6 @@ export default function HouseCardList({
               تومان
             </p>
           </div>
-
-          <Favorite
-            setIsOpen={setIsOpen}
-            isOpen={isOpen}
-            id={card.id}
-          />
         </div>
       ) : (
         <div dir="rtl" className="flex justify-between">
@@ -204,13 +197,8 @@ export default function HouseCardList({
               <h1 className="text-white text-[16px] font-[700]">%</h1>
             </div>
           </div>
-          <Favorite
-            setIsOpen={setIsOpen}
-            isOpen={isOpen}
-            id={card.id}
-          />
         </div>
       )}
-    </div>
+    </Tilt>
   );
 }

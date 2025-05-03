@@ -11,7 +11,7 @@ export default function VirtualTour() {
 
     const viewer = new PhotoSphereViewer.Viewer({
       container: containerRef.current,
-      panorama: 'https://static.vecteezy.com/system/resources/previews/015/631/794/non_2x/full-hdri-360-panorama-view-in-bedroom-room-in-luxury-elite-vip-expensive-hotel-or-apartment-in-equirectangular-seamless-spherical-projection-vr-ar-content-photo.jpg',
+      panorama: "https://static.vecteezy.com/system/resources/previews/019/062/597/non_2x/full-spherical-seamless-hdri-360-panorama-in-interior-of-guest-living-room-hall-in-apartment-with-sofa-armchairs-and-dinner-table-in-equirectangular-projection-vr-content-photo.jpg",
       loadingImg: '',
       navbar: [
         'fullscreen'

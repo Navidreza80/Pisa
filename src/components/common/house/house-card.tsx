@@ -99,7 +99,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
           <span className="font-medium font-yekannum text-[#586CFF]">
             {parseInt(item.price).toLocaleString()} تومان
             {item.transaction_type === "rental" && (
-              <span className="text-xs text-gray-500 mr-1">/ شب</span>
+              <span className="text-xs text-gray-500 mr-1">{t("perNight")}</span>
             )}
           </span>
         )}

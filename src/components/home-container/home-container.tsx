@@ -1,4 +1,4 @@
-import { getAllHouse } from "@/utils/service/house/get-all-house";
+import { fetchHouses } from "@/utils/service/house/get";
 import Container from "../common/container/container";
 import Rank from "./Rank/Rank";
 import Category from "./category/Category";
@@ -8,7 +8,7 @@ import Offers from "./offers/offers";
 import TopSales from "./topSale/TopSale";
 
 export default async function HomeContainer() {
-  const data = await getAllHouse(1, 3, "rate", "DESC", "", "");
+  const data = await fetchHouses({transactionType: ""});
   return (
     <Container>
       <div className="flex flex-col flex-wrap gap-[20px] w-[85.5%]">

@@ -3,7 +3,7 @@ export default function BuildingsSvg(props: React.SVGProps<SVGSVGElement>) {
     <svg
       width={120}
       height={80}
-      className="hidden max-[1150px]:block"
+      className="hidden mx-auto max-[1150px]:block"
       viewBox="0 0 120 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

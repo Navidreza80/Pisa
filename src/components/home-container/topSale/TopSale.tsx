@@ -4,6 +4,7 @@ import Button from "@/components/common/button/button";
 import HouseCardList from "@/components/common/house/HouseCardList";
 import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export default async function TopSales({ data }) {
   const t = await getTranslations("HomePage");
@@ -11,7 +12,9 @@ export default async function TopSales({ data }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-[32px]">
-        <Button>{t("seeMore")}</Button>
+        <Button>
+          <Link href="/reserve">{t("seeMore")}</Link>
+        </Button>
         <div className="flex flex-row-reverse gap-[20px]">
           <div className="font-bold text-right text-[28px]">
             {t.rich("hot", {

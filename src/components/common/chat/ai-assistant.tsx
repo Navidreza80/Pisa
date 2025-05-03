@@ -7,6 +7,7 @@ import { Message } from "@/types/chat";
 // shadcn components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 
 const ChatAssistant = ({
   isOpen,
@@ -15,6 +16,8 @@ const ChatAssistant = ({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) => {
+  // Change lang hook
+  const t = useTranslations("Assistant")
   // State to save message of the user
   const [messages, setMessages] = useState<Message[]>([]);
   // State to save the value of the input
@@ -125,7 +128,7 @@ const ChatAssistant = ({
             <div className="p-4 flex justify-between items-center border-b border-border ">
               <h2 className="text-lg font-bold flex items-center gap-2 text-text ">
                 <MessageSquare className="text-[#586CFF]" />
-                Chat
+                {t("chat")}
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
