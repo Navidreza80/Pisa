@@ -44,8 +44,8 @@ export default function Navbar() {
             key={index}
             href={item.url}
             className={`${
-              pathname == item.url ? "border-b-2 border-text" : "border-none"
-            } font-bold`}
+              pathname == item.url ? "border-b-2 border-text hover:border-primary" : "border-none"
+            } font-bold hover:text-primary transition-colors duration-300 `}
           >
             {item.text}
           </TransitionLink>
@@ -56,7 +56,7 @@ export default function Navbar() {
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
           dir="rtl"
-          className={`flex items-center outline-none gap-1 cursor-pointer font-bold ${
+          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer font-bold ${
             isRentActive ? "border-b-2 border-text" : "border-none"
           }`}
         >
@@ -75,7 +75,7 @@ export default function Navbar() {
             <DropdownMenuItem key={index} asChild dir="rtl">
               <TransitionLink
                 href={item.url}
-                className={`w-full cursor-pointer hover:text-[#353535] dark:hover:text-[#cfcfcf] ${
+                className={`w-full cursor-pointer hover:text-primary transition-colors duration-300  ${
                   pathname === item.url ? "font-bold" : ""
                 }`}
               >

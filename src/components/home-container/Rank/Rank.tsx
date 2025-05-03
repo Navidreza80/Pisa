@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import rank from "@/assets/images/landing/rank.png"
-import Image from "next/image";
+import AnimatedImage from "./animated-image";
 
 async function Rank() {
   const t = await getTranslations("HomePage");
@@ -66,11 +65,7 @@ async function Rank() {
         </div>
       </div>
       <div>
-        <Image
-          className="w-[722px] h-[493px] md:hidden hidden lg:block rounded-[40px]"
-          src={rank}
-          alt="Rank Icon"
-        />
+        <AnimatedImage />
       </div>
     </div>
   );

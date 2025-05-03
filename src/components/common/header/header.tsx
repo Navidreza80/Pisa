@@ -13,8 +13,8 @@ import UserProfile from "./user-profile";
 import LogoSVG from "../svg/logo";
 // Types
 import { JwtPayload } from "@/types/user";
+import { TransitionLink } from "@/utils/helper/TransitionLink";
 import Container from "../container/container";
-import Link from "next/link";
 
 export default async function Header() {
   // Hooks
@@ -28,7 +28,7 @@ export default async function Header() {
       <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28">
         {!decodedUser ? (
           <Button radius="sm" size="lg">
-            <Link href="/auth/login"> {t("login")}</Link>
+            <TransitionLink href="/auth/login"> {t("login")}</TransitionLink>
           </Button>
         ) : (
           <UserProfile

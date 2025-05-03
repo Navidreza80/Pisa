@@ -17,6 +17,7 @@ import { SwiperSlide } from "swiper/react";
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
 import { useTranslations } from "next-intl";
+import Tilt from 'react-parallax-tilt';
 
 export default function HouseCardList({
   setCurrentLoc,
@@ -75,9 +76,10 @@ export default function HouseCardList({
   const visibleFeatures = featureItems.filter((item) => item.show);
 
   return (
-    <div
-      className={`flex flex-col flex-wrap overflow-hidden justify-between border ${
-        minWidth ? minWidth : "min-w-[391px]"
+    <Tilt
+    transitionSpeed={2500}
+      className={`flex flex-col hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
+        minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
       } ${
         width ? width : "w-[calc(33.3%-20px)]"
       } p-4 rounded-[40px] gap-[13px] border-border`}
@@ -117,7 +119,7 @@ export default function HouseCardList({
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
-        <div className="flex justify-end gap-[5px]">
+        <div className="flex w-full justify-end gap-[5px]">
           <div className="flex gap-1.5">
             <MapSVG color="gray" />
             <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
@@ -197,6 +199,6 @@ export default function HouseCardList({
           </div>
         </div>
       )}
-    </div>
+    </Tilt>
   );
 }
