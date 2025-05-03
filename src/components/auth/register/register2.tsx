@@ -2,19 +2,17 @@
 
 import LogoSVGClient from "@/components/common/svg/logo-client";
 import TimerSVG from "@/components/common/svg/timer";
-import { useVerifyEmail } from "@/utils/service/register/post-verify-email";
-import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import Button from "../common/button";
-import { useSelector } from "react-redux";
-import { RootState } from "@/utils/hooks/react-redux/store";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { useVerifyEmail } from "@/utils/service/register/post-verify-email";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import Button from "../common/button";
 
 export default function Register2() {
   const t = useTranslations("Auth");

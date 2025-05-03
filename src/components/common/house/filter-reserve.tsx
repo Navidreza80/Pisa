@@ -15,8 +15,10 @@ import {
 import { resetReserveFilters, setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import InputSelect from "../inputs/select-input";
 import { facilityOptions, locationOptions, ratingOptions, sortOptions } from "@/utils/constant/folder";
+import { useTranslations } from "next-intl";
 
 export function FilterModal() {
+  const t = useTranslations("Filters")
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.reserveFilters);
 
@@ -31,7 +33,7 @@ export function FilterModal() {
         <Button
           className={`flex items-center hover:bg-[#4A5FE3] whitespace-nowrap justify-center overflow-hidden transition-all text-white h-12 w-[85px] text-[16px] rounded-2xl`}
         >
-          فیلتر ها
+         {t("filter")}
         </Button>
       </DialogTrigger>
       <DialogContent className="!max-w-[350px]">
@@ -41,7 +43,7 @@ export function FilterModal() {
           {/* Destination/Hotel Input */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-              مقصد یا هتل شما
+            {t("address")}
             </label>
             <InputSelect
               items={locationOptions}
@@ -55,7 +57,7 @@ export function FilterModal() {
           {/* Sort By */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-              مرتب سازی بر اساس
+            {t("sort")}
             </label>
             <InputSelect
               items={sortOptions}
@@ -70,11 +72,11 @@ export function FilterModal() {
           <div className="space-y-4">
             <div dir="rtl" className="flex flex-col gap-4">
               <div className="flex gap-1.5">
-                <h1 className="text-text-secondary">قیمت از</h1>
+                <h1 className="text-text-secondary">{t("priceFrom")}</h1>
                 <p className="text-text font-yekannum">{filters?.minPrice}</p>
               </div>
               <div className="flex gap-1.5">
-                <h1 className="text-text-secondary">قیمت تا</h1>
+                <h1 className="text-text-secondary">{t("priceTo")}</h1>
                 <p className="text-text font-yekannum">{filters?.maxPrice}</p>
               </div>
             </div>
@@ -93,7 +95,7 @@ export function FilterModal() {
           {/* Hotel Facilities */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-              امکانات هتل
+            {t("facilities")}
             </label>
             <InputSelect
               items={facilityOptions}
@@ -107,7 +109,7 @@ export function FilterModal() {
           {/* Hotel Rating */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-              امتیاز هتل
+            {t("rate")}
             </label>
             <InputSelect
               items={ratingOptions}
@@ -120,7 +122,7 @@ export function FilterModal() {
 
           <div className="flex justify-end gap-2 pt-4">
             <Button className="text-white" onClick={() => dispatch(resetReserveFilters())}>
-              حذف فیلترها
+             {t("delete")}
             </Button>
           </div>
         </div>

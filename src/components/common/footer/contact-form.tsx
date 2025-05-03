@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import Button from "../button/button";
 // ShadCn components
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 
 // Schema
 const ContactSchema = Yup.object().shape({
@@ -21,6 +22,7 @@ const ContactSchema = Yup.object().shape({
 });
 
 export default function ContactForm() {
+  const t = useTranslations("Footer")
   // Hooks
   const formik = useFormik({
     initialValues: {
@@ -44,7 +46,7 @@ export default function ContactForm() {
 
   return (
     <div className="w-full bg-background/50 rounded-xl mb-6">
-      <h2 className="text-xl font-bold mb-6 text-right">تماس با ما</h2>
+      <h2 className="text-xl font-bold mb-6 text-right">{t("contact")}</h2>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col w-full md:flex-row-reverse gap-4 items-center justify-end mx-auto"
@@ -55,14 +57,14 @@ export default function ContactForm() {
             className="w-full md:w-auto px-6 h-[48px] flex items-center gap-2 justify-center"
             disabled={formik.isSubmitting}
           >
-            {formik.isSubmitting ? "در حال ارسال..." : "ارسال پیام"}
+            {formik.isSubmitting ? t("isSending") : t("send")}
           </Button>
         </div>
         <div className="w-full md:w-1/3 flex flex-col">
           <Input
             id="title"
             name="title"
-            placeholder="عنوان پیام"
+            placeholder={t("title")}
             className="h-[48px] text-right rounded-xl"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -80,7 +82,7 @@ export default function ContactForm() {
           <Input
             id="message"
             name="message"
-            placeholder="متن پیام شما"
+            placeholder={t("desc")}
             className="h-[48px] text-right rounded-xl"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

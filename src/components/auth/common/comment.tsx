@@ -33,10 +33,8 @@ export default function CommentsSwiper() {
     async function fetchComments() {
       try {
         const response = await axios.get<Comment[]>("https://delta-project.liara.run/api/comments");
-        console.log("داده‌های دریافتی از API:", response.data);
         setComments(response.data);
       } catch (error: any) {
-        console.error("خطا در دریافت کامنت‌ها:", error);
         setError("مشکلی در دریافت کامنت‌ها پیش آمده است.");
       } finally {
         setLoading(false);
@@ -116,7 +114,7 @@ export default function CommentsSwiper() {
                         exit={{ opacity: 0, x: -50 }}
                         transition={{ duration: 0.4 }}
                       >
-                        {comment.caption || "متنی ثبت نشده"}
+                        {comment.caption || "No data"}
                       </motion.p>
                     </AnimatePresence>
                   </div>

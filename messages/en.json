@@ -31,15 +31,27 @@
     "perNight": "/ night",
     "rooms": "rooms",
     "bathrooms": "bathrooms",
-    "capacity": "people"
+    "capacity": "people",
+    "parking": "پارکینگ",
+    "property": "Property Type"
   },
   "Header": {
+    "google": "Sign up in Piza with Google",
     "login": "Sign up/Login",
     "about": "About us",
     "home": "Home",
-    "blogs": "Articles"
+    "blogs": "Articles",
+    "rent": "Rent & mortgage",
+    "reserve": "Book a house",
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "Auth": {
+    "golestan": "Golestan Forest",
+    "maranjab": "Maranjab Desert",
+    "caspian": "Caspian Sea",
+    "damavand": "Mount Damavand",
+    "google": "Register in Pizza with google",
     "loginTitle": "Login to Piza",
     "loginDesc": "To access your Alpha account, you can use your Google account or your email and password",
     "email": "Email",
@@ -116,5 +128,39 @@
     "taha": "Taha Talebi",
     "elmira": "Elmira Sheerkhani",
     "sobhan": "Sobhan Arab Khazaeli"
+  },
+  "Assistant": {
+    "chat": "Chat"
+  },
+  "Fab": {
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  },
+  "Footer": {
+    "contact": "Contact Us",
+    "isSending": "Sending message",
+    "send": "Send Message",
+    "title": "Message Title",
+    "desc": "Your message content"
+  },
+  "Filters": {
+    "filter": "Filters",
+    "location": "Location",
+    "property": "Property Type",
+    "transaction": "Transaction Type",
+    "minRent": "Minimum Rent",
+    "maxRent": "Maximum Rent",
+    "minArea": "Minimum Area",
+    "maxArea": "Maximum Area",
+    "delete": "Clear Filters",
+    "address": "Your destination or hotel",
+    "sort": "Sort by",
+    "facilities": "Your hotel facilities",
+    "rate": "Your hotel rating",
+    "priceFrom": "Price from",
+    "priceTo": "Price to"
+  },
+  "Input": {
+    "enter": "Enter"
   }
 }

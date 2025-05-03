@@ -31,15 +31,26 @@
     "perNight": "/ gece",
     "rooms": "oda",
     "bathrooms": "banyo",
-    "capacity": "kişi"
+    "capacity": "kişi",
+    "parking": "Otopark",
+    "property": "Mülk Türü"
   },
   "Header": {
     "login": "Kayıt Ol/Giriş Yap",
     "about": "Hakkımızda",
     "home": "Ana Sayfa",
-    "blogs": "Makaleler"
+    "blogs": "Makaleler",
+    "reserve": "Ev rezervasyonu",
+    "rent": "Kira ve Kiralama",
+    "profile": "Profil",
+    "logout": "Çıkış Yap"
   },
   "Auth": {
+    "golestan": "Gülistan Ormanı",
+    "maranjab": "Maranjab Çölü",
+    "caspian": "Hazar Denizi",
+    "damavand": "Demavend Dağı",
+    "google": "Google ile Piza'ya Kaydol",
     "loginTitle": "Piza'ya Giriş Yap",
     "loginDesc": "Alpha hesabınıza erişmek için Google hesabınızı veya e-postanızı ve şifrenizi kullanabilirsiniz",
     "email": "E-posta",
@@ -116,5 +127,39 @@
     "taha": "Taha Talebi",
     "elmira": "Elmira Sheerkhani",
     "sobhan": "Sobhan Arab Khazaeli"
+  },
+  "Assistant": {
+    "chat": "Sohbet"
+  },
+  "Fab": {
+    "light": "Aydınlık Mod",
+    "dark": "Karanlık Mod"
+  },
+  "Footer": {
+    "contact": "Bize Ulaşın",
+    "isSending": "Mesaj gönderiliyor",
+    "send": "Mesaj Gönder",
+    "title": "Mesaj Başlığı",
+    "desc": "Mesajınızın içeriği"
+  },
+  "Filters": {
+    "filter": "Filtreler",
+    "location": "Konum",
+    "property": "Mülk Türü",
+    "transaction": "İşlem Türü",
+    "minRent": "Minimum Kira",
+    "maxRent": "Maksimum Kira",
+    "minArea": "Minimum Alan",
+    "maxArea": "Maksimum Alan",
+    "delete": "Filtreleri Sil",
+    "address": "Varış noktanız veya oteliniz",
+    "sort": "Sırala",
+    "facilities": "Otelinizin olanakları",
+    "rate": "Otelinizin puanı",
+    "priceFrom": "Fiyat (en az)",
+    "priceTo": "Fiyat (en çok)"
+  },
+  "Input": {
+    "enter": "Girin"
   }
 }

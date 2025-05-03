@@ -28,8 +28,8 @@ export default function Navbar() {
 
   // Rent dropdown items
   const rentItems = [
-    { text: "رهن و اجاره", url: "/rent" },
-    { text: "رزرو خانه", url: "/reserve" },
+    { text: t("rent"), url: "/rent" },
+    { text: t("reserve"), url: "/reserve" },
   ];
 
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
@@ -60,7 +60,7 @@ export default function Navbar() {
             isRentActive ? "border-b-2 border-text" : "border-none"
           }`}
         >
-          {pathname == "/reserve" ? "رزرو خانه" : "رهن و اجاره"}
+          {pathname == "/reserve" ? t("reserve") : t("rent")}
           {isDropdownOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (

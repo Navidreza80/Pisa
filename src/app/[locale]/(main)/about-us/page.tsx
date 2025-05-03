@@ -1,19 +1,19 @@
 'use client';
-
+// Images
+import elmira from '@/assets/images/about-us/elmira.jpg';
 import navid from '@/assets/images/about-us/navid.jpg';
 import taha from '@/assets/images/about-us/taha.jpg';
-import elmira from '@/assets/images/about-us/elmira.jpg';
 import nextElites from '@/assets/images/landing/rank.png';
-
-import { useEffect } from 'react';
+//
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import ProfileNextElites from './Items/ProfileNextElites';
-import Mentor from './Items/Mentor';
-import Features from './Items/Features';
-import Question from './Items/Question';
-import Input from './Items/Input';
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
+import Features from '../../../../components/about-us/Features';
+import Input from '../../../../components/about-us/Input';
+import Mentor from '../../../../components/about-us/Mentor';
+import ProfileNextElites from '../../../../components/about-us/ProfileNextElites';
+import Question from '../../../../components/about-us/Question';
 
 
 export default function AboutUs() {

@@ -9,13 +9,14 @@ import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import PersonSVG from "../svg/person";
 // React
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 // Swiper
 import { SwiperSlide } from "swiper/react";
 // Third party components
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import LocationSVG from "../svg/location";
+import { useTranslations } from "next-intl";
 
 export default function HouseCardList({
   setCurrentLoc,
@@ -31,20 +32,20 @@ export default function HouseCardList({
   showParking,
   discount,
 }: TopSaleCardListProps) {
-  // Feature items
+  const t = useTranslations("HomePage")
   const featureItems: FeatureItem[] = [
     {
       id: "rooms",
       icon: <BedSVG />,
       value: card.rooms,
-      label: "خواب",
+      label: t("rooms"),
       show: showRooms,
     },
     {
       id: "bathrooms",
       icon: <BathroomSVG />,
       value: card.bathrooms,
-      label: "حمام",
+      label: t("bathrooms"),
       show: showBathrooms,
     },
     {
@@ -58,14 +59,14 @@ export default function HouseCardList({
       id: "parking",
       icon: <CarSVG />,
       value: card.parking,
-      label: "پارکینگ",
+      label: t("parking"),
       show: showParking,
     },
     {
       id: "capacity",
       icon: <PersonSVG />,
       value: card.capacity,
-      label: "نفر",
+      label: t("capacity"),
       show: showCapacity,
     },
   ];

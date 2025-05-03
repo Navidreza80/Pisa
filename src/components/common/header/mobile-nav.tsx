@@ -6,7 +6,7 @@ import { Book, Home, User } from "lucide-react";
 // Next built in components
 import { Link } from "@/i18n/navigation";
 // For language detection
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 // shadcn/ui Sheet
 import {
   Sheet,
@@ -20,15 +20,18 @@ import {
 export default function MobileNav() {
   // Change lang
   const locale = useLocale();
+  const t = useTranslations("Header")
 
   // Determine direction based on locale
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 
   // Navigation items
   const navItems = [
-    { text: "درباره ما", url: "/about-us", icon: <User /> },
-    { text: "مقالات", url: "/blogs", icon: <Book /> },
-    { text: "خانه", url: "/", icon: <Home /> },
+    { text: t("about"), url: "/about-us", icon: <User /> },
+    { text: t("blogs"), url: "/blogs", icon: <Book /> },
+    { text: t("home"), url: "/", icon: <Home /> },
+    { text: t("rent"), url: "/rent", icon: <Home /> },
+    { text: t("reserve"), url: "/reserve", icon: <Home /> },
   ];
 
   return (
@@ -46,7 +49,7 @@ export default function MobileNav() {
           style={{ direction }}
         >
           <SheetHeader>
-            <SheetTitle className="font-yekan text-lg px-2 pt-5 pb-4">منو</SheetTitle>
+            <SheetTitle className="font-yekan text-lg px-2 pt-5 pb-4"></SheetTitle>
           </SheetHeader>
           <div className="flex flex-col mt-2 gap-2 px-2 pb-4">
             {navItems.map((item, index) => (

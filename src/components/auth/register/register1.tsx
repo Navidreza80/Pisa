@@ -1,6 +1,4 @@
 "use client"
-// Next built in components
-import Link from "next/link";
 // Third party components
 import Button from "../common/button";
 import InputAuth from "../common/input-auth";
@@ -29,7 +27,7 @@ function Register1() {
       <WelcomeTitle title={t("SignUpTitle")} desc={t("SignUpDesc1")} />
       <div className="flex flex-col flex-wrap gap-[24px]">
         <button className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white">
-          <h1>ثبت نام در پیزا با گوگل</h1>
+          <h1>{t("google")}</h1>
           <GoogleSVG />{" "}
         </button>
         <OrUnderline />
@@ -43,7 +41,7 @@ function Register1() {
           placeHolder={t("emailDesc")}
           icon={<EmailSVG />}
         />
-          <Button text="ثبت نام"/>
+          <Button text={t("SendVerificationCode")}/>
       </div>
 
       <div className="flex justify-center mt-2 gap-[5px]">

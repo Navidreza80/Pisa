@@ -11,12 +11,11 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+import { setLandingFilters } from "@/utils/hooks/react-redux/store/slices/landing-slice";
 import { useLandingHouses } from "@/utils/hooks/use-houses";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ResultButton from "./result-button";
-import { setLandingFilters } from "@/utils/hooks/react-redux/store/slices/landing-slice";
 
 export default function Search() {
   const t = useTranslations("HomePage");
@@ -84,7 +83,7 @@ export default function Search() {
           />
         </div>
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.9s] [animation-fill-mode:both] opacity-0">
-          <p> نوع ملک</p>
+          <p>{t("property")}</p>
           <InputSelect
             items={propertyOptions}
             value={filters.propertyType || ""}
