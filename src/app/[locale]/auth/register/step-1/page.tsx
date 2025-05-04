@@ -1,5 +1,5 @@
 // Third party components
-import Register1 from '@/components/auth/register/register1'
+import Register1 from '@/components/auth/register/register-one'
 
 /**
  * RegisterStepOne - Get user email to send verification code

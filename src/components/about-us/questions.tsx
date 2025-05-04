@@ -1,5 +1,8 @@
+// React
+import React from "react";
+
 // Types
-import QuestionProps from "@/types/about-us";
+import type QuestionProps from "@/types/about-us";
 
 /**
  * About us FAQ section
@@ -9,13 +12,13 @@ import QuestionProps from "@/types/about-us";
  * @returns {JSX.Element} - Rendered next elite image
  */
 
-export default function Question({ title, desc }: QuestionProps) {
+function Question({ title, desc }: QuestionProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
-        {title}
-      </h3>
-      <p className="text-gray-600 dark:text-gray-300">{desc}</p>
-    </div>
+    <section className="bg-surface p-6 rounded-xl shadow-md">
+      <h3 className="text-xl font-bold text-text mb-3">{title}</h3>
+      <p className="text-secondary">{desc}</p>
+    </section>
   );
 }
+
+export default React.memo(Question);

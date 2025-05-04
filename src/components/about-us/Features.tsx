@@ -1,5 +1,8 @@
+// React
+import React from "react";
+
 // Types
-import FeaturesProps from "@/types/about-us";
+import type FeaturesProps from "@/types/about-us";
 
 /**
  * About us features section card displaying website features
@@ -23,4 +26,4 @@ function Features({ icon, desc, title }: FeaturesProps) {
   );
 }
 
-export default Features;
+export default React.memo(Features);

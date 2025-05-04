@@ -1,5 +1,5 @@
 // Third party components
-import Register2 from '@/components/auth/register/register2'
+import Register2 from '@/components/auth/register/register-two'
 
 /**
  * RegisterStepTwo - Get verification code to verify email
