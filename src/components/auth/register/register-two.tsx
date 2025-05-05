@@ -1,25 +1,46 @@
 "use client";
+// React
+import { useState } from "react";
 
-import LogoSVGClient from "@/components/common/svg/logo-client";
-import TimerSVG from "@/components/common/svg/timer";
+// Dependencies
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useVerifyEmail } from "@/utils/service/register/post-verify-email";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+
+// Third party components
 import Button from "../common/button";
 
+// SVGs
+import LogoSVGClient from "@/components/common/svg/logo-client";
+import TimerSVG from "@/components/common/svg/timer";
+
+// API and storage
+import { useVerifyEmail } from "@/utils/service/register/post-verify-email";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+
+/**
+ * Register step two component.
+ * Get verification code and verify the email.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered register step two
+ */
+
 export default function Register2() {
+  // Hooks
   const t = useTranslations("Auth");
-  const [timer, setTimer] = useState(80);
+  const [timer] = useState(80);
   const [code, setCode] = useState();
   const { mutate } = useVerifyEmail();
-  const userId = getClientCookie("userId")
+
+  // Get userId from storage
+  const userId = getClientCookie("userId");
+
+  // post verification code logic
   const formik = useFormik({
     initialValues: {
       tempUserId: null,

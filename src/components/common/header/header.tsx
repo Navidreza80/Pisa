@@ -1,25 +1,39 @@
 // Third party components
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
+
 // JWT
 import { jwtDecode } from "jwt-decode";
+
 // Change lang
 import { getTranslations } from "next-intl/server";
+
 // Third party components
 import Button from "../button/button";
 import MobileNav from "./mobile-nav";
 import Navbar from "./navbar";
 import UserProfile from "./user-profile";
+
 // SVGs
 import LogoSVG from "../svg/logo";
+
 // Types
 import { JwtPayload } from "@/types/user";
 import { TransitionLink } from "@/utils/helper/TransitionLink";
 import Container from "../container/container";
 
+/**
+ * Heder component for page header.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered header
+ */
+
 export default async function Header() {
   // Hooks
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
+
+  // Decoding user token and getting information logic
   const decodedUser =
     typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
 

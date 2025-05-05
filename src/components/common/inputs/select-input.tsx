@@ -15,7 +15,7 @@ export default function InputSelect({
   onChange,
   value,
 }: {
-  items: { text: string; area_name: string; value: number; id: number }[];
+  items: { text?: string; area_name?: string; value?: number; id?: number }[];
   onChange: (selectedValue: number | string) => void;
   value: number | string;
   width?: number;

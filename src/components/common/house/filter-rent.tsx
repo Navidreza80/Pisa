@@ -1,5 +1,5 @@
 "use client";
-
+// Dependencies
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,21 +13,38 @@ import {
   propertyOptions,
   transactionTypeOptions,
 } from "@/utils/constant/folder";
+
+// Hooks
 import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
 import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slice";
-import InputSelect from "../inputs/select-input";
-import InputText from "../inputs/text-inputs";
-import { useTranslations } from "next-intl";
 import { resetReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 
+// Third party components
+import InputSelect from "../inputs/select-input";
+import InputText from "../inputs/text-inputs";
+
+// Dependencies
+import { useTranslations } from "next-intl";
+
+/**
+ * Filter rent component for filtering houses.
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered filter rent
+ */
+
 export function FilterModal() {
+  // Hooks
   const t = useTranslations("Filters");
   const dispatch = useAppDispatch();
+
+  // Get filters logic
   const filters = useAppSelector((state) => state.rentFilters);
 
+  // Change filters params logic
   const handleChange = (name: string, value: any) => {
     dispatch(setRentFilters({ [name]: value }));
   };

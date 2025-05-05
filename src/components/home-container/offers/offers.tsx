@@ -13,8 +13,8 @@ async function Offers({ data }) {
   targetDate.setDate(targetDate.getDate() + 3);
 
   return (
-    <div className="flex">
-      {/* <div className="flex flex-wrap justify-between items-center mb-[32px]">
+    <div className="flex flex-wrap">
+      <div className="flex w-full flex-wrap justify-between items-center mb-[32px]">
         <Button>
           <Link href="/rent">{t("seeMore")}</Link>
         </Button>
@@ -36,7 +36,7 @@ async function Offers({ data }) {
             <CountdownTimer targetDate={targetDate} />
           </div>
         </div>
-      </div> */}
+      </div>
       <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
         {data.map((card: HouseItemsInterface, index: number) => (
           <HouseCardList

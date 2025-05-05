@@ -1,14 +1,17 @@
-// Next built in imports
+// Next
 import type { Metadata } from "next";
-// next-intl
+
+// Dependencies
 import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-// Css imports
-import "../globals.css";
+
 // Third party components
 import Auth from "@/components/auth/auth";
 import FloatingActions from "@/components/common/FAB/fab";
 import Providers from "@/provider/provider";
+
+// CSS
+import "../globals.css";
 
 // metadata
 export const metadata: Metadata = {
@@ -23,7 +26,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }>) {
-  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     return "not found";

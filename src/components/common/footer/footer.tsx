@@ -1,21 +1,31 @@
-// Next built in
+// Next
 import Image from "next/image";
+
+// Dependencies
+import { getTranslations } from "next-intl/server";
+
 // Icons
 import icon1 from "../../../assets/images/footer/e-namad.png";
 import icon2 from "../../../assets/images/footer/etemad.png";
 import icon3 from "../../../assets/images/footer/e-box.png";
-// Change lang
-import { getTranslations } from "next-intl/server";
+
 // SVGs
 import LogoSVG from "../svg/logo";
+
 // Third party components
 import ContactForm from "./contact-form";
 import FooterColumn from "./footer-column";
 import Container from "../container/container";
 
-// Footer column component for repeated patterns
+/**
+ * Footer component for page footer.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered footer
+ */
 
 export default async function Footer() {
+  // Hooks
   const t = await getTranslations("HomePage");
 
   // Footer columns data

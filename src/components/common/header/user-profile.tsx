@@ -1,17 +1,30 @@
 "use client";
 // Types
-import { UserProfileProps } from "@/types/user";
+import type { UserProfileProps } from "@/types/user";
+
+// Next
 import { useTranslations } from "next-intl";
+
 // Image
 import Image from "next/image";
+
 // Change lang
 import { useRouter } from "next/navigation";
+
 // React
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * User profile component to show when the user is signed in.
+ *
+ * @component
+ * @param {UserProfileProps} props - Component props
+ * @returns {JSX.Element} - Rendered user profile
+ */
+
 export default function UserProfile({ user }: UserProfileProps) {
+  // Hooks
   const t = useTranslations("Header");
-  // hooks
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();

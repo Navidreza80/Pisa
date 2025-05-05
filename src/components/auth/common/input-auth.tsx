@@ -1,5 +1,16 @@
+// ShadCn components
 import { Input } from "@/components/ui/input";
-import InputAuthProps from "@/types/auth";
+
+// Types
+import type InputAuthProps from "@/types/auth";
+
+/**
+ * Reusable auth input for getting user info
+ *
+ * @component
+ * @param {InputAuthProps} props - Component props
+ * @returns {JSX.Element} - Rendered auth input
+ */
 
 export default function InputAuth({
   text,

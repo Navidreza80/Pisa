@@ -1,5 +1,5 @@
 "use client";
-// React built in
+// React
 import { ReactNode, useRef } from "react";
 // button sizes
 const SIZES = {
@@ -32,6 +32,14 @@ type ButtonProps = {
   handleClick?: () => void;
   disabled?: boolean;
 };
+
+/**
+ * Reusable button component.
+ * 
+ * @component
+ * @param {ButtonProps} props - Component props
+ * @returns {JSX.Element} - Rendered button
+ */
 
 export default function Button({
   color = "primary",

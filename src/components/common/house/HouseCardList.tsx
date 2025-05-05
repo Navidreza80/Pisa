@@ -86,7 +86,7 @@ export default function HouseCardList({
     >
       <div className="overflow-hidden w-full relative h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
         <Slider
-          className="w-[359px] h-[221px] overflow-hidden"
+          className="w-[340px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop

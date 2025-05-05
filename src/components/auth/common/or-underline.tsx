@@ -1,6 +1,16 @@
+// Dependencies
 import { useTranslations } from "next-intl";
 
+/**
+ * Reusable divider with or text
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered divider
+ */
+
 export default function OrUnderline() {
+  
+  // Hooks
   const t = useTranslations("Auth");
   return (
     <div className="flex justify-between max-[600px]:w-[100%] items-center">

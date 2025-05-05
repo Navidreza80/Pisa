@@ -1,3 +1,11 @@
+/**
+ * Reusable footer columns component.
+ * 
+ * @component
+ * @param {title, items} props - Component props
+ * @returns {JSX.Element} - Rendered footer column
+ */
+
 export default function FooterColumn({
   title,
   items,

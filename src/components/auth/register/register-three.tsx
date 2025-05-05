@@ -1,21 +1,37 @@
 "use client";
+// Dependencies
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
+
 // SVGs
 import MobileSVG from "@/components/common/svg/mobile";
 import Password from "@/components/common/svg/password";
 import RepeatPassword from "@/components/common/svg/repeat-pass";
+
 // Third party components
-import { useCompleteRegister } from "@/utils/service/register/post-complete-register";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
 import Button from "../common/button";
 import InputAuth from "../common/input-auth";
 import WelcomeTitle from "../common/welcome-title";
 
+// API and storage
+import { useCompleteRegister } from "@/utils/service/register/post-complete-register";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+
+/**
+ * Register step three component.
+ * Get user password and phone number and complete the process
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered register step three
+ */
+
 function Register3() {
+  // Hooks
   const t = useTranslations("Auth");
   const { mutate } = useCompleteRegister();
   const userId = getClientCookie("userId");
+
+  // Complete user register by posting user info logic
   const formik = useFormik({
     initialValues: {
       phoneNumber: "",

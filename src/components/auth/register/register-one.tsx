@@ -1,19 +1,36 @@
 "use client"
+// Dependencies
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
+
 // Third party components
 import Button from "../common/button";
 import InputAuth from "../common/input-auth";
 import OrUnderline from "../common/or-underline";
 import WelcomeTitle from "../common/welcome-title";
+
 // SVGs
 import EmailSVG from "@/components/common/svg/email";
 import GoogleSVG from "@/components/common/svg/google";
+
+// API
 import { useStartRegister } from "@/utils/service/register/post-step-one";
-import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
+
+/**
+ * Register step one component.
+ * Get user email and send verification code
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered register step one
+ */
+
 
 function Register1() {
+  // Hooks
   const { mutate } = useStartRegister();
   const t = useTranslations("Auth");
+
+  // Registering user logic
   const formik = useFormik({
     initialValues: {
       email: "",

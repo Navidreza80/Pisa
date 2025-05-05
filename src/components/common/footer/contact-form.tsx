@@ -1,17 +1,24 @@
 "use client";
-// API
-import postMessage from "@/utils/service/contact-us/post";
-// Formik
+
+// Dependencies
 import { useFormik } from "formik";
-// Toast
-import { toast } from "react-toastify";
-// Yup
-import * as Yup from "yup";
-// Third party components
-import Button from "../button/button";
-// ShadCn components
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+
+// Third party components
+import Button from "../button/button";
+
+// API
+import postMessage from "@/utils/service/contact-us/post";
+
+/**
+ * RContact us form component
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered contact us form
+ */
 
 // Schema
 const ContactSchema = Yup.object().shape({
@@ -22,8 +29,10 @@ const ContactSchema = Yup.object().shape({
 });
 
 export default function ContactForm() {
-  const t = useTranslations("Footer")
   // Hooks
+  const t = useTranslations("Footer")
+
+  // Posting user message logic.
   const formik = useFormik({
     initialValues: {
       title: "",
