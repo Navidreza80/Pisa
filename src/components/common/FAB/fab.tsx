@@ -1,20 +1,32 @@
 "use client";
 // React
-import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
+
+// Dependencies
+import { Menu, Transition } from "@headlessui/react";
+import { useDispatch } from "react-redux";
+import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
+
 // Icons
 import { Globe, MessageCircle, Moon, Sun } from "lucide-react";
+
 // Change lang
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
+
 // Third party components
 import ChatAssistant from "../chat/ai-assistant";
-// Redux
-import { useDispatch } from "react-redux";
-// Types
-import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
+
+/**
+ * Floating action buttons component.
+ * For changing theme, language and chat box.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered FAB
+ */
 
 export default function FloatingActions() {
+  // Hooks
   const t = useTranslations();
   // States
   const [open, setOpen] = useState(false);
@@ -60,7 +72,6 @@ export default function FloatingActions() {
       <div className="fixed z-50 bottom-8 right-8 flex flex-col items-end gap-3">
         {open && (
           <div className="flex flex-col items-end gap-3 mb-2 animate-fade-in">
-            {/* Language Switch - Now positioned first */}
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100">
@@ -103,7 +114,6 @@ export default function FloatingActions() {
               </Transition>
             </Menu>
 
-            {/* Dark Mode Toggle */}
             <button
               onClick={() => {
                 setDark((d) => !d);
@@ -118,8 +128,6 @@ export default function FloatingActions() {
               )}
               <span>{dark ? t("Fab.dark") : t("Fab.dark")}</span>
             </button>
-
-            {/* Chat Box */}
             <button
               onClick={() => setChatOpen(true)}
               className="flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100"
@@ -129,7 +137,6 @@ export default function FloatingActions() {
             </button>
           </div>
         )}
-        {/* FAB */}
         <button
           onClick={() => setOpen((o) => !o)}
           className="w-16 h-16 rounded-full bg-gradient-to-br from-[#586CFF] to-[#7F9CF5] shadow-2xl flex items-center justify-center text-white text-3xl hover:scale-110 transition-all border-4 border-white dark:border-gray-800"

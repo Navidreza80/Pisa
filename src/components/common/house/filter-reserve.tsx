@@ -1,6 +1,7 @@
 "use client";
-
+// Dependencies
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import {
     Dialog,
     DialogContent,
@@ -12,17 +13,33 @@ import {
     useAppDispatch,
     useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
+
+// Hooks
 import { resetReserveFilters, setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+
+// Third party components
 import InputSelect from "../inputs/select-input";
+
+// Constant
 import { facilityOptions, locationOptions, ratingOptions, sortOptions } from "@/utils/constant/folder";
-import { useTranslations } from "next-intl";
+
+/**
+ * Filter reservation houses component.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered filter modal
+ */
+
 
 export function FilterModal() {
+  // Hooks
   const t = useTranslations("Filters")
   const dispatch = useAppDispatch();
+
+  // Getting filters logic
   const filters = useAppSelector((state) => state.reserveFilters);
 
-
+  // Changing the filter params value logic
   const handleChange = (name: string, value: any) => {
     dispatch(setReserveFilters({ [name]: value }));
   };

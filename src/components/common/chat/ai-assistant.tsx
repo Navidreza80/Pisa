@@ -195,7 +195,6 @@ const ChatAssistant = ({
               <Button
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
-                type="primary"
                 style={{
                   backgroundColor: "#586CFF",
                   opacity: loading || !input.trim() ? 0.5 : 1,

@@ -1,6 +1,7 @@
 "use client";
 // Types
-import { HouseItemsInterface } from "@/types/house";
+import type { HouseItemsInterface } from "@/types/house";
+
 // Shadcn components
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 // Change lang
