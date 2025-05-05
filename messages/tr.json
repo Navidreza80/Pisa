@@ -172,5 +172,31 @@
     "apartmentRentTitle": "Daire Kiralama",
     "rasht": "Reşt",
     "searchPlaceholder": "Ara..."
+  },
+  "Comparison": {
+    "title": "Ev Karşılaştırma",
+    "subtitle": "İlgilendiğiniz evlerin özelliklerini karşılaştırın ve en iyi seçimi yapın",
+    "bedrooms": "Yatak Odası",
+    "bathrooms": "Banyo",
+    "area": "Alan",
+    "builtYear": "İnşa Yılı",
+    "viewDetails": "Detayları Görüntüle ve Kayıt Ol",
+    "visualComparison": "Görsel Karşılaştırma",
+    "tableComparison": "Tablo Karşılaştırma",
+    "specifications": "Özellikler",
+    "image": "Görsel",
+    "price": "Fiyat",
+    "location": "Konum",
+    "features": "Özellikler",
+    "rating": "Puan",
+    "agent": "Danışman",
+    "view": "Görüntüle",
+    "similarProperties": "Benzer Evler",
+    "similarProperty": "Benzer Ev",
+    "luxuryHome": "Lüks Ev",
+    "district": "Bölge",
+    "addToComparison": "Karşılaştırmaya Ekle",
+    "new": "Yeni",
+    "squareMeters": "Metrekare"
   }
 }

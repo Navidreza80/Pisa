@@ -13,9 +13,9 @@ import taha from "@/assets/images/about-us/taha.jpg";
 import nextElites from "@/assets/images/landing/rank.png";
 
 // Third party components
-import Features from "../../../../components/about-us/features";
-import Input from "../../../../components/about-us/input";
-import Mentor from "../../../../components/about-us/mentor";
+import Features from "../../../../components/about-us/Features";
+import Input from "../../../../components/about-us/Input";
+import Mentor from "../../../../components/about-us/Mentor";
 import ProfileNextElites from "../../../../components/about-us/profile-next-elites";
 import Question from "../../../../components/about-us/questions";
 
@@ -88,11 +88,7 @@ export default function AboutUs() {
     <main className="min-h-screen py-[20px] px-4 dark:bg-gray-900">
       <div className="container mx-auto">
         <div className="mb-20 max-w-6xl mx-auto">
-          <Mentor
-            name={t("navid")}
-            job={t("frontendDeveloper")}
-            profile={navid.src}
-          />
+          <Mentor />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ProfileNextElites

@@ -173,5 +173,31 @@
     "apartmentRentTitle": "Apartment Rent",
     "rasht": "Rasht",
     "searchPlaceholder": "Search..."
+  },
+  "Comparison": {
+    "title": "House Comparison",
+    "subtitle": "Compare the features of your favorite houses and make the best choice",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "builtYear": "Built Year",
+    "viewDetails": "View Details",
+    "visualComparison": "Visual Comparison",
+    "tableComparison": "Table Comparison",
+    "specifications": "Specifications",
+    "image": "Image",
+    "price": "Price",
+    "location": "Location",
+    "features": "Features",
+    "rating": "Rating",
+    "agent": "Agent",
+    "view": "View",
+    "similarProperties": "Similar Properties",
+    "similarProperty": "Similar Property",
+    "luxuryHome": "Luxury Home",
+    "district": "District",
+    "addToComparison": "Add to Comparison",
+    "new": "New",
+    "squareMeters": "m²"
   }
 }
