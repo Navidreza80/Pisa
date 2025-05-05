@@ -52,7 +52,7 @@ export default function UserProfile({ user }: UserProfileProps) {
       localStorage.removeItem("accessToken");
     }
 
-    router.push("/login");
+    router.push("/auth/login");
     router.refresh();
   };
 

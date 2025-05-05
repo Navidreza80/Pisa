@@ -133,7 +133,9 @@
   },
   "Fab": {
     "light": "Aydınlık Mod",
-    "dark": "Karanlık Mod"
+    "dark": "Karanlık Mod",
+    "voice": "Sesli Komut",
+    "listening": "Dinleniyor..."
   },
   "Footer": {
     "contact": "Bize Ulaşın",

@@ -119,7 +119,7 @@ export default function HouseCardList({
         <h1 className="font-[600] w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
-        <div className="flex w-full justify-end gap-[5px]">
+        <div dir="rtl" className="flex w-full justify-start gap-[5px]">
           <div className="flex gap-1.5">
             <MapSVG color="gray" />
             <h1 className="text-right font-[500] text-[14px] text-text-secondary ">

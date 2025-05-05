@@ -21,6 +21,9 @@ import WelcomeTitle from "../common/welcome-title";
 // SVGs
 import GoogleSVG from "@/components/common/svg/google";
 
+// API
+import { login } from "@/lib/actions/auth";
+
 /**
  * Login user component
  *
@@ -59,6 +62,7 @@ function Login() {
       />
       <div className="flex flex-col flex-wrap gap-[20px]">
         <button
+        onClick={() => login()}
           type="button"
           className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
         >

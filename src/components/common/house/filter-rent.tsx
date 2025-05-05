@@ -19,8 +19,10 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slice";
-import { resetReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+import {
+  resetRentFilters,
+  setRentFilters,
+} from "@/utils/hooks/react-redux/store/slices/rent-slice";
 
 // Third party components
 import InputSelect from "../inputs/select-input";
@@ -165,7 +167,7 @@ export function FilterModal() {
           <div className="flex justify-end gap-2 pt-4">
             <Button
               className="text-white"
-              onClick={() => dispatch(resetReserveFilters())}
+              onClick={() => dispatch(resetRentFilters())}
             >
               {t("delete")}
             </Button>

@@ -20,10 +20,11 @@ import LogoSVG from "../svg/logo";
 import { JwtPayload } from "@/types/user";
 import { TransitionLink } from "@/utils/helper/TransitionLink";
 import Container from "../container/container";
+import { auth } from "@/auth";
 
 /**
  * Heder component for page header.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered header
  */
@@ -34,8 +35,10 @@ export default async function Header() {
   const token = await getServerCookie("serverAccessToken");
 
   // Decoding user token and getting information logic
-  const decodedUser =
-    typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+  // const decodedUser =
+  //   typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+
+  const decodedUser = await auth();
 
   return (
     <Container>
@@ -47,9 +50,9 @@ export default async function Header() {
         ) : (
           <UserProfile
             user={{
-              name: decodedUser.name,
-              email: decodedUser.email,
-              profilePicture: decodedUser.profilePicture,
+              name: decodedUser.user?.name,
+              email: decodedUser.user?.email,
+              profilePicture: decodedUser.user?.image,
             }}
           />
         )}

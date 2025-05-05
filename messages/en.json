@@ -134,7 +134,9 @@
   },
   "Fab": {
     "light": "Light Mode",
-    "dark": "Dark Mode"
+    "dark": "Dark Mode",
+    "voice": "Voice",
+    "listening": "Listening..."
   },
   "Footer": {
     "contact": "Contact Us",
