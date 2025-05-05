@@ -170,5 +170,31 @@
     "apartmentRentTitle": "إيجار شقق",
     "rasht": "رشت",
     "searchPlaceholder": "ابحث..."
-  }
+  },
+  "Comparison": {
+    "title": "مقارنة المنازل",
+    "subtitle": "قارن بين خصائص المنازل التي تهمك واختر الأفضل",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "area": "المساحة",
+    "builtYear": "سنة البناء",
+    "viewDetails": "عرض التفاصيل والتسجيل",
+    "visualComparison": "مقارنة مرئية",
+    "tableComparison": "مقارنة جدولية",
+    "specifications": "المواصفات",
+    "image": "صورة",
+    "price": "السعر",
+    "location": "الموقع",
+    "features": "المميزات",
+    "rating": "التقييم",
+    "agent": "الوسيط",
+    "view": "عرض",
+    "similarProperties": "منازل مشابهة",
+    "similarProperty": "منزل مشابه",
+    "luxuryHome": "منزل فاخر",
+    "district": "الحي",
+    "addToComparison": "إضافة للمقارنة",
+    "new": "جديد",
+    "squareMeters": "متر مربع"
+}
 }
