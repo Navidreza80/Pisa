@@ -1,4 +1,6 @@
 "use client";
+// Actions
+import { handleLogout } from "@/lib/actions/auth";
 // Types
 import type { UserProfileProps } from "@/types/user";
 
@@ -45,16 +47,6 @@ export default function UserProfile({ user }: UserProfileProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  // Logout
-  const handleLogout = () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("accessToken");
-    }
-
-    router.push("/auth/login");
-    router.refresh();
-  };
 
   return (
     <div className="relative" ref={dropdownRef}>

@@ -1,5 +1,7 @@
 // Third party components
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
+import {
+  getServerCookie
+} from "@/utils/service/storage/server-cookie";
 
 // JWT
 import { jwtDecode } from "jwt-decode";
@@ -17,10 +19,10 @@ import UserProfile from "./user-profile";
 import LogoSVG from "../svg/logo";
 
 // Types
+import { auth } from "@/auth";
 import { JwtPayload } from "@/types/user";
 import { TransitionLink } from "@/utils/helper/TransitionLink";
 import Container from "../container/container";
-import { auth } from "@/auth";
 
 /**
  * Heder component for page header.
@@ -33,20 +35,23 @@ export default async function Header() {
   // Hooks
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
-
-  // Decoding user token and getting information logic
-  // const decodedUser =
-  //   typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
-
-  const decodedUser = await auth();
+  var decodedUser;
+  if (token) {
+    decodedUser =
+      typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+  } else {
+    decodedUser = await auth();
+  }
 
   return (
     <Container>
       <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28">
         {!decodedUser ? (
-          <Button radius="sm" size="lg">
-            <TransitionLink href="/auth/login"> {t("login")}</TransitionLink>
-          </Button>
+          <TransitionLink href="/auth/login">
+            <Button className="cursor-pointer" radius="sm" size="lg">
+              {t("login")}
+            </Button>
+          </TransitionLink>
         ) : (
           <UserProfile
             user={{

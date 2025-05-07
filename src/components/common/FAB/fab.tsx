@@ -3,21 +3,22 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 
 // Dependencies
+import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 import { Menu, Transition } from "@headlessui/react";
 import { useDispatch } from "react-redux";
-import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 
 // Icons
-import { Globe, MessageCircle, Moon, Sun } from "lucide-react";
-import { Mic } from "lucide-react"; 
+import { Globe, Mic, Moon, Stars, Sun } from "lucide-react";
 
 // Change lang
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 // Third party components
-import ChatAssistant from "../chat/ai-assistant";
+import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
+import ChatAssistant from "../chat/ai-assistant";
+import Chat from "../chat/chat-with-admin";
 
 /**
  * Floating action buttons component.
@@ -35,6 +36,7 @@ export default function FloatingActions() {
   const [dark, setDark] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [listening, setListening] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
 
   // Create a properly typed ref for the SpeechRecognition instance
@@ -80,53 +82,57 @@ export default function FloatingActions() {
   // Process voice commands
   const processVoiceCommand = (text: string) => {
     const command = text.toLowerCase().trim();
-    
+
     // Show what was recognized
     setTranscript(text);
-    
+
     // Command mapping
     if (command.includes("chat") || command.includes("assistant")) {
       setChatOpen(true);
       return true;
     }
-    
+
     if (command.includes("reserve") || command.includes("booking")) {
       router.push("/reserve");
       return true;
     }
-    
+
     if (command.includes("dark") || command.includes("theme")) {
-      setDark(prev => !prev);
+      setDark((prev) => !prev);
       dispatch(toggleDarkMode());
       return true;
     }
-    
+
     if (command.includes("home") || command.includes("main")) {
       router.push("/");
       return true;
     }
-    
+
     // Language commands
     if (command.includes("english") || command.includes("انگلیسی")) {
       changeLanguage("en");
       return true;
     }
-    
-    if (command.includes("persian") || command.includes("farsi") || command.includes("فارسی")) {
+
+    if (
+      command.includes("persian") ||
+      command.includes("farsi") ||
+      command.includes("فارسی")
+    ) {
       changeLanguage("fa");
       return true;
     }
-    
+
     if (command.includes("turkish") || command.includes("türkçe")) {
       changeLanguage("tr");
       return true;
     }
-    
+
     if (command.includes("arabic") || command.includes("عربی")) {
       changeLanguage("ar");
       return true;
     }
-    
+
     return false;
   };
 
@@ -139,7 +145,7 @@ export default function FloatingActions() {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
-      
+
     if (!SpeechRecognition) return;
 
     // Clean up previous instance if it exists
@@ -150,9 +156,14 @@ export default function FloatingActions() {
 
     // Create and configure a new instance
     const recognition = new SpeechRecognition();
-    recognition.lang = locale === 'fa' ? 'fa-IR' : 
-                       locale === 'ar' ? 'ar-SA' : 
-                       locale === 'tr' ? 'tr-TR' : 'en-US';
+    recognition.lang =
+      locale === "fa"
+        ? "fa-IR"
+        : locale === "ar"
+          ? "ar-SA"
+          : locale === "tr"
+            ? "tr-TR"
+            : "en-US";
     recognition.interimResults = true;
     recognition.continuous = false;
     recognition.maxAlternatives = 1;
@@ -162,11 +173,11 @@ export default function FloatingActions() {
       const current = event.resultIndex;
       const result = event.results[current];
       const text = result[0].transcript;
-      
+
       // Only process final results
       if (result.isFinal) {
         const commandProcessed = processVoiceCommand(text);
-        
+
         if (!commandProcessed) {
           toast.info(t("Fab.noCommand") || "Command not recognized");
         } else {
@@ -185,10 +196,10 @@ export default function FloatingActions() {
     recognition.onerror = (event: any) => {
       setListening(false);
       setTranscript("");
-      
-      if (event.error === 'no-speech') {
+
+      if (event.error === "no-speech") {
         toast.info(t("Fab.noSpeech") || "No speech detected");
-      } else if (event.error === 'not-allowed') {
+      } else if (event.error === "not-allowed") {
         toast.error(t("Fab.microphoneBlocked") || "Microphone access blocked");
       } else {
         toast.error(t("Fab.speechError") || "Speech recognition error");
@@ -215,9 +226,12 @@ export default function FloatingActions() {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
-      
+
     if (!SpeechRecognition) {
-      toast.info(t("Fab.notSupported") || "Voice recognition is not supported in this browser.");
+      toast.info(
+        t("Fab.notSupported") ||
+          "Voice recognition is not supported in this browser."
+      );
       return;
     }
 
@@ -225,7 +239,7 @@ export default function FloatingActions() {
     if (!listening) {
       setListening(true);
       setTranscript("");
-      
+
       try {
         if (recognitionRef.current) {
           recognitionRef.current.start();
@@ -237,7 +251,7 @@ export default function FloatingActions() {
     } else {
       setListening(false);
       setTranscript("");
-      
+
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -330,9 +344,23 @@ export default function FloatingActions() {
               onClick={() => setChatOpen(true)}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs"
             >
-              <MessageCircle className="w-4 h-4 text-green-500" />
+              <Stars className="w-4 h-4 text-green-500" />
               <span>{t("Assistant.chat")}</span>
             </button>
+            <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
+
+            <button
+              onClick={() => setSupportOpen(true)}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs"
+            >
+              <MdSupportAgent className="w-4 h-4 text-red-500" />
+              <span>پشتیبانی</span>
+            </button>
+            <Chat
+              onOpenChange={() => setSupportOpen(!supportOpen)}
+              isOpen={supportOpen}
+              userId="3"
+            />
           </div>
         )}
         <button
