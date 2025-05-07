@@ -6,7 +6,7 @@ export async function getUserConversations(userId: string) {
   return await prisma.conversation.findMany({
     where: {
       participants: {
-        some: { id: userId },
+        some: { dbId: userId },
       },
     },
     include: {
@@ -16,7 +16,7 @@ export async function getUserConversations(userId: string) {
       },
       participants: {
         select: {
-          id: true,
+          dbId: true,
           name: true,
           email: true,
           isAdmin: true,
@@ -28,7 +28,7 @@ export async function getUserConversations(userId: string) {
 
 export async function createConversation(userId: string) {
   const user = await prisma.user.findUnique({
-    where: { id: userId },
+    where: { dbId: userId },
   });
 
   if (!user) {
@@ -38,7 +38,7 @@ export async function createConversation(userId: string) {
   return await prisma.conversation.create({
     data: {
       participants: {
-        connect: { id: userId },
+        connect: { dbId: userId },
       },
     },
     include: {
@@ -52,7 +52,7 @@ export async function getOrCreateConversation(userId: string) {
   const existing = await prisma.conversation.findFirst({
     where: {
       participants: {
-        some: { id: userId },
+        some: { dbId: userId },
       },
     },
     include: {
@@ -72,7 +72,7 @@ export async function addParticipant(conversationId: string, userId: string) {
     where: { id: conversationId },
     data: {
       participants: {
-        connect: { id: userId },
+        connect: { dbId: userId },
       },
     },
   });

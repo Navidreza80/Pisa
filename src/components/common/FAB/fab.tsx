@@ -19,6 +19,9 @@ import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
 import ChatAssistant from "../chat/ai-assistant";
 import Chat from "../chat/chat-with-admin";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { jwtDecode } from "jwt-decode";
+import { JwtPayload } from "@/types/user";
 
 /**
  * Floating action buttons component.
@@ -73,6 +76,10 @@ export default function FloatingActions() {
       html.classList.remove("dark");
     }
   };
+
+  // Check if the user logged in
+  const token = getClientCookie("clientAccessToken")
+  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token)
 
   // UseEffects
   useEffect(() => {
@@ -359,7 +366,7 @@ export default function FloatingActions() {
             <Chat
               onOpenChange={() => setSupportOpen(!supportOpen)}
               isOpen={supportOpen}
-              userId="3"
+              userId={decoded && decoded.id}
             />
           </div>
         )}

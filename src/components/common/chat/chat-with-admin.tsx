@@ -8,10 +8,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { createConversation, getUserConversations } from "@/lib/actions/conversation";
+import {
+  createConversation,
+  getUserConversations,
+} from "@/lib/actions/conversation";
 import { sendMessage } from "@/lib/actions/messages";
 import { Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Message {
   id: string;
@@ -25,7 +29,7 @@ export default function Chat({
   isOpen,
   onOpenChange,
 }: {
-  userId: string;
+  userId: string | boolean;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
@@ -54,7 +58,7 @@ export default function Chat({
       setConversationId(conversation.id);
       setMessages(conversation.messages);
     } catch (error) {
-      console.error("Failed to load conversation:", error);
+      toast.error("Failed to load")
     }
   };
 
@@ -92,7 +96,7 @@ export default function Chat({
     }
   };
 
-  return (
+  return userId ? (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] md:max-w-md lg:max-w-lg flex flex-col h-[70vh] max-h-[600px] p-0 bg-background">
         <DialogHeader className="sticky top-0 z-10 bg-background px-6 pt-6 pb-2 border-b">
@@ -166,6 +170,15 @@ export default function Chat({
             </Button>
           </form>
         </div>
+      </DialogContent>
+    </Dialog>
+  ) : (
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[425px] md:max-w-md lg:max-w-lg flex flex-col h-[70vh] max-h-[600px] p-0 bg-background">
+        <DialogHeader className="sticky top-0 z-10 bg-background px-6 pt-6 pb-2 border-b">
+          <DialogTitle></DialogTitle>
+        </DialogHeader>
+        <div className="mx-auto"> PLease sign in first!</div>
       </DialogContent>
     </Dialog>
   );

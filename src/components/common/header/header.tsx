@@ -1,7 +1,5 @@
 // Third party components
-import {
-  getServerCookie
-} from "@/utils/service/storage/server-cookie";
+import { getServerCookie } from "@/utils/service/storage/server-cookie";
 
 // JWT
 import { jwtDecode } from "jwt-decode";
@@ -41,7 +39,9 @@ export default async function Header() {
       typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
   } else {
     decodedUser = await auth();
+    decodedUser = decodedUser?.user
   }
+
 
   return (
     <Container>
@@ -55,9 +55,9 @@ export default async function Header() {
         ) : (
           <UserProfile
             user={{
-              name: decodedUser.user?.name,
-              email: decodedUser.user?.email,
-              profilePicture: decodedUser.user?.image,
+              name: decodedUser.name,
+              email: decodedUser.email,
+              profilePicture: decodedUser.image,
             }}
           />
         )}

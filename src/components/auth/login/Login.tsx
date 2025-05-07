@@ -23,6 +23,10 @@ import GoogleSVG from "@/components/common/svg/google";
 
 // API
 import { login } from "@/lib/actions/auth";
+import { createUser } from "@/lib/actions/user";
+import { JwtPayload } from "@/types/user";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { jwtDecode } from "jwt-decode";
 
 /**
  * Login user component
@@ -35,6 +39,8 @@ function Login() {
   // Hooks
   const { mutate } = useLoginUser();
   const t = useTranslations("Auth");
+  const token = getClientCookie("clientAccessToken");
+  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
 
   // Posting user email and password logic
   const formik = useFormik({
@@ -42,10 +48,13 @@ function Login() {
       email: "",
       password: "",
     },
-    // TODO
-    // validationSchema: loginValidations,
     onSubmit: async (value) => {
-      mutate(value);
+      await mutate(value);
+      try {
+        if (decoded) await createUser(decoded.id, decoded.email, decoded.name);
+      } catch (e) {
+        console.log(e);
+      }
     },
   });
 
@@ -62,7 +71,7 @@ function Login() {
       />
       <div className="flex flex-col flex-wrap gap-[20px]">
         <button
-        onClick={() => login()}
+          onClick={() => login()}
           type="button"
           className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
         >
