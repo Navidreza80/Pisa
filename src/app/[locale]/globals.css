@@ -10,7 +10,6 @@ body {
   --font-yekan: "Yekan", "sans-serif";
   --font-yekannum: "Yekannum", "sans-serif";
 
-  /* Light mode (default) */
   --color-background: #fff;
   --color-surface: #ffffff;
   --color-border: #eaeaea;
@@ -31,6 +30,7 @@ body {
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant solarized (&:where(.solarized, .solarized *));
 
 @keyframes content-pop {
   from {
@@ -178,6 +178,15 @@ body {
   --color-primary: #586cff;
 }
 
+:root.solarized,
+.solarized :root {
+  --color-background: #0a2e38;
+  --color-surface: #0d3a47;
+  --color-border: #1a5766;
+  --color-text: #e0f2f1;
+  --color-text-secondary: #88a1a8;
+  --color-primary: #b58900;
+}
 
 html[dir="rtl"] {
   text-align: left;

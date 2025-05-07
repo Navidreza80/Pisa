@@ -41,6 +41,7 @@ export default function FloatingActions() {
   const [listening, setListening] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [theme, setTheme] = useState()
 
   // Create a properly typed ref for the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -70,12 +71,17 @@ export default function FloatingActions() {
   // Toggle theme
   const toggleTheme = () => {
     const html = document.documentElement;
-    if (dark) {
+    html.classList.remove("dark", "solarized");
+    if (theme === "dark") {
       html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
+    } else if (theme === "solarized") {
+      html.classList.add("solarized");
     }
   };
+
+  useEffect(() => {
+    toggleTheme();
+  }, [theme]);
 
   // Check if the user logged in
   const token = getClientCookie("clientAccessToken")
@@ -315,17 +321,31 @@ export default function FloatingActions() {
 
             <button
               onClick={() => {
-                setDark((d) => !d);
+                setTheme((prev) =>
+                  prev === "light"
+                    ? "dark"
+                    : prev === "dark"
+                    ? "solarized"
+                    : "light"
+                );
                 dispatch(toggleDarkMode());
               }}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs"
             >
-              {dark ? (
+              {theme === "dark" ? (
                 <Sun className="w-4 h-4 text-yellow-400" />
+              ) : theme === "solarized" ? (
+                <Stars className="w-4 h-4 text-orange-400" />
               ) : (
                 <Moon className="w-4 h-4 text-blue-500" />
               )}
-              <span>{dark ? t("Fab.dark") : t("Fab.dark")}</span>
+              <span>
+                {theme === "dark"
+                  ? t("Fab.dark")
+                  : theme === "solarized"
+                  ? t("Fab.solarized") || "Solarized"
+                  : t("Fab.light") || "Light"}
+              </span>
             </button>
 
             <button

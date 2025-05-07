@@ -35,7 +35,7 @@ function Rent() {
     <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       <div>
         <div className="flex gap-[8px] mb-[32px]">
-          <h1 className="text-black text-[36px] font-[700]">
+          <h1 className="text-text text-[36px] font-[700]">
             {t("apartmentRentTitle")}
           </h1>
           {filters.search && (

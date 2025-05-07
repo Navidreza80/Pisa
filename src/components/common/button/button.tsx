@@ -8,7 +8,7 @@ const SIZES = {
 };
 // button colors
 const COLORS = {
-  primary: "bg-[#586CFF] text-white",
+  primary: "bg-primary text-white",
 };
 // button border radius
 const Radiuses = {
