@@ -13,9 +13,9 @@ import taha from "@/assets/images/about-us/taha.jpg";
 import nextElites from "@/assets/images/landing/rank.png";
 
 // Third party components
-import Features from "../../../../components/about-us/Features";
-import Input from "../../../../components/about-us/Input";
-import Mentor from "../../../../components/about-us/Mentor";
+import Features from "@/components/about-us/features";
+import Input from "@/components/about-us/input";
+import Mentor from "@/components/about-us/mentor";
 import ProfileNextElites from "../../../../components/about-us/profile-next-elites";
 import Question from "../../../../components/about-us/questions";
 

@@ -41,7 +41,7 @@ export default function FloatingActions() {
   const [listening, setListening] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const [theme, setTheme] = useState()
+  const [theme, setTheme] = useState("light")
 
   // Create a properly typed ref for the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -332,7 +332,7 @@ export default function FloatingActions() {
               }}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs"
             >
-              {theme === "dark" ? (
+              {theme === "light" ? (
                 <Sun className="w-4 h-4 text-yellow-400" />
               ) : theme === "solarized" ? (
                 <Stars className="w-4 h-4 text-orange-400" />
