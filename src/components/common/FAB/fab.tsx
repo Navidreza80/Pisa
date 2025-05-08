@@ -41,7 +41,7 @@ export default function FloatingActions() {
   const [listening, setListening] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("light");
 
   // Create a properly typed ref for the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -84,8 +84,8 @@ export default function FloatingActions() {
   }, [theme]);
 
   // Check if the user logged in
-  const token = getClientCookie("clientAccessToken")
-  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token)
+  const token = getClientCookie("clientAccessToken");
+  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
 
   // UseEffects
   useEffect(() => {
@@ -325,8 +325,8 @@ export default function FloatingActions() {
                   prev === "light"
                     ? "dark"
                     : prev === "dark"
-                    ? "solarized"
-                    : "light"
+                      ? "solarized"
+                      : "light"
                 );
                 dispatch(toggleDarkMode());
               }}
@@ -343,8 +343,8 @@ export default function FloatingActions() {
                 {theme === "dark"
                   ? t("Fab.dark")
                   : theme === "solarized"
-                  ? t("Fab.solarized") || "Solarized"
-                  : t("Fab.light") || "Light"}
+                    ? t("Fab.solarized") || "Solarized"
+                    : t("Fab.light") || "Light"}
               </span>
             </button>
 

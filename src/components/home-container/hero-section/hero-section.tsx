@@ -1,7 +1,10 @@
+// Next
+import Image from "next/image";
+
+//
 import BuildingsSvg from "@/components/svg/buildings";
 import { ArrowLeft } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import hero from "../../../assets/images/landing/heroImage.png";
 import Search from "./search";
 import Button from "@/components/common/button/button";
@@ -9,11 +12,10 @@ import ArrowDownSVG from "@/components/common/svg/arrow-down";
 import Scroll from "@/components/common/svg/scroll";
 
 export default async function HeroSection() {
+  // Hooks
   const t = await getTranslations("HomePage");
   return (
-    <div
-      className="my-8 flex lg:justify-between md:justify-center justify-center relative"
-    >
+    <div className="my-8 flex lg:justify-between md:justify-center justify-center relative">
       <Search />
       <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-[var(--animation-fade-in-left)]">
         <Image

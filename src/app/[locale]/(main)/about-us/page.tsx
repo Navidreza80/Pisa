@@ -16,11 +16,14 @@ import nextElites from "@/assets/images/landing/rank.png";
 import Features from "@/components/about-us/features";
 import Input from "@/components/about-us/input";
 import Mentor from "@/components/about-us/mentor";
-import ProfileNextElites from "../../../../components/about-us/profile-next-elites";
-import Question from "../../../../components/about-us/questions";
+import ProfileNextElites from "@/components/about-us/profile-next-elites";
+import Question from "@/components/about-us/questions";
 
 export default function AboutUs() {
+  // Hooks
   const t = useTranslations("AboutUs");
+
+  // Leaflet map data
   useEffect(() => {
     if (typeof window !== "undefined") {
       const map = L.map("map", {
@@ -84,6 +87,7 @@ export default function AboutUs() {
       };
     }
   }, []);
+
   return (
     <main className="min-h-screen py-[20px] px-4 dark:bg-gray-900">
       <div className="container mx-auto">

@@ -101,37 +101,6 @@ export default function Custom404() {
           <NotFoundHomeSvg locale={locale} />
         </Link>
       </div>
-
-      <style jsx>{`
-        .animate-fadeIn {
-          animation: fadeIn 1s ease-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-          0% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-          100% {
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }

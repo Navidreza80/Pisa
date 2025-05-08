@@ -57,7 +57,6 @@ export function FilterModal() {
         <DialogHeader></DialogHeader>
 
         <div className="space-y-6">
-          {/* Destination/Hotel Input */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("address")}
@@ -70,8 +69,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Sort By */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("sort")}
@@ -84,8 +81,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Price Range */}
           <div className="space-y-4">
             <div dir="rtl" className="flex flex-col gap-4">
               <div className="flex gap-1.5">
@@ -108,8 +103,6 @@ export function FilterModal() {
               step={100000}
             />
           </div>
-
-          {/* Hotel Facilities */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("facilities")}
@@ -122,8 +115,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Hotel Rating */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("rate")}
@@ -136,7 +127,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
           <div className="flex justify-end gap-2 pt-4">
             <Button className="text-white" onClick={() => dispatch(resetReserveFilters())}>
              {t("delete")}

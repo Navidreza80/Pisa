@@ -1,6 +1,11 @@
 "use client";
+// React
+import { useEffect, useRef, useState } from "react";
 
+// Third party components
 import { Button } from "@/components/ui/button";
+
+// Dependencies
 import {
   Dialog,
   DialogContent,
@@ -8,21 +13,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { toast } from "react-toastify";
+
+// Server actions
 import {
   createConversation,
   getUserConversations,
 } from "@/lib/actions/conversation";
 import { sendMessage } from "@/lib/actions/messages";
-import { Loader2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
 
-interface Message {
-  id: string;
-  content: string;
-  sender: { name: string | null; isAdmin: boolean };
-  createdAt: Date;
-}
+// Icons
+import Message from "@/types/messages";
+import { Loader2 } from "lucide-react";
+import LoginModal from "../login";
 
 export default function Chat({
   userId,
@@ -33,13 +36,16 @@ export default function Chat({
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  // Hooks
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
-
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Load conversation logic
+  // If the conversation for this user exist, load it.
+  // If does'nt exist, create new one.
   const loadConversation = async () => {
     try {
       const conversations = await getUserConversations(userId);
@@ -58,10 +64,11 @@ export default function Chat({
       setConversationId(conversation.id);
       setMessages(conversation.messages);
     } catch (error) {
-      toast.error("Failed to load")
+      toast.error("Please sign in first!");
     }
   };
 
+  // UseEffects
   useEffect(() => {
     if (isOpen) {
       loadConversation();
@@ -74,6 +81,7 @@ export default function Chat({
     }
   }, [messages]);
 
+  // Send the message then load conversation and get messages
   const handleSend = async () => {
     if (!input.trim() || isSending || !conversationId) return;
 
@@ -89,6 +97,7 @@ export default function Chat({
     }
   };
 
+  // If the enter key pressed, send the message
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
@@ -126,7 +135,7 @@ export default function Chat({
                     className={`rounded-2xl px-4 py-2 max-w-[80%] shadow-sm
                       ${
                         msg.sender.isAdmin
-                          ? "bg-primary/90 text-primary-foreground rounded-bl-none"
+                          ? "bg-primary/90 text-white rounded-bl-none"
                           : "bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-br-none"
                       }`}
                   >
@@ -173,13 +182,6 @@ export default function Chat({
       </DialogContent>
     </Dialog>
   ) : (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] md:max-w-md lg:max-w-lg flex flex-col h-[70vh] max-h-[600px] p-0 bg-background">
-        <DialogHeader className="sticky top-0 z-10 bg-background px-6 pt-6 pb-2 border-b">
-          <DialogTitle></DialogTitle>
-        </DialogHeader>
-        <div className="mx-auto"> PLease sign in first!</div>
-      </DialogContent>
-    </Dialog>
+    <LoginModal />
   );
 }

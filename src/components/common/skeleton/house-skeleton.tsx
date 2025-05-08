@@ -1,5 +1,12 @@
 "use client";
 
+/**
+ * House loading skeleton component for loading statement.
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered filter modal
+ */
+
 export default function HouseSkeleton({ width, minWidth }: { width?: string; minWidth?: string }) {
   return (
     <div

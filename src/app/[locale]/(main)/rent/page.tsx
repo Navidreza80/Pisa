@@ -19,7 +19,7 @@ import Rent from '@/components/Rent-page/Rent'
 
 export default function RentPage() {
   return (
-    <div className='flex justify-center'>
+    <div className='flex  justify-center'>
       <Rent />
     </div>
   )

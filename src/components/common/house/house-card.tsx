@@ -3,9 +3,22 @@
 import type { HouseItemsInterface } from "@/types/house";
 
 // Shadcn components
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+
 // Change lang
 import { useTranslations } from "use-intl";
+
+/**
+ * Reusable house card component with optional facilities props.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered house card
+ */
+
 
 // Feature item component
 const FeatureItem = ({
@@ -100,7 +113,9 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
           <span className="font-medium font-yekannum text-[#586CFF]">
             {parseInt(item.price).toLocaleString()} تومان
             {item.transaction_type === "rental" && (
-              <span className="text-xs text-gray-500 mr-1">{t("perNight")}</span>
+              <span className="text-xs text-gray-500 mr-1">
+                {t("perNight")}
+              </span>
             )}
           </span>
         )}

@@ -1,6 +1,10 @@
 import AdminChatInterface from "@/components/admin/admin-chat";
 import { getConversations } from "@/lib/actions/conversation";
 
+
+// Demo admin chat dashboard
+// Later this section will implement in veuxy admin panel
+
 export default async function AdminChatPage() {
   const conversations = await getConversations();
   
