@@ -12,6 +12,7 @@ import Providers from "@/provider/provider";
 
 // CSS
 import "../globals.css";
+import Image from "next/image";
 
 // metadata
 export const metadata: Metadata = {
@@ -45,22 +46,19 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background  text-text  flex justify-center font-yekan">
-        <NextIntlClientProvider>
-          <Providers>
-            <main className="w-[100%] max-h-screen ">
-              <div className="flex justify-center max-h-screen p-[16px]">
-                <Auth />
-                <div className="w-[100%] max-[1300px]:w-full flex justify-center">
-                  <div className="max-[1300px]:w-[80%] mt-10 max-[600px]:w-[100%]  max-[1300px]:justify-center my-auto w-[390px] max-h-[calc(100vh-16px)] flex flex-wrap flex-col gap-[24px]">
-                    {children}
-                  </div>
-                </div>
-              </div>
-            </main>
-            <FloatingActions />
-          </Providers>
-        </NextIntlClientProvider>
+      <body className="bg-[#f7f7fc] font-yekan">
+        <div className="fixed inset-0 z-100 h-[150px]">
+          <div className="bg-[#2b73e3] h-[68px]">
+            <div className="absolute top-[24px] w-full">
+            <div className="w-[1056px] h-22 bg-white px-4 mx-auto flex justify-between text  rounded-[14px] shadow-[0_3px_12px_0_rgba(0,0,0,0.06)]">
+              <img src="https://media.licdn.com/dms/image/v2/C4E0BAQHC7ECm9fEtIw/company-logo_200_200/company-logo_200_200/0/1631350095747?e=2147483647&v=beta&t=rLJVkgf7_lU0UYJhQ9JWy6b7KN7YYMJQFfFvejDfV90"  />
+              <h1 className="my-auto text-[18px] font-extrabold">درگاه پرداخت اینترنتی سِپ</h1>
+              <img className="" src={"https://polam.io/wp-content/uploads/2023/09/%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D8%A8%D8%A7%D9%86%DA%A9-%D8%B3%D8%A7%D9%85%D8%A7%D9%86.jpg"} />
+            </div>
+            </div>
+          </div>
+        </div>
+        {children}
       </body>
     </html>
   );
