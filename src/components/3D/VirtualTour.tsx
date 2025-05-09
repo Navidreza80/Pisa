@@ -22,8 +22,6 @@ const VirtualTourComponent = ({ img }: VirtualTourProps) => {
             panorama: img,
             loadingImg: '',
             navbar: [
-              'zoom',
-              'move',
               'fullscreen',
             ],
             size: {

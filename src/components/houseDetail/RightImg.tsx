@@ -41,7 +41,7 @@ function RightImg({ detail }) {
                                 <button
                                     key={tour.title}
                                     onClick={() => handle3DImageChange(tour.title)}
-                                    className={`bg-white px-3 py-1 rounded-lg shadow-md hover:bg-gray-100 transition ${current3DImage === tour.title ? '!bg-blue-500 text-white' : ''
+                                    className={`bg-white cursor-pointer px-3 py-1 rounded-lg shadow-md hover:bg-gray-100 transition ${current3DImage === tour.title ? '!bg-blue-500 text-white' : ''
                                         }`}
                                 >
                                     {tour.title}
