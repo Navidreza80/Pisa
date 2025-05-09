@@ -5,9 +5,10 @@ import Esfahan from "@/assets/images/landing/locations/esfahan.png";
 import { getAllLocations } from "@/utils/service/location/location";
 import LocationName from "./location-name";
 
-export default async function Popular() {
+export default async function Popular({tehranHouses, shirazHouses, esfahanHouses}) {
   const t = await getTranslations("HomePage");
   const locations = await getAllLocations();
+
   return (
     <div>
       <div className="text-right text-[28px] font-[700]">
@@ -15,7 +16,7 @@ export default async function Popular() {
           br: () => <br />,
         })}
       </div>
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto py-4">
         <div className="flex flex-wrap justify-center md:justify-center lg:justify-between gap-[22px] mb-6">
           {(
             locations as Array<{ id: number; name: string; area_name: string }>
@@ -40,6 +41,7 @@ export default async function Popular() {
 
               <div className="p-4 flex flex-row-reverse justify-between text-center">
                 <LocationName area_name={card.area_name} />
+                <span className="text-text-secondary font-yekannum" dir="rtl">({card.area_name.includes("تهران") ? tehranHouses : card.area_name.includes("شیراز") ? shirazHouses : esfahanHouses} مورد)</span>
               </div>
             </div>
           ))}

@@ -42,7 +42,7 @@ export default async function HeroSection() {
             br: () => <br />,
           })}
         </h2>
-        <Button className="mt-8 lg:mx-0  md:mx-0 mx-auto group overflow-hidden gap-2 !w-auto text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
+        <Button className="mt-8 lg:mx-0  md:mx-0 mx-auto group overflow-hidden !w-auto gap-1 text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
           <div className="relative right-0 group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
             <ArrowLeft style={{ fontSize: "20px" }} />
           </div>
