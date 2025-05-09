@@ -70,7 +70,7 @@ export default function Search() {
       </div>
       <div
         dir="rtl"
-        className="w-full p-2 h-1/2 flex justify-between items-center flex-wrap gap-y-3 animate-[var(--animation-fade-in)] [animation-delay:0.7s] [animation-fill-mode:both] opacity-0"
+        className="w-full p-2 px-5 h-1/2 flex justify-between items-center flex-wrap gap-y-3 animate-[var(--animation-fade-in)] [animation-delay:0.7s] [animation-fill-mode:both] opacity-0"
       >
         <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.8s] [animation-fill-mode:both] opacity-0">
           <p>{t("destination")}</p>
