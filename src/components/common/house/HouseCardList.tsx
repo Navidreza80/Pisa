@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { useTranslations } from "next-intl";
 
 // Third party components
-import Slider from "@/components/common/slider/slider";
+import Slider from "@/components/common/slider/Slider";
 
 // Dependencies
 import { SwiperSlide } from "swiper/react";

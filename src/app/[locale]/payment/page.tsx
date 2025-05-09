@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Captcha } from '@/components/ui/captcha';
+import Captcha from '@/components/ui/captcha';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
@@ -44,20 +44,6 @@ function Payment() {
     setCaptchaVerified(verified);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const cardDigits = cardNumber.replace(/\s+/g, '');
-    if (cardDigits.length !== 16) {
-      alert('لطفاً شماره کارت را به صورت کامل (16 رقم) وارد کنید');
-      return;
-    }
-
-    if (!captchaVerified) {
-      alert('لطفاً کد امنیتی را تأیید کنید');
-      return;
-    }
-    console.log('پرداخت انجام شد');
-  };
 
   return (
     <div className="relative z-50 mt-[96px] container p-6 mx-auto py-10 flex flex-col md:flex-row gap-6 items-start justify-center">
@@ -71,7 +57,7 @@ function Payment() {
           <div className='flex justify-end gap-4'>
             <div className="flex flex-wrap flex-col justify-between">
               <div className="text-gray-500">پذیرنده</div>
-              <div className="text-[#2d3a4a] text-2xl font-bold mt-2">دیجیکالا</div>
+              <div className="text-[#2d3a4a] text-2xl font-bold mt-2">Piza</div>
             </div>
             <img className='my-auto w-[24px] h-[24px]' src="https://images.vexels.com/media/users/3/223411/isolated/preview/7a8154be7b9b50412fc2cf63b636e370-store-icon-flat-store.png" alt="" />
           </div>
@@ -108,12 +94,12 @@ function Payment() {
         </div>
       </div>
 
-      <Card className="max-w-[700px] bg-white border-none">
+      <Card className="w-[700px] bg-white border-none">
         <CardHeader>
           <CardTitle className="rounded-[8px] h-[48px] w-full bg-[#eef4fd] flex flex-col px-[10px]"><h1 className='text-[#2b73e3] my-auto h-4'>اطلاعات کارت خود را وارد کنید</h1></CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="px-24 flex flex-col flex-wrap gap-4">
+          <form className="px-24 flex flex-col flex-wrap gap-4">
             <div className="space-y-2">
               <label className="block text-sm font-medium">شماره کارت</label>
               <Input
@@ -191,11 +177,9 @@ function Payment() {
               className="w-full cursor-pointer !bg-[#00c234] hover:!bg-[#73d791] text-white py-3 rounded-md"
               disabled={!captchaVerified}
             >
-              پرداخت ۱۹,۱۵۰,۰۰۰ ریال
+              پرداخت 200,000,000,000 ریال
             </Button>
-            <Button type="submit" className="text-[#f63a51] bg-white border-px border-[#f2f3f7]">
-              انصراف
-            </Button>
+            <button type="submit" className="text-[#f63a51] border p-[5px] rounded-md cursor-pointer bg-white border-px border-[#eee]"> انصراف </button>
           </form>
         </CardContent>
       </Card>

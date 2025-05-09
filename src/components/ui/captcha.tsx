@@ -1,147 +1,77 @@
-'use client';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { Input } from '@/components/ui/input';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from './button';
-import { Input } from './input';
+const SimpleCaptcha = ({ onVerify }) => {
+  const [captchaCode, setCaptchaCode] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const [isVerified, setIsVerified] = useState(false);
+  const isInitialMount = useRef(true);
 
-interface CaptchaProps {
-  onVerify: (verified: boolean) => void;
-  label?: string;
-  refreshText?: string;
-  placeholder?: string;
-}
-
-const generateRandomCode = (length: number = 6): string => {
-  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-};
-
-const Captcha: React.FC<CaptchaProps> = ({ 
-  onVerify, 
-}) => {
-  const [captchaCode, setCaptchaCode] = useState<string>('');
-  const [userInput, setUserInput] = useState<string>('');
-  const [isVerified, setIsVerified] = useState<boolean>(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const drawCaptcha = (code: string) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw background
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw noise lines
-    ctx.strokeStyle = '#888';
-    ctx.lineWidth = 1;
-    for (let i = 0; i < 10; i++) {
-      ctx.beginPath();
-      ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-      ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-      ctx.stroke();
+  const generateCaptcha = useCallback(() => {
+    const chars = '0123456789';
+    let result = '';
+    for (let i = 0; i < 5; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-
-    // Draw noise dots
-    for (let i = 0; i < 50; i++) {
-      ctx.fillStyle = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-      ctx.beginPath();
-      ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Draw text
-    ctx.font = 'bold 24px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    for (let i = 0; i < code.length; i++) {
-      ctx.fillStyle = `rgb(${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`;
-      ctx.save();
-      ctx.translate(20 + i * 25, canvas.height / 2);
-      ctx.rotate((Math.random() - 0.5) * 0.4);
-      ctx.fillText(code[i], 0, 0);
-      ctx.restore();
-    }
-  };
-
-  const generateCaptcha = () => {
-    const newCode = generateRandomCode();
-    setCaptchaCode(newCode);
-    setUserInput('');
-    setIsVerified(false);
-    onVerify(false);
-    drawCaptcha(newCode);
-  };
-
-  const verifyCaptcha = () => {
-    const isValid = userInput.toLowerCase() === captchaCode.toLowerCase();
-    setIsVerified(isValid);
-    onVerify(isValid);
-    
-    if (!isValid) {
-      generateCaptcha();
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setUserInput(value);
-    
-    if (value.length === captchaCode.length) {
-      verifyCaptcha();
-    } else {
-      setIsVerified(false);
-      onVerify(false);
-    }
-  };
-
-  useEffect(() => {
-    generateCaptcha();
+    return result;
   }, []);
 
+  const refreshCaptcha = useCallback(() => {
+    setCaptchaCode(generateCaptcha());
+    setUserInput('');
+    setIsVerified(false);
+    if (onVerify) onVerify(false);
+  }, [generateCaptcha, onVerify]);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      refreshCaptcha();
+      isInitialMount.current = false;
+    }
+  }, [refreshCaptcha]);
+
+  useEffect(() => {
+    if (userInput.length === 5 && userInput === captchaCode) {
+      setIsVerified(true);
+      if (onVerify) onVerify(true);
+    }
+  }, [userInput, captchaCode, onVerify]);
+
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium">کد امنیتی</label>
-      <div className="flex flex-col items-center gap-2">
-        <div className="relative border rounded-md overflow-hidden">
-          <canvas 
-            ref={canvasRef} 
-            width={180} 
-            height={60}
-            className="w-full h-full"
-          />
+    <div className="flex flex-col items-center space-y-2">
+      <div className="space-y-2 w-full">
+        <label className="block text-sm font-medium">کد امنیتی</label>
+        <div className='flex justify-between w-full'>
+          <div className="text-2xl w-[146px] text-center text-white font-yekannum tracking-widest bg-[#2b73e3] px-4 py-2 rounded">
+            {captchaCode}
+          </div>
+
+          <div className='flex rounded-[8px] w-[267px] h-[48px] px-4 justify-between bg-[#f3f3f3] border-[#eeeeee]'>
+          <img src="https://img.icons8.com/?size=100&id=70688&format=png&color=2b73e3" className="w-6 my-auto h-6 cursor-pointer" onClick={refreshCaptcha}/>
+            <Input
+              dir="ltr"
+              type="text"
+              value={userInput}
+              onChange={(e) => !isVerified && setUserInput(e.target.value)}
+              placeholder="کد را وارد کنید"
+              disabled={isVerified}
+              maxLength={5}
+              className={`text-center my-auto border-0 text-lg  placeholder:text-[15px]`}
+            />
+          </div>
         </div>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          onClick={generateCaptcha} 
-          type="button"
-          className="self-end"
-        >
-          تازه سازی
-        </Button>
-        <Input
-          dir="ltr"
-          className="text-center text-lg rounded-[8px] bg-[#f3f3f3] border-[#eeeeee] placeholder:text-[15px]"
-          placeholder="کد را وارد کنید"
-          value={userInput}
-          onChange={handleInputChange}
-          maxLength={captchaCode.length}
-        />
       </div>
+
+      {isVerified && (
+        <div className="text-green-500 text-sm mt-1 flex items-center">
+          <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
+          </svg>
+          کد صحیح است
+        </div>
+      )}
     </div>
   );
 };
 
-export { Captcha };
+export default SimpleCaptcha;
