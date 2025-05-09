@@ -229,5 +229,31 @@
     "mobileValue": "۰۹۱۲۳۴۵۶۷۸۹",
     "website": "وب سایت",
     "securityNote": "اطلاعات کارت شما با امنیت کامل ذخیره و پردازش می‌شود."
+  },
+  "SingleHouse": {
+    "facilities": "امکانات هتل",
+    "similarHouses": "آگهی های مشابه",
+    "rentPrice": "قیمت رهن‌وجاره و اطلاعات تماس",
+    "mortgageFrom": "قیمت رهن از",
+    "rentFrom": "قیمت اجاره از",
+    "phoneNumber": "شماره تماس",
+    "reserve": "رزرو هتل",
+    "dateEnter": "تاریخ ورود",
+    "dateExit": "تاریخ خروج",
+    "capacity": "تعداد نفرات",
+    "discount": "کد تخفیف",
+    "userComments": "نظرات کاربران",
+    "commentPlaceholder": "نظر خود را درباره این هتل بنویسید...",
+    "send": "ارسال نظر",
+    "capacityCount": "ظرفیت",
+    "propertyType": "نوع ملک",
+    "bathrooms": "تعداد حمام",
+    "parkings": "تعداد پارکینگ",
+    "rooms": "تعداد اتاق",
+    "yard": "حیاط",
+    "capacityValue": "نفر",
+    "bathroomsValue": "حمام",
+    "parkingsValue": "پارکینگ",
+    "roomsValue": "اتاق"
   }
 }

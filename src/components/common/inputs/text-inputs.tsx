@@ -16,10 +16,10 @@ export default function InputText({
   className,
   ...props
 }: {
-  value: string;
-  onChange: () => void;
-  width: string;
-  className: string;
+  value?: string;
+  onChange?: () => void;
+  width?: string;
+  className?: string;
 }) {
   const t = useTranslations("Input");
   return (

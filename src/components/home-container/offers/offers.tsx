@@ -20,15 +20,8 @@ async function Offers({ data }) {
         </Button>
         <div className="flex flex-row-reverse gap-[20px]">
           <div className="font-bold text-[28px]">{t("offer")}</div>
-          <div
-            className="bg-[#FF5454] hidden lg:block md:block rounded-[16px] [animation-timeline:view()] [animation-range:contain_0%_contain_50%]"
-            style={{
-              animation: "var(--animation-fall)",
-              animationTimeline: "view()",
-              animationRange: "contain 50% contain 100%",
-            }}
-          >
-            <p className="my-0  text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold fallAnimation">
+          <div className="bg-[#FF5454] hidden lg:block md:block rounded-[16px] animate-wiggle-more">
+            <p className="my-0 text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold">
               {t("spring")}
             </p>
           </div>

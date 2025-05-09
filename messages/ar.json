@@ -198,5 +198,31 @@
     "addToComparison": "إضافة للمقارنة",
     "new": "جديد",
     "squareMeters": "متر مربع"
-}
+  },
+  "SingleHouse": {
+    "facilities": "مرافق الفندق",
+    "similarHouses": "إعلانات مشابهة",
+    "rentPrice": "سعر الإيجار ومعلومات الاتصال",
+    "mortgageFrom": "سعر الرهن من",
+    "rentFrom": "سعر الإيجار من",
+    "phoneNumber": "رقم الهاتف",
+    "reserve": "حجز الفندق",
+    "dateEnter": "تاريخ الوصول",
+    "dateExit": "تاريخ المغادرة",
+    "capacity": "عدد الأشخاص",
+    "discount": "كود الخصم",
+    "userComments": "تعليقات المستخدمين",
+    "commentPlaceholder": "اكتب رأيك عن هذا الفندق...",
+    "send": "إرسال التعليق",
+    "capacityCount": "السعة",
+    "propertyType": "نوع العقار",
+    "bathrooms": "عدد الحمامات",
+    "parkings": "عدد مواقف السيارات",
+    "rooms": "عدد الغرف",
+    "yard": "فناء",
+    "capacityValue": "شخص",
+    "bathroomsValue": "حمام",
+    "parkingsValue": "موقف سيارات",
+    "roomsValue": "غرفة"
+  }
 }

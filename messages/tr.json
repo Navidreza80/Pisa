@@ -198,5 +198,31 @@
     "addToComparison": "Karşılaştırmaya Ekle",
     "new": "Yeni",
     "squareMeters": "Metrekare"
+  },
+  "SingleHouse": {
+    "facilities": "Otel Olanakları",
+    "similarHouses": "Benzer İlanlar",
+    "rentPrice": "Kira Ücreti ve İletişim Bilgileri",
+    "mortgageFrom": "İpotek Fiyatı (Başlangıç)",
+    "rentFrom": "Kira Fiyatı (Başlangıç)",
+    "phoneNumber": "Telefon Numarası",
+    "reserve": "Otel Rezervasyonu",
+    "dateEnter": "Giriş Tarihi",
+    "dateExit": "Çıkış Tarihi",
+    "capacity": "Kişi Sayısı",
+    "discount": "İndirim Kodu",
+    "userComments": "Kullanıcı Yorumları",
+    "commentPlaceholder": "Bu otel hakkındaki yorumunuzu yazın...",
+    "send": "Yorum Gönder",
+    "capacityCount": "Kapasite",
+    "propertyType": "Mülk Tipi",
+    "bathrooms": "Banyo Sayısı",
+    "parkings": "Otopark Sayısı",
+    "rooms": "Oda Sayısı",
+    "yard": "Bahçe",
+    "capacityValue": "kişi",
+    "bathroomsValue": "banyo",
+    "parkingsValue": "park yeri",
+    "roomsValue": "oda"
   }
 }

@@ -199,5 +199,31 @@
     "addToComparison": "Add to Comparison",
     "new": "New",
     "squareMeters": "m²"
+  },
+  "SingleHouse": {
+    "facilities": "Hotel Facilities",
+    "similarHouses": "Similar Listings",
+    "rentPrice": "Rent Price & Contact Info",
+    "mortgageFrom": "Mortgage From",
+    "rentFrom": "Rent From",
+    "phoneNumber": "Phone Number",
+    "reserve": "Hotel Reservation",
+    "dateEnter": "Check-in Date",
+    "dateExit": "Check-out Date",
+    "capacity": "Number of Guests",
+    "discount": "Discount Code",
+    "userComments": "User Comments",
+    "commentPlaceholder": "Write your review about this hotel...",
+    "send": "Submit Review",
+    "capacityCount": "Capacity",
+    "propertyType": "Property Type",
+    "bathrooms": "Number of Bathrooms",
+    "parkings": "Number of Parking Spaces",
+    "rooms": "Number of Rooms",
+    "yard": "Yard",
+    "capacityValue": "person",
+    "bathroomsValue": "bathroom",
+    "parkingsValue": "parking",
+    "roomsValue": "room"
   }
 }

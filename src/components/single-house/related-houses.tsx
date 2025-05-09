@@ -1,0 +1,31 @@
+import { HouseItemsInterface } from "@/types/house";
+import HouseCardList from "../common/house/HouseCardList";
+import { getTranslations } from "next-intl/server";
+
+export default async function RelatedHouse({
+  relatedHouses,
+}: {
+  relatedHouses: HouseItemsInterface[];
+}) {
+  const t = await getTranslations("SingleHouse");
+  return (
+    <>
+      <div className="mt-[72px] w-full flex flex-col">
+        <h1 className="text-[28px] text-text font-yekannum">{t("similarHouses")}</h1>
+        <div></div>
+      </div>
+      <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
+        {relatedHouses.map((card: HouseItemsInterface, index: number) => (
+          <HouseCardList
+            key={index}
+            showRooms
+            showBathrooms
+            showParking
+            showCapacity
+            card={card}
+          />
+        ))}
+      </div>
+    </>
+  );
+}

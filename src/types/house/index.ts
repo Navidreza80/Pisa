@@ -10,22 +10,31 @@ export interface HouseInterFace {
 }
 
 export interface HouseItemsInterface {
+  parking: number;
   id: number;
-  yard_type?: boolean;
-  capacity?: number | undefined;
-  title?: string;
-  address?: string;
-  rate?: number;
-  photos?: string[];
-  tags?: string[];
-  rooms?: number;
-  bathrooms?: number;
-  price?: string;
-  transaction_type?: "rental" | string;
+  yard_type: string;
+  capacity: number;
+  categories: {
+    id: number;
+    name: string;
+  };
+  title: string;
+  address: string;
+  rate: number;
+  photos: string[];
+  tags: string[];
+  rooms: number;
+  bathrooms: number;
+  price: string;
+  transaction_type: "rental" | "direct_purchase" | "reservation" | "mortgage";
+  location: {
+    lat: string;
+    lng: string;
+  };
 }
 
 export interface TopSaleCardListProps {
-  setCurrentLoc: SetStateAction<Array<number>>;
+  setCurrentLoc?: SetStateAction<Array<number>>;
   showOnMap?: boolean;
   showFacilities?: boolean;
   minWidth?: string;
@@ -43,7 +52,7 @@ export interface TopSaleCardListProps {
 export interface HouseFilters {
   page?: number;
   sort?: string;
-  order?: 'ASC' | 'DESC';
+  order?: "ASC" | "DESC";
   search?: string;
   location?: string;
   propertyType?: string;

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import Tehran from "@/assets/images/landing/locations/tehran.png";
 import Shiraz from "@/assets/images/landing/locations/shiraz.png";
 import Esfahan from "@/assets/images/landing/locations/esfahan.png";
-import { getAllLocations } from "@/utils/service/location/location";
+import { getAllLocations } from "@/utils/service/location/get";
 import LocationName from "./location-name";
 
 export default async function Popular({tehranHouses, shirazHouses, esfahanHouses}) {
