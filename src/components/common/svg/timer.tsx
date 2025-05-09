@@ -1,4 +1,4 @@
-export default function TimerSVG({color}) {
+export default function TimerSVG({color}: {color?: string}) {
   return (
     <svg
       width="24"

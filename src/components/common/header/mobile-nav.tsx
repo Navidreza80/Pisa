@@ -1,12 +1,16 @@
 "use client";
 // Icons
 import { MenuOutlined } from "@ant-design/icons";
+
 // Icons
 import { Book, Home, User } from "lucide-react";
+
 // Next built in components
 import { Link } from "@/i18n/navigation";
+
 // For language detection
 import { useLocale, useTranslations } from "next-intl";
+
 // shadcn/ui Sheet
 import {
   Sheet,
@@ -17,8 +21,15 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
+/**
+ * Mobile navigation component for mobile mode.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered mobile navigation
+ */
+
 export default function MobileNav() {
-  // Change lang
+  // Hooks
   const locale = useLocale();
   const t = useTranslations("Header")
 
@@ -39,7 +50,7 @@ export default function MobileNav() {
       <Sheet>
         <SheetTrigger asChild>
           <MenuOutlined
-            className="dark:!text-white !text-black"
+            className="!text-text"
             style={{ fontSize: "50px" }}
           />
         </SheetTrigger>
@@ -61,7 +72,7 @@ export default function MobileNav() {
                 <SheetClose asChild>
                   <Link
                     href={item.url}
-                    className={`font-yekan text-base dark:text-white ${
+                    className={`font-yekan text-base text-text ${
                       direction === "rtl" ? "text-right" : "text-left"
                     }`}
                   >

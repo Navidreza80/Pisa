@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "tailwindcss-animated";
 
 body {
   margin: 0;
@@ -10,7 +11,6 @@ body {
   --font-yekan: "Yekan", "sans-serif";
   --font-yekannum: "Yekannum", "sans-serif";
 
-  /* Light mode (default) */
   --color-background: #fff;
   --color-surface: #ffffff;
   --color-border: #eaeaea;
@@ -31,6 +31,7 @@ body {
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant solarized (&:where(.solarized, .solarized *));
 
 @keyframes content-pop {
   from {
@@ -178,6 +179,16 @@ body {
   --color-primary: #586cff;
 }
 
+:root.solarized,
+.solarized :root {
+  --color-background: #071d26;     /* Richer dark blue-teal (better depth) */
+  --color-surface: #0a2e38;       /* Your original bg now as surface */
+  --color-border: #2a7085;        /* Brighter teal (improves visibility) */
+  --color-text: #f0f9f7;          /* Near-white (better readability) */
+  --color-text-secondary: #7aa6b3; /* Lighter muted teal (softer than 88a1a8) */
+  --color-primary: #d4b000;       /* Vibrant gold (more legible than b58900) */
+  --color-accent: #ffd700;        /* Optional: Bright gold for accents/hovers */
+}
 
 html[dir="rtl"] {
   text-align: left;
@@ -219,4 +230,34 @@ html[dir="rtl"] .menu-items {
 html[dir="ltr"] .menu-items {
   right: 0;
   left: auto;
+}
+
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

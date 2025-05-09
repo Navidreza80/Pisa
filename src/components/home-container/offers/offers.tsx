@@ -13,22 +13,15 @@ async function Offers({ data }) {
   targetDate.setDate(targetDate.getDate() + 3);
 
   return (
-    <div className="flex">
-      {/* <div className="flex flex-wrap justify-between items-center mb-[32px]">
+    <div className="flex flex-wrap">
+      <div className="flex w-full flex-wrap justify-between items-center mb-[32px]">
         <Button>
           <Link href="/rent">{t("seeMore")}</Link>
         </Button>
         <div className="flex flex-row-reverse gap-[20px]">
           <div className="font-bold text-[28px]">{t("offer")}</div>
-          <div
-            className="bg-[#FF5454] hidden lg:block md:block rounded-[16px] [animation-timeline:view()] [animation-range:contain_0%_contain_50%]"
-            style={{
-              animation: "var(--animation-fall)",
-              animationTimeline: "view()",
-              animationRange: "contain 50% contain 100%",
-            }}
-          >
-            <p className="my-0  text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold fallAnimation">
+          <div className="bg-[#FF5454] hidden lg:block md:block rounded-[16px] animate-wiggle-more">
+            <p className="my-0 text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold">
               {t("spring")}
             </p>
           </div>
@@ -36,7 +29,7 @@ async function Offers({ data }) {
             <CountdownTimer targetDate={targetDate} />
           </div>
         </div>
-      </div> */}
+      </div>
       <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
         {data.map((card: HouseItemsInterface, index: number) => (
           <HouseCardList

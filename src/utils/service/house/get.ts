@@ -1,7 +1,7 @@
 import axios from '@/utils/interceptor';
 import { HouseFilters, HouseItemsInterface } from '@/types/house';
 
-export const fetchHouses = async (params: HouseFilters): Promise<HouseItemsInterface> => {
+export const fetchHouses = async (params: HouseFilters): Promise<HouseItemsInterface[]> => {
   // Always include transactionType even if empty
   const requiredParams = {
     transactionType: params.transactionType || '', // Force include

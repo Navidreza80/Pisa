@@ -1,11 +1,11 @@
 import { loginUserParams, loginUserResponse } from "@/types/auth";
-import { AxiosError, AxiosResponse } from "axios";
 import http from "@/utils/interceptor";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { setServerCookie } from "@/utils/service/storage/server-cookie";
 import { setClientCookie } from "@/utils/service/storage/client-cookie";
+import { setServerCookie } from "@/utils/service/storage/server-cookie";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export const LoginUser = async (
   params: loginUserParams
@@ -17,18 +17,16 @@ export const LoginUser = async (
 };
 
 export const useLoginUser = () => {
-    const router = useRouter()
+  const router = useRouter();
   return useMutation({
     mutationKey: ["LOGIN_USER"],
     mutationFn: LoginUser,
     onSuccess: async (response: AxiosResponse) => {
-      // console.log(response)
       toast.success("ورود با موفقیت انجام شد");
       await setServerCookie("serverAccessToken", response.accessToken);
       await setServerCookie("serverRefreshToken", response.refreshToken);
-      setClientCookie("clientAccessToken", response.accessToken,15)
-      router.push('/')
-
+      setClientCookie("clientAccessToken", response.accessToken, 15);
+      router.push("/");
     },
     onError: (error: AxiosError) => {
       if (error.status === 404) toast.error("کاربری با این اطلاعات پیدا نشد");

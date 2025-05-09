@@ -1,7 +1,16 @@
 // Types
-import WelcomeTitleProps from "@/types/auth";
+import type WelcomeTitleProps from "@/types/auth";
+
 // SVGs
 import LogoSVG from "@/components/common/svg/logo";
+
+/**
+ * Reusable welcome title to show title and description of the auth pages
+ *
+ * @component
+ * @param {WelcomeTitleProps} props - Component props
+ * @returns {JSX.Element} - Rendered welcome title
+ */
 
 export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
@@ -10,11 +19,11 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
         <LogoSVG size="w-[106px] h-[36px]" />
       </div>
       <div className="max-[600px]:w-[100%]">
-        <h1 className="text-[36px] text-right font-[700] text-[#000000] dark:text-white mb-[24px]">
+        <h1 className="text-[36px] text-right font-[700] text-text mb-[24px]">
           {title}
         </h1>
         {desc && (
-          <p className="text-[14px] text-right mb-6 font-[600] text-[#767676] dark:text-[#aaa]">
+          <p className="text-[14px] text-right mb-6 font-[600] text-text-secondary">
             {desc}
           </p>
         )}
@@ -22,4 +31,3 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
     </>
   );
 }
-

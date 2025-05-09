@@ -1,6 +1,7 @@
 "use client";
-
+// Dependencies
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import {
     Dialog,
     DialogContent,
@@ -12,17 +13,33 @@ import {
     useAppDispatch,
     useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
+
+// Hooks
 import { resetReserveFilters, setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+
+// Third party components
 import InputSelect from "../inputs/select-input";
+
+// Constant
 import { facilityOptions, locationOptions, ratingOptions, sortOptions } from "@/utils/constant/folder";
-import { useTranslations } from "next-intl";
+
+/**
+ * Filter reservation houses component.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered filter modal
+ */
+
 
 export function FilterModal() {
+  // Hooks
   const t = useTranslations("Filters")
   const dispatch = useAppDispatch();
+
+  // Getting filters logic
   const filters = useAppSelector((state) => state.reserveFilters);
 
-
+  // Changing the filter params value logic
   const handleChange = (name: string, value: any) => {
     dispatch(setReserveFilters({ [name]: value }));
   };
@@ -40,7 +57,6 @@ export function FilterModal() {
         <DialogHeader></DialogHeader>
 
         <div className="space-y-6">
-          {/* Destination/Hotel Input */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("address")}
@@ -53,8 +69,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Sort By */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("sort")}
@@ -67,8 +81,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Price Range */}
           <div className="space-y-4">
             <div dir="rtl" className="flex flex-col gap-4">
               <div className="flex gap-1.5">
@@ -91,8 +103,6 @@ export function FilterModal() {
               step={100000}
             />
           </div>
-
-          {/* Hotel Facilities */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("facilities")}
@@ -105,8 +115,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
-          {/* Hotel Rating */}
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
             {t("rate")}
@@ -119,7 +127,6 @@ export function FilterModal() {
               dir="rtl"
             />
           </div>
-
           <div className="flex justify-end gap-2 pt-4">
             <Button className="text-white" onClick={() => dispatch(resetReserveFilters())}>
              {t("delete")}

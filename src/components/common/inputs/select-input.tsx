@@ -9,13 +9,20 @@ import {
 // Change lang
 import { useTranslations } from "next-intl";
 
+/**
+ * Reusable select-option input component.
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered select-input
+ */
+
 export default function InputSelect({
   width,
   items,
   onChange,
   value,
 }: {
-  items: { text: string; area_name: string; value: number; id: number }[];
+  items: { text?: string; area_name?: string; value?: number; id?: number }[];
   onChange: (selectedValue: number | string) => void;
   value: number | string;
   width?: number;
@@ -42,7 +49,10 @@ export default function InputSelect({
         }`}
         style={{ width: width ? width : 162 }}
       >
-        <SelectValue className="z-[10000000000] relative" placeholder={t("choose")} />
+        <SelectValue
+          className="z-[10000000000] relative"
+          placeholder={t("choose")}
+        />
       </SelectTrigger>
       <SelectContent className="rounded-[16px] z-[10000000000] relative font-yekan">
         {items?.map((item) => (

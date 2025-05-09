@@ -7,8 +7,8 @@ export interface UserProfileProps {
 }
 
 export interface JwtPayload {
-  name?: string;
-  email?: string;
+  name: string;
+  email: string;
   profilePicture?: string;
-  id?: number;
+  id: string;
 }

@@ -21,9 +21,10 @@ export function getClientCookie(name: string) {
     return cookieValue.substring(nameEQ.length, cookieValue.length);
   }
   return null;
-};
+}
 
 // Function for deleting cookies
 export const deleteClientCookie = (name: string) => {
+  if (typeof document === "undefined") return null;
   document.cookie = name + "=; Max-Age=-99999999;";
 };

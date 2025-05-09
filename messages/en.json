@@ -130,11 +130,13 @@
     "sobhan": "Sobhan Arab Khazaeli"
   },
   "Assistant": {
-    "chat": "Chat"
+    "chat": "AI"
   },
   "Fab": {
     "light": "Light Mode",
-    "dark": "Dark Mode"
+    "dark": "Dark Mode",
+    "voice": "Voice",
+    "listening": "Listening..."
   },
   "Footer": {
     "contact": "Contact Us",
@@ -171,5 +173,57 @@
     "apartmentRentTitle": "Apartment Rent",
     "rasht": "Rasht",
     "searchPlaceholder": "Search..."
+  },
+  "Comparison": {
+    "title": "House Comparison",
+    "subtitle": "Compare the features of your favorite houses and make the best choice",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "builtYear": "Built Year",
+    "viewDetails": "View Details",
+    "visualComparison": "Visual Comparison",
+    "tableComparison": "Table Comparison",
+    "specifications": "Specifications",
+    "image": "Image",
+    "price": "Price",
+    "location": "Location",
+    "features": "Features",
+    "rating": "Rating",
+    "agent": "Agent",
+    "view": "View",
+    "similarProperties": "Similar Properties",
+    "similarProperty": "Similar Property",
+    "luxuryHome": "Luxury Home",
+    "district": "District",
+    "addToComparison": "Add to Comparison",
+    "new": "New",
+    "squareMeters": "m²"
+  },
+  "SingleHouse": {
+    "facilities": "Hotel Facilities",
+    "similarHouses": "Similar Listings",
+    "rentPrice": "Rent Price & Contact Info",
+    "mortgageFrom": "Mortgage From",
+    "rentFrom": "Rent From",
+    "phoneNumber": "Phone Number",
+    "reserve": "Hotel Reservation",
+    "dateEnter": "Check-in Date",
+    "dateExit": "Check-out Date",
+    "capacity": "Number of Guests",
+    "discount": "Discount Code",
+    "userComments": "User Comments",
+    "commentPlaceholder": "Write your review about this hotel...",
+    "send": "Submit Review",
+    "capacityCount": "Capacity",
+    "propertyType": "Property Type",
+    "bathrooms": "Number of Bathrooms",
+    "parkings": "Number of Parking Spaces",
+    "rooms": "Number of Rooms",
+    "yard": "Yard",
+    "capacityValue": "person",
+    "bathroomsValue": "bathroom",
+    "parkingsValue": "parking",
+    "roomsValue": "room"
   }
 }

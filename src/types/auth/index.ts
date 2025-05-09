@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
 
 export default interface ButtonProps {
@@ -8,6 +9,8 @@ export default interface InputAuthProps {
   name?: string;
   placeHolder?: string;
   icon?: ReactNode;
+  value?: string;
+  onChange?: void;
 }
 
 export default interface WelcomeTitleProps {
@@ -69,3 +72,14 @@ export type CompleteRegisterResponse = {
     updatedAt: string;
   };
 };
+
+export default interface Comment {
+  created_at: string;
+  caption: string;
+  id: string;
+}
+
+export default interface ImageAuthProps {
+  imageSrc: string | StaticImageData;
+  imageTitle: string;
+}

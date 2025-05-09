@@ -1,12 +1,25 @@
+// API
 import getAllCategories from "@/utils/service/categories/categories";
-// Change lang
+
+// Dependencies
 import { getTranslations } from "next-intl/server";
+
+// Third party components
 import CategoryImage from "./category-image";
 
+/**
+ * Category component.
+ * When clicked, the reservation houses filter based on property type.
+ * User goes to /reserve
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered category
+ */
+
 export default async function Category() {
-  // API
+  // Fetch data
   const categories = await getAllCategories();
-  // Change lang
+  // Hooks
   const t = await getTranslations("HomePage");
   return (
     <div>

@@ -2,26 +2,28 @@
 import HouseCardList from "@/components/common/house/HouseCardList";
 import { HouseItemsInterface } from "@/types/house";
 import {
-  useAppDispatch
+  useAppDispatch,
+  useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
 import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slice";
 import { useRentHouses } from "@/utils/hooks/use-houses";
 import { useState } from "react";
 import { FilterModal } from "../common/house/filter-rent";
 import HouseSkeleton from "../common/skeleton/house-skeleton";
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 
 function Rent() {
-  const t = useTranslations('rent');
-  
+  const t = useTranslations("rent");
+  const filters = useAppSelector((state) => state.rentFilters);
+
   const filtersItems = [
-    { text: t('mostExpensive'), value: "price", order: "DESC" },
-    { text: t('cheapest'), value: "price", order: "ASC" },
-    { text: t('mostPopular'), value: "rate", order: "DESC" },
-    { text: t('all'), value: null, order: null },
+    { text: t("mostExpensive"), value: "price", order: "DESC" },
+    { text: t("cheapest"), value: "price", order: "ASC" },
+    { text: t("mostPopular"), value: "rate", order: "DESC" },
+    { text: t("all"), value: null, order: null },
   ];
-  
-  const [selectedFilter, setSelectedFilter] = useState(t('all'));
+
+  const [selectedFilter, setSelectedFilter] = useState(t("all"));
   const { data: houses, isLoading } = useRentHouses();
   const dispatch = useAppDispatch();
 
@@ -33,12 +35,14 @@ function Rent() {
     <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       <div>
         <div className="flex gap-[8px] mb-[32px]">
-          <h1 className="text-black text-[36px] font-[700]">
-            {t('apartmentRentTitle')}
+          <h1 className="text-text text-[36px] font-[700]">
+            {t("apartmentRentTitle")}
           </h1>
-          <div className="bg-[#586CFF] rounded-[16px] text-white p-[8px] text-[28px] font-[700]">
-            {t('rasht')}
-          </div>
+          {filters.search && (
+            <div className="bg-[#586CFF] rounded-[16px] text-white p-[8px] text-[28px] font-[700]">
+              {filters.search}
+            </div>
+          )}
         </div>
         <div
           dir="rtl"
@@ -75,7 +79,7 @@ function Rent() {
           <div className="h-[48px] w-[306px] my-auto relative">
             <input
               type="text"
-              placeholder={t('searchPlaceholder')}
+              placeholder={t("searchPlaceholder")}
               className="w-full h-full border border-gray-300 rounded-[16px] p-4 pr-[48px] text-sm outline-none placeholder:text-[#A6A6A6]"
             />
             <svg

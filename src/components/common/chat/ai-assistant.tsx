@@ -1,13 +1,25 @@
 "use client";
 // React built in hooks
 import { useEffect, useRef, useState } from "react";
-// Icons
-import { Loader2, MessageSquare, Send, X } from "lucide-react";
-import { Message } from "@/types/chat";
-// shadcn components
+
+// Dependencies
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
+
+// Icons
+import { Loader2, MessageSquare, Send, X } from "lucide-react";
+
+// Types
+import type { Message } from "@/types/chat";
+
+/**
+ * AI assistant component.
+ * 
+ * @component
+ * @param {isOpen & setIsOpen} props - Component props
+ * @returns {JSX.Element} - Rendered chat bot
+ */
 
 const ChatAssistant = ({
   isOpen,
@@ -183,7 +195,6 @@ const ChatAssistant = ({
               <Button
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
-                type="primary"
                 style={{
                   backgroundColor: "#586CFF",
                   opacity: loading || !input.trim() ? 0.5 : 1,

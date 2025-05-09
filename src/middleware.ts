@@ -1,11 +1,54 @@
-import createMiddleware from 'next-intl/middleware';
-import {routing} from './i18n/routing';
- 
-export default createMiddleware(routing);
- 
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "./auth";
+import { getServerCookie } from "./utils/service/storage/server-cookie";
+
+const protectedRoutes = [
+  "/fa/auth/login",
+  "/fa/auth/register/step-1",
+  "/fa/auth/register/step-2",
+  "/fa/auth/register/step-3",
+  "/en/auth/login",
+  "/en/auth/register/step-1",
+  "/en/auth/register/step-2",
+  "/en/auth/register/step-3",
+  "/tr/auth/login",
+  "/tr/auth/register/step-1",
+  "/tr/auth/register/step-2",
+  "/tr/auth/register/step-3",
+  "/ar/auth/login",
+  "/ar/auth/register/step-1",
+  "/ar/auth/register/step-2",
+  "/ar/auth/register/step-3",
+];
+const intlMiddleware = createIntlMiddleware(routing);
+
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
+  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };
+
+export default async function middleware(request: NextRequest) {
+  // Handle protected routes first
+  const session = await auth();
+  const token = await getServerCookie("serverAccessToken");
+  const { pathname } = request.nextUrl;
+  const isProtected = protectedRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
+
+  if (isProtected && (session || token)) {
+    // Create a new URL for the redirect
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    return NextResponse.redirect(url);
+  }
+
+  // Apply the intl middleware to all requests
+  const response = intlMiddleware(request);
+
+  // You could modify the response headers here if needed
+  // response.headers.set('x-custom-header', 'value');
+
+  return response;
+}

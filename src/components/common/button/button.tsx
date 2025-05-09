@@ -1,5 +1,5 @@
 "use client";
-// React built in
+// React
 import { ReactNode, useRef } from "react";
 // button sizes
 const SIZES = {
@@ -8,7 +8,7 @@ const SIZES = {
 };
 // button colors
 const COLORS = {
-  primary: "bg-[#586CFF] text-white",
+  primary: "bg-primary text-white",
 };
 // button border radius
 const Radiuses = {
@@ -33,6 +33,14 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
+/**
+ * Reusable button component.
+ * 
+ * @component
+ * @param {ButtonProps} props - Component props
+ * @returns {JSX.Element} - Rendered button
+ */
+
 export default function Button({
   color = "primary",
   size = "md",
@@ -52,7 +60,7 @@ export default function Button({
       type="submit"
       ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
-      className={`flex items-center hover:bg-[#4A5FE3] focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center hover:bg-[#4A5FE3] !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
         SIZES[size]
       } ${Radiuses[radius]}`}

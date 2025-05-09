@@ -1,29 +1,76 @@
 "use client"
-import { useEffect, useRef } from 'react';
-import PhotoSphereViewer from 'photo-sphere-viewer';
+import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import 'photo-sphere-viewer/dist/photo-sphere-viewer.css';
 
-export default function VirtualTour() {
-  const containerRef = useRef(null);
+interface VirtualTourProps {
+  img: string
+}
+
+const VirtualTourComponent = ({ img }: VirtualTourProps) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const viewerInstance = useRef<any>(null)
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const loadViewer = async () => {
+      try {
+        const { Viewer } = await import('photo-sphere-viewer')
+        
+        if (containerRef.current && !viewerInstance.current) {
+          viewerInstance.current = new Viewer({
+            container: containerRef.current,
+            panorama: img,
+            loadingImg: '',
+            navbar: [
+              'fullscreen',
+            ],
+            size: {
+              height: '387px'
+            },
+          })
+        }
+      } catch (error) {
+        console.error('خطا در بارگذاری تور مجازی:', error)
+      }
+    }
 
-    const viewer = new PhotoSphereViewer.Viewer({
-      container: containerRef.current,
-      panorama: "https://static.vecteezy.com/system/resources/previews/019/062/597/non_2x/full-spherical-seamless-hdri-360-panorama-in-interior-of-guest-living-room-hall-in-apartment-with-sofa-armchairs-and-dinner-table-in-equirectangular-projection-vr-content-photo.jpg",
-      loadingImg: '',
-      navbar: [
-        'fullscreen'
-      ],
-    });
+    loadViewer()
 
-    return () => viewer.destroy();
-  }, []);
+    return () => {
+      viewerInstance.current?.destroy()
+      viewerInstance.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    if (viewerInstance.current) {
+      viewerInstance.current.setPanorama(img, {
+        transition: 1000,
+        showLoader: true
+      })
+    }
+  }, [img])
 
   return (
-    <div className='px-[20px]'>
-      <div className='rounded-[13px] overflow-hidden' ref={containerRef} style={{ width: '100%', height: '100vh' }} />
+    <div className="relative w-full">
+      <div 
+        ref={containerRef} 
+        className="w-full h-[387px] rounded-xl overflow-hidden"
+      />
     </div>
-  );
+  )
 }
+
+const VirtualTour = dynamic(
+  () => Promise.resolve(VirtualTourComponent),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[387px] flex items-center justify-center bg-gray-100">
+        <p>در حال بارگزاری بازدید 3 بعدی</p>
+      </div>
+    )
+  }
+)
+
+export default VirtualTour  

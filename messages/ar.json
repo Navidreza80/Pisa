@@ -133,7 +133,9 @@
   },
   "Fab": {
     "light": "الوضع النهاري",
-    "dark": "الوضع الليلي"
+    "dark": "الوضع الليلي",
+    "voice": "الأوامر الصوتية",
+    "listening": "يستمع..."
   },
   "Footer": {
     "contact": "اتصل بنا",
@@ -170,5 +172,57 @@
     "apartmentRentTitle": "إيجار شقق",
     "rasht": "رشت",
     "searchPlaceholder": "ابحث..."
+  },
+  "Comparison": {
+    "title": "مقارنة المنازل",
+    "subtitle": "قارن بين خصائص المنازل التي تهمك واختر الأفضل",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "area": "المساحة",
+    "builtYear": "سنة البناء",
+    "viewDetails": "عرض التفاصيل والتسجيل",
+    "visualComparison": "مقارنة مرئية",
+    "tableComparison": "مقارنة جدولية",
+    "specifications": "المواصفات",
+    "image": "صورة",
+    "price": "السعر",
+    "location": "الموقع",
+    "features": "المميزات",
+    "rating": "التقييم",
+    "agent": "الوسيط",
+    "view": "عرض",
+    "similarProperties": "منازل مشابهة",
+    "similarProperty": "منزل مشابه",
+    "luxuryHome": "منزل فاخر",
+    "district": "الحي",
+    "addToComparison": "إضافة للمقارنة",
+    "new": "جديد",
+    "squareMeters": "متر مربع"
+  },
+  "SingleHouse": {
+    "facilities": "مرافق الفندق",
+    "similarHouses": "إعلانات مشابهة",
+    "rentPrice": "سعر الإيجار ومعلومات الاتصال",
+    "mortgageFrom": "سعر الرهن من",
+    "rentFrom": "سعر الإيجار من",
+    "phoneNumber": "رقم الهاتف",
+    "reserve": "حجز الفندق",
+    "dateEnter": "تاريخ الوصول",
+    "dateExit": "تاريخ المغادرة",
+    "capacity": "عدد الأشخاص",
+    "discount": "كود الخصم",
+    "userComments": "تعليقات المستخدمين",
+    "commentPlaceholder": "اكتب رأيك عن هذا الفندق...",
+    "send": "إرسال التعليق",
+    "capacityCount": "السعة",
+    "propertyType": "نوع العقار",
+    "bathrooms": "عدد الحمامات",
+    "parkings": "عدد مواقف السيارات",
+    "rooms": "عدد الغرف",
+    "yard": "فناء",
+    "capacityValue": "شخص",
+    "bathroomsValue": "حمام",
+    "parkingsValue": "موقف سيارات",
+    "roomsValue": "غرفة"
   }
 }

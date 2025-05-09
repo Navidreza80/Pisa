@@ -1,6 +1,15 @@
 "use client";
-// Components
+// React & Next
+import { Fragment } from "react";
+import { useTranslations } from "next-intl";
+
+// Third party components
 import Slider from "@/components/common/slider/Slider";
+
+// Dependencies
+import { SwiperSlide } from "swiper/react";
+import Tilt from "react-parallax-tilt";
+
 // SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
@@ -8,16 +17,18 @@ import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import PersonSVG from "../svg/person";
-// React
-import { Fragment } from "react";
-// Swiper
-import { SwiperSlide } from "swiper/react";
-// Third party components
+import LocationSVG from "../svg/location";
+
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
-import LocationSVG from "../svg/location";
-import { useTranslations } from "next-intl";
-import Tilt from 'react-parallax-tilt';
+import Link from "next/link";
+
+/**
+ * Filter reservation houses component.
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered filter modal
+ */
 
 export default function HouseCardList({
   setCurrentLoc,
@@ -33,7 +44,10 @@ export default function HouseCardList({
   showParking,
   discount,
 }: TopSaleCardListProps) {
-  const t = useTranslations("HomePage")
+  // Hooks
+  const t = useTranslations("HomePage");
+
+  // Feature items
   const featureItems: FeatureItem[] = [
     {
       id: "rooms",
@@ -77,7 +91,7 @@ export default function HouseCardList({
 
   return (
     <Tilt
-    transitionSpeed={2500}
+      transitionSpeed={2500}
       className={`flex flex-col hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
         minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
       } ${
@@ -86,7 +100,7 @@ export default function HouseCardList({
     >
       <div className="overflow-hidden w-full relative h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
         <Slider
-          className="w-[359px] h-[221px] overflow-hidden"
+          className="w-[340px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop
@@ -115,90 +129,90 @@ export default function HouseCardList({
           </button>
         )}
       </div>
-      <div className="flex gap-[9px] flex-wrap justify-start">
-        <h1 className="font-[600] w-full text-right text-[20px] text-text ">
-          {card.title}
-        </h1>
-        <div className="flex w-full justify-end gap-[5px]">
-          <div className="flex gap-1.5">
-            <MapSVG color="gray" />
-            <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
-              {card.address}
-            </h1>
+        <div className="flex gap-[9px] flex-wrap justify-start">
+          <h1 className="font-[600] w-full text-right text-[20px] text-text ">
+            {card.title}
+          </h1>
+          <div dir="rtl" className="flex w-full justify-start gap-[5px]">
+            <div className="flex gap-1.5">
+              <MapSVG color="gray" />
+              <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
+                {card.address}
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-border h-[1px]"></div>
-      {showFacilities && (
-        <>
-          <div className="flex flex-row-reverse justify-between">
-            {visibleFeatures.map((feature, index) => (
-              <Fragment key={feature.id}>
-                {index > 0 && <div className="bg-border w-[1px]" />}
-                <div className="flex flex-row-reverse gap-[5px]">
-                  {feature.icon}
-                  <div className="flex flex-row-reverse gap-[3px]">
-                    <h1 className="font-yekannum">{feature.value}</h1>
-                    {feature.label && <h1>{feature.label}</h1>}
+        <div className="bg-border h-[1px]"></div>
+        {showFacilities && (
+          <>
+            <div className="flex flex-row-reverse justify-between">
+              {visibleFeatures.map((feature, index) => (
+                <Fragment key={feature.id}>
+                  {index > 0 && <div className="bg-border w-[1px]" />}
+                  <div className="flex flex-row-reverse gap-[5px]">
+                    {feature.icon}
+                    <div className="flex flex-row-reverse gap-[3px]">
+                      <h1 className="font-yekannum">{feature.value}</h1>
+                      {feature.label && <h1>{feature.label}</h1>}
+                    </div>
+                  </div>
+                </Fragment>
+              ))}
+            </div>
+          </>
+        )}
+
+        {!discount ? (
+          <div dir="rtl" className="flex justify-between">
+            <div className="flex gap-1" dir="rtl">
+              <div className="flex flex-row-reverse gap-[10px]">
+                <div className="relative">
+                  <div className="flex flex-row-reverse gap-[5px] ">
+                    <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
+                      {card.price}
+                    </h1>
                   </div>
                 </div>
-              </Fragment>
-            ))}
+              </div>
+              <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+                تومان
+              </p>
+            </div>
           </div>
-        </>
-      )}
-
-      {!discount ? (
-        <div dir="rtl" className="flex justify-between">
-          <div className="flex gap-1" dir="rtl">
+        ) : (
+          <div dir="rtl" className="flex justify-between">
             <div className="flex flex-row-reverse gap-[10px]">
-              <div className="relative">
+              <div className="relative opacity-[0.5]">
                 <div className="flex flex-row-reverse gap-[5px] ">
-                  <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
+                  <h1 className="text-[20px] font-[700] my-auto font-yekannum">
                     {card.price}
                   </h1>
+                  <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+                    تومان
+                  </p>
                 </div>
+
+                <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
               </div>
-            </div>
-            <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-              تومان
-            </p>
-          </div>
-        </div>
-      ) : (
-        <div dir="rtl" className="flex justify-between">
-          <div className="flex flex-row-reverse gap-[10px]">
-            <div className="relative opacity-[0.5]">
-              <div className="flex flex-row-reverse gap-[5px] ">
+              <p className="text-[16px] font-[700] my-auto">/</p>
+              <div className="flex flex-row-reverse gap-[5px]">
                 <h1 className="text-[20px] font-[700] my-auto font-yekannum">
-                  {card.price}
+                  {(card.price * 50) / 100}
                 </h1>
                 <p className="text-[12px] font-[700] my-auto text-text-secondary ">
                   تومان
                 </p>
               </div>
-
-              <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
-            </div>
-            <p className="text-[16px] font-[700] my-auto">/</p>
-            <div className="flex flex-row-reverse gap-[5px]">
-              <h1 className="text-[20px] font-[700] my-auto font-yekannum">
-                {(card.price * 50) / 100}
-              </h1>
-              <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-                تومان
-              </p>
-            </div>
-            <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
-              <h1 className="text-white text-[16px] font-[700] font-yekannum">
-                50
-              </h1>
-              <h1 className="text-white text-[16px] font-[700]">%</h1>
+              <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
+                <h1 className="text-white text-[16px] font-[700] font-yekannum">
+                  50
+                </h1>
+                <h1 className="text-white text-[16px] font-[700]">%</h1>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
     </Tilt>
   );
 }

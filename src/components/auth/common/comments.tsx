@@ -1,11 +1,16 @@
 "use client";
-
+// React & Next
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+// Dependencies
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import Image from "next/image";
-import { format } from 'date-fns-jalali';
+import axios from "axios";
+import "swiper/css";
+import { format } from "date-fns-jalali";
+import "swiper/css/navigation";
 
 // SVGs
 import QuoteSVG from "@/components/common/svg/quote";
@@ -13,15 +18,15 @@ import Reload from "@/components/common/svg/reload";
 import ToLeft from "@/components/common/svg/to-left";
 import ToRight from "@/components/common/svg/to-right";
 
-import axios from "axios";
-import "swiper/css";
-import "swiper/css/navigation";
+// Types
+import type Comment from "@/types/auth";
 
-interface Comment {
-  created_at: string;
-  caption: string;
-  id: string;
-}
+/**
+ * Comment component to show user comments on website in auth pages
+ *
+ * @component
+ * @returns {JSX.Element} - Rendered comments
+ */
 
 export default function CommentsSwiper() {
   const swiperRef = useRef<any>(null);
@@ -32,7 +37,9 @@ export default function CommentsSwiper() {
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get<Comment[]>("https://delta-project.liara.run/api/comments");
+        const response = await axios.get<Comment[]>(
+          "https://delta-project.liara.run/api/comments"
+        );
         setComments(response.data);
       } catch (error: any) {
         setError("مشکلی در دریافت کامنت‌ها پیش آمده است.");
@@ -45,17 +52,17 @@ export default function CommentsSwiper() {
 
   const formatDate = (dateString: string) => {
     if (!dateString) return "بدون تاریخ";
-    
+
     try {
       const date = new Date(dateString);
-      return format(date, 'yyyy/M/d');
+      return format(date, "yyyy/M/d");
     } catch (e) {
       console.error("خطا در تبدیل تاریخ:", e);
       return dateString;
     }
   };
 
-  const handleNavigation = (direction: 'prev' | 'next') => {
+  const handleNavigation = (direction: "prev" | "next") => {
     if (!swiperRef.current) return;
     if (direction === "prev") {
       swiperRef.current.slidePrev();

@@ -1,10 +1,13 @@
 "use client";
 // Third party components
 import { TransitionLink } from "@/utils/helper/TransitionLink";
+
 // Change lang
 import { useTranslations } from "next-intl";
+
 // Next built in
 import { usePathname } from "@/i18n/navigation";
+
 // ShadCn dropdown menu
 import {
   DropdownMenu,
@@ -12,8 +15,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+// Icons
 import { ChevronDown, ChevronUp } from "lucide-react";
+
+// React
 import { useState } from "react";
+
+/**
+ * Header navbar component for navigating through pages.
+ * 
+ * @component
+ * @returns {JSX.Element} - Rendered navbar
+ */
 
 export default function Navbar() {
   // Hooks
@@ -52,7 +66,6 @@ export default function Navbar() {
         );
       })}
 
-      {/* Rent Dropdown Menu */}
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
           dir="rtl"
