@@ -1,12 +1,11 @@
+import RightImg from "../houseDetail/RightImg";
+
 export default async function MainImages({ photos }: { photos: string[] }) {
   return (
     <>
       {/* Right section */}
       <div className="flex gap-4 flex-wrap lg:sticky animate-fade-left md:relative relative lg:top-10 md:top-0 top-0 lg:w-[47%] md:w-full w-full h-[calc(100vh-100px)]">
-        <img
-          src={photos[0]}
-          className="w-full rounded-t-3xl rounded-b-2xl h-[387px]"
-        />
+        <RightImg photos={photos} />
         {/* + n other pictures section */}
         <div
           dir="rtl"
