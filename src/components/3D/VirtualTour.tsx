@@ -69,7 +69,7 @@ const VirtualTour = dynamic(
     ssr: false,
     loading: () => (
       <div className="w-full h-[387px] flex items-center justify-center bg-gray-100">
-        <p>در حال بارگذاری تور مجازی...</p>
+        <p>در حال بارگزاری بازدید 3 بعدی</p>
       </div>
     )
   }
