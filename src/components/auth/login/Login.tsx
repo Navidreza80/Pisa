@@ -7,6 +7,7 @@ import Link from "next/link";
 // Dependencies
 import { useLoginUser } from "@/utils/service/login/post";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 // SVGs
 import EmailSVG from "@/components/common/svg/email";
@@ -18,10 +19,8 @@ import InputAuth from "../common/input-auth";
 import OrUnderline from "../common/or-underline";
 import WelcomeTitle from "../common/welcome-title";
 
-// SVGs
-import GoogleSVG from "@/components/common/svg/google";
-
 // API
+import GithubSVG from "@/components/common/svg/github";
 import { login } from "@/lib/actions/auth";
 import { createUser } from "@/lib/actions/user";
 import { JwtPayload } from "@/types/user";
@@ -42,12 +41,18 @@ function Login() {
   const token = getClientCookie("clientAccessToken");
   const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
 
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().required("ایمیل الزامی است"),
+    password: Yup.string().required("رمز عبور الزامی است"),
+  });
+
   // Posting user email and password logic
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
+    validationSchema: LoginSchema,
     onSubmit: async (value) => {
       await mutate(value);
       try {
@@ -76,7 +81,7 @@ function Login() {
           className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
         >
           <span>{t("google")}</span>
-          <GoogleSVG />{" "}
+          <GithubSVG />
         </button>
         <OrUnderline />
         <InputAuth
@@ -88,7 +93,14 @@ function Login() {
           value={formik.values.email}
           onChange={formik.handleChange}
           type="email"
-        />
+        >
+          {formik.errors.email && (
+            <span className="text-red-500 text-sm text-right">
+              {formik.errors.email}
+            </span>
+          )}
+        </InputAuth>
+
         <InputAuth
           text={t("password")}
           placeHolder={t("passwordDesc")}
@@ -97,7 +109,14 @@ function Login() {
           name="password"
           value={formik.values.password}
           onChange={formik.handleChange}
-        />
+        >
+          {" "}
+          {formik.errors.password && (
+            <span className="text-red-500 text-sm text-right">
+              {formik.errors.password}
+            </span>
+          )}
+        </InputAuth>
         <Button
           text={t("loginAccount")}
           created_at={new Date().toISOString()}

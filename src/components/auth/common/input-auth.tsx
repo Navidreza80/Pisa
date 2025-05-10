@@ -16,6 +16,7 @@ export default function InputAuth({
   text,
   placeHolder,
   icon,
+  children,
   ...props
 }: InputAuthProps) {
   return (
@@ -38,6 +39,7 @@ export default function InputAuth({
         <span className="absolute right-[10px] top-1/2 -translate-y-1/2 text-xl text-[#767676] dark:text-[#A0A0A0]">
           {icon}
         </span>
+        <div className="text-center mb-2"> {children}</div>
       </div>
     </div>
   );

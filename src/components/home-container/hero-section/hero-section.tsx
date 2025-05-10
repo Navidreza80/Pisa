@@ -32,22 +32,22 @@ export default async function HeroSection() {
         </div>
       </div>
       <div className="flex justify-start items-end flex-wrap flex-col mt-7 animate-[var(--animation-fade-in-right)]">
-        <h1 className="text-4xl font-bold lg:text-right md:text-center text-center animate-[var(--animation-fade-in-up)] [animation-delay:0.1s]">
+        <h1 className="text-4xl rtl:text-left font-bold lg:text-right md:text-center text-center animate-[var(--animation-fade-in-up)] [animation-delay:0.1s]">
           {t.rich("title", {
             br: () => <br />,
           })}
         </h1>
-        <h2 className="lg:text-right lg:mx-0  md:mx-0 mx-auto md:text-center text-center text-base text-text-secondary  font-semibold mt-8 animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
+        <h2 className="lg:text-right lg:mx-0 rtl:text-left  md:mx-0 mx-auto md:text-center text-center text-base text-text-secondary  font-semibold mt-8 animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]">
           {t.rich("subTitle", {
             br: () => <br />,
           })}
         </h2>
         <Button className="mt-8 lg:mx-0  md:mx-0 mx-auto group overflow-hidden !w-auto gap-1 text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
-          <div className="relative right-0 group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
+          <div className="relative right-0 rtl:hidden group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
             <ArrowLeft style={{ fontSize: "20px" }} />
           </div>
           {t("button")}
-          <div className="relative group-hover:right-[151px] right-[-100px] transition-all ease-out duration-200 opacity-0 group-hover:opacity-100">
+          <div className="relative rtl:hidden group-hover:right-[151px] right-[-100px] transition-all ease-out duration-200 opacity-0 group-hover:opacity-100">
             <ArrowLeft style={{ fontSize: "20px" }} />
           </div>
         </Button>

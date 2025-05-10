@@ -281,7 +281,7 @@ export default function FloatingActions() {
     <>
       <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
 
-      <div className="fixed z-50 bottom-6 right-6 flex flex-col items-end gap-2">
+      <div className="fixed z-50 bottom-6 rtl:left-6 right-6 flex flex-col items-end gap-2">
         {open && (
           <div className="flex flex-col items-end gap-2 mb-1 animate-fade-in">
             <Menu as="div" className="relative inline-block text-left">

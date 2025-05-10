@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 export default interface ButtonProps {
   text?: string;
+  disabled?: boolean;
 }
 
 export default interface InputAuthProps {

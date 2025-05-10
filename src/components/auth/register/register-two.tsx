@@ -25,7 +25,7 @@ import { getClientCookie } from "@/utils/service/storage/client-cookie";
 /**
  * Register step two component.
  * Get verification code and verify the email.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered register step two
  */
@@ -107,6 +107,11 @@ export default function Register2() {
             </InputOTPGroup>
           </InputOTP>
         </div>
+        {!code && (
+          <span className="text-red-500 text-sm text-right">
+            لطفا کد تایید را وارد کنید
+          </span>
+        )}
 
         <div
           dir="rtl"
@@ -119,7 +124,7 @@ export default function Register2() {
             </p>
           </span>
         </div>
-        <Button text={t("ُSend")} />
+        <Button disabled={code ? false : true} text={t("ُSend")} />
       </form>
     </div>
   );

@@ -44,6 +44,14 @@ body {
   }
 }
 
+.ltr {
+  direction: ltr !important;
+}
+
+.rtl {
+  direction: rtl !important ;
+}
+
 @keyframes curtain-open {
   0% {
     clip-path: inset(0 0 100% 0);
@@ -181,13 +189,13 @@ body {
 
 :root.solarized,
 .solarized :root {
-  --color-background: #071d26;     /* Richer dark blue-teal (better depth) */
-  --color-surface: #0a2e38;       /* Your original bg now as surface */
-  --color-border: #2a7085;        /* Brighter teal (improves visibility) */
-  --color-text: #f0f9f7;          /* Near-white (better readability) */
+  --color-background: #071d26; /* Richer dark blue-teal (better depth) */
+  --color-surface: #0a2e38; /* Your original bg now as surface */
+  --color-border: #2a7085; /* Brighter teal (improves visibility) */
+  --color-text: #f0f9f7; /* Near-white (better readability) */
   --color-text-secondary: #7aa6b3; /* Lighter muted teal (softer than 88a1a8) */
-  --color-primary: #d4b000;       /* Vibrant gold (more legible than b58900) */
-  --color-accent: #ffd700;        /* Optional: Bright gold for accents/hovers */
+  --color-primary: #d4b000; /* Vibrant gold (more legible than b58900) */
+  --color-accent: #ffd700; /* Optional: Bright gold for accents/hovers */
 }
 
 html[dir="rtl"] {
@@ -231,7 +239,6 @@ html[dir="ltr"] .menu-items {
   right: 0;
   left: auto;
 }
-
 
 .animate-fadeIn {
   animation: fadeIn 1s ease-out;

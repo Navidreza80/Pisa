@@ -39,7 +39,7 @@ function Rent() {
             {t("apartmentRentTitle")}
           </h1>
           {filters.search && (
-            <div className="bg-[#586CFF] rounded-[16px] text-white p-[8px] text-[28px] font-[700]">
+            <div className="bg-[#586CFF] lg:block md:block hidden rounded-[16px] text-white p-[8px] text-[28px] font-[700]">
               {filters.search}
             </div>
           )}
@@ -74,10 +74,12 @@ function Rent() {
             <FilterModal />
           </div>
 
-          <span className="h-[24px] w-[1px] my-auto bg-[#EAEAEA]" />
+          <span className="h-[24px] lg:block md:block hidden w-[1px] my-auto bg-[#EAEAEA]" />
 
           <div className="h-[48px] w-[306px] my-auto relative">
             <input
+              value={filters.search || ""}
+              onChange={(e) => handleChange("search", e.target.value)}
               type="text"
               placeholder={t("searchPlaceholder")}
               className="w-full h-full border border-gray-300 rounded-[16px] p-4 pr-[48px] text-sm outline-none placeholder:text-[#A6A6A6]"

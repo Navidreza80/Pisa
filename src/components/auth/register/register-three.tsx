@@ -2,6 +2,7 @@
 // Dependencies
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
+import * as Yup from "yup";
 
 // SVGs
 import MobileSVG from "@/components/common/svg/mobile";
@@ -20,7 +21,7 @@ import { getClientCookie } from "@/utils/service/storage/client-cookie";
 /**
  * Register step three component.
  * Get user password and phone number and complete the process
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered register step three
  */
@@ -31,13 +32,24 @@ function Register3() {
   const { mutate } = useCompleteRegister();
   const userId = getClientCookie("userId");
 
+  // Schema
+  const RegisterStepThree = Yup.object().shape({
+    repeatedPassword: Yup.string()
+      .required("تکرار رمز عبور الزامی است")
+      .oneOf([Yup.ref("password"), null], "رمز عبور صحیح تکرار نشده است"),
+    password: Yup.string().required("رمز عبور الزامی است"),
+    phoneNumber: Yup.string().required("رمز عبور الزامی است"),
+  });
+
   // Complete user register by posting user info logic
   const formik = useFormik({
     initialValues: {
       phoneNumber: "",
       password: "",
+      repeatedPassword: "",
       userId: "",
     },
+    validationSchema: RegisterStepThree,
     onSubmit: async (value) => {
       mutate({
         phoneNumber: value.phoneNumber,
@@ -57,7 +69,14 @@ function Register3() {
           onChange={formik.handleChange}
           placeHolder={t("NumberDesc")}
           icon={<MobileSVG />}
-        />
+        >
+          {" "}
+          {formik.errors.phoneNumber && (
+            <span className="text-red-500 text-sm text-right">
+              {formik.errors.phoneNumber}
+            </span>
+          )}
+        </InputAuth>
         <InputAuth
           id="password"
           name="password"
@@ -65,15 +84,29 @@ function Register3() {
           onChange={formik.handleChange}
           placeHolder={t("passwordDesc")}
           icon={<Password />}
-        />
+        >
+          {" "}
+          {formik.errors.password && (
+            <span className="text-red-500 text-sm text-right">
+              {formik.errors.password}
+            </span>
+          )}
+        </InputAuth>
         <InputAuth
-          id="password"
-          name="password"
-          value={formik.values.password}
+          id="repeatedPassword"
+          name="repeatedPassword"
+          value={formik.values.repeatedPassword}
           onChange={formik.handleChange}
           placeHolder={t("ConfirmPasswordDesc")}
           icon={<RepeatPassword />}
-        />
+        >
+          {" "}
+          {formik.errors.repeatedPassword && (
+            <span className="text-red-500 text-sm text-right">
+              {formik.errors.repeatedPassword}
+            </span>
+          )}
+        </InputAuth>
         <Button text={t("Register")} />
       </div>
     </form>

@@ -16,7 +16,7 @@ import { FilterModal } from "../common/house/filter-reserve";
 import HouseSkeleton from "../common/skeleton/house-skeleton";
 
 export default function ReserveContainer() {
-  const [currentLoc, setCurrentLoc] = useState([36.570797, 53.058983]);
+  const [currentLoc, setCurrentLoc] = useState([34, 52]);
   const { data: houses, isLoading } = useHouses();
   const filters = useAppSelector((state) => state.reserveFilters);
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ export default function ReserveContainer() {
 
   return (
     <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
-      <Map currentLoc={currentLoc} houses={houses} />
+      {typeof window !== "undefined" && <Map currentLoc={currentLoc} houses={houses} />}
       <div className="flex-grow">
         <div className="h-[62px] w-full pb-6 lg:pl-7 md:pl-0 pl-0 flex gap-4">
           <div className="relative w-[calc(100%-101px)]">

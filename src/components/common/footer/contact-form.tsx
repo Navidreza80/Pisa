@@ -74,7 +74,7 @@ export default function ContactForm() {
             id="title"
             name="title"
             placeholder={t("title")}
-            className="h-[48px] text-right rounded-xl"
+            className="h-[48px] text-right rounded-xl border-border"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.title}
@@ -92,7 +92,7 @@ export default function ContactForm() {
             id="message"
             name="message"
             placeholder={t("desc")}
-            className="h-[48px] text-right rounded-xl"
+            className="h-[48px] text-right rounded-xl border-border"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.message}

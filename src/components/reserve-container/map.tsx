@@ -21,13 +21,13 @@ function RecenterMap({ center }) {
 export default function Map({ houses, currentLoc }) {
   return (
     <div className="lg:max-w-[45%] md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none lg:rounded-tr-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
-      <MapContainer
+      {typeof window !== "undefined" && <MapContainer
         className="!z-10 h-full w-full"
         center={currentLoc}
-        zoom={13}
+        zoom={5}
         scrollWheelZoom={false}
       >
-        <RecenterMap center={currentLoc} />
+        {typeof window !== "undefined" && <RecenterMap center={currentLoc} />}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -86,7 +86,7 @@ export default function Map({ houses, currentLoc }) {
             </Marker>
           );
         })}
-      </MapContainer>
+      </MapContainer>}
     </div>
   );
 }
