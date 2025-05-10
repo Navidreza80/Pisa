@@ -38,8 +38,8 @@ export default async function HeroSection() {
             br: () => <br />,
           })}
         </h2>
-        <Link href="/rent">
-          <Button className="mt-8 cursor-pointer lg:mx-0  md:mx-0 mx-auto group overflow-hidden !w-auto gap-1 text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
+        <Link href="/rent" className="lg:mx-0  md:mx-0 mx-auto">
+          <Button className="mt-8 cursor-pointer group overflow-hidden !w-auto gap-1 text-base animate-[var(--animation-fade-in-up)] [animation-delay:0.3s]">
             <div className="relative right-0 rtl:hidden group-hover:right-8 transition-all duration-100 ease-out opacity-100 group-hover:opacity-0">
               <ArrowLeft style={{ fontSize: "20px" }} />
             </div>
