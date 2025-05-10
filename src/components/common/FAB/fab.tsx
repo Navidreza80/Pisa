@@ -110,8 +110,14 @@ export default function FloatingActions() {
       return true;
     }
 
-    if (command.includes("dark") || command.includes("theme")) {
-      setDark((prev) => !prev);
+    if (command.includes("dark")) {
+      setTheme("dark");
+      dispatch(toggleDarkMode());
+      return true;
+    }
+
+    if (command.includes("solar")) {
+      setTheme("solarized");
       dispatch(toggleDarkMode());
       return true;
     }

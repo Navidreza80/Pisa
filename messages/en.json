@@ -136,7 +136,8 @@
     "light": "Light Mode",
     "dark": "Dark Mode",
     "voice": "Voice",
-    "listening": "Listening..."
+    "listening": "Listening...",
+    "solarized": "Solarized"
   },
   "Footer": {
     "contact": "Contact Us",
