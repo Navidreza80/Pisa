@@ -7,6 +7,7 @@ import HeroSection from "./hero-section/hero-section";
 import Popular from "./locations/locations";
 import Offers from "./offers/offers";
 import TopSales from "./topSale/TopSale";
+import Comments from "./comments/Comments";
 
 export default async function HomeContainer() {
   const data: HouseItemsInterface[] = await fetchHouses({
@@ -31,6 +32,7 @@ export default async function HomeContainer() {
             shirazHouses={shirazHouses}
             esfahanHouses={esfahanHouses}
           />
+          <Comments />
         </div>
       </div>
     </Container>
