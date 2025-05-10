@@ -24,7 +24,7 @@ import { useState } from "react";
 
 /**
  * Header navbar component for navigating through pages.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered navbar
  */
@@ -52,20 +52,6 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-center gap-14 p-1 max-[600px]:hidden">
-      {navItems.map((item, index) => {
-        return (
-          <TransitionLink
-            key={index}
-            href={item.url}
-            className={`${
-              pathname == item.url ? "border-b-2 border-text hover:border-primary" : "border-none"
-            } font-bold hover:text-primary transition-colors duration-300 `}
-          >
-            {item.text}
-          </TransitionLink>
-        );
-      })}
-
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
           dir="rtl"
@@ -98,6 +84,21 @@ export default function Navbar() {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+      {navItems.map((item, index) => {
+        return (
+          <TransitionLink
+            key={index}
+            href={item.url}
+            className={`${
+              pathname == item.url
+                ? "border-b-2 border-text hover:border-primary"
+                : "border-none"
+            } font-bold hover:text-primary transition-colors duration-300 `}
+          >
+            {item.text}
+          </TransitionLink>
+        );
+      })}
     </div>
   );
 }

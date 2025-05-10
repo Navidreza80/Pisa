@@ -137,6 +137,7 @@ function Rent() {
             key={index}
             discount
             showRooms
+            showCapacity
             showBathrooms
             showParking
             card={card}

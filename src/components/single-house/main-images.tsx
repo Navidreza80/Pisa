@@ -5,7 +5,12 @@ export default async function MainImages({ photos }: { photos: string[] }) {
     <>
       {/* Right section */}
       <div className="flex gap-4 flex-wrap lg:sticky animate-fade-left md:relative relative lg:top-10 md:top-0 top-0 lg:w-[47%] md:w-full w-full h-[calc(100vh-100px)]">
-        <RightImg photos={photos} />
+        {/* <RightImg photos={photos} /> */}
+        <img
+          src={photos[0]}
+          className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
+          alt="Property"
+        />
         {/* + n other pictures section */}
         <div
           dir="rtl"

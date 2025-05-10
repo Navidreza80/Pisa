@@ -3,7 +3,7 @@
 import { FC } from "react";
 
 // Dependencies
-import { A11y, Autoplay, Pagination } from "swiper/modules";
+import { A11y, Autoplay } from "swiper/modules";
 import { Swiper as SwiperHolder } from "swiper/react";
 import { SwiperOptions } from "swiper/types";
 

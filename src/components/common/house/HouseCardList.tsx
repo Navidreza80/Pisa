@@ -1,14 +1,14 @@
 "use client";
 // React & Next
-import { Fragment } from "react";
 import { useTranslations } from "next-intl";
+import { Fragment } from "react";
 
 // Third party components
 import Slider from "@/components/common/slider/Slider";
 
 // Dependencies
-import { SwiperSlide } from "swiper/react";
 import Tilt from "react-parallax-tilt";
+import { SwiperSlide } from "swiper/react";
 
 // SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
@@ -16,12 +16,12 @@ import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
-import PersonSVG from "../svg/person";
 import LocationSVG from "../svg/location";
+import PersonSVG from "../svg/person";
 
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
-import Link from "next/link";
+import { TransitionLink } from "@/utils/helper/TransitionLink";
 
 /**
  * Filter reservation houses component.
@@ -129,90 +129,93 @@ export default function HouseCardList({
           </button>
         )}
       </div>
-        <div className="flex gap-[9px] flex-wrap justify-start">
-          <h1 className="font-[600] w-full text-right text-[20px] text-text ">
-            {card.title}
-          </h1>
-          <div dir="rtl" className="flex w-full justify-start gap-[5px]">
-            <div className="flex gap-1.5">
-              <MapSVG color="gray" />
-              <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
-                {card.address}
-              </h1>
-            </div>
+      <TransitionLink
+        href={`/property-detail/${card.id}`}
+        className="flex gap-[9px] flex-wrap justify-start"
+      >
+        <h1 className="font-[600] w-full text-right text-[20px] text-text ">
+          {card.title}
+        </h1>
+        <div dir="rtl" className="flex w-full justify-start gap-[5px]">
+          <div className="flex gap-1.5">
+            <MapSVG color="gray" />
+            <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
+              {card.address}
+            </h1>
           </div>
         </div>
+      </TransitionLink>
 
-        <div className="bg-border h-[1px]"></div>
-        {showFacilities && (
-          <>
-            <div className="flex flex-row-reverse justify-between">
-              {visibleFeatures.map((feature, index) => (
-                <Fragment key={feature.id}>
-                  {index > 0 && <div className="bg-border w-[1px]" />}
-                  <div className="flex flex-row-reverse gap-[5px]">
-                    {feature.icon}
-                    <div className="flex flex-row-reverse gap-[3px]">
-                      <h1 className="font-yekannum">{feature.value}</h1>
-                      {feature.label && <h1>{feature.label}</h1>}
-                    </div>
-                  </div>
-                </Fragment>
-              ))}
-            </div>
-          </>
-        )}
-
-        {!discount ? (
-          <div dir="rtl" className="flex justify-between">
-            <div className="flex gap-1" dir="rtl">
-              <div className="flex flex-row-reverse gap-[10px]">
-                <div className="relative">
-                  <div className="flex flex-row-reverse gap-[5px] ">
-                    <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
-                      {card.price}
-                    </h1>
+      <div className="bg-border h-[1px]"></div>
+      {showFacilities && (
+        <>
+          <div className="flex flex-row-reverse justify-between">
+            {visibleFeatures.map((feature, index) => (
+              <Fragment key={feature.id}>
+                {index > 0 && <div className="bg-border w-[1px]" />}
+                <div className="flex flex-row-reverse gap-[5px]">
+                  {feature.icon}
+                  <div className="flex flex-row-reverse gap-[3px]">
+                    <h1 className="font-yekannum">{feature.value}</h1>
+                    {feature.label && <h1>{feature.label}</h1>}
                   </div>
                 </div>
-              </div>
-              <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-                تومان
-              </p>
-            </div>
+              </Fragment>
+            ))}
           </div>
-        ) : (
-          <div dir="rtl" className="flex justify-between">
+        </>
+      )}
+
+      {!discount ? (
+        <div dir="rtl" className="flex justify-between">
+          <div className="flex gap-1" dir="rtl">
             <div className="flex flex-row-reverse gap-[10px]">
-              <div className="relative opacity-[0.5]">
+              <div className="relative">
                 <div className="flex flex-row-reverse gap-[5px] ">
-                  <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+                  <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
                     {card.price}
                   </h1>
-                  <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-                    تومان
-                  </p>
                 </div>
-
-                <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
               </div>
-              <p className="text-[16px] font-[700] my-auto">/</p>
-              <div className="flex flex-row-reverse gap-[5px]">
+            </div>
+            <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+              تومان
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div dir="rtl" className="flex justify-between">
+          <div className="flex flex-row-reverse gap-[10px]">
+            <div className="relative opacity-[0.5]">
+              <div className="flex flex-row-reverse gap-[5px] ">
                 <h1 className="text-[20px] font-[700] my-auto font-yekannum">
-                  {(card.price * 50) / 100}
+                  {card.price}
                 </h1>
                 <p className="text-[12px] font-[700] my-auto text-text-secondary ">
                   تومان
                 </p>
               </div>
-              <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
-                <h1 className="text-white text-[16px] font-[700] font-yekannum">
-                  50
-                </h1>
-                <h1 className="text-white text-[16px] font-[700]">%</h1>
-              </div>
+
+              <div className="bg-[#FF5555] top-[17px] absolute w-[100%] h-[2px] rotate-[-9.3deg]"></div>
+            </div>
+            <p className="text-[16px] font-[700] my-auto">/</p>
+            <div className="flex flex-row-reverse gap-[5px]">
+              <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+                {(card.price * 50) / 100}
+              </h1>
+              <p className="text-[12px] font-[700] my-auto text-text-secondary ">
+                تومان
+              </p>
+            </div>
+            <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
+              <h1 className="text-white text-[16px] font-[700] font-yekannum">
+                50
+              </h1>
+              <h1 className="text-white text-[16px] font-[700]">%</h1>
             </div>
           </div>
-        )}
+        </div>
+      )}
     </Tilt>
   );
 }
