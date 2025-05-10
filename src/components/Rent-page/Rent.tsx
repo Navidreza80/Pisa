@@ -34,7 +34,7 @@ function Rent() {
   return (
     <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       <div>
-        <div className="flex gap-[8px] mb-[32px]">
+        <div className="flex gap-[8px] mb-[32px] animate-fade-down">
           <h1 className="text-text text-[36px] font-[700]">
             {t("apartmentRentTitle")}
           </h1>
@@ -46,7 +46,7 @@ function Rent() {
         </div>
         <div
           dir="rtl"
-          className="flex flex-row-reverse flex-wrap justify-end gap-[16px] p-4"
+          className="flex animate-fade-up flex-row-reverse flex-wrap justify-end gap-[16px] p-4"
         >
           {filtersItems.map((item) => (
             <button

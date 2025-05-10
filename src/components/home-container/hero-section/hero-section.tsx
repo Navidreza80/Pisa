@@ -17,7 +17,7 @@ export default async function HeroSection() {
   return (
     <div className="my-8 flex lg:justify-between md:justify-center justify-center relative">
       <Search />
-      <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-[var(--animation-fade-in-left)]">
+      <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-fade-right">
         <Image
           src={hero}
           width={497}
@@ -31,7 +31,7 @@ export default async function HeroSection() {
           <ArrowDownSVG />
         </div>
       </div>
-      <div className="flex justify-start items-end flex-wrap flex-col mt-7 animate-[var(--animation-fade-in-right)]">
+      <div className="flex justify-start items-end flex-wrap flex-col mt-7 animate-fade-left">
         <h1 className="text-4xl rtl:text-left font-bold lg:text-right md:text-center text-center animate-[var(--animation-fade-in-up)] [animation-delay:0.1s]">
           {t.rich("title", {
             br: () => <br />,

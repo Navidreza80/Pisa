@@ -92,7 +92,7 @@ export default function HouseCardList({
   return (
     <Tilt
       transitionSpeed={2500}
-      className={`flex flex-col hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
+      className={`flex flex-col animate-rotate-y hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
         minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
       } ${
         width ? width : "w-[calc(33.3%-20px)]"
