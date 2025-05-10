@@ -43,7 +43,7 @@ export default function Auth() {
   const currentImage = natureImages[currentImageIndex];
 
   return (
-    <div className="max-[1300px]:hidden h-[calc(100vh-32px)] w-full">
+    <div className="max-[1300px]:hidden h-[calc(100vh-32px)] animate-fade-right w-full">
       <div className="relative max-w-[704px] h-full w-full">
         <ImageAuth
           imageTitle={currentImage.title}

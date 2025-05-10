@@ -9,6 +9,7 @@ import Slider from "@/components/common/slider/Slider";
 // Dependencies
 import Tilt from "react-parallax-tilt";
 import { SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
 
 // SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
@@ -92,13 +93,19 @@ export default function HouseCardList({
   return (
     <Tilt
       transitionSpeed={2500}
-      className={`flex flex-col hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
+      className={`flex flex-col group hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
         minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
       } ${
         width ? width : "w-[calc(33.3%-20px)]"
       } p-4 rounded-[40px] gap-[13px] border-border`}
     >
-      <div className="overflow-hidden w-full relative h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black">
+      <motion.div
+        className="overflow-hidden w-full relative h-[221px] rounded-b-[16px] rounded-t-[24px] bg-black"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <Slider
           className="w-[340px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -128,12 +135,12 @@ export default function HouseCardList({
             <LocationSVG />
           </button>
         )}
-      </div>
+      </motion.div>
       <TransitionLink
         href={`/property-detail/${card.id}`}
         className="flex gap-[9px] flex-wrap justify-start"
       >
-        <h1 className="font-[600] w-full text-right text-[20px] text-text ">
+        <h1 className="font-[600] group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
           {card.title}
         </h1>
         <div dir="rtl" className="flex w-full justify-start gap-[5px]">
@@ -172,7 +179,7 @@ export default function HouseCardList({
             <div className="flex flex-row-reverse gap-[10px]">
               <div className="relative">
                 <div className="flex flex-row-reverse gap-[5px] ">
-                  <h1 className="text-[20px] font-[yekannum] font-[700] my-auto">
+                  <h1 className="text-[20px] animate-rotate-y font-[yekannum] font-[700] my-auto">
                     {card.price}
                   </h1>
                 </div>

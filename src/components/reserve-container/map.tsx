@@ -20,7 +20,7 @@ function RecenterMap({ center }) {
 
 export default function Map({ houses, currentLoc }) {
   return (
-    <div className="lg:max-w-[45%] md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none lg:rounded-tr-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
+    <div className="lg:max-w-[45%] animate-jump-in md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none lg:rounded-tr-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
       {typeof window !== "undefined" && <MapContainer
         className="!z-10 h-full w-full"
         center={currentLoc}
