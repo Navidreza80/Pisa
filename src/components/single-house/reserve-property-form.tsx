@@ -29,7 +29,7 @@ export default async function ReserveForm() {
         <div className="flex flex-col gap-3">
           <h1 className="text-text">قیمت</h1>
           <div className="flex flex-row-reverse gap-[5px]">
-            <h1 className="text-[20px] font-[700] my-auto font-yekannum">
+            <h1 className="text-[20px] font-[700] my-auto ">
               1500000
             </h1>
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">

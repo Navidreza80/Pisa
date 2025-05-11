@@ -60,7 +60,7 @@ export default function MobileNav() {
           style={{ direction }}
         >
           <SheetHeader>
-            <SheetTitle className="font-yekan text-lg px-2 pt-5 pb-4"></SheetTitle>
+            <SheetTitle className=" text-lg px-2 pt-5 pb-4"></SheetTitle>
           </SheetHeader>
           <div className="flex flex-col mt-2 gap-2 px-2 pb-4">
             {navItems.map((item, index) => (
@@ -72,7 +72,7 @@ export default function MobileNav() {
                 <SheetClose asChild>
                   <Link
                     href={item.url}
-                    className={`font-yekan text-base text-text ${
+                    className={` text-base text-text ${
                       direction === "rtl" ? "text-right" : "text-left"
                     }`}
                   >

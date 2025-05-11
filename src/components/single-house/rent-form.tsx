@@ -9,7 +9,7 @@ export default async function RentForm() {
       <SectionName sectionName={t("rentPrice")} />
       {/* Top section */}
       <div className="w-full flex gap-[17px]">
-        <div className="w-[calc(50%-8.5px)] border rounded-[20px] py-3 px-4 border-border h-[93px] text-primary text-[20px] flex flex-col gap-y-3 font-yekannum">
+        <div className="w-[calc(50%-8.5px)] border rounded-[20px] py-3 px-4 border-border h-[93px] text-primary text-[20px] flex flex-col gap-y-3 ">
           {/* Title */}
           {t("mortgageFrom")}
           {/* Value */}
@@ -19,12 +19,12 @@ export default async function RentForm() {
               تومان
             </p>
             {/* Price */}
-            <h1 className="text-[20px] font-[700] !text-text my-auto font-yekannum">
+            <h1 className="text-[20px] font-[700] !text-text my-auto ">
               1200000
             </h1>
           </div>
         </div>
-        <div className="w-[calc(50%-8.5px)] border rounded-[20px] py-3 px-4 border-border h-[93px] text-primary text-[20px] flex flex-col gap-y-3 font-yekannum">
+        <div className="w-[calc(50%-8.5px)] border rounded-[20px] py-3 px-4 border-border h-[93px] text-primary text-[20px] flex flex-col gap-y-3 ">
           {/* Title */}
           {t("rentFrom")}
           {/* Value */}
@@ -34,7 +34,7 @@ export default async function RentForm() {
               تومان
             </p>
             {/* Price */}
-            <h1 className="text-[20px] font-[700] !text-text my-auto font-yekannum">
+            <h1 className="text-[20px] font-[700] !text-text my-auto ">
               1200000
             </h1>
           </div>
@@ -47,7 +47,7 @@ export default async function RentForm() {
           <div className="h-12 bg-gray-600 aspect-square rounded-full"></div>
           <div className="flex flex-col justify-between">
             <h4 className="text-text">عباس بهبودی</h4>
-            <h4 className="text-text-secondary font-yekannum" dir="rtl">
+            <h4 className="text-text-secondary " dir="rtl">
               13 اردیبهشت 1404
             </h4>
           </div>
@@ -79,7 +79,7 @@ export default async function RentForm() {
             </svg>
           </span>
           {/* Phone number */}
-          <span className="h-full w-[292px] text-white rounded-full font-yekannum flex justify-center items-center bg-primary">
+          <span className="h-full w-[292px] text-white rounded-full  flex justify-center items-center bg-primary">
             {t("phoneNumber")}: 09064052060
           </span>
         </div>

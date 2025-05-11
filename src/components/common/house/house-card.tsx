@@ -32,7 +32,7 @@ const FeatureItem = ({
 }) => (
   <div className="flex items-center gap-1 text-sm text-gray-600">
     <span>{icon}</span>
-    <span className="font-yekannum">
+    <span className="">
       {value} {label}
     </span>
   </div>
@@ -65,9 +65,9 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
 
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-lg font-bold mb-2 font-yekan">{item.title}</h3>
+          <h3 className="text-lg font-bold mb-2 ">{item.title}</h3>
           {item.address && (
-            <p className="text-text-secondary text-sm mb-2 font-yekan">
+            <p className="text-text-secondary text-sm mb-2 ">
               {item.address}
             </p>
           )}
@@ -75,7 +75,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
         {item.rate && (
           <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-md">
             <span className="text-yellow-500">★</span>
-            <span className="font-yekannum">{item.rate}</span>
+            <span className="">{item.rate}</span>
           </div>
         )}
       </div>
@@ -85,7 +85,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
           item.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
-              className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full font-yekan"
+              className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full "
             >
               {tag}
             </span>
@@ -110,7 +110,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
 
       <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
         {item.price && (
-          <span className="font-medium font-yekannum text-[#586CFF]">
+          <span className="font-medium  text-[#586CFF]">
             {parseInt(item.price).toLocaleString()} تومان
             {item.transaction_type === "rental" && (
               <span className="text-xs text-gray-500 mr-1">
@@ -119,7 +119,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
             )}
           </span>
         )}
-        <button className="bg-[#586CFF] text-white px-4 py-2 rounded-lg text-sm font-yekan hover:bg-[#4A5FE3] transition-colors">
+        <button className="bg-[#586CFF] text-white px-4 py-2 rounded-lg text-sm  hover:bg-[#4A5FE3] transition-colors">
           {t("viewDetails")}
         </button>
       </div>

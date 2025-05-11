@@ -68,7 +68,7 @@ export default function Navbar() {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="center"
-          className="font-yekan bg-background border-border"
+          className=" bg-background border-border"
         >
           {rentItems.map((item, index) => (
             <DropdownMenuItem key={index} asChild dir="rtl">

@@ -38,7 +38,7 @@ export default async function Facilities({
               className="border-border animate-flip-up rounded-full px-4 py-3 border text-text-secondary flex justify-start gap-3 "
             >
               {item.text}
-              <p className="font-yekannum text-text">
+              <p className=" text-text">
                 {item.value + " " + item.suffix}{" "}
               </p>
             </span>

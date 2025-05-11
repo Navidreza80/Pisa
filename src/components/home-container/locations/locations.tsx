@@ -23,9 +23,9 @@ export default async function Popular({tehranHouses, shirazHouses, esfahanHouses
           ).map((card) => (
             <div
               key={card.id}
-              className=" flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border  p-[12px] rounded-[20px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)]"
+              className=" flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border  p-[12px] rounded-[40px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)]"
             >
-              <div className="w-full h-[153px] rounded-[20px] overflow-hidden bg-black">
+              <div className="w-full h-[153px] rounded-t-[24px] rounded-b-[16px] overflow-hidden bg-black">
                 <img
                   src={
                     card.id == 1
@@ -39,9 +39,9 @@ export default async function Popular({tehranHouses, shirazHouses, esfahanHouses
                 />
               </div>
 
-              <div className="p-4 flex flex-row-reverse justify-between text-center">
+              <div className="p-4 flex flex-row-reverse justify-between items-center text-center">
                 <LocationName area_name={card.area_name} />
-                <span className="text-text-secondary font-yekannum" dir="rtl">({card.area_name.includes("تهران") ? tehranHouses : card.area_name.includes("شیراز") ? shirazHouses : esfahanHouses} مورد)</span>
+                <span className="text-text-secondary " dir="rtl">({card.area_name.includes("تهران") ? tehranHouses : card.area_name.includes("شیراز") ? shirazHouses : esfahanHouses} مورد)</span>
               </div>
             </div>
           ))}

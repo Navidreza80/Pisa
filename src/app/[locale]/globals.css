@@ -9,7 +9,6 @@ body {
 
 @theme {
   --font-yekan: "Yekan", "sans-serif";
-  --font-yekannum: "Yekannum", "sans-serif";
 
   --color-background: #fff;
   --color-surface: #ffffff;
@@ -17,6 +16,7 @@ body {
   --color-text: #181a20;
   --color-text-secondary: #727272;
   --color-primary: #586cff;
+  --color-fade: #A6A6A6;
 
   --animation-fade-in-up: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   --animation-fade-in: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -136,17 +136,10 @@ body {
   }
 }
 
-@font-face {
-  font-family: "Yekan";
-  src: url("../../../public/fonts/iranyekanweblight.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: "Yekan";
-  src: url("../../../public/fonts/iranyekanwebregular.woff") format("woff");
+  src: url("../../../public/fonts/IRANYekanXFaNum-Regular.ttf") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -154,7 +147,7 @@ body {
 
 @font-face {
   font-family: "Yekan";
-  src: url("../../../public/fonts/iranyekanwebmedium.woff") format("woff");
+  src: url("../../../public/fonts/IRANYekanXFaNum-Medium.ttf") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -162,15 +155,15 @@ body {
 
 @font-face {
   font-family: "Yekan";
-  src: url("../../../public/fonts/iranyekanwebbold.woff") format("woff");
-  font-weight: 700;
+  src: url("../../../public/fonts/IRANYekanXFaNum-DemiBold.ttf") format("woff");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Yekannum";
-  src: url("../../../public/fonts/iranyekanwebboldfanum.woff") format("woff");
+  font-family: "Yekan";
+  src: url("../../../public/fonts/IRANYekanXFaNum-Bold.ttf") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -267,4 +260,9 @@ html[dir="ltr"] .menu-items {
   100% {
     transform: translateY(0);
   }
+}
+
+[data-shadcn-select-value] {
+  font-weight: 500 !important;
+  color: --var(text-fade);
 }

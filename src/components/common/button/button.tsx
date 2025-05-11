@@ -10,11 +10,6 @@ const SIZES = {
 const COLORS = {
   primary: "bg-primary text-white",
 };
-// button border radius
-const Radiuses = {
-  sm: "rounded-xl",
-  md: "rounded-2xl",
-};
 
 // types
 type ButtonProps = {
@@ -50,7 +45,6 @@ export default function Button({
   children,
   className,
   handleClick,
-  radius = "md",
   disabled,
 }: ButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -60,10 +54,10 @@ export default function Button({
       type="submit"
       ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
-      className={`flex items-center hover:bg-[#4A5FE3] !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center cursor-pointer hover:bg-[#4A5FE3] font-semibold !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
         SIZES[size]
-      } ${Radiuses[radius]}`}
+      }`}
     >
       {/* Start Content (Icon/Text) */}
       {startContent && <span className="mr-2">{startContent}</span>}

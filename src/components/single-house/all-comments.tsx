@@ -23,14 +23,14 @@ export default async function AllComments({
             <div className="flex flex-col">
               <h2 className="text-text">عباس بهبودی</h2>
               <h3
-                className="text-text-secondary text-sm font-yekannum"
+                className="text-text-secondary text-sm "
                 dir="rtl"
               >
                 15 اردیبهشت 1404
               </h3>
-              <p className="mt-3 font-yekannum lg:w-[400px] md:w-[400px] w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{comment.caption}</p>
+              <p className="mt-3  lg:w-[400px] md:w-[400px] w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{comment.caption}</p>
               <div className="mt-[13px] flex gap-6">
-                <span className="font-yekannum text-sm text-text-secondary flex gap-1 cursor-pointer">
+                <span className=" text-sm text-text-secondary flex gap-1 cursor-pointer">
                   <ArrowSVG /> مشاهده 12 پاسخ
                 </span>
                 <span className="text-sm text-primary cursor-pointer">پاسخ دادن</span>
@@ -76,15 +76,15 @@ export default async function AllComments({
         </div>
         <div className="flex flex-col">
           <h2 className="text-text">عباس بهبودی</h2>
-          <h3 className="text-text-secondary text-sm font-yekannum" dir="rtl">
+          <h3 className="text-text-secondary text-sm " dir="rtl">
             15 اردیبهشت 1404
           </h3>
-          <p className="mt-3 font-yekannum">
+          <p className="mt-3 ">
             راضی نبودم ، چرت محض بود این هتل . 25 موقعیت پنالتی داشتیم نگرفتن
             برامون واقعا این چه وضعشه
           </p>
           <div className="mt-[13px] flex gap-6">
-            <span className="font-yekannum text-sm text-text-secondary flex gap-1">
+            <span className=" text-sm text-text-secondary flex gap-1">
               <ArrowSVG /> مشاهده 12 پاسخ{" "}
             </span>
             <span className="text-sm text-primary">پاسخ دادن</span>

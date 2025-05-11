@@ -42,7 +42,7 @@ const SimpleCaptcha = ({ onVerify }) => {
       <div className="space-y-2 w-full">
         <label className="block text-sm font-medium">کد امنیتی</label>
         <div className='flex justify-between w-full'>
-          <div className="text-2xl w-[146px] text-center text-white font-yekannum tracking-widest bg-[#2b73e3] px-4 py-2 rounded">
+          <div className="text-2xl w-[146px] text-center text-white  tracking-widest bg-[#2b73e3] px-4 py-2 rounded">
             {captchaCode}
           </div>
 

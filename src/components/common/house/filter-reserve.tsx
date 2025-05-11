@@ -89,11 +89,11 @@ export function FilterModal() {
             <div dir="rtl" className="flex flex-col gap-4">
               <div className="flex gap-1.5">
                 <h1 className="text-text-secondary">{t("priceFrom")}</h1>
-                <p className="text-text font-yekannum">{filters?.minPrice}</p>
+                <p className="text-text ">{filters?.minPrice}</p>
               </div>
               <div className="flex gap-1.5">
                 <h1 className="text-text-secondary">{t("priceTo")}</h1>
-                <p className="text-text font-yekannum">{filters?.maxPrice}</p>
+                <p className="text-text ">{filters?.maxPrice}</p>
               </div>
             </div>
             <Slider

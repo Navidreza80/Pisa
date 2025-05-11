@@ -3,6 +3,10 @@ import type WelcomeTitleProps from "@/types/auth";
 
 // SVGs
 import LogoSVG from "@/components/common/svg/logo";
+import { HomeIcon } from "lucide-react";
+
+// Next
+import Link from "next/link";
 
 /**
  * Reusable welcome title to show title and description of the auth pages
@@ -15,8 +19,14 @@ import LogoSVG from "@/components/common/svg/logo";
 export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
     <>
-      <div dir="rtl" className="max-[600px]:w-[100%] mb-6">
+      <div
+        dir="rtl"
+        className="max-[600px]:w-[100%] mb-6 flex justify-between items-center"
+      >
         <LogoSVG size="w-[106px] h-[36px]" />
+        <Link href="/" className="bg-primary p-2 cursor-pointer rounded-full">
+          <HomeIcon className="text-white " />
+        </Link>
       </div>
       <div className="max-[600px]:w-[100%]">
         <h1 className="text-[36px] text-right font-[700] text-text mb-[24px]">

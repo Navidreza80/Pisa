@@ -38,7 +38,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   };
 
   return (
-    <div className="bg-[#FF5454] py-[12px] px-[16px] rounded-[16px] h-[50px] flex flex-row-reverse gap-[8px] font-yekannum">
+    <div className="bg-[#FF5454] py-[12px] px-[16px] rounded-[16px] h-[50px] flex flex-row-reverse gap-[8px] ">
       <h1 className="my-auto text-white text-[20px] font-[600]">
         {`${formatTime(timeLeft.hours)}:${formatTime(
           timeLeft.minutes

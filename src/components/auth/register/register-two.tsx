@@ -119,7 +119,7 @@ export default function Register2() {
         >
           <span className="flex bg-[#586CFF30] dark:bg-[#586CFF80] gap-[12px] p-[8px] pl-[12px] rounded-[100px]">
             <TimerSVG />
-            <p className="text-[#586CFF] font-yekannum text-[14px] font-bold my-auto dark:text-[#A9B8FF]">
+            <p className="text-[#586CFF]  text-[14px] font-bold my-auto dark:text-[#A9B8FF]">
               {timerStr}
             </p>
           </span>

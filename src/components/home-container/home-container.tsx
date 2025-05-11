@@ -20,9 +20,9 @@ export default async function HomeContainer() {
   ).length;
   return (
     <Container>
-      <div className="flex flex-col flex-wrap gap-[20px] w-[85.5%]">
+      <div className="flex flex-col flex-wrap gap-[118px] w-[85.5%]">
         <HeroSection />
-        <div className="animate-[var(--animation-content-pop)] [animation-timeline:scroll(root)] [animation-range:200px_600px] flex flex-col flex-wrap gap-[100px]">
+        <div className="animate-[var(--animation-content-pop)] [animation-timeline:scroll(root)] [animation-range:200px_600px] flex flex-col flex-wrap gap-[120px]">
           <Offers data={data} />
           <Category />
           <TopSales data={data} />
@@ -32,7 +32,7 @@ export default async function HomeContainer() {
             shirazHouses={shirazHouses}
             esfahanHouses={esfahanHouses}
           />
-          <Comments />
+          {/* <Comments /> */}
         </div>
       </div>
     </Container>

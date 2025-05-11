@@ -14,7 +14,7 @@ export default async function MainImages({ photos }: { photos: string[] }) {
         {/* + n other pictures section */}
         <div
           dir="rtl"
-          className="w-[calc(33.33333333333333%-10.7px)] font-yekannum text-text border rounded-t-2xl flex justify-center items-center border-border rounded-b-3xl h-[192px]"
+          className="w-[calc(33.33333333333333%-10.7px)]  text-text border rounded-t-2xl flex justify-center items-center border-border rounded-b-3xl h-[192px]"
         >
           <svg
             width="20"

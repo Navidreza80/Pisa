@@ -78,7 +78,7 @@ function Login() {
         <button
           onClick={() => login()}
           type="button"
-          className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
+          className="h-[48px] text-text border border-border rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
         >
           <span>{t("google")}</span>
           <GithubSVG />

@@ -141,7 +141,7 @@ export default function CommentsSwiper() {
                         </p>
                         <p
                           dir="rtl"
-                          className="font-[500] font-yekannum text-[14px] text-[#5F5F5F]"
+                          className="font-[500]  text-[14px] text-[#5F5F5F]"
                         >
                           {formatDate(comment.created_at)}
                         </p>

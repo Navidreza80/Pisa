@@ -23,7 +23,7 @@ const ScrollDown = () => {
       ref={ref}
       animate={controls}
       initial={{ opacity: 1 }}
-      className="bg-white border border-border absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around animate-[var(--animation-fade-in-up)] [animation-delay:0.2s]"
+      className="bg-white border border-border absolute aspect-square w-[112px] top-20 rounded-full right-[-50px] flex flex-col items-center justify-around animate-jump-in"
     >
       <Scroll />
       <p className="mt-2 font-semibold text-sm text-black">{t("scroll")}</p>

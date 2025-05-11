@@ -59,13 +59,13 @@ export default function Map({ houses, currentLoc }) {
                         alt={house.title}
                         className="w-[40px] aspect-square rounded-full"
                       />
-                      <span className="font-bold font-yekan text-white text-base">
+                      <span className="font-bold  text-white text-base">
                         {house.title}
                       </span>
                     </div>
                     <Link
                       href="#"
-                      className="!text-white font-yekan flex text-sm underline ml-2"
+                      className="!text-white  flex text-sm underline ml-2"
                     >
                       بیشتر
                       <ArrowLeftSVG />
@@ -73,10 +73,10 @@ export default function Map({ houses, currentLoc }) {
                   </div>
                   <div className="flex items-center w-2/3 relative right-11 text-white text-sm mb-1 gap-2">
                     <MapSVG />
-                    <span className="truncate font-yekan">{house.address}</span>
+                    <span className="truncate ">{house.address}</span>
                   </div>
                   <div className="relative right-11 mt-2">
-                    <span className="text-white text-base flex items-center gap-2 font-yekannum">
+                    <span className="text-white text-base flex items-center gap-2 ">
                       {house.price?.toLocaleString()}
                       <span className="text-xs">تومان</span>
                     </span>
