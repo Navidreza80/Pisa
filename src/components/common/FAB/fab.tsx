@@ -198,9 +198,9 @@ export default function FloatingActions() {
         const commandProcessed = processVoiceCommand(text);
 
         if (!commandProcessed) {
-          toast.info(t("Fab.noCommand") || "Command not recognized");
+          toast.info("درحال پردازش");
         } else {
-          toast.success(t("Fab.commandExecuted") || "Command executed");
+          toast.success("دستور با موفقیت اجرا شد");
         }
       }
     };

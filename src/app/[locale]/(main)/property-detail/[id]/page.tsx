@@ -35,6 +35,7 @@ export default async function HouseDetail({
   // Fetching related properties server side
   const relatedHouses: HouseItemsInterface[] = await fetchHouses({
     transactionType: "",
+    search: propertyDetails.address,
   });
 
   // Fetching property comments server side

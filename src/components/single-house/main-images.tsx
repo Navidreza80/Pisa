@@ -5,12 +5,12 @@ export default async function MainImages({ photos }: { photos: string[] }) {
     <>
       {/* Right section */}
       <div className="flex gap-4 flex-wrap lg:sticky animate-fade-left md:relative relative lg:top-10 md:top-0 top-0 lg:w-[47%] md:w-full w-full h-[calc(100vh-100px)]">
-        {/* <RightImg photos={photos} /> */}
-        <img
+        <RightImg photos={photos} />
+        {/* <img
           src={photos[0]}
           className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
           alt="Property"
-        />
+        /> */}
         {/* + n other pictures section */}
         <div
           dir="rtl"
@@ -26,9 +26,9 @@ export default async function MainImages({ photos }: { photos: string[] }) {
             <path
               d="M7.50004 5.5C7.50004 5.5 12.5 9.18242 12.5 10.5C12.5 11.8177 7.5 15.5 7.5 15.5"
               stroke="black"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           12+ عکس دیگر

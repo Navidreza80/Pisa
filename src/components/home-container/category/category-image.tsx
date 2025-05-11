@@ -15,14 +15,13 @@ import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserv
 
 /**
  * Reusable categories image component.
- * 
+ *
  * @component
  * @param {name} props - Component props
  * @returns {JSX.Element} - Rendered category image
  */
 
-const CategoryImage = ({ name }: {name: string}) => {
-
+const CategoryImage = ({ name }: { name: string }) => {
   // Filter the reservation house items while click on the category name
   const dispatch = useAppDispatch();
 
@@ -30,7 +29,7 @@ const CategoryImage = ({ name }: {name: string}) => {
     dispatch(setReserveFilters({ [name]: value }));
   };
   return (
-    <Link href="/reserve" onClick={() => handleChange("propertyType", name)}>
+    <Link href="/reserve" onClick={() => {handleChange("propertyType", name)}}>
       <Image
         src={
           name == "ویلا"

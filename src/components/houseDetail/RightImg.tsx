@@ -43,9 +43,9 @@ function RightImg({ photos }) {
     <>
       <button
         onClick={() => setShow3DTour(!show3DTour)}
-        className=" bg-white mb-4 px-4 py-2 rounded-lg shadow-md hover:bg-gray-100 transition z-10"
+        className=" bg-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-100 transition z-10"
       >
-        {show3DTour ? "نمایش عکس" : "نمایش 3 بعدی"}
+        {show3DTour ? "نمایش عکس" : "نمایش سه بعدی"}
       </button>
 
       {show3DTour ? (
