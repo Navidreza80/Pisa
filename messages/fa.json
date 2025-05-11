@@ -33,7 +33,8 @@
     "bathrooms": "حمام",
     "capacity": "نفر",
     "parking": "پارکینگ",
-    "property": "نوع ملک"
+    "property": "نوع ملک",
+    "CommentsPiza": "نظرات کاربران پیزا"
   },
   "Header": {
     "login": "ثبت نام و ورود",

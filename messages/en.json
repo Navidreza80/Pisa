@@ -33,7 +33,8 @@
     "bathrooms": "bathrooms",
     "capacity": "people",
     "parking": "parking",
-    "property": "Property Type"
+    "property": "Property Type",
+    "CommentsPiza": "Piza User Comments"
   },
   "Header": {
     "google": "Sign up in Piza with Google",

@@ -33,7 +33,8 @@
     "bathrooms": "banyo",
     "capacity": "kişi",
     "parking": "Otopark",
-    "property": "Mülk Türü"
+    "property": "Mülk Türü",
+    "CommentsPiza": "Pizza Kullanıcı Yorumları"
   },
   "Header": {
     "login": "Kayıt Ol/Giriş Yap",
