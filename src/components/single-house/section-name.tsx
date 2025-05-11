@@ -1,4 +1,4 @@
-export default async function SectionName({
+export default function SectionName({
   sectionName,
 }: {
   sectionName: string;
