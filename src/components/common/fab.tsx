@@ -17,8 +17,8 @@ import { useLocale, useTranslations } from "next-intl";
 // Third party components
 import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
-import ChatAssistant from "../chat/ai-assistant";
-import Chat from "../chat/chat-with-admin";
+import ChatAssistant from "./chat/ai-assistant";
+import Chat from "./chat/chat-with-admin";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { jwtDecode } from "jwt-decode";
 import { JwtPayload } from "@/types/user";

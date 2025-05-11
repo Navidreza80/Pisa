@@ -8,7 +8,7 @@ import { ReduxProvider } from "@/utils/providers/redux-provider";
 // Css imports
 import "../globals.css";
 // Third party components
-import FloatingActions from "@/components/common/FAB/fab";
+import FloatingActions from "@/components/common/fab";
 import Auth from "@/components/auth/auth";
 import Providers from "@/provider/provider";
 

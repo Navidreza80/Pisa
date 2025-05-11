@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 // Third party components
-import Button from "../button/button";
+import Button from "../button";
 
 // API
 import postMessage from "@/utils/service/contact-us/post";

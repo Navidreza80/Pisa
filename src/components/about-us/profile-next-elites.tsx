@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 // Images
-import FallbackImage from "@/components/common/image/FallbackImage";
+import FallbackImage from "@/components/common/FallbackImage";
 
 // Types
 import type ProfileProps from "@/types/about-us";

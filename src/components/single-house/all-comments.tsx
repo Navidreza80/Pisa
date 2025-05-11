@@ -21,7 +21,7 @@ export default async function AllComments({
               />
             </div>
             <div className="flex flex-col">
-              <h2 className="text-text">عباس بهبودی</h2>
+              <h2 className="text-text">{comment.user ? comment.user.firstName : "کاربر"}</h2>
               <h3
                 className="text-text-secondary text-sm "
                 dir="rtl"
@@ -75,7 +75,7 @@ export default async function AllComments({
           />
         </div>
         <div className="flex flex-col">
-          <h2 className="text-text">عباس بهبودی</h2>
+          <h2 className="text-text"> بهبودی</h2>
           <h3 className="text-text-secondary text-sm " dir="rtl">
             15 اردیبهشت 1404
           </h3>

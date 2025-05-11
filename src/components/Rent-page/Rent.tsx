@@ -9,7 +9,7 @@ import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slic
 import { useRentHouses } from "@/utils/hooks/use-houses";
 import { useState } from "react";
 import { FilterModal } from "../common/house/filter-rent";
-import HouseSkeleton from "../common/skeleton/house-skeleton";
+import HouseSkeleton from "../common/house/house-skeleton";
 import { useTranslations } from "next-intl";
 
 function Rent() {

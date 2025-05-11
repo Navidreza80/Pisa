@@ -1,6 +1,6 @@
 import { HouseItemsInterface } from "@/types/house";
 import { fetchHouses } from "@/utils/service/house/get";
-import Container from "../common/container/container";
+import Container from "../common/container";
 import Rank from "./Rank/Rank";
 import Category from "./category/Category";
 import HeroSection from "./hero-section/hero-section";

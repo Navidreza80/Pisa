@@ -22,8 +22,9 @@ import PersonSVG from "../svg/person";
 
 // Types
 import { FeatureItem, TopSaleCardListProps } from "@/types/house";
-import { TransitionLink } from "@/utils/helper/TransitionLink";
+import { TransitionLink } from "@/components/common/TransitionLink";
 import { formatNumber } from "@/utils/helper/format-number";
+import Reveal from "../reveal";
 
 /**
  * Filter reservation houses component.
@@ -139,17 +140,22 @@ export default function HouseCardList({
       </motion.div>
       <TransitionLink
         href={`/property-detail/${card.id}`}
-        className="flex gap-[9px] flex-wrap justify-start"
+        className="flex gap-[9px] flex-wrap justify-end"
       >
-        <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
-          {card.title}
-        </h1>
+        <Reveal width="100%">
+          <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
+            {card.title}
+          </h1>
+        </Reveal>
+
         <div dir="rtl" className="flex w-full justify-start gap-[5px]">
-          <div className="flex gap-1.5">
+          <div dir="rtl" className="flex gap-1.5">
             <MapSVG color="gray" />
-            <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
-              {card.address}
-            </h1>
+            <Reveal>
+              <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
+                {card.address}
+              </h1>
+            </Reveal>
           </div>
         </div>
       </TransitionLink>

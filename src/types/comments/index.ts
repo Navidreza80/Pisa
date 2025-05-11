@@ -7,6 +7,12 @@ export interface Comments {
   rating: number;
   created_at: Date;
   parent_comment_id: string | null;
-  user: null;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
+    profilePicture: null;
+  };
   parent_comment: Comment | null;
 }

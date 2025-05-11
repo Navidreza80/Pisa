@@ -29,7 +29,13 @@ const CategoryImage = ({ name }: { name: string }) => {
     dispatch(setReserveFilters({ [name]: value }));
   };
   return (
-    <Link href="/reserve" onClick={() => {handleChange("propertyType", name)}}>
+    <Link
+      href="/reserve"
+      className="relative"
+      onClick={() => {
+        handleChange("propertyType", name);
+      }}
+    >
       <Image
         src={
           name == "ویلا"
@@ -43,10 +49,11 @@ const CategoryImage = ({ name }: { name: string }) => {
         alt={name}
         width={1000}
         height={1000}
-        className="w-full h-full relative z-20 rounded-[20px] object-cover opacity-75
+        className="w-full h-full relative z-20 rounded-4xl object-cover opacity-85
                 transition-all duration-500 ease-in-out 
                 group-hover:opacity-60 group-hover:scale-110"
       />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/35 rounded-4xl z-30 to-transparent"></div>
     </Link>
   );
 };

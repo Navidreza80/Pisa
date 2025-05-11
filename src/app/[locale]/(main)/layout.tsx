@@ -7,7 +7,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import Providers from "@/provider/provider";
 
 // Third party components
-import FloatingActions from "@/components/common/FAB/fab";
+import FloatingActions from "@/components/common/fab";
 import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
 

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import AnimatedImage from "./animated-image";
+import Reveal from "@/components/common/reveal";
 
 function Rank() {
   const t = useTranslations("HomePage");
@@ -53,11 +54,13 @@ function Rank() {
         </div>
         <div className="flex flex-col lg:justify-end md:justify-center justify-center flex-wrap gap-[24px]">
           <div className="flex lg:justify-end md:justify-center justify-center">
-            <h1 className="text-text  w-[274px] lg:text-right md:text-center text-center font-[700] text-[28px]">
-              {t.rich("rank", {
-                br: () => <br />,
-              })}
-            </h1>
+            <Reveal>
+              <h1 className="text-text  w-[274px] lg:text-right md:text-center text-center font-[700] text-[28px]">
+                {t.rich("rank", {
+                  br: () => <br />,
+                })}
+              </h1>
+            </Reveal>
           </div>
           <div className="lg:justify-end md:justify-center justify-center flex">
             <p className="max-w-[451px] lg:text-right md:text-center text-center text-[16px} text-[#2C2C2C] font-[700] text-text-secondary ">

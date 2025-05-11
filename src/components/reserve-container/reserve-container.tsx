@@ -13,7 +13,7 @@ import {
 import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import { useHouses } from "@/utils/hooks/use-houses";
 import { FilterModal } from "../common/house/filter-reserve";
-import HouseSkeleton from "../common/skeleton/house-skeleton";
+import HouseSkeleton from "../common/house/house-skeleton";
 
 export default function ReserveContainer() {
   const [currentLoc, setCurrentLoc] = useState([34, 52]);

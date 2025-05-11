@@ -4,18 +4,26 @@ import Shiraz from "@/assets/images/landing/locations/shiraz.png";
 import Esfahan from "@/assets/images/landing/locations/esfahan.png";
 import { getAllLocations } from "@/utils/service/location/get";
 import LocationName from "./location-name";
+import Reveal from "@/components/common/reveal";
 
-export default async function Popular({tehranHouses, shirazHouses, esfahanHouses}) {
+export default async function Popular({
+  tehranHouses,
+  shirazHouses,
+  esfahanHouses,
+}) {
   const t = await getTranslations("HomePage");
   const locations = await getAllLocations();
 
   return (
-    <div>
-      <div className="text-right text-[28px] font-[700]">
-        {t.rich("rentTitle", {
-          br: () => <br />,
-        })}
-      </div>
+    <div dir="rtl">
+      <Reveal>
+        <div className="text-right text-[28px] font-[700]">
+          {t.rich("rentTitle", {
+            br: () => <br />,
+          })}
+        </div>
+      </Reveal>
+
       <div className="container mx-auto py-4">
         <div className="flex flex-wrap justify-center md:justify-center lg:justify-between gap-[22px] mb-6">
           {(
@@ -31,8 +39,8 @@ export default async function Popular({tehranHouses, shirazHouses, esfahanHouses
                     card.id == 1
                       ? Tehran.src
                       : card.id == 2
-                      ? Esfahan.src
-                      : Shiraz.src
+                        ? Esfahan.src
+                        : Shiraz.src
                   }
                   alt={card.name}
                   className="object-cover w-full h-full transition-all duration-500 ease-in-out hover:scale-110 hover:opacity-60"
@@ -40,8 +48,19 @@ export default async function Popular({tehranHouses, shirazHouses, esfahanHouses
               </div>
 
               <div className="p-4 flex flex-row-reverse justify-between items-center text-center">
+                <Reveal>
+                  <span className="text-text-secondary " dir="rtl">
+                    (
+                    {card.area_name.includes("تهران")
+                      ? tehranHouses
+                      : card.area_name.includes("شیراز")
+                        ? shirazHouses
+                        : esfahanHouses}{" "}
+                    مورد)
+                  </span>
+                </Reveal>
+
                 <LocationName area_name={card.area_name} />
-                <span className="text-text-secondary " dir="rtl">({card.area_name.includes("تهران") ? tehranHouses : card.area_name.includes("شیراز") ? shirazHouses : esfahanHouses} مورد)</span>
               </div>
             </div>
           ))}

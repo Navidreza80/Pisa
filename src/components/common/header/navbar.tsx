@@ -1,6 +1,6 @@
 "use client";
 // Third party components
-import { TransitionLink } from "@/utils/helper/TransitionLink";
+import { TransitionLink } from "@/components/common/TransitionLink";
 
 // Change lang
 import { useTranslations } from "next-intl";

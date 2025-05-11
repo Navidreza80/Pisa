@@ -11,7 +11,7 @@ import type { HouseItemsInterface } from "@/types/house";
 import type { Comments } from "@/types/comments";
 
 // Third party components
-import Container from "@/components/common/container/container";
+import Container from "@/components/common/container";
 import AllComments from "@/components/single-house/all-comments";
 import Facilities from "@/components/single-house/facilities";
 import HeaderSection from "@/components/single-house/header-section";
