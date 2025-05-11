@@ -4,25 +4,23 @@ import Image from "next/image";
 // API & data fetching
 import { fetchHouses } from "@/utils/service/house/get";
 import { getHouseById } from "@/utils/service/house/get-by-id";
-import { getAllPropertyComments } from "@/utils/service/comments/get";
 
 // Types
 import type { HouseItemsInterface } from "@/types/house";
-import type { Comments } from "@/types/comments";
 
 // Third party components
 import Container from "@/components/common/container";
+import PropertyLocation from "@/components/common/house/property-location";
 import AllComments from "@/components/single-house/all-comments";
 import Facilities from "@/components/single-house/facilities";
 import HeaderSection from "@/components/single-house/header-section";
 import MainImages from "@/components/single-house/main-images";
 import ParagraphSection from "@/components/single-house/paragraph-section";
 import RelatedHouse from "@/components/single-house/related-houses";
+import RentForm from "@/components/single-house/rent-form";
 import ReserveForm from "@/components/single-house/reserve-property-form";
 import SendComment from "@/components/single-house/send-comment-form";
 import TitleSection from "@/components/single-house/title-section";
-import RentForm from "@/components/single-house/rent-form";
-import PropertyLocation from "@/components/common/house/property-location";
 
 export default async function HouseDetail({
   params: { id },
@@ -37,9 +35,6 @@ export default async function HouseDetail({
     transactionType: "",
     search: propertyDetails.address,
   });
-
-  // Fetching property comments server side
-  const propertyComments: Comments[] = await getAllPropertyComments(id);
 
   // Getting isHotel value based on transaction type
   // If its "reservation" the property is hotel
@@ -114,10 +109,8 @@ export default async function HouseDetail({
 
             {/* Reserve section */}
             {isHotel ? <ReserveForm /> : <RentForm />}
-            {/* Send comment section */}
-            <SendComment />
             {/* Comments section */}
-            <AllComments propertyComments={propertyComments} />
+            <AllComments houseId={id} />
           </div>
         </div>
         {/* Bottom section */}

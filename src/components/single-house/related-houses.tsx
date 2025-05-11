@@ -11,7 +11,7 @@ export default async function RelatedHouse({
   return (
     <>
       <div className="mt-[72px] w-full flex flex-col">
-        <h1 className="text-[28px] text-text ">{t("similarHouses")}</h1>
+        <h1 className="text-[28px] text-text font-bold">{t("similarHouses")}</h1>
         <div></div>
       </div>
       <div dir="rtl" className="flex gap-[30px] justify-center w-full md:justify-center lg:justify-between flex-wrap">

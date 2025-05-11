@@ -1,4 +1,4 @@
-export default function ArrowSVG() {
+export default function ArrowSVG({ className }) {
   return (
     <>
       <svg
@@ -6,6 +6,7 @@ export default function ArrowSVG() {
         height="20"
         viewBox="0 0 20 20"
         fill="none"
+        className={className}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
