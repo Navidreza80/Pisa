@@ -1,7 +1,8 @@
 "use client";
 // React & Next
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // Third party components
 import Slider from "@/components/common/slider/Slider";
@@ -25,6 +26,9 @@ import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { TransitionLink } from "@/components/common/TransitionLink";
 import { formatNumber } from "@/utils/helper/format-number";
 import Reveal from "../reveal";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
+import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 
 /**
  * Filter reservation houses component.
@@ -49,6 +53,16 @@ export default function HouseCardList({
 }: TopSaleCardListProps) {
   // Hooks
   const t = useTranslations("HomePage");
+  const Ids = useAppSelector((state) => state.comparisonIds);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (Ids.ids?.length == 2) router.push("/comparison");
+    return;
+  }, [Ids.ids]);
+
+  // Redux
+  const dispatch = useDispatch();
 
   // Feature items
   const featureItems: FeatureItem[] = [
@@ -137,6 +151,12 @@ export default function HouseCardList({
             <LocationSVG />
           </button>
         )}
+        <button
+          onClick={() => dispatch(setComparisonIds(String(card.id)))}
+          className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] text-white top-2 right-2"
+        >
+          {Ids.ids?.includes(String(card.id)) ? "binazire" : "shit"}
+        </button>
       </motion.div>
       <TransitionLink
         href={`/property-detail/${card.id}`}
