@@ -1,0 +1,68 @@
+import { getHouseById } from "@/utils/service/house/get-by-id";
+import { numberToPersianWords } from './numToWord';
+import PaymentForm from "@/components/payment/PaymentForm";
+import { formatNumber } from "@/utils/helper/format-number";
+
+interface PaymentProps {
+  params: { id: number };
+}
+
+export default async function Payment({ params: { id } }: PaymentProps) {
+  // Fetching property details server side
+  const paymentsDetails = await getHouseById(id);
+
+const { toPersianWords } = require('number-to-persian');
+
+  return (
+    <div className="relative z-50 mt-[96px] container p-6 mx-auto py-10 flex flex-col md:flex-row gap-6 items-start justify-center">
+      <div className="w-[350px] bg-white rounded-2xl p-6 shadow-md">
+        <div className="flex flex-col gap-4">
+          <div className='bg-[#eef4fd] flex justify-between p-4 rounded-lg'>
+            <div className="text-[#2b73e3] font-bold text-[14px]">۰۳:۲۷</div>
+            <div className="text-[#2b73e3] font-bold text-[14px]">:زمان باقی‌مانده</div>
+          </div>
+
+          <div className='flex justify-end gap-4'>
+            <div className="flex flex-wrap flex-col justify-between">
+              <div className="text-gray-500">پذیرنده</div>
+              <div className="text-[#2d3a4a] text-2xl font-bold mt-2">Piza</div>
+            </div>
+            <img className='my-auto w-[24px] h-[24px]' src="https://images.vexels.com/media/users/3/223411/isolated/preview/7a8154be7b9b50412fc2cf63b636e370-store-icon-flat-store.png" alt="" />
+          </div>
+
+          <div className='flex justify-end gap-4'>
+            <div className="flex flex-wrap flex-col justify-between">
+              <div className="text-gray-500">مبلغ</div>
+              <div>
+                <div className="text-[#2d3a4a] text-2xl font-bold mt-2">{formatNumber(Number(paymentsDetails.price))}</div>
+                <div className="text-gray-500 text-xs self-end">{numberToPersianWords(Number(paymentsDetails.price))}</div>
+              </div>
+            </div>
+            <img className='my-auto w-[28px] h-[28px]' src="https://img.icons8.com/?size=100&id=56960&format=png&color=797979" alt="" />
+          </div>
+
+          <div className="border-t border-gray-200 my-2"></div>
+
+          <div className='flex justify-end gap-4'>
+            <div className="flex flex-wrap flex-col justify-between">
+              <div className="text-gray-500">شماره پذیرنده / درگاه</div>
+              <div className="text-[#2d3a4a] text-[16px] font-bold mt-2">123456 / 123456</div>
+            </div>
+            <img className='my-auto w-[28px] h-[28px]' src="https://img.icons8.com/?size=100&id=HOkn2leeoong&format=png&color=797979" alt="" />
+          </div>
+
+          <div className='flex justify-end gap-4'>
+            <div className="flex flex-wrap flex-col justify-between">
+              <div className="text-gray-500">سایت پذیرنده</div>
+              <div className="text-[#2d3a4a] text-[16px] font-bold mt-2">NextElites.com</div>
+            </div>
+            <img className='my-auto w-[28px] h-[28px]' src="https://img.icons8.com/?size=100&id=53372&format=png&color=797979" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <PaymentForm price={Number(paymentsDetails.price)}/>
+    </div>
+  );
+}
+

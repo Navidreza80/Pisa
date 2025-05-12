@@ -51,10 +51,11 @@ export default async function HouseDetail({
         />
         {/* Mid section */}
         <div dir="rtl" className="w-full flex justify-between flex-wrap gap-8">
+          
           {/* Main images */}
-          <MainImages
+          <div className="w-[47%]"><MainImages
             photos={propertyDetails.photos ? propertyDetails.photos : []}
-          />
+          /></div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
             {/* Title section */}

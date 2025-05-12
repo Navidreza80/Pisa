@@ -256,5 +256,9 @@
     "bathroomsValue": "حمام",
     "parkingsValue": "پارکینگ",
     "roomsValue": "اتاق"
+  },
+  "Location": {
+    "LocationPageTitle": "جستجو مقاصد رویایی!",
+    "search": "جستجو کنید ..."
   }
 }
