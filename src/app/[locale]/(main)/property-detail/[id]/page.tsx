@@ -55,6 +55,7 @@ export default async function HouseDetail({
           {/* Main images */}
           <div className="w-[47%]"><MainImages
             photos={propertyDetails.photos ? propertyDetails.photos : []}
+            sticky={true}
           /></div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">

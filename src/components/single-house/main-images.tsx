@@ -1,10 +1,16 @@
+import clsx from "clsx";
 import RightImg from "../houseDetail/RightImg";
 
-export default async function MainImages({ photos }: { photos: string[] }) {
+export default async function MainImages({ photos ,sticky}: { photos: string[], sticky: boolean}) {
   return (
     <>
       {/* Right section */}
-      <div className="flex gap-4 flex-wrap lg:sticky animate-fade-left md:relative relative lg:top-10 md:top-0 top-0 lg:w-[100%] md:w-full w-full h-[calc(100vh-100px)]">
+      <div className={clsx(
+        "flex gap-4 flex-wrap animate-fade-left md:relative relative lg:top-10 md:top-0 top-0 lg:w-[100%] md:w-full w-full h-[calc(100vh-100px)]",
+        {
+          "lg:sticky": sticky
+        }
+      )}>
         <RightImg photos={photos} />
         {/* <img
           src={photos[0]}
