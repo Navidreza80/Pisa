@@ -76,3 +76,8 @@ export interface FeatureItem {
   label: string;
   show?: boolean;
 }
+
+export interface Location {
+  area_name: string;
+  id: number;
+}
