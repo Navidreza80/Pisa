@@ -1,6 +1,8 @@
 // Next
 import Image from "next/image";
 
+// Dependencies
+
 // API & data fetching
 import { fetchHouses } from "@/utils/service/house/get";
 import { getHouseById } from "@/utils/service/house/get-by-id";
@@ -14,12 +16,12 @@ import PropertyLocation from "@/components/common/house/property-location";
 import AllComments from "@/components/single-house/all-comments";
 import Facilities from "@/components/single-house/facilities";
 import HeaderSection from "@/components/single-house/header-section";
+import HouseRate from "@/components/single-house/house-rate";
 import MainImages from "@/components/single-house/main-images";
 import ParagraphSection from "@/components/single-house/paragraph-section";
 import RelatedHouse from "@/components/single-house/related-houses";
 import RentForm from "@/components/single-house/rent-form";
 import ReserveForm from "@/components/single-house/reserve-property-form";
-import SendComment from "@/components/single-house/send-comment-form";
 import TitleSection from "@/components/single-house/title-section";
 
 export default async function HouseDetail({
@@ -51,12 +53,13 @@ export default async function HouseDetail({
         />
         {/* Mid section */}
         <div dir="rtl" className="w-full flex justify-between flex-wrap gap-8">
-          
           {/* Main images */}
-          <div className="w-[47%]"><MainImages
-            photos={propertyDetails.photos ? propertyDetails.photos : []}
-            sticky={true}
-          /></div>
+          <div className="w-[47%]">
+            <MainImages
+              photos={propertyDetails.photos ? propertyDetails.photos : []}
+              sticky={true}
+            />
+          </div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
             {/* Title section */}
@@ -84,6 +87,9 @@ export default async function HouseDetail({
                 <ParagraphSection textContent="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد." />
               </>
             )}
+            {/* Rate section */}
+            <HouseRate rate={propertyDetails.rate} />
+
             {/* Facilities section */}
             <Facilities
               propertyType={propertyDetails.categories.name}
