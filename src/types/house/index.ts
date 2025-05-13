@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export interface HouseInterFace {
   pageNumber: number;
@@ -34,7 +34,7 @@ export interface HouseItemsInterface {
 }
 
 export interface TopSaleCardListProps {
-  setCurrentLoc?: SetStateAction<Array<number>>;
+  setCurrentLoc?: Dispatch<SetStateAction<Array<number>>>;
   showOnMap?: boolean;
   showFacilities?: boolean;
   minWidth?: string;
@@ -75,4 +75,9 @@ export interface FeatureItem {
   value: number | string | undefined | boolean;
   label: string;
   show?: boolean;
+}
+
+export interface Location {
+  area_name: string;
+  id: number;
 }

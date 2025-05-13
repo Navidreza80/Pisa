@@ -17,8 +17,8 @@ import { useLocale, useTranslations } from "next-intl";
 // Third party components
 import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
-import ChatAssistant from "../chat/ai-assistant";
-import Chat from "../chat/chat-with-admin";
+import ChatAssistant from "./chat/ai-assistant";
+import Chat from "./chat/chat-with-admin";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { jwtDecode } from "jwt-decode";
 import { JwtPayload } from "@/types/user";
@@ -110,8 +110,14 @@ export default function FloatingActions() {
       return true;
     }
 
-    if (command.includes("dark") || command.includes("theme")) {
-      setDark((prev) => !prev);
+    if (command.includes("dark")) {
+      setTheme("dark");
+      dispatch(toggleDarkMode());
+      return true;
+    }
+
+    if (command.includes("solar")) {
+      setTheme("solarized");
       dispatch(toggleDarkMode());
       return true;
     }
@@ -192,9 +198,9 @@ export default function FloatingActions() {
         const commandProcessed = processVoiceCommand(text);
 
         if (!commandProcessed) {
-          toast.info(t("Fab.noCommand") || "Command not recognized");
+          toast.info("درحال پردازش");
         } else {
-          toast.success(t("Fab.commandExecuted") || "Command executed");
+          toast.success("دستور با موفقیت اجرا شد");
         }
       }
     };
@@ -275,7 +281,7 @@ export default function FloatingActions() {
     <>
       <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
 
-      <div className="fixed z-50 bottom-6 right-6 flex flex-col items-end gap-2">
+      <div className="fixed z-50 bottom-6 rtl:left-6 right-6 flex flex-col items-end gap-2">
         {open && (
           <div className="flex flex-col items-end gap-2 mb-1 animate-fade-in">
             <Menu as="div" className="relative inline-block text-left">

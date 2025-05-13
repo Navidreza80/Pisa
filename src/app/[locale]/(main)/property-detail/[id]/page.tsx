@@ -4,28 +4,23 @@ import Image from "next/image";
 // API & data fetching
 import { fetchHouses } from "@/utils/service/house/get";
 import { getHouseById } from "@/utils/service/house/get-by-id";
-import { getAllPropertyComments } from "@/utils/service/comments/get";
 
 // Types
 import type { HouseItemsInterface } from "@/types/house";
-import type { Comments } from "@/types/comments";
 
 // Third party components
-import Container from "@/components/common/container/container";
+import Container from "@/components/common/container";
+import PropertyLocation from "@/components/common/house/property-location";
 import AllComments from "@/components/single-house/all-comments";
 import Facilities from "@/components/single-house/facilities";
 import HeaderSection from "@/components/single-house/header-section";
 import MainImages from "@/components/single-house/main-images";
 import ParagraphSection from "@/components/single-house/paragraph-section";
 import RelatedHouse from "@/components/single-house/related-houses";
+import RentForm from "@/components/single-house/rent-form";
 import ReserveForm from "@/components/single-house/reserve-property-form";
 import SendComment from "@/components/single-house/send-comment-form";
 import TitleSection from "@/components/single-house/title-section";
-import RentForm from "@/components/single-house/rent-form";
-import PropertyLocation from "@/components/common/house/property-location";
-
-
-
 
 export default async function HouseDetail({
   params: { id },
@@ -38,15 +33,14 @@ export default async function HouseDetail({
   // Fetching related properties server side
   const relatedHouses: HouseItemsInterface[] = await fetchHouses({
     transactionType: "",
+    search: propertyDetails.address,
   });
-
-  // Fetching property comments server side
-  const propertyComments: Comments[] = await getAllPropertyComments(id)
 
   // Getting isHotel value based on transaction type
   // If its "reservation" the property is hotel
   // If the property is hotel, render some elements and don't render some elements.
-  const isHotel = propertyDetails.transaction_type == "reservation" ? true : false;
+  const isHotel =
+    propertyDetails.transaction_type == "direct_purchase" ? true : false;
   return (
     <Container>
       <div className="w-[85.5%] flex flex-wrap gap-y-8">
@@ -57,16 +51,20 @@ export default async function HouseDetail({
         />
         {/* Mid section */}
         <div dir="rtl" className="w-full flex justify-between flex-wrap gap-8">
+          
           {/* Main images */}
-          <MainImages photos={propertyDetails.photos ? propertyDetails.photos : []} />
+          <div className="w-[47%]"><MainImages
+            photos={propertyDetails.photos ? propertyDetails.photos : []}
+            sticky={true}
+          /></div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
             {/* Title section */}
             {isHotel && (
-              <TitleSection textContent="بهترین هتل جهان را چرا باید انتخاب کنیم؟" />
+              <TitleSection textContent="چرا هتل همایون رو انتخاب کنیم؟" />
             )}
             {/* Description section */}
-            <ParagraphSection textContent="این هتل خیلی خیلیلخیلخیل خقن ختما بهزین دااداش اصلا بی نظیرع" />
+            <ParagraphSection textContent="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد." />
             {/* Title 2 section */}
             {isHotel && (
               <>
@@ -81,27 +79,40 @@ export default async function HouseDetail({
                     unoptimized
                   />
                 )}
-                <TitleSection textContent="داداش ناموسا رزرو کن" />
+                <TitleSection textContent="چرا هتل همایون رو انتخاب کنیم؟" />
                 {/* Description 2 section */}
-                <ParagraphSection textContent="این هتل خیلی خیلیلخیلخیل خقن ختما بهزین دااداش اصلا بی نظیرع" />
+                <ParagraphSection textContent="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد." />
               </>
             )}
             {/* Facilities section */}
-            <Facilities propertyType={propertyDetails.categories.name} yard_type={propertyDetails.yard_type} capacity={propertyDetails.capacity} rooms={propertyDetails.rooms} bathrooms={propertyDetails.bathrooms} parking={propertyDetails.parking} isHotel={isHotel} />
+            <Facilities
+              propertyType={propertyDetails.categories.name}
+              yard_type={propertyDetails.yard_type}
+              capacity={propertyDetails.capacity}
+              rooms={propertyDetails.rooms}
+              bathrooms={propertyDetails.bathrooms}
+              parking={propertyDetails.parking}
+              isHotel={isHotel}
+            />
             {/* Map section */}
             {!isHotel && (
               <>
-                <div className="h-[349px] rounded-4xl"><PropertyLocation propertyLocation={[propertyDetails.location.lat, propertyDetails.location.lng]} /></div>
+                <div className="h-[349px] rounded-4xl">
+                  <PropertyLocation
+                    propertyLocation={[
+                      propertyDetails.location.lat,
+                      propertyDetails.location.lng,
+                    ]}
+                  />
+                </div>
                 <ParagraphSection textContent="این هتل خیلی خیلیلخیلخیل خقن ختما بهزین دااداش اصلا بی نظیرع" />
               </>
             )}
 
             {/* Reserve section */}
             {isHotel ? <ReserveForm /> : <RentForm />}
-            {/* Send comment section */}
-            <SendComment />
             {/* Comments section */}
-            <AllComments propertyComments={propertyComments} />
+            <AllComments houseId={id} />
           </div>
         </div>
         {/* Bottom section */}

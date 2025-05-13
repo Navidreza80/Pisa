@@ -40,7 +40,7 @@ export default function Search() {
   };
 
   return (
-    <div className="absolute w-full min-h-[135px] bg-background border border-border  bottom-28 rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-[var(--animation-fade-in-up)] [animation-delay:0.3s] [animation-fill-mode:both] opacity-0">
+    <div className="absolute w-full min-h-[135px] bottom-20 bg-background border border-border rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-fade-up opacity-0">
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item, index) => {
           return (
@@ -60,7 +60,7 @@ export default function Search() {
                 onClick={() => setTab(item)}
                 className={`${
                   tab.id == item.id ? "text-[#586CFF]" : "text-text-secondary "
-                } cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#586CFF]/80`}
+                } cursor-pointer font-semibold transition-colors duration-300 ease-in-out hover:text-[#586CFF]/80`}
               >
                 {item.text}
               </span>

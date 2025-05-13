@@ -15,7 +15,7 @@ import LogoSVG from "../svg/logo";
 // Third party components
 import ContactForm from "./contact-form";
 import FooterColumn from "./footer-column";
-import Container from "../container/container";
+import Container from "../container";
 
 /**
  * Footer component for page footer.

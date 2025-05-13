@@ -7,7 +7,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import Providers from "@/provider/provider";
 
 // Third party components
-import FloatingActions from "@/components/common/FAB/fab";
+import FloatingActions from "@/components/common/fab";
 import Footer from "@/components/common/footer/footer";
 import Header from "@/components/common/header/header";
 
@@ -45,7 +45,7 @@ export default async function RootLayout({
   };
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background text-text font-yekan">
+      <body className="bg-background font-yekan text-text ">
         <NextIntlClientProvider>
           <Providers>
             <main className="w-full flex-wrap">

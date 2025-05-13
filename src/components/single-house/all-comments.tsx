@@ -1,96 +1,153 @@
-import { Comments } from "@/types/comments";
-import ArrowSVG from "../common/svg/arrow";
+"use client";
 
-export default async function AllComments({
-  propertyComments,
-}: {
-  propertyComments: Comments[];
-}) {
+// Dependencies
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import { getAllPropertyComments } from "@/utils/service/comments/get";
+import { usePostComment } from "@/utils/service/comments/post";
+import { useQuery } from "@tanstack/react-query";
+
+import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+import { ClipLoader } from "react-spinners";
+import SingleComment from "./single-comment";
+import RenderComments from "./render-comment";
+import { useRef, useState } from "react";
+import Button from "../common/button";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import LoginModal from "../common/login";
+const SectionName = dynamic(() => import("./section-name"), {
+  ssr: false,
+});
+
+export default function AllComments({ houseId }: { houseId: number }) {
+  const [isLogin, setIsLogin] = useState(false);
+  const token = getClientCookie("clientAccessToken");
+  const t = useTranslations("SingleHouse");
+  const [repliedUser, setRepliedUser] = useState(null);
+  const [rows, setRows] = useState(3);
+  const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [parentId, setParentId] = useState(null);
+  const { data, isPending: loadingComment } = useQuery({
+    queryKey: ["comments", houseId, rows],
+    queryFn: () => getAllPropertyComments(houseId, rows),
+    staleTime: 0,
+  });
+  const scrollToSection = (sectionId: string) => {
+    sectionRefs.current[sectionId]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+  const { mutate, isPending } = usePostComment();
+
+  const commentSchema = Yup.object().shape({
+    caption: Yup.string().required("متن الزامی است"),
+  });
+
+  const cancelReply = () => {
+    setParentId(null);
+    setRepliedUser(null);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      caption: "",
+      parent_comment_id: null,
+      houseId: houseId,
+    },
+    validationSchema: commentSchema,
+    onSubmit: () =>  {
+      mutate(
+        {
+          caption: formik.values.caption,
+          parent_comment_id: parentId,
+          houseId: houseId,
+        },
+        {
+          onSuccess: () => {
+            cancelReply();
+          },
+        }
+      );
+    },
+  });
 
   return (
-    <div dir="rtl" className="mt-10 flex gap-y-6 flex-col">
+    <form
+      onSubmit={formik.handleSubmit}
+      dir="rtl"
+      className="mt-3.5 flex gap-y-6 flex-col"
+    >
+      <div
+        ref={(el) => (sectionRefs.current["sendComment"] = el)}
+        id="sendComment"
+        className="flex flex-col mb-4 gap-3"
+      >
+        <div className="flex justify-between items-center">
+          <SectionName sectionName={t("userComments")} />
+          {parentId && (
+            <button
+              className="bg-red-500 cursor-pointer p-2 rounded-xl text-white"
+              onClick={cancelReply}
+            >
+              لفو پاسخ
+            </button>
+          )}
+        </div>
+
+        <Input
+          className="border-border h-[102px] px-4 py-6 placeholder:text-text-secondary items-start rounded-3xl"
+          dir="rtl"
+          value={formik.values.caption}
+          onChange={formik.handleChange}
+          id="caption"
+          name="caption"
+          placeholder={t("commentPlaceholder")}
+        />
+        {formik.errors.caption && (
+          <span className="text-red-500 text-sm text-right">
+            {formik.errors.caption}
+          </span>
+        )}
+        <button
+          type={token ? "submit" : "button"}
+          disabled={isPending}
+          onClick={() => !token && setIsLogin(true)}
+          className="bg-primary w-full flex items-center justify-center rounded-full h-12 mt-1 text-white"
+        >
+          <LoginModal isOpen={isLogin} />
+          {!isPending && (parentId ? "پاسخ به " + repliedUser : t("send"))}
+          {isPending && <ClipLoader className="!my-auto" color="#ffffff" />}
+        </button>
+      </div>
+      {loadingComment && <ClipLoader className="mx-auto" color="#586cff" />}
       {/* Comment 1 */}
-      {propertyComments.map((comment) => {
+      {data?.map((comment) => {
         return (
-          <div key={comment.id} dir="rtl" className="flex justify-start gap-x-3">
-            <div className="h-full">
-              {/* Image section */}
-              <div
-                className="rounded-full bg-gray-500"
-                style={{ width: "48px", height: "48px" }}
-              />
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-text">عباس بهبودی</h2>
-              <h3
-                className="text-text-secondary text-sm font-yekannum"
-                dir="rtl"
-              >
-                15 اردیبهشت 1404
-              </h3>
-              <p className="mt-3 font-yekannum lg:w-[400px] md:w-[400px] w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{comment.caption}</p>
-              <div className="mt-[13px] flex gap-6">
-                <span className="font-yekannum text-sm text-text-secondary flex gap-1 cursor-pointer">
-                  <ArrowSVG /> مشاهده 12 پاسخ
-                </span>
-                <span className="text-sm text-primary cursor-pointer">پاسخ دادن</span>
-              </div>
-            </div>
-          </div>
+          <RenderComments
+            setRepliedUser={setRepliedUser}
+            sectionRefs={sectionRefs}
+            setParentId={setParentId}
+            comment={comment}
+            key={comment.id}
+          />
         );
       })}
-      {/* Comment 2 */}
-      <div className="flex justify-end gap-x-3">
-        <div className="h-full">
-          <div className="w-12 h-12 justify-center items-center flex">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.6665 17.5V15.7692C16.6665 14.1017 16.6665 13.2681 16.5454 12.5705C15.8788 8.73042 12.5777 5.71869 8.36867 5.11049C7.60408 5 5.99415 5 4.1665 5"
-                stroke="#586CFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.8335 2.5C5.3278 2.99153 3.3335 4.29977 3.3335 5C3.3335 5.70022 5.3278 7.00847 5.8335 7.5"
-                stroke="#586CFF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-        </div>
-        <div className="h-full">
-          {/* Image section */}
-          <div
-            className="!w-12 !h-12 rounded-full bg-gray-500"
-            style={{ width: "48px", height: "48px" }}
-          />
-        </div>
-        <div className="flex flex-col">
-          <h2 className="text-text">عباس بهبودی</h2>
-          <h3 className="text-text-secondary text-sm font-yekannum" dir="rtl">
-            15 اردیبهشت 1404
-          </h3>
-          <p className="mt-3 font-yekannum">
-            راضی نبودم ، چرت محض بود این هتل . 25 موقعیت پنالتی داشتیم نگرفتن
-            برامون واقعا این چه وضعشه
-          </p>
-          <div className="mt-[13px] flex gap-6">
-            <span className="font-yekannum text-sm text-text-secondary flex gap-1">
-              <ArrowSVG /> مشاهده 12 پاسخ{" "}
-            </span>
-            <span className="text-sm text-primary">پاسخ دادن</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Button
+        className="mx-auto"
+        handleClick={() => {
+          setRows((prev) => {
+            if (rows > data?.length) return (prev = 3);
+            return (prev = prev + 3);
+          });
+          scrollToSection("sendComment");
+        }}
+      >
+        {rows > data?.length ? "مشاهده کمتر" : "مشاهده بیشتر"}
+      </Button>
+    </form>
   );
 }

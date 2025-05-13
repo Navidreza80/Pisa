@@ -1,7 +1,8 @@
 // Third party components
-import Button from "@/components/common/button/button";
+import Button from "@/components/common/button";
 // Change lang
 import HouseCardList from "@/components/common/house/HouseCardList";
+import Reveal from "@/components/common/reveal";
 import { HouseItemsInterface } from "@/types/house";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -16,11 +17,13 @@ export default async function TopSales({ data }) {
           <Link href="/reserve">{t("seeMore")}</Link>
         </Button>
         <div className="flex flex-row-reverse gap-[20px]">
-          <div className="font-bold text-right text-[28px]">
-            {t.rich("hot", {
-              br: () => <br />,
-            })}
-          </div>
+          <Reveal>
+            <div className="font-bold text-right text-[28px]">
+              {t.rich("hot", {
+                br: () => <br />,
+              })}
+            </div>
+          </Reveal>
         </div>
       </div>
       <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">

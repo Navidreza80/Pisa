@@ -5,7 +5,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 // Images
-import FallbackImage from "@/components/common/image/FallbackImage";
+import FallbackImage from "@/components/common/FallbackImage";
 import sobhan from "@/assets/images/about-us/sobhan.jpg";
 import Link from "next/link";
 import GithubSVG from "../common/svg/github";

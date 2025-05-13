@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import React from "react";
 import VirtualTour from "../3D/VirtualTour";
+import Button from "../common/button";
 
 function RightImg({ photos }) {
   const [show3DTour, setShow3DTour] = useState(false);
@@ -41,12 +41,12 @@ function RightImg({ photos }) {
   console.log(currentImageUrl);
   return (
     <>
-      <button
-        onClick={() => setShow3DTour(!show3DTour)}
-        className=" bg-white mb-4 px-4 py-2 rounded-lg shadow-md hover:bg-gray-100 transition z-10"
+      <Button
+        handleClick={() => setShow3DTour(!show3DTour)}
+        className=" px-4 py-2 rounded-lg shadow-m  absolute top-2 right-2 transition z-10"
       >
-        {show3DTour ? "نمایش عکس" : "نمایش 3 بعدی"}
-      </button>
+        {show3DTour ? "نمایش عکس" : "نمایش سه بعدی"}
+      </Button>
 
       {show3DTour ? (
         <div className="w-full h-full">

@@ -25,7 +25,7 @@ export const useCompleteRegister = () => {
     mutationFn: CompleteRegisterUser,
     onSuccess: async () => {
       toast.success("ثبت نام با موفقیت انجام شد!");
-      router.push("/login");
+      router.push("/auth/login");
     },
     onError: (error: AxiosError) => {
       if (error.status && error.status >= 500)

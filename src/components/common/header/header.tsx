@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { getTranslations } from "next-intl/server";
 
 // Third party components
-import Button from "../button/button";
+import Button from "../button";
 import MobileNav from "./mobile-nav";
 import Navbar from "./navbar";
 import UserProfile from "./user-profile";
@@ -19,8 +19,8 @@ import LogoSVG from "../svg/logo";
 // Types
 import { auth } from "@/auth";
 import { JwtPayload } from "@/types/user";
-import { TransitionLink } from "@/utils/helper/TransitionLink";
-import Container from "../container/container";
+import { TransitionLink } from "@/components/common/TransitionLink";
+import Container from "../container";
 
 /**
  * Heder component for page header.

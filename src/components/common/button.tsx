@@ -1,4 +1,5 @@
 "use client";
+import { useInView } from "framer-motion";
 // React
 import { ReactNode, useRef } from "react";
 // button sizes
@@ -9,11 +10,6 @@ const SIZES = {
 // button colors
 const COLORS = {
   primary: "bg-primary text-white",
-};
-// button border radius
-const Radiuses = {
-  sm: "rounded-xl",
-  md: "rounded-2xl",
 };
 
 // types
@@ -28,14 +24,13 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
   variant?: "bordered" | "solid";
-  radius?: keyof typeof Radiuses;
   handleClick?: () => void;
   disabled?: boolean;
 };
 
 /**
  * Reusable button component.
- * 
+ *
  * @component
  * @param {ButtonProps} props - Component props
  * @returns {JSX.Element} - Rendered button
@@ -50,20 +45,23 @@ export default function Button({
   children,
   className,
   handleClick,
-  radius = "md",
   disabled,
 }: ButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const isInView = useInView(buttonRef, {
+    amount: "all",
+    once: true,
+  })
 
   return (
     <button
       type="submit"
       ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
-      className={`flex items-center hover:bg-[#4A5FE3] !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center cursor-pointer ${isInView && 'animate-jump-in'} hover:bg-[#4A5FE3] font-semibold !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
-        SIZES[size]
-      } ${Radiuses[radius]}`}
+              SIZES[size]
+            }`}
     >
       {/* Start Content (Icon/Text) */}
       {startContent && <span className="mr-2">{startContent}</span>}

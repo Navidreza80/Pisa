@@ -1,39 +1,41 @@
 "use client";
 // Dependencies
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import {
-    useAppDispatch,
-    useAppSelector,
+  useAppDispatch,
+  useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
+import { useTranslations } from "next-intl";
 
 // Hooks
-import { resetReserveFilters, setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
+import {
+  resetReserveFilters,
+  setReserveFilters,
+} from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 
 // Third party components
 import InputSelect from "../inputs/select-input";
 
 // Constant
-import { facilityOptions, locationOptions, ratingOptions, sortOptions } from "@/utils/constant/folder";
+import {
+  facilityOptions,
+  locationOptions,
+  ratingOptions,
+  sortOptions,
+} from "@/utils/constant/folder";
 
 /**
  * Filter reservation houses component.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered filter modal
  */
 
-
 export function FilterModal() {
   // Hooks
-  const t = useTranslations("Filters")
+  const t = useTranslations("Filters");
   const dispatch = useAppDispatch();
 
   // Getting filters logic
@@ -50,33 +52,35 @@ export function FilterModal() {
         <Button
           className={`flex items-center hover:bg-[#4A5FE3] whitespace-nowrap justify-center overflow-hidden transition-all text-white h-12 w-[85px] text-[16px] rounded-2xl`}
         >
-         {t("filter")}
+          {t("filter")}
         </Button>
       </DialogTrigger>
       <DialogContent className="!max-w-[350px]">
-        <DialogHeader></DialogHeader>
-
+        <DialogHeader>
+          <DialogTitle
+          ></DialogTitle>
+        </DialogHeader>
         <div className="space-y-6">
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-            {t("address")}
+              {t("address")}
             </label>
             <InputSelect
               items={locationOptions}
-              value={filters.sort || ''}
-              onChange={(value) => handleChange('search', value)}
+              value={filters.sort || ""}
+              onChange={(value) => handleChange("search", value)}
               width={300}
               dir="rtl"
             />
           </div>
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-            {t("sort")}
+              {t("sort")}
             </label>
             <InputSelect
               items={sortOptions}
-              value={filters.sort || ''}
-              onChange={(value) => handleChange('sort', value)}
+              value={filters.sort || ""}
+              onChange={(value) => handleChange("sort", value)}
               width={300}
               dir="rtl"
             />
@@ -85,11 +89,11 @@ export function FilterModal() {
             <div dir="rtl" className="flex flex-col gap-4">
               <div className="flex gap-1.5">
                 <h1 className="text-text-secondary">{t("priceFrom")}</h1>
-                <p className="text-text font-yekannum">{filters?.minPrice}</p>
+                <p className="text-text ">{filters?.minPrice}</p>
               </div>
               <div className="flex gap-1.5">
                 <h1 className="text-text-secondary">{t("priceTo")}</h1>
-                <p className="text-text font-yekannum">{filters?.maxPrice}</p>
+                <p className="text-text ">{filters?.maxPrice}</p>
               </div>
             </div>
             <Slider
@@ -105,31 +109,34 @@ export function FilterModal() {
           </div>
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-            {t("facilities")}
+              {t("facilities")}
             </label>
             <InputSelect
               items={facilityOptions}
-              value={filters.facilities || ''}
-              onChange={(value) => handleChange('facilities', value)}
+              value={filters.facilities || ""}
+              onChange={(value) => handleChange("facilities", value)}
               width={300}
               dir="rtl"
             />
           </div>
           <div className="space-y-2">
             <label className="block text-right text-sm font-medium">
-            {t("rate")}
+              {t("rate")}
             </label>
             <InputSelect
               items={ratingOptions}
-              value={filters.rating || ''}
-              onChange={(value) => handleChange('rating', value)}
+              value={filters.rating || ""}
+              onChange={(value) => handleChange("rating", value)}
               width={300}
               dir="rtl"
             />
           </div>
           <div className="flex justify-end gap-2 pt-4">
-            <Button className="text-white" onClick={() => dispatch(resetReserveFilters())}>
-             {t("delete")}
+            <Button
+              className="text-white"
+              onClick={() => dispatch(resetReserveFilters())}
+            >
+              {t("delete")}
             </Button>
           </div>
         </div>

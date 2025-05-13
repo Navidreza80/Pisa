@@ -1,6 +1,6 @@
 "use client";
 // Third party components
-import Button from "@/components/common/button/button";
+import Button from "@/components/common/button";
 import HouseCard from "@/components/common/house/house-card";
 import { HouseItemsInterface } from "@/types/house";
 import { useTranslations } from "next-intl";

@@ -6,6 +6,7 @@ import reserveFilterReducer from "./slices/reserve-slice";
 import landingFilterReducer from "./slices/landing-slice";
 import rentFilters from "./slices/rent-slice"
 import userIdReducer from "./slices/user-id-slice"
+import comparisonIdsReducer from "./slices/comparison"
 
 // Function to configure redux store
 export const store = configureStore({
@@ -14,7 +15,8 @@ export const store = configureStore({
     reserveFilters: reserveFilterReducer,
     landingFilters: landingFilterReducer,
     rentFilters: rentFilters,
-    userId: userIdReducer
+    userId: userIdReducer,
+    comparisonIds: comparisonIdsReducer
   },
 });
 

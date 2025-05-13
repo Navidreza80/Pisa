@@ -45,7 +45,7 @@ export default async function RootLayout({
   };
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background text-text font-yekan">
+      <body className="bg-background text-text ">
         <NextIntlClientProvider>
           <Providers>
             <main className="w-full flex-wrap">

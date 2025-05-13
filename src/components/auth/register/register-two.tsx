@@ -25,7 +25,7 @@ import { getClientCookie } from "@/utils/service/storage/client-cookie";
 /**
  * Register step two component.
  * Get verification code and verify the email.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered register step two
  */
@@ -107,6 +107,11 @@ export default function Register2() {
             </InputOTPGroup>
           </InputOTP>
         </div>
+        {!code && (
+          <span className="text-red-500 text-sm text-right">
+            لطفا کد تایید را وارد کنید
+          </span>
+        )}
 
         <div
           dir="rtl"
@@ -114,12 +119,12 @@ export default function Register2() {
         >
           <span className="flex bg-[#586CFF30] dark:bg-[#586CFF80] gap-[12px] p-[8px] pl-[12px] rounded-[100px]">
             <TimerSVG />
-            <p className="text-[#586CFF] font-yekannum text-[14px] font-bold my-auto dark:text-[#A9B8FF]">
+            <p className="text-[#586CFF]  text-[14px] font-bold my-auto dark:text-[#A9B8FF]">
               {timerStr}
             </p>
           </span>
         </div>
-        <Button text={t("ُSend")} />
+        <Button disabled={code ? false : true} text={t("ُSend")} />
       </form>
     </div>
   );

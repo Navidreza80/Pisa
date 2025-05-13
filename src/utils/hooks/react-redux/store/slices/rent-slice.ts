@@ -3,7 +3,7 @@ import { HouseFilters } from '@/types/house';
 
 const initialState: HouseFilters = {
   page: 1,
-  sort: '',
+  sort: 'price',
   order: undefined,
   search: '',
   location: '',
