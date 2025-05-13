@@ -29,6 +29,7 @@ import Reveal from "../reveal";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
+import { Star } from "lucide-react";
 
 /**
  * Filter reservation houses component.
@@ -122,6 +123,7 @@ export default function HouseCardList({
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
+        {/* Photo slider section */}
         <Slider
           className="w-[340px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -141,6 +143,7 @@ export default function HouseCardList({
             </SwiperSlide>
           ))}
         </Slider>
+        {/* Map icon section */}
         {showOnMap && (
           <button
             onClick={() => {
@@ -151,6 +154,7 @@ export default function HouseCardList({
             <LocationSVG />
           </button>
         )}
+        {/* Compare section */}
         <button
           onClick={() => dispatch(setComparisonIds(String(card.id)))}
           className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] text-white top-2 right-2"
@@ -162,12 +166,20 @@ export default function HouseCardList({
         href={`/property-detail/${card.id}`}
         className="flex gap-[9px] flex-wrap justify-end"
       >
-        <Reveal width="100%">
-          <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
-            {card.title}
-          </h1>
-        </Reveal>
+        {/* Title and rate section */}
+        <div dir="ltr" className="flex justify-between items-center w-full">
+          <span className="w-[67px] h-8 flex items-center justify-between px-1">
+            <Star className="group-hover:text-primary transition-colors duration-300" />
+            {card.rate}
+          </span>
+          <Reveal width="100%">
+            <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
+              {card.title}
+            </h1>
+          </Reveal>
+        </div>
 
+        {/* Address section */}
         <div dir="rtl" className="flex w-full justify-start gap-[5px]">
           <div dir="rtl" className="flex gap-1.5">
             <MapSVG color="gray" />
@@ -181,6 +193,7 @@ export default function HouseCardList({
       </TransitionLink>
 
       <div className="bg-border h-[1px]"></div>
+      {/* House facilities section */}
       {showFacilities && (
         <>
           <div className="flex flex-row-reverse justify-between">
@@ -200,6 +213,7 @@ export default function HouseCardList({
         </>
       )}
 
+      {/* Price section */}
       {!discount ? (
         <div dir="rtl" className="flex justify-between">
           <div className="flex gap-1" dir="rtl">
@@ -218,6 +232,7 @@ export default function HouseCardList({
           </div>
         </div>
       ) : (
+        // Price with discount section
         <div dir="rtl" className="flex justify-between">
           <div className="flex flex-row gap-[10px]">
             <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
