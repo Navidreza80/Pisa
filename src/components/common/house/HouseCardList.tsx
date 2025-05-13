@@ -168,7 +168,7 @@ export default function HouseCardList({
       >
         {/* Title and rate section */}
         <div dir="ltr" className="flex justify-between items-center w-full">
-          <span className="w-[67px] h-8 flex items-center justify-between px-1">
+          <span className="w-[67px] h-8 flex items-center justify-between px-1 gap-1 font-semibold">
             <Star className="group-hover:text-primary transition-colors duration-300" />
             {card.rate}
           </span>
