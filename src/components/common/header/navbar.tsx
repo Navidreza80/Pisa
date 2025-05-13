@@ -52,6 +52,8 @@ export default function Navbar() {
 
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
 
+  const isOthersActive = pathname === "/locations" || pathname == "/tours" || pathname == "/tours"
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownTwoOpen, setIsDropdownTwoOpen] = useState(false);
 
@@ -61,7 +63,7 @@ export default function Navbar() {
         <DropdownMenuTrigger
           dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer font-bold ${
-            isRentActive ? "border-b-2 border-text" : "border-none"
+            isOthersActive ? "border-b-2 border-text" : "border-none"
           }`}
         >
           {pathname == "/about-us"
