@@ -2,7 +2,7 @@
 
 import Reveal from "@/components/common/reveal";
 import MapSVG from "@/components/common/svg/map";
-import StarSVG from "@/components/common/svg/starSVG";
+import StarRatings from "react-star-ratings";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";
 import Image from 'next/image';
@@ -65,7 +65,7 @@ const toursData = [
     },
 ];
 
- function ToursPage() {
+function ToursPage() {
     const t = useTranslations("Tours");
     const tFilter = useTranslations("rent");
     const filtersItems = [
@@ -150,7 +150,7 @@ const toursData = [
                     ))}
                 </div>
             </div>
-            <div className="flex flex-wrap gap-6 justify-center p-4">
+            <div className="flex flex-wrap gap-6 justify-between p-4">
                 {toursData.map((tour) => (
                     <div
                         key={tour.id}
@@ -171,15 +171,17 @@ const toursData = [
                             <h1 className="text-2xl font-bold">{tour.name}</h1>
                             <div className="flex justify-between gap-2">
                                 <h1 className="text-[#595959] font-medium text-[12px] my-auto">({tour.rating})</h1>
-                                <div className=" bg-white/80 rounded-full flex items-center gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <StarSVG
-                                            key={i}
-                                            color={i < tour.rating ? "#FFD700" : "#D1D1D1"}
-                                            size={20}
-                                        />
-                                    ))}
-                                </div>
+                                <StarRatings
+                                    rating={tour.rating}
+                                    starDimension="20px"
+                                    starSpacing="4px"
+                                    starRatedColor="#586cff"
+                                    starEmptyColor="lightgray"
+                                    numberOfStars={5}
+                                    name="rating"
+                                    allowHalfStar={true}
+                                    isSelectable={true}
+                                />
                             </div>
                         </div>
 
