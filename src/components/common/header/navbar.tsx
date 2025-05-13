@@ -35,10 +35,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Header NavBar Items
-  const navItems = [
-    { text: t("about"), url: "/about-us" },
-    { text: t("home"), url: "/" },
-  ];
+  const navItems = [{ text: t("home"), url: "/" }];
 
   // Rent dropdown items
   const rentItems = [
@@ -46,12 +43,58 @@ export default function Navbar() {
     { text: t("reserve"), url: "/reserve" },
   ];
 
+  // Other pages items
+  const otherItems = [
+    { text: "درباره ما", url: "/about-us" },
+    { text: "مفاصد رویایی", url: "/locations" },
+    { text: "تور های گردشگری", url: "/tours" },
+  ];
+
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownTwoOpen, setIsDropdownTwoOpen] = useState(false);
 
   return (
     <div className="flex justify-center gap-14 p-1 max-[600px]:hidden">
+      <DropdownMenu onOpenChange={setIsDropdownTwoOpen}>
+        <DropdownMenuTrigger
+          dir="rtl"
+          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer font-bold ${
+            isRentActive ? "border-b-2 border-text" : "border-none"
+          }`}
+        >
+          {pathname == "/about-us"
+            ? "درباره ما"
+            : pathname == "/location"
+              ? "مقاصد رویایی"
+              : pathname == "/tours"
+                ? "تور های گردشگری"
+                : "صفحات بیشتر"}
+          {isDropdownTwoOpen ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="center"
+          className=" bg-background border-border"
+        >
+          {otherItems.map((item, index) => (
+            <DropdownMenuItem key={index} asChild dir="rtl">
+              <TransitionLink
+                href={item.url}
+                className={`w-full cursor-pointer hover:text-primary transition-colors duration-300  ${
+                  pathname === item.url ? "font-bold" : ""
+                }`}
+              >
+                {item.text}
+              </TransitionLink>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
           dir="rtl"

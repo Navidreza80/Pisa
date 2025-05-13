@@ -49,7 +49,7 @@ export default function UserProfile({ user }: UserProfileProps) {
   }, []);
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="max-w-20 relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 rounded-full border border-border dark:border-border-dark p-1 pr-3 hover:bg-surface dark:hover:bg-surface-dark transition-colors"
@@ -69,8 +69,8 @@ export default function UserProfile({ user }: UserProfileProps) {
             </div>
           )}
         </div>
-        <span className="text-sm font-medium">
-          {user.name || user.email || "User"}
+        <span className="text-sm  overflow-hidden whitespace-nowrap text-ellipsis font-medium">
+          {user.name || "User"}
         </span>
       </button>
 
