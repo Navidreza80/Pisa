@@ -19,7 +19,7 @@ export default async function HomeContainer() {
   const esfahanHouses = data.filter((e) =>
     e.address?.includes("اصفهان")
   ).length;
-  const houseLength = data.length
+  const houseLength = data.length;
   return (
     <Container>
       <div className="flex flex-col flex-wrap gap-[118px] w-[85.5%]">

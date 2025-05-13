@@ -35,3 +35,33 @@ model Message {
   conversation   Conversation @relation(fields: [conversationId], references: [id])
   sender         User         @relation(fields: [senderId], references: [dbId])
 }
+
+model City {
+  id            String      @id @default(cuid())
+  galleryPhotos String[] // Array of URLs
+  cityName      String
+  province      String
+  mainImage     String // URL for the main image
+  location      Location    @relation(fields: [locationId], references: [id])
+  locationId    String      @unique
+  description   String
+  landscapes    Landscape[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Location {
+  id   String @id @default(cuid())
+  lat  Float
+  lng  Float
+  city City?
+}
+
+model Landscape {
+  id          String @id @default(cuid())
+  name        String
+  image       String
+  description String
+  city        City   @relation(fields: [cityId], references: [id])
+  cityId      String
+}
