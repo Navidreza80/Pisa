@@ -151,16 +151,14 @@ export default function HouseCardList({
             }}
             className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"
           >
-            <LocationSVG color="white"/>
+            <LocationSVG color="white" />
           </button>
         )}
         {/* Compare section */}
         <button
           onClick={() => dispatch(setComparisonIds(String(card.id)))}
-          className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] text-white top-2 right-2"
-        >
-          {Ids.ids?.includes(String(card.id)) ? "binazire" : "shit"}
-        </button>
+          className={`cursor-pointer absolute z-10 py-1 px-3 w-10 aspect-square rounded-full top-2 right-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
+        ></button>
       </motion.div>
       <TransitionLink
         href={`/property-detail/${card.id}`}

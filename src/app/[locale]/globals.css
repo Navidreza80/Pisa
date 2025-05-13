@@ -16,7 +16,7 @@ body {
   --color-text: #181a20;
   --color-text-secondary: #727272;
   --color-primary: #586cff;
-  --color-fade: #A6A6A6;
+  --color-fade: #a6a6a6;
 
   --animation-fade-in-up: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   --animation-fade-in: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -135,7 +135,6 @@ body {
     transform: scale(1.05);
   }
 }
-
 
 @font-face {
   font-family: "Yekan";
@@ -265,4 +264,18 @@ html[dir="ltr"] .menu-items {
 [data-shadcn-select-value] {
   font-weight: 500 !important;
   color: --var(text-fade);
+}
+
+.compareIcon {
+  background-image: url("../../assets/images/compare.png");
+  background-size: 75%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.compareIconSelected {
+  background-image: url("../../assets/images/compare-selected.png");
+  background-size: 75%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
