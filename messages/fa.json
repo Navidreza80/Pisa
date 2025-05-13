@@ -199,7 +199,8 @@
     "district": "منطقه",
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
-    "squareMeters": "متر مربع"
+    "squareMeters": "متر مربع", 
+    "parking":"پارکینگ"
   },
   "Payment": {
     "remainingTime": "زمان باقی مانده",
