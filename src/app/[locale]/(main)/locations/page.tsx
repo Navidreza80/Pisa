@@ -3,7 +3,6 @@ import Image from 'next/image';
 import LocationName from "@/components/home-container/locations/location-name";
 import Reveal from "@/components/common/reveal";
 import { getTranslations } from 'next-intl/server';
-import { Input } from '@/components/ui/input';
 
 const locationsData = [
     {

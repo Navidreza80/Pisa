@@ -151,7 +151,7 @@ export default function HouseCardList({
             }}
             className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"
           >
-            <LocationSVG />
+            <LocationSVG color="white"/>
           </button>
         )}
         {/* Compare section */}
