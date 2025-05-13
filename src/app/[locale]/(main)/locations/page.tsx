@@ -2,7 +2,6 @@ import Esfahan from "@/assets/images/landing/locations/esfahan.png";
 import Shiraz from "@/assets/images/landing/locations/shiraz.png";
 import Tehran from "@/assets/images/landing/locations/tehran.png";
 import Reveal from "@/components/common/reveal";
-import { getCityById } from "@/lib/actions/cities";
 import { HouseItemsInterface } from "@/types/house";
 import { fetchHouses } from "@/utils/service/house/get";
 import { getAllLocations } from "@/utils/service/location/get";
@@ -21,8 +20,6 @@ async function LocationsPage() {
   const esfahanHouses = data.filter((e) =>
     e.address?.includes("اصفهان")
   ).length;
-  const detail = await getCityById("1")
-  console.log(detail)
   return (
     <div dir="rtl" className="px-20 pt-10">
       <div>
