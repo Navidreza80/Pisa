@@ -52,7 +52,8 @@ export default function Navbar() {
 
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
 
-  const isOthersActive = pathname === "/locations" || pathname == "/tours" || pathname == "/tours"
+  const isOthersActive =
+    pathname === "/locations" || pathname == "/tours" || pathname == "/tours";
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownTwoOpen, setIsDropdownTwoOpen] = useState(false);
@@ -62,8 +63,8 @@ export default function Navbar() {
       <DropdownMenu onOpenChange={setIsDropdownTwoOpen}>
         <DropdownMenuTrigger
           dir="rtl"
-          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer font-bold ${
-            isOthersActive ? "border-b-2 border-text" : "border-none"
+          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
+            isOthersActive ? "text-primary font-bold text-[18px]" : "text-text font-semibold"
           }`}
         >
           {pathname == "/about-us"
@@ -100,8 +101,10 @@ export default function Navbar() {
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
           dir="rtl"
-          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer font-bold ${
-            isRentActive ? "border-b-2 border-text" : "border-none"
+          className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
+            isRentActive
+              ? "text-primary  font-bold text-[18px]"
+              : "text-text font-semibold"
           }`}
         >
           {pathname == "/reserve" ? t("reserve") : t("rent")}
@@ -136,9 +139,9 @@ export default function Navbar() {
             href={item.url}
             className={`${
               pathname == item.url
-                ? "border-b-2 border-text hover:border-primary"
-                : "border-none"
-            } font-bold hover:text-primary transition-colors duration-300 `}
+                ? "text-primary font-bold text-[18px] hover:border-primary"
+                : "text-text"
+            } font-semibold hover:text-primary transition-colors duration-300 `}
           >
             {item.text}
           </TransitionLink>
