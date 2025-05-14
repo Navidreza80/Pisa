@@ -3,21 +3,21 @@
 // Dependencies
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import StarRatings from "react-star-ratings";
 
 import { getAllPropertyComments } from "@/utils/service/comments/get";
 import { usePostComment } from "@/utils/service/comments/post";
 import { useQuery } from "@tanstack/react-query";
 
 import { Input } from "@/components/ui/input";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { ClipLoader } from "react-spinners";
-import SingleComment from "./single-comment";
-import RenderComments from "./render-comment";
 import { useRef, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import Button from "../common/button";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import LoginModal from "../common/login";
+import RenderComments from "./render-comment";
 const SectionName = dynamic(() => import("./section-name"), {
   ssr: false,
 });
@@ -35,6 +35,7 @@ export default function AllComments({ houseId }: { houseId: number }) {
     queryFn: () => getAllPropertyComments(houseId, rows),
     staleTime: 0,
   });
+  const [rating, setRating] = useState(0);
   const scrollToSection = (sectionId: string) => {
     sectionRefs.current[sectionId]?.scrollIntoView({
       behavior: "smooth",
@@ -44,6 +45,7 @@ export default function AllComments({ houseId }: { houseId: number }) {
   const { mutate, isPending } = usePostComment();
 
   const commentSchema = Yup.object().shape({
+    title: Yup.string().required("عنوان الزامی است"),
     caption: Yup.string().required("متن الزامی است"),
   });
 
@@ -54,21 +56,26 @@ export default function AllComments({ houseId }: { houseId: number }) {
 
   const formik = useFormik({
     initialValues: {
+      rating: null,
+      title: "",
       caption: "",
       parent_comment_id: null,
       houseId: houseId,
     },
     validationSchema: commentSchema,
-    onSubmit: () =>  {
+    onSubmit: () => {
       mutate(
         {
+          title: formik.values.title,
           caption: formik.values.caption,
           parent_comment_id: parentId,
           houseId: houseId,
+          rating: rating,
         },
         {
           onSuccess: () => {
             cancelReply();
+            setRating(0);
           },
         }
       );
@@ -97,6 +104,33 @@ export default function AllComments({ houseId }: { houseId: number }) {
             </button>
           )}
         </div>
+        <div className="flex justify-between">
+          <div className="flex flex-col w-[calc(66.6%-30px)]">
+            <Input
+              className="border-border h-[51px] w-full px-4 py-6 placeholder:text-text-secondary items-start rounded-tr-2xl rounded-br-2xl"
+              dir="rtl"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              id="title"
+              name="title"
+              placeholder="عنوان نظر خود را بنویسید..."
+            />
+          </div>
+          <div className="flex items-center max-w-[calc(50%-30px)]">
+            <StarRatings
+              rating={rating}
+              changeRating={setRating}
+              starDimension="25px"
+              starSpacing="12px"
+              starRatedColor="#586cff"
+              starEmptyColor="lightgray"
+              numberOfStars={5}
+              name="rating"
+              allowHalfStar={true}
+              isSelectable={true}
+            />
+          </div>
+        </div>
 
         <Input
           className="border-border h-[102px] px-4 py-6 placeholder:text-text-secondary items-start rounded-3xl"
@@ -113,9 +147,13 @@ export default function AllComments({ houseId }: { houseId: number }) {
           </span>
         )}
         <button
-          type={token ? "submit" : "button"}
+          type={"submit"}
           disabled={isPending}
-          onClick={() => !token && setIsLogin(true)}
+          onClick={() => {
+            if (!token) {
+              setIsLogin(true);
+            }
+          }}
           className="bg-primary w-full flex items-center justify-center rounded-full h-12 mt-1 text-white"
         >
           <LoginModal isOpen={isLogin} />

@@ -26,9 +26,9 @@ export const postComment = async (
 ): Promise<AxiosResponse<CommentResponse>> => {
   const response = await toast.promise(
     http.post(`/houses/${params.houseId}/comments`, {
-      title: "",
+      title: params.title,
       caption: params.caption,
-      rating: 5,
+      rating: params.rating,
       parent_comment_id: params.parent_comment_id,
     }),
     {

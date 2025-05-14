@@ -60,8 +60,10 @@ function Register3() {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+      {/* Page header */}
       <WelcomeTitle title={t("SignUpTitle")} desc={t("SignUpDesc3")} />
       <div className="flex flex-col flex-wrap gap-[24px]">
+        {/* Register info */}
         <InputAuth
           id="phoneNumber"
           name="phoneNumber"
@@ -70,7 +72,6 @@ function Register3() {
           placeHolder={t("NumberDesc")}
           icon={<MobileSVG />}
         >
-          {" "}
           {formik.errors.phoneNumber && (
             <span className="text-red-500 text-sm text-right">
               {formik.errors.phoneNumber}
@@ -85,7 +86,6 @@ function Register3() {
           placeHolder={t("passwordDesc")}
           icon={<Password />}
         >
-          {" "}
           {formik.errors.password && (
             <span className="text-red-500 text-sm text-right">
               {formik.errors.password}
@@ -100,7 +100,6 @@ function Register3() {
           placeHolder={t("ConfirmPasswordDesc")}
           icon={<RepeatPassword />}
         >
-          {" "}
           {formik.errors.repeatedPassword && (
             <span className="text-red-500 text-sm text-right">
               {formik.errors.repeatedPassword}

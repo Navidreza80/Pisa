@@ -199,7 +199,8 @@
     "district": "منطقه",
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
-    "squareMeters": "متر مربع"
+    "squareMeters": "متر مربع", 
+    "parking":"پارکینگ"
   },
   "Payment": {
     "remainingTime": "زمان باقی مانده",
@@ -259,6 +260,10 @@
   },
   "Location": {
     "LocationPageTitle": "جستجو مقاصد رویایی!",
+    "search": "جستجو کنید ..."
+  },
+  "Tours": {
+    "TourPageTitle": "تور های گردشگری",
     "search": "جستجو کنید ..."
   }
 }

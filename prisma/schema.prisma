@@ -1,7 +1,9 @@
+// Prisma client generator
 generator client {
   provider = "prisma-client-js"
 }
 
+// Get database info
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -11,8 +13,8 @@ model Conversation {
   id           String    @id @default(cuid())
   updatedAt    DateTime  @updatedAt
   createdAt    DateTime  @default(now())
-  messages     Message[]
-  participants User[]    @relation("ConversationParticipants")
+  messages     Message[] // messages => messages that are in that conversation
+  participants User[]    @relation("ConversationParticipants") //participants => members of that conversation: Admin (default), User
 }
 
 model User {
@@ -22,8 +24,8 @@ model User {
   isAdmin       Boolean        @default(false)
   createdAt     DateTime       @default(now())
   dbId          String         @unique
-  messages      Message[]
-  conversations Conversation[] @relation("ConversationParticipants")
+  messages      Message[] // Messages that user sent
+  conversations Conversation[] @relation("ConversationParticipants") // Conversation that user participated in
 }
 
 model Message {
@@ -32,6 +34,57 @@ model Message {
   senderId       String
   conversationId String
   createdAt      DateTime     @default(now())
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-  sender         User         @relation(fields: [senderId], references: [dbId])
+  conversation   Conversation @relation(fields: [conversationId], references: [id]) // Conversation that the message is in
+  sender         User         @relation(fields: [senderId], references: [dbId]) // User that sent this message
+}
+
+model City {
+  id            String      @id @default(cuid())
+  galleryPhotos String[]
+  cityName      String
+  province      String
+  mainImage     String
+  locationId    String      @unique
+  description   String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  location      Location    @relation(fields: [locationId], references: [id]) // Location that the city in on
+  landscapes    Landscape[] // Landscapes that the city has
+}
+
+model Location {
+  id   String @id @default(cuid())
+  lat  Float
+  lng  Float
+  city City? // The city that the location is on
+}
+
+model Landscape {
+  id          String  @id @default(cuid())
+  name        String
+  image       String
+  description String
+  cityId      String
+  lat         String?
+  lng         String?
+  city        City    @relation(fields: [cityId], references: [id]) // The city that the landscape is on
+}
+
+model Tour {
+  id              String   @id @default(uuid())
+  tourName        String
+  tourLocation    String
+  tourImage       String
+  tourDescription String
+  tags            String?
+  price           Json
+  schedule        DateTime
+  services        String[]
+  facilities      String[]
+  cancelTill      Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lat             String?
+  lng             String?
+  features        String[]
 }

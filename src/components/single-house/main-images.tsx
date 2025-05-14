@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import RightImg from "../houseDetail/RightImg";
 
-export default async function MainImages({ photos ,sticky}: { photos: string[], sticky: boolean}) {
+export default async function MainImages({ photos ,sticky, show3D}: { photos: string[], sticky: boolean, show3D: boolean}) {
   return (
     <>
       {/* Right section */}
@@ -11,12 +11,12 @@ export default async function MainImages({ photos ,sticky}: { photos: string[], 
           "lg:sticky": sticky
         }
       )}>
-        <RightImg photos={photos} />
-        {/* <img
+        {show3D && <RightImg photos={photos} />}
+        {!show3D && <img
           src={photos[0]}
           className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
           alt="Property"
-        /> */}
+        />}
         {/* + n other pictures section */}
         <div
           dir="rtl"
@@ -44,7 +44,7 @@ export default async function MainImages({ photos ,sticky}: { photos: string[], 
           className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
         />
         <img
-          src={photos[1]}
+          src={photos[2]}
           className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
         />
       </div>

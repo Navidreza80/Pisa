@@ -2,6 +2,9 @@ import { Comments } from "@/types/comments";
 import ArrowSVG from "../common/svg/arrow";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import user from "@/assets/icons/user.png";
+import { Star } from "lucide-react";
 
 export default function SingleComment({
   comment,
@@ -63,9 +66,18 @@ export default function SingleComment({
       <div className="h-full">
         {/* Image section */}
         <div
-          className="rounded-full bg-gray-500"
+          className="rounded-full border-border border flex justify-center items-center"
           style={{ width: "48px", height: "48px" }}
-        />
+        >
+          <Image
+            unoptimized={true}
+            width={32}
+            height={32}
+            className="w-[75%] h-[75%]"
+            src={comment.user.profilePicture || user}
+            alt="user image"
+          />
+        </div>
       </div>
       <div className="flex flex-col">
         <h2 className="text-text">
@@ -74,10 +86,13 @@ export default function SingleComment({
         <h3 className="text-text-secondary text-sm " dir="rtl">
           15 اردیبهشت 1404
         </h3>
+        <p className="mt-3  lg:w-[400px] md:w-[400px] w-[300px] text-text-secondary text-sm whitespace-nowrap overflow-hidden text-ellipsis">
+          {comment.title ? comment.title : "بدون عنوان"}
+        </p>
         <p className="mt-3  lg:w-[400px] md:w-[400px] w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
           {comment.caption}
         </p>
-        <div className="mt-[13px] flex gap-6">
+        <div className="mt-[13px] flex items-center gap-6">
           {isParent && (
             <span
               onClick={toggleShowReplies}
@@ -99,6 +114,10 @@ export default function SingleComment({
             }}
           >
             پاسخ دادن
+          </span>
+          <span className="w-[50px] border rounded-xl h-8 flex items-center justify-between px-2 gap-1 font-semibold">
+            {comment.rating}
+            <Star className="group-hover:text-primary transition-colors duration-300" />
           </span>
         </div>
       </div>

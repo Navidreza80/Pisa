@@ -1,33 +1,56 @@
 "use client";
+// Next & React
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+// Dependencies
+import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { FaBath, FaBed, FaUser } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { useDispatch } from "react-redux";
+
+// Third party components
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { HouseItemsInterface } from "@/types/house";
+
+// Types
+import type { HouseItemsInterface } from "@/types/house";
+
+// Hook & API
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { deleteComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 import { getHouseById } from "@/utils/service/house/get-by-id";
-import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBath, FaBed, FaUser } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
-import { useDispatch } from "react-redux";
+
+/**
+ * About us page - Display team members, missions, location and FAQ
+ * 
+ * @page
+ * @route /about-us
+ * 
+ */
 
 const ComparisonPage = () => {
+  // Hooks
   const t = useTranslations("Comparison");
   const router = useRouter();
   const locale = useLocale();
-
-  const isRTL = locale === "ar" || locale === "fa";
   const [houses, setHouses] = useState<HouseItemsInterface[]>([]);
-
   const Ids = useAppSelector((state) => state.comparisonIds);
   const dispatch = useDispatch();
+  const isRTL = locale === "ar" || locale === "fa";
+  useEffect(() => {
+    fetchHouseById();
 
+    return () => {
+      dispatch(deleteComparisonIds());
+    };
+  }, []);
+
+  // Fetching houses logic
   const fetchHouseById = async () => {
     if (Ids.ids) {
       const data1 = await getHouseById(Ids.ids[0]);
@@ -37,14 +60,7 @@ const ComparisonPage = () => {
     return;
   };
 
-  useEffect(() => {
-    fetchHouseById();
-
-    return () => {
-      dispatch(deleteComparisonIds());
-    };
-  }, []);
-
+  // Rating
   const renderRating = (rating: number) => {
     return (
       <div className="flex items-center gap-1">
@@ -56,20 +72,26 @@ const ComparisonPage = () => {
             ★
           </span>
         ))}
-        <span className="ml-1 text-sm font-medium">{rating.toFixed(1)}</span>
+        <span className={`text-sm font-medium ${isRTL ? "mr-3" : "ml-3"}`}>
+          {rating.toFixed(1)}
+        </span>
       </div>
     );
   };
 
   return (
-    <div dir="rtl" className="container mx-auto py-8 px-4 sm:py-12">
+    <div
+      dir={isRTL ? "rtl" : "ltr"}
+      className="container px-26 mx-auto py-8 sm:py-12"
+    >
+      {/* Title and subtitle */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="text-center mb-8 sm:mb-12"
       >
-        <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 to-indigo-800 bg-clip-text text-transparent">
           {t("title")}
         </h1>
         <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
@@ -77,67 +99,77 @@ const ComparisonPage = () => {
         </p>
       </motion.div>
 
+      {/* Tabs section */}
       <Tabs defaultValue="visual" className="w-full mb-8 sm:mb-12">
-        <TabsList className="grid w-full max-w-xs sm:max-w-md mx-auto grid-cols-2">
-          <TabsTrigger value="visual">{t("visualComparison")}</TabsTrigger>
-          <TabsTrigger value="table">{t("tableComparison")}</TabsTrigger>
+        <TabsList className="grid w-full max-w-xs sm:max-w-md mx-auto grid-cols-2 bg-blue-50 dark:bg-gray-800 min-h-[48px]">
+          <TabsTrigger
+            value="visual"
+            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 text-center"
+          >
+            {t("visualComparison")}
+          </TabsTrigger>
+          <TabsTrigger
+            value="table"
+            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 text-center"
+          >
+            {t("tableComparison")}
+          </TabsTrigger>
         </TabsList>
-
+        {/* Compare virtually */}
         <TabsContent value="visual" className="mt-4 sm:mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {houses.map((house, index) => (
               <motion.div
-                dir="rtl"
+                dir={isRTL ? "rtl" : "ltr"}
                 key={house.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="overflow-hidden h-full rounded-xl border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-gray-800/60 backdrop-blur-sm p-4">
-                  <div className="relative h-48 sm:h-64 w-full">
+                <Card className="overflow-hidden h-full rounded-xl border border-blue-100 dark:border-blue-900 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800/60 backdrop-blur-sm">
+                  <div className="relative h-52 sm:h-64 w-full">
                     <img
                       src={house.photos[0]}
                       alt={house.title}
-                      fill
-                      className="rounded-xl w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div
-                      className={`absolute top-4 ${isRTL ? "left-4" : "right-4"} flex gap-2`}
+                      className={`absolute top-4 ${isRTL ? "left-4" : "right-4"} flex gap-8`}
                     >
-                      <Badge className="bg-primary">
+                      <Badge className="bg-blue-600 hover:bg-blue-700 text-white transition-colors">
                         {renderRating(Number(house.rate))}
                       </Badge>
                     </div>
                   </div>
 
-                  <CardContent className="p-4 sm:p-6">
+                  <CardContent className="p-5 sm:p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800 dark:text-white">
+                        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800 dark:text-white line-clamp-1">
                           {house.title}
                         </h2>
                         <div className="flex items-center text-gray-600 dark:text-gray-300">
                           <MdLocationOn
-                            className={`text-primary ${isRTL ? "ml-1" : "mr-1"}`}
+                            className={`text-blue-600 ${isRTL ? "ml-1" : "mr-1"} text-lg`}
                           />
-                          <span className="text-xs sm:text-sm">
+                          <span className="text-xs sm:text-sm line-clamp-1">
                             {house.address}
                           </span>
                         </div>
                       </div>
-                      <div className="text-lg sm:text-xl font-bold text-primary">
+                      <div className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">
                         {house.price} تومان
                       </div>
                     </div>
 
-                    <Separator className="my-4" />
+                    <Separator className="my-4 bg-blue-100 dark:bg-blue-900" />
 
-                    <div className="grid grid-cols-2 gap-y-4 mb-6">
+                    <div className="grid grid-cols-3 gap-y-4 mb-6">
                       <div className="flex items-center">
                         <div
-                          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
+                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
                         >
-                          <FaBed className="text-primary text-sm sm:text-base" />
+                          <FaBed className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -151,9 +183,9 @@ const ComparisonPage = () => {
 
                       <div className="flex items-center">
                         <div
-                          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
+                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
                         >
-                          <FaBath className="text-primary text-sm sm:text-base" />
+                          <FaBath className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -166,13 +198,13 @@ const ComparisonPage = () => {
                       </div>
                       <div className="flex items-center">
                         <div
-                          className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
+                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
                         >
-                          <FaBath className="text-primary text-sm sm:text-base" />
+                          <FaBath className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                            پارکینگ
+                            {t("parking")}
                           </p>
                           <p className="font-medium text-sm sm:text-base">
                             {house.parking}
@@ -182,9 +214,9 @@ const ComparisonPage = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center text-gray-600 dark:text-gray-300">
+                      <div className="flex items-center my-auto text-gray-600 dark:text-gray-300">
                         <FaUser
-                          className={`text-primary ${isRTL ? "ml-2" : "mr-2"} text-sm sm:text-base`}
+                          className={`text-blue-600 dark:text-blue-400 ${isRTL ? "ml-2" : "mr-2"} text-sm sm:text-base`}
                         />
                         <span className="text-xs sm:text-sm">
                           {house.sellerName}
@@ -192,7 +224,7 @@ const ComparisonPage = () => {
                       </div>
 
                       <Button
-                        className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-700 text-white text-xs sm:text-sm"
+                        className="bg-gradient-to-r py-6 from-blue-600 to-indigo-800 hover:from-blue-700 hover:to-indigo-900 text-white text-xs sm:text-sm transition-all duration-300 shadow-md hover:shadow-lg"
                         onClick={() =>
                           router.push(`/property-detail/${house.id}`)
                         }
@@ -206,8 +238,12 @@ const ComparisonPage = () => {
             ))}
           </div>
         </TabsContent>
-
-        <TabsContent value="table" className="mt-4 sm:mt-6">
+        {/* Table compare */}
+        <TabsContent
+          dir={isRTL ? "rtl" : "ltr"}
+          value="table"
+          className="mt-4 sm:mt-6"
+        >
           <Card className="border-0 shadow-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -302,7 +338,7 @@ const ComparisonPage = () => {
                   </tr>
                   <tr className="border-b border-gray-200 dark:border-gray-700">
                     <td className="p-3 sm:p-4 font-medium text-xs sm:text-sm">
-                      پارکینگ
+                      {t("parking")}
                     </td>
                     {houses.map((house) => (
                       <td
