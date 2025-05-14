@@ -3,7 +3,6 @@
 import MapSVG from '@/components/common/svg/map';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calendar, Clock, MapPin, Stars } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -317,27 +316,6 @@ function Page() {
                             </TabsContent>
                         </Tabs>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div className=' w-[39%] '>
                         <h1 className='text-[32px] font-bold'>تور گردشگری سالار دره</h1>
                         <div className="flex gap-2 mt-2 mb-[47px] items-center">
@@ -417,15 +395,6 @@ function Page() {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
                 </div>
             </div >
         </>

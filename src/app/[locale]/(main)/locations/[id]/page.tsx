@@ -1,3 +1,4 @@
+import MapSVG from "@/components/common/svg/map";
 import MainImages from "@/components/single-house/main-images";
 import Map from "@/components/single-location-container/map";
 import { getCityById } from "@/lib/actions/cities";
@@ -7,9 +8,16 @@ import Image from "next/image";
 async function page({ params }) {
   const cityDetail = await getCityById(params.id);
   return (
-    <div dir="rtl" className="px-[104] pt-[52px]">
+    <div dir="rtl" className="px-[104] pt-[10px]">
       <div className="flex justify-between w-full">
-        <div className="w-[49.06731%] flex flex-col flex-wrap gap-[60px]">
+        <div className="w-[49.06731%] flex flex-col flex-wrap">
+          <div>
+            <h1 className='text-[32px] mt-0 font-bold text-text'>شهر {cityDetail?.cityName}</h1>
+            <div className="flex gap-2 mt-2 items-center">
+              <MapSVG color="#7e7e7e" />
+              <h1 className="text-[14px] font-medium text-text-secondary"> استان {cityDetail?.province} </h1>
+            </div>
+          </div>
           <div className="mb-[65px]">
             <MainImages
               show3D={false}
@@ -31,7 +39,7 @@ async function page({ params }) {
         </div>
         <div className="w-[48.1751%]">
           <Image
-            className="rounded-2xl w-full h-[412px]"
+            className="rounded-2xl w-full h-[412px] mt-[120px]"
             width={632}
             height={412}
             src={cityDetail?.mainImage}
