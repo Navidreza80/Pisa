@@ -82,4 +82,6 @@ model Tour {
   cancelTill      Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  lat             String?
+  lng             String?
 }
