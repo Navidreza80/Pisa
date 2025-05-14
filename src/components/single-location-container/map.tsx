@@ -1,27 +1,26 @@
 "use client";
 
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { divIcon } from "leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 const Map = ({ location, landscape }) => {
-  console.log(landscape);
   return (
     <MapContainer
       className="!z-10 h-full w-full !rounded-2xl"
       center={[location.lat, location.lng]}
-      zoom={10}
+      zoom={12}
       scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* {landscape?.map((item, index) => {
+      {landscape?.map((item, index) => {
         const customIcon = divIcon({
           className: "custom-marker-icon",
           html: `
                     <div class="marker-img-wrapper">
-                      <img src="${item.image[0]}" class="marker-img" />
+                      <img src="${item.image}" class="marker-img" />
                       <div class="marker-pointer"></div>
                     </div>
                   `,
@@ -35,7 +34,7 @@ const Map = ({ location, landscape }) => {
             icon={customIcon}
           ></Marker>
         );
-      })} */}
+      })}
     </MapContainer>
   );
 };

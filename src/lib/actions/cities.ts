@@ -26,6 +26,8 @@ export async function getCityById(id: string) {
         name: landscape.name,
         image: landscape.image,
         description: landscape.description,
+        lat: landscape.lat,
+        lng: landscape.lng
       })),
     };
   } catch (error) {
