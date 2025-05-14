@@ -74,7 +74,7 @@ model Tour {
   tourLocation    String
   tourImage       String
   tourDescription String
-  tags            String[]
+  tags            String?
   price           Json
   schedule        DateTime
   services        String[]
@@ -84,4 +84,5 @@ model Tour {
   updatedAt       DateTime @updatedAt
   lat             String?
   lng             String?
+  features        String[]
 }
