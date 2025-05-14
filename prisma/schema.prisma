@@ -38,16 +38,16 @@ model Message {
 
 model City {
   id            String      @id @default(cuid())
-  galleryPhotos String[] // Array of URLs
+  galleryPhotos String[]
   cityName      String
   province      String
-  mainImage     String // URL for the main image
-  location      Location    @relation(fields: [locationId], references: [id])
+  mainImage     String
   locationId    String      @unique
   description   String
-  landscapes    Landscape[]
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  location      Location    @relation(fields: [locationId], references: [id])
+  landscapes    Landscape[]
 }
 
 model Location {
@@ -58,10 +58,12 @@ model Location {
 }
 
 model Landscape {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String
   image       String
   description String
-  city        City   @relation(fields: [cityId], references: [id])
   cityId      String
+  lat         String?
+  lng         String?
+  city        City    @relation(fields: [cityId], references: [id])
 }

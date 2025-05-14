@@ -1,10 +1,11 @@
 import MainImages from "@/components/single-house/main-images";
+import Map from "@/components/single-location-container/map";
 import { getCityById } from "@/lib/actions/cities";
+import "leaflet/dist/leaflet.css";
 import Image from "next/image";
 
-const cityDetail = await getCityById("1");
-
-function page() {
+async function page({ params }) {
+  const cityDetail = await getCityById(params.id);
   return (
     <div dir="rtl" className="px-[104] pt-[52px]">
       <div className="flex justify-between w-full">
@@ -20,8 +21,11 @@ function page() {
             <h1 className="mb-[18px]  font-medium text-[16px] text-[#586CFF]">
               موقعیت مکانی
             </h1>
-            <div className="h-[350px] text-white m-auto bg-red-600">
-              نقشه بزار ت. بک باید درست شه واسه یارو
+            <div className="h-[350px] text-white m-auto">
+              <Map
+                location={cityDetail?.location}
+                landscape={cityDetail?.landscapes}
+              />
             </div>
           </div>
         </div>
