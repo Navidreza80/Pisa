@@ -67,3 +67,22 @@ model Landscape {
   lng         String?
   city        City    @relation(fields: [cityId], references: [id])
 }
+
+model Tour {
+  id              String   @id @default(uuid())
+  tourName        String
+  tourLocation    String
+  tourImage       String
+  tourDescription String
+  tags            String?
+  price           Json
+  schedule        DateTime
+  services        String[]
+  facilities      String[]
+  cancelTill      Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lat             String?
+  lng             String?
+  features        String[]
+}
