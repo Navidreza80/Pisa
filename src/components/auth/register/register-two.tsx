@@ -78,6 +78,7 @@ export default function Register2() {
         </span>
 
         <div className="flex flex-row-reverse justify-center gap-3 mb-4">
+          {/* Enter OTP input */}
           <InputOTP maxLength={6} onChange={(value) => setCode(value)}>
             <InputOTPGroup className="gap-2">
               <InputOTPSlot

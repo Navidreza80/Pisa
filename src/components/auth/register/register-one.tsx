@@ -1,4 +1,7 @@
 "use client";
+// Next
+import Link from "next/link";
+
 // Dependencies
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
@@ -12,12 +15,10 @@ import WelcomeTitle from "../common/welcome-title";
 
 // SVGs
 import EmailSVG from "@/components/common/svg/email";
-import GoogleSVG from "@/components/common/svg/google";
 
 // API
-import { useStartRegister } from "@/utils/service/register/post-step-one";
 import GithubSVG from "@/components/common/svg/github";
-import Link from "next/link";
+import { useStartRegister } from "@/utils/service/register/post-step-one";
 
 /**
  * Register step one component.
@@ -49,13 +50,16 @@ function Register1() {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+      {/* Header */}
       <WelcomeTitle title={t("SignUpTitle")} desc={t("SignUpDesc1")} />
       <div className="flex flex-col flex-wrap gap-[24px]">
         <button className="h-[48px] text-text border border-[#E0E0E0] rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white">
+          {/* Github login */}
           <h1>{t("google")}</h1>
           <GithubSVG />
         </button>
         <OrUnderline />
+        {/* Register email input */}
         <InputAuth
           text={t("email")}
           id="email"
