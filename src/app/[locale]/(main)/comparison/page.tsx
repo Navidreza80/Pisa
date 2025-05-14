@@ -1,33 +1,56 @@
 "use client";
+// Next & React
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+// Dependencies
+import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { FaBath, FaBed, FaUser } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { useDispatch } from "react-redux";
+
+// Third party components
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { HouseItemsInterface } from "@/types/house";
+
+// Types
+import type { HouseItemsInterface } from "@/types/house";
+
+// Hook & API
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { deleteComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 import { getHouseById } from "@/utils/service/house/get-by-id";
-import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBath, FaBed, FaUser } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
-import { useDispatch } from "react-redux";
+
+/**
+ * About us page - Display team members, missions, location and FAQ
+ * 
+ * @page
+ * @route /about-us
+ * 
+ */
 
 const ComparisonPage = () => {
+  // Hooks
   const t = useTranslations("Comparison");
   const router = useRouter();
   const locale = useLocale();
-
-  const isRTL = locale === "ar" || locale === "fa";
   const [houses, setHouses] = useState<HouseItemsInterface[]>([]);
-
   const Ids = useAppSelector((state) => state.comparisonIds);
   const dispatch = useDispatch();
+  const isRTL = locale === "ar" || locale === "fa";
+  useEffect(() => {
+    fetchHouseById();
 
+    return () => {
+      dispatch(deleteComparisonIds());
+    };
+  }, []);
+
+  // Fetching houses logic
   const fetchHouseById = async () => {
     if (Ids.ids) {
       const data1 = await getHouseById(Ids.ids[0]);
@@ -37,14 +60,7 @@ const ComparisonPage = () => {
     return;
   };
 
-  useEffect(() => {
-    fetchHouseById();
-
-    return () => {
-      dispatch(deleteComparisonIds());
-    };
-  }, []);
-
+  // Rating
   const renderRating = (rating: number) => {
     return (
       <div className="flex items-center gap-1">
@@ -56,13 +72,19 @@ const ComparisonPage = () => {
             ★
           </span>
         ))}
-        <span className={`text-sm font-medium ${isRTL ? "mr-3" : "ml-3"}`}>{rating.toFixed(1)}</span>
+        <span className={`text-sm font-medium ${isRTL ? "mr-3" : "ml-3"}`}>
+          {rating.toFixed(1)}
+        </span>
       </div>
     );
   };
 
   return (
-    <div dir={isRTL ? "rtl" : "ltr"} className="container px-26 mx-auto py-8 sm:py-12">
+    <div
+      dir={isRTL ? "rtl" : "ltr"}
+      className="container px-26 mx-auto py-8 sm:py-12"
+    >
+      {/* Title and subtitle */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -77,6 +99,7 @@ const ComparisonPage = () => {
         </p>
       </motion.div>
 
+      {/* Tabs section */}
       <Tabs defaultValue="visual" className="w-full mb-8 sm:mb-12">
         <TabsList className="grid w-full max-w-xs sm:max-w-md mx-auto grid-cols-2 bg-blue-50 dark:bg-gray-800 min-h-[48px]">
           <TabsTrigger
@@ -92,7 +115,7 @@ const ComparisonPage = () => {
             {t("tableComparison")}
           </TabsTrigger>
         </TabsList>
-
+        {/* Compare virtually */}
         <TabsContent value="visual" className="mt-4 sm:mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {houses.map((house, index) => (
@@ -181,7 +204,7 @@ const ComparisonPage = () => {
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                           {t("parking")} 
+                            {t("parking")}
                           </p>
                           <p className="font-medium text-sm sm:text-base">
                             {house.parking}
@@ -215,8 +238,12 @@ const ComparisonPage = () => {
             ))}
           </div>
         </TabsContent>
-
-        <TabsContent dir={isRTL ? "rtl" : "ltr"} value="table" className="mt-4 sm:mt-6">
+        {/* Table compare */}
+        <TabsContent
+          dir={isRTL ? "rtl" : "ltr"}
+          value="table"
+          className="mt-4 sm:mt-6"
+        >
           <Card className="border-0 shadow-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -311,7 +338,7 @@ const ComparisonPage = () => {
                   </tr>
                   <tr className="border-b border-gray-200 dark:border-gray-700">
                     <td className="p-3 sm:p-4 font-medium text-xs sm:text-sm">
-                      {t("parking")} 
+                      {t("parking")}
                     </td>
                     {houses.map((house) => (
                       <td

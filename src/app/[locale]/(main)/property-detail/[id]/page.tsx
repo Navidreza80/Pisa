@@ -9,6 +9,7 @@ import { getHouseById } from "@/utils/service/house/get-by-id";
 
 // Types
 import type { HouseItemsInterface } from "@/types/house";
+import type PageProps from "@/types";
 
 // Third party components
 import Container from "@/components/common/container";
@@ -24,41 +25,70 @@ import RentForm from "@/components/single-house/rent-form";
 import ReserveForm from "@/components/single-house/reserve-property-form";
 import TitleSection from "@/components/single-house/title-section";
 
-export default async function HouseDetail({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
+/**
+ * Single property page - Displaying detail of property
+ *
+ * @page
+ * @route /property-detail/[id]
+ *
+ * Features:
+ * - Displaying related house
+ * - Displaying house location in map
+ * - Comment section
+ *
+ */
+
+export default async function HouseDetail({ params }: PageProps) {
+  // Getting params data
+  const { id } = await params;
+
   // Fetching property details server side
-  const propertyDetails = await getHouseById(id);
+  let propertyDetails;
+  if (typeof id == "string") propertyDetails = await getHouseById(id);
 
   // Fetching related properties server side
   const relatedHouses: HouseItemsInterface[] = await fetchHouses({
     transactionType: "",
-    search: propertyDetails.address,
+    search: propertyDetails?.address,
   });
+
+  // Handle if the property detail is undefined
+  if (!propertyDetails) {
+    throw new Error("Property details is undefined");
+  }
+
+  const {
+    address,
+    title,
+    photos,
+    rate,
+    categories,
+    yard_type,
+    capacity,
+    rooms,
+    bathrooms,
+    parking,
+    location,
+  } = propertyDetails;
 
   // Getting isHotel value based on transaction type
   // If its "reservation" the property is hotel
   // If the property is hotel, render some elements and don't render some elements.
   const isHotel =
-    propertyDetails.transaction_type == "direct_purchase" ? true : false;
+    propertyDetails?.transaction_type == "direct_purchase" ? true : false;
   return (
     <Container>
       <div className="w-[85.5%] flex flex-wrap gap-y-8">
         {/* Top section */}
         <HeaderSection
-          address={propertyDetails.address ? propertyDetails.address : ""}
-          title={propertyDetails.title ? propertyDetails.title : ""}
+          address={address ? address : ""}
+          title={title ? title : ""}
         />
         {/* Mid section */}
         <div dir="rtl" className="w-full flex justify-between flex-wrap gap-8">
           {/* Main images */}
           <div className="w-[47%]">
-            <MainImages
-              photos={propertyDetails.photos ? propertyDetails.photos : []}
-              sticky={true}
-            />
+            <MainImages photos={photos ? photos : []} sticky={true} />
           </div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
@@ -72,12 +102,12 @@ export default async function HouseDetail({
             {isHotel && (
               <>
                 {/* Image section */}
-                {propertyDetails.photos && (
+                {photos && (
                   <Image
                     width={500}
                     height={500}
-                    alt={propertyDetails.title || "houseImage"}
-                    src={propertyDetails.photos[1]}
+                    alt={title || "houseImage"}
+                    src={photos[1]}
                     className="h-[253px] w-full rounded-3xl"
                     unoptimized
                   />
@@ -88,16 +118,16 @@ export default async function HouseDetail({
               </>
             )}
             {/* Rate section */}
-            <HouseRate rate={propertyDetails.rate} />
+            <HouseRate rate={rate} />
 
             {/* Facilities section */}
             <Facilities
-              propertyType={propertyDetails.categories.name}
-              yard_type={propertyDetails.yard_type}
-              capacity={propertyDetails.capacity}
-              rooms={propertyDetails.rooms}
-              bathrooms={propertyDetails.bathrooms}
-              parking={propertyDetails.parking}
+              propertyType={categories.name}
+              yard_type={yard_type}
+              capacity={capacity}
+              rooms={rooms}
+              bathrooms={bathrooms}
+              parking={parking}
               isHotel={isHotel}
             />
             {/* Map section */}
@@ -105,10 +135,7 @@ export default async function HouseDetail({
               <>
                 <div className="h-[349px] rounded-4xl">
                   <PropertyLocation
-                    propertyLocation={[
-                      propertyDetails.location.lat,
-                      propertyDetails.location.lng,
-                    ]}
+                    propertyLocation={[location.lat, location.lng]}
                   />
                 </div>
                 <ParagraphSection textContent="این هتل خیلی خیلیلخیلخیل خقن ختما بهزین دااداش اصلا بی نظیرع" />
