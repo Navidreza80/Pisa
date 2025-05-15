@@ -1,4 +1,4 @@
-// Dependencies
+// Interceptor
 import axios from "@/utils/interceptor";
 
 // Types
@@ -9,11 +9,13 @@ import type { HouseFilters, HouseItemsInterface } from "@/types/house";
  * @param {HouseFilters} params
  * @returns response with complete registration process
  */
+
 export const fetchHouses = async (
   params: HouseFilters
 ): Promise<HouseItemsInterface[]> => {
+  // Always include transactionType even if empty
   const requiredParams = {
-    transactionType: params.transactionType || "",
+    transactionType: params.transactionType || "", // Force include
     ...params,
   };
 
@@ -26,8 +28,5 @@ export const fetchHouses = async (
     )
   );
 
-  const response = await axios.get<HouseItemsInterface[]>("/houses", {
-    params: cleanedParams,
-  });
-  return response.data;
+  return axios.get("/houses", { params: cleanedParams });
 };
