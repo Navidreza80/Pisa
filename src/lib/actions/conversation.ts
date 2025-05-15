@@ -1,6 +1,12 @@
 "use server";
-
+// Dependencies
 import prisma from "@/lib/prisma";
+
+/**
+ * Get users conversation.
+ * @params - userId.
+ * @return conversation that user participated in.
+ **/
 
 export async function getUserConversations(userId: string) {
   return await prisma.conversation.findMany({
