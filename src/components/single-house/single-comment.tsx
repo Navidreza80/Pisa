@@ -3,7 +3,7 @@ import ArrowSVG from "../common/svg/arrow";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import user from "@/assets/images/user.png";
+import user from "@/assets/icons/user.png";
 import { Star } from "lucide-react";
 
 export default function SingleComment({

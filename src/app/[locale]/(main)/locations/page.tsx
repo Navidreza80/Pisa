@@ -1,33 +1,63 @@
-import Esfahan from "@/assets/images/landing/locations/esfahan.png";
-import Shiraz from "@/assets/images/landing/locations/shiraz.png";
-import Tehran from "@/assets/images/landing/locations/tehran.png";
-import Reveal from "@/components/common/reveal";
-import { HouseItemsInterface } from "@/types/house";
-import { fetchHouses } from "@/utils/service/house/get";
-import { getAllLocations } from "@/utils/service/location/get";
-import { getTranslations } from "next-intl/server";
+// Next
 import Image from "next/image";
 import Link from "next/link";
 
-async function LocationsPage() {
+// Images
+import Esfahan from "@/assets/images/landing/locations/esfahan.png";
+import Shiraz from "@/assets/images/landing/locations/shiraz.png";
+import Tehran from "@/assets/images/landing/locations/tehran.png";
+
+// Third party components
+import Reveal from "@/components/common/reveal";
+
+// Types
+import type { HouseItemsInterface } from "@/types/house";
+
+// API
+import { fetchHouses } from "@/utils/service/house/get";
+import { getAllLocations } from "@/utils/service/location/get";
+
+// Dependencies
+import { getTranslations } from "next-intl/server";
+
+/**
+ * locations page - Displaying all locations.
+ *
+ * @page
+ * @route /locations
+ *
+ * Features:
+ * - Displaying all locations
+ *
+ */
+
+export default async function LocationsPage() {
+  // Hooks
   const t = await getTranslations("Location");
   const data: HouseItemsInterface[] = await fetchHouses({
     transactionType: "",
   });
+
+  // Fetch data server side
   const locations = await getAllLocations();
+
+  // Get the number of houses that are in every location
   const tehranHouses = data.filter((e) => e.address?.includes("تهران")).length;
   const shirazHouses = data.filter((e) => e.address?.includes("شیراز")).length;
   const esfahanHouses = data.filter((e) =>
     e.address?.includes("اصفهان")
   ).length;
+
   return (
     <div dir="rtl" className="px-20 pt-10">
       <div>
+        {/* Page title */}
         <Reveal>
           <div className="text-right text-text text-[36px] font-[700]">
             {t("LocationPageTitle")}
           </div>
         </Reveal>
+        {/* Search */}
         <div className="h-[48px] w-[396px] my-8  relative">
           <input
             type="text"
@@ -73,6 +103,7 @@ async function LocationsPage() {
           </svg>
         </div>
       </div>
+      {/* All locations */}
       <div className="flex flex-wrap gap-6 justify-center p-4">
         {locations.map((card) => (
           <div
@@ -121,5 +152,3 @@ async function LocationsPage() {
     </div>
   );
 }
-
-export default LocationsPage;

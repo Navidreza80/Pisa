@@ -65,6 +65,7 @@ function Login() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      {/* Page header */}
       <WelcomeTitle
         created_at={new Date().toISOString()}
         id={Math.random().toString()}
@@ -74,16 +75,19 @@ function Login() {
         imageSrc=""
         imageTitle=""
       />
+      {/* Login options */}
       <div className="flex flex-col flex-wrap gap-[20px]">
         <button
           onClick={() => login()}
           type="button"
           className="h-[48px] text-text border border-border rounded-2xl flex items-center justify-center gap-2 text-[16px] font-bold cursor-pointer transition-all dark:bg-white"
         >
+          {/* Login with github */}
           <span>{t("google")}</span>
           <GithubSVG />
         </button>
         <OrUnderline />
+        {/* Login inputs */}
         <InputAuth
           text={t("email")}
           placeHolder={t("emailDesc")}
@@ -110,7 +114,6 @@ function Login() {
           value={formik.values.password}
           onChange={formik.handleChange}
         >
-          {" "}
           {formik.errors.password && (
             <span className="text-red-500 text-sm text-right">
               {formik.errors.password}

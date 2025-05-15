@@ -1,4 +1,7 @@
 "use client";
+
+// Next & React
+import Link from "next/link";
 import { useEffect } from "react";
 
 // Dependencies
@@ -91,9 +94,11 @@ export default function AboutUs() {
   return (
     <main className="min-h-screen py-[20px] px-4 dark:bg-gray-900">
       <div className="container mx-auto">
+        {/* Hero section */}
         <div className="mb-20 max-w-6xl mx-auto">
+          {/* Mentor section */}
           <Mentor />
-
+          {/* Our team section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ProfileNextElites
               name={t("navid")}
@@ -113,6 +118,7 @@ export default function AboutUs() {
           </div>
         </div>
 
+        {/* Our mission */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mb-16">
           <div className="relative">
             <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-600 dark:bg-blue-800 rounded-2xl"></div>
@@ -144,22 +150,23 @@ export default function AboutUs() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a
+              <Link
                 href="/contact"
                 className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md"
               >
                 {t("contactUs")}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/"
                 className="px-6 py-3 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition"
               >
                 {t("homePage")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
+        {/* Our services */}
         <div className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
             {t("realEstateServices")}
@@ -175,6 +182,7 @@ export default function AboutUs() {
           </p>
         </div>
 
+        {/* Features section */}
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <Features
             title={t("quality")}
@@ -240,6 +248,7 @@ export default function AboutUs() {
           />
         </div>
 
+        {/* Contact us section */}
         <div className="mt-24 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-8 rounded-2xl shadow-lg max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
             {t("contactUs")}
@@ -453,6 +462,7 @@ export default function AboutUs() {
           </div>
         </div>
 
+        {/* FAQ section */}
         <div className="mt-24 max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-12">
             {t("faq")}
@@ -464,6 +474,7 @@ export default function AboutUs() {
           </div>
         </div>
 
+        {/* Location section */}
         <div className="mt-24 max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
             {t("ourLocation")}

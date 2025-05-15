@@ -7,7 +7,6 @@ import HeroSection from "./hero-section/hero-section";
 import Popular from "./locations/locations";
 import Offers from "./offers/offers";
 import TopSales from "./topSale/TopSale";
-// import Comments from "./comments/Comments";
 import AIAssistant from "./ai-assistant/ai-assistant";
 
 export default async function HomeContainer() {
@@ -34,7 +33,7 @@ export default async function HomeContainer() {
             shirazHouses={shirazHouses}
             esfahanHouses={esfahanHouses}
           />
-          {/* <AIAssistant houseLength={houseLength} /> */}
+          <AIAssistant houseLength={houseLength} />
           {/* <Comments /> */}
         </div>
       </div>

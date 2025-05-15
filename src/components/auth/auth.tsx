@@ -45,6 +45,7 @@ export default function Auth() {
   return (
     <div className="max-[1300px]:hidden h-[calc(100vh-32px)] animate-fade-right w-full">
       <div className="relative max-w-[704px] h-full w-full">
+        {/* Left side image slider */}
         <ImageAuth
           imageTitle={currentImage.title}
           imageSrc={currentImage.src}
@@ -57,6 +58,7 @@ export default function Auth() {
         </div>
 
         <div className="w-full absolute bottom-5 right-0 z-10">
+          {/* Comments section */}
           <Comment />
         </div>
       </div>

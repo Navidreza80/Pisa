@@ -1,7 +1,14 @@
 "use server";
+// Interceptor
 import http from "@/utils/interceptor";
 
-export default async function postMessage({title, message}) {
+/**
+ * Post message to admin for contact us section.
+ * @param params - title message.
+ * @returns response with contact us message.
+ */
+
+export default async function postMessage({title, message}: {title: string; message: string}) {
   try {
     const result = await http.post(`/contact-us`, {
       title: title,

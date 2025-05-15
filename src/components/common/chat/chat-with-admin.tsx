@@ -64,7 +64,7 @@ export default function Chat({
       setConversationId(conversation.id);
       setMessages(conversation.messages);
     } catch (error) {
-      toast.error("Please sign in first!");
+      toast.error("Please sign in first!", error);
     }
   };
 
@@ -84,7 +84,6 @@ export default function Chat({
   // Send the message then load conversation and get messages
   const handleSend = async () => {
     if (!input.trim() || isSending || !conversationId) return;
-
     setIsSending(true);
     try {
       await sendMessage(input, userId, conversationId);
