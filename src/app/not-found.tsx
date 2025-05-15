@@ -1,11 +1,20 @@
 "use client";
+
+// Next
 import Link from "next/link";
-import { MoonIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+
+// Icons
+import { MoonIcon, SunIcon } from "lucide-react";
+
+// Style
 import "./[locale]/globals.css";
+
+// SVGs
 import NotFoundSvg from "@/components/common/svg/not-found";
 import NotFoundHomeSvg from "@/components/common/svg/not-found-Home";
 
+// Translation items
 const translations = {
   fa: {
     title: "صفحه پیدا نشد",
@@ -23,10 +32,10 @@ const translations = {
   },
 };
 
-export default function Custom404() {
+export default function NotFoundPage() {
+  // Hooks
   const [locale, setLocale] = useState<"fa" | "en">("fa");
   const [isDark, setIsDark] = useState(false);
-
   useEffect(() => {
     const current = window.location.pathname.startsWith("/en") ? "en" : "fa";
     setLocale(current);
@@ -36,9 +45,9 @@ export default function Custom404() {
       setIsDark(true);
     }
   }, []);
-
   const t = translations[locale];
 
+  // Toggle language in notfound page logic
   const toggleLanguage = () => {
     const newLocale = locale === "fa" ? "en" : "fa";
     const newPath = window.location.pathname.replace(
@@ -48,6 +57,7 @@ export default function Custom404() {
     window.location.href = newPath;
   };
 
+  // Toggle theme in notfound page logic
   const toggleDark = () => {
     const isNowDark = document.documentElement.classList.toggle("dark");
     localStorage.setItem("theme", isNowDark ? "dark" : "light");
@@ -59,6 +69,7 @@ export default function Custom404() {
       <div className="absolute inset-0 bg-white/70 dark:bg-black/60 backdrop-blur-md" />
 
       <div className="absolute top-5 right-5 z-20 flex gap-4">
+        {/* Toggle theme */}
         <button
           onClick={toggleDark}
           className="p-2 h-[50px] w-[50px] rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 transition-colors"
@@ -71,6 +82,7 @@ export default function Custom404() {
           )}
         </button>
 
+        {/* Toggle language */}
         <button
           onClick={toggleLanguage}
           className="p-2 rounded-full h-[50px] w-[50px] bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-black dark:text-white font-medium"

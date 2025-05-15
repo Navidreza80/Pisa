@@ -1,22 +1,50 @@
-import Reveal from "@/components/common/reveal";
-import MapSVG from "@/components/common/svg/map";
-import { getTours } from "@/lib/actions/tours";
-import { formatNumber } from "@/utils/helper/format-number";
-import { getTranslations } from "next-intl/server";
+// Next
 import Image from "next/image";
 
-async function ToursPage() {
+// Third party components
+import Reveal from "@/components/common/reveal";
+
+// SVGs
+import MapSVG from "@/components/common/svg/map";
+
+// Actions
+import { getTours } from "@/lib/actions/tours";
+
+// Helper
+import { formatNumber } from "@/utils/helper/format-number";
+
+// Dependencies
+import { getTranslations } from "next-intl/server";
+
+/**
+ * Tours page
+ * 
+ * @page
+ * @route /tours
+ * 
+ * Features:
+ * - Displaying all tours
+ * - Search
+ * 
+ */
+
+export default async function ToursPage() {
+  // Hooks
   const t = await getTranslations("Tours");
+
+  // Fetch data server side
   const tours = await getTours();
 
   return (
     <div dir="rtl" className="px-20 pt-10">
       <div>
+        {/* Title */}
         <Reveal>
           <div className="text-right text-text text-[36px] font-[700]">
             {t("TourPageTitle")}
           </div>
         </Reveal>
+        {/* Search */}
         <div className="flex gap-4 my-8 h-12">
           <div className="h-[48px] w-[396px] relative">
             <input
@@ -65,6 +93,7 @@ async function ToursPage() {
           <div className="h-[36px] w-[1px] my-auto bg-[#eaeaea]"></div>
         </div>
       </div>
+      {/* Displaying tours */}
       <div className="flex flex-wrap gap-6 justify-between p-4">
         {tours.tours?.map((tour) => (
           <div
@@ -127,5 +156,3 @@ async function ToursPage() {
     </div>
   );
 }
-
-export default ToursPage;

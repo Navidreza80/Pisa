@@ -267,14 +267,14 @@ html[dir="ltr"] .menu-items {
 }
 
 .compareIcon {
-  background-image: url("../../assets/images/compare.png");
+  background-image: url("../../assets/icons/compare.png");
   background-size: 75%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
 
 .compareIconSelected {
-  background-image: url("../../assets/images/compare-selected.png");
+  background-image: url("../../assets/icons/compare-selected.png");
   background-size: 75%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
