@@ -1,9 +1,15 @@
+// Next
 import createIntlMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
+
+// Dependencies
 import { auth } from "./auth";
+import { routing } from "./i18n/routing";
+
+// Cookies
 import { getServerCookie } from "./utils/service/storage/server-cookie";
 
+// List of protected routes
 const protectedRoutes = [
   "/fa/auth/login",
   "/fa/auth/register/step-1",
@@ -38,17 +44,10 @@ export default async function middleware(request: NextRequest) {
   );
 
   if (isProtected && (session || token)) {
-    // Create a new URL for the redirect
     const url = request.nextUrl.clone();
     url.pathname = "/";
     return NextResponse.redirect(url);
   }
-
-  // Apply the intl middleware to all requests
   const response = intlMiddleware(request);
-
-  // You could modify the response headers here if needed
-  // response.headers.set('x-custom-header', 'value');
-
   return response;
 }
