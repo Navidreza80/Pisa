@@ -1,13 +1,24 @@
-import { HouseItemsInterface } from "@/types/house";
+// Dependencies
+import { AxiosResponse } from "axios";
+
+// Types
+import type { HouseItemsInterface } from "@/types/house";
+
+// Interceptor
 import http from "@/utils/interceptor";
 
-const getHouseById = async (id: string): Promise<HouseItemsInterface> => {
+/**
+ * Get all locations from the server.
+ * @returns response with array of objects including all locations.
+ */
+export async function getHouseById(
+  id: string
+): Promise<AxiosResponse<HouseItemsInterface>> {
   try {
-    const result = await http.get(`/houses/${id}`);
-    return result;
+    const response = await http.get<HouseItemsInterface>(`/houses/${id}`);
+    return response;
   } catch (error) {
-    return error;
+    console.error("Error fetching house detail:", error);
+    throw error;
   }
-};
-
-export { getHouseById };
+}

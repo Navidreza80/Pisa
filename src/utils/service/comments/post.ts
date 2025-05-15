@@ -1,25 +1,19 @@
+// Dependencies
+import { AxiosResponse } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { AxiosResponse } from "axios";
+
+// Interceptor
 import http from "@/utils/interceptor";
 
-interface PostCommentParams {
-  title: string;
-  caption: string;
-  rating: number;
-  parent_comment_id: number | null;
-  houseId: string;
-}
+// Types
+import type { CommentResponse, PostCommentParams } from "@/types/comments";
 
-interface CommentResponse {
-  id: number;
-  text: string;
-  createdAt: string;
-  author: {
-    id: number;
-    name: string;
-  };
-}
+/**
+ * Post comment to server.
+ * @param {PostCommentParams} params
+ * @returns response with comment
+ */
 
 export const postComment = async (
   params: PostCommentParams
