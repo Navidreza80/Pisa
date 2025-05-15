@@ -73,7 +73,17 @@
     "ConfirmPassword": "تکرار رمزعبور",
     "ConfirmPasswordDesc": "تکرار رمزعبور خود را وارد کنید",
     "Register": "ثبت نام",
-    "Or": "یا"
+    "Or": "یا",
+    "pending": "درحال پردازش...",
+    "successEmail": "ایمیل با موفقیت تایید شد!",
+    "success": "ثبت نام با موفقیت انجام شد",
+    "loginSuccess": "ورود با موفقیت انجام شد",
+    "wrongPassword": "ایمیل یا رمز عبور اشتباه می باشد",
+    "invalidCode": "کد تایید اشتباه میباشد!",
+    "successCode": "کد تایید با موفقیت ارسال شد!",
+    "emailExists": "این ایمیل قبلا ثبت نام شده است!",
+    "serverError": "برای سرور مشکلی پیش آمده لطفا بعدا تلاش کنید!",
+    "genericError": "خطایی رخ داد، لطفا دوباره تلاش کنید!"
   },
   "AboutUs": {
     "mentor": "سبحان عرب خزائلی",
@@ -199,8 +209,8 @@
     "district": "منطقه",
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
-    "squareMeters": "متر مربع", 
-    "parking":"پارکینگ"
+    "squareMeters": "متر مربع",
+    "parking": "پارکینگ"
   },
   "Payment": {
     "remainingTime": "زمان باقی مانده",

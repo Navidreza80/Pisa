@@ -74,7 +74,17 @@
     "ConfirmPassword": "Confirm password",
     "ConfirmPasswordDesc": "Re-enter your password",
     "Register": "Register",
-    "Or": "Or"
+    "Or": "Or",
+    "pending": "Processing...",
+    "loginSuccess": "Login successful!",
+    "wrongPassword": "Incorrect email or password",
+    "successEmail": "Email successfully verified!",
+    "invalidCode": "Invalid verification code!",
+    "success": "Registration completed successfully!",
+    "successCode": "Verification code sent successfully!",
+    "emailExists": "This email is already registered!",
+    "serverError": "A server error occurred, please try again later!",
+    "genericError": "An error occurred, please try again!"
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",

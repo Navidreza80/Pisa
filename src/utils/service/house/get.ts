@@ -1,20 +1,33 @@
-import axios from '@/utils/interceptor';
-import { HouseFilters, HouseItemsInterface } from '@/types/house';
+// Dependencies
+import axios from "@/utils/interceptor";
 
-export const fetchHouses = async (params: HouseFilters): Promise<HouseItemsInterface[]> => {
-  // Always include transactionType even if empty
+// Types
+import type { HouseFilters, HouseItemsInterface } from "@/types/house";
+
+/**
+ * Get all houses.
+ * @param {HouseFilters} params
+ * @returns response with complete registration process
+ */
+export const fetchHouses = async (
+  params: HouseFilters
+): Promise<HouseItemsInterface[]> => {
   const requiredParams = {
-    transactionType: params.transactionType || '', // Force include
-    ...params
+    transactionType: params.transactionType || "",
+    ...params,
   };
 
   const cleanedParams = Object.fromEntries(
     Object.entries(requiredParams).filter(
-      ([_, value]) => value !== undefined && 
-      value !== null &&
-      !(typeof value === 'number' && isNaN(value))
+      ([, value]) =>
+        value !== undefined &&
+        value !== null &&
+        !(typeof value === "number" && isNaN(value))
     )
   );
 
-  return axios.get('/houses', { params: cleanedParams });
+  const response = await axios.get<HouseItemsInterface[]>("/houses", {
+    params: cleanedParams,
+  });
+  return response.data;
 };

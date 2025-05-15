@@ -1,5 +1,10 @@
+// Interceptor
 import Http from "../../interceptor";
+
+// Dependencies
 import { toast } from "react-toastify";
+
+// Cookies
 import { setClientCookie } from "../storage/client-cookie";
 import {
   getServerCookie,

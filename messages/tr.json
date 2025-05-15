@@ -73,7 +73,17 @@
     "ConfirmPassword": "Şifreyi onayla",
     "ConfirmPasswordDesc": "Şifrenizi tekrar girin",
     "Register": "Kayıt Ol",
-    "Or": "Veya"
+    "Or": "Veya",
+    "pending": "İşleniyor...",
+    "loginSuccess": "Giriş başarılı!",
+    "wrongPassword": "E-posta veya şifre yanlış",
+    "successEmail": "E-posta başarıyla doğrulandı!",
+    "invalidCode": "Geçersiz doğrulama kodu!",
+    "successCode": "Doğrulama kodu başarıyla gönderildi!",
+    "emailExists": "Bu e-posta zaten kayıtlı!",
+    "success": "Kayıt başarıyla tamamlandı!",
+    "serverError": "Sunucu hatası oluştu, lütfen daha sonra tekrar deneyin!",
+    "genericError": "Bir hata oluştu, lütfen tekrar deneyin!"
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",

@@ -1,3 +1,10 @@
+/**
+ * Next.js middleware for handling internationalization and protected routes.
+ * Redirects authenticated users from protected routes (e.g., login/register) to the homepage.
+ * @param request - The incoming Next.js request
+ * @returns Response with i18n handling or redirect
+ */
+
 // Next
 import createIntlMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,45 +16,40 @@ import { routing } from "./i18n/routing";
 // Cookies
 import { getServerCookie } from "./utils/service/storage/server-cookie";
 
-// List of protected routes
-const protectedRoutes = [
-  "/fa/auth/login",
-  "/fa/auth/register/step-1",
-  "/fa/auth/register/step-2",
-  "/fa/auth/register/step-3",
-  "/en/auth/login",
-  "/en/auth/register/step-1",
-  "/en/auth/register/step-2",
-  "/en/auth/register/step-3",
-  "/tr/auth/login",
-  "/tr/auth/register/step-1",
-  "/tr/auth/register/step-2",
-  "/tr/auth/register/step-3",
-  "/ar/auth/login",
-  "/ar/auth/register/step-1",
-  "/ar/auth/register/step-2",
-  "/ar/auth/register/step-3",
-];
+// Constant
+import { protectedRoutes } from "./utils/constant/protected-routes";
+
 const intlMiddleware = createIntlMiddleware(routing);
 
+// Matcher config for middleware
 export const config = {
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  matcher: [
+    "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+    "/:locale(en|fa|tr|ar)/:path*",
+  ],
 };
 
 export default async function middleware(request: NextRequest) {
-  // Handle protected routes first
-  const session = await auth();
-  const token = await getServerCookie("serverAccessToken");
-  const { pathname } = request.nextUrl;
-  const isProtected = protectedRoutes.some((route) =>
-    pathname.startsWith(route)
-  );
+  try {
+// Authentication check for protected routes
 
-  if (isProtected && (session || token)) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/";
-    return NextResponse.redirect(url);
+    // Get session from next auth if user logged in with github
+    const session = await auth();
+    // Get token that saved in cookie for login with email and password manually
+    const token = await getServerCookie("serverAccessToken");
+    const { pathname } = request.nextUrl;
+    const isProtected = protectedRoutes.includes(pathname);
+
+    if (isProtected && (session || token)) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
+
+    // Apply i18n middleware
+    return intlMiddleware(request);
+  } catch (error) {
+    console.error("Middleware error:", error);
+    return NextResponse.next();
   }
-  const response = intlMiddleware(request);
-  return response;
 }
