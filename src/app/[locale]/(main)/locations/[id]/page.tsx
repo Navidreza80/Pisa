@@ -35,7 +35,7 @@ async function page({ params }: PageProps) {
   if (typeof id == "string") cityDetail = await getCityById(id);
 
   return (
-    <div dir="rtl" className="px-[104] pt-[52px]">
+    <div dir="rtl" className="px-[104] pt-[10px]">
       <div className="flex justify-between w-full">
         {/* Image gallery section */}
         <div className="w-[49.06731%] flex flex-col flex-wrap gap-[60px]">
@@ -61,7 +61,7 @@ async function page({ params }: PageProps) {
         <div className="w-[48.1751%]">
           {/* Main Image section */}
           <Image
-            className="rounded-2xl w-full h-[412px]"
+            className="rounded-2xl w-full h-[412px] mt-[120px]"
             width={632}
             height={412}
             src={cityDetail?.mainImage}

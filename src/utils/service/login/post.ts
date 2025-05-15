@@ -1,37 +1,62 @@
-import { loginUserParams, loginUserResponse } from "@/types/auth";
+import { loginUserResponse } from "./../../../types/auth/index";
+// Types
+import type { loginUserParams } from "@/types/auth";
+
+// Interceptor
 import http from "@/utils/interceptor";
-import { setClientCookie } from "@/utils/service/storage/client-cookie";
-import { setServerCookie } from "@/utils/service/storage/server-cookie";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError, AxiosResponse } from "axios";
-import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
+// Cookies
+import { setClientCookie } from "@/utils/service/storage/client-cookie";
+import { setServerCookie } from "@/utils/service/storage/server-cookie";
+
+// Next
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+
+/**
+ * Login email by posting email and password to server.
+ * @param params - The email and password
+ * @returns Login user response
+ */
 export const LoginUser = async (
   params: loginUserParams
-): Promise<AxiosResponse<loginUserResponse>> => {
-  const response = await toast.promise(http.post("/auth/login", params), {
-    pending: "درحال پردازش...",
-  });
-  return response;
+): Promise<loginUserResponse> => {
+  return http.post("/auth/login", params);
 };
 
+/**
+ * React Query hook for user login process.
+ * Shows toast notifications and redirects on success.
+ * @returns Mutation hook for checking email and password.
+ */
 export const useLoginUser = () => {
+  // Hooks
   const router = useRouter();
+  const t = useTranslations("Auth");
   return useMutation({
     mutationKey: ["LOGIN_USER"],
-    mutationFn: LoginUser,
-    onSuccess: async (response: AxiosResponse) => {
-      toast.success("ورود با موفقیت انجام شد");
+    mutationFn: (params: loginUserParams) =>
+      toast.promise(LoginUser(params), {
+        pending: t("pending"),
+      }),
+    onSuccess: async (response: loginUserResponse) => {
+      toast.success(t("loginSuccess"));
       await setServerCookie("serverAccessToken", response.accessToken);
       await setServerCookie("serverRefreshToken", response.refreshToken);
       setClientCookie("clientAccessToken", response.accessToken, 15);
       router.push("/");
     },
     onError: (error: AxiosError) => {
-      if (error.status === 404) toast.error("کاربری با این اطلاعات پیدا نشد");
-      else if (error.status && error.status >= 500)
-        toast.info("برای سرور مشکلی پیش آمده لطفا بعدا تلاش کنید!");
+      if (error.response?.status === 400) {
+        toast.error(t("wrongPassword"));
+      } else if (error.response?.status && error.response.status >= 500) {
+        toast.info(t("serverError"));
+      } else {
+        toast.error(t("genericError"));
+      }
     },
   });
 };

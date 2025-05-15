@@ -16,3 +16,21 @@ export interface Comments {
   };
   parent_comment: Comment | null;
 }
+
+export interface PostCommentParams {
+  title: string;
+  caption: string;
+  rating: number;
+  parent_comment_id: number | null;
+  houseId: string;
+}
+
+export interface CommentResponse {
+  id: number;
+  text: string;
+  createdAt: string;
+  author: {
+    id: number;
+    name: string;
+  };
+}

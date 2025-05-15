@@ -1,6 +1,13 @@
-"use server"
+"use server";
 
-import prisma from "../prisma";
+// Dependencies
+import prisma from "@/lib/prisma";
+
+/**
+ * Server action to create user by getting information
+ * @params - dbId, email, name
+ * @return user
+ **/
 
 export async function createUser(dbId: string, email: string, name?: string) {
   try {

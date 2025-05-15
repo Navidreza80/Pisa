@@ -1,5 +1,6 @@
 'use client'
-// Redux for state management
+
+// Dependencies
 import { store } from "../hooks/react-redux/store";
 import { Provider } from 'react-redux';
 
