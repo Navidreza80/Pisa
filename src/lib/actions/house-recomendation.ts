@@ -4,19 +4,13 @@
 import { HouseItemsInterface } from "@/types/house";
 import { fetchHouses } from "@/utils/service/house/get";
 
-interface HouseRecommendationRequest {
-  userInput: string;
-}
-
 interface HouseSuggestionResponse {
   houseId: string;
   message: string;
   reasoning: string;
 }
 
-export async function getHouseRecommendation({
-  userInput,
-}: HouseRecommendationRequest): Promise<HouseSuggestionResponse> {
+export async function getHouseRecommendation(): Promise<HouseSuggestionResponse> {
   try {
     const houses: HouseItemsInterface[] = await fetchHouses({
       transactionType: "",
@@ -30,14 +24,14 @@ export async function getHouseRecommendation({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemma-3-4b-it:free",
+          model: "deepseek/deepseek-r1-distill-qwen-32b:free",
           messages: [
             {
               role: "system",
               content: [
                 {
                   type: "text",
-                  text: `Guide user buying house by these data and return the house id that you suggest. Response in persian. Response in JSON format. Available houses: ${houses}`,
+                  text: `Guide user buying house by these data and return the house id that you suggest. Response in persian. Response in JSON format. Available houses: ${JSON.stringify(houses)}`,
                 },
               ],
             },
@@ -46,7 +40,7 @@ export async function getHouseRecommendation({
               content: [
                 {
                   type: "text",
-                  text: userInput,
+                  text: "یک خانه در تهران",
                 },
               ],
             },
@@ -61,7 +55,7 @@ export async function getHouseRecommendation({
 
     const data = await response.json();
     const result = data.choices[0].message.content;
-    console.log(data.choices[0]);
+    console.log(data.choices[0].message.content);
 
     return {
       houseId: result.houseId,
