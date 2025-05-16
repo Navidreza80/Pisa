@@ -95,7 +95,7 @@ export default async function ToursPage() {
       </div>
       {/* Displaying tours */}
       <div className="flex flex-wrap gap-6 justify-between p-4">
-        {tours.tours?.map((tour) => (
+        {tours?.map((tour) => (
           <div
             key={tour.id}
             className="flex-1 bg-surface h-[420px] transition-transform duration-300 cursor-pointer border-[1px] border-border p-[17px] rounded-[24px] max-w-[403px] lg:min-w-[389px] md:min-w-[389px] hover:shadow-lg"
