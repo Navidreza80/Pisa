@@ -21,7 +21,7 @@ function Page() {
                 <div className='flex flex-col lg:flex-row-reverse lg:justify-between w-full gap-8'>
                     <div className="mt-10 max-[1027px]:mt-0 w-[58%] max-[1027px]:w-full">
                         <div className='max-[1027px]:block hidden'>
-                            <h1 className='text-[32px] font-bold text-text-secondary'>تور گردشگری سالار دره</h1>
+                            <h1 className='text-[32px] font-bold text-text'>تور گردشگری سالار دره</h1>
                             <div className="flex gap-2 mt-2 mb-[47px] items-center">
                                 <MapSVG color="#7e7e7e" />
                                 <h1 className="text-[14px] font-medium text-text-secondary">ساری, سالار دره</h1>
@@ -225,19 +225,19 @@ function Page() {
                                                     <ul className="space-y-2">
                                                         <li className="flex gap-2 items-center">
                                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                                                            <span className="text-text text-sm">حمل و نقل رایگان (هوایی و زمینی)</span>
+                                                            <span className="text-text-secondary text-sm">حمل و نقل رایگان (هوایی و زمینی)</span>
                                                         </li>
                                                         <li className="flex gap-2 items-center">
                                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                                                            <span className="text-text text-sm">راهنمای تور حرفه‌ای دو زبانه</span>
+                                                            <span className="text-text-secondary text-sm">راهنمای تور حرفه‌ای دو زبانه</span>
                                                         </li>
                                                         <li className="flex gap-2 items-center">
                                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                                                            <span className="text-text text-sm">صبحانه و ناهار در رستوران‌های معتبر</span>
+                                                            <span className="text-text-secondary text-sm">صبحانه و ناهار در رستوران‌های معتبر</span>
                                                         </li>
                                                         <li className="flex gap-2 items-center">
                                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                                                            <span className="text-text text-sm">ورودیه جاذبه‌های گردشگری</span>
+                                                            <span className="text-text-secondary text-sm">ورودیه جاذبه‌های گردشگری</span>
                                                         </li>
                                                     </ul>
                                                 </div>

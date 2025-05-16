@@ -39,6 +39,11 @@ async function page({ params }: PageProps) {
       <div className="flex justify-between w-full">
         {/* Image gallery section */}
         <div className="w-[49.06731%] flex flex-col flex-wrap gap-[60px]">
+          <div>
+            <h1 className="mt-[52px] text-[32px] font-bold">
+            مقاصد دیدنی {cityDetail?.cityName}
+          </h1>
+          </div>
           <div className="mb-[65px]">
             <MainImages
               show3D={false}
