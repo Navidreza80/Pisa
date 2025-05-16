@@ -33,7 +33,7 @@ export default async function HomeContainer() {
             shirazHouses={shirazHouses}
             esfahanHouses={esfahanHouses}
           />
-          <AIAssistant houseLength={houseLength} />
+          <AIAssistant houses={data} houseLength={houseLength} />
           {/* <Comments /> */}
         </div>
       </div>

@@ -32,23 +32,16 @@ const Reveal = ({
     <div ref={ref} className={`${className}`} style={{ position: "relative", width, overflow: "hidden" }}>
       <motion.div
         {...props}
-        variants={{
-          hidden: { opacity: 0, y: 75 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.5, delay: 0.25 }}
         className="text-right"
       >
         {children}
       </motion.div>
       <motion.div
-        variants={{ hidden: { left: 0 }, visible: { left: "100%" } }}
+        variants={{ hidden: { right: 0 }, visible: { right: "100%" } }}
         initial="hidden"
         animate={slideControls}
         transition={{ duration: 0.5, ease: "easeIn" }}
-        className="absolute top-1 bottom-1 left-0 right-0 bg-primary z-20"
+        className="absolute top-1 bottom-1 left-0 right-0 blur-[1px] bg-[#ffffff] z-20"
       ></motion.div>
     </div>
   );
