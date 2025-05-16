@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { formatNumber } from "@/utils/helper/format-number";
 
 // Types
 import type { HouseItemsInterface } from "@/types/house";
@@ -158,7 +159,7 @@ const ComparisonPage = () => {
                         </div>
                       </div>
                       <div className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">
-                        {house.price} تومان
+                        {formatNumber(Number(house.price))} تومان
                       </div>
                     </div>
 
