@@ -49,9 +49,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Providers>
             <main className="w-full flex-wrap">
-              <Header />
               {children}
-              <Footer />
             </main>
             <FloatingActions />
           </Providers>
