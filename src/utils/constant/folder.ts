@@ -45,3 +45,15 @@ export const transactionTypeOptions = [
   { id: 1, text: "رهن", value: "mortgage" },
   { id: 2, text: "اجاره", value: "rental" },
 ]
+
+export const DashboardBuyerPaymentsType = [
+  { id: 1, text: "همه", value: "همه" },
+  { id: 2, text: "رزرو", value: "رزرو" },
+    { id: 3, text: "شارژ کیف پول", value: "شارژ کیف پول" },
+]
+
+export const DashboardBuyerPaymentsStatus = [
+  { id: 1, text: "همه", value: "همه" },
+  { id: 2, text: "تایید شده", value: "تایید شده" },
+    { id: 3, text: "تایید نشده", value: "تایید نشده" },
+]
