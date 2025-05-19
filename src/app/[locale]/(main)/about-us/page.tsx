@@ -66,28 +66,6 @@ export default function AboutUs() {
       };
 
       marker.bindPopup(popupContent, customOptions).openPopup();
-
-      const style = document.createElement("style");
-      style.textContent = `
-                    .custom-popup .leaflet-popup-content-wrapper {
-                        background: transparent;
-                        box-shadow: none;
-                        border: none;
-                    }
-                    .custom-popup .leaflet-popup-content {
-                        margin: 0;
-                        padding: 0;
-                    }
-                    .custom-popup .leaflet-popup-tip {
-                        background: #586cff;
-                    }
-                `;
-      document.head.appendChild(style);
-
-      return () => {
-        map.remove();
-        document.head.removeChild(style);
-      };
     }
   }, []);
 
