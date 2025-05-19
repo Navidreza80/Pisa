@@ -1,19 +1,42 @@
 "use client";
 
 import MapSVG from "@/components/common/svg/map";
+import RegisterForm from "@/components/tours-detail/tour-register-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getTourById } from "@/lib/actions/tours";
+import { formatDate } from "@/utils/helper/format-date";
 import { Calendar, Clock, MapPin, Stars } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function Page() {
-  const [mounted, setMounted] = useState(false);
+  const [tourDetails, setTourDetails] = useState({});
+
+  const getToursDetail = async () => {
+    const res = await getTourById("1");
+    console.table(res);
+    setTourDetails(res);
+  };
+
+  const {
+    id,
+    tourName,
+    tourLocation,
+    tourImage,
+    schedule,
+    tourDescription,
+    tags,
+    price,
+    startDate,
+    endDate,
+    services,
+    facilities,
+    cancelTill,
+  } = tourDetails;
 
   useEffect(() => {
-    setMounted(true);
+    getToursDetail();
   }, []);
-
-  if (!mounted) return null;
 
   return (
     <>
@@ -24,13 +47,11 @@ function Page() {
         <div className="flex flex-col lg:flex-row-reverse lg:justify-between w-full gap-8">
           <div className="mt-10 max-[1027px]:mt-0 w-[58%] max-[1027px]:w-full">
             <div className="max-[1027px]:block hidden">
-              <h1 className="text-[32px] font-bold text-text-secondary">
-                تور گردشگری سالار دره
-              </h1>
+              <h1 className="text-[32px] font-bold text-text">{tourName}</h1>
               <div className="flex gap-2 mt-2 mb-[47px] items-center">
                 <MapSVG color="#7e7e7e" />
                 <h1 className="text-[14px] font-medium text-text-secondary">
-                  ساری, سالار دره
+                  {tourLocation}
                 </h1>
               </div>
             </div>
@@ -62,118 +83,42 @@ function Page() {
               <TabsContent value="itinerary" className="mt-2">
                 <div className="space-y-6">
                   <h3 className="text-lg font-bold">برنامه روزانه سفر</h3>
-                  <div className="border border-border rounded-xl p-4 sm:p-5">
-                    <div className="flex items-center mb-3">
-                      <div className="p-2 rounded-lg ml-3">
-                        <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <h4 className="text-lg font-bold text-text">
-                        روز اول: ورود به استانبول
-                      </h4>
-                    </div>
-                    <div className="space-y-3 mr-12 border-r border-dashed border-border pr-5">
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            08:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">
-                            ورود به فرودگاه استانبول و انتقال به هتل
-                          </p>
+                  {schedule?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="border border-border rounded-xl p-4 sm:p-5"
+                      >
+                        <div className="flex items-center mb-3">
+                          <div className="p-2 rounded-lg ml-3">
+                            <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <h4 className="text-lg font-bold text-text">
+                            {item.title}
+                          </h4>
+                        </div>
+                        <div className="space-y-3 mr-12 border-r border-dashed border-border pr-5">
+                          {item.todos?.map((item, index) => {
+                            return (
+                              <div key={index} className="relative">
+                                <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
+                                <div className="flex items-center">
+                                  <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
+                                  <span className="text-sm text-shadow-text-secondary">
+                                    {item.time}
+                                  </span>
+                                  <span className="mx-2 text-shadow-text-secondary">
+                                    -
+                                  </span>
+                                  <p className="text-text">{item.todo}</p>
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            12:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">
-                            استراحت و صرف ناهار در رستوران سنتی
-                          </p>
-                        </div>
-                      </div>
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            16:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">
-                            بازدید از میدان تقسیم و خیابان استقلال
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="border border-border rounded-xl p-4 sm:p-5">
-                    <div className="flex items-center mb-3">
-                      <div className="p-2 rounded-lg ml-3">
-                        <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <h4 className="text-lg font-bold text-text">
-                        روز دوم: بازدید از آثار تاریخی
-                      </h4>
-                    </div>
-                    <div className="space-y-3 mr-12 border-r border-dashed border-border pr-5">
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            09:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">
-                            بازدید از مسجد آبی و ایاصوفیه
-                          </p>
-                        </div>
-                      </div>
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            13:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">
-                            صرف ناهار در رستوران با منظره بسفر
-                          </p>
-                        </div>
-                      </div>
-                      <div className="relative">
-                        <div className="absolute right-[-29px] top-1 w-4 h-4 rounded-full bg-blue-600 dark:bg-blue-500"></div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 text-shadow-text-secondary  ml-2" />
-                          <span className="text-sm text-shadow-text-secondary">
-                            15:00
-                          </span>
-                          <span className="mx-2 text-shadow-text-secondary">
-                            -
-                          </span>
-                          <p className="text-text">بازدید از کاخ توپکاپی</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </TabsContent>
 
@@ -182,16 +127,11 @@ function Page() {
                   className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] rounded-2xl border border-gray-200 dark:border-gray-700 object-cover"
                   width={632}
                   height={400}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAiymgCZXN4YHk75o1IY-MLXLb8cLSRVrSUQ&s"
-                  alt="تور گردشگری سالار دره"
+                  src={tourImage || null}
+                  alt={tourName}
                 />
                 <h1 className="mt-6 text-base text-text leading-relaxed">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-                  با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
-                  تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای
-                  کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و
-                  آینده، شناخت فراوان جامعه و متخصصان را می طلبد.
+                  {tourDescription}
                 </h1>
 
                 <div className="border mt-10 border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800/60">
@@ -206,14 +146,11 @@ function Page() {
                       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                         <div>
                           <span className="inline-block px-3 py-1 rounded-md text-blue-600 dark:text-blue-300 text-sm font-medium mb-2">
-                            تور ویژه تابستانه
+                            {tags}
                           </span>
                           <h2 className="text-xl sm:text-2xl font-bold text-shadow-text mb-1">
-                            مزایای اختصاصی تور استانبول
+                            مزایای اختصاصی {tourName}
                           </h2>
-                          <p className="text-shadow-text-secondary text-sm">
-                            تجربه‌ای منحصر به فرد در قلب ترکیه
-                          </p>
                         </div>
                         <div className="mt-4 md:mt-0">
                           <div className="flex items-center justify-center w-12 h-12 bg-background rounded-full">
@@ -265,7 +202,7 @@ function Page() {
                           </p>
                           <div className="flex items-end mb-3">
                             <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                              1,500,000
+                              {price?.price}
                             </p>
                             <p className="text-text mr-2">تومان</p>
                           </div>
@@ -285,7 +222,7 @@ function Page() {
                                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                               </svg>
-                              امکان پرداخت اقساطی
+                              {price?.type}
                             </span>
                           </div>
                         </div>
@@ -317,7 +254,7 @@ function Page() {
                                 تاریخ شروع:
                               </p>
                               <p className="font-bold text-shadow-text-secondary text-sm">
-                                11 تیر 1400
+                                {formatDate(startDate)}
                               </p>
                             </div>
                             <div className="bg-background p-2 rounded-lg">
@@ -325,31 +262,9 @@ function Page() {
                                 تاریخ پایان:
                               </p>
                               <p className="font-bold text-shadow-text-secondary text-sm">
-                                15 تیر 1400
+                                {formatDate(endDate)}
                               </p>
                             </div>
-                          </div>
-                          <div className="flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-blue-600 dark:text-blue-400 mr-2"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                            <p className="text-text-secondary text-sm">
-                              مدت زمان:{" "}
-                              <span className="font-bold text-blue-600 dark:text-blue-400">
-                                5 روز
-                              </span>
-                            </p>
                           </div>
                         </div>
                       </div>
@@ -377,30 +292,19 @@ function Page() {
                             </h3>
                           </div>
                           <ul className="space-y-2">
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text text-sm">
-                                حمل و نقل رایگان (هوایی و زمینی)
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text text-sm">
-                                راهنمای تور حرفه‌ای دو زبانه
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text text-sm">
-                                صبحانه و ناهار در رستوران‌های معتبر
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text text-sm">
-                                ورودیه جاذبه‌های گردشگری
-                              </span>
-                            </li>
+                            {services?.map((item: string, index: number) => {
+                              return (
+                                <li
+                                  key={index}
+                                  className="flex gap-2 items-center"
+                                >
+                                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
+                                  <span className="text-text text-sm">
+                                    {item}
+                                  </span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
 
@@ -427,30 +331,19 @@ function Page() {
                             </h3>
                           </div>
                           <ul className="space-y-2">
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text-secondary text-sm">
-                                بیمه مسافرتی با پوشش کامل
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text-secondary text-sm">
-                                اقامت در هتل 4 ستاره با خدمات عالی
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text-secondary text-sm">
-                                دسترسی به اینترنت پرسرعت رایگان
-                              </span>
-                            </li>
-                            <li className="flex gap-2 items-center">
-                              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
-                              <span className="text-text-secondary text-sm">
-                                هدیه ویژه به همراه سوغاتی
-                              </span>
-                            </li>
+                            {facilities?.map((item, index) => {
+                              return (
+                                <li
+                                  key={index}
+                                  className="flex gap-2 items-center"
+                                >
+                                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mr-3 flex-shrink-0"></div>
+                                  <span className="text-text-secondary text-sm">
+                                    {item}
+                                  </span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       </div>
@@ -572,7 +465,7 @@ function Page() {
                               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                           </svg>
-                          امکان کنسلی رایگان تا 7 روز قبل از حرکت
+                          امکان کنسلی رایگان تا {cancelTill} روز قبل از حرکت
                         </div>
                       </div>
                     </div>
@@ -581,7 +474,7 @@ function Page() {
               </TabsContent>
             </Tabs>
           </div>
-          <div className=" w-[39%] max-[1027px]:w-full">
+          <div className="w-[39%] max-[1027px]:w-full">
             <div className="max-[1027px]:hidden">
               <h1 className="text-[32px] font-bold text-text">
                 تور گردشگری سالار دره
@@ -593,92 +486,8 @@ function Page() {
                 </h1>
               </div>
             </div>
-            <div className="sticky top-4 ">
-              <div className="border-[1px] rounded-2xl flex flex-col flex-wrap gap-4 border-border h-auto w-full p-6">
-                <h2 className="text-2xl font-bold mb-4 text-center">
-                  ثبت نام در تور
-                </h2>
-                <div>
-                  <label htmlFor="fullName" className="block mb-1 font-medium">
-                    نام و نام خانوادگی
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder=" نام و نام خانوادگی را وارد کنید"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block mb-1 font-medium">
-                    شماره تلفن
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="09xxxxxxxxx"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="participants"
-                    className="block mb-1 font-medium"
-                  >
-                    تعداد نفرات
-                  </label>
-                  <select
-                    id="participants"
-                    name="participants"
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  >
-                    <option value="1">1 نفر</option>
-                    <option value="2">2 نفر</option>
-                    <option value="3">3 نفر</option>
-                    <option value="4">4 نفر</option>
-                    <option value="5+">5 نفر یا بیشتر</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="email" className="block mb-1 font-medium">
-                    ایمیل (اختیاری)
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="example@gmail.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="notes" className="block mb-1 font-medium">
-                    توضیحات اضافه (اختیاری)
-                  </label>
-                  <textarea
-                    id="notes"
-                    name="notes"
-                    rows="3"
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="درخواست‌های خاص یا توضیحات اضافه"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
-                >
-                  ثبت نام در تور
-                </button>
-              </div>
+            <div>
+              <RegisterForm tourId={id} />
             </div>
           </div>
         </div>

@@ -69,22 +69,38 @@ model Landscape {
 }
 
 model Tour {
-  id              String    @id @default(uuid())
-  tourName        String
-  tourLocation    String
-  tourImage       String
-  tourDescription String
-  tags            String?
-  price           Json
-  startDate       DateTime
-  services        String[]
-  facilities      String[]
-  cancelTill      Int
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  lat             String?
-  lng             String?
-  features        String[]
-  endDate         DateTime? @db.Timestamp(6)
-  schedule        Json[]    @db.Json
+  id               String             @id @default(uuid())
+  tourName         String
+  tourLocation     String
+  tourImage        String
+  tourDescription  String
+  tags             String?
+  price            Json
+  startDate        DateTime
+  services         String[]
+  facilities       String[]
+  cancelTill       Int
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  lat              String?
+  lng              String?
+  features         String[]
+  endDate          DateTime?          @db.Timestamp(6)
+  schedule         Json[]             @db.Json
+  TourRegistration TourRegistration[]
+}
+
+model TourRegistration {
+  id               String   @id @default(cuid())
+  fullName         String
+  phoneNumber      String
+  countOfPeople    Int
+  email            String?
+  extraDescription String?
+  tourId           String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  tour             Tour     @relation(fields: [tourId], references: [id])
+
+  @@unique([phoneNumber, tourId], name: "unique_registration_per_tour")
 }

@@ -52,7 +52,7 @@ export default function UserProfile({ user }: UserProfileProps) {
     <div className="max-w-20 relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-full border border-border dark:border-border-dark p-1 pr-3 hover:bg-surface dark:hover:bg-surface-dark transition-colors"
+        className="flex items-center gap-2 rounded-full border border-border dark:border-border-dark p-1  lg:pr-3 md:pr-1 pr-1 hover:bg-surface dark:hover:bg-surface-dark transition-colors"
       >
         <div className="w-8 h-8 rounded-full overflow-hidden bg-surface dark:bg-surface-dark">
           {user.profilePicture ? (
@@ -65,11 +65,12 @@ export default function UserProfile({ user }: UserProfileProps) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gray-700 text-text border-border font-bold">
-              {user.email && user.email.replace("@gmail.com", "").charAt(0).toUpperCase() }
+              {user.email &&
+                user.email.replace("@gmail.com", "").charAt(0).toUpperCase()}
             </div>
           )}
         </div>
-        <span className="text-sm  overflow-hidden whitespace-nowrap text-ellipsis font-medium">
+        <span className="text-sm  lg:block md:hidden hidden  overflow-hidden whitespace-nowrap text-ellipsis font-medium">
           {user.email?.replace("@gmail.com", "")}
         </span>
       </button>
@@ -77,7 +78,9 @@ export default function UserProfile({ user }: UserProfileProps) {
       {isOpen && (
         <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark overflow-hidden z-10">
           <div className="p-3 border-b border-border dark:border-border-dark">
-            <p className="font-medium">{user.email?.replace("@gmail.com", "")}</p>
+            <p className="font-medium">
+              {user.email?.replace("@gmail.com", "")}
+            </p>
             <p className="text-xs text-text-secondary dark:text-text-secondary-dark truncate">
               {user.email}
             </p>
