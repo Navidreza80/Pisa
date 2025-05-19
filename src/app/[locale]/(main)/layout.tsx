@@ -13,6 +13,7 @@ import Header from "@/components/common/header/header";
 
 // CSS
 import "../globals.css";
+import TokenRefresher from "@/components/common/TokenRefresher";
 
 
 // metadata
@@ -54,6 +55,7 @@ export default async function RootLayout({
               <Footer />
             </main>
             <FloatingActions />
+            <TokenRefresher />
           </Providers>
         </NextIntlClientProvider>
       </body>
