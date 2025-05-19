@@ -11,7 +11,7 @@ import MoneySVG from "../svg/MoneySVG";
 
 function BuyerSideBar() {
   return (
-    <div className="h-full rounded-[12px] bg-background p-4 border-l border-gray-200 flex flex-col flex-wrap justify-between">
+    <div className="h-full rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
       <div className="mt-10">
         <div className="flex justify-between">
           <div className="my-auto">

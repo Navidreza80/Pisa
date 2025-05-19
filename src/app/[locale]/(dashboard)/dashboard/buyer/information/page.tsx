@@ -9,33 +9,10 @@ import { JwtPayload } from "@/types/user";
 import Image from "next/image";
 
 export default async function Information() {
-  const token = await getServerCookie("serverAccessToken");
-  var decodedUser;
-  if (token) {
-    decodedUser =
-      typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
-  } else {
-    decodedUser = await auth();
-    decodedUser = decodedUser?.user;
-  }
+
 
   return (
-    <div className="flex bg-border justify-between p-[19px]">
-      <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
-        <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
-          {!decodedUser ? (
-            <span></span>
-          ) : (
-            <div className="flex gap-2 my-auto">
-              <div className="flex flex-col flex-wrap justify-between">
-                <h1 className="text-text">{decodedUser.name}</h1>
-                <p className="text-text-secondary text-[12px]">خریدار</p>
-              </div>
-                <Image width={37} height={37} className="h-[37px] w-[37px] bg-border rounded-[8px] border-0 my-auto" src={decodedUser.image} alt="" />
-            </div>
-          )}
-          <h1 className="text-xl font-yekan font-bold my-auto">اطلاعات کاربری</h1>
-        </div>
+    
         <main className="flex-1 bg-background p-8 rounded-[12px]">
           <div className="mb-8">
             <h2 className="text-text text-[20px] font-extrabold font-yekan">
@@ -135,10 +112,6 @@ export default async function Information() {
             </div>
           </div>
         </main>
-      </div>
-      <div className="w-[19%] h-100vh">
-        <BuyerSideBar />
-      </div>
-    </div>
+      
   );
 }
