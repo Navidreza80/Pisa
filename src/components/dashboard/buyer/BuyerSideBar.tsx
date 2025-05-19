@@ -24,32 +24,32 @@ function BuyerSideBar() {
           <BuyerSideBarItems
             name="داشبرد"
             icon={<DashboardSVG />}
-            href="/dashboard"
+            href="/dashboard/buyer/dashboard"
           />
           <BuyerSideBarItems
             name="اطلاعات کاربری"
             icon={<InfoSVG />}
-            href="/information"
+            href="/dashboard/buyer/information"
           />
           <BuyerSideBarItems
             name="مدیریت رزروها"
             icon={<ReserveSVG />}
-            href="/reservations"
+            href="/dashboard/buyer/reservations"
           />
           <BuyerSideBarItems
             name="علاقه‌مندی‌ها"
             icon={<FavoriteSVG />}
-            href="/favorites"
+            href="/dashboard/buyer/favorites"
           />
           <BuyerSideBarItems
             name="پرداخت‌ها"
             icon={<PaymentSVG />}
-            href="/payments"
+            href="/dashboard/buyer/payments"
           />
           <BuyerSideBarItems
             name="اعلان‌ها"
             icon={<NotifSVG />}
-            href="/notifications"
+            href="/dashboard/buyer/notifications"
           />
         </div>
       </div>

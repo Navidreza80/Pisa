@@ -20,6 +20,8 @@ import { auth } from "@/auth";
 import BuyerSideBar from "@/components/dashboard/buyer/BuyerSideBar";
 import Image from "next/image";
 import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
+import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
+import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 
 // metadata
 export const metadata: Metadata = {
@@ -60,39 +62,57 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background text-text ">
+      <body className="bg-border text-text ">
         <NextIntlClientProvider>
           <Providers>
-              <div className="flex bg-border justify-between p-[19px]">
-                <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
-                  <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
-                    {!decodedUser ? (
-                      <span></span>
-                    ) : (
-                      <div className="flex gap-2 my-auto">
+            <div className="flex justify-between p-[19px]">
+              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+                <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
+                  {!decodedUser ? (
+                    <span></span>
+                  ) : (
+                    <div className="flex gap-4 my-auto">
+                      <div className="my-auto cursor-pointer">
+                        <ArrowSVG />
+                      </div>
+                      <div className="flex gap-2">
                         <div className="flex flex-col flex-wrap justify-between">
-                          <h1 className="text-text">{decodedUser.name}</h1>
-                          <p className="text-text-secondary text-[12px]">
+                          <h1 className="text-text font-yekan font-bold">
+                            {decodedUser.name || "User"}
+                          </h1>
+                          <p className="text-text-secondary text-[12px] font-yekan font-semibold">
                             خریدار
                           </p>
                         </div>
-                        <Image
-                          width={37}
-                          height={37}
-                          className="h-[37px] w-[37px] bg-border rounded-[8px] border-0 my-auto"
-                          src={decodedUser.image}
-                          alt=""
-                        />
+                        {decodedUser.profilePicture ? (
+                          <Image
+                            src={decodedUser.profilePicture}
+                            alt={decodedUser.name || "User"}
+                            width={37}
+                            height={37}
+                            className="object-cover rounded-[8px]"
+                          />
+                        ) : (
+                          <div className="w-[37px] h-[37px] rounded-[8px] flex items-center justify-center bg-border text-text font-bold">
+                            {decodedUser.name
+                              ? decodedUser.name.charAt(0).toUpperCase()
+                              : "U"}
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <DashboardTitle />
-                  </div>
-                  {children}
+                      <div className="my-auto cursor-pointer">
+                        <Notif2SVG />
+                      </div>
+                    </div>
+                  )}
+                  <DashboardTitle />
                 </div>
-                <div className="w-[19%] h-100vh">
-                  <BuyerSideBar />
-                </div>
+                {children}
               </div>
+              <div className="w-[19%] h-100vh">
+                <BuyerSideBar />
+              </div>
+            </div>
             <FloatingActions />
           </Providers>
         </NextIntlClientProvider>
