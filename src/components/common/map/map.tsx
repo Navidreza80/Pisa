@@ -1,7 +1,6 @@
 // Dependencies
-import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { ReactElement } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
 const MapComponent = ({
   initialLocation,
@@ -10,7 +9,6 @@ const MapComponent = ({
 }: {
   initialLocation: number[];
   initialZoom: number;
-  children?: ReactElement;
 }) => {
   return (
     <>

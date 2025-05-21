@@ -1,86 +1,22 @@
 import { FilterModal } from "@/components/common/house/filter-reserve";
 import SearchSVG from "@/components/common/svg/search";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import {
-  FaStar,
-  FaMapMarkerAlt,
-  FaCalendarAlt,
-  FaPhone,
-  FaBuilding,
-} from "react-icons/fa";
+import MapRealEstates from "@/components/real-estate-container/map";
+import RealEstateCard from "@/components/real-estate-container/real-estate-cards";
+import { getRealEstates } from "@/lib/actions/realestate";
+import RealEstate from "@/types/real-estates";
 
-function Page() {
-  const estateData = [
-    {
-      id: 1,
-      title: "اکبری",
-      address: "گرگان",
-      science: "تاسیس ۱۳۹۲",
-      image:
-        "https://tooopiran.ir/wp-content/uploads/2022/05/%D8%A7%D9%85%D9%84%D8%A7%DA%A9.jpg",
-      rating: 4.5,
-      phone: "017-12345678",
-      properties: "ویلا، آپارتمان، زمین",
-      agent: "علیرضا اکبری",
-    },
-    {
-      id: 2,
-      title: "۴۰۴",
-      address: "تهران",
-      science: "تاسیس ۱۴۰۰",
-      image:
-        "https://tooopiran.ir/wp-content/uploads/2022/05/%D8%A7%D9%85%D9%84%D8%A7%DA%A9.jpg",
-      rating: 3.8,
-      phone: "011-87654321",
-      properties: "آپارتمان، مغازه",
-      agent: "محمد فلاح",
-    },
-    {
-      id: 3,
-      title: "فلاح",
-      address: "ساری",
-      science: "تاسیس ۱۳۹۸",
-      image:
-        "https://tooopiran.ir/wp-content/uploads/2022/05/%D8%A7%D9%85%D9%84%D8%A7%DA%A9.jpg",
-      rating: 4.2,
-      phone: "011-23456789",
-      properties: "ویلا، باغ",
-      agent: "رضا کلانتری",
-    },
-  ];
-
-  const StarRating = ({ rating }) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-    return (
-      <div className="flex items-center">
-        {[...Array(fullStars)].map((_, i) => (
-          <FaStar key={`full-${i}`} className="text-primary" />
-        ))}
-        {hasHalfStar && (
-          <FaStar key="half" className="text-primary opacity-50" />
-        )}
-        {[...Array(emptyStars)].map((_, i) => (
-          <FaStar key={`empty-${i}`} className="text-[#898989]" />
-        ))}
-        <span className="mr-1 text-sm text-text-secondary">
-          ({rating.toFixed(1)})
-        </span>
-      </div>
-    );
-  };
+async function Page() {
+  const estateData = await getRealEstates();
 
   return (
-    <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-full pr-10 flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
-      <div className="w-[50%] bg-red-600"></div>
-      <div dir="rtl">
+    <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
+      <MapRealEstates realEstates={estateData} />
+      <div className="flex-grow animate-fade-left">
         <div className="h-[62px] w-full pb-6 lg:pl-7 md:pl-0 pl-0 flex gap-4">
           <div className="relative w-[calc(100%-242px)]">
             <input
+              // value={filters.search || ""}
+              // onChange={(e) => handleChange("search", e.target.value)}
               className="h-12 border rounded-2xl border-border px-4 py-3 w-full pr-16"
               dir="rtl"
               placeholder="جستجو کنید ..."
@@ -90,7 +26,7 @@ function Page() {
             </span>
           </div>
           <div className="flex items-center justify-center gap-1 text-sm font-medium border-border rounded-2xl border px-2 h-12">
-            تعداد آگهی: {estateData?.length}
+            تعداد آگهی: {estateData.length}
             <svg
               width="16"
               height="16"
@@ -113,53 +49,13 @@ function Page() {
           </div>
           <FilterModal />
         </div>
-        <div className="lg:overflow-y-scroll px-10 md:overflow-y-auto overflow-y-auto w-full lg:pl-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap md:justify-center justify-center gap-6">
-          {estateData.map((estate) => (
-            <Link href={`/realestate/${estate.id}`} className="text-primary">
-              <div
-                key={estate.id}
-                className="p-3 bg-background w-75 min-w-[350px] rounded-xl overflow-hidden transition-shadow duration-300 border border-border"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src={estate.image}
-                    alt={estate.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="w-full h-full rounded-2xl"
-                  />
-                </div>
-
-                <div className="mt-5">
-                  <div className="flex justify-between items-start mb-3">
-                    <h2 className="text-xl font-bold text-text">
-                      املاک {estate.title}
-                    </h2>
-                    <StarRating rating={estate.rating} />
-                  </div>
-
-                  <div className="h-[1px] w-full bg-border my-2" />
-
-                  <div className="flex justify-between text-text-secondary">
-                    <div className="flex items-center">
-                      <FaBuilding className="ml-2 text-primary" />
-                      <span>{estate.agent}</span>
-                    </div>
-
-                    <div className="flex items-center">
-                      <FaMapMarkerAlt className="ml-2 text-primary" />
-                      <span>{estate.address}</span>
-                    </div>
-
-                    <div className="flex items-center">
-                      <FaCalendarAlt className="ml-2 text-primary" />
-                      <span>{estate.science}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+        <div
+          dir="rtl"
+          className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full lg:pl-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center"
+        >
+          {estateData.map((estate: RealEstate, index: number) => {
+            return <RealEstateCard estate={estate} key={index} />;
+          })}
         </div>
       </div>
     </div>
