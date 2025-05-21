@@ -24,7 +24,7 @@ const RealEstateCard = ({ estate }: { estate: RealEstate }) => {
         <div className="mt-5">
           <div className="flex justify-between items-start mb-3">
             <h2 className="text-xl font-bold text-text">
-              املاک {estate.name}
+              {estate.name}
             </h2>
             <StarRating rating={estate.rate} />
           </div>

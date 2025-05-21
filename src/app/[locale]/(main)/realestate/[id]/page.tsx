@@ -1,26 +1,29 @@
 "use client";
 
-import MapSVG from "@/components/common/svg/map";
 import Logo from "@/assets/images/ContactUsLogoRealEstate.png";
+import MapComponent from "@/components/common/map/map";
+import MapSVG from "@/components/common/svg/map";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getRealEstateById } from "@/lib/actions/realestate";
+import RealEstate from "@/types/real-estates";
 import {
   Calendar,
   Clock,
-  Mail,
-  Phone,
-  MapPin,
   Globe,
-  Building2,
   Hash,
-  ShieldCheck,
-  Linkedin,
-  Instagram,
-  Twitter,
-  Send,
   Headphones,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  ShieldCheck,
   Stars,
+  Twitter,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const workingHours = [
@@ -38,14 +41,17 @@ const getTodayIndex = () => {
 };
 
 function Page() {
-  const [mounted, setMounted] = useState(false);
+  const [realEstateDetail, setRealEstateDetail] = useState<null | RealEstate>();
   const todayIndex = getTodayIndex();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const fetchRealEstateById = async () => {
+    const response = await getRealEstateById("1");
+    setRealEstateDetail(response);
+  };
 
-  if (!mounted) return null;
+  useEffect(() => {
+    fetchRealEstateById();
+  }, []);
 
   return (
     <>
@@ -56,7 +62,7 @@ function Page() {
         <div className="flex flex-col lg:flex-row-reverse lg:justify-between w-full gap-8">
           <div className="mt-10 max-[1027px]:mt-0 w-[58%] max-[1027px]:w-full">
             <div className="max-[1027px]:block hidden">
-              <h1 className="text-[32px] font-bold text-text">املاک رحمانی</h1>
+              <h1 className="text-[32px] font-bold text-text"></h1>
               <div className="flex gap-2 mt-2 mb-[47px] items-center">
                 <MapSVG color="#7e7e7e" />
                 <h1 className="text-[14px] font-medium text-text-secondary">
@@ -113,44 +119,63 @@ function Page() {
                   className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] rounded-2xl border border-border object-cover"
                   width={632}
                   height={400}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAiymgCZXN4YHk75o1IY-MLXLb8cLSRVrSUQ&s"
-                  alt="تور گردشگری سالار دره"
+                  src={realEstateDetail?.image}
+                  alt={realEstateDetail?.name}
                 />
-                <h1 className="mt-6 text-base text-text leading-relaxed">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-                  با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
-                  تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای
-                  کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و
-                  آینده، شناخت فراوان جامعه و متخصصان را می طلبد.
-                </h1>
 
-                <div className="border mt-10 border-border rounded-xl overflow-hidden">
-                  <div className="bg-red-500 h-100"> </div>
+                <div className="mt-10 overflow-hidden">
+                  <div className="text-text">
+                    <div className="flex items-start gap-5">
+                      {" "}
+                      <Image
+                        className="rounded-2xl w-[100px] aspect-square mb-4"
+                        src={realEstateDetail?.founderImage}
+                        width={100}
+                        height={100}
+                        alt={realEstateDetail?.founder}
+                        unoptimized
+                      />
+                      <div className="flex flex-col gap-y-3">
+                        {" "}
+                        <p className="text-text font-bold text-3xl">
+                          {realEstateDetail?.founder}
+                        </p>
+                        <p className="text-text-secondary font-semibold text-xl">
+                          {realEstateDetail?.name}
+                        </p>
+                      </div>
+                    </div>
+
+                    {realEstateDetail?.storyOfFoundation}
+                  </div>
                 </div>
 
-                <div>
-
-                </div>
+                <div></div>
                 <div className=" flex gap-8 py-6 px-10 rounded-2xl border border-border mt-10">
                   <div className="flex-1 w-[100%] space-y-4 text-text">
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-primary mt-1" />
-                      <span>تهران، خیابان ولیعصر، برج فناوری، طبقه چهارم</span>
+                      <span>{realEstateDetail?.address}</span>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Phone className="w-5 h-5 text-primary" />
-                      <a href="tel:+982112345678" className="hover:underline">
-                        021-12345678
-                      </a>
+                      <Link
+                        href="tel:+982112345678"
+                        className="hover:underline"
+                      >
+                        {realEstateDetail?.phoneNumber}
+                      </Link>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Headphones className="w-5 h-5 text-primary" />
-                      <a href="tel:+982112345679" className="hover:underline">
-                        پشتیبانی: 021-12345679
-                      </a>
+                      <Link
+                        href="tel:+982112345679"
+                        className="hover:underline"
+                      >
+                        پشتیبانی: {realEstateDetail?.supportNumber}
+                      </Link>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -159,7 +184,7 @@ function Page() {
                         href="mailto:info@technovin.com"
                         className="hover:underline"
                       >
-                        info@technovin.com
+                        {realEstateDetail?.email}
                       </a>
                     </div>
 
@@ -170,23 +195,27 @@ function Page() {
                         target="_blank"
                         className="hover:underline"
                       >
-                        www.technovin.com
+                        {realEstateDetail?.website}
                       </a>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Calendar className="w-5 h-5 text-primary" />
-                      <span>سال تأسیس: ۱۳۹۲</span>
+                      <span>
+                        سال تأسیس: {realEstateDetail?.yearOfEstablish}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Hash className="w-5 h-5 text-primary" />
-                      <span>شماره ثبت: ۱۲۳۴۵۶</span>
+                      <span>
+                        شماره ثبت: {realEstateDetail?.registrationNumber}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <ShieldCheck className="w-5 h-5 text-primary" />
-                      <span>شناسه ملی: ۱۲۳۴۵۶۷۸۹۰۱</span>
+                      <span>شناسه ملی: {realEstateDetail?.nationalCode}</span>
                     </div>
 
                     <div className="flex gap-4 pt-4">
@@ -220,7 +249,11 @@ function Page() {
                       </a>
                     </div>
                   </div>
-                  <Image  src={Logo} alt="" className="my-auto max-[650px]:hidden ml-10 w-[30%] scale-200 overflow-hidden"/>
+                  <Image
+                    src={Logo}
+                    alt=""
+                    className="my-auto max-[650px]:hidden ml-10 w-[30%] scale-200 overflow-hidden"
+                  />
                 </div>
               </TabsContent>
             </Tabs>
@@ -228,17 +261,26 @@ function Page() {
           <div className=" w-[39%] max-[1027px]:w-full">
             <div className="max-[1027px]:hidden">
               <h1 className="text-[32px] font-bold text-text">
-                تور گردشگری سالار دره
+                {realEstateDetail?.name}
               </h1>
               <div className="flex gap-2 mt-2 mb-[47px] items-center">
                 <MapSVG color="#7e7e7e" />
                 <h1 className="text-[14px] font-medium text-text-secondary">
-                  ساری, سالار دره
+                  {realEstateDetail?.city}
                 </h1>
               </div>
             </div>
-            <div className="sticky top-4 ">
-              <div className="bg-red-500 rounded-2xl h-[500px]"></div>
+            <div className="sticky top-4 h-100">
+              {realEstateDetail?.lat && (
+                <MapComponent
+                  className="!rounded-2xl"
+                  initialLocation={[
+                    realEstateDetail?.lat,
+                    realEstateDetail?.lng,
+                  ]}
+                  initialZoom={13}
+                />
+              )}
             </div>
           </div>
         </div>

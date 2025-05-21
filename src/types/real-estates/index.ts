@@ -1,5 +1,7 @@
 export default interface RealEstate {
+  founderImage: string;
   id: string;
+  storyOfFoundation: string;
   rate: number;
   name: string;
   yearOfEstablish: number;

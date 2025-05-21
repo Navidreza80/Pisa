@@ -53,7 +53,7 @@ async function Page() {
           dir="rtl"
           className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full lg:pl-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center"
         >
-          {estateData.map((estate: RealEstate, index: number) => {
+          {estateData?.map((estate: RealEstate, index: number) => {
             return <RealEstateCard estate={estate} key={index} />;
           })}
         </div>
