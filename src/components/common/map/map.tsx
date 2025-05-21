@@ -1,22 +1,22 @@
 // Dependencies
-import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { ReactElement } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
 const MapComponent = ({
   initialLocation,
   initialZoom,
+  className,
   children,
 }: {
   initialLocation: number[];
   initialZoom: number;
-  children?: ReactElement;
+  className?: string;
 }) => {
   return (
     <>
       {typeof window !== "undefined" && (
         <MapContainer
-          className="!z-10 h-full w-full"
+          className={`!z-10 h-full w-full ${className}`}
           center={initialLocation}
           zoom={initialZoom}
           scrollWheelZoom={false}
