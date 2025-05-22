@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import Line from "@/components/dashboard/buyer/line";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import Line from "@/components/dashboard/buyer/line";
+import { useState } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import DeletePopover from "@/components/dashboard/svg/DeletePopover";
+import DetailPopover from "@/components/dashboard/svg/DetailPopover";
+import CanclePopover from "@/components/dashboard/svg/CanclePopover";
+import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 
 const bookings = [
   {
@@ -42,14 +49,14 @@ const bookings = [
 ];
 
 export default function BookingList() {
-  const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+  const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   return (
     <main className="flex-1 bg-background p-8 rounded-[12px]">
       <div className="flex items-center gap-[19px]">
         <Button className="bg-primary text-white h-12">فیلتر ها</Button>
         <Input
-        dir="rtl"
+          dir="rtl"
           placeholder="نام هتل مورد نظر ....."
           className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
         />
@@ -105,33 +112,44 @@ export default function BookingList() {
                 </span>
               </td>
               <td className="py-2 px-4 text-left">
-                <Dialog
-                  open={openDialogId === booking.id}
+                <Popover
+                  open={openPopoverId === booking.id}
                   onOpenChange={(open) =>
-                    setOpenDialogId(open ? booking.id : null)
+                    setOpenPopoverId(open ? booking.id : null)
                   }
                 >
-                  <DialogTrigger asChild>
-                    <div className="text-2xl font-bold cursor-pointer">
-                      ...
+                  <PopoverTrigger asChild>
+                    <div className="text-2xl font-bold cursor-pointer">...</div>
+                  </PopoverTrigger>
+                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+                    <div className="space-y-2">
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                        <h1>تایید رزرو</h1>
+                        <div className="my-auto">
+                          <CheckPopover />
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                        <h1>لغو رزرو</h1>
+                        <div className="my-auto">
+                          <CanclePopover />
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                        <h1>جزئیات</h1>
+                        <div className="my-auto">
+                          <DetailPopover />
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
+                        <h1>حذف</h1>
+                        <div className="my-auto">
+                          <DeletePopover />
+                        </div>
+                      </div>
                     </div>
-                  </DialogTrigger>
-                  <DialogContent className="text-right">
-                    <Card className="space-y-2">
-                      <CardContent className="space-y-2">
-                        <div className="w-full">
-                          پرداخت
-                        </div>
-                        <div className="w-full">
-                          جزئیات
-                        </div>
-                        <div className="w-full">
-                          حذف
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </DialogContent>
-                </Dialog>
+                  </PopoverContent>
+                </Popover>
               </td>
             </tr>
           ))}
