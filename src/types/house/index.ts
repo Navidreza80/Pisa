@@ -28,8 +28,8 @@ export interface HouseItemsInterface {
   price: string;
   transaction_type: "rental" | "direct_purchase" | "reservation" | "mortgage";
   location: {
-    lat: string;
-    lng: string;
+    lat: number;
+    lng: number;
   };
 }
 
