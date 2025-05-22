@@ -23,6 +23,7 @@ import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
 import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 
+
 // metadata
 export const metadata: Metadata = {
   title: "Pizza",
@@ -62,15 +63,15 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-border text-text ">
+      <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <div className="flex justify-between p-[19px]">
-              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
-                <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
-                  {!decodedUser ? (
-                    <span></span>
-                  ) : (
+              <div className="flex bg-border justify-between p-[19px]">
+                <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+                  <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
+                    {!decodedUser ? (
+                      <span></span>
+                    ) : (
                     <div className="flex gap-4 my-auto">
                       <div className="my-auto cursor-pointer">
                         <ArrowSVG />
@@ -104,15 +105,15 @@ export default async function RootLayout({
                         <Notif2SVG />
                       </div>
                     </div>
-                  )}
-                  <DashboardTitle />
+                    )}
+                    <DashboardTitle />
+                  </div>
+                  {children}
                 </div>
-                {children}
+                <div className="w-[19%]">
+                  <BuyerSideBar />
+                </div>
               </div>
-              <div className="w-[19%] h-100vh">
-                <BuyerSideBar />
-              </div>
-            </div>
             <FloatingActions />
           </Providers>
         </NextIntlClientProvider>
