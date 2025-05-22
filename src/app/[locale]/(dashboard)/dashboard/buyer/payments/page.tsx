@@ -5,6 +5,7 @@ import {
   DashboardBuyerPaymentsStatus,
   DashboardBuyerPaymentsType,
 } from "@/utils/constant/folder";
+import { formatNumber } from "@/utils/helper/format-number";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -143,7 +144,7 @@ export default function TransactionList() {
               <td className="p-2 font-yekan font-semibold">
                 {tx.trackingCode}
               </td>
-              <td className="p-2 font-yekan font-semibold">{tx.amount}</td>
+              <td className="p-2 font-yekan font-semibold">{formatNumber(Number(tx.amount))}</td>
               <td className="p-2 font-yekan font-semibold">
                 <span
                   className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
