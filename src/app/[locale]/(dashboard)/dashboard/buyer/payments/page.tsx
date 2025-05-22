@@ -95,7 +95,7 @@ export default function TransactionList() {
   });
 
   return (
-    <div dir="rtl" className="p-4 bg-background rounded-xl shadow">
+    <div dir="rtl" >
       <div className="flex justify-between mt-6">
         <h1 className="text-xl font-bold font-yekan mb-auto">
           لیست تراکنش های شما

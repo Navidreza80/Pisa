@@ -23,7 +23,6 @@ import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
 import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 
-
 // metadata
 export const metadata: Metadata = {
   title: "Pizza",
@@ -66,12 +65,12 @@ export default async function RootLayout({
       <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-              <div className="flex bg-border justify-between p-[19px]">
-                <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
-                  <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
-                    {!decodedUser ? (
-                      <span></span>
-                    ) : (
+            <div className="flex bg-border justify-between p-[19px]">
+              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+                <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
+                  {!decodedUser ? (
+                    <span></span>
+                  ) : (
                     <div className="flex gap-4 my-auto">
                       <div className="my-auto cursor-pointer">
                         <ArrowSVG />
@@ -105,15 +104,17 @@ export default async function RootLayout({
                         <Notif2SVG />
                       </div>
                     </div>
-                    )}
-                    <DashboardTitle />
-                  </div>
+                  )}
+                  <DashboardTitle />
+                </div>
+                <main className="flex-1 bg-background p-8 rounded-[12px]">
                   {children}
-                </div>
-                <div className="w-[19%]">
-                  <BuyerSideBar />
-                </div>
+                </main>
               </div>
+              <div className="w-[19%]">
+                <BuyerSideBar />
+              </div>
+            </div>
             <FloatingActions />
           </Providers>
         </NextIntlClientProvider>

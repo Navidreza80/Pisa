@@ -45,7 +45,7 @@ export default function BookingList() {
   const [openDialogId, setOpenDialogId] = useState<number | null>(null);
 
   return (
-    <main className="flex-1 bg-background p-8 rounded-[12px]">
+    <>
       <div className="flex items-center gap-[19px]">
         <Button className="bg-primary text-white h-12">فیلتر ها</Button>
         <Input
@@ -152,6 +152,6 @@ export default function BookingList() {
           ))}
         </div>
       </div>
-    </main>
+    </>
   );
 }

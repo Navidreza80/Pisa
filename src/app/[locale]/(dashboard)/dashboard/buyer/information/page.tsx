@@ -13,7 +13,7 @@ export default async function Information() {
 
   return (
     
-        <main className="flex-1 bg-background p-8 rounded-[12px]">
+        <>
           <div className="mb-8">
             <h2 className="text-text text-[20px] font-extrabold font-yekan">
               عکس نمایه شما
@@ -111,7 +111,7 @@ export default async function Information() {
               />
             </div>
           </div>
-        </main>
+        </>
       
   );
 }

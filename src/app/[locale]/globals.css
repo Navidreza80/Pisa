@@ -168,6 +168,22 @@ body {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/IRANYekanXFaNum-Black.ttf") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yekan";
+  src: url("../../../public/fonts/IRANYekanXFaNum-Heavy.ttf") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Dark mode overrides */
 :root.dark,
 .dark :root {
