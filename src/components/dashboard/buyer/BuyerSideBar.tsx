@@ -14,21 +14,65 @@ import ReviewsSVG from "../svg/reviewsSVG";
 function BuyerSideBar({ seller = false }) {
   const sellerItems = [
     { name: "داشبورد", icon: <DashboardSVG />, href: "/dashboard/seller" },
-    { name: "اطلاعات کاربری", icon: <InfoSVG />, href: "/dashboard/seller/profile" },
-    { name: "مدیریت املاک", icon: <PropertySVG />, href: "/dashboard/seller/properties" },
-    { name: "مدیریت رزروها", icon: <ReserveSVG />, href: "/dashboard/seller/reservations" },
-    { name: "مدیریت مالی", icon: <PaymentSVG />, href: "/dashboard/seller/finance" },
-    { name: "مدیریت نظرات", icon: <ReviewsSVG />, href: "/dashboard/seller/reviews" },
-    { name: "اعلان‌ها", icon: <NotifSVG />, href: "/dashboard/seller/notifications" },
+    {
+      name: "اطلاعات کاربری",
+      icon: <InfoSVG />,
+      href: "/dashboard/seller/profile",
+    },
+    {
+      name: "مدیریت املاک",
+      icon: <PropertySVG />,
+      href: "/dashboard/seller/properties",
+    },
+    {
+      name: "مدیریت رزروها",
+      icon: <ReserveSVG />,
+      href: "/dashboard/seller/reservations",
+    },
+    {
+      name: "مدیریت مالی",
+      icon: <PaymentSVG />,
+      href: "/dashboard/seller/finance",
+    },
+    {
+      name: "مدیریت نظرات",
+      icon: <ReviewsSVG />,
+      href: "/dashboard/seller/reviews",
+    },
+    {
+      name: "اعلان‌ها",
+      icon: <NotifSVG />,
+      href: "/dashboard/seller/notifications",
+    },
   ];
 
   const buyerItems = [
     { name: "داشبورد", icon: <DashboardSVG />, href: "/dashboard/buyer" },
-    { name: "اطلاعات کاربری", icon: <InfoSVG />, href: "/dashboard/buyer/information" },
-    { name: "مدیریت رزروها", icon: <ReserveSVG />, href: "/dashboard/buyer/reservations" },
-    { name: "علاقه‌مندی‌ها", icon: <FavoriteSVG />, href: "/dashboard/buyer/favorites" },
-    { name: "پرداخت‌ها", icon: <PaymentSVG />, href: "/dashboard/buyer/payments" },
-    { name: "اعلان‌ها", icon: <NotifSVG />, href: "/dashboard/buyer/notifications" },
+    {
+      name: "اطلاعات کاربری",
+      icon: <InfoSVG />,
+      href: "/dashboard/buyer/information",
+    },
+    {
+      name: "مدیریت رزروها",
+      icon: <ReserveSVG />,
+      href: "/dashboard/buyer/reservations",
+    },
+    {
+      name: "علاقه‌مندی‌ها",
+      icon: <FavoriteSVG />,
+      href: "/dashboard/buyer/favorites",
+    },
+    {
+      name: "پرداخت‌ها",
+      icon: <PaymentSVG />,
+      href: "/dashboard/buyer/payments",
+    },
+    {
+      name: "اعلان‌ها",
+      icon: <NotifSVG />,
+      href: "/dashboard/buyer/notifications",
+    },
   ];
 
   const items = seller ? sellerItems : buyerItems;
@@ -55,15 +99,27 @@ function BuyerSideBar({ seller = false }) {
         </div>
       </div>
 
-      <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
-        <div className="flex flex-col flex-wrap justify-between">
-          <p className="text-[20px] text-text "> نظرات جدید</p>
-          <p className="text-text-secondary text-[14px] ">5 نظر</p>
+      {seller ? (
+        <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
+          <div className="flex flex-col flex-wrap justify-between">
+            <p className="text-[20px] text-text ">نظرات جدید</p>
+            <p className="text-text-secondary text-[14px] ">5 نظر</p>
+          </div>
+          <div className="mb-auto pt-[2px]">
+            <ReviewsSVG />
+          </div>
         </div>
-        <div className="mb-auto pt-[2px]">
-          <ReviewsSVG />
+      ) : (
+        <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
+          <div className="flex flex-col flex-wrap justify-between">
+            <p className="text-[20px] text-text ">کیف پول</p>
+            <p className="text-text-secondary text-[14px] ">عدم موجودی</p>
+          </div>
+          <div className="my-auto">
+            <MoneySVG />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
