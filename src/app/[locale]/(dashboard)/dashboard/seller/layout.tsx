@@ -8,8 +8,6 @@ import Providers from "@/provider/provider";
 
 // Third party components
 import FloatingActions from "@/components/common/fab";
-import Footer from "@/components/common/footer/footer";
-import Header from "@/components/common/header/header";
 
 // CSS
 import "../../../globals.css";
@@ -22,6 +20,7 @@ import Image from "next/image";
 import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
 import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
+
 
 // metadata
 export const metadata: Metadata = {
@@ -65,12 +64,12 @@ export default async function RootLayout({
       <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <div className="flex bg-border justify-between p-[19px]">
-              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
-                <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
-                  {!decodedUser ? (
-                    <span></span>
-                  ) : (
+              <div className="flex bg-border justify-between p-[19px]">
+                <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+                  <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
+                    {!decodedUser ? (
+                      <span></span>
+                    ) : (
                     <div className="flex gap-4 my-auto">
                       <div className="my-auto cursor-pointer">
                         <ArrowSVG />
@@ -104,17 +103,15 @@ export default async function RootLayout({
                         <Notif2SVG />
                       </div>
                     </div>
-                  )}
-                  <DashboardTitle />
-                </div>
-                <main className="flex-1 bg-background p-8 rounded-[12px]">
+                    )}
+                    <DashboardTitle />
+                  </div>
                   {children}
-                </main>
+                </div>
+                <div className="w-[19%]">
+                <BuyerSideBar seller={true}/>
+                </div>
               </div>
-              <div className="w-[19%]">
-                <BuyerSideBar />
-              </div>
-            </div>
             <FloatingActions />
           </Providers>
         </NextIntlClientProvider>
