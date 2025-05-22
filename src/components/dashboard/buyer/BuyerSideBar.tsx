@@ -11,13 +11,13 @@ import MoneySVG from "../svg/MoneySVG";
 
 function BuyerSideBar() {
   return (
-    <div className="h-full rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
-      <div className="mt-10">
+    <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
+      <div className="mt-2">
         <div className="flex justify-between">
           <div className="my-auto">
             <SignoutSVG />
           </div>
-          <h2 className="text-text text-4xl font-bold">Piza</h2>
+          <h2 className="text-text text-4xl font-bold font-yekan">Piza</h2>
         </div>
 
         <div dir="rtl" className="flex flex-col gap-4 mt-13">

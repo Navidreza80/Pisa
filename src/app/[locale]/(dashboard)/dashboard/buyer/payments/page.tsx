@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import { CheckCircle, XCircle } from "lucide-react";
 import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import {
   DashboardBuyerPaymentsStatus,
   DashboardBuyerPaymentsType,
 } from "@/utils/constant/folder";
+import { CheckCircle, XCircle } from "lucide-react";
+import { useState } from "react";
 
 const transactions = [
   {
@@ -96,18 +96,24 @@ export default function TransactionList() {
   return (
     <div dir="rtl" className="p-4 bg-background rounded-xl shadow">
       <div className="flex justify-between mt-6">
-        <h1 className="text-xl font-bold font-yekan mb-4">
+        <h1 className="text-xl font-bold font-yekan mb-auto">
           لیست تراکنش های شما
         </h1>
         <div className="flex gap-4 ">
-          <InputSelect
-            value={typeFilter}
-            items={DashboardBuyerPaymentsType}
-          />
-          <InputSelect
-            value={statusFilter}
-            items={DashboardBuyerPaymentsStatus}
-          />
+          <div className="flex flex-col flex-wrap gap-2">
+            <h1 className="font-yekan font-bold text-[14px]">نوع تراکنش</h1>
+            <InputSelect
+              value={typeFilter}
+              items={DashboardBuyerPaymentsType}
+            />
+          </div>
+          <div className="flex flex-col flex-wrap gap-2">
+            <h1 className="font-yekan font-bold text-[14px]">وضعیت پرداخت</h1>
+            <InputSelect
+              value={statusFilter}
+              items={DashboardBuyerPaymentsStatus}
+            />
+          </div>
         </div>
       </div>
 
