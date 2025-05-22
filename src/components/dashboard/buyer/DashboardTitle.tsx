@@ -8,7 +8,7 @@ export default function DashboardTitle() {
   const getTitle = () => {
     if (pathname.includes('/dashboard') && !pathname.includes('/information') && !pathname.includes('/reservations') && 
         !pathname.includes('/favorites') && !pathname.includes('/payments') && !pathname.includes('/notifications')) {
-      return "داشبرد";
+      return "داشبورد";
     } else if (pathname.includes('/information')) {
       return "اطلاعات کاربری";
     } else if (pathname.includes('/reservations')) {
