@@ -14,6 +14,7 @@ import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
 import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import ReserveDetail from "@/components/dashboard/buyer/reserveDetail";
 
 const bookings = [
   {
@@ -69,7 +70,7 @@ export default function BookingList() {
         className="w-full text-sm border-separate border-spacing-y-4"
       >
         <thead>
-          <tr className="font-bold bg-text/30 text-text">
+          <tr className="font-bold bg-border/50 text-text">
             <th className="p-2 text-lg rounded-r-xl">نام اقامتگاه</th>
             <th className="p-2 text-lg">تاریخ رزرو</th>
             <th className="p-2 text-lg">قیمت کل</th>
@@ -136,7 +137,7 @@ export default function BookingList() {
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>جزئیات</h1>
+                        <ReserveDetail />
                         <div className="my-auto">
                           <DetailPopover />
                         </div>
