@@ -1,5 +1,6 @@
 "use client";
 import InputSelect from "@/components/dashboard/buyer/inputSelect";
+import Line from "@/components/dashboard/buyer/line";
 import {
   DashboardBuyerPaymentsStatus,
   DashboardBuyerPaymentsType,
@@ -117,17 +118,17 @@ export default function TransactionList() {
         </div>
       </div>
 
-      <div className="border-b-2 border-dashed border-border my-[19px]" />
+      <Line />
 
       <table className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
-          <tr className="bg-text/30 text-text">
-            <th className="p-2 text-xl font-yekan rounded-r-xl">تاریخ</th>
-            <th className="p-2 text-xl font-yekan">شماره پیگیری</th>
-            <th className="p-2 text-xl font-yekan">مبلغ</th>
-            <th className="p-2 text-xl font-yekan">وضعیت پرداخت</th>
-            <th className="p-2 text-xl font-yekan">نوع تراکنش</th>
-            <th className="p-2 text-xl font-yekan rounded-l-xl"></th>
+          <tr className="bg-text/30 p-2 font-yekan font-[400] text-text">
+            <th className="p-2 text-lg rounded-r-xl">تاریخ</th>
+            <th className="p-2 text-lg">شماره پیگیری</th>
+            <th className="p-2 text-lg">مبلغ</th>
+            <th className="p-2 text-lg">وضعیت پرداخت</th>
+            <th className="p-2 text-lg">نوع تراکنش</th>
+            <th className="p-2 text-lg rounded-l-xl"></th>
           </tr>
         </thead>
         <tbody>
