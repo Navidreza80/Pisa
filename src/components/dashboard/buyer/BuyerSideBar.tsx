@@ -22,9 +22,9 @@ function BuyerSideBar() {
 
         <div dir="rtl" className="flex flex-col gap-4 mt-13">
           <BuyerSideBarItems
-            name="داشبرد"
+            name="داشبورد"
             icon={<DashboardSVG />}
-            href="/dashboard/buyer/dashboard"
+            href="/dashboard/buyer"
           />
           <BuyerSideBarItems
             name="اطلاعات کاربری"
