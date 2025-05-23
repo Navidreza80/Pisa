@@ -96,7 +96,7 @@ export default function TransactionList() {
   });
 
   return (
-    <div dir="rtl" >
+    <div dir="rtl">
       <div className="flex justify-between mt-6">
         <h1 className="text-xl font-bold font-yekan mb-auto">
           لیست تراکنش های شما
@@ -144,7 +144,9 @@ export default function TransactionList() {
               <td className="p-2 font-yekan font-semibold">
                 {tx.trackingCode}
               </td>
-              <td className="p-2 font-yekan font-semibold">{formatNumber(Number(tx.amount))}</td>
+              <td className="p-2 font-yekan font-semibold">
+                {formatNumber(Number(tx.amount))}
+              </td>
               <td className="p-2 font-yekan font-semibold">
                 <span
                   className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
