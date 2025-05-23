@@ -8,8 +8,6 @@ import {
 import { formatNumber } from "@/utils/helper/format-number";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const transactions = [
   {
