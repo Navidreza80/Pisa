@@ -34,6 +34,7 @@ export interface HouseItemsInterface {
 }
 
 export interface TopSaleCardListProps {
+  isList?: boolean;
   setCurrentLoc?: Dispatch<SetStateAction<Array<number>>>;
   showOnMap?: boolean;
   showFacilities?: boolean;

@@ -1,16 +1,16 @@
 "use client";
 // React & Next
 import { useTranslations } from "next-intl";
-import { Fragment, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Fragment, useEffect } from "react";
 
 // Third party components
 import Slider from "@/components/common/slider/Slider";
 
 // Dependencies
+import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
 
 // SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
@@ -22,14 +22,14 @@ import LocationSVG from "../svg/location";
 import PersonSVG from "../svg/person";
 
 // Types
-import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { TransitionLink } from "@/components/common/TransitionLink";
+import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
-import Reveal from "../reveal";
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
-import { Star } from "lucide-react";
+import { CalendarRange, House, Layers3, Star, Tag, User } from "lucide-react";
+import { useDispatch } from "react-redux";
+import Reveal from "../reveal";
 
 /**
  * Filter reservation houses component.
@@ -51,6 +51,7 @@ export default function HouseCardList({
   showBathrooms,
   showParking,
   discount,
+  isList,
 }: TopSaleCardListProps) {
   // Hooks
   const t = useTranslations("HomePage");
@@ -107,7 +108,7 @@ export default function HouseCardList({
   // Filter only visible features
   const visibleFeatures = featureItems.filter((item) => item.show);
 
-  return (
+  return !isList ? (
     <Tilt
       transitionSpeed={2500}
       className={`flex flex-col group hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
@@ -263,5 +264,78 @@ export default function HouseCardList({
         </div>
       )}
     </Tilt>
+  ) : (
+    <div
+      className={`group hover:shadow-lg border transition-all duration-300 border-border rounded-[40px] p-4 gap-[13px] overflow-hidden flex-row w-full items-center flex`}
+    >
+      {/* Image Section */}
+      <div className="w-[300px] h-[180px]">
+        <img
+          className="object-cover w-full h-full rounded-lg"
+          src={card.photos?.[0] ?? "https://via.placeholder.com/300"}
+          alt={card.title}
+        />
+      </div>
+
+      {/* Content Section */}
+      <div className="flex flex-1 flex-col pl-4">
+        {/* Title & Address */}
+        <h1 className="font-semibold text-[20px]">{card.title}</h1>
+        <p className="text-sm text-text-secondary">{card.address}</p>
+
+        {/* Facilities */}
+        {showFacilities && (
+          <div className="flex flex-wrap gap-4 mt-2">
+            {featureItems.map((feature) => (
+              <div key={feature.id} className="flex items-center gap-2">
+                {feature.icon}
+                <span>
+                  {feature.value} {feature.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Extra Fields in List View */}
+        <div className="mt-4 border-t border-border pt-2 flex gap-y-1.5 flex-col">
+          <p className="text-text-secondary text-sm flex items-center gap-1.5">
+            <CalendarRange /> آخرین به‌روزرسانی:{" "}
+            {new Date(card.last_updated).toLocaleDateString()}
+          </p>
+          <p className="text-text-secondary text-sm flex items-center gap-1.5">
+            <House /> نوع معامله:{" "}
+            {card.transaction_type === "rental" ? "اجاره‌ای" : "فروش"}
+          </p>
+          <p className="text-text-secondary text-sm flex items-center gap-1.5">
+            <Layers3 />
+            دسته‌بندی: {card.categories?.name}
+          </p>
+          {card.tags?.length > 0 && (
+            <p className="text-text-secondary text-sm flex items-center gap-1.5">
+              <Tag />
+              برچسب‌ها: {card.tags.join(", ")}
+            </p>
+          )}
+          {card.sellerName && card.sellerName !== "Unknown" && (
+            <p className="text-text-secondary text-sm flex items-center gap-1.5">
+              <User />
+              فروشنده: {card.sellerName}
+            </p>
+          )}
+        </div>
+
+        {/* Price & Rating */}
+        <div className="mt-3 flex justify-between">
+          <span className="text-lg font-bold">
+            {formatNumber(Number(card.price))} تومان
+          </span>
+          <span className="flex gap-2">
+            {card.rate}
+            <Star />{" "}
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
