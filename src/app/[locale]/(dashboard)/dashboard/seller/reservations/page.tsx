@@ -68,7 +68,6 @@ export default function BookingList() {
       </div>
       <Line />
 
-      {!isMobile ? (
         <div className="overflow-x-auto">
           <table
             dir="rtl"
@@ -162,100 +161,6 @@ export default function BookingList() {
             </tbody>
           </table>
         </div>
-      ) : (
-        <div className="space-y-4 mt-4">
-          {bookings.map((booking) => (
-            <Card key={booking.id} className="overflow-hidden">
-              <CardContent className="p-4">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <h3 className="text-lg font-semibold">{booking.hotel}</h3>
-                    <p className="text-sm text-gray-500">{booking.date}</p>
-                  </div>
-                  <Popover
-                    open={openPopoverId === booking.id}
-                    onOpenChange={(open) =>
-                      setOpenPopoverId(open ? booking.id : null)
-                    }
-                  >
-                    <PopoverTrigger asChild>
-                      <div className="text-2xl font-bold cursor-pointer">...</div>
-                    </PopoverTrigger>
-                    <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                      <div className="space-y-2">
-                        <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                          <h1>تایید رزرو</h1>
-                          <div className="my-auto">
-                            <CheckPopover />
-                          </div>
-                        </div>
-                        <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                          <h1>لغو رزرو</h1>
-                          <div className="my-auto">
-                            <CanclePopover />
-                          </div>
-                        </div>
-                        <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                          <h1>جزئیات</h1>
-                          <div className="my-auto">
-                            <DetailPopover />
-                          </div>
-                        </div>
-                        <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                          <h1>حذف</h1>
-                          <div className="my-auto">
-                            <DeletePopover />
-                          </div>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <span className="text-gray-500">اطلاعات مسافر:</span>
-                    <p className="mt-1">{booking.traveler}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">مبلغ:</span>
-                    <p className="mt-1">{booking.total}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">وضعیت رزرو:</span>
-                    <div className="mt-1">
-                      <Badge
-                        className={cn(
-                          "px-2 py-1 text-white text-xs",
-                          booking.status === "تایید شده" && "bg-lime-400",
-                          booking.status === "در انتظار" && "bg-orange-400"
-                        )}
-                      >
-                        {booking.status}
-                      </Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">وضعیت پرداخت:</span>
-                    <div className="mt-1">
-                      <Badge
-                        className={cn(
-                          "px-2 py-1 text-white text-xs",
-                          booking.paymentStatus === "تایید شده" && "bg-lime-400",
-                          booking.paymentStatus === "لغو شده" && "bg-rose-400"
-                        )}
-                      >
-                        {booking.paymentStatus}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
-
       <div className="flex justify-center pt-4">
         <div className="flex flex-wrap items-center gap-2">
           {[1, 2, 3, 4, "...", 9].map((page, idx) => (
