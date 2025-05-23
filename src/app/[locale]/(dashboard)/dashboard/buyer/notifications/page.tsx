@@ -2,86 +2,20 @@
 import Button from "@/components/common/button";
 import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import Line from "@/components/dashboard/buyer/line";
-import {
-  DashboardBuyerPaymentsStatus,
-  DashboardBuyerPaymentsType,
-} from "@/utils/constant/folder";
-import { formatNumber } from "@/utils/helper/format-number";
-import { CheckCircle, XCircle } from "lucide-react";
+import { DashboardBuyerPaymentsType } from "@/utils/constant/folder";
 import { useState } from "react";
+import NotificationStatus from "../../../../../../components/dashboard/buyer/notification-status";
 
 const transactions = [
   {
     id: 1,
-    date: "12 مرداد 1401",
-    time: "13:33",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید شده",
-    type: "شارژ کیف پول",
+    date: "12 مرداد - 1401 / 12:33",
+    text: "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
   },
   {
     id: 2,
-    date: "12 مرداد 1401",
-    time: "13:33",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید شده",
-    type: "شارژ کیف پول",
-  },
-  {
-    id: 3,
-    date: "12 مرداد 1401",
-    time: "13:33",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید نشده",
-    type: "رزرو",
-  },
-  {
-    id: 4,
-    date: "12 مرداد 1401",
-    time: "13:33",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید شده",
-    type: "رزرو",
-  },
-  {
-    id: 5,
-    date: "12 مرداد 1401",
-    time: "13:33",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید نشده",
-    type: "رزرو",
-  },
-  {
-    id: 6,
-    date: "12 مرداد 1401",
-    time: "12:00",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید شده",
-    type: "شارژ کیف پول",
-  },
-  {
-    id: 7,
-    date: "12 مرداد 1401",
-    time: "12:00",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید نشده",
-    type: "رزرو",
-  },
-  {
-    id: 8,
-    date: "12 مرداد 1401",
-    time: "12:00",
-    trackingCode: "137245678913476456",
-    amount: "1250000",
-    status: "تایید نشده",
-    type: "رزرو",
+    date: "12 مرداد - 1401 / 12:33",
+    text: "خوش آمدید !",
   },
 ];
 
@@ -96,6 +30,12 @@ export default function Notifications() {
     );
   });
 
+  const tableHeaderItems = [
+    { text: "اعلان ها", clx: "rounded-r-xl" },
+    { text: "تاریخ", clx: null },
+    { text: "-", clx: "text-transparent rounded-l-xl" },
+  ];
+
   return (
     <div dir="rtl">
       <div className="flex justify-between mt-6">
@@ -103,7 +43,11 @@ export default function Notifications() {
           لیست اعلان های شما
         </h1>
         <div className="flex gap-4 ">
-          <InputSelect value={typeFilter} items={DashboardBuyerPaymentsType} />
+          <InputSelect value={typeFilter} items={DashboardBuyerPaymentsType}>
+            <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+              نوع اعلان :
+            </div>
+          </InputSelect>
 
           <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
         </div>
@@ -113,23 +57,31 @@ export default function Notifications() {
 
       <table className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
-          <tr className="bg-border/50 p-2 font-yekan font-[400] text-text">
-            <th className="p-2 text-lg rounded-r-xl font-medium">اعلان</th>
-            <th className="p-2 text-lg font-medium">تاریخ</th>
-            <th className="rounded-l-xl text-border/50"> - </th>
+          <tr className="bg-table-main p-2 font-yekan text-text">
+            {tableHeaderItems.map((item, index) => {
+              return (
+                <th
+                  key={index}
+                  className={`p-2 text-lg  font-medium ${item.clx}`}
+                >
+                  {item.text}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
+          <NotificationStatus text="خوانده نشده" />
           {filteredTransactions.map((tx) => (
             <tr
               key={tx.id}
               className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
             >
               <td className="p-2 font-yekan font-medium text-[16px]">
-                فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است
+                {tx.text}
               </td>
               <td className="p-2 font-yekan font-medium text-[20px]">
-                12 مرداد - 1401 / 12:33
+                {tx.date}
               </td>
               <td>
                 <button className="pl-[15px] pr-[3.5px] text-white bg-primary rounded-full flex p-0.5 gap-1">
@@ -150,10 +102,11 @@ export default function Notifications() {
               </td>
             </tr>
           ))}
+          <NotificationStatus text="خوانده شده" />
         </tbody>
       </table>
 
-      <div className="flex justify-center mt-4 gap-2">
+      <div className="flex justify-end mt-[71px] gap-2">
         {[1, 2, 3, 4, 5].map((p) => (
           <button
             key={p}

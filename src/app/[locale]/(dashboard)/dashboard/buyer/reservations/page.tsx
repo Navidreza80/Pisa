@@ -70,7 +70,7 @@ export default function BookingList() {
         className="w-full text-sm border-separate border-spacing-y-4"
       >
         <thead>
-          <tr className="font-bold bg-border/50 text-text">
+          <tr className="font-bold bg-table-header text-text">
             <th className="p-2 text-lg rounded-r-xl">نام اقامتگاه</th>
             <th className="p-2 text-lg">تاریخ رزرو</th>
             <th className="p-2 text-lg">قیمت کل</th>

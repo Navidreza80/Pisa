@@ -1,4 +1,4 @@
-export default function ArrowSVG({ className }) {
+export default function ArrowSVG({ className }: { className?: string }) {
   return (
     <>
       <svg
