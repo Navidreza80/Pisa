@@ -155,46 +155,6 @@ export default function BookingList() {
                     </div>
                   </PopoverContent>
                 </Popover>
-
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <span className="text-gray-500">قیمت کل:</span>
-                    <p className="mt-1">{booking.total}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">تعداد مسافر:</span>
-                    <p className="mt-1">{`${booking.passengers} عدد مسافر`}</p>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">وضعیت رزرو:</span>
-                    <div className="mt-1">
-                      <Badge
-                        className={cn(
-                          "px-2 py-1 text-white text-xs",
-                          booking.status === "تایید شده" && "bg-lime-400",
-                          booking.status === "در انتظار" && "bg-orange-400"
-                        )}
-                      >
-                        {booking.status}
-                      </Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">وضعیت پرداخت:</span>
-                    <div className="mt-1">
-                      <Badge
-                        className={cn(
-                          "px-2 py-1 text-white text-xs",
-                          booking.paymentStatus === "تایید شده" &&
-                            "bg-lime-400",
-                          booking.paymentStatus === "لغو شده" && "bg-rose-400"
-                        )}
-                      >
-                        {booking.paymentStatus}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
               </td>
             </tr>
           ))}

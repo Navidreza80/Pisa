@@ -14,7 +14,6 @@ import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
 import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
-import { useMediaQuery } from "@/utils/hooks/use-media-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -53,7 +52,6 @@ const bookings = [
 
 export default function BookingList() {
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
