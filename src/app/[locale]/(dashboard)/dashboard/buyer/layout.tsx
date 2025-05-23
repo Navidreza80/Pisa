@@ -62,10 +62,10 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background text-text font-yekan">
+      <body className="text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <div className="flex bg-border justify-between p-[19px]">
+            <div className="flex bg-panel justify-between p-[19px]">
               <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
                 <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
                   {!decodedUser ? (

@@ -12,11 +12,14 @@ function InputSelect({
   items,
   onChange,
   value,
+  className,
+  children,
 }: {
   items: { text?: string; area_name?: string; value?: number; id?: number }[];
   onChange: (selectedValue: number | string) => void;
   value: number | string;
   width?: number;
+  className?: string;
 }) {
   const handleChange = (selectedValue: string) => {
     const found = items.find(
@@ -31,7 +34,7 @@ function InputSelect({
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
-        className={`!h-[48px] z-[10000000000] text-text-secondary relative rounded-2xl shadow-none !font-medium border-border ${
+        className={`${className} !h-[48px] z-[10000000000] text-text-secondary relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}
         style={{ width: width ? width : 162 }}
@@ -40,6 +43,7 @@ function InputSelect({
           className="z-[10000000000] relative !font-medium"
           placeholder="انتخاب"
         />
+        {children}
       </SelectTrigger>
       <SelectContent className="rounded-[16px] bg-background z-[10000000000] font-medium relative ">
         {items?.map((item) => (

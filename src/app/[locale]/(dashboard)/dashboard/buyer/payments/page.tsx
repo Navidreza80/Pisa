@@ -123,7 +123,7 @@ export default function TransactionList() {
 
       <table className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
-          <tr className="bg-text/30 p-2 font-yekan font-[400] text-text">
+          <tr className="bg-table-main p-2 font-yekan font-[400] text-text">
             <th className="p-2 text-lg rounded-r-xl">تاریخ</th>
             <th className="p-2 text-lg">شماره پیگیری</th>
             <th className="p-2 text-lg">مبلغ</th>
