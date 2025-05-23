@@ -3,13 +3,11 @@ import type { Metadata } from "next";
 
 // Dependencies
 import { routing } from "@/i18n/routing";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import Providers from "@/provider/provider";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 
 // Third party components
 import FloatingActions from "@/components/common/fab";
-import Footer from "@/components/common/footer/footer";
-import Header from "@/components/common/header/header";
 
 // CSS
 import "../globals.css";

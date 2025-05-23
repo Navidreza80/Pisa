@@ -66,7 +66,8 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Providers>
             <div className="flex bg-panel justify-between p-[19px]">
-              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+              <div className="flex flex-col bg-panel flex-wrap gap-[19px] w-[80%]">
+                {/* Header */}
                 <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
                   {!decodedUser ? (
                     <span></span>
@@ -107,10 +108,12 @@ export default async function RootLayout({
                   )}
                   <DashboardTitle />
                 </div>
+                {/* Content */}
                 <main className="flex-1 bg-background p-8 rounded-[12px]">
                   {children}
                 </main>
               </div>
+              {/* Footer  */}
               <div className="w-[19%]">
                 <BuyerSideBar />
               </div>
