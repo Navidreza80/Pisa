@@ -104,11 +104,11 @@ export default async function LocationsPage() {
         </div>
       </div>
       {/* All locations */}
-      <div className="flex flex-wrap gap-6 justify-center p-4">
+      <div className="flex flex-wrap gap-6 justify-center">
         {locations.map((card) => (
           <div
             key={card.id}
-            className="flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border p-[12px] rounded-[40px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)] hover:shadow-lg"
+            className="flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border rounded-[40px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)] hover:shadow-lg"
           >
             <div className="w-full h-[153px] rounded-t-[24px] rounded-b-[16px] overflow-hidden bg-gray-200">
               <Image

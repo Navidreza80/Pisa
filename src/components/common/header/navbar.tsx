@@ -46,8 +46,9 @@ export default function Navbar() {
   // Other pages items
   const otherItems = [
     { text: "درباره ما", url: "/about-us" },
-    { text: "مفاصد رویایی", url: "/locations" },
+    { text: "مقاصد رویایی", url: "/locations" },
     { text: "تور های گردشگری", url: "/tours" },
+    { text: "دفاتر مشاور املاک", url: "/realestate" },
   ];
 
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
@@ -64,7 +65,9 @@ export default function Navbar() {
         <DropdownMenuTrigger
           dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
-            isOthersActive ? "text-primary font-bold text-[18px]" : "text-text font-semibold"
+            isOthersActive
+              ? "text-primary font-bold text-[18px]"
+              : "text-text font-semibold"
           }`}
         >
           {pathname == "/about-us"

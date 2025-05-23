@@ -1,6 +1,8 @@
 "use client";
 
+import MapComponent from "@/components/common/map/map";
 import MapSVG from "@/components/common/svg/map";
+import Map from "@/components/reserve-container/map";
 import RegisterForm from "@/components/tours-detail/tour-register-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getTourById } from "@/lib/actions/tours";
@@ -32,6 +34,8 @@ function Page() {
     services,
     facilities,
     cancelTill,
+    lat,
+    lng,
   } = tourDetails;
 
   useEffect(() => {
@@ -134,9 +138,14 @@ function Page() {
                   {tourDescription}
                 </h1>
 
-                <div className="border mt-10 border-gray-100 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800/60">
-                  <div className="bg-red-500 h-100"> </div>
-                </div>
+                {lat && lng && (
+                  <div className="mt-10 rounded-xl overflow-hidden w-full h-100">
+                    <MapComponent
+                      initialLocation={[Number(lat), Number(lng)]}
+                      initialZoom={13}
+                    ></MapComponent>
+                  </div>
+                )}
               </TabsContent>
 
               <TabsContent value="Advantages" className="mt-2">
