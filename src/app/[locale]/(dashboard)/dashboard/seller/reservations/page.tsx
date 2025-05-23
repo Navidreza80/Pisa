@@ -24,7 +24,7 @@ const bookings = [
     hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
-    passengers: 2,
+    traveler: "سبحان عرب خزائلی ،4/1/8...",
     status: "تایید شده",
     paymentStatus: "تایید شده",
     cancelled: false,
@@ -34,7 +34,7 @@ const bookings = [
     hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
-    passengers: 2,
+    traveler: "سبحان عرب خزائلی ،4/1/8...",
     status: "در انتظار",
     paymentStatus: "تایید شده",
     cancelled: false,
@@ -44,7 +44,7 @@ const bookings = [
     hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
-    passengers: 2,
+    traveler: "سبحان عرب خزائلی ،4/1/8...",
     status: "تایید شده",
     paymentStatus: "لغو شده",
     cancelled: true,
@@ -57,15 +57,17 @@ export default function BookingList() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[19px]">
-        <Button className="bg-primary text-white h-12 w-full md:w-auto">فیلتر ها</Button>
-        <Input
-          dir="rtl"
-          placeholder="نام هتل مورد نظر ....."
-          className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
-        />
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
+          <Button className="bg-primary text-white h-12 w-full md:w-auto">فیلتر ها</Button>
+          <Input
+            dir="rtl"
+            placeholder="نام مسافر مورد نظر ....."
+            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
+          />
+        </div>
+        <h1 className="text-xl font-semibold my-auto order-1 md:order-2">لیست رزرو های مشتریان</h1>
       </div>
-
       <Line />
 
       {!isMobile ? (
@@ -75,11 +77,11 @@ export default function BookingList() {
             className="w-full text-sm border-separate border-spacing-y-4"
           >
             <thead>
-              <tr className="font-bold bg-text/30 text-text">
-                <th className="p-2 text-lg rounded-r-xl">نام اقامتگاه</th>
+              <tr className="font-semibold bg-text/30 text-text">
+                <th className="p-2 text-lg rounded-r-xl">نام ملک</th>
+                <th className="p-2 text-lg">اطلاعات مسافر</th>
                 <th className="p-2 text-lg">تاریخ رزرو</th>
-                <th className="p-2 text-lg">قیمت کل</th>
-                <th className="p-2 text-lg">تعداد مسافر</th>
+                <th className="p-2 text-lg">مبلغ</th>
                 <th className="p-2 text-lg">وضعیت رزرو</th>
                 <th className="p-2 text-lg">وضعیت پرداخت</th>
                 <th className="p-2 text-lg rounded-l-xl"></th>
@@ -89,12 +91,12 @@ export default function BookingList() {
               {bookings.map((booking) => (
                 <tr
                   key={booking.id}
-                  className="text-right border-b hover:bg-background/30"
+                  className="font-yekan font-semibold border-b hover:bg-background/30"
                 >
                   <td className="py-2 px-4">{booking.hotel}</td>
+                  <td className="py-2 px-4">{booking.traveler}</td>
                   <td className="py-2 px-4">{booking.date}</td>
                   <td className="py-2 px-4">{booking.total}</td>
-                  <td className="py-2 px-4">{`${booking.passengers} عدد مسافر`}</td>
                   <td className="py-2 px-4">
                     <span
                       className={cn(
@@ -214,12 +216,12 @@ export default function BookingList() {
                 
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span className="text-gray-500">قیمت کل:</span>
-                    <p className="mt-1">{booking.total}</p>
+                    <span className="text-gray-500">اطلاعات مسافر:</span>
+                    <p className="mt-1">{booking.traveler}</p>
                   </div>
                   <div>
-                    <span className="text-gray-500">تعداد مسافر:</span>
-                    <p className="mt-1">{`${booking.passengers} عدد مسافر`}</p>
+                    <span className="text-gray-500">مبلغ:</span>
+                    <p className="mt-1">{booking.total}</p>
                   </div>
                   <div>
                     <span className="text-gray-500">وضعیت رزرو:</span>

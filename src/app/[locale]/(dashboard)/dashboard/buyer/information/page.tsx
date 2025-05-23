@@ -14,7 +14,7 @@ export default async function Information() {
   return (
     
         <>
-          <div className="mb-8">
+          <div className="mb-8 text-center md:text-right">
             <h2 className="text-text text-[20px] font-extrabold font-yekan">
               عکس نمایه شما
             </h2>
@@ -39,15 +39,15 @@ export default async function Information() {
             </div>
           </div>
           <div className="h-[1px] bg-border" />
-          <div className="my-8 flex flex-row-reverse justify-between ml-50">
-            <div>
+          <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
+            <div className="text-center md:text-right">
               <h2 className="text-text text-[20px] font-extrabold font-yekan ">
                 اطلاعات فردی
               </h2>
               <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
                 میتوانید اطلاعات فردی خود را تغییر دهید
               </p>
-              <div className="mt-4 flex justify-end gap-2">
+              <div className="mt-4 flex justify-center md:justify-end gap-2">
                 <Button className="bg-primary/80 hover:bg-primary text-white">
                   اعمال تغییرات
                 </Button>
@@ -55,7 +55,7 @@ export default async function Information() {
               </div>
             </div>
 
-            <div dir="rtl" className="flex flex-col flex-wrap gap-4 w-100">
+            <div dir="rtl" className="flex flex-col flex-wrap gap-4 w-full md:w-100">
               <Input
                 name="firstName"
                 placeholder="نام"
@@ -80,15 +80,15 @@ export default async function Information() {
           </div>
 
           <div className="h-[1px] bg-border" />
-          <div className="my-8 flex flex-row-reverse justify-between ml-50">
-            <div>
+          <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
+            <div className="text-center md:text-right">
               <h2 className="text-text text-[20px] font-extrabold font-yekan ">
                 امنیت
               </h2>
               <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
                 میتوانید در این بخش رمز خود را تغییر دهید
               </p>
-              <div className="mt-4 flex justify-end gap-2">
+              <div className="mt-4 flex justify-center md:justify-end gap-2">
                 <Button className="bg-primary/80 hover:bg-primary text-white">
                   اعمال تغییرات
                 </Button>
@@ -96,7 +96,7 @@ export default async function Information() {
               </div>
             </div>
 
-            <div dir="rtl" className="flex flex-col flex-wrap gap-4 w-100">
+            <div dir="rtl" className="flex flex-col flex-wrap gap-4 w-full md:w-100">
               <Input
                 placeholder="رمز عبور قبلی"
                 className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"

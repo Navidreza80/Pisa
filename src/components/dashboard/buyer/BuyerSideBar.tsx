@@ -79,8 +79,7 @@ function BuyerSideBar({ seller = false }) {
 
   return (
     <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
-      <div className="mt-2">
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-2">
           <div className="my-auto">
             <SignoutSVG />
           </div>
@@ -97,7 +96,6 @@ function BuyerSideBar({ seller = false }) {
             />
           ))}
         </div>
-      </div>
 
       {seller ? (
         <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
