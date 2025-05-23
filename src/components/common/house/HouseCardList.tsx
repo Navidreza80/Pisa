@@ -1,16 +1,16 @@
 "use client";
 // React & Next
 import { useTranslations } from "next-intl";
-import { Fragment, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Fragment, useEffect } from "react";
 
 // Third party components
 import Slider from "@/components/common/slider/Slider";
 
 // Dependencies
+import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
 
 // SVGs
 import BathroomSVG from "@/components/common/svg/bathroom";
@@ -22,15 +22,14 @@ import LocationSVG from "../svg/location";
 import PersonSVG from "../svg/person";
 
 // Types
-import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { TransitionLink } from "@/components/common/TransitionLink";
+import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
-import Reveal from "../reveal";
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 import { CalendarRange, House, Layers3, Star, Tag, User } from "lucide-react";
-import { FaCalendarCheck } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import Reveal from "../reveal";
 
 /**
  * Filter reservation houses component.
@@ -52,7 +51,7 @@ export default function HouseCardList({
   showBathrooms,
   showParking,
   discount,
-  isList = true,
+  isList,
 }: TopSaleCardListProps) {
   // Hooks
   const t = useTranslations("HomePage");
