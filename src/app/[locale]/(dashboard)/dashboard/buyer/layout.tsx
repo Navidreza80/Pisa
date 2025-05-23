@@ -3,25 +3,23 @@ import type { Metadata } from "next";
 
 // Dependencies
 import { routing } from "@/i18n/routing";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import Providers from "@/provider/provider";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 
 // Third party components
 import FloatingActions from "@/components/common/fab";
-import Footer from "@/components/common/footer/footer";
-import Header from "@/components/common/header/header";
 
 // CSS
-import "../../../globals.css";
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
-import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from "@/types/user";
 import { auth } from "@/auth";
 import BuyerSideBar from "@/components/dashboard/buyer/BuyerSideBar";
-import Image from "next/image";
 import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
 import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
+import { JwtPayload } from "@/types/user";
+import { getServerCookie } from "@/utils/service/storage/server-cookie";
+import { jwtDecode } from "jwt-decode";
+import Image from "next/image";
+import "../../../globals.css";
 
 // metadata
 export const metadata: Metadata = {
