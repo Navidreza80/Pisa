@@ -2,6 +2,8 @@
 import Line from "@/components/dashboard/buyer/line";
 import AddSVG from "@/components/dashboard/svg/AddSVG";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
+import EditSVG from "@/components/dashboard/svg/EditSVG";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,7 +11,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import Image from "next/image";
 
 const properties = [
   {
@@ -129,15 +130,15 @@ export default function PropertyList() {
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <h1>فعال کردن</h1>
-                        <div className="my-auto">t</div>
+                        <div className="my-auto"><CheckPopover /></div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <h1>ویرایش</h1>
-                        <div className="my-auto">t</div>
+                        <div className="my-auto"><EditSVG /></div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         حذف
-                        <div className="my-auto">t</div>
+                        <div className="my-auto"><DeleteSVG /></div>
                       </div>
                     </div>
                   </PopoverContent>

@@ -1,21 +1,19 @@
 "use client";
 
 import Line from "@/components/dashboard/buyer/line";
+import CanclePopover from "@/components/dashboard/svg/CanclePopover";
+import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import DeletePopover from "@/components/dashboard/svg/DeletePopover";
+import DetailPopover from "@/components/dashboard/svg/DetailPopover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import CanclePopover from "@/components/dashboard/svg/CanclePopover";
-import CheckPopover from "@/components/dashboard/svg/CheckPopover";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const bookings = [
   {
@@ -74,7 +72,7 @@ export default function BookingList() {
             className="w-full text-sm border-separate border-spacing-y-4"
           >
             <thead>
-              <tr className="font-semibold bg-text/30 text-text">
+              <tr className="font-semibold bg-table-header text-text">
                 <th className="p-2 text-lg rounded-r-xl">نام ملک</th>
                 <th className="p-2 text-lg">اطلاعات مسافر</th>
                 <th className="p-2 text-lg">تاریخ رزرو</th>
@@ -88,9 +86,9 @@ export default function BookingList() {
               {bookings.map((booking) => (
                 <tr
                   key={booking.id}
-                  className="font-yekan font-semibold border-b hover:bg-background/30"
+                  className="font-yekan font-semibold border-b hover:bg-table-header/50 cursor-pointer " 
                 >
-                  <td className="py-2 px-4">{booking.hotel}</td>
+                  <td className="py-2 px-4 rounded-r-xl">{booking.hotel}</td>
                   <td className="py-2 px-4">{booking.traveler}</td>
                   <td className="py-2 px-4">{booking.date}</td>
                   <td className="py-2 px-4">{booking.total}</td>
@@ -116,7 +114,7 @@ export default function BookingList() {
                       {booking.paymentStatus}
                     </span>
                   </td>
-                  <td className="py-2 px-4 text-left">
+                  <td className="py-2 px-4 text-left rounded-l-xl">
                     <Popover
                       open={openPopoverId === booking.id}
                       onOpenChange={(open) =>
