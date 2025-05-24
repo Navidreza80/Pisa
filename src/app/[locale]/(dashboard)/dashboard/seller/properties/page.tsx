@@ -99,11 +99,13 @@ export default function PropertyList() {
         </thead>
         <tbody>
           {properties.map((property) => (
-            <tr key={property.id} className="bg-table-header/50 rounded-xl">
-              <td className="rounded-r-xl px-2 flex gap-2 w-73">
-                <div className="bg-text-secondary/30 w-27 my-auto h-20 m-0.5 rounded-[12px]" />{" "}
-                {/* width={108} height={72} src={"x"} alt="" */}
-                <div className="py-7">{property.name}</div>
+            <tr key={property.id} className="bg-table-main/30 rounded-xl">
+              <td className="pl-6 rounded-r-xl">
+                <div className="flex gap-2 w-73 ">
+                  <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
+                  {/* width={108} height={72} src={"x"} alt="" */}
+                  <div className="py-7">{property.name}</div>
+                </div>
               </td>
               <td className="px-6 py-7">{property.price}</td>
               <td className="px-6 py-7">{property.score}</td>
