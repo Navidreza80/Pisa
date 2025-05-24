@@ -1,5 +1,6 @@
 "use client";
 import Line from "@/components/dashboard/buyer/line";
+import ModalStep2 from "@/components/dashboard/buyer/modalStep2";
 import AddSVG from "@/components/dashboard/svg/AddSVG";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
@@ -137,7 +138,7 @@ export default function PropertyList() {
                         <div className="my-auto"><EditSVG /></div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        حذف
+                        <ModalStep2 name="حذف" desc="امکان بازگشت پس از حذف وجود ندارد!" title="آیا از حذف ملک مطمئن هستید؟" button="حذف" />
                         <div className="my-auto"><DeleteSVG /></div>
                       </div>
                     </div>

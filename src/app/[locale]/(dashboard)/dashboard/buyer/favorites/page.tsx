@@ -1,20 +1,18 @@
 "use client";
 
+import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import Line from "@/components/dashboard/buyer/line";
+import ModalStep2 from "@/components/dashboard/buyer/modalStep2";
+import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import CanclePopover from "@/components/dashboard/svg/CanclePopover";
-import CheckPopover from "@/components/dashboard/svg/CheckPopover";
-import ReserveDetail from "@/components/dashboard/buyer/reserveDetail";
+import { DashboardBuyerFavorite } from "@/utils/constant/folder";
+import { useState } from "react";
 
 const bookings = [
   {
@@ -50,16 +48,17 @@ export default function BookingList() {
   return (
     <>
       <div className="flex items-center justify-between flex-row-reverse">
-        <h1 className="text-xl font-medium font-yekan mb-auto">
-          لیست رزرو های ذخیره شده
-        </h1>
+        <h1 className="text-xl font-medium font-yekan mb-auto"></h1>
         <div className="flex gap-[19px]">
-          <Button className="bg-primary text-white h-12 rounded-[14px]">
-            فیلتر ها
+          <Button className="bg-primary text-white px-[19px] py-[11px] h-12 rounded-[12px] my-auto cursor-pointer">
+            <ModalStep2
+              name="علامت گذاری به عنوان خوانده شده"
+              title="آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده علامت بزنید؟"
+              button="موافقت"
+            />
           </Button>
-          <Input
-            dir="rtl"
-            placeholder="نام هتل مورد نظر ....."
+          <InputSelect
+            items={DashboardBuyerFavorite}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
           />
         </div>

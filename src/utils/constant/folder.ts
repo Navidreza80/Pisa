@@ -62,6 +62,12 @@ export const DashboardBuyerNotifications = [
   { id: 1, text: "همه", value: "همه" },
 ];
 
+export const DashboardBuyerFavorite = [
+  { id: 1, text: "همه", value: "همه" },
+  { id: 2, text: "خوانده شده", value: "خوانده شده" },
+  { id: 3, text: "خوانده نشده", value: "خوانده نشده" },
+];
+
 // Dashboard notification table header
 
 export const tableHeaderItems = [
@@ -69,3 +75,4 @@ export const tableHeaderItems = [
   { text: "تاریخ", clx: null },
   { text: "-", clx: "text-transparent rounded-l-xl" },
 ];
+
