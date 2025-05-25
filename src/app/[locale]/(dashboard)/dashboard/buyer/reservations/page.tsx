@@ -14,12 +14,14 @@ import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
 import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import ReserveDetail from "@/components/dashboard/buyer/reserveDetail";
 
 const bookings = [
   {
     id: 1,
-    hotel: "هتل سرافراز زائین رشت",
+    hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
     passengers: 2,
@@ -29,7 +31,7 @@ const bookings = [
   },
   {
     id: 2,
-    hotel: "هتل سرافراز زائین رشت",
+    hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
     passengers: 2,
@@ -39,7 +41,7 @@ const bookings = [
   },
   {
     id: 3,
-    hotel: "هتل سرافراز زائین رشت",
+    hotel: "هتل سراوان رانین رشت",
     date: "12 مرداد 1401 / 13:33",
     total: "1,800,000 تومان",
     passengers: 2,
@@ -54,12 +56,14 @@ export default function BookingList() {
 
   return (
     <>
-      <div className="flex items-center gap-[19px]">
-        <Button className="bg-primary text-white h-12">فیلتر ها</Button>
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[19px]">
+        <Button className="bg-primary text-white h-12 w-full md:w-auto">
+          فیلتر ها
+        </Button>
         <Input
           dir="rtl"
           placeholder="نام هتل مورد نظر ....."
-          className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
+          className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
         />
       </div>
 
@@ -158,7 +162,7 @@ export default function BookingList() {
       </table>
 
       <div className="flex justify-center pt-4">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {[1, 2, 3, 4, "...", 9].map((page, idx) => (
             <Button
               key={idx}

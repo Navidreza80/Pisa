@@ -87,6 +87,7 @@ const transactions = [
 export default function TransactionList() {
   const [typeFilter, setTypeFilter] = useState("همه");
   const [statusFilter, setStatusFilter] = useState("همه");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredTransactions = transactions.filter((tx) => {
     return (
@@ -101,19 +102,21 @@ export default function TransactionList() {
         <h1 className="text-xl font-bold font-yekan mb-auto">
           لیست تراکنش های شما
         </h1>
-        <div className="flex gap-4 ">
-          <div className="flex flex-col flex-wrap gap-2">
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto order-2 md:order-1">
+          <div className="flex flex-col flex-wrap gap-2 w-full sm:w-auto">
             <h1 className="font-yekan font-bold text-[14px]">نوع تراکنش</h1>
             <InputSelect
               value={typeFilter}
               items={DashboardBuyerPaymentsType}
+              onChange={(val) => setTypeFilter(val)}
             />
           </div>
-          <div className="flex flex-col flex-wrap gap-2">
+          <div className="flex flex-col flex-wrap gap-2 w-full sm:w-auto">
             <h1 className="font-yekan font-bold text-[14px]">وضعیت پرداخت</h1>
             <InputSelect
               value={statusFilter}
               items={DashboardBuyerPaymentsStatus}
+              onChange={(val) => setStatusFilter(val)}
             />
           </div>
         </div>
@@ -123,7 +126,7 @@ export default function TransactionList() {
 
       <table className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
-          <tr className="bg-table-main p-2 font-yekan font-[400] text-text">
+          <tr className="bg-table-header p-2 font-yekan font-[400] text-text">
             <th className="p-2 text-lg rounded-r-xl">تاریخ</th>
             <th className="p-2 text-lg">شماره پیگیری</th>
             <th className="p-2 text-lg">مبلغ</th>
@@ -141,11 +144,9 @@ export default function TransactionList() {
               <td className="p-2 font-yekan font-semibold rounded-r-xl">
                 {tx.date} - {tx.time}
               </td>
+              <td className="p-2 font-yekan font-semibold">{tx.trackingCode}</td>
               <td className="p-2 font-yekan font-semibold">
-                {tx.trackingCode}
-              </td>
-              <td className="p-2 font-yekan font-semibold">
-                {formatNumber(Number(tx.amount))}
+                {formatNumber(Number(tx.amount))} تومان
               </td>
               <td className="p-2 font-yekan font-semibold">
                 <span
@@ -171,14 +172,19 @@ export default function TransactionList() {
       </table>
 
       <div className="flex justify-center mt-4 gap-2">
-        {[1, 2, 3, 4, 5].map((p) => (
-          <button
-            key={p}
-            className={`w-8 h-8 rounded-full border text-sm ${p === 1 ? "bg-primary text-white" : "bg-background"}`}
-          >
-            {p}
-          </button>
-        ))}
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {[1, 2, 3, 4, 5].map((p) => (
+            <button
+              key={p}
+              onClick={() => setCurrentPage(p)}
+              className={`w-8 h-8 rounded-full border text-sm ${
+                p === currentPage ? "bg-primary text-white" : "bg-background"
+              }`}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
