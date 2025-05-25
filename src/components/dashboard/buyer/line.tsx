@@ -1,9 +1,9 @@
-import React from 'react'
-
-function Line() {
+function Line({ className }: { className?: string }) {
   return (
-    <div className="border-b-2 border-dashed border-border my-[19px]" />
-  )
+    <div
+      className={`border-b-2 border-dashed border-[#88888842] my-[19px] ${className}`}
+    />
+  );
 }
 
-export default Line
+export default Line;

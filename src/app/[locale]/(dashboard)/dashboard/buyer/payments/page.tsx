@@ -1,6 +1,7 @@
 "use client";
 import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import Line from "@/components/dashboard/buyer/line";
+import TableDashboard from "@/components/dashboard/table";
 import {
   DashboardBuyerPaymentsStatus,
   DashboardBuyerPaymentsType,
@@ -84,17 +85,18 @@ const transactions = [
   },
 ];
 
+const tableHeaderItems = [
+  { text: "تاریخ", clx: "rounded-r-xl" },
+  { text: "شماره پیگیری", clx: null },
+  { text: "مبلغ", clx: null },
+  { text: "وضعیت پرداخت", clx: null },
+  { text: " نوع تراکنش", clx: null },
+  { text: "", clx: "rounded-l-xl" },
+];
+
 export default function TransactionList() {
   const [typeFilter, setTypeFilter] = useState("همه");
   const [statusFilter, setStatusFilter] = useState("همه");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const filteredTransactions = transactions.filter((tx) => {
-    return (
-      (typeFilter === "همه" || tx.type === typeFilter) &&
-      (statusFilter === "همه" || tx.status === statusFilter)
-    );
-  });
 
   return (
     <div dir="rtl">
@@ -124,68 +126,41 @@ export default function TransactionList() {
 
       <Line />
 
-      <table className="w-full text-sm border-separate border-spacing-y-4">
-        <thead>
-          <tr className="bg-table-header p-2 font-yekan font-[400] text-text">
-            <th className="p-2 text-lg rounded-r-xl">تاریخ</th>
-            <th className="p-2 text-lg">شماره پیگیری</th>
-            <th className="p-2 text-lg">مبلغ</th>
-            <th className="p-2 text-lg">وضعیت پرداخت</th>
-            <th className="p-2 text-lg">نوع تراکنش</th>
-            <th className="p-2 text-lg rounded-l-xl"></th>
+      <TableDashboard
+        tableHeader={tableHeaderItems}
+        tableContent={transactions.map((tx) => (
+          <tr
+            key={tx.id}
+            className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+          >
+            <td className="p-2 font-yekan font-semibold rounded-r-xl">
+              {tx.date} - {tx.time}
+            </td>
+            <td className="p-2 font-yekan font-semibold">{tx.trackingCode}</td>
+            <td className="p-2 font-yekan font-semibold">
+              {formatNumber(Number(tx.amount))} تومان
+            </td>
+            <td className="p-2 font-yekan font-semibold">
+              <span
+                className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
+                  tx.status === "تایید شده" ? "bg-green-500" : "bg-red-400"
+                }`}
+              >
+                {tx.status === "تایید شده" ? (
+                  <CheckCircle size={14} />
+                ) : (
+                  <XCircle size={14} />
+                )}
+                {tx.status}
+              </span>
+            </td>
+            <td className="p-2 font-yekan font-semibold">{tx.type}</td>
+            <td className="p-2 font-yekan font-semibold text-primary cursor-pointer hover:underline rounded-l-xl">
+              مشاهده رسید
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {filteredTransactions.map((tx) => (
-            <tr
-              key={tx.id}
-              className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
-            >
-              <td className="p-2 font-yekan font-semibold rounded-r-xl">
-                {tx.date} - {tx.time}
-              </td>
-              <td className="p-2 font-yekan font-semibold">{tx.trackingCode}</td>
-              <td className="p-2 font-yekan font-semibold">
-                {formatNumber(Number(tx.amount))} تومان
-              </td>
-              <td className="p-2 font-yekan font-semibold">
-                <span
-                  className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
-                    tx.status === "تایید شده" ? "bg-green-500" : "bg-red-400"
-                  }`}
-                >
-                  {tx.status === "تایید شده" ? (
-                    <CheckCircle size={14} />
-                  ) : (
-                    <XCircle size={14} />
-                  )}
-                  {tx.status}
-                </span>
-              </td>
-              <td className="p-2 font-yekan font-semibold">{tx.type}</td>
-              <td className="p-2 font-yekan font-semibold text-primary cursor-pointer hover:underline rounded-l-xl">
-                مشاهده رسید
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="flex justify-center mt-4 gap-2">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {[1, 2, 3, 4, 5].map((p) => (
-            <button
-              key={p}
-              onClick={() => setCurrentPage(p)}
-              className={`w-8 h-8 rounded-full border text-sm ${
-                p === currentPage ? "bg-primary text-white" : "bg-background"
-              }`}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-      </div>
+        ))}
+      />
     </div>
   );
 }

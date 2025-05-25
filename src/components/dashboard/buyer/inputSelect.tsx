@@ -12,13 +12,14 @@ function InputSelect({
   items,
   onChange,
   value,
+  label,
   className,
-  children,
 }: {
   items: { text?: string; area_name?: string; value?: number; id?: number }[];
-  onChange: (selectedValue: number | string) => void;
+  onChange?: (selectedValue: number | string) => void;
   value: number | string;
   width?: number;
+  label?: string;
   className?: string;
 }) {
   const handleChange = (selectedValue: string) => {
@@ -43,7 +44,9 @@ function InputSelect({
           className="z-[10000000000] relative !font-medium"
           placeholder="انتخاب"
         />
-        {children}
+        <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+          {label}
+        </div>
       </SelectTrigger>
       <SelectContent className="rounded-[16px] bg-background z-[10000000000] font-medium relative ">
         {items?.map((item) => (

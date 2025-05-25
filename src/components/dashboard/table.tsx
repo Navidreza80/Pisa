@@ -6,12 +6,13 @@ const TableDashboard = ({
   notificationLineOne,
   notificationLineTwo,
   isNotification,
+  headerSecondary
 }) => {
   return (
     <>
-      <Table responsive className="w-full text-sm border-separate border-spacing-y-4">
+      <Table dir='rtl' responsive className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
-          <tr className="bg-table-main p-2 font-yekan text-text">
+          <tr className={` ${headerSecondary ? 'bg-table-header' : 'bg-table-main'} p-2 font-yekan text-text`}>
             {tableHeader.map((item, index) => {
               return (
                 <th
@@ -31,7 +32,7 @@ const TableDashboard = ({
         </tbody>
       </Table>
 
-      <div className="flex justify-end mt-[71px] gap-2">
+      <div className="flex justify-start mt-[71px] gap-2">
         {[1, 2, 3, 4, 5].map((p) => (
           <button
             key={p}

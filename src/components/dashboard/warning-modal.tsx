@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 
-const WarningModal = ({ children }) => {
+const WarningModal = ({ title, children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -21,8 +21,7 @@ const WarningModal = ({ children }) => {
         <div className="w-full flex justify-center flex-wrap gap-y-7">
           <WarningSVG />
           <h1 className="text-[24px] font-bold text-text text-center">
-            آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده
-            علامت بزنید؟
+            {title}
           </h1>
           <div className="flex gap-2">
             <Button className="!bg-transparent !text-text">انصراف</Button>

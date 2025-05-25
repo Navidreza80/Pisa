@@ -17,6 +17,7 @@ import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ReserveDetail from "@/components/dashboard/buyer/reserveDetail";
+import TableDashboard from "@/components/dashboard/table";
 
 const bookings = [
   {
@@ -51,6 +52,16 @@ const bookings = [
   },
 ];
 
+const tableHeaderItems = [
+  { text: "نام اقامتگاه", clx: "rounded-r-xl" },
+  { text: "تاریخ رزرو", clx: null },
+  { text: "قیمت کل", clx: null },
+  { text: "تعداد مسافر", clx: null },
+  { text: " وضعیت رزرو", clx: null },
+  { text: " وضعیت پرداخت", clx: null },
+  { text: "", clx: "rounded-l-xl" },
+];
+
 export default function BookingList() {
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
@@ -69,112 +80,83 @@ export default function BookingList() {
 
       <Line />
 
-      <table
-        dir="rtl"
-        className="w-full text-sm border-separate border-spacing-y-4"
-      >
-        <thead>
-          <tr className="font-bold bg-table-header text-text">
-            <th className="p-2 text-lg rounded-r-xl">نام اقامتگاه</th>
-            <th className="p-2 text-lg">تاریخ رزرو</th>
-            <th className="p-2 text-lg">قیمت کل</th>
-            <th className="p-2 text-lg">تعداد مسافر</th>
-            <th className="p-2 text-lg">وضعیت رزرو</th>
-            <th className="p-2 text-lg">وضعیت پرداخت</th>
-            <th className="p-2 text-lg rounded-l-xl"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr
-              key={booking.id}
-              className="text-right border-b hover:bg-background/30"
-            >
-              <td className="py-2 px-4">{booking.hotel}</td>
-              <td className="py-2 px-4">{booking.date}</td>
-              <td className="py-2 px-4">{booking.total}</td>
-              <td className="py-2 px-4">{`${booking.passengers} عدد مسافر`}</td>
-              <td className="py-2 px-4">
-                <span
-                  className={cn(
-                    "px-2 py-1 rounded-full text-white text-xs",
-                    booking.status === "تایید شده" && "bg-lime-400",
-                    booking.status === "در انتظار" && "bg-orange-400"
-                  )}
-                >
-                  {booking.status}
-                </span>
-              </td>
-              <td className="py-2 px-4">
-                <span
-                  className={cn(
-                    "px-2 py-1 rounded-full text-white text-xs",
-                    booking.paymentStatus === "تایید شده" && "bg-lime-400",
-                    booking.paymentStatus === "لغو شده" && "bg-rose-400"
-                  )}
-                >
-                  {booking.paymentStatus}
-                </span>
-              </td>
-              <td className="py-2 px-4 text-left">
-                <Popover
-                  open={openPopoverId === booking.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
-                  }
-                >
-                  <PopoverTrigger asChild>
-                    <div className="text-2xl font-bold cursor-pointer">...</div>
-                  </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                    <div className="space-y-2">
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>تایید رزرو</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>لغو رزرو</h1>
-                        <div className="my-auto">
-                          <CanclePopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <ReserveDetail />
-                        <div className="my-auto">
-                          <DetailPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                        <h1>حذف</h1>
-                        <div className="my-auto">
-                          <DeletePopover />
-                        </div>
+      <TableDashboard
+        headerSecondary={true}
+        tableHeader={tableHeaderItems}
+        tableContent={bookings.map((booking) => (
+          <tr
+            key={booking.id}
+            className="text-right border-b hover:bg-background/30"
+          >
+            <td className="py-2 px-4">{booking.hotel}</td>
+            <td className="py-2 px-4">{booking.date}</td>
+            <td className="py-2 px-4">{booking.total}</td>
+            <td className="py-2 px-4">{`${booking.passengers} عدد مسافر`}</td>
+            <td className="py-2 px-4">
+              <span
+                className={cn(
+                  "px-2 py-1 rounded-full text-white text-xs",
+                  booking.status === "تایید شده" && "bg-lime-400",
+                  booking.status === "در انتظار" && "bg-orange-400"
+                )}
+              >
+                {booking.status}
+              </span>
+            </td>
+            <td className="py-2 px-4">
+              <span
+                className={cn(
+                  "px-2 py-1 rounded-full text-white text-xs",
+                  booking.paymentStatus === "تایید شده" && "bg-lime-400",
+                  booking.paymentStatus === "لغو شده" && "bg-rose-400"
+                )}
+              >
+                {booking.paymentStatus}
+              </span>
+            </td>
+            <td className="py-2 px-4 text-left">
+              <Popover
+                open={openPopoverId === booking.id}
+                onOpenChange={(open) =>
+                  setOpenPopoverId(open ? booking.id : null)
+                }
+              >
+                <PopoverTrigger asChild>
+                  <div className="text-2xl font-bold cursor-pointer">...</div>
+                </PopoverTrigger>
+                <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+                  <div className="space-y-2">
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                      <h1>تایید رزرو</h1>
+                      <div className="my-auto">
+                        <CheckPopover />
                       </div>
                     </div>
-                  </PopoverContent>
-                </Popover>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="flex justify-center pt-4">
-        <div className="flex flex-wrap items-center gap-2">
-          {[1, 2, 3, 4, "...", 9].map((page, idx) => (
-            <Button
-              key={idx}
-              size="sm"
-              variant={page === 1 ? "default" : "ghost"}
-              className="rounded-full px-3"
-            >
-              {page}
-            </Button>
-          ))}
-        </div>
-      </div>
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                      <h1>لغو رزرو</h1>
+                      <div className="my-auto">
+                        <CanclePopover />
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                      <ReserveDetail />
+                      <div className="my-auto">
+                        <DetailPopover />
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
+                      <h1>حذف</h1>
+                      <div className="my-auto">
+                        <DeletePopover />
+                      </div>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </td>
+          </tr>
+        ))}
+      />
     </>
   );
 }

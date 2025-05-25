@@ -28,18 +28,20 @@ export default function Notifications() {
     },
   ];
   return (
-    <div dir="rtl">
-      <div className="flex justify-between mt-6">
+    <div>
+      <div className="flex justify-between flex-row-reverse mt-6">
         <Title text="لیست اعلان ها شما" />
         <div className="flex gap-4 ">
-          <InputSelect items={DashboardBuyerNotifications}>
-            <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
-              نوع اعلان :
-            </div>
-          </InputSelect>
-          <WarningModal>
+          <WarningModal
+            title="            آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده
+            علامت بزنید؟"
+          >
             <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
           </WarningModal>
+          <InputSelect
+            label="نوع اعلان :"
+            items={DashboardBuyerNotifications}
+          />
         </div>
       </div>
       {/* Divider Line */}

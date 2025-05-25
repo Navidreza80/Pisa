@@ -1,7 +1,6 @@
 import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
-import Close from "@/components/common/svg/close";
 import Share from "@/components/common/svg/share";
 import Star from "@/components/common/svg/star";
 import Line from "@/components/dashboard/buyer/line";
@@ -12,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import CloseBtn from "../close-btn";
 
 const ReserveDetail = () => {
   return (
@@ -25,9 +25,7 @@ const ReserveDetail = () => {
         </DialogHeader>
         <div className="w-[918px] pb-[19px] bg-background rounded-xl">
           <header className="pb-[3.7px] pt-[24px] px-[19px] flex justify-between items-center">
-            <button className="w-[119px] h-12 rounded-[64px] border border-[#FF4242] text-[#FF4242] font-semibold flex items-center justify-center gap-2">
-              بستن <Close />
-            </button>
+            <CloseBtn />
             <h1 className="text-text text-[32px] font-extrabold ">
               هتل همایون فر کیش ایران
             </h1>
