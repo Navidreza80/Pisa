@@ -80,8 +80,11 @@ export const tableHeaderItems = [
 export default function PropertyList() {
   return (
     <div>
-      <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <div className="flex flex-col md:flex-row-reverse items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
+        <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
+          لیست املاک من
+        </h1>
+        <div className="flex flex-col md:flex-row lg:flex-row items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
           <FilterModal></FilterModal>
           <Input
             dir="rtl"
@@ -89,13 +92,11 @@ export default function PropertyList() {
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
-        <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
-          لیست املاک من
-        </h1>
       </div>
       <Line />
 
       <TableDashboard
+      add={true}
         headerSecondary={true}
         tableHeader={tableHeaderItems}
         tableContent={properties.map((property) => (
