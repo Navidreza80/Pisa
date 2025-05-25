@@ -1,5 +1,6 @@
+import { Table } from 'reactstrap'
 
-const Table = ({
+const TableDashboard = ({
   tableContent,
   tableHeader,
   notificationLineOne,
@@ -8,7 +9,7 @@ const Table = ({
 }) => {
   return (
     <>
-      <table className="w-full text-sm border-separate border-spacing-y-4">
+      <Table responsive className="w-full text-sm border-separate border-spacing-y-4">
         <thead>
           <tr className="bg-table-main p-2 font-yekan text-text">
             {tableHeader.map((item, index) => {
@@ -28,7 +29,7 @@ const Table = ({
           {tableContent}
           {isNotification && notificationLineTwo}
         </tbody>
-      </table>
+      </Table>
 
       <div className="flex justify-end mt-[71px] gap-2">
         {[1, 2, 3, 4, 5].map((p) => (
@@ -43,4 +44,4 @@ const Table = ({
     </>
   );
 };
-export default Table;
+export default TableDashboard;

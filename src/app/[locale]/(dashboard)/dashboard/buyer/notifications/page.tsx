@@ -4,29 +4,29 @@ import ButtonDashboard from "@/components/dashboard/button";
 import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import Line from "@/components/dashboard/buyer/line";
 import NotificationStatus from "@/components/dashboard/buyer/notification-status";
-import Table from "@/components/dashboard/table";
+import TableDashboard from "@/components/dashboard/table";
 import Title from "@/components/dashboard/title";
+import WarningModal from "@/components/dashboard/warning-modal";
 import { TickSVG } from "@/components/svg";
 import {
   DashboardBuyerNotifications,
   tableHeaderItems,
 } from "@/utils/constant/folder";
 
-// Mock data
-const data = [
-  {
-    id: 1,
-    date: "12 مرداد - 1401 / 12:33",
-    text: "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
-  },
-  {
-    id: 2,
-    date: "12 مرداد - 1401 / 12:33",
-    text: "خوش آمدید !",
-  },
-];
-
 export default function Notifications() {
+  // Mock data
+  const data = [
+    {
+      id: 1,
+      date: "12 مرداد - 1401 / 12:33",
+      text: "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
+    },
+    {
+      id: 2,
+      date: "12 مرداد - 1401 / 12:33",
+      text: "خوش آمدید !",
+    },
+  ];
   return (
     <div dir="rtl">
       <div className="flex justify-between mt-6">
@@ -37,14 +37,15 @@ export default function Notifications() {
               نوع اعلان :
             </div>
           </InputSelect>
-
-          <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
+          <WarningModal>
+            <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
+          </WarningModal>
         </div>
       </div>
       {/* Divider Line */}
       <Line />
       {/* Page Table */}
-      <Table
+      <TableDashboard
         isNotification={true}
         notificationLineOne={<NotificationStatus text="خوانده نشده" />}
         notificationLineTwo={<NotificationStatus text="خوانده شده" />}
@@ -54,10 +55,10 @@ export default function Notifications() {
             key={tx.id}
             className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
           >
-            <td className="p-2 font-yekan font-medium text-[16px]">
+            <td className="p-2 font-yekan font-medium text-[16px] text-nowrap">
               {tx.text}
             </td>
-            <td className="p-2 font-yekan font-medium text-[20px]">
+            <td className="p-2 font-yekan font-medium text-[20px] text-nowrap">
               {tx.date}
             </td>
             <td>

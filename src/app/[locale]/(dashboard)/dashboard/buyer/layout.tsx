@@ -64,7 +64,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Providers>
             <div className="flex bg-panel justify-between p-[19px]">
-              <div className="flex flex-col bg-panel flex-wrap gap-[19px] w-[80%]">
+              <div className="flex flex-col bg-panel flex-wrap gap-[19px] lg:w-[80%] md:w-full w-full">
                 {/* Header */}
                 <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
                   {!decodedUser ? (
@@ -111,8 +111,8 @@ export default async function RootLayout({
                   {children}
                 </main>
               </div>
-              {/* Footer  */}
-              <div className="w-[19%]">
+              {/* Sidebar  */}
+              <div className="w-[19%] lg:block md:hidden hidden">
                 <BuyerSideBar />
               </div>
             </div>

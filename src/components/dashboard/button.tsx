@@ -11,7 +11,7 @@ const ButtonDashboard = ({
 }) => {
   return (
     <button
-      className={`pl-[15px] pr-[3.5px] text-white ${clx} rounded-full flex p-0.5 gap-1`}
+      className={`pl-[15px] pr-[3.5px] text-white ${clx} rounded-full flex p-0.5 gap-1 text-nowrap`}
     >
       {children}
       {text}
