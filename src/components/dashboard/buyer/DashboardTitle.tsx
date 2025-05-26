@@ -16,6 +16,7 @@ export default function DashboardTitle() {
         !pathname.includes("/information") &&
         !pathname.includes("/finance") &&
         !pathname.includes("/reviews") &&
+        !pathname.includes("/Tour") &&
         !pathname.includes("/notification")
       ) {
         return "داشبورد";
@@ -31,6 +32,8 @@ export default function DashboardTitle() {
         return "مدیریت نظرات";
       } else if (pathname.includes("/notification")) {
         return "اعلان‌ها";
+      } else if (pathname.includes("/Tour")) {
+        return "مدیریت تور ها";
       }
 
       return "داشبورد";
