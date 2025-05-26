@@ -10,6 +10,7 @@ const TableDashboard = ({
   isNotification,
   headerSecondary,
   add,
+  addTitle,
 }) => {
   return (
     <>
@@ -53,7 +54,7 @@ const TableDashboard = ({
             </button>
           ))}
         </div>
-        {add && <Button className="gap-1.5"><AddSVG /> افزودن ملک</Button>}
+        {add && <Button className="gap-1.5"><AddSVG /> افزودن {addTitle}</Button>}
       </div>
     </>
   );

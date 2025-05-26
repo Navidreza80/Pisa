@@ -13,6 +13,7 @@ import MoneySVG from "../svg/MoneySVG";
 import PropertySVG from "../svg/propertySVG";
 import ReviewsSVG from "../svg/reviewsSVG";
 import { usePathname } from "@/i18n/navigation";
+import TourManagementSVG from "../svg/TourManagementSVG";
 
 function BuyerSideBar() {
   const pathname = usePathname();
@@ -28,26 +29,36 @@ function BuyerSideBar() {
       name: "مدیریت املاک",
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
+      management: true,
     },
     {
       name: "مدیریت رزروها",
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
+      management: true,
     },
     {
       name: "مدیریت مالی",
       icon: <PaymentSVG />,
       href: "/dashboard/seller/finance",
+      management: true,
     },
     {
       name: "مدیریت نظرات",
       icon: <ReviewsSVG />,
       href: "/dashboard/seller/reviews",
+      management: true,
     },
     {
       name: "اعلان‌ها",
       icon: <NotifSVG />,
       href: "/dashboard/seller/notifications",
+    },
+    {
+      name: "مدیریت تور ها",
+      icon: <TourManagementSVG />,
+      href: "/dashboard/seller/Tour",
+      management: true,
     },
   ];
 
@@ -93,14 +104,9 @@ function BuyerSideBar() {
         </div>
 
         <div dir="rtl" className="flex flex-col gap-4 mt-10">
-          {items.map((item, index) => (
             <BuyerSideBarItems
-              key={index}
-              name={item.name}
-              icon={item.icon}
-              href={item.href}
+              items={items}
             />
-          ))}
         </div>
       </div>
       {isSeller ? (
