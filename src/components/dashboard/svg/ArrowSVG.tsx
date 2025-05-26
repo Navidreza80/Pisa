@@ -1,11 +1,12 @@
 import React from "react";
 
-function ArrowSVG() {
+function ArrowSVG({ className }: { className: string }) {
   return (
     <svg
       width="12"
       height="9"
       viewBox="0 0 8 6"
+      className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

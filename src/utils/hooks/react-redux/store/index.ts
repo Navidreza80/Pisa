@@ -4,9 +4,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./slices/themeSlice";
 import reserveFilterReducer from "./slices/reserve-slice";
 import landingFilterReducer from "./slices/landing-slice";
-import rentFilters from "./slices/rent-slice"
-import userIdReducer from "./slices/user-id-slice"
-import comparisonIdsReducer from "./slices/comparison"
+import rentFilters from "./slices/rent-slice";
+import userIdReducer from "./slices/user-id-slice";
+import comparisonIdsReducer from "./slices/comparison";
+import stepsIdReducer from "./slices/steps-slice";
 
 // Function to configure redux store
 export const store = configureStore({
@@ -16,7 +17,8 @@ export const store = configureStore({
     landingFilters: landingFilterReducer,
     rentFilters: rentFilters,
     userId: userIdReducer,
-    comparisonIds: comparisonIdsReducer
+    comparisonIds: comparisonIdsReducer,
+    stepsId: stepsIdReducer,
   },
 });
 

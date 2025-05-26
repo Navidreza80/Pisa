@@ -1,6 +1,5 @@
 "use client";
-
-import InputSelect from "@/components/dashboard/buyer/inputSelect";
+import InputSelect from "@/components/common/inputs/select-input";
 import Line from "@/components/dashboard/buyer/line";
 import FilterModal from "@/components/dashboard/filter-modal";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
@@ -53,10 +52,10 @@ export default function BookingList() {
         </h1>
         <div className="flex gap-[19px]">
           <FilterModal>
-            <InputSelect label=":نوع ملک" width={220} />
-            <InputSelect label=":نوع ملک" width={220} />
-            <InputSelect label=":نوع ملک" width={220} />
-            <InputSelect label=":نوع ملک" width={220} />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
           </FilterModal>
           <Input
             dir="rtl"
