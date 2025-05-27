@@ -1,15 +1,13 @@
 // Next built in imports
 import type { Metadata } from "next";
 // next-intl
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-// Redux provider
-import { ReduxProvider } from "@/utils/providers/redux-provider";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 // Css imports
 import "../globals.css";
 // Third party components
-import FloatingActions from "@/components/common/fab";
 import Auth from "@/components/auth/auth";
+import FloatingActions from "@/components/common/fab";
 import Providers from "@/provider/provider";
 
 // metadata

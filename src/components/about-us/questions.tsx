@@ -14,7 +14,7 @@ import type QuestionProps from "@/types/about-us";
 
 function Question({ title, desc }: QuestionProps) {
   return (
-    <section className="bg-surface p-6 rounded-xl shadow-md">
+    <section className="bg-surface p-6 rounded-xl">
       <h3 className="text-xl font-bold text-text mb-3">{title}</h3>
       <p className="text-secondary">{desc}</p>
     </section>

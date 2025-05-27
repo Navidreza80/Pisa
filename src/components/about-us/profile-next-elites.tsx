@@ -25,7 +25,7 @@ export default function ProfileNextElites({
   job,
 }: ProfileProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105">
+    <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden transform transition-all hover:scale-105">
       <div className="h-40 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
       <div className="relative px-6 pb-6">
         <FallbackImage

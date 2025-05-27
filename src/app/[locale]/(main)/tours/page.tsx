@@ -15,6 +15,7 @@ import { formatNumber } from "@/utils/helper/format-number";
 
 // Dependencies
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 /**
  * Tours page
@@ -98,7 +99,7 @@ export default async function ToursPage() {
         {tours?.map((tour) => (
           <div
             key={tour.id}
-            className="flex-1 bg-surface h-[420px] transition-transform duration-300 cursor-pointer border-[1px] border-border p-[17px] rounded-[24px] max-w-[403px] lg:min-w-[389px] md:min-w-[389px] hover:shadow-lg"
+            className="flex-1 bg-surface h-[420px] transition-transform duration-300 border-[1px] border-border p-[17px] rounded-[24px] max-w-[403px] lg:min-w-[389px] md:min-w-[389px]"
           >
             <div className="w-full h-[188px] rounded-t-[24px] rounded-b-[16px] overflow-hidden bg-gray-200 relative">
               <Image
@@ -145,9 +146,9 @@ export default async function ToursPage() {
                 </p>
               </div>
               <button className="w-[69px] mt-4 h-[30px] bg-[#586CFF] hover:bg-[#4758d6] transition-colors rounded-[10px]">
-                <h1 className="m-auto cursor-pointer text-[12px] font-medium text-white ">
+                <Link href={`/tours/${tour.id}`} className="m-auto cursor-pointer text-[12px] font-medium text-white ">
                   رزرو کنید
-                </h1>
+                </Link>
               </button>
             </div>
           </div>
