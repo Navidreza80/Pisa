@@ -1,4 +1,7 @@
 "use client";
+// Next
+import Image from "next/image";
+
 // Types
 import type { HouseItemsInterface } from "@/types/house";
 
@@ -14,11 +17,10 @@ import { useTranslations } from "use-intl";
 
 /**
  * Reusable house card component with optional facilities props.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered house card
  */
-
 
 // Feature item component
 const FeatureItem = ({
@@ -50,7 +52,8 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
               {item.photos.map((photo, index) => (
                 <CarouselItem key={index}>
                   <div className="h-[200px] relative">
-                    <img
+                    <Image
+                      unoptimized
                       src={photo}
                       alt={`${item.title} - تصویر ${index + 1}`}
                       className="w-full h-full object-cover"
@@ -67,9 +70,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
         <div>
           <h3 className="text-lg font-bold mb-2 ">{item.title}</h3>
           {item.address && (
-            <p className="text-text-secondary text-sm mb-2 ">
-              {item.address}
-            </p>
+            <p className="text-text-secondary text-sm mb-2 ">{item.address}</p>
           )}
         </div>
         {item.rate && (
