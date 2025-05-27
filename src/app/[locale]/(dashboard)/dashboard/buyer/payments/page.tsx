@@ -133,14 +133,14 @@ export default function TransactionList() {
             key={tx.id}
             className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
           >
-            <td className="p-2 font-yekan font-semibold rounded-r-xl">
+            <td className="p-2  text-[18px] font-medium rounded-r-xl ">
               {tx.date} - {tx.time}
             </td>
-            <td className="p-2 font-yekan font-semibold">{tx.trackingCode}</td>
-            <td className="p-2 font-yekan font-semibold">
+            <td className="p-2 text-[18px] font-medium">{tx.trackingCode}</td>
+            <td className="p-2  text-[18px] font-medium">
               {formatNumber(Number(tx.amount))} تومان
             </td>
-            <td className="p-2 font-yekan font-semibold">
+            <td className="p-2 text-[13px] font-medium">
               <span
                 className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
                   tx.status === "تایید شده" ? "bg-green-500" : "bg-red-400"
@@ -154,8 +154,8 @@ export default function TransactionList() {
                 {tx.status}
               </span>
             </td>
-            <td className="p-2 font-yekan font-semibold">{tx.type}</td>
-            <td className="p-2 font-yekan font-semibold text-primary cursor-pointer hover:underline rounded-l-xl">
+            <td className="p-2  text-[18px] font-medium">{tx.type}</td>
+            <td className="p-2  text-[13px] font-medium text-primary cursor-pointer hover:underline rounded-l-xl">
               مشاهده رسید
             </td>
           </tr>

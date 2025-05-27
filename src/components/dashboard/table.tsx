@@ -1,6 +1,7 @@
 import { Table } from "reactstrap";
 import Button from "../common/button";
 import AddSVG from "./svg/AddSVG";
+import Link from "next/link";
 
 const TableDashboard = ({
   tableContent,
@@ -10,6 +11,7 @@ const TableDashboard = ({
   isNotification,
   headerSecondary,
   add,
+  href,
   addTitle,
 }) => {
   return (
@@ -54,7 +56,13 @@ const TableDashboard = ({
             </button>
           ))}
         </div>
-        {add && <Button className="gap-1.5"><AddSVG /> افزودن {addTitle}</Button>}
+        {add && (
+          <Link href={href}>
+            <Button className="gap-1.5">
+              <AddSVG /> افزودن {addTitle}
+            </Button>
+          </Link>
+        )}
       </div>
     </>
   );

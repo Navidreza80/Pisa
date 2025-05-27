@@ -81,7 +81,7 @@ export default function PropertyList() {
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
-        <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
+        <h1 className="text-xl font-medium my-auto order-1 md:order-2">
           لیست املاک من
         </h1>
         <div className="flex flex-col md:flex-row lg:flex-row items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
@@ -97,6 +97,7 @@ export default function PropertyList() {
 
       <TableDashboard
         add={true}
+        href={"/dashboard/seller/properties/add"}
         addTitle="ملک"
         headerSecondary={true}
         tableHeader={tableHeaderItems}
@@ -106,16 +107,26 @@ export default function PropertyList() {
               <div className="flex gap-2 w-73 ">
                 <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
                 {/* width={108} height={72} src={"x"} alt="" */}
-                <div className="py-7">{property.name}</div>
+                <div className="py-7  text-[18px] font-medium">
+                  {property.name}
+                </div>
               </div>
             </td>
-            <td className="px-6 py-7">{property.price}</td>
-            <td className="px-6 py-7">{property.score}</td>
-            <td className="px-6 py-7">{property.views}</td>
-            <td className="px-6 py-7">{property.reservations}</td>
+            <td className="px-6 py-7  text-[18px] font-medium">
+              {property.price}
+            </td>
+            <td className="px-6 py-7 text-[18px] font-medium">
+              {property.score}
+            </td>
+            <td className="px-6 py-7 text-[18px] font-medium">
+              {property.views} تا
+            </td>
+            <td className="px-6 py-7 text-[18px] font-medium">
+              {property.reservations} بار
+            </td>
             <td className="px-6 py-7">
               <span
-                className={`px-3 py-1 rounded-full text-sm ${statusColor[property.status]}`}
+                className={`px-3 py-1 rounded-full  text-[13px] font-medium text-sm ${statusColor[property.status]}`}
               >
                 {property.status}
               </span>

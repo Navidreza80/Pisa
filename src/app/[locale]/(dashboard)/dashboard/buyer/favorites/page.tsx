@@ -73,9 +73,9 @@ export default function BookingList() {
             key={booking.id}
             className="text-right border-b hover:bg-background/30"
           >
-            <td className="py-2 px-4">{booking.hotel}</td>
-            <td className="py-2 px-4">{booking.price}</td>
-            <td className="py-2 px-4">{booking.address}</td>
+            <td className="py-2 px-4 text-[18px] font-medium">{booking.hotel}</td>
+            <td className="py-2 px-4 text-[18px] font-medium">{booking.price}</td>
+            <td className="py-2 px-4 text-[18px] font-medium">{booking.address}</td>
             <td className="py-2 px-4 text-left">
               <Popover
                 open={openPopoverId === booking.id}

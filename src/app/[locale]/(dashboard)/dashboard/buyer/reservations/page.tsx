@@ -88,11 +88,17 @@ export default function BookingList() {
             key={booking.id}
             className="text-right border-b hover:bg-background/30"
           >
-            <td className="py-2 px-4">{booking.hotel}</td>
-            <td className="py-2 px-4">{booking.date}</td>
-            <td className="py-2 px-4">{booking.total}</td>
-            <td className="py-2 px-4">{`${booking.passengers} عدد مسافر`}</td>
-            <td className="py-2 px-4">
+            <td className="py-2 px-4  text-[18px] font-medium">
+              {booking.hotel}
+            </td>
+            <td className="py-2 px-4  text-[18px] font-medium">
+              {booking.date}
+            </td>
+            <td className="py-2 px-4 text-[18px] font-medium">
+              {booking.total}
+            </td>
+            <td className="py-2 px-4 text-[18px] font-medium">{`${booking.passengers} عدد مسافر`}</td>
+            <td className="py-2 px-4 text-[13px] font-medium">
               <span
                 className={cn(
                   "px-2 py-1 rounded-full text-white text-xs",
@@ -103,7 +109,7 @@ export default function BookingList() {
                 {booking.status}
               </span>
             </td>
-            <td className="py-2 px-4">
+            <td className="py-2 px-4 text-[13px] font-medium">
               <span
                 className={cn(
                   "px-2 py-1 rounded-full text-white text-xs",

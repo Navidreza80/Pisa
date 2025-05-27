@@ -20,6 +20,7 @@ import Image from "next/image";
 import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
 import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
+import FinancialTags from "@/components/dashboard/seller/finance-container/tags";
 
 // metadata
 export const metadata: Metadata = {
@@ -105,6 +106,7 @@ export default async function RootLayout({
                   )}
                   <DashboardTitle />
                 </div>
+                <FinancialTags />
                 <main className="flex-1 bg-background p-8 rounded-[12px]">
                   {children}
                 </main>

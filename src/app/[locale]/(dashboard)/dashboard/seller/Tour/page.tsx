@@ -88,6 +88,7 @@ export default function ToursList() {
       <Line />
 
       <TableDashboard
+        href={"/dashboard/seller/Tour/add"}
         add={true}
         addTitle="تور"
         headerSecondary={true}
@@ -97,24 +98,30 @@ export default function ToursList() {
             <td className="pl-6 rounded-r-xl">
               <div className="flex gap-2 w-73">
                 <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
-                <div className="py-7">{property.name}</div>
+                <div className="py-7  text-[18px] font-medium">
+                  {property.name}
+                </div>
               </div>
             </td>
 
-            <td className="px-6 py-7 text-center">{property.price}</td>
+            <td className="px-6 py-7 text-center  text-[18px] font-medium">
+              {property.price}
+            </td>
             <td className="px-6 py-7">
               <div className="flex justify-center gap-1">
-                <h1 className="font-extrabold font-yekan">
+                <h1 className=" text-[18px] font-medium">
                   {property.startDate}
                 </h1>
                 <span>/</span>
-                <h1 className="font-extrabold font-yekan">
-                  {property.endDate}
-                </h1>
+                <h1 className=" text-[18px] font-medium">{property.endDate}</h1>
               </div>
             </td>
-            <td className="px-6 py-7 text-center">{property.score}</td>
-            <td className="px-6 py-7 text-center">{property.reservations}</td>
+            <td className="px-6 py-7 text-center  text-[18px] font-medium">
+              {property.score}
+            </td>
+            <td className="px-6 py-7 text-center  text-[18px] font-medium">
+              {property.reservations}
+            </td>
             <td className="px-6 py-2 relative rounded-l-xl text-center">
               <Popover>
                 <PopoverTrigger asChild>

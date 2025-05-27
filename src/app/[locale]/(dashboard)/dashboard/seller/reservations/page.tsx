@@ -89,14 +89,22 @@ export default function BookingList() {
             key={booking.id}
             className="font-yekan font-semibold border-b hover:bg-table-header/50 cursor-pointer "
           >
-            <td className="py-2 px-4 rounded-r-xl">{booking.hotel}</td>
-            <td className="py-2 px-4">{booking.traveler}</td>
-            <td className="py-2 px-4">{booking.date}</td>
-            <td className="py-2 px-4">{booking.total}</td>
+            <td className="py-2 px-4  text-[18px] font-medium rounded-r-xl">
+              {booking.hotel}
+            </td>
+            <td className="py-2 px-4 text-[18px] font-medium">
+              {booking.traveler}
+            </td>
+            <td className="py-2 px-4 text-[18px] font-medium">
+              {booking.date}
+            </td>
+            <td className="py-2 px-4 text-[18px] font-medium">
+              {booking.total}
+            </td>
             <td className="py-2 px-4">
               <span
                 className={cn(
-                  "px-2 py-1 rounded-full text-white text-xs",
+                  "px-2 py-1 rounded-full text-white  text-[13px] font-medium",
                   booking.status === "تایید شده" && "bg-lime-400",
                   booking.status === "در انتظار" && "bg-orange-400"
                 )}
@@ -107,7 +115,7 @@ export default function BookingList() {
             <td className="py-2 px-4">
               <span
                 className={cn(
-                  "px-2 py-1 rounded-full text-white text-xs",
+                  "px-2 py-1 rounded-full text-white  text-[13px] font-medium",
                   booking.paymentStatus === "تایید شده" && "bg-lime-400",
                   booking.paymentStatus === "لغو شده" && "bg-rose-400"
                 )}
