@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import rank from "@/assets/images/landing/rank.png"
+import rank from "@/assets/images/landing/rank.jpg"
 export default function AnimatedImage() {
   return (
     <motion.div

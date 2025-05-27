@@ -24,7 +24,7 @@ function Mentor() {
   return (
     <div
       dir="rtl"
-      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-8 rounded-2xl shadow-lg mb-[20px]"
+      className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-8 rounded-2xl mb-[20px]"
     >
       <div className="flex flex-col md:flex-row items-center gap-8">
         <FallbackImage

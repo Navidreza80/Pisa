@@ -148,7 +148,7 @@ export default function AllComments({ houseId }: { houseId: number }) {
         )}
         <button
           type={"submit"}
-          disabled={isPending}
+          disabled={isPending && !token}
           onClick={() => {
             if (!token) {
               setIsLogin(true);

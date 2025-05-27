@@ -17,7 +17,7 @@ export default async function Popular({
   return (
     <div dir="rtl" className="flex flex-wrap">
       <Reveal>
-        <div className="text-right text-[28px] font-[700]">
+        <div className="text-right text-[28px] mb-[32px] font-[700]">
           {t.rich("rentTitle", {
             br: () => <br />,
           })}

@@ -19,12 +19,18 @@ import { useTranslations } from "next-intl";
 export default function InputSelect({
   width,
   items,
+  label,
+  className,
+  withLabel,
   onChange,
   value,
 }: {
-  items: { text?: string; area_name?: string; value?: number; id?: number }[];
-  onChange: (selectedValue: number | string) => void;
-  value: number | string;
+  className?: string;
+  items?: { text?: string; area_name?: string; value?: number; id?: number }[];
+  onChange?: (selectedValue: number | string) => void;
+  label?: string;
+  value?: number | string;
+  withLabel: boolean;
   width?: number;
 }) {
   // Hooks
@@ -44,22 +50,27 @@ export default function InputSelect({
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
-        className={`!h-[48px] z-[10000000000] text-fade relative rounded-2xl shadow-none !font-medium border-[#EAEAEA] ${
+        className={`${className} cursor-pointer !h-[48px] z-[10000000000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}
         style={{ width: width ? width : 162 }}
       >
+        {withLabel && (
+          <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+            {label}
+          </div>
+        )}
         <SelectValue
           className="z-[10000000000] relative !font-medium"
           placeholder={t("choose")}
         />
       </SelectTrigger>
-      <SelectContent className="rounded-[16px] bg-white z-[10000000000] font-medium relative ">
+      <SelectContent dir="rtl" className="!p-0 !border-none rounded-[16px] bg-surface z-[10000000000] font-medium relative ">
         {items?.map((item) => (
           <SelectItem
             key={item.id}
             value={String(item.value ?? item.id ?? item.text)}
-            className=" z-[10000000000] relative font-medium"
+            className=" z-[10000000000] relative font-medium text-text"
           >
             {item.area_name || item.text}
           </SelectItem>

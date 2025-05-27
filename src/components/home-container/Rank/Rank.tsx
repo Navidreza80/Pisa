@@ -11,6 +11,7 @@ function Rank() {
       <div className="flex flex-col flex-wrap gap-[24px] lg:w-auto md:w-full w-full">
         <div className="flex lg:justify-end md:justify-center justify-center">
           <svg
+            className="hover:shadow-amber-200  rounded-full cursor-pointer hover:animate-shake hover:shadow-md transition-all duration-300"
             width="64"
             height="64"
             viewBox="0 0 64 64"

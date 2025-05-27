@@ -1,20 +1,17 @@
 "use client";
-
+import InputSelect from "@/components/common/inputs/select-input";
 import Line from "@/components/dashboard/buyer/line";
-import { Button } from "@/components/ui/button";
+import FilterModal from "@/components/dashboard/filter-modal";
+import CheckPopover from "@/components/dashboard/svg/CheckPopover";
+import DeletePopover from "@/components/dashboard/svg/DeletePopover";
+import TableDashboard from "@/components/dashboard/table";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import CanclePopover from "@/components/dashboard/svg/CanclePopover";
-import CheckPopover from "@/components/dashboard/svg/CheckPopover";
-import ReserveDetail from "@/components/dashboard/buyer/reserveDetail";
+import { useState } from "react";
 
 const bookings = [
   {
@@ -54,9 +51,12 @@ export default function BookingList() {
           لیست رزرو های ذخیره شده
         </h1>
         <div className="flex gap-[19px]">
-          <Button className="bg-primary text-white h-12 rounded-[14px]">
-            فیلتر ها
-          </Button>
+          <FilterModal>
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+            <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
+          </FilterModal>
           <Input
             dir="rtl"
             placeholder="نام هتل مورد نظر ....."
@@ -66,77 +66,48 @@ export default function BookingList() {
       </div>
 
       <Line />
-
-      <table
-        dir="rtl"
-        className="w-full text-sm border-separate border-spacing-y-4"
-      >
-        <thead>
-          <tr className="font-bold bg-table-header text-text">
-            {tableHeaderItems.map((item, index) => {
-              return (
-                <th
-                  key={index}
-                  className={`p-2 text-lg  font-medium ${item.clx}`}
-                >
-                  {item.text}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr
-              key={booking.id}
-              className="text-right border-b hover:bg-background/30"
-            >
-              <td className="py-2 px-4">{booking.hotel}</td>
-              <td className="py-2 px-4">{booking.price}</td>
-              <td className="py-2 px-4">{booking.address}</td>
-              <td className="py-2 px-4 text-left">
-                <Popover
-                  open={openPopoverId === booking.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
-                  }
-                >
-                  <PopoverTrigger asChild>
-                    <div className="text-2xl font-bold cursor-pointer">...</div>
-                  </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
-                    <div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                        <h1>رزرو</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                        <h1>حذف</h1>
-                        <div className="my-auto">
-                          <DeletePopover />
-                        </div>
+      <TableDashboard
+      headerSecondary={true}
+        tableContent={bookings.map((booking) => (
+          <tr
+            key={booking.id}
+            className="text-right border-b hover:bg-background/30"
+          >
+            <td className="py-2 px-4">{booking.hotel}</td>
+            <td className="py-2 px-4">{booking.price}</td>
+            <td className="py-2 px-4">{booking.address}</td>
+            <td className="py-2 px-4 text-left">
+              <Popover
+                open={openPopoverId === booking.id}
+                onOpenChange={(open) =>
+                  setOpenPopoverId(open ? booking.id : null)
+                }
+              >
+                <PopoverTrigger asChild>
+                  <div className="text-2xl font-bold cursor-pointer">...</div>
+                </PopoverTrigger>
+                <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
+                  <div>
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
+                      <h1>رزرو</h1>
+                      <div className="my-auto">
+                        <CheckPopover />
                       </div>
                     </div>
-                  </PopoverContent>
-                </Popover>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="flex justify-start mt-[71px] gap-2">
-        {[1, 2, 3, 4, 5].map((p) => (
-          <button
-            key={p}
-            className={`w-8 h-8 rounded-full border text-sm ${p === 1 ? "bg-primary text-white" : "bg-background"}`}
-          >
-            {p}
-          </button>
+                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
+                      <h1>حذف</h1>
+                      <div className="my-auto">
+                        <DeletePopover />
+                      </div>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </td>
+          </tr>
         ))}
-      </div>
+        tableHeader={tableHeaderItems}
+      />
     </>
   );
 }

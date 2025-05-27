@@ -33,7 +33,7 @@ export default async function Category() {
             (card, index) => (
               <div
                 key={card.id}
-                className={`flex-1 transition-all duration-500 ease-in-out bg-black relative rounded-4xl overflow-hidden ${
+                className={`flex-1 transition-all hover:animate-rotate-y duration-500 ease-in-out bg-black relative rounded-4xl overflow-hidden ${
                   (categories as Array<{ id: string; name: string }>).length ===
                     4 && index === 3
                     ? "max-h-[300px]"

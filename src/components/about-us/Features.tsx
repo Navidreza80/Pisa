@@ -14,7 +14,7 @@ import type FeaturesProps from "@/types/about-us";
 
 function Features({ icon, desc, title }: FeaturesProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md text-center transform transition-all hover:scale-105">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl text-center transform transition-all hover:scale-105">
       <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
         {icon}
       </div>

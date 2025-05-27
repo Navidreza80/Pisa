@@ -15,11 +15,11 @@ export default function FooterColumn({
 }) {
   return (
     <div className="flex flex-col items-end">
-      <h3 className="font-bold mb-4 text-text text-right">{title}</h3>
+      <h3 className="font-bold mb-4 text-text text-right cursor-pointer hover:text-primary transition-all duration-300">{title}</h3>
       {items.map((item, index) => (
         <p
           key={`item-${index}`}
-          className={`text-right ${item.className} ${
+          className={`text-right cursor-pointer hover:text-primary transition-all duration-300 ${item.className} ${
             item.highlight
               ? "text-[#1E1E1E] dark:text-[#c8c8c8]"
               : "text-text-secondary"

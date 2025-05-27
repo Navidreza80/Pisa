@@ -158,7 +158,7 @@ export default function HouseCardList({
         {/* Compare section */}
         <button
           onClick={() => dispatch(setComparisonIds(String(card.id)))}
-          className={`cursor-pointer absolute z-10 py-1 px-3 w-10 aspect-square rounded-full top-2 right-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
+          className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 right-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
       </motion.div>
       <TransitionLink

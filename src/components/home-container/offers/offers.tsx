@@ -24,7 +24,7 @@ async function Offers({ data }) {
             <div className="font-bold text-[28px]">{t("offer")}</div>
           </Reveal>
 
-          <div className="bg-[#FF5454] hidden lg:block md:block rounded-[16px] animate-wiggle-more">
+          <div className="bg-[#FF5454] cursor-pointer hover:animate-spin hidden lg:block md:block rounded-[16px] animate-wiggle-more">
             <p className="my-0 text-white text-[28px] p-[8px] text-center h-[52px] flex items-center font-bold">
               {t("spring")}
             </p>

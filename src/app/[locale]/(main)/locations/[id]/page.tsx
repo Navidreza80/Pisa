@@ -38,20 +38,20 @@ async function page({ params }: PageProps) {
     <div dir="rtl" className="px-[104] pt-[10px]">
       <div className="flex justify-between w-full">
         {/* Image gallery section */}
-        <div className="w-[49.06731%] flex flex-col flex-wrap gap-[60px]">
+        <div className="w-[49.06731%] flex flex-col flex-wrap">
           <div>
             <h1 className="mt-[52px] text-[32px] font-bold">
             مقاصد دیدنی {cityDetail?.cityName}
           </h1>
           </div>
-          <div className="mb-[65px]">
+          <div className="mb-[65px] flex items-start">
             <MainImages
               show3D={false}
               photos={cityDetail?.galleryPhotos}
               sticky={false}
             />
           </div>
-          <div className="sticky top-10 ">
+          <div className="sticky top-10">
             <h1 className="mb-[18px]  font-medium text-[16px] text-[#586CFF]">
               موقعیت مکانی
             </h1>
@@ -63,7 +63,7 @@ async function page({ params }: PageProps) {
             </div>
           </div>
         </div>
-        <div className="w-[48.1751%]">
+        <div className="w-[48.1751%] mt-5">
           {/* Main Image section */}
           <Image
             className="rounded-2xl w-full h-[412px] mt-[120px]"
