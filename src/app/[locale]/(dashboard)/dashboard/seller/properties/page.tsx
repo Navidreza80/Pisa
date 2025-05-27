@@ -104,9 +104,9 @@ export default function PropertyList() {
         tableContent={properties.map((property) => (
           <tr key={property.id} className="bg-table-main/30 rounded-xl">
             <td className="pl-6 rounded-r-xl">
-              <div className="flex gap-2 w-73 ">
+              <div className="flex gap-2 ">
                 <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
-                {/* width={108} height={72} src={"x"} alt="" */}
+                {/* width={108} height={20} src={"x"} alt="" */}
                 <div className="py-7  text-[18px] font-medium">
                   {property.name}
                 </div>
