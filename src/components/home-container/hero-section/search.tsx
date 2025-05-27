@@ -31,6 +31,23 @@ export default function Search() {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.landingFilters);
 
+  const inputItems = [
+    {
+      id: "search",
+      text: t("destination"),
+      items: locationOptions,
+      value: filters.search,
+    },
+    {
+      id: "propertyType",
+      text: t("property"),
+      items: propertyOptions,
+      value: filters.propertyType,
+    },
+    { id: "sort", text: t("start"), items: sortOptions, value: filters.sort },
+    { id: "order", text: t("end"), items: orderOptions, value: filters.order },
+  ];
+
   useEffect(() => {
     handleChange("transactionType", tab.type);
   }, [tab]);
@@ -72,46 +89,24 @@ export default function Search() {
         dir="rtl"
         className="w-full p-2 px-5 h-1/2 flex justify-between items-center flex-wrap gap-y-3 animate-[var(--animation-fade-in)] [animation-delay:0.7s] [animation-fill-mode:both] opacity-0"
       >
-        <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.8s] [animation-fill-mode:both] opacity-0">
-          <p>{t("destination")}</p>
-          <InputSelect
-            items={locationOptions}
-            value={filters.search || ""}
-            onChange={(value) => handleChange("search", value)}
-            width={161}
-            dir="rtl"
-          />
-        </div>
-        <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:0.9s] [animation-fill-mode:both] opacity-0">
-          <p>{t("property")}</p>
-          <InputSelect
-            items={propertyOptions}
-            value={filters.propertyType || ""}
-            onChange={(value) => handleChange("propertyType", value)}
-            width={161}
-            dir="rtl"
-          />
-        </div>
-        <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:1s] [animation-fill-mode:both] opacity-0">
-          <p>{t("start")}</p>
-          <InputSelect
-            items={sortOptions}
-            value={filters.sort || ""}
-            onChange={(value) => handleChange("sort", value)}
-            width={161}
-            dir="rtl"
-          />
-        </div>
-        <div className="flex gap-3 items-center text-sm font-medium animate-[var(--animation-slide-in-right)] [animation-delay:1.1s] [animation-fill-mode:both] opacity-0">
-          <p>{t("end")}</p>
-          <InputSelect
-            items={orderOptions}
-            value={filters.order || ""}
-            onChange={(value) => handleChange("order", value)}
-            width={161}
-            dir="rtl"
-          />
-        </div>
+        {inputItems.map((input, index) => {
+          return (
+            <div
+              key={input.id}
+              className={`flex gap-3 items-center text-sm font-medium animate-fade-left animate-delay-[${(index * 100 + 800).toString}ms]`}
+            >
+              <label className="cursor-pointer" htmlFor={input.id}>{input.text}</label>
+              <InputSelect
+                id={input.id}
+                items={input.items}
+                value={input.value || ""}
+                onChange={(value) => handleChange(input.id, value)}
+                width={161}
+                dir="rtl"
+              />
+            </div>
+          );
+        })}
         <ResultButton houses={houses} />
       </div>
     </div>

@@ -53,9 +53,9 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
         {t("result")}
       </Button>
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-[700px] h-[600px] overflow-y-auto">
+        <DialogContent className="max-w-[700px] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{t("searchResults")}</DialogTitle>
+            <DialogTitle className="text-right w-full">{t("searchResults")}</DialogTitle>
           </DialogHeader>
           <div className="py-4 text-right" dir="rtl">
             <div className="mb-4 relative">
@@ -63,7 +63,7 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
                 placeholder="جستجو در نتایج..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="rounded-lg pr-10"
+                className="rounded-lg pr-10 border-border"
               />
               <Search
                 size={18}
@@ -82,12 +82,6 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
               </p>
             )}
           </div>
-          <DialogFooter>
-            <Button handleClick={handleOk}>{t("ok")}</Button>
-            <Button handleClick={handleCancel} className="bg-gray-200 text-black hover:bg-gray-300">
-              {t("cancel")}
-            </Button>
-          </DialogFooter>
         </DialogContent>
       </Dialog>
     </>

@@ -50,7 +50,7 @@ export default function InputSelect({
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
-        className={`${className} !h-[48px] z-[10000000000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
+        className={`${className} cursor-pointer !h-[48px] z-[10000000000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}
         style={{ width: width ? width : 162 }}
@@ -65,12 +65,12 @@ export default function InputSelect({
           placeholder={t("choose")}
         />
       </SelectTrigger>
-      <SelectContent className="rounded-[16px] bg-white z-[10000000000] font-medium relative ">
+      <SelectContent dir="rtl" className="!p-0 !border-none rounded-[16px] bg-surface z-[10000000000] font-medium relative ">
         {items?.map((item) => (
           <SelectItem
             key={item.id}
             value={String(item.value ?? item.id ?? item.text)}
-            className=" z-[10000000000] relative font-medium"
+            className=" z-[10000000000] relative font-medium text-text"
           >
             {item.area_name || item.text}
           </SelectItem>
