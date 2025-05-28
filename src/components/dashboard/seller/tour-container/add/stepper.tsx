@@ -15,8 +15,8 @@ const Stepper = () => {
     { text: "مشخصات اولیه", id: 1 },
     { text: "آدرس ", id: 2 },
     { text: "امکانات", id: 3 },
-    { text: "تصاویر ملک", id: 4 },
-    { text: "تایید نهایی", id: 5 },
+    { text: "تصاویر تور", id: 4 },
+    { text: "برنامه سفر", id: 5 },
   ];
 
   const id = useAppSelector((state) => state.tourSteps.id);

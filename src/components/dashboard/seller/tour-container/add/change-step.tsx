@@ -5,7 +5,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
-import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 import { setTourStepsId } from "@/utils/hooks/react-redux/store/slices/tour-steps";
 
 const ChangeStep = () => {
@@ -14,13 +13,13 @@ const ChangeStep = () => {
   return (
     <div className="mt-[19px] flex gap-[19px]">
       <Button
-        handleClick={() => dispatch(setTourStepsId(id == 6 ? 1 : id + 1))}
+        handleClick={() => dispatch(setTourStepsId(id == 5 ? 1 : id + 1))}
         className="!w-auto gap-2"
       >
-        <ArrowSVG className="rotate-90" /> مرحله بعد{" "}
+        <ArrowSVG className="rotate-90" /> {id == 5 ? "ثبت نهایی" : "مرحله بعد"}
       </Button>
       <Button
-        handleClick={() => dispatch(setTourStepsId(id == 1 ? 6 : id - 1))}
+        handleClick={() => dispatch(setTourStepsId(id == 1 ? 5 : id - 1))}
         className="!w-auto gap-2"
       >
         مرحله قبل

@@ -1,21 +1,23 @@
 "use client";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import AddTourStepOne from "./step-one";
+import AddTourStepTwo from "./step-two";
+import { AddTourStepThree } from "./step-three";
+import AddTourStepFour from "./step-four";
+import AddTourStepFive from "./step-five";
 
 const AddTourContainer = () => {
   const id = useAppSelector((state) => state.tourSteps.id);
   return id == 1 ? (
     <AddTourStepOne />
   ) : id == 2 ? (
-    <div>step two</div>
+    <AddTourStepTwo />
   ) : id == 3 ? (
-    <div>step three</div>
+    <AddTourStepThree />
   ) : id == 4 ? (
-    <div>step four</div>
-  ) : id == 5 ? (
-    <div>step five</div>
+    <AddTourStepFour />
   ) : (
-    <div>step six</div>
-  );
+    <AddTourStepFive />
+  )
 };
 export default AddTourContainer;
