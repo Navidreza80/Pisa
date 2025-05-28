@@ -73,6 +73,13 @@ function BuyerSideBar() {
       name: "مدیریت رزروها",
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
+      management: true,
+    },
+    {
+      name: "مدیریت مقاصد دیدنی",
+      icon: <ReserveSVG />,
+      href: "/dashboard/buyer/locations",
+      management: true,
     },
     {
       name: "علاقه‌مندی‌ها",

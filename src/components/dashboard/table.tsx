@@ -58,7 +58,7 @@ const TableDashboard = ({
         </div>
         {add && (
           <Link href={href}>
-            <Button className="gap-1.5">
+            <Button className="gap-1.5 !w-full">
               <AddSVG /> افزودن {addTitle}
             </Button>
           </Link>
