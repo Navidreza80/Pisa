@@ -9,6 +9,7 @@ import userIdReducer from "./slices/user-id-slice";
 import comparisonIdsReducer from "./slices/comparison";
 import stepsIdReducer from "./slices/steps-slice";
 import createTourReducer from "./slices/create-tour"
+import tourStepsReducer from "./slices/tour-steps"
 
 // Function to configure redux store
 export const store = configureStore({
@@ -20,7 +21,8 @@ export const store = configureStore({
     userId: userIdReducer,
     comparisonIds: comparisonIdsReducer,
     stepsId: stepsIdReducer,
-    createTour: createTourReducer
+    createTour: createTourReducer,
+    tourSteps: tourStepsReducer
   },
 });
 
