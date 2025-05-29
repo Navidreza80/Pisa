@@ -2,6 +2,7 @@
 
 import { usePathname } from "@/i18n/navigation";
 import HeaderTitleSVG from "../svg/HeaderTitleSVG";
+import LogoSVG from "@/components/common/svg/logo";
 
 export default function DashboardTitle() {
   const pathname = usePathname();
@@ -71,8 +72,9 @@ export default function DashboardTitle() {
       ) : (
         " "
       )}
+      <LogoSVG size="w-20 md:block block lg:hidden" />
       <h2
-        className={`text-xl font-bold my-auto font-yekan text-text${
+        className={`text-xl md:hidden hidden lg:block font-bold my-auto font-yekan text-text${
           isSeller ? "text-orange-600 " : " "
         }`}
       >
