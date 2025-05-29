@@ -83,21 +83,6 @@ export default async function RootLayout({
                             خریدار
                           </p>
                         </div>
-                        {decodedUser.profilePicture ? (
-                          <Image
-                            src={decodedUser.profilePicture}
-                            alt={decodedUser.name || "User"}
-                            width={37}
-                            height={37}
-                            className="object-cover rounded-[8px]"
-                          />
-                        ) : (
-                          <div className="w-[37px] h-[37px] rounded-[8px] flex items-center justify-center bg-border text-text font-bold">
-                            {decodedUser.name
-                              ? decodedUser.name.charAt(0).toUpperCase()
-                              : "U"}
-                          </div>
-                        )}
                       </div>
                       <div className="my-auto cursor-pointer">
                         <Notif2SVG />
