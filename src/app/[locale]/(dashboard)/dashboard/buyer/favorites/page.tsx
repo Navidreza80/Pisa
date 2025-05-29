@@ -46,11 +46,11 @@ export default function BookingList() {
 
   return (
     <>
-      <div className="flex items-center justify-between flex-row-reverse">
-        <h1 className="text-xl font-medium font-yekan mb-auto">
+      <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
+        <h1 className="text-xl font-medium font-yekan">
           لیست رزرو های ذخیره شده
         </h1>
-        <div className="flex gap-[19px]">
+        <div className="flex gap-[19px] flex-wrap">
           <FilterModal>
             <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
             <InputSelect withLabel label=":نوع ملک" className="flex-grow" />
@@ -66,17 +66,67 @@ export default function BookingList() {
       </div>
 
       <Line />
-      <TableDashboard
-      headerSecondary={true}
-        tableContent={bookings.map((booking) => (
-          <tr
+
+      {/* Table view for larger screens */}
+      <div className="hidden md:block">
+        <TableDashboard
+          headerSecondary={true}
+          tableContent={bookings.map((booking) => (
+            <tr
+              key={booking.id}
+              className="text-right border-b hover:bg-background/30"
+            >
+              <td className="py-2 px-4 text-[18px] font-medium">
+                {booking.hotel}
+              </td>
+              <td className="py-2 px-4 text-[18px] font-medium">
+                {booking.price}
+              </td>
+              <td className="py-2 px-4 text-[18px] font-medium">
+                {booking.address}
+              </td>
+              <td className="py-2 px-4 text-left">
+                <Popover
+                  open={openPopoverId === booking.id}
+                  onOpenChange={(open) =>
+                    setOpenPopoverId(open ? booking.id : null)
+                  }
+                >
+                  <PopoverTrigger asChild>
+                    <div className="text-2xl font-bold cursor-pointer">...</div>
+                  </PopoverTrigger>
+                  <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
+                    <div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
+                        <h1>رزرو</h1>
+                        <div className="my-auto">
+                          <CheckPopover />
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
+                        <h1>حذف</h1>
+                        <div className="my-auto">
+                          <DeletePopover />
+                        </div>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </td>
+            </tr>
+          ))}
+          tableHeader={tableHeaderItems}
+        />
+      </div>
+
+      {/* Card view for mobile screens */}
+      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
+        {bookings.map((booking) => (
+          <div
             key={booking.id}
-            className="text-right border-b hover:bg-background/30"
+            className="bg-white dark:bg-gray-800 rounded-2xl border border-border p-4 shadow-sm"
           >
-            <td className="py-2 px-4 text-[18px] font-medium">{booking.hotel}</td>
-            <td className="py-2 px-4 text-[18px] font-medium">{booking.price}</td>
-            <td className="py-2 px-4 text-[18px] font-medium">{booking.address}</td>
-            <td className="py-2 px-4 text-left">
+            <div className="flex justify-between items-start">
               <Popover
                 open={openPopoverId === booking.id}
                 onOpenChange={(open) =>
@@ -103,11 +153,36 @@ export default function BookingList() {
                   </div>
                 </PopoverContent>
               </Popover>
-            </td>
-          </tr>
+              <h2 className="text-lg font-bold text-right">{booking.hotel}</h2>
+            </div>
+
+            <div className="mt-3 space-y-2 text-right">
+              <div className="flex justify-end items-center gap-2">
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {booking.price}
+                </span>
+                <span className="text-gray-500 dark:text-gray-400">:قیمت</span>
+              </div>
+
+              <div className="flex flex-col items-end">
+                <span className="text-gray-500 dark:text-gray-400">:آدرس</span>
+                <p className="text-gray-700 dark:text-gray-300 text-right">
+                  {booking.address}
+                </p>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <button className="bg-primary text-white px-3 py-1 rounded-lg text-sm">
+                  رزرو
+                </button>
+                <button className="bg-red-50 text-red-500 border border-red-200 px-3 py-1 rounded-lg text-sm">
+                  حذف
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
-        tableHeader={tableHeaderItems}
-      />
+      </div>
     </>
   );
 }
