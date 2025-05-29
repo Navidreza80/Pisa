@@ -4,8 +4,21 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2, ChevronDown, ChevronUp, CalendarDays } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Plus,
+  Trash2,
+  ChevronDown,
+  ChevronUp,
+  CalendarDays,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { setTourObject } from "@/utils/hooks/react-redux/store/slices/create-tour";
+import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 
 interface TodoItem {
   time: string;
@@ -20,8 +33,8 @@ interface DayPlan {
 export default function AddTourStepFive() {
   // Check localStorage for existing data
   const getInitialState = () => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('tourPlan');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("tourPlan");
       return saved ? JSON.parse(saved) : null;
     }
     return null;
@@ -45,7 +58,7 @@ export default function AddTourStepFive() {
   useEffect(() => {
     const saved = getInitialState();
     setShowDayCountModal(!saved);
-    
+
     if (!saved && dayCount && dayCount > 0) {
       initializeTourPlan(dayCount);
     }
@@ -54,7 +67,7 @@ export default function AddTourStepFive() {
   // Save to localStorage whenever tourPlan changes
   useEffect(() => {
     if (dayCount && tourPlan.length > 0) {
-      localStorage.setItem('tourPlan', JSON.stringify({ dayCount, tourPlan }));
+      localStorage.setItem("tourPlan", JSON.stringify({ dayCount, tourPlan }));
     }
   }, [tourPlan, dayCount]);
 
@@ -114,15 +127,19 @@ export default function AddTourStepFive() {
     }
   };
 
+  const dispatch = useAppDispatch();
+
+  // Change filters params logic
+  const handleChange = (name: string, value: any) => {
+    dispatch(setTourObject({ [name]: value }));
+  };
+
   const submitTourPlan = () => {
-    console.log("Final Tour Plan:", tourPlan);
-    alert("برنامه سفر با موفقیت ذخیره شد!");
-    // Clear storage if you want to start fresh after submit
-    // localStorage.removeItem('tourPlan');
+    handleChange("schedule", tourPlan);
   };
 
   const resetTourPlan = () => {
-    localStorage.removeItem('tourPlan');
+    localStorage.removeItem("tourPlan");
     setTourPlan([]);
     setDayCount(null);
     setShowDayCountModal(true);
@@ -131,9 +148,14 @@ export default function AddTourStepFive() {
   if (showDayCountModal) {
     return (
       <Dialog open={true} onOpenChange={() => {}}>
-        <DialogContent dir="rtl" className="bg-background border-border sm:max-w-[425px]">
+        <DialogContent
+          dir="rtl"
+          className="bg-background border-border sm:max-w-[425px]"
+        >
           <DialogHeader>
-            <DialogTitle className="text-text text-right">برنامه‌ریزی سفر</DialogTitle>
+            <DialogTitle className="text-text text-right">
+              برنامه‌ریزی سفر
+            </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <Label htmlFor="dayCount" className="text-text-secondary">
@@ -151,8 +173,8 @@ export default function AddTourStepFive() {
                 className="bg-surface border-border text-text"
               />
             </div>
-            <Button 
-              onClick={submitDayCount} 
+            <Button
+              onClick={submitDayCount}
               className="w-full bg-primary text-white hover:bg-primary/90"
             >
               تایید و ادامه
@@ -178,8 +200,8 @@ export default function AddTourStepFive() {
       <div className="flex flex-col items-center mb-8">
         <h1 className="text-3xl font-bold text-text mb-5">برنامه‌ریزی سفر</h1>
         <div className="flex gap-4 items-center">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="text-red-500 border-red-500 hover:bg-red-500/10 cursor-pointer"
             onClick={resetTourPlan}
           >
@@ -187,11 +209,11 @@ export default function AddTourStepFive() {
           </Button>
         </div>
       </div>
-      
+
       <div className="space-y-6">
         {tourPlan.map((day, dayIndex) => (
-          <div 
-            key={dayIndex} 
+          <div
+            key={dayIndex}
             className="border border-border rounded-lg overflow-hidden bg-surface transition-all"
           >
             <div
@@ -205,7 +227,9 @@ export default function AddTourStepFive() {
                 <Input
                   className="bg-transparent border-none text-lg font-medium text-text hover:bg-surface focus:bg-surface focus-visible:ring-0"
                   value={day.title}
-                  onChange={(e) => handleDayTitleChange(dayIndex, e.target.value)}
+                  onChange={(e) =>
+                    handleDayTitleChange(dayIndex, e.target.value)
+                  }
                   placeholder={`عنوان روز ${dayIndex + 1}`}
                   onClick={(e) => e.stopPropagation()}
                 />
@@ -224,9 +248,11 @@ export default function AddTourStepFive() {
                 {day.todos.length === 0 && (
                   <div className="flex flex-col items-center justify-center py-8 text-center bg-surface">
                     <CalendarDays className="h-10 w-10 text-text-secondary mb-2" />
-                    <p className="text-text-secondary">فعالیتی برای این روز ثبت نشده است</p>
-                    <Button 
-                      variant="ghost" 
+                    <p className="text-text-secondary">
+                      فعالیتی برای این روز ثبت نشده است
+                    </p>
+                    <Button
+                      variant="ghost"
                       className="mt-4 text-primary  cursor-pointer"
                       onClick={() => addTodo(dayIndex)}
                     >
@@ -244,22 +270,36 @@ export default function AddTourStepFive() {
                     >
                       <div className="flex-1 grid grid-cols-12 gap-3">
                         <div className="col-span-12 sm:col-span-3">
-                          <Label className="text-text-secondary pb-3">زمان</Label>
+                          <Label className="text-text-secondary pb-3">
+                            زمان
+                          </Label>
                           <Input
                             type="time"
                             value={todo.time}
                             onChange={(e) =>
-                              handleTodoChange(dayIndex, todoIndex, "time", e.target.value)
+                              handleTodoChange(
+                                dayIndex,
+                                todoIndex,
+                                "time",
+                                e.target.value
+                              )
                             }
                             className="bg-surface border-border text-text"
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-8">
-                          <Label className="text-text-secondary pb-3">فعالیت</Label>
+                          <Label className="text-text-secondary pb-3">
+                            فعالیت
+                          </Label>
                           <Input
                             value={todo.todo}
                             onChange={(e) =>
-                              handleTodoChange(dayIndex, todoIndex, "todo", e.target.value)
+                              handleTodoChange(
+                                dayIndex,
+                                todoIndex,
+                                "todo",
+                                e.target.value
+                              )
                             }
                             placeholder="مثال: بازدید از برج میلاد"
                             className="bg-surface border-border text-text"
@@ -294,8 +334,8 @@ export default function AddTourStepFive() {
         ))}
 
         <div className="sticky bottom-6 bg-background border border-border rounded-lg p-4">
-          <Button 
-            onClick={submitTourPlan} 
+          <Button
+            onClick={submitTourPlan}
             className="w-full bg-primary hover:bg-primary/90 h-12 text-lg text-white cursor-pointer"
           >
             ذخیره برنامه سفر

@@ -1,7 +1,17 @@
 "use client";
-import { AddSVG, CameraSVG } from "@/components/svg";
+import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
+import { setTourObject } from "@/utils/hooks/react-redux/store/slices/create-tour";
+import { UploadDropzone } from "@/utils/uploadthing";
+import "@uploadthing/react/styles.css";
 
 const AddTourStepFour = () => {
+  const dispatch = useAppDispatch();
+
+  // Change filters params logic
+  const handleChange = (name: string, value: any) => {
+    dispatch(setTourObject({ [name]: value }));
+  };
+
   return (
     <div className="mt-8 flex flex-col justify-center items-center">
       <div className="flex flex-row-reverse justify-start flex-wrap text-[20px] font-bold w-full">
@@ -14,23 +24,15 @@ const AddTourStepFour = () => {
         </h2>
       </div>
       <div className="mt-[81px] flex flex-wrap gap-[30px]">
-        <div className="w-[189px] text-primary relative items-center flex-wrap aspect-square border-dashed border-2 rounded-3xl flex justify-center border-primary">
-          <div className="flex flex-wrap justify-center gap-y-[15px]">
-            <AddSVG />
-            <h1 className="w-full text-center font-bold">افزودن عکس</h1>
-          </div>
-          <label
-            htmlFor="file"
-            className="absolute w-full h-full cursor-pointer"
-          ></label>
-          <input
-            id="file"
-            type="file"
-            accept="image/*"
-            onChange={() => console.log("Hello")}
-            className="hidden"
-          />
-        </div>
+        <UploadDropzone
+          endpoint="imageUploader"
+          onClientUploadComplete={(res) => {
+            handleChange("tourImage", res[0].url);
+          }}
+          onUploadError={(error: Error) => {
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
       </div>
     </div>
   );

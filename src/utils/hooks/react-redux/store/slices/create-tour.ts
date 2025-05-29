@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // CreateTour interface
 interface CreateTour {
-  touName: string;
+  tourName: string;
   tourLocation: string;
   tourImage: string;
   tourDescription: string;
@@ -16,42 +16,37 @@ interface CreateTour {
   lat: number | null;
   lng: number | null;
   features: string[];
-  schedule: {
-    title: string;
-    todos: {
-      time: string;
-      todo: string;
-    }[];
-  }[];
+  schedule:
+    | {
+        title: string;
+        todos: {
+          time: string;
+          todo: string;
+        }[];
+      }[]
+    | null;
 }
 
 // CreateTour initial state
 const initialState: CreateTour = {
-  touName: "",
+  tourName: "",
   tourLocation: "",
   tourImage: "",
   tourDescription: "",
   tags: "",
-  price: null,
-  startDate: null,
-  endDate: null,
+  price: {
+    type: "امکان پرداخت اقساطی",
+    price: 1500000,
+  },
+  startDate:  "2025-09-08T00:00:00+03:30",
+  endDate:  "2025-09-10T00:00:00+03:30",
   services: "",
   facilities: "",
-  cancelTill: null,
+  cancelTill: 3,
   lat: null,
   lng: null,
   features: [],
-  schedule: [
-    {
-      title: "",
-      todos: [
-        {
-          time: "",
-          todo: "",
-        },
-      ],
-    },
-  ],
+  schedule: null,
 };
 
 // Function to create ComparisonIds slice
