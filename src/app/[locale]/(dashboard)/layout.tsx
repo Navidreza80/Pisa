@@ -64,8 +64,8 @@ export default async function RootLayout({
       <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <div className="flex bg-border justify-between p-[19px]">
-              <div className="flex flex-col flex-wrap gap-[19px] w-[80%]">
+            <div className="flex bg-border justify-between gap-[19px] p-[19px]">
+              <div className="flex flex-col flex-wrap gap-[19px] transition-all duration-300 flex-grow">
                 <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
                   {!decodedUser ? (
                     <span></span>
@@ -96,9 +96,7 @@ export default async function RootLayout({
                   {children}
                 </main>
               </div>
-              <div className="w-[19%]">
-                <BuyerSideBar />
-              </div>
+              <BuyerSideBar />
             </div>
             <FloatingActions />
           </Providers>
