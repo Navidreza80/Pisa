@@ -124,7 +124,7 @@ export default function BookingList() {
         {bookings.map((booking) => (
           <div
             key={booking.id}
-            className="bg-white dark:bg-gray-800 rounded-2xl border border-border p-4 shadow-sm"
+            className="bg-surface rounded-2xl border border-border p-4"
           >
             <div className="flex justify-between items-start">
               <Popover
@@ -136,7 +136,7 @@ export default function BookingList() {
                 <PopoverTrigger asChild>
                   <div className="text-2xl font-bold cursor-pointer">...</div>
                 </PopoverTrigger>
-                <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
+                <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border">
                   <div>
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
                       <h1>رزرو</h1>
@@ -158,15 +158,15 @@ export default function BookingList() {
 
             <div className="mt-3 space-y-2 text-right">
               <div className="flex justify-end items-center gap-2">
-                <span className="font-medium text-gray-700 dark:text-gray-300">
+                <span className="font-medium">
                   {booking.price}
                 </span>
-                <span className="text-gray-500 dark:text-gray-400">:قیمت</span>
+                <span>:قیمت</span>
               </div>
 
               <div className="flex flex-col items-end">
-                <span className="text-gray-500 dark:text-gray-400">:آدرس</span>
-                <p className="text-gray-700 dark:text-gray-300 text-right">
+                <span className="text-text-secondary">:آدرس</span>
+                <p className="text-right">
                   {booking.address}
                 </p>
               </div>
