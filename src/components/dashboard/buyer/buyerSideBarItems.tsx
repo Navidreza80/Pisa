@@ -42,7 +42,7 @@ function BuyerSideBar({
         <Link
           key={index}
           href={item.href}
-          className={`text-text cursor-pointer flex gap-2 items-center p-2 ${!collapsed ? "" : "justify-center"} rounded-md ${
+          className={`text-text cursor-pointer flex gap-2 items-center lg:justify-start md:justify-center justify-center p-2 ${!collapsed ? "" : "justify-center"} rounded-md ${
             isActive(item.href)
               ? "bg-border font-semibold"
               : "hover:bg-border/40"
@@ -51,7 +51,7 @@ function BuyerSideBar({
           <div className="flex items-center justify-center w-6 h-6">
             {item.icon}
           </div>
-          {!collapsed && <h1 className="text-lg">{item.name}</h1>}
+          {!collapsed && <h1 className="text-lg lg:block md:hidden hidden">{item.name}</h1>}
         </Link>
       ))}
 
@@ -59,13 +59,13 @@ function BuyerSideBar({
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <button
-              className={`${!collapsed ? "" : "justify-center"} text-text cursor-pointer w-full flex gap-2 items-center p-2 rounded-md hover:bg-border/40`}
+              className={`${!collapsed ? "" : "justify-center"} lg:justify-start md:justify-center justify-center text-text cursor-pointer w-full flex gap-2 items-center p-2 rounded-md hover:bg-border/40`}
             >
               <div className="flex items-center justify-center w-6 h-6">
                 <PaymentSVG />
               </div>
               {!collapsed && (
-                <div className="flex items-center gap-1">
+                <div className="items-center gap-1 lg:flex md:hidden hidden">
                   <h1 className="text-lg">مدیریت</h1>
                   <ArrowSVG
                     className={`${open ? "rotate-90" : "rotate-0"} transition-all duration-300`}
