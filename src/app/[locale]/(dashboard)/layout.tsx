@@ -69,9 +69,10 @@ export default async function RootLayout({
                 <HeaderDashboard />
                 <FinancialTags />
                 <main className="flex-1 bg-background p-8 rounded-[12px]">
-                  
+                  {children}
                 </main>
               </div>
+              <BuyerSideBar />
             </div>
             <FloatingActions />
           </Providers>

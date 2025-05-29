@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import BuyerSideBarItems from "./buyerSideBarItems";
 import DashboardSVG from "../svg/DashboardSVG";
 import InfoSVG from "../svg/InfoSVG";
@@ -14,6 +14,8 @@ import PropertySVG from "../svg/propertySVG";
 import ReviewsSVG from "../svg/reviewsSVG";
 import { usePathname } from "@/i18n/navigation";
 import TourManagementSVG from "../svg/TourManagementSVG";
+import LogoSVG from "@/components/common/svg/logo";
+import { House } from "lucide-react";
 
 function BuyerSideBar() {
   const pathname = usePathname();
@@ -100,43 +102,60 @@ function BuyerSideBar() {
 
   const items = isSeller ? sellerItems : buyerItems;
 
-  return (
-    <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
-      <div>
-        <div className="flex justify-between mt-2">
-          <div className="my-auto">
-            <SignoutSVG />
-          </div>
-          <h2 className="text-text text-4xl font-bold font-yekan">Piza</h2>
-        </div>
+  const [collapsed, setCollapsed] = useState(true);
 
-        <div dir="rtl" className="flex flex-col gap-4 mt-10">
-            <BuyerSideBarItems
-              items={items}
-            />
+  const toggleSideBar = () => {
+    setCollapsed((prev) => !prev);
+  };
+
+  return (
+    <div
+      className={`${!collapsed ? "lg:w-[19%] md:w-[70px] w-[70px]" : " w-[70px]"} transition-all duration-300`}
+    >
+      <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
+        <div>
+          <div
+            className={`flex ${!collapsed ? "lg:justify-between md:justify-center justify-center" : "justify-center"} mt-2`}
+          >
+            <div className="my-auto cursor-pointer lg:block md:hidden hidden" onClick={toggleSideBar}>
+              <SignoutSVG />
+            </div>
+            <div>
+              <House className="cursor-pointer lg:hidden md:block block" />
+            </div>
+            {!collapsed && (
+              <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">Piza</h2>
+            )}
+          </div>
+
+          <div dir="rtl" className="flex flex-col gap-4 mt-10">
+            <BuyerSideBarItems collapsed={collapsed} items={items} />
+          </div>
         </div>
+        {isSeller && !collapsed ? (
+          <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
+            <div className="flex flex-col flex-wrap justify-between">
+              <p className="text-[20px] text-text ">نظرات جدید</p>
+              <p className="text-text-secondary text-[14px] ">5 نظر</p>
+            </div>
+            <div className="mb-auto pt-[2px]">
+              <ReviewsSVG />
+            </div>
+          </div>
+        ) : (
+          !collapsed && (
+            <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
+              <div className="flex flex-col flex-wrap justify-between">
+                <p className="text-[20px] text-text ">کیف پول</p>
+                <p className="text-text-secondary text-[14px] ">عدم موجودی</p>
+              </div>
+              <div className="my-auto">
+                <MoneySVG />
+              </div>
+            </div>
+          )
+        )}
       </div>
-      {isSeller ? (
-        <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
-          <div className="flex flex-col flex-wrap justify-between">
-            <p className="text-[20px] text-text ">نظرات جدید</p>
-            <p className="text-text-secondary text-[14px] ">5 نظر</p>
-          </div>
-          <div className="mb-auto pt-[2px]">
-            <ReviewsSVG />
-          </div>
-        </div>
-      ) : (
-        <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] flex justify-end gap-2">
-          <div className="flex flex-col flex-wrap justify-between">
-            <p className="text-[20px] text-text ">کیف پول</p>
-            <p className="text-text-secondary text-[14px] ">عدم موجودی</p>
-          </div>
-          <div className="my-auto">
-            <MoneySVG />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
