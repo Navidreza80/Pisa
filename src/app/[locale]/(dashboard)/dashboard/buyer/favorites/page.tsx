@@ -126,49 +126,19 @@ export default function BookingList() {
             key={booking.id}
             className="bg-surface rounded-2xl border border-border p-4"
           >
-            <div className="flex justify-between items-start">
-              <Popover
-                open={openPopoverId === booking.id}
-                onOpenChange={(open) =>
-                  setOpenPopoverId(open ? booking.id : null)
-                }
-              >
-                <PopoverTrigger asChild>
-                  <div className="text-2xl font-bold cursor-pointer">...</div>
-                </PopoverTrigger>
-                <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border">
-                  <div>
-                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                      <h1>رزرو</h1>
-                      <div className="my-auto">
-                        <CheckPopover />
-                      </div>
-                    </div>
-                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                      <h1>حذف</h1>
-                      <div className="my-auto">
-                        <DeletePopover />
-                      </div>
-                    </div>
-                  </div>
-                </PopoverContent>
-              </Popover>
+            <div className="flex items-start justify-end">
               <h2 className="text-lg font-bold text-right">{booking.hotel}</h2>
             </div>
 
             <div className="mt-3 space-y-2 text-right">
               <div className="flex justify-end items-center gap-2">
-                <span className="font-medium">
-                  {booking.price}
-                </span>
+                <span className="font-medium">{booking.price}</span>
                 <span>:قیمت</span>
               </div>
 
               <div className="flex flex-col items-end">
                 <span className="text-text-secondary">:آدرس</span>
-                <p className="text-right">
-                  {booking.address}
-                </p>
+                <p className="text-right">{booking.address}</p>
               </div>
 
               <div className="flex justify-end gap-2 pt-2">

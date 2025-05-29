@@ -99,7 +99,7 @@ export default function TransactionList() {
   const [statusFilter, setStatusFilter] = useState("همه");
 
   return (
-    <div dir="rtl">
+    <>
       <div className="flex justify-between mt-6">
         <h1 className="text-xl font-bold font-yekan mb-auto">
           لیست تراکنش های شما
@@ -125,42 +125,74 @@ export default function TransactionList() {
       </div>
 
       <Line />
+      <div className="hidden md:block">
+        <TableDashboard
+          tableHeader={tableHeaderItems}
+          tableContent={transactions.map((tx) => (
+            <tr
+              key={tx.id}
+              className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+            >
+              <td className="p-2  text-[18px] font-medium rounded-r-xl ">
+                {tx.date} - {tx.time}
+              </td>
+              <td className="p-2 text-[18px] font-medium">{tx.trackingCode}</td>
+              <td className="p-2  text-[18px] font-medium">
+                {formatNumber(Number(tx.amount))} تومان
+              </td>
+              <td className="p-2 text-[13px] font-medium">
+                <span
+                  className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
+                    tx.status === "تایید شده" ? "bg-green-500" : "bg-red-400"
+                  }`}
+                >
+                  {tx.status === "تایید شده" ? (
+                    <CheckCircle size={14} />
+                  ) : (
+                    <XCircle size={14} />
+                  )}
+                  {tx.status}
+                </span>
+              </td>
+              <td className="p-2  text-[18px] font-medium">{tx.type}</td>
+              <td className="p-2  text-[13px] font-medium text-primary cursor-pointer hover:underline rounded-l-xl">
+                مشاهده رسید
+              </td>
+            </tr>
+          ))}
+        />
+      </div>
 
-      <TableDashboard
-        tableHeader={tableHeaderItems}
-        tableContent={transactions.map((tx) => (
-          <tr
-            key={tx.id}
-            className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+      {/* Card view for mobile screens */}
+      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
+        {transactions.map((item) => (
+          <div
+            key={item.id}
+            className="bg-surface rounded-2xl border border-border p-4"
           >
-            <td className="p-2  text-[18px] font-medium rounded-r-xl ">
-              {tx.date} - {tx.time}
-            </td>
-            <td className="p-2 text-[18px] font-medium">{tx.trackingCode}</td>
-            <td className="p-2  text-[18px] font-medium">
-              {formatNumber(Number(tx.amount))} تومان
-            </td>
-            <td className="p-2 text-[13px] font-medium">
-              <span
-                className={`px-2 py-1 rounded-full text-white text-xs flex items-center gap-1 w-fit ${
-                  tx.status === "تایید شده" ? "bg-green-500" : "bg-red-400"
-                }`}
-              >
-                {tx.status === "تایید شده" ? (
-                  <CheckCircle size={14} />
-                ) : (
-                  <XCircle size={14} />
-                )}
-                {tx.status}
-              </span>
-            </td>
-            <td className="p-2  text-[18px] font-medium">{tx.type}</td>
-            <td className="p-2  text-[13px] font-medium text-primary cursor-pointer hover:underline rounded-l-xl">
-              مشاهده رسید
-            </td>
-          </tr>
+            <div className="flex items-start justify-end">
+              <h2 className="text-lg font-bold text-right">{item.date}</h2>
+            </div>
+
+            <div className="mt-3 space-y-2 text-right">
+              <div className="flex justify-end items-center gap-2">
+                <span className="font-medium">{item.status}</span>
+                <span>:وضعیت</span>
+              </div>
+
+              <div className="flex justify-end items-center gap-2">
+                <span className="font-medium">{item.amount}</span>
+                <span>:قیمت</span>
+              </div>
+
+              <div className="flex flex-col items-end">
+                <span className="text-text-secondary">:شماره پیگیری</span>
+                <p className="text-right">{item.trackingCode}</p>
+              </div>
+            </div>
+          </div>
         ))}
-      />
-    </div>
+      </div>
+    </>
   );
 }
