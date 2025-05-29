@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import BuyerSideBarItems from "./buyerSideBarItems";
+import { usePathname } from "@/i18n/navigation";
+import { House } from "lucide-react";
+import { useState } from "react";
 import DashboardSVG from "../svg/DashboardSVG";
+import FavoriteSVG from "../svg/FavoriteSVG";
 import InfoSVG from "../svg/InfoSVG";
+import MoneySVG from "../svg/MoneySVG";
 import NotifSVG from "../svg/NotifSVG";
 import PaymentSVG from "../svg/PaymentSVG";
-import FavoriteSVG from "../svg/FavoriteSVG";
-import ReserveSVG from "../svg/ReserveSVG";
-import SignoutSVG from "../svg/SignoutSVG";
-import MoneySVG from "../svg/MoneySVG";
 import PropertySVG from "../svg/propertySVG";
+import ReserveSVG from "../svg/ReserveSVG";
 import ReviewsSVG from "../svg/reviewsSVG";
-import { usePathname } from "@/i18n/navigation";
+import SignoutSVG from "../svg/SignoutSVG";
 import TourManagementSVG from "../svg/TourManagementSVG";
-import LogoSVG from "@/components/common/svg/logo";
-import { House } from "lucide-react";
+import BuyerSideBarItems from "./buyerSideBarItems";
 
 function BuyerSideBar() {
   const pathname = usePathname();
