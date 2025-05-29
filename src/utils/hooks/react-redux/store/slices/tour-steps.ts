@@ -11,18 +11,18 @@ const initialState: StepsId = {
 };
 
 // Function to create StepsId slice
-const stepsId = createSlice({
+const tourStepsId = createSlice({
   name: "steps",
   initialState,
   reducers: {
-    setStepsId: (state, action: PayloadAction<number>) => {
+    setTourStepsId: (state, action: PayloadAction<number>) => {
       state.id = action.payload;
     },
-    restartSteps: (state) => {
+    restartTourSteps: (state) => {
       state.id = 1;
     },
   },
 });
 
-export const { setStepsId, restartSteps } = stepsId.actions;
-export default stepsId.reducer;
+export const { setTourStepsId, restartTourSteps } = tourStepsId.actions;
+export default tourStepsId.reducer;

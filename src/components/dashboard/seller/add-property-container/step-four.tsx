@@ -6,7 +6,7 @@ const AddPropertyStepFour = () => {
     <div className="mt-8 flex flex-col justify-center items-center">
       <div className="flex flex-row-reverse justify-start flex-wrap text-[20px] font-bold w-full">
         <h1 className="text-base font-medium mb-[19px] w-full text-text-secondary">
-          آدرس ملک
+          تصاویر ملک
         </h1>
         <h2 className="text-primary">.یک تصویر بهتر از هزار کلمه</h2>
         <h2 className="text-text font-semibold">

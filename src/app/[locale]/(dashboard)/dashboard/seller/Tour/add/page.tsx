@@ -1,6 +1,8 @@
+import AddTourContainer from "@/components/dashboard/seller/tour-container/add"
+
 const AddTour = () => {
   return (
-    <div>AddTour</div>
+    <AddTourContainer />
   )
 }
 export default AddTour
