@@ -12,15 +12,12 @@ import FloatingActions from "@/components/common/fab";
 // CSS
 import { auth } from "@/auth";
 import BuyerSideBar from "@/components/dashboard/buyer/BuyerSideBar";
-import DashboardTitle from "@/components/dashboard/buyer/DashboardTitle";
+import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
 import FinancialTags from "@/components/dashboard/seller/finance-container/tags";
-import ArrowSVG from "@/components/dashboard/svg/ArrowSVG";
-import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 import { JwtPayload } from "@/types/user";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode } from "jwt-decode";
 import "../globals.css";
-import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
 
 // metadata
 export const metadata: Metadata = {
@@ -64,7 +61,7 @@ export default async function RootLayout({
       <body className="bg-background text-text font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <div className="flex bg-border justify-between p-[19px]">
+            <div className="flex bg-border justify-between gap-[19px] p-[19px]">
               <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
                 <HeaderDashboard />
                 <FinancialTags />
