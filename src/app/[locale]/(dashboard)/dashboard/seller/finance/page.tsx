@@ -2,6 +2,7 @@
 import InputSelect from "@/components/common/inputs/select-input";
 import Line from "@/components/dashboard/buyer/line";
 import TableDashboard from "@/components/dashboard/table";
+import { useTranslations } from "next-intl";
 
 const properties = [
   {
@@ -52,33 +53,35 @@ const statusColor = {
   غیرفعال: "bg-red-400 text-white",
 };
 
-export const tableHeaderItems = [
-  { text: "تاریخ", clx: "rounded-r-xl" },
-  { text: "شماره پیگیری", clx: null },
-  { text: "مبلغ", clx: null },
-  { text: "وضعیت پرداخت", clx: null },
-  { text: "نوع تراکنش", clx: null },
-  { text: "", clx: "rounded-l-xl" },
+export const tableHeaderItems = (t) => [
+  { text: t('tableHeaders.date'), clx: "rounded-r-xl" },
+  { text: t('tableHeaders.trackingNumber'), clx: null },
+  { text: t('tableHeaders.amount'), clx: null },
+  { text: t('tableHeaders.paymentStatus'), clx: null },
+  { text: t('tableHeaders.transactionType'), clx: null },
+  { text: t('tableHeaders.empty'), clx: "rounded-l-xl" },
 ];
 
 export default function FinanceManagement() {
+  const t = useTranslations('FinanceManagement');
+
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <h1 className="text-xl font-medium my-auto order-1 md:order-2 flex gap-1">
           <p className="text-text-secondary">(25)</p>
-          لیست تراکنش های مشتریان
+          {t('title')}
         </h1>
         <div className="flex flex-col md:flex-row lg:flex-row items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
-          <InputSelect withLabel label="نوع تراکنش :" />
-          <InputSelect withLabel label="وضعیت پرداخت :" />
+          <InputSelect withLabel label={t('transactionType')} />
+          <InputSelect withLabel label={t('paymentStatus')} />
         </div>
       </div>
       <Line />
 
       <TableDashboard
-        addTitle="ملک"
-        tableHeader={tableHeaderItems}
+        addTitle={t('property')}
+        tableHeader={tableHeaderItems(t)}
         tableContent={properties.map((property) => (
           <tr key={property.id} className="rounded-xl">
             <td className="pl-6 py-7 rounded-r-xl text-[20px] font-medium">
@@ -101,7 +104,7 @@ export default function FinanceManagement() {
               {property.transaction}
             </td>
             <td className="px-6 py-2  text-[16px] font-medium relative rounded-l-xl">
-              مشاهده رسید
+              {t('viewReceipt')}
             </td>
           </tr>
         ))}

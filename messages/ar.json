@@ -392,5 +392,136 @@
       "bookingDate": "12 أغسطس 2021 / 13:33",
       "totalPrice": "{price} تومان"
     }
+  },
+  "BookingListSeller": {
+    "pageTitle": "قائمة حجوزات العملاء",
+    "filtersButton": "الفلاتر",
+    "searchPlaceholder": "ابحث عن اسم المسافر...",
+    "status": {
+      "approved": "تم التأكيد",
+      "pending": "قيد الانتظار",
+      "cancelled": "ملغية"
+    },
+    "actions": {
+      "approve": "تأكيد الحجز",
+      "cancel": "إلغاء الحجز",
+      "details": "التفاصيل",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "اسم العقار",
+      "travelerInfo": "معلومات المسافر",
+      "bookingDate": "تاريخ الحجز",
+      "amount": "المبلغ",
+      "bookingStatus": "حالة الحجز",
+      "paymentStatus": "حالة الدفع"
+    },
+    "mockData": {
+      "hotelName": "فندق سرافان رانين رشت",
+      "bookingDate": "3 أغسطس 2022 / 13:33",
+      "totalPrice": "{price} تومان",
+      "travelerInfo": "سبحان عرب خزائلي، 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "قائمة عقاراتي",
+    "searchPlaceholder": "ابحث عن اسم العقار...",
+    "addProperty": "إضافة عقار",
+    "times": "مرة",
+    "activate": "تفعيل",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteWarning": "لا يمكن التراجع بعد الحذف!",
+    "deleteConfirm": "هل أنت متأكد من حذف العقار؟",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "اسم السكن",
+      "price": "السعر",
+      "rating": "التقييم",
+      "visits": "الزيارات",
+      "reservations": "الحجوزات",
+      "status": "الحالة"
+    }
+  },
+  "FinanceManagement": {
+    "title": "قائمة معاملات العملاء",
+    "transactionType": "نوع المعاملة:",
+    "paymentStatus": "حالة الدفع:",
+    "property": "العقار",
+    "viewReceipt": "عرض الإيصال",
+    "tableHeaders": {
+      "empty": "",
+      "date": "التاريخ",
+      "trackingNumber": "رقم التتبع",
+      "amount": "المبلغ",
+      "paymentStatus": "حالة الدفع",
+      "transactionType": "نوع المعاملة"
+    }
+  },
+  "SellerToursList": {
+    "title": "قائمة جولاتي",
+    "searchPlaceholder": "ابحث عن اسم الجولة...",
+    "addTour": "إضافة جولة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteWarning": "لا يمكن التراجع بعد الحذف!",
+    "deleteConfirmation": "هل أنت متأكد من حذف الجولة؟",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "اسم الجولة",
+      "tourCost": "تكلفة الجولة",
+      "date": "التاريخ",
+      "score": "التقييم",
+      "participants": "المشاركون"
+    }
+  },
+  "Dashboard": {
+    "dashboard": "لوحة التحكم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "userInformation": "معلومات المستخدم",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات"
+  },
+  "Sidebar": {
+    "dashboard": "لوحة التحكم",
+    "management": "الإدارة",
+    "select": "اختر",
+    "cancle": "إلغاء",
+    "userInformation": "معلومات المستخدم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "locationManagement": "إدارة المواقع",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات",
+    "newReviews": "تقييمات جديدة",
+    "reviewCount": "{count} تقييم",
+    "wallet": "المحفظة",
+    "noBalance": "لا يوجد رصيد"
+  },
+  "ReserveDetail": {
+    "details": "التفاصيل",
+    "hotelName": "فندق همايون فار كيش، إيران",
+    "description": "شقة دافئة وهادئة في قلب المدينة، حيث تكون الحياة اليومية أسهل وأكثر راحة. مساحة حديثة بتصميم فريد، تذكرنا بالمنازل الدافئة والجذابة. مكان للحظات سعيدة، استرخاء، وبداية جديدة في حياتك اليومية.",
+    "tags": "العلامات",
+    "apartment": "شقة",
+    "starRating": "{stars} نجوم",
+    "address": "العنوان",
+    "hotelAddress": "ساري، شارع معلم، شارع دانش",
+    "bedrooms": "{count} غرفة نوم",
+    "parking": "{count} موقف سيارات",
+    "bathrooms": "{count} حمام",
+    "reservations": "الحجوزات",
+    "currency": "ت",
+    "purchasePrice": "سعر الشراء"
   }
 }

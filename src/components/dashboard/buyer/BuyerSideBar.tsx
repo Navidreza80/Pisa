@@ -15,48 +15,51 @@ import ReviewsSVG from "../svg/reviewsSVG";
 import SignoutSVG from "../svg/SignoutSVG";
 import TourManagementSVG from "../svg/TourManagementSVG";
 import BuyerSideBarItems from "./buyerSideBarItems";
+import { useTranslations } from "next-intl";
 
 function BuyerSideBar() {
   const pathname = usePathname();
   const isSeller = pathname.includes("/seller");
+  const t = useTranslations('Sidebar');
+
   const sellerItems = [
-    { name: "داشبورد", icon: <DashboardSVG />, href: "/dashboard/seller" },
+    { name: t('dashboard'), icon: <DashboardSVG />, href: "/dashboard/seller" },
     {
-      name: "اطلاعات کاربری",
+      name: t('userInformation'),
       icon: <InfoSVG />,
       href: "/dashboard/seller/profile",
     },
     {
-      name: "مدیریت املاک",
+      name: t('propertyManagement'),
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
       management: true,
     },
     {
-      name: "مدیریت رزروها",
+      name: t('reservationManagement'),
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
       management: true,
     },
     {
-      name: "مدیریت مالی",
+      name: t('financialManagement'),
       icon: <PaymentSVG />,
       href: "/dashboard/seller/finance",
       management: true,
     },
     {
-      name: "مدیریت نظرات",
+      name: t('reviewManagement'),
       icon: <ReviewsSVG />,
       href: "/dashboard/seller/reviews",
       management: true,
     },
     {
-      name: "اعلان‌ها",
+      name: t('notifications'),
       icon: <NotifSVG />,
       href: "/dashboard/seller/notifications",
     },
     {
-      name: "مدیریت تور ها",
+      name: t('tourManagement'),
       icon: <TourManagementSVG />,
       href: "/dashboard/seller/Tour",
       management: true,
@@ -64,36 +67,36 @@ function BuyerSideBar() {
   ];
 
   const buyerItems = [
-    { name: "داشبورد", icon: <DashboardSVG />, href: "/dashboard/buyer" },
+    { name: t('dashboard'), icon: <DashboardSVG />, href: "/dashboard/buyer" },
     {
-      name: "اطلاعات کاربری",
+      name: t('userInformation'),
       icon: <InfoSVG />,
       href: "/dashboard/buyer/information",
     },
     {
-      name: "مدیریت رزروها",
+      name: t('reservationManagement'),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
       management: true,
     },
     {
-      name: "مدیریت مقاصد دیدنی",
+      name: t('locationManagement'),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/locations",
       management: true,
     },
     {
-      name: "علاقه‌مندی‌ها",
+      name: t('favorites'),
       icon: <FavoriteSVG />,
       href: "/dashboard/buyer/favorites",
     },
     {
-      name: "پرداخت‌ها",
+      name: t('payments'),
       icon: <PaymentSVG />,
       href: "/dashboard/buyer/payments",
     },
     {
-      name: "اعلان‌ها",
+      name: t('notifications'),
       icon: <NotifSVG />,
       href: "/dashboard/buyer/notifications",
     },
@@ -134,8 +137,8 @@ function BuyerSideBar() {
         {isSeller && !collapsed ? (
           <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
             <div className="flex flex-col flex-wrap justify-between">
-              <p className="text-[20px] text-text ">نظرات جدید</p>
-              <p className="text-text-secondary text-[14px] ">5 نظر</p>
+              <p className="text-[20px] text-text ">{t('newReviews')}</p>
+              <p className="text-text-secondary text-[14px] ">{t('reviewCount', { count: 5 })}</p>
             </div>
             <div className="mb-auto pt-[2px]">
               <ReviewsSVG />
@@ -145,8 +148,8 @@ function BuyerSideBar() {
           !collapsed && (
             <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
               <div className="flex flex-col flex-wrap justify-between">
-                <p className="text-[20px] text-text ">کیف پول</p>
-                <p className="text-text-secondary text-[14px] ">عدم موجودی</p>
+                <p className="text-[20px] text-text ">{t('wallet')}</p>
+                <p className="text-text-secondary text-[14px] ">{t('noBalance')}</p>
               </div>
               <div className="my-auto">
                 <MoneySVG />

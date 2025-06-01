@@ -394,5 +394,136 @@
       "bookingDate": "August 3, 2021 / 1:33 PM",
       "totalPrice": "{price} Toman"
     }
+  },
+  "BookingListSeller": {
+    "pageTitle": "Customer Booking List",
+    "filtersButton": "Filters",
+    "searchPlaceholder": "Search traveler name...",
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "approve": "Approve Booking",
+      "cancel": "Cancel Booking",
+      "details": "Details",
+      "delete": "Delete"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Property Name",
+      "travelerInfo": "Traveler Info",
+      "bookingDate": "Booking Date",
+      "amount": "Amount",
+      "bookingStatus": "Booking Status",
+      "paymentStatus": "Payment Status"
+    },
+    "mockData": {
+      "hotelName": "Rasht Saravan Ranin Hotel",
+      "bookingDate": "August 3, 2022 / 13:33",
+      "totalPrice": "{price} Toman",
+      "travelerInfo": "Sobhan Arab Khazaeli, 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "My Properties List",
+    "searchPlaceholder": "Search property name...",
+    "addProperty": "Add Property",
+    "times": "times",
+    "activate": "Activate",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirm": "Are you sure you want to delete this property?",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Accommodation Name",
+      "price": "Price",
+      "rating": "Rating",
+      "visits": "Visits",
+      "reservations": "Reservations",
+      "status": "Status"
+    }
+  },
+  "FinanceManagement": {
+    "title": "Customer Transactions List",
+    "transactionType": "Transaction Type:",
+    "paymentStatus": "Payment Status:",
+    "property": "Property",
+    "viewReceipt": "View Receipt",
+    "tableHeaders": {
+      "empty": "",
+      "date": "Date",
+      "trackingNumber": "Tracking Number",
+      "amount": "Amount",
+      "paymentStatus": "Payment Status",
+      "transactionType": "Transaction Type"
+    }
+  },
+  "SellerToursList": {
+    "title": "My Tours List",
+    "searchPlaceholder": "Search tour name...",
+    "addTour": "Add Tour",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirmation": "Are you sure you want to delete this tour?",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "Tour Name",
+      "tourCost": "Tour Cost",
+      "date": "Date",
+      "score": "Score",
+      "participants": "Participants"
+    }
+  },
+  "Dashboard": {
+    "dashboard": "Dashboard",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "userInformation": "User Information",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "favorites": "Favorites",
+    "payments": "Payments"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "management": "Management",
+    "select": "Select",
+    "cancle": "Cancel",
+    "userInformation": "User Information",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "locationManagement": "Location Management",
+    "favorites": "Favorites",
+    "payments": "Payments",
+    "newReviews": "New Reviews",
+    "reviewCount": "{count} Reviews",
+    "wallet": "Wallet",
+    "noBalance": "No Balance"
+  },
+  "ReserveDetail": {
+    "details": "Details",
+    "hotelName": "Homayoun Far Kish Hotel, Iran",
+    "description": "A cozy and quiet apartment in the heart of the city, where daily life is easier and more comfortable. A modern space with unique design, reminiscent of warm and inviting homes. A place for happy moments, relaxation, and a fresh start in your daily life.",
+    "tags": "Tags",
+    "apartment": "Apartment",
+    "starRating": "{stars} Star",
+    "address": "Address",
+    "hotelAddress": "Sari, Moallem Street, Danesh Street",
+    "bedrooms": "{count} Bedroom",
+    "parking": "{count} Parking",
+    "bathrooms": "{count} Bathroom",
+    "reservations": "Reservations",
+    "currency": "T",
+    "purchasePrice": "Purchase Price"
   }
 }

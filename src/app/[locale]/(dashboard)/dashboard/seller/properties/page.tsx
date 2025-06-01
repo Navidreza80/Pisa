@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useTranslations } from "next-intl";
 
 const properties = [
   {
@@ -67,28 +68,30 @@ const statusColor = {
   غیرفعال: "bg-red-400 text-white",
 };
 
-export const tableHeaderItems = [
-  { text: "نام اقامتگاه", clx: "rounded-r-xl" },
-  { text: "قیمت", clx: null },
-  { text: "امتیاز", clx: null },
-  { text: "بازدیدها", clx: null },
-  { text: "رزروها", clx: null },
-  { text: "وضعیت", clx: null },
-  { text: "", clx: "rounded-l-xl" },
+export const tableHeaderItems = (t) => [
+  { text: t('tableHeaders.propertyName'), clx: "rounded-r-xl" },
+  { text: t('tableHeaders.price'), clx: null },
+  { text: t('tableHeaders.rating'), clx: null },
+  { text: t('tableHeaders.visits'), clx: null },
+  { text: t('tableHeaders.reservations'), clx: null },
+  { text: t('tableHeaders.status'), clx: null },
+  { text: t('tableHeaders.empty'), clx: "rounded-l-xl" },
 ];
 
-export default function PropertyList() {
+export default function SellerPropertyList() {
+  const t = useTranslations('SellerPropertyList');
+
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <h1 className="text-xl font-medium my-auto order-1 md:order-2">
-          لیست املاک من
+          {t('title')}
         </h1>
         <div className="flex flex-col md:flex-row lg:flex-row items-start md:items-center gap-4 md:gap-[19px] w-full md:w-auto order-2 md:order-1">
           <FilterModal></FilterModal>
           <Input
             dir="rtl"
-            placeholder="نام ملک مورد نظر ....."
+            placeholder={t('searchPlaceholder')}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
@@ -98,15 +101,14 @@ export default function PropertyList() {
       <TableDashboard
         add={true}
         href={"/dashboard/seller/properties/add"}
-        addTitle="ملک"
+        addTitle={t('addProperty')}
         headerSecondary={true}
-        tableHeader={tableHeaderItems}
+        tableHeader={tableHeaderItems(t)}
         tableContent={properties.map((property) => (
           <tr key={property.id} className="bg-table-main/30 rounded-xl">
             <td className="pl-6 rounded-r-xl">
               <div className="flex gap-2 ">
                 <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
-                {/* width={108} height={20} src={"x"} alt="" */}
                 <div className="py-7  text-[18px] font-medium">
                   {property.name}
                 </div>
@@ -119,10 +121,10 @@ export default function PropertyList() {
               {property.score}
             </td>
             <td className="px-6 py-7 text-[18px] font-medium">
-              {property.views} تا
+              {property.views} {t('times')}
             </td>
             <td className="px-6 py-7 text-[18px] font-medium">
-              {property.reservations} بار
+              {property.reservations} {t('times')}
             </td>
             <td className="px-6 py-7">
               <span
@@ -141,23 +143,23 @@ export default function PropertyList() {
                 <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
                   <div className="space-y-2">
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                      <h1>فعال کردن</h1>
+                      <h1>{t('activate')}</h1>
                       <div className="my-auto">
                         <CheckPopover />
                       </div>
                     </div>
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                      <h1>ویرایش</h1>
+                      <h1>{t('edit')}</h1>
                       <div className="my-auto">
                         <EditSVG />
                       </div>
                     </div>
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                       <ModalStep2
-                        name="حذف"
-                        desc="امکان بازگشت پس از حذف وجود ندارد!"
-                        title="آیا از حذف ملک مطمئن هستید؟"
-                        button="حذف"
+                        name={t('delete')}
+                        desc={t('deleteWarning')}
+                        title={t('deleteConfirm')}
+                        button={t('delete')}
                       />
                       <div className="my-auto">
                         <DeleteSVG />
