@@ -289,7 +289,7 @@
       "error": "Hata!"
     }
   },
-    "DestinationsList": {
+  "DestinationsList": {
     "title": "Gezilecek Yerler Listem",
     "searchPlaceholder": "Tur adını giriniz...",
     "addButton": "Yer Ekle +",
@@ -363,6 +363,7 @@
     }
   },
   "BookingList": {
+    "title": "Rezervasyonlarınızın Listesi",
     "filtersButton": "Filtreler",
     "searchPlaceholder": "Otel adı giriniz...",
     "passengerCount": "{count} yolcu",

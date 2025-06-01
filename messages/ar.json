@@ -236,7 +236,7 @@
     "parkingsValue": "موقف سيارات",
     "roomsValue": "غرفة"
   },
-    "Favorites": {
+  "Favorites": {
     "title": "قائمة الحجوزات المحفوظة",
     "tableHeaders": {
       "empty": "",
@@ -289,7 +289,7 @@
       "error": "خطأ!"
     }
   },
-    "DestinationsList": {
+  "DestinationsList": {
     "title": "قائمة وجهاتي السياحية",
     "searchPlaceholder": "اكتب اسم الجولة...",
     "addButton": "إضافة وجهة +",
@@ -363,6 +363,7 @@
     }
   },
   "BookingList": {
+    "title": "قائمة حجوزاتك",
     "filtersButton": "الفلاتر",
     "searchPlaceholder": "اكتب اسم الفندق...",
     "passengerCount": "{count} راكب",
