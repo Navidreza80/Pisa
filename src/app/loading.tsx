@@ -2,34 +2,34 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { MoonIcon, SunIcon, RefreshCw, Home, AlertTriangle } from "lucide-react";
+import { MoonIcon, SunIcon, RefreshCw, Home, Loader2 } from "lucide-react";
 import "./[locale]/globals.css";
 
 // Translation items
 const translations = {
   fa: {
-    title: "صفحه پیدا نشد",
-    subtitle: "به نظر می‌رسد در فضا گم شده‌اید!",
-    description: "صفحه‌ای که به دنبال آن هستید وجود ندارد یا به آدرس دیگری منتقل شده است.",
+    title: "در حال بارگذاری",
+    subtitle: "لطفا صبر کنید",
+    description: "در حال آماده‌سازی محتوا برای شما هستیم.",
     backToHome: "بازگشت به خانه",
     tryAgain: "تلاش مجدد",
     explore: "کاوش در سایت",
     langSwitch: "EN",
-    error: "خطای 404",
+    loading: "بارگذاری",
   },
   en: {
-    title: "Page Not Found",
-    subtitle: "Looks like you're lost in space!",
-    description: "The page you are looking for doesn't exist or has been moved to another address.",
+    title: "Loading",
+    subtitle: "Please wait",
+    description: "We are preparing the content for you.",
     backToHome: "Back to Home",
     tryAgain: "Try Again",
     explore: "Explore Site",
     langSwitch: "فا",
-    error: "Error 404",
+    loading: "Loading",
   },
 };
 
-export default function NotFoundPage() {
+export default function LoadingPage() {
   // Hooks
   const [locale, setLocale] = useState<"fa" | "en">("fa");
   const [isDark, setIsDark] = useState(true);
@@ -202,21 +202,21 @@ export default function NotFoundPage() {
             
             {/* Card content */}
             <div className="p-8 md:p-12">
-              {/* 404 Text with 3D effect */}
+              {/* Loading spinner with 3D effect */}
               <div className="relative mb-8 flex justify-center overflow-hidden">
-                <h1 className="text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 leading-none select-none">
-                  404
-                </h1>
+                <div className="text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 leading-none select-none flex items-center justify-center">
+                  <Loader2 className="w-32 h-32 animate-spin text-primary" />
+                </div>
                 
                 {/* Shadow effect */}
-                <h1 className="absolute text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary/10 to-indigo-400/10 dark:from-primary/10 dark:to-indigo-300/10 leading-none blur-md select-none"
+                <div className="absolute text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary/10 to-indigo-400/10 dark:from-primary/10 dark:to-indigo-300/10 leading-none blur-md select-none flex items-center justify-center"
                   style={{
                     transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
                     transition: 'transform 0.1s ease-out'
                   }}
                 >
-                  404
-                </h1>
+                  <Loader2 className="w-32 h-32 animate-spin text-primary/10" />
+                </div>
               </div>
               
               {/* Content with staggered animation */}
