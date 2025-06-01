@@ -476,5 +476,53 @@
       "score": "Score",
       "participants": "Participants"
     }
+  },
+  "Dashboard": {
+    "dashboard": "Dashboard",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "userInformation": "User Information",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "favorites": "Favorites",
+    "payments": "Payments"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "management": "Management",
+    "select": "Select",
+    "cancle": "Cancel",
+    "userInformation": "User Information",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "locationManagement": "Location Management",
+    "favorites": "Favorites",
+    "payments": "Payments",
+    "newReviews": "New Reviews",
+    "reviewCount": "{count} Reviews",
+    "wallet": "Wallet",
+    "noBalance": "No Balance"
+  },
+  "ReserveDetail": {
+    "details": "Details",
+    "hotelName": "Homayoun Far Kish Hotel, Iran",
+    "description": "A cozy and quiet apartment in the heart of the city, where daily life is easier and more comfortable. A modern space with unique design, reminiscent of warm and inviting homes. A place for happy moments, relaxation, and a fresh start in your daily life.",
+    "tags": "Tags",
+    "apartment": "Apartment",
+    "starRating": "{stars} Star",
+    "address": "Address",
+    "hotelAddress": "Sari, Moallem Street, Danesh Street",
+    "bedrooms": "{count} Bedroom",
+    "parking": "{count} Parking",
+    "bathrooms": "{count} Bathroom",
+    "reservations": "Reservations",
+    "currency": "T",
+    "purchasePrice": "Purchase Price"
   }
 }

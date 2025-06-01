@@ -474,5 +474,53 @@
       "score": "التقييم",
       "participants": "المشاركون"
     }
+  },
+  "Dashboard": {
+    "dashboard": "لوحة التحكم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "userInformation": "معلومات المستخدم",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات"
+  },
+  "Sidebar": {
+    "dashboard": "لوحة التحكم",
+    "management": "الإدارة",
+    "select": "اختر",
+    "cancle": "إلغاء",
+    "userInformation": "معلومات المستخدم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "locationManagement": "إدارة المواقع",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات",
+    "newReviews": "تقييمات جديدة",
+    "reviewCount": "{count} تقييم",
+    "wallet": "المحفظة",
+    "noBalance": "لا يوجد رصيد"
+  },
+  "ReserveDetail": {
+    "details": "التفاصيل",
+    "hotelName": "فندق همايون فار كيش، إيران",
+    "description": "شقة دافئة وهادئة في قلب المدينة، حيث تكون الحياة اليومية أسهل وأكثر راحة. مساحة حديثة بتصميم فريد، تذكرنا بالمنازل الدافئة والجذابة. مكان للحظات سعيدة، استرخاء، وبداية جديدة في حياتك اليومية.",
+    "tags": "العلامات",
+    "apartment": "شقة",
+    "starRating": "{stars} نجوم",
+    "address": "العنوان",
+    "hotelAddress": "ساري، شارع معلم، شارع دانش",
+    "bedrooms": "{count} غرفة نوم",
+    "parking": "{count} موقف سيارات",
+    "bathrooms": "{count} حمام",
+    "reservations": "الحجوزات",
+    "currency": "ت",
+    "purchasePrice": "سعر الشراء"
   }
 }

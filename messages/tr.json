@@ -474,5 +474,53 @@
       "score": "Puan",
       "participants": "Katılımcılar"
     }
+  },
+  "Dashboard": {
+    "dashboard": "Pano",
+    "propertyManagement": "Emlak Yönetimi",
+    "reservationManagement": "Rezervasyon Yönetimi",
+    "userInformation": "Kullanıcı Bilgileri",
+    "financialManagement": "Finans Yönetimi",
+    "reviewManagement": "Yorum Yönetimi",
+    "notifications": "Bildirimler",
+    "tourManagement": "Tur Yönetimi",
+    "favorites": "Favoriler",
+    "payments": "Ödemeler"
+  },
+  "Sidebar": {
+    "dashboard": "Pano",
+    "management": "Yönetim",
+    "select": "Seç",
+    "cancle": "İptal",
+    "userInformation": "Kullanıcı Bilgileri",
+    "propertyManagement": "Emlak Yönetimi",
+    "reservationManagement": "Rezervasyon Yönetimi",
+    "financialManagement": "Finans Yönetimi",
+    "reviewManagement": "Yorum Yönetimi",
+    "notifications": "Bildirimler",
+    "tourManagement": "Tur Yönetimi",
+    "locationManagement": "Konum Yönetimi",
+    "favorites": "Favoriler",
+    "payments": "Ödemeler",
+    "newReviews": "Yeni Yorumlar",
+    "reviewCount": "{count} Yorum",
+    "wallet": "Cüzdan",
+    "noBalance": "Bakiye Yok"
+  },
+  "ReserveDetail": {
+    "details": "Detaylar",
+    "hotelName": "Homayoun Far Kish Oteli, İran",
+    "description": "Şehrin kalbinde, günlük hayatın daha kolay ve rahat olduğu samimi ve sessiz bir daire. Sıcak ve davetkar evleri anımsatan benzersiz tasarıma sahip modern bir mekan. Mutlu anlar, rahatlama ve günlük hayatınıza taze bir başlangıç için bir yer.",
+    "tags": "Etiketler",
+    "apartment": "Daire",
+    "starRating": "{stars} Yıldız",
+    "address": "Adres",
+    "hotelAddress": "Sari, Moallem Caddesi, Danesh Caddesi",
+    "bedrooms": "{count} Yatak Odası",
+    "parking": "{count} Park",
+    "bathrooms": "{count} Banyo",
+    "reservations": "Rezervasyonlar",
+    "currency": "T",
+    "purchasePrice": "Satın Alma Fiyatı"
   }
 }

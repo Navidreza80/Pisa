@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
-
+import { useTranslations } from "next-intl";
 import {
   Popover,
   PopoverTrigger,
@@ -27,6 +27,7 @@ function BuyerSideBar({
   collapsed: boolean;
 }) {
   const pathname = usePathname();
+  const t = useTranslations('Sidebar');
 
   const normalItems = items.filter((item) => !item.management);
   const managementItems = items.filter((item) => item.management);
@@ -66,7 +67,7 @@ function BuyerSideBar({
               </div>
               {!collapsed && (
                 <div className="items-center gap-1 lg:flex md:hidden hidden">
-                  <h1 className="text-lg">مدیریت</h1>
+                  <h1 className="text-lg">{t('management')}</h1>
                   <ArrowSVG
                     className={`${open ? "rotate-90" : "rotate-0"} transition-all duration-300`}
                   />

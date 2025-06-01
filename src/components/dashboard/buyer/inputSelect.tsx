@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 function InputSelect({
   width,
@@ -22,6 +23,7 @@ function InputSelect({
   label?: string;
   className?: string;
 }) {
+  const t = useTranslations('Sidebar');
   const handleChange = (selectedValue: string) => {
     const found = items.find(
       (item) => String(item.value ?? item.id ?? item.text) === selectedValue
@@ -42,11 +44,13 @@ function InputSelect({
       >
         <SelectValue
           className="z-[10000000000] relative !font-medium"
-          placeholder="انتخاب"
+          placeholder={t('select')}
         />
-        <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
-          {label}
-        </div>
+        {label && (
+          <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+            {label}
+          </div>
+        )}
       </SelectTrigger>
       <SelectContent className="rounded-[16px] bg-background z-[10000000000] font-medium relative ">
         {items?.map((item) => (

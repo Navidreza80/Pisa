@@ -515,5 +515,53 @@
       "score": "امتیاز",
       "participants": "شرکت کنندگان"
     }
+  },
+  "Dashboard": {
+    "dashboard": "داشبورد",
+    "propertyManagement": "مدیریت املاک ها",
+    "reservationManagement": "مدیریت رزروها",
+    "userInformation": "اطلاعات کاربری",
+    "financialManagement": "مدیریت مالی",
+    "reviewManagement": "مدیریت نظرات",
+    "notifications": "اعلان‌ها",
+    "tourManagement": "مدیریت تور ها",
+    "favorites": "علاقه‌مندی‌ها",
+    "payments": "پرداخت‌ها"
+  },
+  "Sidebar": {
+    "dashboard": "داشبورد",
+    "management": "مدیریت",
+    "select": "انتخاب",
+    "cancle": "کنسل",
+    "userInformation": "اطلاعات کاربری",
+    "propertyManagement": "مدیریت املاک",
+    "reservationManagement": "مدیریت رزروها",
+    "financialManagement": "مدیریت مالی",
+    "reviewManagement": "مدیریت نظرات",
+    "notifications": "اعلان‌ها",
+    "tourManagement": "مدیریت تور ها",
+    "locationManagement": "مدیریت مقاصد دیدنی",
+    "favorites": "علاقه‌مندی‌ها",
+    "payments": "پرداخت‌ها",
+    "newReviews": "نظرات جدید",
+    "reviewCount": "{count} نظر",
+    "wallet": "کیف پول",
+    "noBalance": "عدم موجودی"
+  },
+  "ReserveDetail": {
+    "details": "جزئیات",
+    "hotelName": "هتل همایون فر کیش ایران",
+    "description": "آپارتمانی دنج و آرام در قلب شهر، جایی که زندگی روزمره راحت و سبک‌تر است. فضایی مدرن با طراحی منحصربه‌فرد، یادآور خانه‌های دنج و دل‌نشین. محلی برای لحظه‌های خوش، آرامش و شروعی نو در زندگی روزمره‌تان.",
+    "tags": "برچسب ها",
+    "apartment": "آپارتمان",
+    "starRating": "{stars} ستاره",
+    "address": "آدرس",
+    "hotelAddress": "ساری خیابان معلم خیابان دانش",
+    "bedrooms": "{count} خوابه",
+    "parking": "{count} پارکینگ",
+    "bathrooms": "{count} حمام",
+    "reservations": "رزرو ها",
+    "currency": "ت",
+    "purchasePrice": "قیمت خرید"
   }
 }
