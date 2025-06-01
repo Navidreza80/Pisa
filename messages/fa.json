@@ -432,5 +432,88 @@
       "bookingDate": "12 مرداد 1401 / 13:33",
       "totalPrice": "{price} تومان"
     }
+  },
+  "BookingListSeller": {
+    "pageTitle": "لیست رزرو های مشتریان",
+    "filtersButton": "فیلتر ها",
+    "searchPlaceholder": "نام مسافر مورد نظر .....",
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار",
+      "cancelled": "لغو شده"
+    },
+    "actions": {
+      "approve": "تایید رزرو",
+      "cancel": "لغو رزرو",
+      "details": "جزئیات",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "نام ملک",
+      "travelerInfo": "اطلاعات مسافر",
+      "bookingDate": "تاریخ رزرو",
+      "amount": "مبلغ",
+      "bookingStatus": "وضعیت رزرو",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "mockData": {
+      "hotelName": "هتل سراوان رانین رشت",
+      "bookingDate": "12 مرداد 1401 / 13:33",
+      "totalPrice": "{price} تومان",
+      "travelerInfo": "سبحان عرب خزائلی ،4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "لیست املاک من",
+    "searchPlaceholder": "نام ملک مورد نظر .....",
+    "addProperty": "ملک",
+    "times": "تا",
+    "activate": "فعال کردن",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "deleteWarning": "امکان بازگشت پس از حذف وجود ندارد!",
+    "deleteConfirm": "آیا از حذف ملک مطمئن هستید؟",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "نام اقامتگاه",
+      "price": "قیمت",
+      "rating": "امتیاز",
+      "visits": "بازدیدها",
+      "reservations": "رزروها",
+      "status": "وضعیت"
+    }
+  },
+  "FinanceManagement": {
+    "title": "لیست تراکنش های مشتریان",
+    "transactionType": "نوع تراکنش :",
+    "paymentStatus": "وضعیت پرداخت :",
+    "property": "ملک",
+    "viewReceipt": "مشاهده رسید",
+    "tableHeaders": {
+      "empty": "",
+      "date": "تاریخ",
+      "trackingNumber": "شماره پیگیری",
+      "amount": "مبلغ",
+      "paymentStatus": "وضعیت پرداخت",
+      "transactionType": "نوع تراکنش"
+    }
+  },
+  "SellerToursList": {
+    "title": "لیست تور های من",
+    "searchPlaceholder": "نام تور مورد نظر .....",
+    "addTour": "تور",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "deleteWarning": "امکان بازگشت پس از حذف وجود ندارد!",
+    "deleteConfirmation": "آیا از حذف تور مطمئن هستید؟",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "نام تور",
+      "tourCost": "هزینه تور",
+      "date": "تاریخ",
+      "score": "امتیاز",
+      "participants": "شرکت کنندگان"
+    }
   }
 }

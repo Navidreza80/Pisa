@@ -393,5 +393,88 @@
       "bookingDate": "August 3, 2021 / 1:33 PM",
       "totalPrice": "{price} Toman"
     }
+  },
+  "BookingListSeller": {
+    "pageTitle": "Customer Booking List",
+    "filtersButton": "Filters",
+    "searchPlaceholder": "Search traveler name...",
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "approve": "Approve Booking",
+      "cancel": "Cancel Booking",
+      "details": "Details",
+      "delete": "Delete"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Property Name",
+      "travelerInfo": "Traveler Info",
+      "bookingDate": "Booking Date",
+      "amount": "Amount",
+      "bookingStatus": "Booking Status",
+      "paymentStatus": "Payment Status"
+    },
+    "mockData": {
+      "hotelName": "Rasht Saravan Ranin Hotel",
+      "bookingDate": "August 3, 2022 / 13:33",
+      "totalPrice": "{price} Toman",
+      "travelerInfo": "Sobhan Arab Khazaeli, 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "My Properties List",
+    "searchPlaceholder": "Search property name...",
+    "addProperty": "Add Property",
+    "times": "times",
+    "activate": "Activate",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirm": "Are you sure you want to delete this property?",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Accommodation Name",
+      "price": "Price",
+      "rating": "Rating",
+      "visits": "Visits",
+      "reservations": "Reservations",
+      "status": "Status"
+    }
+  },
+  "FinanceManagement": {
+    "title": "Customer Transactions List",
+    "transactionType": "Transaction Type:",
+    "paymentStatus": "Payment Status:",
+    "property": "Property",
+    "viewReceipt": "View Receipt",
+    "tableHeaders": {
+      "empty": "",
+      "date": "Date",
+      "trackingNumber": "Tracking Number",
+      "amount": "Amount",
+      "paymentStatus": "Payment Status",
+      "transactionType": "Transaction Type"
+    }
+  },
+  "SellerToursList": {
+    "title": "My Tours List",
+    "searchPlaceholder": "Search tour name...",
+    "addTour": "Add Tour",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirmation": "Are you sure you want to delete this tour?",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "Tour Name",
+      "tourCost": "Tour Cost",
+      "date": "Date",
+      "score": "Score",
+      "participants": "Participants"
+    }
   }
 }

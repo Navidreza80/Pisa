@@ -289,7 +289,7 @@
       "error": "Hata!"
     }
   },
-    "DestinationsList": {
+  "DestinationsList": {
     "title": "Gezilecek Yerler Listem",
     "searchPlaceholder": "Tur adını giriniz...",
     "addButton": "Yer Ekle +",
@@ -390,6 +390,89 @@
       "hotelName": "Saravan Ranin Oteli Reşt",
       "bookingDate": "3 Ağustos 2021 / 13:33",
       "totalPrice": "{price} Tümen"
+    }
+  },
+  "BookingListSeller": {
+    "pageTitle": "Müşteri Rezervasyon Listesi",
+    "filtersButton": "Filtreler",
+    "searchPlaceholder": "Yolcu adı ara...",
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Beklemede",
+      "cancelled": "İptal edildi"
+    },
+    "actions": {
+      "approve": "Rezervasyon Onayla",
+      "cancel": "Rezervasyon İptal",
+      "details": "Detaylar",
+      "delete": "Sil"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Mülk Adı",
+      "travelerInfo": "Yolcu Bilgisi",
+      "bookingDate": "Rezervasyon Tarihi",
+      "amount": "Tutar",
+      "bookingStatus": "Rezervasyon Durumu",
+      "paymentStatus": "Ödeme Durumu"
+    },
+    "mockData": {
+      "hotelName": "Reşt Seravan Ranin Oteli",
+      "bookingDate": "12 Ağustos 2022 / 13:33",
+      "totalPrice": "{price} Toman",
+      "travelerInfo": "Sebhan Arab Hazaeli, 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "Mülklerimin Listesi",
+    "searchPlaceholder": "Mülk adı ara...",
+    "addProperty": "Mülk Ekle",
+    "times": "kez",
+    "activate": "Aktif Et",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleteWarning": "Silme işlemi geri alınamaz!",
+    "deleteConfirm": "Mülkü silmek istediğinize emin misiniz?",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Konaklama Adı",
+      "price": "Fiyat",
+      "rating": "Puan",
+      "visits": "Ziyaretler",
+      "reservations": "Rezervasyonlar",
+      "status": "Durum"
+    }
+  },
+  "FinanceManagement": {
+    "title": "Müşteri İşlem Listesi",
+    "transactionType": "İşlem Türü:",
+    "paymentStatus": "Ödeme Durumu:",
+    "property": "Mülk",
+    "viewReceipt": "Fişi Görüntüle",
+    "tableHeaders": {
+      "empty": "",
+      "date": "Tarih",
+      "trackingNumber": "Takip Numarası",
+      "amount": "Tutar",
+      "paymentStatus": "Ödeme Durumu",
+      "transactionType": "İşlem Türü"
+    }
+  },
+  "SellerToursList": {
+    "title": "Turlarımın Listesi",
+    "searchPlaceholder": "Tur adı ara...",
+    "addTour": "Tur Ekle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleteWarning": "Silme işlemi geri alınamaz!",
+    "deleteConfirmation": "Tur'u silmek istediğinize emin misiniz?",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "Tur Adı",
+      "tourCost": "Tur Maliyeti",
+      "date": "Tarih",
+      "score": "Puan",
+      "participants": "Katılımcılar"
     }
   }
 }

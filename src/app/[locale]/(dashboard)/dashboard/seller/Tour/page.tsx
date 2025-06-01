@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useTranslations } from "next-intl";
 
 const properties = [
   {
@@ -60,27 +61,29 @@ const properties = [
   },
 ];
 
-export const tableHeaderItems = [
-  { text: "نام تور", clx: "rounded-r-xl text-center w-73" },
-  { text: "هزینه تور", clx: "text-center" },
-  { text: "تاریخ", clx: "text-center" },
-  { text: "امتیاز", clx: "text-center" },
-  { text: "شرکت کنندگان", clx: "text-center" },
-  { text: "", clx: "rounded-l-xl text-center" },
+export const tableHeaderItems = (t: any) => [
+  { text: t('tableHeaders.tourName'), clx: "rounded-r-xl text-center w-73" },
+  { text: t('tableHeaders.tourCost'), clx: "text-center" },
+  { text: t('tableHeaders.date'), clx: "text-center" },
+  { text: t('tableHeaders.score'), clx: "text-center" },
+  { text: t('tableHeaders.participants'), clx: "text-center" },
+  { text: t('tableHeaders.empty'), clx: "rounded-l-xl text-center" },
 ];
 
 export default function ToursList() {
+  const t = useTranslations('SellerToursList');
+
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
-          لیست تور های من
+          {t('title')}
         </h1>
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto order-2 md:order-1">
           <FilterModal />
           <Input
             dir="rtl"
-            placeholder="نام تور مورد نظر ....."
+            placeholder={t('searchPlaceholder')}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
@@ -90,9 +93,9 @@ export default function ToursList() {
       <TableDashboard
         href={"/dashboard/seller/Tour/add"}
         add={true}
-        addTitle="تور"
+        addTitle={t('addTour')}
         headerSecondary={true}
-        tableHeader={tableHeaderItems}
+        tableHeader={tableHeaderItems(t)}
         tableContent={properties.map((property) => (
           <tr key={property.id} className="bg-table-main/30 rounded-xl">
             <td className="pl-6 rounded-r-xl">
@@ -132,17 +135,17 @@ export default function ToursList() {
                 <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
                   <div className="space-y-2">
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                      <h1>ویرایش</h1>
+                      <h1>{t('edit')}</h1>
                       <div className="my-auto">
                         <EditSVG />
                       </div>
                     </div>
                     <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                       <ModalStep2
-                        name="حذف"
-                        desc="امکان بازگشت پس از حذف وجود ندارد!"
-                        title="آیا از حذف تور مطمئن هستید؟"
-                        button="حذف"
+                        name={t('delete')}
+                        desc={t('deleteWarning')}
+                        title={t('deleteConfirmation')}
+                        button={t('delete')}
                       />
                       <div className="my-auto">
                         <DeleteSVG />
