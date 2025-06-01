@@ -2,10 +2,8 @@
 
 // Next & React
 import Link from "next/link";
-import { useEffect } from "react";
 
 // Dependencies
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useTranslations } from "next-intl";
 

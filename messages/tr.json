@@ -235,5 +235,161 @@
     "bathroomsValue": "banyo",
     "parkingsValue": "park yeri",
     "roomsValue": "oda"
+  },
+  "Favorites": {
+    "title": "Kaydedilen Rezervasyonlarım",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "Otel Adı",
+      "price": "Fiyat",
+      "address": "Adres"
+    },
+    "filters": {
+      "propertyType": "Mülk Türü"
+    },
+    "searchPlaceholder": "Otel adı giriniz...",
+    "priceLabel": "Fiyat",
+    "addressLabel": "Adres",
+    "actions": {
+      "reserve": "Rezervasyon Yap",
+      "delete": "Sil"
+    }
+  },
+  "UserInformation": {
+    "profileImage": {
+      "title": "Profil Resminiz",
+      "description": "Profil resminizi buradan değiştirebilirsiniz"
+    },
+    "personalInfo": {
+      "title": "Kişisel Bilgiler",
+      "description": "Kişisel bilgilerinizi buradan güncelleyebilirsiniz"
+    },
+    "security": {
+      "title": "Güvenlik",
+      "description": "Şifrenizi buradan değiştirebilirsiniz"
+    },
+    "formFields": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta",
+      "phoneNumber": "Telefon Numarası"
+    },
+    "securityForm": {
+      "currentPassword": "Mevcut Şifre",
+      "newPassword": "Yeni Şifre",
+      "confirmPassword": "Yeni Şifreyi Onayla"
+    },
+    "buttons": {
+      "applyChanges": "Değişiklikleri Uygula",
+      "cancel": "İptal"
+    },
+    "toast": {
+      "pending": "İşleniyor",
+      "success": "Bilgiler başarıyla güncellendi",
+      "error": "Hata!"
+    }
+  },
+    "DestinationsList": {
+    "title": "Gezilecek Yerler Listem",
+    "searchPlaceholder": "Tur adını giriniz...",
+    "addButton": "Yer Ekle +",
+    "provinceLabel": "İl",
+    "tableHeaders": {
+      "empty": "",
+      "city": "Şehir Adı",
+      "description": "Açıklama",
+      "status": "Durum"
+    },
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Beklemede",
+      "rejected": "Reddedildi"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil"
+    },
+    "deleteModal": {
+      "title": "Bu turu silmek istediğinize emin misiniz?",
+      "description": "Silme işlemi geri alınamaz!"
+    }
+  },
+  "Notifications": {
+    "title": "Bildirimleriniz",
+    "markAsRead": "Okundu olarak işaretle",
+    "markAllAsReadConfirmation": "Tüm bildirimleri okundu olarak işaretlemek istediğinizden emin misiniz?",
+    "notificationType": "Bildirim Türü",
+    "dateLabel": "Tarih",
+    "status": {
+      "read": "Okundu",
+      "unread": "Okunmadı"
+    },
+    "mockData": {
+      "date1": "3 Ağustos 2021 / 12:33",
+      "text1": "Satıcı Amir Mohammad Malayi bir evi rezerve edilmek üzere ilan etti",
+      "text2": "Hoş geldiniz!"
+    }
+  },
+  "TransactionList": {
+    "title": "İşlem Geçmişiniz",
+    "currency": "Tümen",
+    "viewReceipt": "Fiş Görüntüle",
+    "statusLabel": "Durum",
+    "priceLabel": "Fiyat",
+    "trackingCodeLabel": "Takip Kodu",
+    "filters": {
+      "all": "Hepsi",
+      "transactionType": "İşlem Türü",
+      "paymentStatus": "Ödeme Durumu"
+    },
+    "status": {
+      "approved": "Onaylandı",
+      "rejected": "Reddedildi"
+    },
+    "types": {
+      "walletCharge": "Cüzdan Yükleme",
+      "reservation": "Rezervasyon"
+    },
+    "mockData": {
+      "date": "3 Ağustos 2021"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "Tarih",
+      "trackingCode": "Takip Kodu",
+      "amount": "Tutar",
+      "paymentStatus": "Ödeme Durumu",
+      "transactionType": "İşlem Türü"
+    }
+  },
+  "BookingList": {
+    "filtersButton": "Filtreler",
+    "searchPlaceholder": "Otel adı giriniz...",
+    "passengerCount": "{count} yolcu",
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Beklemede",
+      "cancelled": "İptal Edildi"
+    },
+    "actions": {
+      "approve": "Rezervasyonu Onayla",
+      "cancel": "Rezervasyonu İptal Et",
+      "delete": "Sil",
+      "details": "Detaylar"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "Otel Adı",
+      "bookingDate": "Rezervasyon Tarihi",
+      "totalPrice": "Toplam Fiyat",
+      "passengerCount": "Yolcu Sayısı",
+      "bookingStatus": "Rezervasyon Durumu",
+      "paymentStatus": "Ödeme Durumu"
+    },
+    "mockData": {
+      "hotelName": "Saravan Ranin Oteli Reşt",
+      "bookingDate": "3 Ağustos 2021 / 13:33",
+      "totalPrice": "{price} Tümen"
+    }
   }
 }

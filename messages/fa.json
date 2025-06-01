@@ -275,5 +275,162 @@
   "Tours": {
     "TourPageTitle": "تور های گردشگری",
     "search": "جستجو کنید ..."
+  },
+  "Favorites": {
+    "title": "لیست رزرو های ذخیره شده",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "نام اقامتگاه",
+      "price": "قیمت",
+      "address": "آدرس"
+    },
+    "filters": {
+      "propertyType": ":نوع ملک"
+    },
+    "searchPlaceholder": "نام هتل مورد نظر .....",
+    "priceLabel": ":قیمت",
+    "addressLabel": ":آدرس",
+    "actions": {
+      "reserve": "رزرو",
+      "delete": "حذف"
+    }
+  },
+
+  "UserInformation": {
+    "profileImage": {
+      "title": "عکس نمایه شما",
+      "description": "میتوانید عکس نمایه خود را تغییر دهید"
+    },
+    "personalInfo": {
+      "title": "اطلاعات فردی",
+      "description": "میتوانید اطلاعات فردی خود را تغییر دهید"
+    },
+    "security": {
+      "title": "امنیت",
+      "description": "میتوانید در این بخش رمز خود را تغییر دهید"
+    },
+    "formFields": {
+      "firstName": "نام",
+      "lastName": "نام خانوادگی",
+      "email": "ایمیل",
+      "phoneNumber": "شماره موبایل"
+    },
+    "securityForm": {
+      "currentPassword": "رمز عبور قبلی",
+      "newPassword": "رمز عبور جدید",
+      "confirmPassword": "تکرار رمز عبور جدید"
+    },
+    "buttons": {
+      "applyChanges": "اعمال تغییرات",
+      "cancel": "انصراف"
+    },
+    "toast": {
+      "pending": "در حال پردازش",
+      "success": "اطلاعات با موفقیت تغییر یافت",
+      "error": "خطا!"
+    }
+  },
+  "DestinationsList": {
+    "title": "لیست مقاصد دیدنی های من",
+    "searchPlaceholder": "نام تور مورد نظر .....",
+    "addButton": "افزودن مقصد دیدنی +",
+    "provinceLabel": "استان",
+    "tableHeaders": {
+      "empty": "",
+      "city": "نام شهر",
+      "description": "توضیحات",
+      "status": "وضعیت"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در حال بررسی",
+      "rejected": "تایید نشده"
+    },
+    "actions": {
+      "edit": "ویرایش",
+      "delete": "حذف"
+    },
+    "deleteModal": {
+      "title": "آیا از حذف تور مطمئن هستید؟",
+      "description": "امکان بازگشت پس از حذف وجود ندارد!"
+    }
+  },
+  "Notifications": {
+    "title": "لیست اعلان ها شما",
+    "markAsRead": "علامت گذاری به عنوان خوانده شده",
+    "markAllAsReadConfirmation": "آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده علامت بزنید؟",
+    "notificationType": "نوع اعلان",
+    "dateLabel": ":تاریخ",
+    "status": {
+      "read": "خوانده شده",
+      "unread": "خوانده نشده"
+    },
+    "mockData": {
+      "date1": "12 مرداد - 1401 / 12:33",
+      "text1": "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
+      "text2": "خوش آمدید !"
+    }
+  },
+  "TransactionList": {
+    "title": "لیست تراکنش های شما",
+    "currency": "تومان",
+    "viewReceipt": "مشاهده رسید",
+    "statusLabel": "وضعیت",
+    "priceLabel": "قیمت",
+    "trackingCodeLabel": "شماره پیگیری",
+    "filters": {
+      "all": "همه",
+      "transactionType": "نوع تراکنش",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "rejected": "تایید نشده"
+    },
+    "types": {
+      "walletCharge": "شارژ کیف پول",
+      "reservation": "رزرو"
+    },
+    "mockData": {
+      "date": "12 مرداد 1401"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "تاریخ",
+      "trackingCode": "شماره پیگیری",
+      "amount": "مبلغ",
+      "paymentStatus": "وضعیت پرداخت",
+      "transactionType": "نوع تراکنش"
+    }
+  },
+  "BookingList": {
+    "filtersButton": "فیلتر ها",
+    "searchPlaceholder": "نام هتل مورد نظر .....",
+    "passengerCount": "{count} عدد مسافر",
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار",
+      "cancelled": "لغو شده"
+    },
+    "actions": {
+      "approve": "تایید رزرو",
+      "cancel": "لغو رزرو",
+      "delete": "حذف",
+      "details": "جزئیات"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "نام اقامتگاه",
+      "bookingDate": "تاریخ رزرو",
+      "totalPrice": "قیمت کل",
+      "passengerCount": "تعداد مسافر",
+      "bookingStatus": "وضعیت رزرو",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "mockData": {
+      "hotelName": "هتل سراوان رانین رشت",
+      "bookingDate": "12 مرداد 1401 / 13:33",
+      "totalPrice": "{price} تومان"
+    }
   }
 }

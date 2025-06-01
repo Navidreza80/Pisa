@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const destinations = [
   {
@@ -24,7 +25,7 @@ const destinations = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "شهری تاریخی با معماری اسلامی فوق‌العاده",
     province: "اصفهان",
-    status: "تایید شده",
+    status: "approved",
   },
   {
     id: 2,
@@ -32,7 +33,7 @@ const destinations = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "مقصدی خوش‌آب‌وهوا در شمال کشور",
     province: "مازندران",
-    status: "در حال بررسی",
+    status: "pending",
   },
   {
     id: 3,
@@ -40,23 +41,24 @@ const destinations = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "شهری شاعرانه و مملو از باغ و بناهای باستانی",
     province: "فارس",
-    status: "تایید نشده",
+    status: "rejected",
   },
 ];
 
-const provinces = ["همه", "اصفهان", "مازندران", "فارس"];
-
-const tableHeaderItems = [
-  { text: "نام شهر", clx: "rounded-r-xl" },
-  { text: "توضیحات", clx: null },
-  { text: "وضعیت", clx: null },
-  { text: "", clx: "rounded-l-xl" },
-];
+const provinces = ["all", "اصفهان", "مازندران", "فارس"];
 
 export default function DestinationsList() {
-  const [provinceFilter, setProvinceFilter] = useState("همه");
+  const t = useTranslations('DestinationsList');
+  const [provinceFilter, setProvinceFilter] = useState("all");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
+
+  const tableHeaderItems = [
+    { text: t('tableHeaders.city'), clx: "rounded-r-xl" },
+    { text: t('tableHeaders.description'), clx: null },
+    { text: t('tableHeaders.status'), clx: null },
+    { text: t('tableHeaders.empty'), clx: "rounded-l-xl" },
+  ];
 
   // Function to determine view mode based on screen size
   const handleResize = () => {
@@ -73,16 +75,16 @@ export default function DestinationsList() {
   }, []);
 
   const filteredDestinations = destinations.filter((d) => {
-    return provinceFilter === "همه" || d.province === provinceFilter;
+    return provinceFilter === "all" || d.province === provinceFilter;
   });
 
   const getStatusStyle = (status: string) => {
     switch (status) {
-      case "تایید شده":
+      case "approved":
         return "bg-green-500 text-white";
-      case "تایید نشده":
+      case "rejected":
         return "bg-red-500 text-white";
-      case "در حال بررسی":
+      case "pending":
         return "bg-yellow-400 text-black";
       default:
         return "";
@@ -93,13 +95,13 @@ export default function DestinationsList() {
     <div>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
-          لیست مقاصد دیدنی های من
+          {t('title')}
         </h1>
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto order-2 md:order-1">
           <FilterModal />
           <Input
             dir="rtl"
-            placeholder="نام تور مورد نظر ....."
+            placeholder={t('searchPlaceholder')}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
@@ -110,7 +112,7 @@ export default function DestinationsList() {
       <div className="md:hidden flex justify-end mb-4">
         <Link href="/dashboard/seller/locations/add">
           <Button className="bg-primary text-white">
-            افزودن مقصد دیدنی +
+            {t('addButton')}
           </Button>
         </Link>
       </div>
@@ -120,7 +122,7 @@ export default function DestinationsList() {
         <TableDashboard
           add={true}
           href={"/dashboard/seller/locations/add"}
-          addTitle="مقصد دیدنی"
+          addTitle={t('addButton')}
           tableHeader={tableHeaderItems}
           tableContent={filteredDestinations.map((locations) => (
             <tr
@@ -148,7 +150,7 @@ export default function DestinationsList() {
                     locations.status
                   )}`}
                 >
-                  {locations.status}
+                  {t(`status.${locations.status}`)}
                 </span>
               </td>
               <td className="py-2 px-4 text-left rounded-l-xl">
@@ -164,17 +166,17 @@ export default function DestinationsList() {
                   <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border">
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>ویرایش</h1>
+                        <h1>{t('actions.edit')}</h1>
                         <div className="my-auto">
                           <EditSVG />
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <ModalStep2
-                          name="حذف"
-                          desc="امکان بازگشت پس از حذف وجود ندارد!"
-                          title="آیا از حذف تور مطمئن هستید؟"
-                          button="حذف"
+                          name={t('actions.delete')}
+                          desc={t('deleteModal.description')}
+                          title={t('deleteModal.title')}
+                          button={t('actions.delete')}
                         />
                         <div className="my-auto">
                           <DeleteSVG />
@@ -208,7 +210,7 @@ export default function DestinationsList() {
                       location.status
                     )}`}
                   >
-                    {location.status}
+                    {t(`status.${location.status}`)}
                   </span>
                 </div>
               </div>
@@ -222,7 +224,7 @@ export default function DestinationsList() {
                 {/* Location details */}
                 <div className="text-right">
                   <p>{location.description}</p>
-                  <p className="text-text-secondary mt-2">استان: {location.province}</p>
+                  <p className="text-text-secondary mt-2">{t('provinceLabel')}: {location.province}</p>
                 </div>
 
                 {/* Action buttons */}
@@ -232,14 +234,14 @@ export default function DestinationsList() {
                     size="sm" 
                     className="text-red-500 border-red-200"
                   >
-                    حذف
+                    {t('actions.delete')}
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     className="border-primary text-primary"
                   >
-                    ویرایش
+                    {t('actions.edit')}
                   </Button>
                 </div>
               </div>

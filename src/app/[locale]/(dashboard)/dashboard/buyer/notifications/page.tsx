@@ -8,38 +8,39 @@ import TableDashboard from "@/components/dashboard/table";
 import Title from "@/components/dashboard/title";
 import WarningModal from "@/components/dashboard/warning-modal";
 import { TickSVG } from "@/components/svg";
+import { useTranslations } from "next-intl";
 import {
   DashboardBuyerNotifications,
   tableHeaderItems,
 } from "@/utils/constant/folder";
 
 export default function Notifications() {
+  const t = useTranslations('Notifications');
+
   // Mock data
   const data = [
     {
       id: 1,
-      date: "12 مرداد - 1401 / 12:33",
-      text: "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
+      date: t('mockData.date1'),
+      text: t('mockData.text1'),
     },
     {
       id: 2,
-      date: "12 مرداد - 1401 / 12:33",
-      text: "خوش آمدید !",
+      date: t('mockData.date1'), // Same date format
+      text: t('mockData.text2'),
     },
   ];
+
   return (
     <>
       <div className="flex justify-between flex-row-reverse mt-6">
-        <Title text="لیست اعلان ها شما" />
+        <Title text={t('title')} />
         <div className="flex gap-4 ">
-          <WarningModal
-            title="            آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده
-            علامت بزنید؟"
-          >
-            <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
+          <WarningModal title={t('markAllAsReadConfirmation')}>
+            <Button className="!w-auto">{t('markAsRead')}</Button>
           </WarningModal>
           <InputSelect
-            label="نوع اعلان :"
+            label={t('notificationType') + ":"}
             items={DashboardBuyerNotifications}
           />
         </div>
@@ -50,8 +51,8 @@ export default function Notifications() {
       <div className="hidden md:block">
         <TableDashboard
           isNotification={true}
-          notificationLineOne={<NotificationStatus text="خوانده نشده" />}
-          notificationLineTwo={<NotificationStatus text="خوانده شده" />}
+          notificationLineOne={<NotificationStatus text={t('status.unread')} />}
+          notificationLineTwo={<NotificationStatus text={t('status.read')} />}
           tableHeader={tableHeaderItems}
           tableContent={data.map((tx) => (
             <tr
@@ -66,7 +67,7 @@ export default function Notifications() {
               </td>
               <td>
                 <ButtonDashboard
-                  text="علامت گذاری به عنوان خوانده شده"
+                  text={t('markAsRead')}
                   clx="bg-primary"
                 >
                   <TickSVG />
@@ -86,7 +87,7 @@ export default function Notifications() {
             <div className="mt-3 space-y-2 text-right">
               <div className="flex justify-end items-center gap-2">
                 <span className="font-medium">{item.date}</span>
-                <span>:تاریخ</span>
+                <span>{t('dateLabel')}</span>
               </div>
 
               <div className="flex flex-col items-end">
@@ -94,7 +95,7 @@ export default function Notifications() {
               </div>
               <div dir="rtl" className="flex">
                 <ButtonDashboard
-                  text="علامت گذاری به عنوان خوانده شده"
+                  text={t('markAsRead')}
                   clx="bg-primary"
                 >
                   <TickSVG />

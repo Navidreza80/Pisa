@@ -7,11 +7,12 @@ import { useUser } from "@/utils/service/user/get";
 import { useEditUser } from "@/utils/service/user/put";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export default function Information() {
   const { mutate } = useEditUser();
   const { data } = useUser();
-  console.log(data);
+  const t = useTranslations('UserInformation');
 
   const formik = useFormik({
     initialValues: {
@@ -26,9 +27,9 @@ export default function Information() {
           await mutate(values);
         },
         {
-          pending: "در حال پردازش",
-          success: "اطلاعات با موفقیت تغییر یافت",
-          error: "خطا!",
+          pending: t('toast.pending'),
+          success: t('toast.success'),
+          error: t('toast.error'),
         }
       );
     },
@@ -37,44 +38,44 @@ export default function Information() {
   const inputs = [
     {
       name: "firstName",
-      placeHolder: "نام",
+      placeHolder: t('formFields.firstName'),
       value: formik.values.firstName,
       onChange: formik.handleChange,
     },
     {
       name: "lastName",
-      placeHolder: "نام خانوادگی",
+      placeHolder: t('formFields.lastName'),
       value: formik.values.lastName,
       onChange: formik.handleChange,
     },
     {
       name: "email",
-      placeHolder: "ایمیل",
+      placeHolder: t('formFields.email'),
       value: formik.values.email,
       onChange: formik.handleChange,
     },
     {
       name: "phoneNumber",
-      placeHolder: "شماره موبایل",
+      placeHolder: t('formFields.phoneNumber'),
       value: formik.values.phoneNumber,
       onChange: formik.handleChange,
     },
   ];
 
   const inputsSecurity = [
-    { placeHolder: "رمز عبور قبلی" },
-    { placeHolder: "رمز عبور جدید" },
-    { placeHolder: "تکرار رمز عبور جدید" },
+    { placeHolder: t('securityForm.currentPassword') },
+    { placeHolder: t('securityForm.newPassword') },
+    { placeHolder: t('securityForm.confirmPassword') },
   ];
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-8 text-center md:text-right">
         <h2 className="text-text text-[20px] font-extrabold font-yekan">
-          عکس نمایه شما
+          {t('profileImage.title')}
         </h2>
         <p className="text-text-secondary text-[16px] font-[400] font-yekan">
-          میتوانید عکس نمایه خود را تغییر دهید
+          {t('profileImage.description')}
         </p>
         <div className="w-30 h-30 bg-border mx-auto rounded-full relative">
           <input
@@ -103,19 +104,19 @@ export default function Information() {
       <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
         <div className="text-center md:text-right">
           <h2 className="text-text text-[20px] font-extrabold font-yekan ">
-            اطلاعات فردی
+            {t('personalInfo.title')}
           </h2>
           <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
-            میتوانید اطلاعات فردی خود را تغییر دهید
+            {t('personalInfo.description')}
           </p>
           <div className="mt-4 flex justify-center md:justify-end gap-2">
             <Button
               type="submit"
               className="bg-primary hover:bg-primary rounded-xl text-white cursor-pointer"
             >
-              اعمال تغییرات
+              {t('buttons.applyChanges')}
             </Button>
-            <Button variant="ghost">انصراف</Button>
+            <Button variant="ghost">{t('buttons.cancel')}</Button>
           </div>
         </div>
         <div
@@ -142,16 +143,16 @@ export default function Information() {
       <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
         <div className="text-center md:text-right">
           <h2 className="text-text text-[20px] font-extrabold font-yekan ">
-            امنیت
+            {t('security.title')}
           </h2>
           <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
-            میتوانید در این بخش رمز خود را تغییر دهید
+            {t('security.description')}
           </p>
           <div className="mt-4 flex justify-center md:justify-end gap-2">
             <Button className="bg-primary cursor-pointer rounded-xl hover:bg-primary text-white">
-              اعمال تغییرات
+              {t('buttons.applyChanges')}
             </Button>
-            <Button variant="ghost">انصراف</Button>
+            <Button variant="ghost">{t('buttons.cancel')}</Button>
           </div>
         </div>
 

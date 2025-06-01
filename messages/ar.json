@@ -235,5 +235,161 @@
     "bathroomsValue": "حمام",
     "parkingsValue": "موقف سيارات",
     "roomsValue": "غرفة"
+  },
+    "Favorites": {
+    "title": "قائمة الحجوزات المحفوظة",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "اسم الفندق",
+      "price": "السعر",
+      "address": "العنوان"
+    },
+    "filters": {
+      "propertyType": "نوع العقار"
+    },
+    "searchPlaceholder": "اكتب اسم الفندق...",
+    "priceLabel": "السعر",
+    "addressLabel": "العنوان",
+    "actions": {
+      "reserve": "احجز",
+      "delete": "حذف"
+    }
+  },
+  "UserInformation": {
+    "profileImage": {
+      "title": "صورتك الشخصية",
+      "description": "يمكنك تغيير صورتك الشخصية"
+    },
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "description": "يمكنك تعديل معلوماتك الشخصية"
+    },
+    "security": {
+      "title": "الأمان",
+      "description": "يمكنك تغيير كلمة المرور من هنا"
+    },
+    "formFields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phoneNumber": "رقم الهاتف"
+    },
+    "securityForm": {
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "buttons": {
+      "applyChanges": "تطبيق التغييرات",
+      "cancel": "إلغاء"
+    },
+    "toast": {
+      "pending": "جاري المعالجة",
+      "success": "تم تحديث المعلومات بنجاح",
+      "error": "خطأ!"
+    }
+  },
+    "DestinationsList": {
+    "title": "قائمة وجهاتي السياحية",
+    "searchPlaceholder": "اكتب اسم الجولة...",
+    "addButton": "إضافة وجهة +",
+    "provinceLabel": "المحافظة",
+    "tableHeaders": {
+      "empty": "",
+      "city": "اسم المدينة",
+      "description": "الوصف",
+      "status": "الحالة"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "قيد المراجعة",
+      "rejected": "مرفوض"
+    },
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "deleteModal": {
+      "title": "هل أنت متأكد من حذف الجولة؟",
+      "description": "لا يمكن التراجع بعد الحذف!"
+    }
+  },
+  "Notifications": {
+    "title": "قائمة الإشعارات الخاصة بك",
+    "markAsRead": "تحديد كمقروء",
+    "markAllAsReadConfirmation": "هل أنت متأكد أنك تريد تحديد جميع الإشعارات كمقروءة؟",
+    "notificationType": "نوع الإشعار",
+    "dateLabel": "التاريخ",
+    "status": {
+      "read": "مقروء",
+      "unread": "غير مقروء"
+    },
+    "mockData": {
+      "date1": "12 أغسطس 2021 / 12:33",
+      "text1": "قام البائع أمير محمد ملايي بإدراج منزل للحجز",
+      "text2": "مرحباً بك!"
+    }
+  },
+  "TransactionList": {
+    "title": "قائمة المعاملات الخاصة بك",
+    "currency": "تومان",
+    "viewReceipt": "عرض الإيصال",
+    "statusLabel": "الحالة",
+    "priceLabel": "السعر",
+    "trackingCodeLabel": "رمز التتبع",
+    "filters": {
+      "all": "الكل",
+      "transactionType": "نوع المعاملة",
+      "paymentStatus": "حالة الدفع"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوض"
+    },
+    "types": {
+      "walletCharge": "شحن المحفظة",
+      "reservation": "حجز"
+    },
+    "mockData": {
+      "date": "12 أغسطس 2021"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "التاريخ",
+      "trackingCode": "رمز التتبع",
+      "amount": "المبلغ",
+      "paymentStatus": "حالة الدفع",
+      "transactionType": "نوع المعاملة"
+    }
+  },
+  "BookingList": {
+    "filtersButton": "الفلاتر",
+    "searchPlaceholder": "اكتب اسم الفندق...",
+    "passengerCount": "{count} راكب",
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "في الانتظار",
+      "cancelled": "تم الإلغاء"
+    },
+    "actions": {
+      "approve": "الموافقة على الحجز",
+      "cancel": "إلغاء الحجز",
+      "delete": "حذف",
+      "details": "تفاصيل"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "اسم الفندق",
+      "bookingDate": "تاريخ الحجز",
+      "totalPrice": "السعر الإجمالي",
+      "passengerCount": "عدد الركاب",
+      "bookingStatus": "حالة الحجز",
+      "paymentStatus": "حالة الدفع"
+    },
+    "mockData": {
+      "hotelName": "فندق سراوان رانين، رشت",
+      "bookingDate": "12 أغسطس 2021 / 13:33",
+      "totalPrice": "{price} تومان"
+    }
   }
 }

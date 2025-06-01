@@ -17,62 +17,65 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-
-const bookings = [
-  {
-    id: 1,
-    hotel: "هتل سراوان رانین رشت",
-    date: "12 مرداد 1401 / 13:33",
-    total: "1,800,000 تومان",
-    passengers: 2,
-    status: "تایید شده",
-    paymentStatus: "تایید شده",
-    cancelled: false,
-  },
-  {
-    id: 2,
-    hotel: "هتل سراوان رانین رشت",
-    date: "12 مرداد 1401 / 13:33",
-    total: "1,800,000 تومان",
-    passengers: 2,
-    status: "در انتظار",
-    paymentStatus: "تایید شده",
-    cancelled: false,
-  },
-  {
-    id: 3,
-    hotel: "هتل سراوان رانین رشت",
-    date: "12 مرداد 1401 / 13:33",
-    total: "1,800,000 تومان",
-    passengers: 2,
-    status: "تایید شده",
-    paymentStatus: "لغو شده",
-    cancelled: true,
-  },
-];
+import { useTranslations } from "next-intl";
 
 const tableHeaderItems = [
-  { text: "نام اقامتگاه", clx: "rounded-r-xl" },
-  { text: "تاریخ رزرو", clx: null },
-  { text: "قیمت کل", clx: null },
-  { text: "تعداد مسافر", clx: null },
-  { text: " وضعیت رزرو", clx: null },
-  { text: " وضعیت پرداخت", clx: null },
-  { text: "", clx: "rounded-l-xl" },
+  { text: "hotelName", clx: "rounded-r-xl" },
+  { text: "bookingDate", clx: null },
+  { text: "totalPrice", clx: null },
+  { text: "passengerCount", clx: null },
+  { text: "bookingStatus", clx: null },
+  { text: "paymentStatus", clx: null },
+  { text: "empty", clx: "rounded-l-xl" },
 ];
 
 export default function BookingList() {
+  const t = useTranslations('BookingList');
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
+
+  // Mock data with translations
+  const bookings = [
+    {
+      id: 1,
+      hotel: t('mockData.hotelName'),
+      date: t('mockData.bookingDate'),
+      total: t('mockData.totalPrice', { price: "1,800,000" }),
+      passengers: 2,
+      status: t('status.approved'),
+      paymentStatus: t('status.approved'),
+      cancelled: false,
+    },
+    {
+      id: 2,
+      hotel: t('mockData.hotelName'),
+      date: t('mockData.bookingDate'),
+      total: t('mockData.totalPrice', { price: "1,800,000" }),
+      passengers: 2,
+      status: t('status.pending'),
+      paymentStatus: t('status.approved'),
+      cancelled: false,
+    },
+    {
+      id: 3,
+      hotel: t('mockData.hotelName'),
+      date: t('mockData.bookingDate'),
+      total: t('mockData.totalPrice', { price: "1,800,000" }),
+      passengers: 2,
+      status: t('status.approved'),
+      paymentStatus: t('status.cancelled'),
+      cancelled: true,
+    },
+  ];
 
   return (
     <>
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[19px]">
         <Button className="bg-primary text-white h-12 w-full md:w-auto">
-          فیلتر ها
+          {t('filtersButton')}
         </Button>
         <Input
           dir="rtl"
-          placeholder="نام هتل مورد نظر ....."
+          placeholder={t('searchPlaceholder')}
           className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
         />
       </div>
@@ -83,28 +86,33 @@ export default function BookingList() {
       <div className="hidden md:block">
         <TableDashboard
           headerSecondary={true}
-          tableHeader={tableHeaderItems}
+          tableHeader={tableHeaderItems.map(item => ({
+            ...item,
+            text: t(`tableHeaders.${item.text}`)
+          }))}
           tableContent={bookings.map((booking) => (
             <tr
               key={booking.id}
               className="text-right border-b hover:bg-background/30"
             >
-              <td className="py-2 px-4  text-[18px] font-medium">
+              <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.hotel}
               </td>
-              <td className="py-2 px-4  text-[18px] font-medium">
+              <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.date}
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.total}
               </td>
-              <td className="py-2 px-4 text-[18px] font-medium">{`${booking.passengers} عدد مسافر`}</td>
+              <td className="py-2 px-4 text-[18px] font-medium">
+                {t('passengerCount', { count: booking.passengers })}
+              </td>
               <td className="py-2 px-4 text-[13px] font-medium">
                 <span
                   className={cn(
                     "px-2 py-1 rounded-full text-white text-xs",
-                    booking.status === "تایید شده" && "bg-lime-400",
-                    booking.status === "در انتظار" && "bg-orange-400"
+                    booking.status === t('status.approved') && "bg-lime-400",
+                    booking.status === t('status.pending') && "bg-orange-400"
                   )}
                 >
                   {booking.status}
@@ -114,8 +122,8 @@ export default function BookingList() {
                 <span
                   className={cn(
                     "px-2 py-1 rounded-full text-white text-xs",
-                    booking.paymentStatus === "تایید شده" && "bg-lime-400",
-                    booking.paymentStatus === "لغو شده" && "bg-rose-400"
+                    booking.paymentStatus === t('status.approved') && "bg-lime-400",
+                    booking.paymentStatus === t('status.cancelled') && "bg-rose-400"
                   )}
                 >
                   {booking.paymentStatus}
@@ -134,13 +142,13 @@ export default function BookingList() {
                   <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>تایید رزرو</h1>
+                        <h1>{t('actions.approve')}</h1>
                         <div className="my-auto">
                           <CheckPopover />
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>لغو رزرو</h1>
+                        <h1>{t('actions.cancel')}</h1>
                         <div className="my-auto">
                           <CanclePopover />
                         </div>
@@ -152,7 +160,7 @@ export default function BookingList() {
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                        <h1>حذف</h1>
+                        <h1>{t('actions.delete')}</h1>
                         <div className="my-auto">
                           <DeletePopover />
                         </div>
@@ -180,30 +188,32 @@ export default function BookingList() {
                 {/* Booking details */}
                 <div className="flex flex-col gap-2 text-right">
                   <div className="space-y-1">
-                    <p className="text-sm text-text-secondary">:تاریخ رزرو</p>
+                    <p className="text-sm text-text-secondary">:{t('tableHeaders.bookingDate')}</p>
                     <p className="font-medium">{booking.date}</p>
                   </div>
                   
                   <div className="space-y-1">
-                    <p className="text-sm text-text-secondary">:قیمت کل</p>
+                    <p className="text-sm text-text-secondary">:{t('tableHeaders.totalPrice')}</p>
                     <p className="font-medium">{booking.total}</p>
                   </div>
                   
                   <div className="space-y-1">
-                    <p className="text-sm text-text-secondary">:تعداد مسافر</p>
-                    <p className="font-medium">{`${booking.passengers} عدد مسافر`}</p>
+                    <p className="text-sm text-text-secondary">:{t('tableHeaders.passengerCount')}</p>
+                    <p className="font-medium">
+                      {t('passengerCount', { count: booking.passengers })}
+                    </p>
                   </div>
                 </div>
 
                 {/* Status badges */}
                 <div className="flex flex-col justify-end gap-2 pt-2">
                   <div className="flex flex-col items-end gap-1">
-                    <span className="text-sm text-text-secondary">:وضعیت رزرو</span>
+                    <span className="text-sm text-text-secondary">:{t('tableHeaders.bookingStatus')}</span>
                     <span
                       className={cn(
                         "px-2 py-1 rounded-full text-white text-xs",
-                        booking.status === "تایید شده" && "bg-lime-400",
-                        booking.status === "در انتظار" && "bg-orange-400"
+                        booking.status === t('status.approved') && "bg-lime-400",
+                        booking.status === t('status.pending') && "bg-orange-400"
                       )}
                     >
                       {booking.status}
@@ -211,12 +221,12 @@ export default function BookingList() {
                   </div>
                   
                   <div className="flex flex-col items-end gap-1">
-                    <span className="text-sm text-text-secondary">:وضعیت پرداخت</span>
+                    <span className="text-sm text-text-secondary">:{t('tableHeaders.paymentStatus')}</span>
                     <span
                       className={cn(
                         "px-2 py-1 rounded-full text-white text-xs",
-                        booking.paymentStatus === "تایید شده" && "bg-lime-400",
-                        booking.paymentStatus === "لغو شده" && "bg-rose-400"
+                        booking.paymentStatus === t('status.approved') && "bg-lime-400",
+                        booking.paymentStatus === t('status.cancelled') && "bg-rose-400"
                       )}
                     >
                       {booking.paymentStatus}
@@ -231,23 +241,20 @@ export default function BookingList() {
                     size="sm" 
                     className="text-red-500 border-red-200"
                   >
-                    حذف
+                    {t('actions.delete')}
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     className="border-orange-200 text-orange-500"
                   >
-                    لغو رزرو
+                    {t('actions.cancel')}
                   </Button>
                   <Button 
                     size="sm"
                     className="bg-primary text-white"
-                    onClick={() => {
-                      // Open reserve detail
-                    }}
                   >
-                    جزئیات
+                    {t('actions.details')}
                   </Button>
                 </div>
               </div>
