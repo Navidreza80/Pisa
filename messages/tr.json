@@ -363,6 +363,7 @@
     }
   },
   "BookingList": {
+    "title": "Rezervasyonlarınızın Listesi",
     "filtersButton": "Filtreler",
     "searchPlaceholder": "Otel adı giriniz...",
     "passengerCount": "{count} yolcu",

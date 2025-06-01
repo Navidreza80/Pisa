@@ -404,6 +404,7 @@
     }
   },
   "BookingList": {
+    "title": "لیست رزرو های شما",
     "filtersButton": "فیلتر ها",
     "searchPlaceholder": "نام هتل مورد نظر .....",
     "passengerCount": "{count} عدد مسافر",

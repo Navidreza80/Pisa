@@ -365,6 +365,7 @@
     }
   },
   "BookingList": {
+    "title": "Your Reservations List",
     "filtersButton": "Filters",
     "searchPlaceholder": "Enter hotel name...",
     "passengerCount": "{count} passengers",

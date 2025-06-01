@@ -363,6 +363,7 @@
     }
   },
   "BookingList": {
+    "title": "قائمة حجوزاتك",
     "filtersButton": "الفلاتر",
     "searchPlaceholder": "اكتب اسم الفندق...",
     "passengerCount": "{count} راكب",
