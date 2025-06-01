@@ -96,7 +96,7 @@ function Login() {
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
-          type="email"
+          type="text"
         >
           {formik.errors.email && (
             <span className="text-red-500 text-sm text-right">

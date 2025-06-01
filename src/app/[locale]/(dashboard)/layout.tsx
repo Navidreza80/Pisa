@@ -18,6 +18,7 @@ import { JwtPayload } from "@/types/user";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode } from "jwt-decode";
 import "../globals.css";
+import TokenRefresher from "@/components/common/TokenRefresher";
 
 // metadata
 export const metadata: Metadata = {
@@ -71,6 +72,7 @@ export default async function RootLayout({
               </div>
               <BuyerSideBar />
             </div>
+            <TokenRefresher />
             <FloatingActions />
           </Providers>
         </NextIntlClientProvider>

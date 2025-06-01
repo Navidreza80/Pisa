@@ -1,11 +1,12 @@
 "use client";
-import InputSelect from "@/components/dashboard/buyer/inputSelect";
 import Line from "@/components/dashboard/buyer/line";
 import ModalStep2 from "@/components/dashboard/buyer/modalStep2";
 import FilterModal from "@/components/dashboard/filter-modal";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import EditSVG from "@/components/dashboard/svg/EditSVG";
 import TableDashboard from "@/components/dashboard/table";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
@@ -13,7 +14,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const destinations = [
   {
@@ -54,6 +56,21 @@ const tableHeaderItems = [
 export default function DestinationsList() {
   const [provinceFilter, setProvinceFilter] = useState("همه");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
+
+  // Function to determine view mode based on screen size
+  const handleResize = () => {
+    if (typeof window !== 'undefined') {
+      setViewMode(window.innerWidth < 768 ? 'card' : 'table');
+    }
+  };
+
+  // Set initial view mode and add resize listener
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const filteredDestinations = destinations.filter((d) => {
     return provinceFilter === "همه" || d.province === provinceFilter;
@@ -89,76 +106,147 @@ export default function DestinationsList() {
       </div>
       <Line />
 
-      <TableDashboard
-      add={true}
-        href={"/dashboard/seller/locations/add"}
-        addTitle="مقصد دیدنی"
-        tableHeader={tableHeaderItems}
-        tableContent={filteredDestinations.map((locations) => (
-          <tr
-            key={locations.id}
-            className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
-          >
-            <td className="pl-6 rounded-r-xl">
-              <div className="flex gap-2">
-                <div className="bg-text-secondary/30 w-27 h-20 m-0.5 overflow-hidden rounded-[12px]" >
-                  <Image className="w-27 h-20" width={108} height={80} src={locations.image} alt=""/>
+      {/* Add button for mobile view */}
+      <div className="md:hidden flex justify-end mb-4">
+        <Link href="/dashboard/seller/locations/add">
+          <Button className="bg-primary text-white">
+            افزودن مقصد دیدنی +
+          </Button>
+        </Link>
+      </div>
+
+      {/* Table view for desktop */}
+      <div className="hidden md:block">
+        <TableDashboard
+          add={true}
+          href={"/dashboard/seller/locations/add"}
+          addTitle="مقصد دیدنی"
+          tableHeader={tableHeaderItems}
+          tableContent={filteredDestinations.map((locations) => (
+            <tr
+              key={locations.id}
+              className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+            >
+              <td className="pl-6 rounded-r-xl">
+                <div className="flex gap-2">
+                  <div className="bg-text-secondary/30 w-27 h-20 m-0.5 overflow-hidden rounded-[12px]" >
+                    <Image className="w-27 h-20" width={108} height={80} src={locations.image} alt=""/>
+                  </div>
+                  <div className="py-7  text-[18px] font-medium">
+                    {locations.name}
+                  </div>
                 </div>
-                <div className="py-7  text-[18px] font-medium">
-                  {locations.name}
+              </td>
+              <td className="p-2 text-[16px]">
+                {locations.description.length > 20
+                  ? `${locations.description.substring(0, 20)}...`
+                  : locations.description}
+              </td>
+              <td className="p-2 text-[14px]">
+                <span
+                  className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(
+                    locations.status
+                  )}`}
+                >
+                  {locations.status}
+                </span>
+              </td>
+              <td className="py-2 px-4 text-left rounded-l-xl">
+                <Popover
+                  open={openPopoverId === locations.id}
+                  onOpenChange={(open) =>
+                    setOpenPopoverId(open ? locations.id : null)
+                  }
+                >
+                  <PopoverTrigger asChild>
+                    <div className="text-2xl font-bold cursor-pointer">...</div>
+                  </PopoverTrigger>
+                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border">
+                    <div className="space-y-2">
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
+                        <h1>ویرایش</h1>
+                        <div className="my-auto">
+                          <EditSVG />
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
+                        <ModalStep2
+                          name="حذف"
+                          desc="امکان بازگشت پس از حذف وجود ندارد!"
+                          title="آیا از حذف تور مطمئن هستید؟"
+                          button="حذف"
+                        />
+                        <div className="my-auto">
+                          <DeleteSVG />
+                        </div>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </td>
+            </tr>
+          ))}
+        />
+      </div>
+
+      {/* Card view for mobile */}
+      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
+        {filteredDestinations.map((location) => (
+          <Card key={location.id} className="overflow-hidden border-border">
+            <CardContent className="p-0">
+              <div className="relative">
+                <Image 
+                  src={location.image} 
+                  alt={location.name}
+                  width={400}
+                  height={150}
+                  className="w-full h-[150px] object-cover"
+                />
+                <div className="absolute top-2 left-2">
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(
+                      location.status
+                    )}`}
+                  >
+                    {location.status}
+                  </span>
                 </div>
               </div>
-            </td>
-            <td className="p-2 text-[16px]">
-              {locations.description.length > 20
-                ? `${locations.description.substring(0, 20)}...`
-                : locations.description}
-            </td>
-            <td className="p-2 text-[14px]">
-              <span
-                className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(
-                  locations.status
-                )}`}
-              >
-                {locations.status}
-              </span>
-            </td>
-            <td className="py-2 px-4 text-left rounded-l-xl">
-              <Popover
-                open={openPopoverId === locations.id}
-                onOpenChange={(open) =>
-                  setOpenPopoverId(open ? locations.id : null)
-                }
-              >
-                <PopoverTrigger asChild>
-                  <div className="text-2xl font-bold cursor-pointer">...</div>
-                </PopoverTrigger>
-                <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                  <div className="space-y-2">
-                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                      <h1>ویرایش</h1>
-                      <div className="my-auto">
-                        <EditSVG />
-                      </div>
-                    </div>
-                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                      <ModalStep2
-                        name="حذف"
-                        desc="امکان بازگشت پس از حذف وجود ندارد!"
-                        title="آیا از حذف تور مطمئن هستید؟"
-                        button="حذف"
-                      />
-                      <div className="my-auto">
-                        <DeleteSVG />
-                      </div>
-                    </div>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </td>
-          </tr>
+              
+              <div className="p-4 space-y-3">
+                {/* Header with location name and actions */}
+                <div className="flex justify-end items-start">
+                  <h2 className="text-lg font-bold text-right">{location.name}</h2>
+                </div>
+
+                {/* Location details */}
+                <div className="text-right">
+                  <p>{location.description}</p>
+                  <p className="text-text-secondary mt-2">استان: {location.province}</p>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex justify-end gap-2 pt-2 border-t border-border mt-3">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-red-500 border-red-200"
+                  >
+                    حذف
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-primary text-primary"
+                  >
+                    ویرایش
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         ))}
-      />
+      </div>
     </div>
   );
 }

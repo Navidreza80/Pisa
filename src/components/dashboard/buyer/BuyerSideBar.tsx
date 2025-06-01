@@ -101,7 +101,7 @@ function BuyerSideBar() {
 
   const items = isSeller ? sellerItems : buyerItems;
 
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   const toggleSideBar = () => {
     setCollapsed((prev) => !prev);

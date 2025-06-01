@@ -18,7 +18,7 @@ import { jwtDecode } from "jwt-decode";
  * @returns Login user response
  */
 export const EditUserInfo = async (id, params) => {
-  return http.put(`/users/62`, params);
+  return http.put(`/users/${id}`, params);
 };
 
 /**
@@ -28,11 +28,11 @@ export const EditUserInfo = async (id, params) => {
  */
 export const useEditUser = () => {
   const token = getClientCookie("clientAccessToken");
-  const { id } = typeof token == "string" && jwtDecode(token);
+  const decoded = typeof token == "string" && jwtDecode(token);
   return useMutation({
     mutationKey: ["EDIT_INFORMATION"],
     mutationFn: (params) => {
-      EditUserInfo(id, params);
+      EditUserInfo(decoded.id, params);
     },
   });
 };

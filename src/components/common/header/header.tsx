@@ -36,7 +36,8 @@ export default async function Header() {
   var decodedUser;
   if (token) {
     decodedUser =
-      typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+    typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+    console.log(decodedUser)
   } else {
     decodedUser = await auth();
     decodedUser = decodedUser?.user

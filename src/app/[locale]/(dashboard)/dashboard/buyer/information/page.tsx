@@ -3,30 +3,69 @@
 import CameraSVG from "@/components/dashboard/svg/CameraSVG";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUser } from "@/utils/service/user/get";
 import { useEditUser } from "@/utils/service/user/put";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function Information() {
   const { mutate } = useEditUser();
+  const { data } = useUser();
+  console.log(data);
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      profilePicture: "",
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      email: data?.email,
+      phoneNumber: data?.phoneNumber,
     },
     onSubmit: (values) => {
-      mutate({
-        firstName: values.firstName,
-        lastName: values.lastName,
-        fullName: `${values.firstName} ${values.lastName}`,
-        phoneNumber: values.phoneNumber,
-        profilePicture: values.profilePicture,
-      });
+      toast.promise(
+        async () => {
+          await mutate(values);
+        },
+        {
+          pending: "در حال پردازش",
+          success: "اطلاعات با موفقیت تغییر یافت",
+          error: "خطا!",
+        }
+      );
     },
   });
+
+  const inputs = [
+    {
+      name: "firstName",
+      placeHolder: "نام",
+      value: formik.values.firstName,
+      onChange: formik.handleChange,
+    },
+    {
+      name: "lastName",
+      placeHolder: "نام خانوادگی",
+      value: formik.values.lastName,
+      onChange: formik.handleChange,
+    },
+    {
+      name: "email",
+      placeHolder: "ایمیل",
+      value: formik.values.email,
+      onChange: formik.handleChange,
+    },
+    {
+      name: "phoneNumber",
+      placeHolder: "شماره موبایل",
+      value: formik.values.phoneNumber,
+      onChange: formik.handleChange,
+    },
+  ];
+
+  const inputsSecurity = [
+    { placeHolder: "رمز عبور قبلی" },
+    { placeHolder: "رمز عبور جدید" },
+    { placeHolder: "تکرار رمز عبور جدید" },
+  ];
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -72,46 +111,30 @@ export default function Information() {
           <div className="mt-4 flex justify-center md:justify-end gap-2">
             <Button
               type="submit"
-              className="bg-primary/80 hover:bg-primary text-white"
+              className="bg-primary hover:bg-primary rounded-xl text-white cursor-pointer"
             >
               اعمال تغییرات
             </Button>
-            <Button variant="outline">انصراف</Button>
+            <Button variant="ghost">انصراف</Button>
           </div>
         </div>
-
         <div
           dir="rtl"
-          className="flex flex-col flex-wrap gap-4 w-full md:w-100"
+          className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]"
         >
-          <Input
-            name="firstName"
-            placeholder="نام"
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-          />
-          <Input
-            name="lastName"
-            placeholder="نام خانوادگی"
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
-          />
-          <Input
-            name="email"
-            placeholder="ایمیل"
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-          />
-          <Input
-            name="phoneNumber"
-            placeholder="شماره موبایل"
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            value={formik.values.phoneNumber}
-            onChange={formik.handleChange}
-          />
+          {inputs.map((item) => {
+            return (
+              <Input
+                defaultValue={item.value}
+                key={item.name}
+                name={item.name}
+                placeholder={item.placeHolder}
+                className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+                value={item.value}
+                onChange={formik.handleChange}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -125,31 +148,26 @@ export default function Information() {
             میتوانید در این بخش رمز خود را تغییر دهید
           </p>
           <div className="mt-4 flex justify-center md:justify-end gap-2">
-            <Button className="bg-primary/80 hover:bg-primary text-white">
+            <Button className="bg-primary cursor-pointer rounded-xl hover:bg-primary text-white">
               اعمال تغییرات
             </Button>
-            <Button variant="outline">انصراف</Button>
+            <Button variant="ghost">انصراف</Button>
           </div>
         </div>
 
-        <div>
-          <div
-            dir="rtl"
-            className="flex flex-col flex-wrap gap-4 w-full md:w-100"
-          >
-            <Input
-              placeholder="رمز عبور قبلی"
-              className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            />
-            <Input
-              placeholder="رمز عبور جدید"
-              className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            />
-            <Input
-              placeholder="تکرار رمز عبور جدید"
-              className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            />
-          </div>
+        <div
+          dir="rtl"
+          className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]"
+        >
+          {inputsSecurity.map((item) => {
+            return (
+              <Input
+                key={item.placeHolder}
+                placeholder={item.placeHolder}
+                className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+              />
+            );
+          })}
         </div>
       </div>
     </form>
