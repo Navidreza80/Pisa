@@ -8,34 +8,35 @@ import "./[locale]/globals.css";
 // Translation items
 const translations = {
   fa: {
-    title: "صفحه پیدا نشد",
-    subtitle: "به نظر می‌رسد در فضا گم شده‌اید!",
-    description: "صفحه‌ای که به دنبال آن هستید وجود ندارد یا به آدرس دیگری منتقل شده است.",
+    title: "خطای سیستم",
+    subtitle: "مشکلی در سیستم رخ داده است",
+    description: "متأسفانه با خطایی مواجه شدیم. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.",
     backToHome: "بازگشت به خانه",
     tryAgain: "تلاش مجدد",
     explore: "کاوش در سایت",
     langSwitch: "EN",
-    error: "خطای 404",
+    error: "خطا",
   },
   en: {
-    title: "Page Not Found",
-    subtitle: "Looks like you're lost in space!",
-    description: "The page you are looking for doesn't exist or has been moved to another address.",
+    title: "System Error",
+    subtitle: "Something went wrong",
+    description: "We encountered an error. Please try again or contact support.",
     backToHome: "Back to Home",
     tryAgain: "Try Again",
     explore: "Explore Site",
     langSwitch: "فا",
-    error: "Error 404",
+    error: "Error",
   },
 };
 
-export default function NotFoundPage() {
+export default function ErrorPage({ error, reset }: { error: Error; reset: () => void }) {
   // Hooks
   const [locale, setLocale] = useState<"fa" | "en">("fa");
   const [isDark, setIsDark] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
+  const [crashEffect, setCrashEffect] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -67,6 +68,12 @@ export default function NotFoundPage() {
       setGlitchActive(true);
       setTimeout(() => setGlitchActive(false), 200);
     }, 3000);
+    
+    // Crash effect interval - background crashes every 5 seconds
+    const crashInterval = setInterval(() => {
+      setCrashEffect(true);
+      setTimeout(() => setCrashEffect(false), 800);
+    }, 5000);
     
     // Add mouse move listener
     window.addEventListener('mousemove', handleMouseMove);
@@ -130,6 +137,7 @@ export default function NotFoundPage() {
     
     return () => {
       clearInterval(glitchInterval);
+      clearInterval(crashInterval);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [isDark]);
@@ -155,15 +163,15 @@ export default function NotFoundPage() {
   
   // Reload page
   const reloadPage = () => {
-    window.location.reload();
+    reset();
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white to-blue-50 dark:from-black dark:to-gray-900 transition-colors duration-500">
+    <div className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${crashEffect ? 'bg-red-900 dark:bg-red-900' : 'bg-gradient-to-b from-white to-blue-50 dark:from-black dark:to-gray-900'}`}>
       {/* Stars background */}
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 z-0 opacity-70"
+        className={`absolute inset-0 z-0 opacity-70 ${crashEffect ? 'hidden' : 'block'}`}
       />
       {/* Main content */}
       <div 
@@ -174,13 +182,13 @@ export default function NotFoundPage() {
           className={`max-w-3xl w-full relative ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
         >
           {/* 3D Floating elements with parallax effect */}
-          <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl"
+          <div className={`absolute -top-20 -left-20 w-40 h-40 ${crashEffect ? 'bg-red-500/30 dark:bg-red-500/40' : 'bg-primary/10 dark:bg-primary/20'} rounded-full blur-3xl`}
             style={{
               transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)`,
               transition: 'transform 0.1s ease-out'
             }}
           />
-          <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-indigo-400/10 dark:bg-indigo-400/20 rounded-full blur-3xl"
+          <div className={`absolute -bottom-20 -right-20 w-60 h-60 ${crashEffect ? 'bg-red-400/30 dark:bg-red-400/40' : 'bg-indigo-400/10 dark:bg-indigo-400/20'} rounded-full blur-3xl`}
             style={{
               transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px)`,
               transition: 'transform 0.1s ease-out'
@@ -189,7 +197,7 @@ export default function NotFoundPage() {
           
           {/* Main card */}
           <div 
-            className={`relative bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/50 dark:border-gray-800/50 shadow-2xl ${glitchActive ? 'animate-glitch' : ''}`}
+            className={`relative ${crashEffect ? 'bg-red-800/40 dark:bg-red-900/60 animate-shake' : 'bg-white/40 dark:bg-gray-900/40'} backdrop-blur-xl rounded-3xl overflow-hidden border ${crashEffect ? 'border-red-500/50 dark:border-red-800/50' : 'border-white/50 dark:border-gray-800/50'} shadow-2xl ${glitchActive ? 'animate-glitch' : ''}`}
             style={{
               transform: `perspective(1000px) rotateX(${mousePosition.y * 5}deg) rotateY(${mousePosition.x * -5}deg)`,
               transition: 'transform 0.1s ease-out'
@@ -202,36 +210,43 @@ export default function NotFoundPage() {
             
             {/* Card content */}
             <div className="p-8 md:p-12">
-              {/* 404 Text with 3D effect */}
+              {/* Error icon with 3D effect */}
               <div className="relative mb-8 flex justify-center overflow-hidden">
-                <h1 className="text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary to-indigo-400 dark:from-primary dark:to-indigo-300 leading-none select-none">
-                  404
-                </h1>
+                <div className="text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-red-700 dark:from-red-500 dark:to-red-300 leading-none select-none flex items-center justify-center">
+                  <AlertTriangle className="w-32 h-32 text-red-500" />
+                </div>
                 
                 {/* Shadow effect */}
-                <h1 className="absolute text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary/10 to-indigo-400/10 dark:from-primary/10 dark:to-indigo-300/10 leading-none blur-md select-none"
+                <div className="absolute text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-red-500/10 to-red-700/10 dark:from-red-500/10 dark:to-red-300/10 leading-none blur-md select-none flex items-center justify-center"
                   style={{
                     transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
                     transition: 'transform 0.1s ease-out'
                   }}
                 >
-                  404
-                </h1>
+                  <AlertTriangle className="w-32 h-32 text-red-500/10" />
+                </div>
               </div>
               
               {/* Content with staggered animation */}
               <div className="text-center space-y-4 mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
+                <h2 className={`text-3xl md:text-4xl font-bold ${crashEffect ? 'text-red-200 dark:text-red-200' : 'text-gray-800 dark:text-white'}`}>
                   {t.title}
                 </h2>
                 
-                <p className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-200">
+                <p className={`text-xl md:text-2xl font-medium ${crashEffect ? 'text-red-300 dark:text-red-300' : 'text-gray-700 dark:text-gray-200'}`}>
                   {t.subtitle}
                 </p>
                 
-                <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
+                <p className={`${crashEffect ? 'text-red-400 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'} max-w-lg mx-auto`}>
                   {t.description}
                 </p>
+                
+                {/* Error details */}
+                {error && (
+                  <div className={`mt-4 p-4 rounded-lg ${crashEffect ? 'bg-red-900/50' : 'bg-gray-100 dark:bg-gray-800/50'} max-w-lg mx-auto overflow-auto text-left`}>
+                    <p className="font-mono text-sm break-all">{error.message || "Unknown error occurred"}</p>
+                  </div>
+                )}
               </div>
               
               {/* Action buttons */}
@@ -259,16 +274,16 @@ export default function NotFoundPage() {
             
             {/* Decorative circuit lines */}
             <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20 dark:opacity-30" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50,250 Q200,150 350,250 T650,250" stroke="#586CFF" strokeWidth="1" fill="none" />
-              <path d="M100,350 Q250,450 400,350 T700,350" stroke="#586CFF" strokeWidth="1" fill="none" />
-              <circle cx="50" cy="250" r="5" fill="#586CFF" />
-              <circle cx="650" cy="250" r="5" fill="#586CFF" />
-              <circle cx="100" cy="350" r="5" fill="#586CFF" />
-              <circle cx="700" cy="350" r="5" fill="#586CFF" />
-              <circle cx="350" cy="250" r="3" fill="#586CFF">
+              <path d="M50,250 Q200,150 350,250 T650,250" stroke={crashEffect ? "#FF0000" : "#586CFF"} strokeWidth="1" fill="none" />
+              <path d="M100,350 Q250,450 400,350 T700,350" stroke={crashEffect ? "#FF0000" : "#586CFF"} strokeWidth="1" fill="none" />
+              <circle cx="50" cy="250" r="5" fill={crashEffect ? "#FF0000" : "#586CFF"} />
+              <circle cx="650" cy="250" r="5" fill={crashEffect ? "#FF0000" : "#586CFF"} />
+              <circle cx="100" cy="350" r="5" fill={crashEffect ? "#FF0000" : "#586CFF"} />
+              <circle cx="700" cy="350" r="5" fill={crashEffect ? "#FF0000" : "#586CFF"} />
+              <circle cx="350" cy="250" r="3" fill={crashEffect ? "#FF0000" : "#586CFF"}>
                 <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
               </circle>
-              <circle cx="400" cy="350" r="3" fill="#586CFF">
+              <circle cx="400" cy="350" r="3" fill={crashEffect ? "#FF0000" : "#586CFF"}>
                 <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
               </circle>
             </svg>
@@ -281,7 +296,7 @@ export default function NotFoundPage() {
         </div>
       </div>
       
-      {/* Add custom keyframes for glitch animation */}
+      {/* Add custom keyframes for glitch and shake animations */}
       <style jsx global>{`
         @keyframes glitch {
           0% { transform: translate(0); }
@@ -293,6 +308,16 @@ export default function NotFoundPage() {
         }
         .animate-glitch {
           animation: glitch 0.2s linear;
+        }
+        @keyframes shake {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          25% { transform: translate(-5px, 5px) rotate(-2.5deg); }
+          50% { transform: translate(5px, -5px) rotate(2.5deg); }
+          75% { transform: translate(-5px, -5px) rotate(-1.5deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .animate-shake {
+          animation: shake 0.5s linear;
         }
       `}</style>
     </div>
