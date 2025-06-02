@@ -1,6 +1,9 @@
 "use server";
 // Dependencies
 import prisma from "@/lib/prisma";
+import { JwtPayload } from "@/types/user";
+import { getServerCookie } from "@/utils/service/storage/server-cookie";
+import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 
 /**
@@ -51,6 +54,24 @@ interface CreateTourData {
 
 export async function createTour(formData: CreateTourData) {
   try {
+    const token = await getServerCookie("serverAccessToken");
+    const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
+
+    if (!decoded) {
+      toast.error("لطفا ابتدا وارد حساب کاربری خود شوید");
+      throw new Error("Authentication required");
+    }
+
+    // Check if user is a tour manager
+    const user = await prisma.user.findUnique({
+      where: { dbId: decoded.id },
+      select: { tourManager: true },
+    });
+
+    if (!user?.tourManager) {
+      toast.error("شما نمیتوانید تور ثبت کنید");
+      throw new Error("Only tour managers can create tours");
+    }
 
     // Create the tour in database
     const newTour = await prisma.tour.create({
@@ -72,7 +93,7 @@ export async function createTour(formData: CreateTourData) {
         schedule: formData.schedule,
       },
     });
-    toast.success("تور با موفقیت ثبت شد.")
+    toast.success("تور با موفقیت ثبت شد.");
     return { success: true, tourId: newTour.id };
   } catch (error) {
     console.error("Failed to create tour:", error);

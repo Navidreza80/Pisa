@@ -10,16 +10,15 @@ export default function AddPropertyStepOne() {
       placeHolder: "آپارتمان لوتوس 102 در ساری ",
       isSelect: false,
     },
-
     { text: "قیمت:", placeHolder: "ریال", isSelect: false },
     { text: "نوع معامله:", placeHolder: null, isSelect: true },
-
     { text: "زیرنوع ملک:", placeHolder: null, isSelect: true },
     { text: "نوع ملک:", placeHolder: null, isSelect: true },
   ];
+
   return (
     <>
-      <div className="mt-[33px] grid w-full grid-cols-2 gap-x-[63px] gap-y-[19px] relative">
+      <div className="mt-5 md:mt-[33px] grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-x-4 md:gap-x-[63px] gap-y-[19px] relative">
         {inputs.map((item, index) => {
           return !item.isSelect ? (
             <InputText
@@ -29,7 +28,7 @@ export default function AddPropertyStepOne() {
             />
           ) : (
             <>
-              {index == 4 && <ArrowLeftSVG className="absolute left-[calc(50%-11px)] top-36" />}
+              {index == 4 && <ArrowLeftSVG className="absolute left-[calc(50%-11px)] top-36 hidden md:hidden lg:block" />}
               <InputSelect withLabel label={item.text} className="!w-full" />
             </>
           );
@@ -37,7 +36,7 @@ export default function AddPropertyStepOne() {
       </div>
       <InputText
         className="w-full mt-[19px]"
-        height="h-[215px]"
+        height="h-[150px] md:h-[215px]"
         label="توضیحات  ملک:"
       />
     </>

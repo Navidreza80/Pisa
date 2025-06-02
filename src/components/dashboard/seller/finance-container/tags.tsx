@@ -13,7 +13,7 @@ const FinancialTags = () => {
   const pathname = usePathname();
   return (
     pathname.includes("/seller/finance") && (
-      <div className="w-full flex justify-between">
+      <div className="w-full flex flex-wrap justify-between gap-4 md:gap-5">
         {items.map((item, index) => {
           return <Tag key={index} item={item} />;
         })}
