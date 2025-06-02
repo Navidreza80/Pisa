@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ReserveTableContent from "./content";
 import FilterModal from "../../filter-modal";
+import Title from "../../title";
 
 const tableHeaderItems = [
   { text: "hotelName", clx: "rounded-r-xl" },
@@ -66,8 +67,8 @@ export default function BookingList({
   return (
     <>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <h1 className="text-xl font-medium font-yekan">{t("title")}</h1>
-        <div className="flex gap-[19px] flex-wrap">
+        <Title text={t("title")} />
+        <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal></FilterModal>
           <Input
             dir="rtl"

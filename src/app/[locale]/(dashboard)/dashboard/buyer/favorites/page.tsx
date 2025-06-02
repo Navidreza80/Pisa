@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/popover";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Title from "@/components/dashboard/title";
 
 const bookings = [
   {
@@ -36,32 +37,46 @@ const bookings = [
 ];
 
 export default function BookingList() {
-  const t = useTranslations('Favorites');
+  const t = useTranslations("Favorites");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   const tableHeaderItems = [
-    { text: t('tableHeaders.hotel'), clx: "rounded-r-xl" },
-    { text: t('tableHeaders.price'), clx: null },
-    { text: t('tableHeaders.address'), clx: null },
-    { text: t('tableHeaders.empty'), clx: "text-transparent rounded-l-xl" },
+    { text: t("tableHeaders.hotel"), clx: "rounded-r-xl" },
+    { text: t("tableHeaders.price"), clx: null },
+    { text: t("tableHeaders.address"), clx: null },
+    { text: t("tableHeaders.empty"), clx: "text-transparent rounded-l-xl" },
   ];
 
   return (
     <>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <h1 className="text-xl font-medium font-yekan">
-          {t('title')}
-        </h1>
-        <div className="flex gap-[19px] flex-wrap">
+        <Title text={t("title")} />
+        <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal>
-            <InputSelect withLabel label={t('filters.propertyType')} className="flex-grow" />
-            <InputSelect withLabel label={t('filters.propertyType')} className="flex-grow" />
-            <InputSelect withLabel label={t('filters.propertyType')} className="flex-grow" />
-            <InputSelect withLabel label={t('filters.propertyType')} className="flex-grow" />
+            <InputSelect
+              withLabel
+              label={t("filters.propertyType")}
+              className="flex-grow"
+            />
+            <InputSelect
+              withLabel
+              label={t("filters.propertyType")}
+              className="flex-grow"
+            />
+            <InputSelect
+              withLabel
+              label={t("filters.propertyType")}
+              className="flex-grow"
+            />
+            <InputSelect
+              withLabel
+              label={t("filters.propertyType")}
+              className="flex-grow"
+            />
           </FilterModal>
           <Input
             dir="rtl"
-            placeholder={t('searchPlaceholder')}
+            placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
           />
         </div>
@@ -100,13 +115,13 @@ export default function BookingList() {
                   <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
                     <div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                        <h1>{t('actions.reserve')}</h1>
+                        <h1>{t("actions.reserve")}</h1>
                         <div className="my-auto">
                           <CheckPopover />
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                        <h1>{t('actions.delete')}</h1>
+                        <h1>{t("actions.delete")}</h1>
                         <div className="my-auto">
                           <DeletePopover />
                         </div>
@@ -135,20 +150,20 @@ export default function BookingList() {
             <div className="mt-3 space-y-2 text-right">
               <div className="flex justify-end items-center gap-2">
                 <span className="font-medium">{booking.price}</span>
-                <span>{t('priceLabel')}</span>
+                <span>{t("priceLabel")}</span>
               </div>
 
               <div className="flex flex-col items-end">
-                <span className="text-text-secondary">{t('addressLabel')}</span>
+                <span className="text-text-secondary">{t("addressLabel")}</span>
                 <p className="text-right">{booking.address}</p>
               </div>
 
               <div className="flex justify-end gap-2 pt-2">
                 <button className="bg-primary text-white px-3 py-1 rounded-lg text-sm">
-                  {t('actions.reserve')}
+                  {t("actions.reserve")}
                 </button>
                 <button className="bg-red-50 text-red-500 border border-red-200 px-3 py-1 rounded-lg text-sm">
-                  {t('actions.delete')}
+                  {t("actions.delete")}
                 </button>
               </div>
             </div>

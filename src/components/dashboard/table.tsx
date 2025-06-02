@@ -7,9 +7,6 @@ import { useTranslations } from "next-intl";
 const TableDashboard = ({
   tableContent,
   tableHeader,
-  notificationLineOne,
-  notificationLineTwo,
-  isNotification,
   headerSecondary,
   add,
   href,
@@ -40,9 +37,7 @@ const TableDashboard = ({
           </tr>
         </thead>
         <tbody>
-          {isNotification && notificationLineOne}
           {tableContent}
-          {isNotification && notificationLineTwo}
         </tbody>
       </Table>
       <div

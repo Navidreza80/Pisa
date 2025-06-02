@@ -17,12 +17,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import Title from "@/components/dashboard/title";
 
 const destinations = [
   {
     id: 1,
     name: "اصفهان",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "شهری تاریخی با معماری اسلامی فوق‌العاده",
     province: "اصفهان",
     status: "approved",
@@ -30,7 +32,8 @@ const destinations = [
   {
     id: 2,
     name: "چالوس",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "مقصدی خوش‌آب‌وهوا در شمال کشور",
     province: "مازندران",
     status: "pending",
@@ -38,7 +41,8 @@ const destinations = [
   {
     id: 3,
     name: "شیراز",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdTW8bpxoiuEvkxOi9NoD5jgyyAgO0lLd1w&s",
     description: "شهری شاعرانه و مملو از باغ و بناهای باستانی",
     province: "فارس",
     status: "rejected",
@@ -48,30 +52,30 @@ const destinations = [
 const provinces = ["all", "اصفهان", "مازندران", "فارس"];
 
 export default function DestinationsList() {
-  const t = useTranslations('DestinationsList');
+  const t = useTranslations("DestinationsList");
   const [provinceFilter, setProvinceFilter] = useState("all");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
-  const [viewMode, setViewMode] = useState<'table' | 'card'>('table');
+  const [viewMode, setViewMode] = useState<"table" | "card">("table");
 
   const tableHeaderItems = [
-    { text: t('tableHeaders.city'), clx: "rounded-r-xl" },
-    { text: t('tableHeaders.description'), clx: null },
-    { text: t('tableHeaders.status'), clx: null },
-    { text: t('tableHeaders.empty'), clx: "rounded-l-xl" },
+    { text: t("tableHeaders.city"), clx: "rounded-r-xl" },
+    { text: t("tableHeaders.description"), clx: null },
+    { text: t("tableHeaders.status"), clx: null },
+    { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
   ];
 
   // Function to determine view mode based on screen size
   const handleResize = () => {
-    if (typeof window !== 'undefined') {
-      setViewMode(window.innerWidth < 768 ? 'card' : 'table');
+    if (typeof window !== "undefined") {
+      setViewMode(window.innerWidth < 768 ? "card" : "table");
     }
   };
 
   // Set initial view mode and add resize listener
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const filteredDestinations = destinations.filter((d) => {
@@ -93,15 +97,13 @@ export default function DestinationsList() {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
-        <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
-          {t('title')}
-        </h1>
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto order-2 md:order-1">
+      <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
+        <Title text={t("title")} />
+        <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
             dir="rtl"
-            placeholder={t('searchPlaceholder')}
+            placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
@@ -111,9 +113,7 @@ export default function DestinationsList() {
       {/* Add button for mobile view */}
       <div className="md:hidden flex justify-end mb-4">
         <Link href="/dashboard/seller/locations/add">
-          <Button className="bg-primary text-white">
-            {t('addButton')}
-          </Button>
+          <Button className="bg-primary text-white">{t("addButton")}</Button>
         </Link>
       </div>
 
@@ -122,7 +122,7 @@ export default function DestinationsList() {
         <TableDashboard
           add={true}
           href={"/dashboard/seller/locations/add"}
-          addTitle={t('addButton')}
+          addTitle={t("addButton")}
           tableHeader={tableHeaderItems}
           tableContent={filteredDestinations.map((locations) => (
             <tr
@@ -131,8 +131,14 @@ export default function DestinationsList() {
             >
               <td className="pl-6 rounded-r-xl">
                 <div className="flex gap-2">
-                  <div className="bg-text-secondary/30 w-27 h-20 m-0.5 overflow-hidden rounded-[12px]" >
-                    <Image className="w-27 h-20" width={108} height={80} src={locations.image} alt=""/>
+                  <div className="bg-text-secondary/30 w-27 h-20 m-0.5 overflow-hidden rounded-[12px]">
+                    <Image
+                      className="w-27 h-20"
+                      width={108}
+                      height={80}
+                      src={locations.image}
+                      alt=""
+                    />
                   </div>
                   <div className="py-7  text-[18px] font-medium">
                     {locations.name}
@@ -166,17 +172,17 @@ export default function DestinationsList() {
                   <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border">
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>{t('actions.edit')}</h1>
+                        <h1>{t("actions.edit")}</h1>
                         <div className="my-auto">
                           <EditSVG />
                         </div>
                       </div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <ModalStep2
-                          name={t('actions.delete')}
-                          desc={t('deleteModal.description')}
-                          title={t('deleteModal.title')}
-                          button={t('actions.delete')}
+                          name={t("actions.delete")}
+                          desc={t("deleteModal.description")}
+                          title={t("deleteModal.title")}
+                          button={t("actions.delete")}
                         />
                         <div className="my-auto">
                           <DeleteSVG />
@@ -197,8 +203,8 @@ export default function DestinationsList() {
           <Card key={location.id} className="overflow-hidden border-border">
             <CardContent className="p-0">
               <div className="relative">
-                <Image 
-                  src={location.image} 
+                <Image
+                  src={location.image}
                   alt={location.name}
                   width={400}
                   height={150}
@@ -214,34 +220,38 @@ export default function DestinationsList() {
                   </span>
                 </div>
               </div>
-              
+
               <div className="p-4 space-y-3">
                 {/* Header with location name and actions */}
                 <div className="flex justify-end items-start">
-                  <h2 className="text-lg font-bold text-right">{location.name}</h2>
+                  <h2 className="text-lg font-bold text-right">
+                    {location.name}
+                  </h2>
                 </div>
 
                 {/* Location details */}
                 <div className="text-right">
                   <p>{location.description}</p>
-                  <p className="text-text-secondary mt-2">{t('provinceLabel')}: {location.province}</p>
+                  <p className="text-text-secondary mt-2">
+                    {t("provinceLabel")}: {location.province}
+                  </p>
                 </div>
 
                 {/* Action buttons */}
                 <div className="flex justify-end gap-2 pt-2 border-t border-border mt-3">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="text-red-500 border-red-200"
                   >
-                    {t('actions.delete')}
+                    {t("actions.delete")}
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="border-primary text-primary"
                   >
-                    {t('actions.edit')}
+                    {t("actions.edit")}
                   </Button>
                 </div>
               </div>
