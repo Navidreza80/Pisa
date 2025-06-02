@@ -20,46 +20,46 @@ import { useTranslations } from "next-intl";
 function BuyerSideBar() {
   const pathname = usePathname();
   const isSeller = pathname.includes("/seller");
-  const t = useTranslations('Sidebar');
+  const t = useTranslations("Sidebar");
 
   const sellerItems = [
-    { name: t('dashboard'), icon: <DashboardSVG />, href: "/dashboard/seller" },
+    { name: t("dashboard"), icon: <DashboardSVG />, href: "/dashboard/seller" },
     {
-      name: t('userInformation'),
+      name: t("userInformation"),
       icon: <InfoSVG />,
       href: "/dashboard/seller/profile",
     },
     {
-      name: t('propertyManagement'),
+      name: t("propertyManagement"),
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
       management: true,
     },
     {
-      name: t('reservationManagement'),
+      name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
       management: true,
     },
     {
-      name: t('financialManagement'),
+      name: t("financialManagement"),
       icon: <PaymentSVG />,
       href: "/dashboard/seller/finance",
       management: true,
     },
     {
-      name: t('reviewManagement'),
+      name: t("reviewManagement"),
       icon: <ReviewsSVG />,
       href: "/dashboard/seller/reviews",
       management: true,
     },
     {
-      name: t('notifications'),
+      name: t("notifications"),
       icon: <NotifSVG />,
       href: "/dashboard/seller/notifications",
     },
     {
-      name: t('tourManagement'),
+      name: t("tourManagement"),
       icon: <TourManagementSVG />,
       href: "/dashboard/seller/Tour",
       management: true,
@@ -67,36 +67,36 @@ function BuyerSideBar() {
   ];
 
   const buyerItems = [
-    { name: t('dashboard'), icon: <DashboardSVG />, href: "/dashboard/buyer" },
+    { name: t("dashboard"), icon: <DashboardSVG />, href: "/dashboard/buyer" },
     {
-      name: t('userInformation'),
+      name: t("userInformation"),
       icon: <InfoSVG />,
       href: "/dashboard/buyer/information",
     },
     {
-      name: t('reservationManagement'),
+      name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
       management: true,
     },
     {
-      name: t('locationManagement'),
+      name: t("locationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/locations",
       management: true,
     },
     {
-      name: t('favorites'),
+      name: t("favorites"),
       icon: <FavoriteSVG />,
       href: "/dashboard/buyer/favorites",
     },
     {
-      name: t('payments'),
+      name: t("payments"),
       icon: <PaymentSVG />,
       href: "/dashboard/buyer/payments",
     },
     {
-      name: t('notifications'),
+      name: t("notifications"),
       icon: <NotifSVG />,
       href: "/dashboard/buyer/notifications",
     },
@@ -119,14 +119,19 @@ function BuyerSideBar() {
           <div
             className={`flex ${!collapsed ? "lg:justify-between md:justify-center justify-center" : "justify-center"} mt-2`}
           >
-            <div className="my-auto cursor-pointer lg:block md:hidden hidden" onClick={toggleSideBar}>
+            <div
+              className={`cursor-pointer my-auto lg:block md:hidden hidden ${collapsed ? "rotate-180" : ""}`}
+              onClick={toggleSideBar}
+            >
               <SignoutSVG />
             </div>
             <div>
               <House className="cursor-pointer lg:hidden md:block block" />
             </div>
             {!collapsed && (
-              <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">Piza</h2>
+              <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
+                Piza
+              </h2>
             )}
           </div>
 
@@ -137,8 +142,10 @@ function BuyerSideBar() {
         {isSeller && !collapsed ? (
           <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
             <div className="flex flex-col flex-wrap justify-between">
-              <p className="text-[20px] text-text ">{t('newReviews')}</p>
-              <p className="text-text-secondary text-[14px] ">{t('reviewCount', { count: 5 })}</p>
+              <p className="text-[20px] text-text ">{t("newReviews")}</p>
+              <p className="text-text-secondary text-[14px] ">
+                {t("reviewCount", { count: 5 })}
+              </p>
             </div>
             <div className="mb-auto pt-[2px]">
               <ReviewsSVG />
@@ -148,8 +155,10 @@ function BuyerSideBar() {
           !collapsed && (
             <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
               <div className="flex flex-col flex-wrap justify-between">
-                <p className="text-[20px] text-text ">{t('wallet')}</p>
-                <p className="text-text-secondary text-[14px] ">{t('noBalance')}</p>
+                <p className="text-[20px] text-text ">{t("wallet")}</p>
+                <p className="text-text-secondary text-[14px] ">
+                  {t("noBalance")}
+                </p>
               </div>
               <div className="my-auto">
                 <MoneySVG />

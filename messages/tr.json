@@ -523,5 +523,16 @@
     "reservations": "Rezervasyonlar",
     "currency": "T",
     "purchasePrice": "Satın Alma Fiyatı"
+  },
+  "WarningModal": {
+    "cancel": "Vazgeç",
+    "add": "Ekle",
+    "agree": "Kabul Et"
+  },
+  "FilterModal": {
+    "filtersButton": "Filtreler",
+    "filtersTitle": "Filtreler",
+    "applyFilters": "Filtreleri Uygula",
+    "close": "Kapat"
   }
 }

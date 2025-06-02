@@ -525,5 +525,16 @@
     "reservations": "Reservations",
     "currency": "T",
     "purchasePrice": "Purchase Price"
+  },
+  "WarningModal": {
+    "cancel": "Cancel",
+    "add": "Add",
+    "agree": "Agree"
+  },
+  "FilterModal": {
+    "filtersButton": "Filters",
+    "filtersTitle": "Filters",
+    "applyFilters": "Apply Filters",
+    "close": "Close"
   }
 }
