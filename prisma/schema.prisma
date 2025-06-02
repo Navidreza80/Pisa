@@ -20,11 +20,13 @@ model User {
   email          String         @unique
   name           String?
   isAdmin        Boolean        @default(false)
+  tourManager    Boolean        @default(false)
   createdAt      DateTime       @default(now())
   dbId           String         @unique
   profilePicture String?
   messages       Message[]
   conversations  Conversation[] @relation("ConversationParticipants")
+  Tour           Tour[]
 }
 
 model Message {
@@ -71,6 +73,8 @@ model Landscape {
 
 model Tour {
   id               String             @id @default(uuid())
+  userId           String?            @default(cuid())
+  user             User?              @relation(fields: [userId], references: [id])
   tourName         String
   tourLocation     String
   tourImage        String
