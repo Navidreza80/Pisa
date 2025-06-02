@@ -13,7 +13,7 @@ import FloatingActions from "@/components/common/fab";
 import { auth } from "@/auth";
 import BuyerSideBar from "@/components/dashboard/buyer/BuyerSideBar";
 import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
-import FinancialTags from "@/components/dashboard/seller/finance-container/tags";
+import Tags from "@/components/dashboard/seller/finance-container/tags";
 import { JwtPayload } from "@/types/user";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -65,7 +65,7 @@ export default async function RootLayout({
             <div className="flex bg-border justify-between gap-[19px] p-[19px]">
               <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
                 <HeaderDashboard />
-                <FinancialTags />
+                <Tags />
                 <main className="flex-1 bg-background p-8 rounded-[12px]">
                   {children}
                 </main>

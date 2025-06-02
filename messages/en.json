@@ -536,5 +536,31 @@
     "filtersTitle": "Filters",
     "applyFilters": "Apply Filters",
     "close": "Close"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "Recent Customer Bookings",
+    "actions": {
+      "view": "View",
+      "approve": "Approve",
+      "cancel": "Cancel",
+      "details": "Details",
+      "delete": "Delete"
+    },
+    "tableHeaders": {
+      "residenceName": "Residence Name",
+      "bookingDate": "Booking Date",
+      "price": "Price",
+      "empty": "",
+      "status": "Status"
+    },
+    "mockData": {
+      "hotelName": "Villa with Pool",
+      "bookingDate": "2024/03/04 - 2024/03/07",
+      "totalPrice": "{price} Tomans"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending Approval"
+    }
   }
 }

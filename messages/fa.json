@@ -575,5 +575,31 @@
     "filtersTitle": "فیلتر ها",
     "applyFilters": "اعمال فیلتر",
     "close": "بستن"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "رزرو های اخیر مشتریان",
+    "actions": {
+      "view": "مشاهده",
+      "approve": "تایید",
+      "cancel": "لغو",
+      "details": "جزئیات",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "residenceName": "نام اقامتگاه",
+      "bookingDate": "تاریخ رزرو",
+      "price": "قیمت",
+      "empty": "",
+      "status": "وضعیت"
+    },
+    "mockData": {
+      "hotelName": "ویلا استخردار",
+      "bookingDate": "1402/12/15 - 1402/12/18",
+      "totalPrice": "{price} تومان"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار تایید"
+    }
   }
 }

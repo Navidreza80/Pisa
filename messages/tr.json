@@ -534,5 +534,31 @@
     "filtersTitle": "Filtreler",
     "applyFilters": "Filtreleri Uygula",
     "close": "Kapat"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "Müşterilerin Son Rezervasyonları",
+    "actions": {
+      "view": "Görüntüle",
+      "approve": "Onayla",
+      "cancel": "İptal Et",
+      "details": "Detaylar",
+      "delete": "Sil"
+    },
+    "tableHeaders": {
+      "residenceName": "Konaklama Adı",
+      "bookingDate": "Rezervasyon Tarihi",
+      "price": "Fiyat",
+      "empty": "",
+      "status": "Durum"
+    },
+    "mockData": {
+      "hotelName": "Havuzlu Villa",
+      "bookingDate": "2024/03/04 - 2024/03/07",
+      "totalPrice": "{price} Tümen"
+    },
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Onay Bekliyor"
+    }
   }
 }
