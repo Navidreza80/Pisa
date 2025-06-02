@@ -2,6 +2,7 @@ import { Table } from "reactstrap";
 import Button from "../common/button";
 import AddSVG from "./svg/AddSVG";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const TableDashboard = ({
   tableContent,
@@ -11,6 +12,7 @@ const TableDashboard = ({
   href,
   addTitle,
 }) => {
+  const t = useTranslations('WarningModal');
   return (
     <>
       <Table
@@ -54,7 +56,7 @@ const TableDashboard = ({
         {add && (
           <Link href={href}>
             <Button className="gap-1.5 !w-full">
-              <AddSVG /> افزودن {addTitle}
+              <AddSVG /> {t('add')} {addTitle}
             </Button>
           </Link>
         )}

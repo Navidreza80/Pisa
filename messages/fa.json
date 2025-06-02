@@ -564,5 +564,16 @@
     "reservations": "رزرو ها",
     "currency": "ت",
     "purchasePrice": "قیمت خرید"
+  },
+  "WarningModal": {
+    "cancel": "انصراف",
+    "add": "افزودن",
+    "agree": "موافقت"
+  },
+  "FilterModal": {
+    "filtersButton": "فیلتر ها",
+    "filtersTitle": "فیلتر ها",
+    "applyFilters": "اعمال فیلتر",
+    "close": "بستن"
   }
 }

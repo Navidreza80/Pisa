@@ -49,7 +49,7 @@ async function HeaderDashboard() {
               </p>
             </div>
             <div className="flex-col flex-wrap justify-between md:hidden flex">
-              <div className="bg-red-500 rounded-full w-10 h-10"></div>
+              <div className="bg-border rounded-full w-10 h-10"></div>
             </div>
           </div>
           <div className="my-auto cursor-pointer md:flex hidden">

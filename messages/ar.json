@@ -523,5 +523,16 @@
     "reservations": "الحجوزات",
     "currency": "ت",
     "purchasePrice": "سعر الشراء"
+  },
+  "WarningModal": {
+    "cancel": "إلغاء",
+    "add": "إضافة",
+    "agree": "موافقة"
+  },
+  "FilterModal": {
+    "filtersButton": "المرشحات",
+    "filtersTitle": "المرشحات",
+    "applyFilters": "تطبيق المرشحات",
+    "close": "إغلاق"
   }
 }
