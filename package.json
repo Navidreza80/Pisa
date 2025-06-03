@@ -67,6 +67,7 @@
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^11.0.5",
     "reactstrap": "^9.2.3",
+    "recharts": "^2.15.3",
     "shadcn": "^2.5.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.6",

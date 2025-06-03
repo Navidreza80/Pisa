@@ -534,5 +534,31 @@
     "filtersTitle": "المرشحات",
     "applyFilters": "تطبيق المرشحات",
     "close": "إغلاق"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "حجوزات العملاء الأخيرة",
+    "actions": {
+      "view": "عرض",
+      "approve": "موافقة",
+      "cancel": "إلغاء",
+      "details": "تفاصيل",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "residenceName": "اسم السكن",
+      "bookingDate": "تاريخ الحجز",
+      "price": "السعر",
+      "empty": "",
+      "status": "الحالة"
+    },
+    "mockData": {
+      "hotelName": "فيلا مع مسبح",
+      "bookingDate": "2024/03/04 - 2024/03/07",
+      "totalPrice": "{price} تومان"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "في انتظار الموافقة"
+    }
   }
 }
