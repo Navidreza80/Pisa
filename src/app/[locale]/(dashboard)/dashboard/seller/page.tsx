@@ -5,20 +5,18 @@ import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
+import SellerReserveSVG from "@/components/dashboard/svg/SellerReserveSVG";
+import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 import TableDashboard from "@/components/dashboard/table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
-import SellerReserveSVG from "@/components/dashboard/svg/SellerReserveSVG";
+import { useState } from "react";
 
 const tableHeaderItems = (t) => [
   { text: t("tableHeaders.residenceName"), clx: "rounded-r-xl w-20 text-center" },
@@ -60,7 +58,7 @@ export default function Page() {
     <>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <Link
-          href={"/dashboard/seller/reservation"}
+          href={"/dashboard/seller/reservations"}
           className="flex gap-1.5 py-2 w-full"
         >
           <div className="my-auto">
