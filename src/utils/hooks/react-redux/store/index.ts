@@ -8,8 +8,9 @@ import rentFilters from "./slices/rent-slice";
 import userIdReducer from "./slices/user-id-slice";
 import comparisonIdsReducer from "./slices/comparison";
 import stepsIdReducer from "./slices/steps-slice";
-import createTourReducer from "./slices/create-tour"
-import tourStepsReducer from "./slices/tour-steps"
+import createTourReducer from "./slices/create-tour";
+import tourStepsReducer from "./slices/tour-steps";
+import bookingStepsReducer from "./slices/booking-step";
 
 // Function to configure redux store
 export const store = configureStore({
@@ -22,7 +23,8 @@ export const store = configureStore({
     comparisonIds: comparisonIdsReducer,
     stepsId: stepsIdReducer,
     createTour: createTourReducer,
-    tourSteps: tourStepsReducer
+    tourSteps: tourStepsReducer,
+    bookingSteps: bookingStepsReducer,
   },
 });
 

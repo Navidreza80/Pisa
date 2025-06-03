@@ -13,9 +13,11 @@ export default function InputText({
   label,
   placeHolder,
   height,
+  color,
   className,
   ...props
 }: {
+  color?: string;
   value?: string;
   placeHolder?: string | null;
   label?: string;
@@ -25,14 +27,14 @@ export default function InputText({
 }) {
   return (
     <div dir="rtl" className={`relative ${className}`}>
-      <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+      <div className={`text-fade font-medium text-[13px] absolute top-[-10] ${color ? color : 'bg-background'} right-2 px-2`}>
         {label}
       </div>
       <input
         {...props}
         onChange={onChange}
         value={value}
-        className={`w-full border bg-background border-border placeholder:text-text text-text ${height ? height : "h-[48px]"} px-[11px] rounded-2xl`}
+        className={`w-full border ${color ? color : 'bg-background'} border-border placeholder:text-text text-text ${height ? height : "h-[48px]"} px-[11px] rounded-2xl`}
         placeholder={placeHolder ? placeHolder : ""}
       ></input>
     </div>
