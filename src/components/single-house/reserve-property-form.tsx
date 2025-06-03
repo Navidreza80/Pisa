@@ -1,19 +1,67 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
+import PersianCalendar from "persian-calender";
+import "persian-calender/dist/index.css";
 import InputText from "../common/inputs/text-inputs";
 import SectionName from "./section-name";
+import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 
-export default async function ReserveForm() {
-  const t = await getTranslations("SingleHouse");
+export default function ReserveForm() {
+  const t = useTranslations("SingleHouse");
+  const dispatch = useAppDispatch();
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+    },
+    onSubmit: (values) => {
+    
+    },
+  });
   return (
     <>
-      <div className="mt-10 flex flex-col gap-4">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="mt-10 flex flex-col gap-4"
+      >
         <SectionName sectionName={t("reserve")} />
         <div className="w-full flex flex-wrap justify-between gap-3">
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
-            <p>{t("dateEnter")}</p> <InputText width="!w-full" />
+            <p>{t("dateEnter")}</p>{" "}
+            <PersianCalendar
+              responsive={true}
+              onChange={(date) => console.log(date)}
+              animate={true}
+              inputStyle={{
+                width: "100%",
+                height: "48px",
+                borderRadius: "16px",
+                textAlign: "right",
+                borderColor: "#eaeaea",
+              }}
+              theme="default"
+              showHolidays={false}
+            />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
-            <p>{t("dateExit")}</p> <InputText width="!w-full" />
+            <p>{t("dateExit")}</p>
+            <PersianCalendar
+              responsive={true}
+              onChange={(date) => console.log(date)}
+              animate={true}
+              inputStyle={{
+                width: "100%",
+                height: "48px",
+                borderRadius: "16px",
+                textAlign: "right",
+                borderColor: "#eaeaea",
+              }}
+              theme="default"
+              showHolidays={false}
+            />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("capacity")}</p> <InputText width="!w-full" />
@@ -22,16 +70,14 @@ export default async function ReserveForm() {
             <p>{t("discount")}</p> <InputText width="!w-full" />
           </div>
         </div>
-      </div>
+      </form>
       {/* Price section */}
       <div className="mt-6 flex gap-4 justify-between flex-wrap">
         {/* Price */}
         <div className="flex flex-col gap-3">
           <h1 className="text-text">قیمت</h1>
           <div className="flex flex-row-reverse gap-[5px]">
-            <h1 className="text-[20px] font-[700] my-auto ">
-              1500000
-            </h1>
+            <h1 className="text-[20px] font-[700] my-auto ">1500000</h1>
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
               تومان
             </p>
