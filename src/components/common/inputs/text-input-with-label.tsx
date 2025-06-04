@@ -34,7 +34,7 @@ export default function InputText({
         {...props}
         onChange={onChange}
         value={value}
-        className={`w-full border ${color ? color : 'bg-background'} border-border placeholder:text-text text-text ${height ? height : "h-[48px]"} px-[11px] rounded-2xl`}
+        className={`w-full border ${color ? color : 'bg-background'} border-border placeholder:text-text text-text ${height ? height : "h-[48px]"} px-[11px] rounded-2xl focus:outline-0 outline-0`}
         placeholder={placeHolder ? placeHolder : ""}
       ></input>
     </div>

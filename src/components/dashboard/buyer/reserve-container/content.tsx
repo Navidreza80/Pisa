@@ -41,7 +41,7 @@ export default function ReserveTableContent({
     <tr key={booking.id} className="text-right border-b hover:bg-background/30">
       <td className="py-2 px-4 text-[18px] font-medium">{title || <ClipLoader color="#586cff" />}</td>
       <td className="py-2 px-4 text-[18px] font-medium">
-        {formatToPersianDateWithMoment(booking.reservedDates.values[0])}
+        {formatToPersianDateWithMoment(booking.reservedDates[0].value)}
       </td>
       <td className="py-2 px-4 text-[18px] font-medium">
         {formatNumber(1500000)} ت
