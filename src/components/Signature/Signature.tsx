@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import iranYekanFont from "./iranYekanBase64";
 import { formatNumber } from "@/utils/helper/format-number";
+import { useLocale, useTranslations } from "next-intl";
 
 interface ContractData {
   contractNumber: string;
@@ -45,6 +46,9 @@ const initialContractData: ContractData = {
 };
 
 const Signature = ({ HouseDetails, decodedUser }) => {
+  const t = useTranslations("Signature");
+  const locale = useLocale();
+  const isRTL = locale === "ar" || locale === "fa";
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -78,7 +82,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
     ctx.beginPath();
     ctx.moveTo(pos.x, pos.y);
     ctx.strokeStyle = "#000";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 5;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
@@ -104,18 +108,6 @@ const Signature = ({ HouseDetails, decodedUser }) => {
 
   const endDrawing = () => {
     setIsDrawing(false);
-  };
-
-  const clearSignature = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setIsSaved(false);
-    toast.info("امضا پاک شد");
   };
 
   const optimizeSignatureImage = (dataURL: string): Promise<string> => {
@@ -190,9 +182,9 @@ const Signature = ({ HouseDetails, decodedUser }) => {
         ),
         ``,
         `تعهدات طرفین:`,
-        `الف ) پول واریز شه`,
-        `ب ) خونه سالم نگه داشته شه`,
-        `ج) در صورت عدم انجام تعهدات خسارت پرداخت شه`,
+        `الف( پول واریز شه`,
+        `ب( خونه سالم نگه داشته شه`,
+        `ج( در صورت عدم انجام تعهدات خسارت پرداخت شه`,
         ``,
         `این قرارداد در ${contractData.pages || "۳"} نسخه با اعتبار یکسان تنظیم و پس از امضای طرفین، هر نسخه نزد آنها باقی می‌ماند.`,
         `کلیه اختلافات ناشی از این قرارداد از طریق مراجع قضایی تهران رسیدگی خواهد شد.`,
@@ -221,7 +213,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
 
       doc.setFontSize(16);
       doc.setTextColor(40, 53, 147);
-      doc.text("امضا و مهر طرفین قرارداد", 130, 20, {
+      doc.text("امضا و مهر طرفین قرارداد", 135, 20, {
         align: "center",
         ...textOptions,
       });
@@ -266,8 +258,8 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       doc.setTextColor(100, 100, 100);
       doc.text(
         "این سند به صورت الکترونیکی ایجاد شده و دارای اعتبار قانونی می‌باشد.",
-        105,
-        280,
+        160,
+        120,
         { align: "center", ...textOptions }
       );
       return doc;
@@ -276,15 +268,27 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       throw error;
     }
   };
+  const clearSignature = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setIsSaved(false);
+    toast.info(t("signatureCleared"));
+  };
+
   const saveSignature = async () => {
     const canvas = canvasRef.current;
     if (!canvas) {
-      toast.error("خطا در دسترسی به کانواس امضا");
+      toast.error(t("canvasAccessError"));
       return;
     }
     const ctx = canvas.getContext("2d");
     if (!ctx) {
-      toast.error("خطا در زمینه ترسیم امضا");
+      toast.error(t("contextError"));
       return;
     }
 
@@ -292,7 +296,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
     const isEmpty = !imageData.data.some((channel) => channel !== 0);
 
     if (isEmpty) {
-      toast.warning("لطفاً ابتدا امضا کنید");
+      toast.warning(t("pleaseSignFirst"));
       return;
     }
 
@@ -303,10 +307,10 @@ const Signature = ({ HouseDetails, decodedUser }) => {
 
       doc.save(`قولنامه_${contractData.contractNumber}.pdf`);
       setIsSaved(true);
-      toast.success("قولنامه با موفقیت ایجاد و ذخیره شد!");
+      toast.success(t("contractSaved"));
     } catch (error) {
       console.error("خطا در ایجاد قولنامه:", error);
-      toast.error("خطا در ایجاد قولنامه!");
+      toast.error(t("contractError"));
     }
   };
 
@@ -315,55 +319,54 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       <ToastContainer position="top-center" rtl autoClose={5000} />
 
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-primary">
-          سیستم ثبت امضای دیجیتال
+        <h2 className="text-2xl font-bold text-text">
+          {t("digitalSignatureTitle")}
         </h2>
         <p className="text-text-secondary">
-          قولنامه شماره: {contractData.contractNumber}
+          {t("contractNumber", { number: contractData.contractNumber })}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-surface/50 p-4 rounded-lg">
-          <h3 className="font-semibold !text-right text-primary mb-2">
-            اطلاعات فروشنده
-          </h3>
-          <p className="!text-right">
-            <span className="font-medium !text-right">نام:</span>{" "}
+      <div
+        className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-6`}
+        dir={isRTL ? "rtl" : "ltr"}
+      >
+        <div className="bg-primary/20 p-4 rounded-lg">
+          <h3 className="font-semibold text-primary mb-2">{t("sellerInfo")}</h3>
+          <p>
+            <span className="w-full font-medium">{t("name")}:</span>{" "}
             {contractData.sellerName}
           </p>
-          <p className="!text-right">
-            <span className="font-medium !text-right">کد ملی:</span>{" "}
+          <p>
+            <span className="w-full font-medium">{t("nationalId")}:</span>
             {contractData.sellerNationalId}
           </p>
         </div>
 
-        <div className="bg-primary/20 p-4 rounded-lg">
-          <h3 className="font-semibold text-primary mb-2 !text-right">
-            اطلاعات خریدار
+        <div className="bg-surface/50 p-4 rounded-lg">
+          <h3 className="w-full font-semibold text-primary mb-2">
+            {t("buyerInfo")}
           </h3>
-          <p className="!text-right">
-            <span className="font-medium !text-right">نام:</span>{" "}
-            {decodedUser.name}
+          <p>
+            <span className="font-medium">{t("name")}:</span> {decodedUser.name}
           </p>
-          <p className="!text-right">
-            {" "}
-            <span className="font-medium !text-right">کد ملی:</span>{" "}
+          <p>
+            <span className="w-full font-medium">{t("nationalId")}:</span>{" "}
             {contractData.buyerNationalId}
           </p>
         </div>
       </div>
 
       <div className="mb-6">
-        <h3 className="font-semibold !text-right text-text mb-2">
-         : لطفا امضای خود را در کادر زیر رسم کنید 
+        <h3 className="font-semibold text-text mb-2">
+          {t("pleaseDrawSignature")}
         </h3>
-        <div className="border-2 border-fade rounded-lg relative">
+        <div className="relative">
           <canvas
             ref={canvasRef}
             width={600}
             height={250}
-            className="w-full h-64 bg-white cursor-crosshair"
+            className="w-full border-2 rounded-lg border-text-secondary h-64 bg-white cursor-crosshair"
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={endDrawing}
@@ -389,7 +392,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
               clipRule="evenodd"
             />
           </svg>
-          پاک کردن امضا
+          {t("clearSignature")}
         </button>
 
         <button
@@ -415,7 +418,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              قولنامه آماده شد
+              {t("contractReady")}
             </>
           ) : (
             <>
@@ -431,7 +434,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              تایید و ایجاد قولنامه
+              {t("confirmAndGenerateContract")}
             </>
           )}
         </button>

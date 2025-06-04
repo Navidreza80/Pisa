@@ -562,5 +562,23 @@
       "approved": "Approved",
       "pending": "Pending Approval"
     }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "Digital Signature System",
+    "contractNumber": "Contract Number: {number}",
+    "sellerInfo": "Seller Information",
+    "buyerInfo": "Buyer Information",
+    "name": "Name",
+    "nationalId": "National ID",
+    "pleaseDrawSignature": ": Please draw your signature in the box below",
+    "clearSignature": "Clear Signature",
+    "confirmAndGenerateContract": "Confirm and Generate Contract",
+    "contractReady": "Contract is Ready",
+    "signatureCleared": "Signature cleared",
+    "canvasAccessError": "Error accessing the signature canvas",
+    "contextError": "Error in the drawing context",
+    "pleaseSignFirst": "Please sign first",
+    "contractSaved": "Contract successfully created and saved!",
+    "contractError": "Error creating the contract!"
   }
 }
