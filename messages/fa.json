@@ -601,5 +601,23 @@
       "approved": "تایید شده",
       "pending": "در انتظار تایید"
     }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "سیستم ثبت امضای دیجیتال",
+    "contractNumber": "قولنامه شماره: {number}",
+    "sellerInfo": "اطلاعات فروشنده",
+    "buyerInfo": "اطلاعات خریدار",
+    "name": "نام",
+    "nationalId": "کد ملی",
+    "pleaseDrawSignature": ": لطفا امضای خود را در کادر زیر رسم کنید",
+    "clearSignature": "پاک کردن امضا",
+    "confirmAndGenerateContract": "تایید و ایجاد قولنامه",
+    "contractReady": "قولنامه آماده شد",
+    "signatureCleared": "امضا پاک شد",
+    "canvasAccessError": "خطا در دسترسی به کانواس امضا",
+    "contextError": "خطا در زمینه ترسیم امضا",
+    "pleaseSignFirst": "لطفاً ابتدا امضا کنید",
+    "contractSaved": "قولنامه با موفقیت ایجاد و ذخیره شد!",
+    "contractError": "خطا در ایجاد قولنامه!"
   }
 }

@@ -560,5 +560,23 @@
       "approved": "Onaylandı",
       "pending": "Onay Bekliyor"
     }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "Dijital İmza Sistemi",
+    "contractNumber": "Sözleşme Numarası: {number}",
+    "sellerInfo": "Satıcı Bilgileri",
+    "buyerInfo": "Alıcı Bilgileri",
+    "name": "İsim",
+    "nationalId": "Kimlik No",
+    "pleaseDrawSignature": ": Lütfen imzanızı aşağıdaki kutuya çizin",
+    "clearSignature": "İmzayı Temizle",
+    "confirmAndGenerateContract": "Onayla ve Sözleşmeyi Oluştur",
+    "contractReady": "Sözleşme Hazır",
+    "signatureCleared": "İmza temizlendi",
+    "canvasAccessError": "İmza tuvaline erişim hatası",
+    "contextError": "Çizim bağlamında hata",
+    "pleaseSignFirst": "Lütfen önce imzalayın",
+    "contractSaved": "Sözleşme başarıyla oluşturuldu ve kaydedildi!",
+    "contractError": "Sözleşme oluşturulurken hata!"
   }
 }

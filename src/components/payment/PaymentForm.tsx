@@ -6,8 +6,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { formatNumber } from "@/utils/helper/format-number";
+import Link from 'next/link';
 
-function PaymentForm({price}:{price:number}) {
+function PaymentForm({price,id}:{price:number, id:number}) {
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [saveCardInfo, setSaveCardInfo] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
@@ -124,12 +125,14 @@ function PaymentForm({price}:{price:number}) {
             />
           </div>
 
+
           <Button
             type="submit"
             className="w-full cursor-pointer !bg-[#00c234] hover:!bg-[#73d791] text-white py-3 rounded-md"
             disabled={!captchaVerified}
           >
-            پرداخت {formatNumber(price * 10)} ریال
+            <Link href={`/signature/${id}`}>پرداخت {formatNumber(price * 10)} ریال</Link>
+            
           </Button>
           <button type="submit" className="text-[#f63a51] border p-[5px] rounded-md cursor-pointer bg-white border-px border-[#eee]"> انصراف </button>
         </form>

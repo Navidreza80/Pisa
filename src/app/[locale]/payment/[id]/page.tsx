@@ -1,7 +1,6 @@
-import { getHouseById } from "@/utils/service/house/get-by-id";
-import { numberToPersianWords } from './numToWord';
 import PaymentForm from "@/components/payment/PaymentForm";
 import { formatNumber } from "@/utils/helper/format-number";
+import { getHouseById } from "@/utils/service/house/get-by-id";
 
 interface PaymentProps {
   params: { id: number };
@@ -10,8 +9,6 @@ interface PaymentProps {
 export default async function Payment({ params: { id } }: PaymentProps) {
   // Fetching property details server side
   const paymentsDetails = await getHouseById(id);
-
-const { toPersianWords } = require('number-to-persian');
 
   return (
     <div className="relative z-50 mt-[96px] container p-6 mx-auto py-10 flex flex-col md:flex-row gap-6 items-start justify-center">
@@ -35,7 +32,7 @@ const { toPersianWords } = require('number-to-persian');
               <div className="text-gray-500">مبلغ</div>
               <div>
                 <div className="text-[#2d3a4a] text-2xl font-bold mt-2">{formatNumber(Number(paymentsDetails.price))}</div>
-                <div className="text-gray-500 text-xs self-end">{numberToPersianWords(Number(paymentsDetails.price))}</div>
+                <div className="text-gray-500 text-xs self-end"></div>
               </div>
             </div>
             <img className='my-auto w-[28px] h-[28px]' src="https://img.icons8.com/?size=100&id=56960&format=png&color=797979" alt="" />
@@ -61,7 +58,7 @@ const { toPersianWords } = require('number-to-persian');
         </div>
       </div>
 
-      <PaymentForm price={Number(paymentsDetails.price)}/>
+      <PaymentForm id={id} price={Number(paymentsDetails.price)}/>
     </div>
   );
 }

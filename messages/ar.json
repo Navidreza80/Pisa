@@ -560,5 +560,23 @@
       "approved": "تمت الموافقة",
       "pending": "في انتظار الموافقة"
     }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "نظام التوقيع الرقمي",
+    "contractNumber": "رقم العقد: {number}",
+    "sellerInfo": "معلومات البائع",
+    "buyerInfo": "معلومات المشتري",
+    "name": "الاسم",
+    "nationalId": "الرقم القومي",
+    "pleaseDrawSignature": "يرجى رسم توقيعك في الصندوق أدناه:",
+    "clearSignature": "مسح التوقيع",
+    "confirmAndGenerateContract": "تأكيد وإنشاء العقد",
+    "contractReady": "العقد جاهز",
+    "signatureCleared": "تم مسح التوقيع",
+    "canvasAccessError": "خطأ في الوصول إلى لوحة التوقيع",
+    "contextError": "خطأ في سياق الرسم",
+    "pleaseSignFirst": "يرجى التوقيع أولاً",
+    "contractSaved": "تم إنشاء العقد وحفظه بنجاح!",
+    "contractError": "حدث خطأ أثناء إنشاء العقد!"
   }
 }
