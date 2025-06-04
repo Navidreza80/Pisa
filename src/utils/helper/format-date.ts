@@ -20,7 +20,7 @@ moment.locale("fa", {
     "اسفند",
   ],
 });
-moment.locale("fa"); // فعال‌سازی locale فارسی
+moment.locale("fa");
 
 export default function formatToPersianDate(date) {
   const persianDate = moment(date);

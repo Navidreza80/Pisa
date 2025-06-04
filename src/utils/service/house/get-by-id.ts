@@ -13,7 +13,7 @@ import http from "@/utils/interceptor";
  */
 export async function getHouseById(
   id: string
-): Promise<AxiosResponse<HouseItemsInterface>> {
+): Promise<HouseItemsInterface> {
   try {
     const response = await http.get<HouseItemsInterface>(`/houses/${id}`);
     return response;

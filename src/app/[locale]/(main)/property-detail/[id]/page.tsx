@@ -63,6 +63,7 @@ export default async function HouseDetail({ params }: PageProps) {
     photos,
     rate,
     categories,
+    price,
     yard_type,
     capacity,
     rooms,
@@ -143,7 +144,7 @@ export default async function HouseDetail({ params }: PageProps) {
             )}
 
             {/* Reserve section */}
-            {isHotel ? <ReserveForm /> : <RentForm />}
+            {isHotel ? <ReserveForm price={price} /> : <RentForm />}
             {/* Comments section */}
             <AllComments houseId={id} />
           </div>

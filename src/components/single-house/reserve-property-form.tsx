@@ -1,39 +1,62 @@
 "use client";
+import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
+import { setReservedDates } from "@/utils/hooks/react-redux/store/slices/book-hotel-slice";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
+import { useParams, useRouter } from "next/navigation";
 import PersianCalendar from "persian-calender";
 import "persian-calender/dist/index.css";
+import { useRef, useState } from "react";
 import InputText from "../common/inputs/text-inputs";
 import SectionName from "./section-name";
-import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+import { SaveSVG, ShareSVG } from "../svg";
+import { formatNumber } from "@/utils/helper/format-number";
 
-export default function ReserveForm() {
+export default function ReserveForm({ price }: { price: string }) {
   const t = useTranslations("SingleHouse");
   const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const [dateStart, setDateStart] = useState<Date | string>("");
+  const [dateExit, setDateExit] = useState<Date | string>("");
+  const router = useRouter();
+  const datePickerOne = useRef(null);
+
+  const handleContinue = (travelersCount: string) => {
+    const params = new URLSearchParams(URLSearchParams.toString());
+    params.set("enterDate", dateStart.toString());
+    params.set("exitDate", dateExit.toString());
+    params.set("travelersCount", travelersCount);
+    router.push(`/reserve/${id}?${params.toString()}`);
+  };
+  const reserveSchema = Yup.object().shape({
+    travelersCount: Yup.number().required("لطفا تعداد مسافران را وارد کنید"),
+  });
   const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-    },
+    validationSchema: reserveSchema,
+    initialValues: { travelersCount: "" },
     onSubmit: (values) => {
-    
+      if (dateExit && dateStart) {
+        dispatch(setReservedDates([dateStart.toString(), dateExit.toString()]));
+        handleContinue(values.travelersCount);
+      } else if (!dateStart) {
+        toast.error("لطفا ابتدا تاریخ رفت را انتخاب کنید");
+      } else if (!dateExit) {
+        toast.error("لطفا ابتدا تاریخ برگشت را انتخاب کنید");
+      }
     },
   });
   return (
-    <>
-      <form
-        onSubmit={formik.handleSubmit}
-        className="mt-10 flex flex-col gap-4"
-      >
+    <form onSubmit={formik.handleSubmit}>
+      <div className="mt-10 flex flex-col gap-4">
         <SectionName sectionName={t("reserve")} />
         <div className="w-full flex flex-wrap justify-between gap-3">
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
-            <p>{t("dateEnter")}</p>{" "}
+            <p>{t("dateEnter")}</p>
             <PersianCalendar
               responsive={true}
-              onChange={(date) => console.log(date)}
+              onChange={(date: Date) => setDateStart(date)}
               animate={true}
               inputStyle={{
                 width: "100%",
@@ -43,14 +66,15 @@ export default function ReserveForm() {
                 borderColor: "#eaeaea",
               }}
               theme="default"
-              showHolidays={false}
+              showHolidays={true}
             />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("dateExit")}</p>
             <PersianCalendar
+              ref={datePickerOne}
               responsive={true}
-              onChange={(date) => console.log(date)}
+              onChange={(date: Date) => setDateExit(date)}
               animate={true}
               inputStyle={{
                 width: "100%",
@@ -60,90 +84,64 @@ export default function ReserveForm() {
                 borderColor: "#eaeaea",
               }}
               theme="default"
-              showHolidays={false}
+              showHolidays={true}
             />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
-            <p>{t("capacity")}</p> <InputText width="!w-full" />
+            <p>{t("capacity")}</p>{" "}
+            <InputText
+              onChange={formik.handleChange}
+              value={formik.values.travelersCount}
+              width="!w-full"
+              name="travelersCount"
+            />
+            {formik.errors.travelersCount && (
+              <span className="text-red-500 text-sm text-right">
+                {formik.errors.travelersCount}
+              </span>
+            )}
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
-            <p>{t("discount")}</p> <InputText width="!w-full" />
+            <div className="flex gap-1 items-center">
+              <p>{t("discount")}</p>
+              <p className="text-[13px] text-fade">(اختیاری)</p>
+            </div>
+            <InputText width="!w-full" />
           </div>
         </div>
-      </form>
+      </div>
       {/* Price section */}
       <div className="mt-6 flex gap-4 justify-between flex-wrap">
         {/* Price */}
         <div className="flex flex-col gap-3">
           <h1 className="text-text">قیمت</h1>
           <div className="flex flex-row-reverse gap-[5px]">
-            <h1 className="text-[20px] font-[700] my-auto ">1500000</h1>
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
               تومان
             </p>
+            <h1 className="text-[20px] font-[700] my-auto ">
+              {formatNumber(Number(price))}
+            </h1>
           </div>
         </div>
-        {/* Like & share section */}
+        {/* save & share section */}
         <div className="flex gap-6">
           {/* Save */}
           <p className="border-text-secondary border rounded-full w-12 h-12 flex justify-center items-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.5 14.5L14.5 9.5"
-                stroke="black"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M16.8463 14.6095L19.4558 12C21.5147 9.94112 21.5147 6.60302 19.4558 4.54415C17.397 2.48528 14.0589 2.48528 12 4.54415L9.39045 7.1537M14.6095 16.8463L12 19.4558C9.94113 21.5147 6.60303 21.5147 4.54416 19.4558C2.48528 17.3969 2.48528 14.0588 4.54416 12L7.1537 9.39045"
-                stroke="black"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
+            <SaveSVG />
           </p>
           {/* Share */}
           <p className="w-12 h-12 bg-primary rounded-full flex justify-center items-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 4.5C5.50442 5.70104 3 8.94175 3 12.7511C3 13.9579 3.25134 15.1076 3.70591 16.1534M15 4.5C18.4956 5.70104 21 8.94175 21 12.7511C21 13.7736 20.8195 14.7552 20.4879 15.6674M16.5 20.3296C15.1762 21.074 13.6393 21.5 12 21.5C10.3607 21.5 8.82378 21.074 7.5 20.3296"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M15 5C15 6.65685 13.6569 8 12 8C10.3431 8 9 6.65685 9 5C9 3.34315 10.3431 2 12 2C13.6569 2 15 3.34315 15 5Z"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M5 22C6.65685 22 8 20.6569 8 19C8 17.3431 6.65685 16 5 16C3.34315 16 2 17.3431 2 19C2 20.6569 3.34315 22 5 22Z"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M19 22C20.6569 22 22 20.6569 22 19C22 17.3431 20.6569 16 19 16C17.3431 16 16 17.3431 16 19C16 20.6569 17.3431 22 19 22Z"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-            </svg>
+            <ShareSVG />
           </p>
         </div>
-        <button className="bg-primary w-full rounded-full mt-4 h-12 text-white">
+        <button
+          type="submit"
+          className="bg-primary cursor-pointer hover:bg-[#4A5FE3] font-semibold w-full focus:scale-95 focus:shadow-lg transition-all rounded-full mt-4 h-12 flex justify-center items-center text-white"
+        >
           همین الان رزرو کن
         </button>
       </div>
-    </>
+    </form>
   );
 }
