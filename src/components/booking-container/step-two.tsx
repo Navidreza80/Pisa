@@ -1,5 +1,8 @@
 import { formatNumber } from "@/utils/helper/format-number";
-import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/utils/hooks/react-redux/store/hook";
 import { setBookingSteps } from "@/utils/hooks/react-redux/store/slices/booking-step";
 import {
   ChevronLeft,
@@ -16,6 +19,9 @@ import TableDashboard from "../dashboard/table";
 import { TravelersSVG } from "../svg";
 import Body from "./body";
 import Header from "./header";
+import formatToPersianDate from "@/utils/helper/format-date";
+import { getAgeGroup } from "@/utils/helper/age-identifier";
+import { bookHotel } from "@/utils/service/reserve/post";
 
 // Card component for mobile view
 const TravelerCard = ({ traveler }) => {
@@ -27,39 +33,41 @@ const TravelerCard = ({ traveler }) => {
           {traveler.age}
         </span>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-fade text-xs">نام و نام خانوادگی:</span>
           <span className="font-medium text-sm">{traveler.name}</span>
         </div>
-        
+
         <div className="flex justify-between">
           <span className="text-fade text-xs">جنسیت:</span>
           <span className="font-medium text-sm">{traveler.gender}</span>
         </div>
-        
+
         <div className="flex justify-between">
           <span className="text-fade text-xs">کدملی / شماره یا پاسپورت:</span>
           <span className="font-medium text-sm">{traveler.nationalNumber}</span>
         </div>
-        
+
         <div className="flex justify-between">
           <span className="text-fade text-xs">تاریخ تولد:</span>
           <span className="font-medium text-sm">{traveler.birthDate}</span>
         </div>
-        
+
         {traveler.services !== "-" && (
           <div className="flex justify-between">
             <span className="text-fade text-xs">خدمات:</span>
             <span className="font-medium text-sm">{traveler.services}</span>
           </div>
         )}
-        
+
         {traveler.servicesPrice !== "-" && (
           <div className="flex justify-between">
             <span className="text-fade text-xs">مبلغ خدمات:</span>
-            <span className="font-medium text-sm">{traveler.servicesPrice}</span>
+            <span className="font-medium text-sm">
+              {traveler.servicesPrice}
+            </span>
           </div>
         )}
       </div>
@@ -94,6 +102,10 @@ export default function BookingStepTwo() {
     },
   ];
   const dispatch = useAppDispatch();
+  const booking = useAppSelector((state) => state.bookingCreate);
+  const handleClick = async () => {
+    await bookHotel(booking);
+  };
   return (
     <div className="flex flex-col gap-y-4 md:gap-y-[38px] mt-4 md:mt-8">
       {/* Edit travelers */}
@@ -118,16 +130,25 @@ export default function BookingStepTwo() {
             headerCLX="bg-transparent"
             pageInation={false}
             tableHeader={tableHeaderItems}
-            tableContent={travelers.map((traveler) => (
-              <tr key={traveler.id} className="text-right hover:bg-background/30">
-                <td className={tableBaseCLX}>{traveler.age}</td>
-                <td className={tableBaseCLX}>{traveler.name}</td>
+            tableContent={booking.traveler_details.map((traveler) => (
+              <tr
+                key={traveler.id}
+                className="text-right hover:bg-background/30"
+              >
+                <td className={tableBaseCLX}>
+                  {getAgeGroup(traveler.birthDate)}
+                </td>
+                <td className={tableBaseCLX}>
+                  {traveler.firstName + " " + traveler.lastName}
+                </td>
                 <td className={tableBaseCLX}>{traveler.gender}</td>
-                <td className={tableBaseCLX}>{traveler.nationalNumber}</td>
-                <td className={tableBaseCLX}>{traveler.birthDate}</td>
-                <td className={tableBaseCLX}>{traveler.services}</td>
-                <td className={tableBaseCLX}>{traveler.servicesPrice}</td>
-                <td className={tableBaseCLX}>{traveler.price}</td>
+                <td className={tableBaseCLX}>{traveler.nationalId}</td>
+                <td className={tableBaseCLX}>
+                  {formatToPersianDate(traveler.birthDate)}
+                </td>
+                <td className={tableBaseCLX}>-</td>
+                <td className={tableBaseCLX}>-</td>
+                <td className={tableBaseCLX}>{formatNumber(1500000)}</td>
               </tr>
             ))}
           />
@@ -166,13 +187,13 @@ export default function BookingStepTwo() {
           <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
             <Dot className="w-4 md:w-5" /> : ایمیل
             <span className="text-primary break-all">
-              navidrezaabbaszadeh89@gmail.com
+              {booking.sharedEmail}
             </span>
           </div>
           <span className="hidden md:block bg-border h-4 w-0.5" />
           <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
             <Dot className="w-4 md:w-5" /> : شماره تماس
-            <span className="text-primary">09229167194</span>
+            <span className="text-primary">{booking.sharedMobile}</span>
           </div>
         </div>
       </Body>
@@ -201,7 +222,10 @@ export default function BookingStepTwo() {
         <div className="flex gap-2 w-full md:w-auto">
           <Button
             startContent={<ChevronLeft />}
-            handleClick={() => dispatch(setBookingSteps(3))}
+            handleClick={() => {
+              handleClick();
+              dispatch(setBookingSteps(3));
+            }}
             className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
           >
             پرداخت انلاین

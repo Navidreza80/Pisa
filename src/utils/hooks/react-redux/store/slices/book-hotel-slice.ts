@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define the TravelerDetails interface
 interface TravelerDetails {
   firstName: string;
   lastName: string;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
   birthDate: string;
   nationalId: string;
 }
@@ -29,7 +29,7 @@ const initialState: BookingState = {
 
 // Create the slice
 const bookingSlice = createSlice({
-  name: 'booking',
+  name: "booking",
   initialState,
   reducers: {
     setHouseId: (state, action: PayloadAction<number>) => {
@@ -38,13 +38,18 @@ const bookingSlice = createSlice({
     setReservedDates: (state, action: PayloadAction<string[]>) => {
       state.reservedDates = action.payload;
     },
-    addTraveler: (state, action: PayloadAction<TravelerDetails>) => {
-      state.traveler_details.push(action.payload);
+    addTravelers: (state, action: PayloadAction<TravelerDetails[]>) => {
+      state.traveler_details = action.payload;
     },
     removeTraveler: (state, action: PayloadAction<number>) => {
-      state.traveler_details = state.traveler_details.filter((_, index) => index !== action.payload);
+      state.traveler_details = state.traveler_details.filter(
+        (_, index) => index !== action.payload
+      );
     },
-    updateTraveler: (state, action: PayloadAction<{ index: number; traveler: TravelerDetails }>) => {
+    updateTraveler: (
+      state,
+      action: PayloadAction<{ index: number; traveler: TravelerDetails }>
+    ) => {
       const { index, traveler } = action.payload;
       if (state.traveler_details[index]) {
         state.traveler_details[index] = traveler;
@@ -66,7 +71,7 @@ const bookingSlice = createSlice({
 export const {
   setHouseId,
   setReservedDates,
-  addTraveler,
+  addTravelers,
   removeTraveler,
   updateTraveler,
   setSharedEmail,

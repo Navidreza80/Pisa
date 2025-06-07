@@ -1,6 +1,3 @@
-// Types
-import { Reservation } from "@/types/reserve";
-
 // Interceptor
 import http from "@/utils/interceptor";
 
@@ -8,9 +5,9 @@ import http from "@/utils/interceptor";
  * Get all users booking.
  * @returns response with array of objects including all users bookings.
  */
-export async function getBookingList(): Promise<Reservation[]> {
+export async function bookHotel(data) {
   try {
-    const response = await http.get<Reservation[]>(`/bookings`);
+    const response = await http.post(`/bookings`, data);
     return response;
   } catch (error) {
     console.error("Error fetching locations:", error);

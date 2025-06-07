@@ -20,6 +20,7 @@ export default function InputSelect({
   width,
   items,
   label,
+  color,
   className,
   withLabel,
   onChange,
@@ -32,6 +33,7 @@ export default function InputSelect({
   value?: number | string;
   withLabel: boolean;
   width?: number;
+  color?: string;
 }) {
   // Hooks
   const t = useTranslations("HomePage");
@@ -50,27 +52,32 @@ export default function InputSelect({
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
-        className={`${className} cursor-pointer !h-[48px] z-[10000000000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
+        className={`${className} cursor-pointer outline-0 focus:outline-0  ${color ? color : ""} !h-[48px] z-[1000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}
         style={{ width: width ? width : 162 }}
       >
         {withLabel && (
-          <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
+          <div
+            className={`text-fade font-medium text-[13px] outline-0 focus:outline-0  absolute top-[-10] ${color ? color : "bg-background"} right-2 px-2`}
+          >
             {label}
           </div>
         )}
         <SelectValue
-          className="z-[10000000000] relative !font-medium"
+          className="z-[100] relative !font-medium outline-0 focus:outline-0 "
           placeholder={t("choose")}
         />
       </SelectTrigger>
-      <SelectContent dir="rtl" className="!p-0 !border-none rounded-[16px] bg-surface z-[10000000000] font-medium relative ">
+      <SelectContent
+        dir="rtl"
+        className="!p-0 !border-none rounded-[16px] bg-surface z-[100] font-medium relative "
+      >
         {items?.map((item) => (
           <SelectItem
             key={item.id}
             value={String(item.value ?? item.id ?? item.text)}
-            className=" z-[10000000000] relative font-medium text-text"
+            className=" z-[100] relative font-medium text-text"
           >
             {item.area_name || item.text}
           </SelectItem>

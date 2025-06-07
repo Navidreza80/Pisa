@@ -23,7 +23,7 @@ const WarningModal = ({ title, children }) => {
         </DialogHeader>
         <div className="w-full flex justify-center flex-wrap gap-y-7">
           <WarningSVG />
-          <h1 className="text-[24px] font-bold text-text text-center">
+          <h1 className="text-[24px] w-full font-bold text-text text-center">
             {title}
           </h1>
           <div className="flex gap-2">

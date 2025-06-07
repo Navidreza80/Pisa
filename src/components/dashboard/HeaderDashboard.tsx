@@ -1,10 +1,13 @@
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
-import DashboardTitle from "./buyer/DashboardTitle";
-import ArrowSVG from "./svg/ArrowSVG";
-import Notif2SVG from "./svg/Notif2SVG";
-import { jwtDecode, JwtPayload } from "jwt-decode";
 import { auth } from "@/auth";
+import { getServerCookie } from "@/utils/service/storage/server-cookie";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+import { ChevronDown, PlusCircle } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import DashboardTitle from "./buyer/DashboardTitle";
+import Notif2SVG from "./svg/Notif2SVG";
+import SignoutSVG from "./svg/SignoutSVG";
+import NotificationSettingModal from "./notification-setting-modal";
+import WarningModal from "./warning-modal";
 
 async function HeaderDashboard() {
   const token = await getServerCookie("serverAccessToken");
@@ -16,6 +19,12 @@ async function HeaderDashboard() {
     decodedUser = await auth();
     decodedUser = decodedUser?.user;
   }
+
+  const dropdownItems = [
+    { text: "شارژ کردن کیف پول", icon: <PlusCircle /> },
+    { text: "تنظیمات نوتیفیکیشن", icon: <SignoutSVG /> },
+    { text: "خروج", icon: <SignoutSVG /> },
+  ];
   return (
     <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
       {!decodedUser ? (
@@ -25,15 +34,51 @@ async function HeaderDashboard() {
           <div className="my-auto cursor-pointer">
             <Popover>
               <PopoverTrigger asChild>
-                <ArrowSVG />
+                <ChevronDown />
               </PopoverTrigger>
-              <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
-                <div>
-                  <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                    <h1 className="text-center">آیتم</h1>
-                  </div>
-                  <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                    <h1 className="text-center">آیتم</h1>
+              <PopoverContent className="text-right w-[180px] p-1 bg-background px-1 border-border shadow-sm shadow-border z-[1000]">
+                <div className="px-[10px]">
+                  <div className="w-full h-full flex flex-col">
+                    <div className="py-[10px] w-full flex gap-2 flex-row-reverse">
+                      <div className="w-[37px] aspect-square bg-fade rounded-lg " />
+                      <div className="flex flex-col">
+                        <h1 className="text-[13px] font-medium">
+                          امیر محمد ملایی
+                        </h1>
+                        <h1 className="text-[12px] text-fade font-medium">
+                          +989123456789
+                        </h1>
+                      </div>
+                    </div>
+                    {dropdownItems.map((item, index) => {
+                      return index == 1 ? (
+                        <NotificationSettingModal>
+                          <div
+                            key={index}
+                            className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
+                          >
+                            {item.text} {item.icon}
+                          </div>
+                        </NotificationSettingModal>
+                      ) : index == 2 ? (
+                        <WarningModal title="آیا از خروج خود مطمعن هستید؟">
+                          {" "}
+                          <div
+                            key={index}
+                            className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
+                          >
+                            {item.text} {item.icon}
+                          </div>
+                        </WarningModal>
+                      ) : (
+                        <div
+                          key={index}
+                          className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
+                        >
+                          {item.text} {item.icon}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </PopoverContent>

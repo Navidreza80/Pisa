@@ -4,7 +4,7 @@ import WalletSVG from "../../svg/WalletSVG";
 import { formatNumber } from "@/utils/helper/format-number";
 
 const IncomeCard = ({ data, title }) => (
-  <div className="w-[calc(50%-15px)] p-4 bg-background rounded-xl">
+  <div className="md:w-[calc(50%-15px)] w-full p-4 bg-background rounded-xl">
     <div className="flex gap-2 rtl">
       <div className="my-auto">
         <WalletSVG />

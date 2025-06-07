@@ -1,16 +1,17 @@
 // Interceptor
 import http from "@/utils/interceptor";
-import { getClientCookie } from "../storage/client-cookie";
+import { useQuery } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { getClientCookie } from "../storage/client-cookie";
+import { JwtPayload, UserProfileProps } from "@/types/user";
 
 /**
  * Get use info.
  * @returns response with user info obj.
  */
-export async function getUserInfo(id: string) {
+export async function getUserInfo(id: string): Promise<UserProfileProps> {
   try {
-    const response = await http.get(`/users/${id}`);
+    const response = await http.get<UserProfileProps>(`/users/${id}`);
     return response;
   } catch (error) {
     console.error("Error fetching locations:", error);
@@ -22,8 +23,8 @@ export const useUser = () => {
   const token = getClientCookie("clientAccessToken");
   const decoded = typeof token == "string" && jwtDecode(token);
   return useQuery({
-    queryKey:["GET_USER"],
+    queryKey: ["GET_USER"],
     queryFn: () => getUserInfo(decoded.id),
-    staleTime: 1000000
+    staleTime: 1000000,
   });
 };

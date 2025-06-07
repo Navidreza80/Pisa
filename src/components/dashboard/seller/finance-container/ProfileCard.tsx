@@ -6,7 +6,7 @@ import InfoSVG from "../../svg/InfoSVG";
 import { PieChart, Pie, Cell } from "recharts";
 
 const ProfileCard = ({ data }) => (
-  <div className="w-[calc(50%-15px)] p-4 bg-background rounded-xl">
+  <div className="md:w-[calc(50%-15px)] w-full p-4 bg-background rounded-xl">
     <div className="flex justify-between">
       <Link href="/dashboard/seller/reservations" className="flex gap-4">
         <div className="my-auto">
@@ -21,9 +21,7 @@ const ProfileCard = ({ data }) => (
         <h2 className="text-lg font-semibold my-auto">{data.status.label}</h2>
       </div>
     </div>
-
     <Line />
-
     <div className="flex justify-between h-[150px]">
       <div className="w-[30%] my-auto">
         <PieChart width={120} height={120}>
@@ -49,9 +47,13 @@ const ProfileCard = ({ data }) => (
       </div>
 
       <div className="w-[60%] h-full flex flex-col flex-wrap justify-between">
-        <span className="text-[36px] text-text font-bold h-10">{data.status.completion}%</span>
+        <span className="text-[36px] text-text font-bold h-10">
+          {data.status.completion}%
+        </span>
         <p className="text-lg text-text">{data.status.hint}</p>
-        <p className="text-xs text-text-secondary">آخرین تغییرات در {data.status.lastUpdated}</p>
+        <p className="text-xs text-text-secondary">
+          آخرین تغییرات در {data.status.lastUpdated}
+        </p>
       </div>
     </div>
   </div>

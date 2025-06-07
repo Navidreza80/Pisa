@@ -1,4 +1,5 @@
 "use client";
+import { formatNumber } from "@/utils/helper/format-number";
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 import { setReservedDates } from "@/utils/hooks/react-redux/store/slices/book-hotel-slice";
 import { useFormik } from "formik";
@@ -6,13 +7,12 @@ import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import PersianCalendar from "persian-calender";
 import "persian-calender/dist/index.css";
-import { useRef, useState } from "react";
-import InputText from "../common/inputs/text-inputs";
-import SectionName from "./section-name";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import InputText from "../common/inputs/text-inputs";
 import { SaveSVG, ShareSVG } from "../svg";
-import { formatNumber } from "@/utils/helper/format-number";
+import SectionName from "./section-name";
 
 export default function ReserveForm({ price }: { price: string }) {
   const t = useTranslations("SingleHouse");
@@ -21,7 +21,7 @@ export default function ReserveForm({ price }: { price: string }) {
   const [dateStart, setDateStart] = useState<Date | string>("");
   const [dateExit, setDateExit] = useState<Date | string>("");
   const router = useRouter();
-  const datePickerOne = useRef(null);
+
 
   const handleContinue = (travelersCount: string) => {
     const params = new URLSearchParams(URLSearchParams.toString());
@@ -72,7 +72,6 @@ export default function ReserveForm({ price }: { price: string }) {
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("dateExit")}</p>
             <PersianCalendar
-              ref={datePickerOne}
               responsive={true}
               onChange={(date: Date) => setDateExit(date)}
               animate={true}

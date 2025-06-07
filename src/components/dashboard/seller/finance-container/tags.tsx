@@ -61,7 +61,7 @@ const Tags = () => {
       )}
       {pathname.endsWith("/seller") && (
         <>
-          <div className="w-full flex justify-between">
+          <div className="w-full flex flex-wrap justify-between">
             {dashboarditems.map((item, index) => {
               return <Tag key={index} item={item} />;
             })}
