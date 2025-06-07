@@ -16,7 +16,7 @@ export default function AddPropertyStepThree() {
   ];
   return (
     <>
-      <div className="mt-[33px] grid w-full grid-cols-2 gap-x-[63px] gap-y-[19px] relative">
+      <div className="mt-[33px] grid w-full lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-x-[63px] gap-y-[19px] relative">
         {inputs.map((item, index) => {
           return !item.isSelect ? (
             <InputText

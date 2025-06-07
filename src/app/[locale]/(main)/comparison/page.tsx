@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 // Dependencies
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { FaBath, FaBed, FaUser } from "react-icons/fa";
+import { FaBath, FaBed, FaCar, FaUser } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { useDispatch } from "react-redux";
 
 // Third party components
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/common/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -25,13 +25,14 @@ import type { HouseItemsInterface } from "@/types/house";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { deleteComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 import { getHouseById } from "@/utils/service/house/get-by-id";
+import Link from "next/link";
 
 /**
  * About us page - Display team members, missions, location and FAQ
- * 
+ *
  * @page
  * @route /about-us
- * 
+ *
  */
 
 const ComparisonPage = () => {
@@ -83,7 +84,7 @@ const ComparisonPage = () => {
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className="container px-26 mx-auto py-8 sm:py-12"
+      className="container px-6 md:px-0 lg:px-28 mx-auto py-8 sm:py-12"
     >
       {/* Title and subtitle */}
       <motion.div
@@ -105,13 +106,13 @@ const ComparisonPage = () => {
         <TabsList className="grid w-full max-w-xs sm:max-w-md mx-auto grid-cols-2 bg-blue-50 dark:bg-gray-800 min-h-[48px]">
           <TabsTrigger
             value="visual"
-            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 text-center"
+            className="data-[state=active]:bg-primary cursor-pointer data-[state=active]:text-white py-3 text-center"
           >
             {t("visualComparison")}
           </TabsTrigger>
           <TabsTrigger
             value="table"
-            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 text-center"
+            className="data-[state=active]:bg-primary  cursor-pointer data-[state=active]:text-white py-3 text-center"
           >
             {t("tableComparison")}
           </TabsTrigger>
@@ -127,7 +128,7 @@ const ComparisonPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="overflow-hidden h-full rounded-xl border border-blue-100 dark:border-blue-900 shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800/60 backdrop-blur-sm">
+                <Card className="overflow-hidden h-full rounded-xl border border-border transition-all duration-300 bg-background">
                   <div className="relative h-52 sm:h-64 w-full">
                     <img
                       src={house.photos[0]}
@@ -137,7 +138,7 @@ const ComparisonPage = () => {
                     <div
                       className={`absolute top-4 ${isRTL ? "left-4" : "right-4"} flex gap-8`}
                     >
-                      <Badge className="bg-blue-600 hover:bg-blue-700 text-white transition-colors">
+                      <Badge className="bg-primary text-white transition-colors">
                         {renderRating(Number(house.rate))}
                       </Badge>
                     </div>
@@ -201,7 +202,7 @@ const ComparisonPage = () => {
                         <div
                           className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center ${isRTL ? "ml-2 sm:ml-3" : "mr-2 sm:mr-3"}`}
                         >
-                          <FaBath className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
+                          <FaCar className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
                         </div>
                         <div>
                           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -225,8 +226,8 @@ const ComparisonPage = () => {
                       </div>
 
                       <Button
-                        className="bg-gradient-to-r py-6 from-blue-600 to-indigo-800 hover:from-blue-700 hover:to-indigo-900 text-white text-xs sm:text-sm transition-all duration-300 shadow-md hover:shadow-lg"
-                        onClick={() =>
+                        className="py-6 !w-auto text-white text-xs sm:text-sm transition-all cursor-pointer duration-300 shadow-md hover:shadow-lg"
+                        handleClick={() =>
                           router.push(`/property-detail/${house.id}`)
                         }
                       >
@@ -245,7 +246,7 @@ const ComparisonPage = () => {
           value="table"
           className="mt-4 sm:mt-6"
         >
-          <Card className="border-0 shadow-lg overflow-hidden">
+          <Card className="border-0 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -370,13 +371,11 @@ const ComparisonPage = () => {
 
           <div className="flex flex-wrap justify-center mt-4 sm:mt-6 gap-2 sm:gap-4">
             {houses.map((house) => (
-              <Button
-                key={house.id}
-                className="bg-primary hover:bg-primary/90 text-white text-xs sm:text-sm"
-                onClick={() => router.push(`/properties/${house.id}`)}
-              >
-                {t("view")} {house.title}
-              </Button>
+              <Link key={house.id} href={`/property-detail/${house.id}`}>
+                <Button className="bg-primary !w-auto cursor-pointer hover:bg-primary/90 text-white text-xs sm:text-sm">
+                  {t("view")} {house.title}
+                </Button>
+              </Link>
             ))}
           </div>
         </TabsContent>

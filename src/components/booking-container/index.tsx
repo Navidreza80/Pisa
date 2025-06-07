@@ -1,0 +1,27 @@
+"use client"
+
+import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
+import BookingStepOne from "./step-one";
+import BookingStepTwo from "./step-two";
+import Stepper from "./stepper";
+
+export default function Bookings() {
+  const id = useAppSelector((state) => state.bookingSteps.id);
+  return (
+    <div className="flex flex-col flex-wrap w-[85.5%]">
+      <Stepper />
+      {id == 1 ? (
+        <BookingStepOne />
+      ) : id == 2 ? (
+        <BookingStepTwo />
+      ) : id == 3 ? (
+        <div>3</div>
+      ) : id == 4 ? (
+        <div>d4</div>
+      ) : (
+        <div>d5</div>
+      )}
+
+    </div>
+  );
+}

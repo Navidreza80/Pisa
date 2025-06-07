@@ -235,5 +235,348 @@
     "bathroomsValue": "حمام",
     "parkingsValue": "موقف سيارات",
     "roomsValue": "غرفة"
+  },
+  "Favorites": {
+    "title": "قائمة الحجوزات المحفوظة",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "اسم الفندق",
+      "price": "السعر",
+      "address": "العنوان"
+    },
+    "filters": {
+      "propertyType": "نوع العقار"
+    },
+    "searchPlaceholder": "اكتب اسم الفندق...",
+    "priceLabel": "السعر",
+    "addressLabel": "العنوان",
+    "actions": {
+      "reserve": "احجز",
+      "delete": "حذف"
+    }
+  },
+  "UserInformation": {
+    "profileImage": {
+      "title": "صورتك الشخصية",
+      "description": "يمكنك تغيير صورتك الشخصية"
+    },
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "description": "يمكنك تعديل معلوماتك الشخصية"
+    },
+    "security": {
+      "title": "الأمان",
+      "description": "يمكنك تغيير كلمة المرور من هنا"
+    },
+    "formFields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phoneNumber": "رقم الهاتف"
+    },
+    "securityForm": {
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "buttons": {
+      "applyChanges": "تطبيق التغييرات",
+      "cancel": "إلغاء"
+    },
+    "toast": {
+      "pending": "جاري المعالجة",
+      "success": "تم تحديث المعلومات بنجاح",
+      "error": "خطأ!"
+    }
+  },
+  "DestinationsList": {
+    "title": "قائمة وجهاتي السياحية",
+    "searchPlaceholder": "اكتب اسم الجولة...",
+    "addButton": "إضافة وجهة +",
+    "provinceLabel": "المحافظة",
+    "tableHeaders": {
+      "empty": "",
+      "city": "اسم المدينة",
+      "description": "الوصف",
+      "status": "الحالة"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "قيد المراجعة",
+      "rejected": "مرفوض"
+    },
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "deleteModal": {
+      "title": "هل أنت متأكد من حذف الجولة؟",
+      "description": "لا يمكن التراجع بعد الحذف!"
+    }
+  },
+  "Notifications": {
+    "title": "قائمة الإشعارات الخاصة بك",
+    "markAsRead": "تحديد كمقروء",
+    "markAllAsReadConfirmation": "هل أنت متأكد أنك تريد تحديد جميع الإشعارات كمقروءة؟",
+    "notificationType": "نوع الإشعار",
+    "dateLabel": "التاريخ",
+    "status": {
+      "read": "مقروء",
+      "unread": "غير مقروء"
+    },
+    "mockData": {
+      "date1": "12 أغسطس 2021 / 12:33",
+      "text1": "قام البائع أمير محمد ملايي بإدراج منزل للحجز",
+      "text2": "مرحباً بك!"
+    }
+  },
+  "TransactionList": {
+    "title": "قائمة المعاملات الخاصة بك",
+    "currency": "تومان",
+    "viewReceipt": "عرض الإيصال",
+    "statusLabel": "الحالة",
+    "priceLabel": "السعر",
+    "trackingCodeLabel": "رمز التتبع",
+    "filters": {
+      "all": "الكل",
+      "transactionType": "نوع المعاملة",
+      "paymentStatus": "حالة الدفع"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوض"
+    },
+    "types": {
+      "walletCharge": "شحن المحفظة",
+      "reservation": "حجز"
+    },
+    "mockData": {
+      "date": "12 أغسطس 2021"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "التاريخ",
+      "trackingCode": "رمز التتبع",
+      "amount": "المبلغ",
+      "paymentStatus": "حالة الدفع",
+      "transactionType": "نوع المعاملة"
+    }
+  },
+  "BookingList": {
+    "title": "قائمة حجوزاتك",
+    "filtersButton": "الفلاتر",
+    "searchPlaceholder": "اكتب اسم الفندق...",
+    "passengerCount": "{count} راكب",
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "في الانتظار",
+      "cancelled": "تم الإلغاء"
+    },
+    "actions": {
+      "approve": "الموافقة على الحجز",
+      "cancel": "إلغاء الحجز",
+      "delete": "حذف",
+      "details": "تفاصيل"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "اسم الفندق",
+      "bookingDate": "تاريخ الحجز",
+      "totalPrice": "السعر الإجمالي",
+      "passengerCount": "عدد الركاب",
+      "bookingStatus": "حالة الحجز",
+      "paymentStatus": "حالة الدفع"
+    },
+    "mockData": {
+      "hotelName": "فندق سراوان رانين، رشت",
+      "bookingDate": "12 أغسطس 2021 / 13:33",
+      "totalPrice": "{price} تومان"
+    }
+  },
+  "BookingListSeller": {
+    "pageTitle": "قائمة حجوزات العملاء",
+    "filtersButton": "الفلاتر",
+    "searchPlaceholder": "ابحث عن اسم المسافر...",
+    "status": {
+      "approved": "تم التأكيد",
+      "pending": "قيد الانتظار",
+      "cancelled": "ملغية"
+    },
+    "actions": {
+      "approve": "تأكيد الحجز",
+      "cancel": "إلغاء الحجز",
+      "details": "التفاصيل",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "اسم العقار",
+      "travelerInfo": "معلومات المسافر",
+      "bookingDate": "تاريخ الحجز",
+      "amount": "المبلغ",
+      "bookingStatus": "حالة الحجز",
+      "paymentStatus": "حالة الدفع"
+    },
+    "mockData": {
+      "hotelName": "فندق سرافان رانين رشت",
+      "bookingDate": "3 أغسطس 2022 / 13:33",
+      "totalPrice": "{price} تومان",
+      "travelerInfo": "سبحان عرب خزائلي، 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "قائمة عقاراتي",
+    "searchPlaceholder": "ابحث عن اسم العقار...",
+    "addProperty": "إضافة عقار",
+    "times": "مرة",
+    "activate": "تفعيل",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteWarning": "لا يمكن التراجع بعد الحذف!",
+    "deleteConfirm": "هل أنت متأكد من حذف العقار؟",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "اسم السكن",
+      "price": "السعر",
+      "rating": "التقييم",
+      "visits": "الزيارات",
+      "reservations": "الحجوزات",
+      "status": "الحالة"
+    }
+  },
+  "FinanceManagement": {
+    "title": "قائمة معاملات العملاء",
+    "transactionType": "نوع المعاملة:",
+    "paymentStatus": "حالة الدفع:",
+    "property": "العقار",
+    "viewReceipt": "عرض الإيصال",
+    "tableHeaders": {
+      "empty": "",
+      "date": "التاريخ",
+      "trackingNumber": "رقم التتبع",
+      "amount": "المبلغ",
+      "paymentStatus": "حالة الدفع",
+      "transactionType": "نوع المعاملة"
+    }
+  },
+  "SellerToursList": {
+    "title": "قائمة جولاتي",
+    "searchPlaceholder": "ابحث عن اسم الجولة...",
+    "addTour": "إضافة جولة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteWarning": "لا يمكن التراجع بعد الحذف!",
+    "deleteConfirmation": "هل أنت متأكد من حذف الجولة؟",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "اسم الجولة",
+      "tourCost": "تكلفة الجولة",
+      "date": "التاريخ",
+      "score": "التقييم",
+      "participants": "المشاركون"
+    }
+  },
+  "Dashboard": {
+    "dashboard": "لوحة التحكم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "userInformation": "معلومات المستخدم",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات"
+  },
+  "Sidebar": {
+    "dashboard": "لوحة التحكم",
+    "management": "الإدارة",
+    "select": "اختر",
+    "cancle": "إلغاء",
+    "userInformation": "معلومات المستخدم",
+    "propertyManagement": "إدارة العقارات",
+    "reservationManagement": "إدارة الحجوزات",
+    "financialManagement": "الإدارة المالية",
+    "reviewManagement": "إدارة التقييمات",
+    "notifications": "الإشعارات",
+    "tourManagement": "إدارة الجولات",
+    "locationManagement": "إدارة المواقع",
+    "favorites": "المفضلة",
+    "payments": "المدفوعات",
+    "newReviews": "تقييمات جديدة",
+    "reviewCount": "{count} تقييم",
+    "wallet": "المحفظة",
+    "noBalance": "لا يوجد رصيد"
+  },
+  "ReserveDetail": {
+    "details": "التفاصيل",
+    "hotelName": "فندق همايون فار كيش، إيران",
+    "description": "شقة دافئة وهادئة في قلب المدينة، حيث تكون الحياة اليومية أسهل وأكثر راحة. مساحة حديثة بتصميم فريد، تذكرنا بالمنازل الدافئة والجذابة. مكان للحظات سعيدة، استرخاء، وبداية جديدة في حياتك اليومية.",
+    "tags": "العلامات",
+    "apartment": "شقة",
+    "starRating": "{stars} نجوم",
+    "address": "العنوان",
+    "hotelAddress": "ساري، شارع معلم، شارع دانش",
+    "bedrooms": "{count} غرفة نوم",
+    "parking": "{count} موقف سيارات",
+    "bathrooms": "{count} حمام",
+    "reservations": "الحجوزات",
+    "currency": "ت",
+    "purchasePrice": "سعر الشراء"
+  },
+  "WarningModal": {
+    "cancel": "إلغاء",
+    "add": "إضافة",
+    "agree": "موافقة"
+  },
+  "FilterModal": {
+    "filtersButton": "المرشحات",
+    "filtersTitle": "المرشحات",
+    "applyFilters": "تطبيق المرشحات",
+    "close": "إغلاق"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "حجوزات العملاء الأخيرة",
+    "actions": {
+      "view": "عرض",
+      "approve": "موافقة",
+      "cancel": "إلغاء",
+      "details": "تفاصيل",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "residenceName": "اسم السكن",
+      "bookingDate": "تاريخ الحجز",
+      "price": "السعر",
+      "empty": "",
+      "status": "الحالة"
+    },
+    "mockData": {
+      "hotelName": "فيلا مع مسبح",
+      "bookingDate": "2024/03/04 - 2024/03/07",
+      "totalPrice": "{price} تومان"
+    },
+    "status": {
+      "approved": "تمت الموافقة",
+      "pending": "في انتظار الموافقة"
+    }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "نظام التوقيع الرقمي",
+    "contractNumber": "رقم العقد: {number}",
+    "sellerInfo": "معلومات البائع",
+    "buyerInfo": "معلومات المشتري",
+    "name": "الاسم",
+    "nationalId": "الرقم القومي",
+    "pleaseDrawSignature": "يرجى رسم توقيعك في الصندوق أدناه:",
+    "clearSignature": "مسح التوقيع",
+    "confirmAndGenerateContract": "تأكيد وإنشاء العقد",
+    "contractReady": "العقد جاهز",
+    "signatureCleared": "تم مسح التوقيع",
+    "canvasAccessError": "خطأ في الوصول إلى لوحة التوقيع",
+    "contextError": "خطأ في سياق الرسم",
+    "pleaseSignFirst": "يرجى التوقيع أولاً",
+    "contractSaved": "تم إنشاء العقد وحفظه بنجاح!",
+    "contractError": "حدث خطأ أثناء إنشاء العقد!"
   }
 }

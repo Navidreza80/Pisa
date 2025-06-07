@@ -8,72 +8,154 @@ import TableDashboard from "@/components/dashboard/table";
 import Title from "@/components/dashboard/title";
 import WarningModal from "@/components/dashboard/warning-modal";
 import { TickSVG } from "@/components/svg";
+import { useTranslations } from "next-intl";
 import {
   DashboardBuyerNotifications,
   tableHeaderItems,
 } from "@/utils/constant/folder";
+import { useState } from "react";
 
 export default function Notifications() {
+  const t = useTranslations("Notifications");
+  const [showRead, setShowRead] = useState(false);
+  const [showUnRead, setShowUnRead] = useState(true);
+
   // Mock data
   const data = [
     {
       id: 1,
-      date: "12 مرداد - 1401 / 12:33",
-      text: "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
+      date: t("mockData.date1"),
+      text: t("mockData.text1"),
     },
     {
       id: 2,
-      date: "12 مرداد - 1401 / 12:33",
-      text: "خوش آمدید !",
+      date: t("mockData.date1"), // Same date format
+      text: t("mockData.text2"),
     },
   ];
+
+  const data2 = [
+    {
+      id: 1,
+      date: t("mockData.date1"),
+      text: t("mockData.text1"),
+    },
+    {
+      id: 2,
+      date: t("mockData.date1"), // Same date format
+      text: t("mockData.text2"),
+    },
+  ];
+
   return (
-    <div>
-      <div className="flex justify-between flex-row-reverse mt-6">
-        <Title text="لیست اعلان ها شما" />
+    <>
+      <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
+        <Title text={t("title")} />
         <div className="flex gap-4 ">
-          <WarningModal
-            title="            آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده
-            علامت بزنید؟"
-          >
-            <Button className="!w-auto">علامت گذاری به عنوان خوانده شده</Button>
+          <WarningModal title={t("markAllAsReadConfirmation")}>
+            <Button className="!w-auto">{t("markAsRead")}</Button>
           </WarningModal>
           <InputSelect
-            label="نوع اعلان :"
+            label={t("notificationType") + ":"}
             items={DashboardBuyerNotifications}
           />
         </div>
       </div>
       {/* Divider Line */}
       <Line />
-      {/* Page Table */}
-      <TableDashboard
-        isNotification={true}
-        notificationLineOne={<NotificationStatus text="خوانده نشده" />}
-        notificationLineTwo={<NotificationStatus text="خوانده شده" />}
-        tableHeader={tableHeaderItems}
-        tableContent={data.map((tx) => (
-          <tr
-            key={tx.id}
-            className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+      {/* Table view for larger screens */}
+      <div className="hidden md:block">
+        <TableDashboard
+          tableHeader={tableHeaderItems}
+          tableContent={
+            <>
+              <NotificationStatus
+                isOpen={showUnRead}
+                onClick={() => setShowUnRead((prev) => !prev)}
+                text={t("status.unread")}
+              />
+              {data.map(
+                (tx) =>
+                  showUnRead && (
+                    <tr
+                      key={tx.id}
+                      className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+                    >
+                      <td className="p-2 font-yekan font-medium text-[16px] text-nowrap">
+                        {tx.text}
+                      </td>
+                      <td className="p-2 font-yekan font-medium text-[20px] text-nowrap">
+                        {tx.date}
+                      </td>
+                      <td>
+                        <ButtonDashboard
+                          text={t("markAsRead")}
+                          clx="bg-primary"
+                        >
+                          <TickSVG />
+                        </ButtonDashboard>
+                      </td>
+                    </tr>
+                  )
+              )}
+              <NotificationStatus
+                isOpen={showRead}
+                onClick={() => setShowRead((prev) => !prev)}
+                text={t("status.read")}
+              />
+              {data2.map(
+                (tx) =>
+                  showRead && (
+                    <tr
+                      key={tx.id}
+                      className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
+                    >
+                      <td className="p-2 font-yekan font-medium text-[16px] text-nowrap">
+                        {tx.text}
+                      </td>
+                      <td className="p-2 font-yekan font-medium text-[20px] text-nowrap">
+                        {tx.date}
+                      </td>
+                      <td>
+                        <ButtonDashboard
+                          text={t("markAsRead")}
+                          clx="bg-primary"
+                        >
+                          <TickSVG />
+                        </ButtonDashboard>
+                      </td>
+                    </tr>
+                  )
+              )}
+            </>
+          }
+        />
+      </div>
+      {/* Card view for mobile screens */}
+      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="bg-surface rounded-2xl border border-border p-4"
           >
-            <td className="p-2 font-yekan font-medium text-[16px] text-nowrap">
-              {tx.text}
-            </td>
-            <td className="p-2 font-yekan font-medium text-[20px] text-nowrap">
-              {tx.date}
-            </td>
-            <td>
-              <ButtonDashboard
-                text="علامت گذاری به عنوان خوانده شده"
-                clx="bg-primary"
-              >
-                <TickSVG />
-              </ButtonDashboard>
-            </td>
-          </tr>
+            <div className="mt-3 space-y-2 text-right">
+              <div className="flex justify-end items-center gap-2">
+                <span className="font-medium">{item.date}</span>
+                <span>{t("dateLabel")}</span>
+              </div>
+
+              <div className="flex flex-col items-end">
+                <p className="text-right">{item.text}</p>
+              </div>
+              <div dir="rtl" className="flex">
+                <ButtonDashboard text={t("markAsRead")} clx="bg-primary">
+                  <TickSVG />
+                </ButtonDashboard>
+              </div>
+            </div>
+          </div>
         ))}
-      />
-    </div>
+      </div>
+    </>
   );
 }

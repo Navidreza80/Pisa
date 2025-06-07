@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
-
+import { useTranslations } from "next-intl";
 import {
   Popover,
   PopoverTrigger,
@@ -19,8 +19,15 @@ type Item = {
   management?: boolean;
 };
 
-function BuyerSideBar({ items }: { items: Item[] }) {
+function BuyerSideBar({
+  items,
+  collapsed,
+}: {
+  items: Item[];
+  collapsed: boolean;
+}) {
   const pathname = usePathname();
+  const t = useTranslations('Sidebar');
 
   const normalItems = items.filter((item) => !item.management);
   const managementItems = items.filter((item) => item.management);
@@ -31,12 +38,12 @@ function BuyerSideBar({ items }: { items: Item[] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className={`flex flex-col gap-4`}>
       {normalItems.map((item, index) => (
         <Link
           key={index}
           href={item.href}
-          className={`text-text cursor-pointer flex gap-2 items-center p-2 rounded-md ${
+          className={`text-text cursor-pointer flex gap-2 items-center lg:justify-start md:justify-center justify-center p-2 ${!collapsed ? "" : "justify-center"} rounded-md ${
             isActive(item.href)
               ? "bg-border font-semibold"
               : "hover:bg-border/40"
@@ -45,23 +52,27 @@ function BuyerSideBar({ items }: { items: Item[] }) {
           <div className="flex items-center justify-center w-6 h-6">
             {item.icon}
           </div>
-          <h1 className="text-lg">{item.name}</h1>
+          {!collapsed && <h1 className="text-lg lg:block md:hidden hidden">{item.name}</h1>}
         </Link>
       ))}
 
       {managementItems.length > 0 && (
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <button className="text-text cursor-pointer w-full flex gap-2 items-center p-2 rounded-md hover:bg-border/40">
+            <button
+              className={`${!collapsed ? "" : "justify-center"} lg:justify-start md:justify-center justify-center text-text cursor-pointer w-full flex gap-2 items-center p-2 rounded-md hover:bg-border/40`}
+            >
               <div className="flex items-center justify-center w-6 h-6">
                 <PaymentSVG />
               </div>
-              <div className="flex items-center gap-1">
-                <h1 className="text-lg">مدیریت</h1>
-                <ArrowSVG
-                  className={`${open ? "rotate-90" : "rotate-0"} transition-all duration-300`}
-                />
-              </div>
+              {!collapsed && (
+                <div className="items-center gap-1 lg:flex md:hidden hidden">
+                  <h1 className="text-lg">{t('management')}</h1>
+                  <ArrowSVG
+                    className={`${open ? "rotate-90" : "rotate-0"} transition-all duration-300`}
+                  />
+                </div>
+              )}
             </button>
           </PopoverTrigger>
 

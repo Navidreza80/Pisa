@@ -13,23 +13,23 @@ function AddSVG() {
         <path
           d="M9.99967 19.1663C15.0623 19.1663 19.1663 15.0623 19.1663 9.99967C19.1663 4.93706 15.0623 0.833008 9.99967 0.833008C4.93706 0.833008 0.833008 4.93706 0.833008 9.99967C0.833008 15.0623 4.93706 19.1663 9.99967 19.1663Z"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M10 5V15"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15 10H5"
           stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>

@@ -237,5 +237,348 @@
     "bathroomsValue": "bathroom",
     "parkingsValue": "parking",
     "roomsValue": "room"
+  },
+  "Favorites": {
+    "title": "My Saved Reservations",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "Hotel Name",
+      "price": "Price",
+      "address": "Address"
+    },
+    "filters": {
+      "propertyType": "Property Type"
+    },
+    "searchPlaceholder": "Enter hotel name...",
+    "priceLabel": "Price",
+    "addressLabel": "Address",
+    "actions": {
+      "reserve": "Reserve",
+      "delete": "Delete"
+    }
+  },
+  "UserInformation": {
+    "profileImage": {
+      "title": "Your Profile Picture",
+      "description": "You can change your profile picture here"
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "description": "You can update your personal information here"
+    },
+    "security": {
+      "title": "Security",
+      "description": "You can change your password here"
+    },
+    "formFields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number"
+    },
+    "securityForm": {
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password"
+    },
+    "buttons": {
+      "applyChanges": "Apply Changes",
+      "cancel": "Cancel"
+    },
+    "toast": {
+      "pending": "Processing",
+      "success": "Information updated successfully",
+      "error": "Error!"
+    }
+  },
+  "DestinationsList": {
+    "title": "My Destinations List",
+    "searchPlaceholder": "Enter tour name...",
+    "addButton": "Add Destination +",
+    "provinceLabel": "Province",
+    "tableHeaders": {
+      "empty": "",
+      "city": "City Name",
+      "description": "Description",
+      "status": "Status"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "deleteModal": {
+      "title": "Are you sure you want to delete this tour?",
+      "description": "This action cannot be undone!"
+    }
+  },
+  "Notifications": {
+    "title": "Your Notifications",
+    "markAsRead": "Mark as Read",
+    "markAllAsReadConfirmation": "Are you sure you want to mark all notifications as read?",
+    "notificationType": "Notification Type",
+    "dateLabel": "Date",
+    "status": {
+      "read": "Read",
+      "unread": "Unread"
+    },
+    "mockData": {
+      "date1": "August 3, 2021 / 12:33 PM",
+      "text1": "Seller Amir Mohammad Malayi has listed a house for reservation",
+      "text2": "Welcome!"
+    }
+  },
+  "TransactionList": {
+    "title": "Your Transactions List",
+    "currency": "Toman",
+    "viewReceipt": "View Receipt",
+    "statusLabel": "Status",
+    "priceLabel": "Price",
+    "trackingCodeLabel": "Tracking Code",
+    "filters": {
+      "all": "All",
+      "transactionType": "Transaction Type",
+      "paymentStatus": "Payment Status"
+    },
+    "status": {
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "types": {
+      "walletCharge": "Wallet Charge",
+      "reservation": "Reservation"
+    },
+    "mockData": {
+      "date": "August 3, 2021"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "Date",
+      "trackingCode": "Tracking Code",
+      "amount": "Amount",
+      "paymentStatus": "Payment Status",
+      "transactionType": "Transaction Type"
+    }
+  },
+  "BookingList": {
+    "title": "Your Reservations List",
+    "filtersButton": "Filters",
+    "searchPlaceholder": "Enter hotel name...",
+    "passengerCount": "{count} passengers",
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "approve": "Approve Reservation",
+      "cancel": "Cancel Reservation",
+      "delete": "Delete",
+      "details": "Details"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "Hotel Name",
+      "bookingDate": "Booking Date",
+      "totalPrice": "Total Price",
+      "passengerCount": "Passenger Count",
+      "bookingStatus": "Booking Status",
+      "paymentStatus": "Payment Status"
+    },
+    "mockData": {
+      "hotelName": "Saravan Ranin Hotel Rasht",
+      "bookingDate": "August 3, 2021 / 1:33 PM",
+      "totalPrice": "{price} Toman"
+    }
+  },
+  "BookingListSeller": {
+    "pageTitle": "Customer Booking List",
+    "filtersButton": "Filters",
+    "searchPlaceholder": "Search traveler name...",
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "approve": "Approve Booking",
+      "cancel": "Cancel Booking",
+      "details": "Details",
+      "delete": "Delete"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Property Name",
+      "travelerInfo": "Traveler Info",
+      "bookingDate": "Booking Date",
+      "amount": "Amount",
+      "bookingStatus": "Booking Status",
+      "paymentStatus": "Payment Status"
+    },
+    "mockData": {
+      "hotelName": "Rasht Saravan Ranin Hotel",
+      "bookingDate": "August 3, 2022 / 13:33",
+      "totalPrice": "{price} Toman",
+      "travelerInfo": "Sobhan Arab Khazaeli, 4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "My Properties List",
+    "searchPlaceholder": "Search property name...",
+    "addProperty": "Add Property",
+    "times": "times",
+    "activate": "Activate",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirm": "Are you sure you want to delete this property?",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "Accommodation Name",
+      "price": "Price",
+      "rating": "Rating",
+      "visits": "Visits",
+      "reservations": "Reservations",
+      "status": "Status"
+    }
+  },
+  "FinanceManagement": {
+    "title": "Customer Transactions List",
+    "transactionType": "Transaction Type:",
+    "paymentStatus": "Payment Status:",
+    "property": "Property",
+    "viewReceipt": "View Receipt",
+    "tableHeaders": {
+      "empty": "",
+      "date": "Date",
+      "trackingNumber": "Tracking Number",
+      "amount": "Amount",
+      "paymentStatus": "Payment Status",
+      "transactionType": "Transaction Type"
+    }
+  },
+  "SellerToursList": {
+    "title": "My Tours List",
+    "searchPlaceholder": "Search tour name...",
+    "addTour": "Add Tour",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteWarning": "Deletion cannot be undone!",
+    "deleteConfirmation": "Are you sure you want to delete this tour?",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "Tour Name",
+      "tourCost": "Tour Cost",
+      "date": "Date",
+      "score": "Score",
+      "participants": "Participants"
+    }
+  },
+  "Dashboard": {
+    "dashboard": "Dashboard",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "userInformation": "User Information",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "favorites": "Favorites",
+    "payments": "Payments"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "management": "Management",
+    "select": "Select",
+    "cancle": "Cancel",
+    "userInformation": "User Information",
+    "propertyManagement": "Property Management",
+    "reservationManagement": "Reservation Management",
+    "financialManagement": "Financial Management",
+    "reviewManagement": "Review Management",
+    "notifications": "Notifications",
+    "tourManagement": "Tour Management",
+    "locationManagement": "Location Management",
+    "favorites": "Favorites",
+    "payments": "Payments",
+    "newReviews": "New Reviews",
+    "reviewCount": "{count} Reviews",
+    "wallet": "Wallet",
+    "noBalance": "No Balance"
+  },
+  "ReserveDetail": {
+    "details": "Details",
+    "hotelName": "Homayoun Far Kish Hotel, Iran",
+    "description": "A cozy and quiet apartment in the heart of the city, where daily life is easier and more comfortable. A modern space with unique design, reminiscent of warm and inviting homes. A place for happy moments, relaxation, and a fresh start in your daily life.",
+    "tags": "Tags",
+    "apartment": "Apartment",
+    "starRating": "{stars} Star",
+    "address": "Address",
+    "hotelAddress": "Sari, Moallem Street, Danesh Street",
+    "bedrooms": "{count} Bedroom",
+    "parking": "{count} Parking",
+    "bathrooms": "{count} Bathroom",
+    "reservations": "Reservations",
+    "currency": "T",
+    "purchasePrice": "Purchase Price"
+  },
+  "WarningModal": {
+    "cancel": "Cancel",
+    "add": "Add",
+    "agree": "Agree"
+  },
+  "FilterModal": {
+    "filtersButton": "Filters",
+    "filtersTitle": "Filters",
+    "applyFilters": "Apply Filters",
+    "close": "Close"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "Recent Customer Bookings",
+    "actions": {
+      "view": "View",
+      "approve": "Approve",
+      "cancel": "Cancel",
+      "details": "Details",
+      "delete": "Delete"
+    },
+    "tableHeaders": {
+      "residenceName": "Residence Name",
+      "bookingDate": "Booking Date",
+      "price": "Price",
+      "empty": "",
+      "status": "Status"
+    },
+    "mockData": {
+      "hotelName": "Villa with Pool",
+      "bookingDate": "2024/03/04 - 2024/03/07",
+      "totalPrice": "{price} Tomans"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending Approval"
+    }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "Digital Signature System",
+    "contractNumber": "Contract Number: {number}",
+    "sellerInfo": "Seller Information",
+    "buyerInfo": "Buyer Information",
+    "name": "Name",
+    "nationalId": "National ID",
+    "pleaseDrawSignature": ": Please draw your signature in the box below",
+    "clearSignature": "Clear Signature",
+    "confirmAndGenerateContract": "Confirm and Generate Contract",
+    "contractReady": "Contract is Ready",
+    "signatureCleared": "Signature cleared",
+    "canvasAccessError": "Error accessing the signature canvas",
+    "contextError": "Error in the drawing context",
+    "pleaseSignFirst": "Please sign first",
+    "contractSaved": "Contract successfully created and saved!",
+    "contractError": "Error creating the contract!"
   }
 }

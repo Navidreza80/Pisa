@@ -7,7 +7,7 @@ interface StepsId {
 
 // StepsId initial state
 const initialState: StepsId = {
-  id: 5,
+  id: 1,
 };
 
 // Function to create StepsId slice

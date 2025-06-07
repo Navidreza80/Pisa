@@ -7,8 +7,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { useTranslations } from "next-intl";
 
 const WarningModal = ({ title, children }) => {
+  const t = useTranslations('WarningModal');
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -20,12 +23,14 @@ const WarningModal = ({ title, children }) => {
         </DialogHeader>
         <div className="w-full flex justify-center flex-wrap gap-y-7">
           <WarningSVG />
-          <h1 className="text-[24px] font-bold text-text text-center">
+          <h1 className="text-[24px] w-full font-bold text-text text-center">
             {title}
           </h1>
           <div className="flex gap-2">
-            <Button className="!bg-transparent !text-text">انصراف</Button>
-            <Button>موافقت</Button>
+            <Button className="!bg-transparent !text-text">
+              {t('cancel')}
+            </Button>
+            <Button>{t('agree')}</Button>
           </div>
         </div>
       </DialogContent>

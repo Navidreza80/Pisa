@@ -275,5 +275,349 @@
   "Tours": {
     "TourPageTitle": "تور های گردشگری",
     "search": "جستجو کنید ..."
+  },
+  "Favorites": {
+    "title": "لیست رزرو های ذخیره شده",
+    "tableHeaders": {
+      "empty": "",
+      "hotel": "نام اقامتگاه",
+      "price": "قیمت",
+      "address": "آدرس"
+    },
+    "filters": {
+      "propertyType": ":نوع ملک"
+    },
+    "searchPlaceholder": "نام هتل مورد نظر .....",
+    "priceLabel": ":قیمت",
+    "addressLabel": ":آدرس",
+    "actions": {
+      "reserve": "رزرو",
+      "delete": "حذف"
+    }
+  },
+
+  "UserInformation": {
+    "profileImage": {
+      "title": "عکس نمایه شما",
+      "description": "میتوانید عکس نمایه خود را تغییر دهید"
+    },
+    "personalInfo": {
+      "title": "اطلاعات فردی",
+      "description": "میتوانید اطلاعات فردی خود را تغییر دهید"
+    },
+    "security": {
+      "title": "امنیت",
+      "description": "میتوانید در این بخش رمز خود را تغییر دهید"
+    },
+    "formFields": {
+      "firstName": "نام",
+      "lastName": "نام خانوادگی",
+      "email": "ایمیل",
+      "phoneNumber": "شماره موبایل"
+    },
+    "securityForm": {
+      "currentPassword": "رمز عبور قبلی",
+      "newPassword": "رمز عبور جدید",
+      "confirmPassword": "تکرار رمز عبور جدید"
+    },
+    "buttons": {
+      "applyChanges": "اعمال تغییرات",
+      "cancel": "انصراف"
+    },
+    "toast": {
+      "pending": "در حال پردازش",
+      "success": "اطلاعات با موفقیت تغییر یافت",
+      "error": "خطا!"
+    }
+  },
+  "DestinationsList": {
+    "title": "لیست مقاصد دیدنی های من",
+    "searchPlaceholder": "نام تور مورد نظر .....",
+    "addButton": "افزودن مقصد دیدنی +",
+    "provinceLabel": "استان",
+    "tableHeaders": {
+      "empty": "",
+      "city": "نام شهر",
+      "description": "توضیحات",
+      "status": "وضعیت"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در حال بررسی",
+      "rejected": "تایید نشده"
+    },
+    "actions": {
+      "edit": "ویرایش",
+      "delete": "حذف"
+    },
+    "deleteModal": {
+      "title": "آیا از حذف تور مطمئن هستید؟",
+      "description": "امکان بازگشت پس از حذف وجود ندارد!"
+    }
+  },
+  "Notifications": {
+    "title": "لیست اعلان ها شما",
+    "markAsRead": "علامت گذاری به عنوان خوانده شده",
+    "markAllAsReadConfirmation": "آیا مطمئن هستید که میخواهید همه مطالب سایت را به عنوان خوانده شده علامت بزنید؟",
+    "notificationType": "نوع اعلان",
+    "dateLabel": ":تاریخ",
+    "status": {
+      "read": "خوانده شده",
+      "unread": "خوانده نشده"
+    },
+    "mockData": {
+      "date1": "12 مرداد - 1401 / 12:33",
+      "text1": "فروشنده امیر محمد ملایی یک خانه برای رزرو آگهی کرده است",
+      "text2": "خوش آمدید !"
+    }
+  },
+  "TransactionList": {
+    "title": "لیست تراکنش های شما",
+    "currency": "تومان",
+    "viewReceipt": "مشاهده رسید",
+    "statusLabel": "وضعیت",
+    "priceLabel": "قیمت",
+    "trackingCodeLabel": "شماره پیگیری",
+    "filters": {
+      "all": "همه",
+      "transactionType": "نوع تراکنش",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "rejected": "تایید نشده"
+    },
+    "types": {
+      "walletCharge": "شارژ کیف پول",
+      "reservation": "رزرو"
+    },
+    "mockData": {
+      "date": "12 مرداد 1401"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "date": "تاریخ",
+      "trackingCode": "شماره پیگیری",
+      "amount": "مبلغ",
+      "paymentStatus": "وضعیت پرداخت",
+      "transactionType": "نوع تراکنش"
+    }
+  },
+  "BookingList": {
+    "title": "لیست رزرو های شما",
+    "filtersButton": "فیلتر ها",
+    "searchPlaceholder": "نام هتل مورد نظر .....",
+    "passengerCount": "{count} عدد مسافر",
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار",
+      "cancelled": "لغو شده"
+    },
+    "actions": {
+      "approve": "تایید رزرو",
+      "cancel": "لغو رزرو",
+      "delete": "حذف",
+      "details": "جزئیات"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "hotelName": "نام اقامتگاه",
+      "bookingDate": "تاریخ رزرو",
+      "totalPrice": "قیمت کل",
+      "passengerCount": "تعداد مسافر",
+      "bookingStatus": "وضعیت رزرو",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "mockData": {
+      "hotelName": "هتل سراوان رانین رشت",
+      "bookingDate": "12 مرداد 1401 / 13:33",
+      "totalPrice": "{price} تومان"
+    }
+  },
+  "BookingListSeller": {
+    "pageTitle": "لیست رزرو های مشتریان",
+    "filtersButton": "فیلتر ها",
+    "searchPlaceholder": "نام مسافر مورد نظر .....",
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار",
+      "cancelled": "لغو شده"
+    },
+    "actions": {
+      "approve": "تایید رزرو",
+      "cancel": "لغو رزرو",
+      "details": "جزئیات",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "نام ملک",
+      "travelerInfo": "اطلاعات مسافر",
+      "bookingDate": "تاریخ رزرو",
+      "amount": "مبلغ",
+      "bookingStatus": "وضعیت رزرو",
+      "paymentStatus": "وضعیت پرداخت"
+    },
+    "mockData": {
+      "hotelName": "هتل سراوان رانین رشت",
+      "bookingDate": "12 مرداد 1401 / 13:33",
+      "totalPrice": "{price} تومان",
+      "travelerInfo": "سبحان عرب خزائلی ،4/1/8..."
+    }
+  },
+  "SellerPropertyList": {
+    "title": "لیست املاک من",
+    "searchPlaceholder": "نام ملک مورد نظر .....",
+    "addProperty": "ملک",
+    "times": "تا",
+    "activate": "فعال کردن",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "deleteWarning": "امکان بازگشت پس از حذف وجود ندارد!",
+    "deleteConfirm": "آیا از حذف ملک مطمئن هستید؟",
+    "tableHeaders": {
+      "empty": "",
+      "propertyName": "نام اقامتگاه",
+      "price": "قیمت",
+      "rating": "امتیاز",
+      "visits": "بازدیدها",
+      "reservations": "رزروها",
+      "status": "وضعیت"
+    }
+  },
+  "FinanceManagement": {
+    "title": "لیست تراکنش های مشتریان",
+    "transactionType": "نوع تراکنش :",
+    "paymentStatus": "وضعیت پرداخت :",
+    "property": "ملک",
+    "viewReceipt": "مشاهده رسید",
+    "tableHeaders": {
+      "empty": "",
+      "date": "تاریخ",
+      "trackingNumber": "شماره پیگیری",
+      "amount": "مبلغ",
+      "paymentStatus": "وضعیت پرداخت",
+      "transactionType": "نوع تراکنش"
+    }
+  },
+  "SellerToursList": {
+    "title": "لیست تور های من",
+    "searchPlaceholder": "نام تور مورد نظر .....",
+    "addTour": "تور",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "deleteWarning": "امکان بازگشت پس از حذف وجود ندارد!",
+    "deleteConfirmation": "آیا از حذف تور مطمئن هستید؟",
+    "tableHeaders": {
+      "empty": "",
+      "tourName": "نام تور",
+      "tourCost": "هزینه تور",
+      "date": "تاریخ",
+      "score": "امتیاز",
+      "participants": "شرکت کنندگان"
+    }
+  },
+  "Dashboard": {
+    "dashboard": "داشبورد",
+    "propertyManagement": "مدیریت املاک ها",
+    "reservationManagement": "مدیریت رزروها",
+    "userInformation": "اطلاعات کاربری",
+    "financialManagement": "مدیریت مالی",
+    "reviewManagement": "مدیریت نظرات",
+    "notifications": "اعلان‌ها",
+    "tourManagement": "مدیریت تور ها",
+    "favorites": "علاقه‌مندی‌ها",
+    "payments": "پرداخت‌ها"
+  },
+  "Sidebar": {
+    "dashboard": "داشبورد",
+    "management": "مدیریت",
+    "select": "انتخاب",
+    "cancle": "کنسل",
+    "userInformation": "اطلاعات کاربری",
+    "propertyManagement": "مدیریت املاک",
+    "reservationManagement": "مدیریت رزروها",
+    "financialManagement": "مدیریت مالی",
+    "reviewManagement": "مدیریت نظرات",
+    "notifications": "اعلان‌ها",
+    "tourManagement": "مدیریت تور ها",
+    "locationManagement": "مدیریت مقاصد دیدنی",
+    "favorites": "علاقه‌مندی‌ها",
+    "payments": "پرداخت‌ها",
+    "newReviews": "نظرات جدید",
+    "reviewCount": "{count} نظر",
+    "wallet": "کیف پول",
+    "noBalance": "عدم موجودی"
+  },
+  "ReserveDetail": {
+    "details": "جزئیات",
+    "hotelName": "هتل همایون فر کیش ایران",
+    "description": "آپارتمانی دنج و آرام در قلب شهر، جایی که زندگی روزمره راحت و سبک‌تر است. فضایی مدرن با طراحی منحصربه‌فرد، یادآور خانه‌های دنج و دل‌نشین. محلی برای لحظه‌های خوش، آرامش و شروعی نو در زندگی روزمره‌تان.",
+    "tags": "برچسب ها",
+    "apartment": "آپارتمان",
+    "starRating": "{stars} ستاره",
+    "address": "آدرس",
+    "hotelAddress": "ساری خیابان معلم خیابان دانش",
+    "bedrooms": "{count} خوابه",
+    "parking": "{count} پارکینگ",
+    "bathrooms": "{count} حمام",
+    "reservations": "رزرو ها",
+    "currency": "ت",
+    "purchasePrice": "قیمت خرید"
+  },
+  "WarningModal": {
+    "cancel": "انصراف",
+    "add": "افزودن",
+    "agree": "موافقت"
+  },
+  "FilterModal": {
+    "filtersButton": "فیلتر ها",
+    "filtersTitle": "فیلتر ها",
+    "applyFilters": "اعمال فیلتر",
+    "close": "بستن"
+  },
+  "BookingListSellerDashboard": {
+    "pageTitle": "رزرو های اخیر مشتریان",
+    "actions": {
+      "view": "مشاهده",
+      "approve": "تایید",
+      "cancel": "لغو",
+      "details": "جزئیات",
+      "delete": "حذف"
+    },
+    "tableHeaders": {
+      "residenceName": "نام اقامتگاه",
+      "bookingDate": "تاریخ رزرو",
+      "price": "قیمت",
+      "empty": "",
+      "status": "وضعیت"
+    },
+    "mockData": {
+      "hotelName": "ویلا استخردار",
+      "bookingDate": "1402/12/15 - 1402/12/18",
+      "totalPrice": "{price} تومان"
+    },
+    "status": {
+      "approved": "تایید شده",
+      "pending": "در انتظار تایید"
+    }
+  },
+  "Signature": {
+    "digitalSignatureTitle": "سیستم ثبت امضای دیجیتال",
+    "contractNumber": "قولنامه شماره: {number}",
+    "sellerInfo": "اطلاعات فروشنده",
+    "buyerInfo": "اطلاعات خریدار",
+    "name": "نام",
+    "nationalId": "کد ملی",
+    "pleaseDrawSignature": ": لطفا امضای خود را در کادر زیر رسم کنید",
+    "clearSignature": "پاک کردن امضا",
+    "confirmAndGenerateContract": "تایید و ایجاد قولنامه",
+    "contractReady": "قولنامه آماده شد",
+    "signatureCleared": "امضا پاک شد",
+    "canvasAccessError": "خطا در دسترسی به کانواس امضا",
+    "contextError": "خطا در زمینه ترسیم امضا",
+    "pleaseSignFirst": "لطفاً ابتدا امضا کنید",
+    "contractSaved": "قولنامه با موفقیت ایجاد و ذخیره شد!",
+    "contractError": "خطا در ایجاد قولنامه!"
   }
 }

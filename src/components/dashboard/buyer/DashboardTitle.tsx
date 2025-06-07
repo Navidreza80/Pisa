@@ -2,10 +2,13 @@
 
 import { usePathname } from "@/i18n/navigation";
 import HeaderTitleSVG from "../svg/HeaderTitleSVG";
+import LogoSVG from "@/components/common/svg/logo";
+import { useTranslations } from "next-intl";
 
 export default function DashboardTitle() {
   const pathname = usePathname();
   const isSeller = pathname.includes("/seller");
+  const t = useTranslations('Dashboard');
 
   const getTitle = () => {
     if (isSeller) {
@@ -19,24 +22,24 @@ export default function DashboardTitle() {
         !pathname.includes("/Tour") &&
         !pathname.includes("/notification")
       ) {
-        return "داشبورد";
+        return t('dashboard');
       } else if (pathname.includes("/properties")) {
-        return "مدیریت املاک ها";
+        return t('propertyManagement');
       } else if (pathname.includes("/reservations")) {
-        return "مدیریت رزروها";
+        return t('reservationManagement');
       } else if (pathname.includes("/information")) {
-        return "اطلاعات کاربری";
+        return t('userInformation');
       } else if (pathname.includes("/finance")) {
-        return "مدیریت مالی";
+        return t('financialManagement');
       } else if (pathname.includes("/reviews")) {
-        return "مدیریت نظرات";
+        return t('reviewManagement');
       } else if (pathname.includes("/notification")) {
-        return "اعلان‌ها";
+        return t('notifications');
       } else if (pathname.includes("/Tour")) {
-        return "مدیریت تور ها";
+        return t('tourManagement');
       }
 
-      return "داشبورد";
+      return t('dashboard');
     } else {
       if (
         pathname.includes("/dashboard") &&
@@ -46,19 +49,19 @@ export default function DashboardTitle() {
         !pathname.includes("/payments") &&
         !pathname.includes("/notifications")
       ) {
-        return "داشبورد";
+        return t('dashboard');
       } else if (pathname.includes("/information")) {
-        return "اطلاعات کاربری";
+        return t('userInformation');
       } else if (pathname.includes("/reservations")) {
-        return "مدیریت رزروها";
+        return t('reservationManagement');
       } else if (pathname.includes("/favorites")) {
-        return "علاقه‌مندی‌ها";
+        return t('favorites');
       } else if (pathname.includes("/payments")) {
-        return "پرداخت‌ها";
+        return t('payments');
       } else if (pathname.includes("/notifications")) {
-        return "اعلان‌ها";
+        return t('notifications');
       }
-      return "داشبورد";
+      return t('dashboard');
     }
   };
 
@@ -71,8 +74,9 @@ export default function DashboardTitle() {
       ) : (
         " "
       )}
+      <LogoSVG size="w-20 md:block block lg:hidden" />
       <h2
-        className={`text-xl font-bold my-auto font-yekan text-text${
+        className={`text-xl md:hidden hidden lg:block font-bold my-auto font-yekan text-text${
           isSeller ? "text-orange-600 " : " "
         }`}
       >
