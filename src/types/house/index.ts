@@ -35,7 +35,7 @@ export interface HouseItemsInterface {
 
 export interface TopSaleCardListProps {
   isList?: boolean;
-  setCurrentLoc?: Dispatch<SetStateAction<Array<number>>>;
+  setCurrentLoc?: Dispatch<SetStateAction<[number, number]>>;
   showOnMap?: boolean;
   showFacilities?: boolean;
   minWidth?: string;

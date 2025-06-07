@@ -1,6 +1,8 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import { LatLng } from "leaflet";
+import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
+import { useEffect } from "react";
 
 interface MapComponentProps {
   initialLocation: [number, number];
@@ -11,7 +13,11 @@ interface MapComponentProps {
 }
 
 // Component to handle map events
-const MapClickHandler = ({ onClick }: { onClick?: (latlng: LatLng) => void }) => {
+const MapClickHandler = ({
+  onClick,
+}: {
+  onClick?: (latlng: LatLng) => void;
+}) => {
   useMapEvents({
     click: (e) => {
       onClick?.(e.latlng);
@@ -23,11 +29,18 @@ const MapClickHandler = ({ onClick }: { onClick?: (latlng: LatLng) => void }) =>
 const MapComponent = ({
   initialLocation,
   initialZoom,
-  clickedCoords,
   className,
   children,
   onMapClick,
 }: MapComponentProps) => {
+  const theme = useAppSelector((state) => state.theme.theme);
+  const lightProps = {
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  };
+  const darkProps = {
+    url: "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+  };
+
   return (
     <>
       {typeof window !== "undefined" && (
@@ -39,7 +52,7 @@ const MapComponent = ({
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url={theme == "light" ? lightProps.url : darkProps.url}
           />
           <MapClickHandler onClick={onMapClick} />
           {children}

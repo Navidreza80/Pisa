@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Theme interface
 interface ThemeState {
-  isDarkMode: boolean;
+  theme: string;
 }
 
 // Theme initial state
 const initialState: ThemeState = {
-  isDarkMode: false,
+  theme: "light",
 };
 
 // Function to create theme slice
@@ -15,12 +15,11 @@ const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    toggleDarkMode: (state) => {
-      state.isDarkMode = !state.isDarkMode;
-      document.documentElement.classList.toggle("dark");
+    toggleAppTheme: (state, action) => {
+      state.theme = action.payload;
     },
   },
 });
 
-export const { toggleDarkMode } = themeSlice.actions;
+export const { toggleAppTheme } = themeSlice.actions;
 export default themeSlice.reducer;

@@ -1,4 +1,4 @@
-import { FilterModal } from "@/components/common/house/filter-reserve";
+import { FilterModal } from "@/components/pages/reserve-list/modals/BookingFilterModal";
 import SearchSVG from "@/components/common/svg/search";
 import MapRealEstates from "@/components/real-estate-container/map";
 import RealEstateCard from "@/components/real-estate-container/real-estate-cards";
