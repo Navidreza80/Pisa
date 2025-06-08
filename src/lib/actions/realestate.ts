@@ -18,7 +18,7 @@ export async function getRealEstates(): Promise<RealEstate[]> {
   }
 }
 
-export async function getRealEstateById(realEstateId: string) {
+export async function getRealEstateById(realEstateId: string): Promise<RealEstate> {
   try {
     const realEstate = await prisma.realEstate.findUnique({
       where: { id: realEstateId },

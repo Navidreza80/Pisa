@@ -1,4 +1,4 @@
-import RealEstateDetailContainer from "@/components/pages/booking-process/container"
+import RealEstateDetailContainer from "@/components/pages/real-estate-detail/container"
 
 const Page = () => {
   return (
