@@ -59,7 +59,7 @@ export default function Button({
       ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
       className={`flex items-center cursor-pointer ${isInView && 'animate-jump-in'} hover:bg-[#4A5FE3] font-semibold !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
-            ${variant === "solid" ? COLORS[color] : `bg-transparent`} ${
+            ${variant === "solid" ? COLORS[color] : `bg-transparent border-border border`} ${
               SIZES[size]
             }`}
     >

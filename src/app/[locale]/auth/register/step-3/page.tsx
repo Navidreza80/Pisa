@@ -1,5 +1,5 @@
 // Third party components
-import Register3 from '@/components/auth/register/register-three'
+import Register3 from "@/components/pages/register-step3/container"
 
 /**
  * RegisterStepThree - Get user phone number and password to register

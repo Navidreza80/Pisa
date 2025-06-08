@@ -16,7 +16,7 @@ export default interface RealEstate {
   registrationNumber: string;
   nationalCode: string;
   lat: number;
-  lng: numberک;
+  lng: number;
   createdAt: Date;
   updatedAt: Date;
 }

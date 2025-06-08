@@ -3,9 +3,8 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 
 // Dependencies
-import { toggleDarkMode } from "@/utils/hooks/react-redux/store/slices/themeSlice";
+import { toggleAppTheme } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 import { Menu, Transition } from "@headlessui/react";
-import { useDispatch } from "react-redux";
 
 // Icons
 import { Globe, Mic, Moon, Stars, Sun } from "lucide-react";
@@ -15,13 +14,14 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 // Third party components
+import { JwtPayload } from "@/types/user";
+import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
+import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { jwtDecode } from "jwt-decode";
 import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
 import ChatAssistant from "./chat/ai-assistant";
 import Chat from "./chat/chat-with-admin";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from "@/types/user";
 
 /**
  * Floating action buttons component.
@@ -36,12 +36,12 @@ export default function FloatingActions() {
   const t = useTranslations();
   // States
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [listening, setListening] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [theme, setTheme] = useState("light");
+  const dispatch = useAppDispatch();
 
   // Create a properly typed ref for the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -65,17 +65,17 @@ export default function FloatingActions() {
   const currentLanguage =
     languages.find((lang) => lang.code === locale) || languages[0];
 
-  // Redux
-  const dispatch = useDispatch();
-
   // Toggle theme
   const toggleTheme = () => {
     const html = document.documentElement;
     html.classList.remove("dark", "solarized");
+    dispatch(toggleAppTheme("light"));
     if (theme === "dark") {
       html.classList.add("dark");
+      dispatch(toggleAppTheme("dark"));
     } else if (theme === "solarized") {
       html.classList.add("solarized");
+      dispatch(toggleAppTheme("solarized"));
     }
   };
 
@@ -86,11 +86,6 @@ export default function FloatingActions() {
   // Check if the user logged in
   const token = getClientCookie("clientAccessToken");
   const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
-
-  // UseEffects
-  useEffect(() => {
-    toggleTheme();
-  }, [dark]);
 
   // Process voice commands
   const processVoiceCommand = (text: string) => {

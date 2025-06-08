@@ -11,7 +11,7 @@ import http from "@/utils/interceptor";
  * Get all locations from the server.
  * @returns response with array of objects including all locations.
  */
-export async function getAllLocations(): Promise<AxiosResponse<Location[]>> {
+export async function getAllLocations(): Promise<Location[]> {
   try {
     const response = await http.get<Location[]>(`/locations`);
     return response;

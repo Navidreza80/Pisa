@@ -6,7 +6,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 // Css imports
 import "../globals.css";
 // Third party components
-import Auth from "@/components/auth/auth";
+import Auth from "@/components/common/auth";
 import FloatingActions from "@/components/common/fab";
 import Providers from "@/provider/provider";
 

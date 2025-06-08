@@ -4,9 +4,6 @@ import type { Comments } from "@/types/comments";
 // Interceptor
 import http from "@/utils/interceptor";
 
-// Dependencies
-import { AxiosResponse } from "axios";
-
 /**
  * Get all properties comments.
  * @param  params - id, rows.
@@ -14,9 +11,9 @@ import { AxiosResponse } from "axios";
  */
 
 export async function getAllPropertyComments(
-  id: number,
+  id: string,
   rows: number
-): Promise<AxiosResponse<Comments[]>> {
+): Promise<Comments[]> {
   try {
     const response = await http.get<Comments[]>(
       `/houses/${id}/comments?page=1&limit=${rows}`
@@ -24,6 +21,6 @@ export async function getAllPropertyComments(
     return response;
   } catch (error) {
     console.log(error);
-    throw error
+    throw error;
   }
 }

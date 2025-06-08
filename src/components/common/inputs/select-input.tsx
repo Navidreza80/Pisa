@@ -27,11 +27,11 @@ export default function InputSelect({
   value,
 }: {
   className?: string;
-  items?: { text?: string; area_name?: string; value?: number; id?: number }[];
+  items?: any;
   onChange?: (selectedValue: number | string) => void;
   label?: string;
   value?: number | string;
-  withLabel: boolean;
+  withLabel?: boolean;
   width?: number;
   color?: string;
 }) {
