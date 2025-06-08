@@ -1,4 +1,4 @@
-import AddTourContainer from "@/components/dashboard/seller/tour-container/add"
+import AddTourContainer from "@/components/pages/sd-tour-create/container"
 
 const AddTour = () => {
   return (

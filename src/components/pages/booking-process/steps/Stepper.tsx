@@ -11,7 +11,7 @@ import {
 } from "@/components/svg";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { useEffect, useState } from "react";
-import Line from "../../../dashboard/buyer/line";
+import Line from "../../../common/dashboard/line";
 
 const Stepper = () => {
   const stepsItems = [
