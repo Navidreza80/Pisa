@@ -16,7 +16,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../../../common/button";
-import Line from "../../../dashboard/buyer/line";
+import Line from "../../../common/dashboard/line";
 import { TimePastSVG, TravelersSVG } from "../../../svg";
 import Body from "../contents/Body";
 import Header from "../contents/Header";
