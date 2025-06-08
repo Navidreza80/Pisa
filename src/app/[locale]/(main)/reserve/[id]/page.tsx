@@ -1,10 +1,10 @@
-import Bookings from "@/components/booking-container";
+import BookingProcessContainer from "@/components/pages/booking-process/container";
 import Container from "@/components/common/container";
 
 const Page = async () => {
   return (
     <Container>
-      <Bookings />
+      <BookingProcessContainer />
     </Container>
   );
 };

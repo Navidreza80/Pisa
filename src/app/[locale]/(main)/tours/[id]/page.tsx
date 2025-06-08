@@ -2,20 +2,21 @@
 
 import MapComponent from "@/components/common/map/map";
 import MapSVG from "@/components/common/svg/map";
-import Map from "@/components/reserve-container/map";
 import RegisterForm from "@/components/tours-detail/tour-register-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getTourById } from "@/lib/actions/tours";
 import { formatDate } from "@/utils/helper/format-date";
 import { Calendar, Clock, MapPin, Stars } from "lucide-react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Page() {
   const [tourDetails, setTourDetails] = useState({});
+  const { id: TourId }: { id: string } = useParams();
 
   const getToursDetail = async () => {
-    const res = await getTourById("1");
+    const res = await getTourById(TourId);
     console.table(res);
     setTourDetails(res);
   };

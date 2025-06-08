@@ -1,8 +1,9 @@
+"use client"
+
+import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
+import { LatLng } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
-import { LatLng } from "leaflet";
-import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
-import { useEffect } from "react";
 
 interface MapComponentProps {
   initialLocation: [number, number];

@@ -1,12 +1,12 @@
 // Third party components
-import Rent from '@/components/Rent-page/Rent'
+import Rent from "@/components/pages/rent-mortgage-list/container";
 
 /**
  * rent page - Displays houses that are for rent
- * 
+ *
  * @page
  * @route /rent
- * 
+ *
  * Features:
  * - Rent & mortgage houses display
  * - Live filter and search
@@ -14,13 +14,13 @@ import Rent from '@/components/Rent-page/Rent'
  * - DarkMode
  * - 4 language support
  * - Loading skeleton for loading statement
- * 
+ *
  */
 
 export default function RentPage() {
   return (
-    <div className='flex  justify-center'>
+    <div className="flex justify-center">
       <Rent />
     </div>
-  )
+  );
 }
