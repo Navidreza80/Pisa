@@ -3,12 +3,12 @@
 import { useTranslations } from "next-intl";
 
 // SVGs
-import MapSVG from "../common/svg/map";
-import Comment from "./common/comments";
+import MapSVG from "./svg/map";
+import Comment from "./auth/comments";
 
 // Images
 import jangal from "@/assets/images/auth/jangal.png";
-import ImageAuth from "./common/image-auth";
+import ImageAuth from "./auth/image-auth";
 
 /**
  * Auth pages repeated part showing user comments and locations images.

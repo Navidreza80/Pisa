@@ -1,25 +1,16 @@
 "use client";
 
-// Next
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-
-// Dependencies
 import { useLoginUser } from "@/utils/service/login/post";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-// SVGs
 import EmailSVG from "@/components/common/svg/email";
 import Password from "@/components/common/svg/password";
-
-// Third party components
-import Button from "../common/button";
-import InputAuth from "../common/input-auth";
-import OrUnderline from "../common/or-underline";
-import WelcomeTitle from "../common/welcome-title";
-
-// API
+import Button from "@/components/common/auth/button";
+import InputAuth from "@/components/common/auth/input-auth";
+import OrUnderline from "@/components/common/auth/or-underline";
+import WelcomeTitle from "@/components/common/auth/welcome-title";
 import GithubSVG from "@/components/common/svg/github";
 import { login } from "@/lib/actions/auth";
 import { createUser } from "@/lib/actions/user";
@@ -34,7 +25,7 @@ import { jwtDecode } from "jwt-decode";
  * @returns {JSX.Element} - Rendered Login
  */
 
-function Login() {
+function LoginContainer() {
   // Hooks
   const { mutate } = useLoginUser();
   const t = useTranslations("Auth");
@@ -141,4 +132,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginContainer;

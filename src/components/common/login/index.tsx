@@ -28,9 +28,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Button from "@/components/auth/common/button";
-import OrUnderline from "@/components/auth/common/or-underline";
-import InputAuth from "@/components/auth/common/input-auth";
+import Button from "@/components/common/auth/button";
+import OrUnderline from "@/components/common/auth/or-underline";
+import InputAuth from "@/components/common/auth/input-auth";
 
 export default function LoginModal({
   trigger,

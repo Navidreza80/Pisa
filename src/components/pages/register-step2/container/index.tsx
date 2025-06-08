@@ -3,16 +3,16 @@
 import { useState } from "react";
 
 // Dependencies
-import { useFormik } from "formik";
-import { useTranslations } from "next-intl";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
 
 // Third party components
-import Button from "../common/button";
+import Button from "@/components/common/auth/button";
 
 // SVGs
 import LogoSVGClient from "@/components/common/svg/logo-client";

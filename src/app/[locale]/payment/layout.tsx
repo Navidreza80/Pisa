@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 
 // Third party components
-import Auth from "@/components/auth/auth";
+import Auth from "@/components/common/auth";
 import FloatingActions from "@/components/common/fab";
 import Providers from "@/provider/provider";
 

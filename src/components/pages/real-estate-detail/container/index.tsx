@@ -223,14 +223,14 @@ function RealEstateDetailContainer() {
               <h1 className="text-2xl sm:text-3xl font-bold text-text">
                 {realEstateDetail.name ?? "نام ملک"}
               </h1>
-              <div className="flex gap-2 mt-2 mb-8 sm:mb-12 items-center">
+              <div className="flex gap-2 mt-2 mb-4 items-center">
                 <MapSVG color="#7e7e7e" />
                 <h1 className="text-sm font-medium text-text-secondary">
                   {realEstateDetail.city ?? "شهر نامشخص"}
                 </h1>
               </div>
             </div>
-            <div className="sticky top-6 h-[30rem] md:h-[35rem] rounded-2xl overflow-hidden border border-border shadow-md">
+            <div className="sticky top-6 h-[30rem] md:h-[25rem] rounded-2xl overflow-hidden border border-border shadow-md">
               {realEstateDetail.lat && realEstateDetail.lng && (
                 <MapComponent
                   className="w-full h-full" // Ensure map takes full dimensions of its container

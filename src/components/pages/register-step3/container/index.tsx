@@ -10,9 +10,9 @@ import Password from "@/components/common/svg/password";
 import RepeatPassword from "@/components/common/svg/repeat-pass";
 
 // Third party components
-import Button from "../common/button";
-import InputAuth from "../common/input-auth";
-import WelcomeTitle from "../common/welcome-title";
+import Button from "@/components/common/auth/button";
+import InputAuth from "@/components/common/auth/input-auth";
+import WelcomeTitle from "@/components/common/auth/welcome-title";
 
 // API and storage
 import { useCompleteRegister } from "@/utils/service/register/post-complete-register";

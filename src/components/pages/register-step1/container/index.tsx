@@ -8,10 +8,10 @@ import { useTranslations } from "next-intl";
 import * as Yup from "yup";
 
 // Third party components
-import Button from "../common/button";
-import InputAuth from "../common/input-auth";
-import OrUnderline from "../common/or-underline";
-import WelcomeTitle from "../common/welcome-title";
+import Button from "@/components/common/auth/button";
+import InputAuth from "@/components/common/auth/input-auth";
+import OrUnderline from "@/components/common/auth/or-underline";
+import WelcomeTitle from "@/components/common/auth/welcome-title";
 
 // SVGs
 import EmailSVG from "@/components/common/svg/email";
