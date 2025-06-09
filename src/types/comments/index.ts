@@ -14,7 +14,7 @@ export interface Comments {
     fullName: string;
     profilePicture: null;
   };
-  parent_comment: Comment | null;
+  parent_comment: any;
 }
 
 export interface PostCommentParams {

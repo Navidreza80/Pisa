@@ -11,9 +11,9 @@ import FloatingActions from "@/components/common/fab";
 
 // CSS
 import { auth } from "@/auth";
-import BuyerSideBar from "@/components/dashboard/buyer/BuyerSideBar";
-import HeaderDashboard from "@/components/dashboard/HeaderDashboard";
-import Tags from "@/components/dashboard/seller/finance-container/tags";
+import BuyerSideBar from "@/components/common/dashboard/BuyerSideBar";
+import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
+import Tags from "@/components/pages/sd-payment-management/contents/Tags";
 import { JwtPayload } from "@/types/user";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode } from "jwt-decode";

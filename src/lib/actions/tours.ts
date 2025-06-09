@@ -1,6 +1,7 @@
 "use server";
 // Dependencies
 import prisma from "@/lib/prisma";
+import { Tour } from "@/types/tours";
 import { JwtPayload } from "@/types/user";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -11,7 +12,7 @@ import { toast } from "react-toastify";
  * @return all tours.
  **/
 
-export async function getTours() {
+export async function getTours(): Promise<Tour[]> {
   try {
     const tours = await prisma.tour.findMany();
 

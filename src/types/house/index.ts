@@ -35,7 +35,7 @@ export interface HouseItemsInterface {
 
 export interface TopSaleCardListProps {
   isList?: boolean;
-  setCurrentLoc?: Dispatch<SetStateAction<Array<number>>>;
+  setCurrentLoc?: Dispatch<SetStateAction<[number, number]>>;
   showOnMap?: boolean;
   showFacilities?: boolean;
   minWidth?: string;
@@ -57,13 +57,13 @@ export interface HouseFilters {
   search?: string;
   location?: string;
   propertyType?: string;
-  maxPrice?: number | null;
-  minRent?: number | null;
-  maxRent?: number | null;
-  minMortgage?: number | null;
-  maxMortgage?: number | null;
-  minArea?: number | null;
-  maxArea?: number | null;
+  maxPrice?: number;
+  minRent?: number;
+  maxRent?: number;
+  minMortgage?: number;
+  maxMortgage?: number;
+  minArea?: number;
+  maxArea?: number;
   limit?: number;
   transactionType?: string;
   minPrice?: number;

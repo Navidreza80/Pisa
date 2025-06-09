@@ -1,12 +1,12 @@
 // Third party components
-import ReserveContainer from "@/components/reserve-container/reserve-container";
+import ReserveListContainer from "@/components/pages/reserve-list/container";
 
 /**
  * ReservePage - Displays houses that are for reservation
- * 
+ *
  * @page
  * @route /reserve
- * 
+ *
  * Features:
  * - Reservation houses display
  * - Live filter and search
@@ -14,9 +14,9 @@ import ReserveContainer from "@/components/reserve-container/reserve-container";
  * - DarkMode
  * - 4 language support
  * - Loading skeleton for loading statement
- * 
+ *
  */
 
 export default async function ReservePage() {
-  return <ReserveContainer />;
+  return <ReserveListContainer />;
 }

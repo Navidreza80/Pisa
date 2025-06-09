@@ -21,6 +21,7 @@ import { auth } from "@/auth";
 import { JwtPayload } from "@/types/user";
 import { TransitionLink } from "@/components/common/TransitionLink";
 import Container from "../container";
+import Link from "next/link";
 
 /**
  * Heder component for page header.
@@ -36,13 +37,12 @@ export default async function Header() {
   var decodedUser;
   if (token) {
     decodedUser =
-    typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
-    console.log(decodedUser)
+      typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
+    console.log(decodedUser);
   } else {
     decodedUser = await auth();
-    decodedUser = decodedUser?.user
+    decodedUser = decodedUser?.user;
   }
-
 
   return (
     <Container>
@@ -64,7 +64,11 @@ export default async function Header() {
         )}
         <Navbar />
         <div className="flex justify-end items-center gap-x-3">
-          <LogoSVG size="w-[106px] h-[36px] md:w-[71px] md:h-[24px] lg:w-[71px] lg:h-[24px]" />
+          <Link href="/">
+            {" "}
+            <LogoSVG size="w-[106px] h-[36px] md:w-[71px] md:h-[24px] lg:w-[54px] lg:h-[29px]" />
+          </Link>
+
           <MobileNav />
         </div>
       </div>

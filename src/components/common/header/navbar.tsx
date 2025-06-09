@@ -66,7 +66,7 @@ export default function Navbar() {
           dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
             isOthersActive
-              ? "text-primary font-bold text-[18px]"
+              ? "text-primary font-bold"
               : "text-text font-semibold"
           }`}
         >
@@ -106,7 +106,7 @@ export default function Navbar() {
           dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
             isRentActive
-              ? "text-primary  font-bold text-[18px]"
+              ? "text-primary  font-bold"
               : "text-text font-semibold"
           }`}
         >
@@ -142,7 +142,7 @@ export default function Navbar() {
             href={item.url}
             className={`${
               pathname == item.url
-                ? "text-primary font-bold text-[18px] hover:border-primary"
+                ? "text-primary font-bold hover:border-primary"
                 : "text-text"
             } font-semibold hover:text-primary transition-colors duration-300 `}
           >

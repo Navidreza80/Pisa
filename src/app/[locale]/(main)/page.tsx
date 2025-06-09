@@ -1,5 +1,5 @@
 // Third party components
-import HomeContainer from "@/components/home-container/home-container";
+import HomeContainer from "@/components/pages/landing/container";
 
 /**
  * LandingPage - Displays hero section and other parts of home page

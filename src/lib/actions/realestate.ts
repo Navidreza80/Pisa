@@ -1,13 +1,14 @@
 "use server";
 // Dependencies
 import prisma from "@/lib/prisma";
+import { RealEstate } from "@prisma/client";
 
 /**
  * Server action to get all real estates.
  * @return all real estates.
  **/
 
-export async function getRealEstates() {
+export async function getRealEstates(): Promise<RealEstate[]> {
   try {
     const realEstates = await prisma.realEstate.findMany();
 
@@ -17,7 +18,7 @@ export async function getRealEstates() {
   }
 }
 
-export async function getRealEstateById(realEstateId: string) {
+export async function getRealEstateById(realEstateId: string): Promise<RealEstate> {
   try {
     const realEstate = await prisma.realEstate.findUnique({
       where: { id: realEstateId },

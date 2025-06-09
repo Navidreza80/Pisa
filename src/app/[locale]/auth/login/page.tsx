@@ -1,5 +1,5 @@
 // Third party components
-import Login from '@/components/auth/login/Login'
+import LoginContainer from '@/components/pages/login/container'
 
 /**
  * LoginPage - User login
@@ -17,7 +17,7 @@ import Login from '@/components/auth/login/Login'
 
 export default async function LoginPage() {
   return (
-    <Login />
+    <LoginContainer />
   )
 }
 
