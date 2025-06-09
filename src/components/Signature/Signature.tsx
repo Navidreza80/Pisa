@@ -171,10 +171,10 @@ const Signature = ({ HouseDetails, decodedUser }) => {
         `۲- آقا/خانم ${decodedUser.name} فرزند ... متولد ... دارای شناسنامه شماره ... صادره از ... و کد ملی ${contractData.buyerNationalId} به عنوان خریدار`,
         `منعقد گردید. طرفین با توجه به اهلیت قانونی و اختیار تام، نسبت به انعقاد این قرارداد اقدام نموده‌اند.`,
         ``,
-        `موضوع قرارداد: ${contractData.propertyType} واقع در ${contractData.propertyAddress} با مساحت تقریبی ${contractData.propertySize} و مشخصات کامل ...`,
+        `موضوع قرارداد: ${contractData.propertyType} واقع در ${HouseDetails.address} با مساحت تقریبی ${contractData.propertySize} و مشخصات کامل ...`,
         `مبلغ معامله: ${formatNumber(HouseDetails.price)} ) مبلغ به حروف: ${numberToPersianWords(Number(HouseDetails.price))} تومان (`,
-        `نحوه پرداخت: قسطی`,
-        `موعد تحویل: 1406/2/2`,
+        `نحوه پرداخت: اینترنتی)piza(`,
+        `موعد تحویل: ${contractData.date}`,
         ``,
         `شرایط و تعهدات خاص:`,
         ...contractData.terms.map(
