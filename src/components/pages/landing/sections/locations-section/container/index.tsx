@@ -20,7 +20,7 @@ const PopularLocations: React.FC<IProps> = async ({
   esfahanHouses,
 }) => {
   const t = await getTranslations("HomePage");
-  const locations = await getAllLocations();
+  const locations = await getAllLocations({ page: 1, limit: 3 });
 
   return (
     <div dir="rtl" className="flex flex-wrap">

@@ -8,6 +8,8 @@ import aparteman from "@/assets/images/landing/category/aparteman.png";
 import estakhr from "@/assets/images/landing/category/estakhr.png";
 import kolbe from "@/assets/images/landing/category/kolbei.png";
 import Villa from "@/assets/images/landing/category/vilaii.png";
+import jungle from "@/assets/images/jungle-house.jpg";
+import beach from "@/assets/images/beach-house.jpg";
 
 // Hooks
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
@@ -21,7 +23,7 @@ import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserv
  * @returns {JSX.Element} - Rendered category image
  */
 
-const CategoryImage = ({ name }: { name: string }) => {
+const CategoryImage = ({ name, id }: { name: string; id: string }) => {
   // Filter the reservation house items while click on the category name
   const dispatch = useAppDispatch();
 
@@ -38,13 +40,19 @@ const CategoryImage = ({ name }: { name: string }) => {
     >
       <Image
         src={
-          name == "ویلا"
-            ? Villa.src
-            : name == "مسکونی"
-              ? estakhr.src
-              : name == "آپارتمان"
-                ? aparteman.src
-                : kolbe.src
+          id == "1"
+            ? aparteman.src
+            : id == "2"
+              ? kolbe.src
+              : id == "3"
+                ? estakhr.src
+                : id == "4"
+                  ? Villa.src
+                  : id == "5"
+                    ? jungle.src
+                    : id == "6"
+                      ? beach.src
+                      : null
         }
         alt={name}
         width={1000}

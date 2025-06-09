@@ -40,7 +40,7 @@ export default async function Category() {
                     : "max-h-[190px]"
                 } min-w-[calc(33.3%-24px)] group`}
               >
-                <CategoryImage name={card.name} />
+                <CategoryImage id={card.id} name={card.name} />
                 <div className="p-4 text-center absolute right-0 bottom-1 flex items-end justify-end">
                   <Reveal className="w-full">
                     <p
