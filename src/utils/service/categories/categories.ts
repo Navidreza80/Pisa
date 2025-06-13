@@ -1,4 +1,4 @@
-"use server"
+"use server";
 // Interceptor
 import http from "@/utils/interceptor";
 
@@ -7,9 +7,11 @@ import http from "@/utils/interceptor";
  * @returns response with all categories.
  */
 
-export default async function getAllCategories() {
+export default async function getAllCategories(
+  params: { page?: number; limit?: number } = {}
+) {
   try {
-    const result = await http.get(`/categories`);
+    const result = await http.get(`/categories`, { params });
     return result;
   } catch (error) {
     return error;

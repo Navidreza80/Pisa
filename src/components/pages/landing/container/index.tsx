@@ -8,6 +8,7 @@ import Category from "../sections/categories-section/container";
 import TopSales from "../sections/top-sale-section/container";
 import PopularLocations from "../sections/locations-section/container";
 import Rank from "../sections/about-us-section/container";
+import Comments from "../sections/comments-section/container";
 
 export default async function HomeContainer() {
   const data: HouseItemsInterface[] = await fetchHouses({
@@ -34,7 +35,7 @@ export default async function HomeContainer() {
             esfahanHouses={esfahanHouses}
           />
           <PropertyAgentSection houses={data} houseLength={houseLength} />
-          {/* <Comments /> */}
+          <Comments />
         </div>
       </div>
     </Container>

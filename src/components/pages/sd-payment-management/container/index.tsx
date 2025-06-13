@@ -1,8 +1,8 @@
 "use client";
 import InputSelect from "@/components/common/inputs/select-input";
 import Line from "@/components/common/dashboard/line";
-import TableDashboard from "@/components/dashboard/table";
-import Title from "@/components/dashboard/title";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";

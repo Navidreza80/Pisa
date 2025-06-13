@@ -8,6 +8,7 @@ import ToRight from "@/components/common/svg/to-right";
 import ToLeft from "@/components/common/svg/to-left";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import formatToPersianDate from "@/utils/helper/format-date";
 
 const Comments = () => {
   const comments = [
@@ -16,38 +17,38 @@ const Comments = () => {
       content:
         "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد",
       author: "پارسا آقایی",
-      date: "12 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
     {
       id: 2,
       content: "چرت و مزخرف.هر کی میگه خوبه فامیل صاحب شرکته",
       author: "علی محمدی",
-      date: "15 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
     {
       id: 3,
       content:
         "خیلی خیل خیلی خیلی خیلی خیلی خیلی خیلیییییییییییییییییییییی عالی",
       author: "مریم حسینی",
-      date: "20 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
     {
       id: 4,
       content: "بی نظییرههه به به",
       author: "رضا کریمی",
-      date: "25 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
     {
       id: 5,
       content: "بیست ملیارد تو امریکاخونه خریدم ازینجا توی کابل بهم خونه دادن",
       author: "قلی خان",
-      date: "20 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
     {
       id: 6,
       content: "بد نیست",
       author: "اکبر حسین زاده",
-      date: "25 مرداد 2020",
+      date: "2025-02-23T13:25:17.053Z",
     },
   ];
 
@@ -88,7 +89,7 @@ const Comments = () => {
   };
 
   return (
-    <div className="max-w-[1233px] rounded-4xl mx-auto px-4 py-8 relative">
+    <div className="lg:max-w-[1300px] md:max-w-[700px] max-w-[420px] rounded-4xl mx-auto px-4 py-8 relative">
       <h2 className="text-[28px] font-bold mb-8">{t("CommentsPiza")}</h2>
 
       <Swiper
@@ -133,8 +134,8 @@ const Comments = () => {
                   <span className="text-[16px] font-semibold text-white">
                     {comment.author}
                   </span>
-                  <span className="text-[14px] font-[500] text-[#E5E5E5]">
-                    {comment.date}
+                  <span dir="rtl" className="text-[14px] font-[500] text-[#E5E5E5]">
+                    {formatToPersianDate(comment.date)}
                   </span>
                 </div>
                 <Image

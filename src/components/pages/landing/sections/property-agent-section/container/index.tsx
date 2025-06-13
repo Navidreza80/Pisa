@@ -16,17 +16,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
   houseLength,
   houses,
 }) => {
-  // const houseLength = data.length;
 
-  // TODO: bind status info
-  // const getAllLocation = () => {
-  //   const res = getAllLocations();
-  //   setLocation(res);
-  // };
-  // Fetch data
-  // useEffect(() => {
-  //   getAllLocation();
-  // }, []);
 
   return (
     <div dir="rtl">

@@ -22,11 +22,7 @@ import ResultModal from "../modals/ResultModal";
  * @returns {JSX.Element}
  */
 
-export default function Agent({
-  houses,
-}: {
-  houses: HouseItemsInterface[];
-}) {
+export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
   // Hooks
   // const cities = locations.length;
   // const [locations, setLocation] = useState([]);
@@ -109,19 +105,15 @@ export default function Agent({
           className="w-full h-[238px] rounded-2xl border-border relative placeholder:absolute placeholder:top-4 placeholder:right-4"
           placeholder="خانه 2 خوابه در شیراز..."
         />
-        {!isPending && recommendation ? (
-          <ResultModal reason={reason} recommendation={recommendation}>
-            <button
-              onClick={async () => await mutate()}
-              className="w-full bg-primary group hover:scale-105 transition-all duration-300 rounded-2xl text-[20px] font-semibold cursor-pointer h-12 text-white flex justify-center items-center gap-1"
-            >
-              بزن بریم
-              <Stars className="group-hover:shadow-sm rounded-full group-hover:shadow-amber-200 transition-all duration-300" />
-            </button>
-          </ResultModal>
-        ) : (
-          <div>Loading</div>
-        )}
+        <ResultModal isPending={isPending} reason={reason} recommendation={recommendation}>
+          <button
+            onClick={async () => await mutate()}
+            className="w-full bg-primary group hover:scale-105 transition-all duration-300 rounded-2xl text-[20px] font-semibold cursor-pointer h-12 text-white flex justify-center items-center gap-1"
+          >
+            {isPending ? "درحال بارگذاری..." : "بزن بریم"}
+            <Stars className="group-hover:shadow-sm rounded-full group-hover:shadow-amber-200 transition-all duration-300" />
+          </button>
+        </ResultModal>
       </div>
     </>
   );

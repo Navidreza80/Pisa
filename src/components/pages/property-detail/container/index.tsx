@@ -14,6 +14,7 @@ import ReserveForm from "../content/forms/ReservePropertyForm";
 import RentForm from "../content/forms/RentPropertyForm";
 import AllComments from "../content/AllComments";
 import RelatedHouse from "../content/RelatedHouse";
+import PropertyQA from "../content/PropertyQA";
 
 /**
  * Single property page - Displaying detail of property
@@ -134,6 +135,8 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
             {isHotel ? <ReserveForm price={price} /> : <RentForm />}
             {/* Comments section */}
             <AllComments houseId={id} />
+            {/* QA Section */}
+            <PropertyQA />
           </div>
         </div>
         {/* Bottom section */}

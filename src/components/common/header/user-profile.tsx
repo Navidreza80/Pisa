@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 
 // Image
 import Image from "next/image";
+import Link from "next/link";
 
 // Change lang
 import { useRouter } from "next/navigation";
@@ -86,12 +87,12 @@ export default function UserProfile({ user }: UserProfileProps) {
             </p>
           </div>
           <div className="p-2">
-            <button
-              onClick={() => router.push("/profile")}
+            <Link
+              href="/dashboard/seller"
               className="w-full cursor-pointer text-left px-3 py-2 text-sm rounded-md hover:bg-surface dark:hover:bg-surface-dark transition-colors"
             >
               {t("profile")}
-            </button>
+            </Link>
             <button
               onClick={handleLogout}
               className="w-full cursor-pointer text-left px-3 py-2 text-sm rounded-md text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"

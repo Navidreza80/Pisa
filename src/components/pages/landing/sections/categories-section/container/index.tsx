@@ -19,7 +19,7 @@ import Reveal from "@/components/common/reveal";
 
 export default async function Category() {
   // Fetch data
-  const categories = await getAllCategories();
+  const categories = await getAllCategories({ page: 1, limit: 6 });
   // Hooks
   const t = await getTranslations("HomePage");
   return (
@@ -29,7 +29,7 @@ export default async function Category() {
       </Reveal>
       <div className="container mx-auto p-4">
         <div className="flex grow flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
-          {(categories as Array<{ id: string; name: string }>).map(
+          {(categories as Array<{ id: string; name: string }>).data.map(
             (card, index) => (
               <div
                 key={card.id}
