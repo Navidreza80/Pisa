@@ -39,7 +39,6 @@ export default function AddTourStepTwo() {
     <div className="flex justify-between w-full mt-[61px] mb-[51px] h-[366px]">
       <div className="w-[62.8%]">
         <MapComponent
-          clickedCoords={clickedCoords}
           className="rounded-[14px]"
           initialLocation={[35.700731157187114, 51.337112334975004]}
           initialZoom={11}

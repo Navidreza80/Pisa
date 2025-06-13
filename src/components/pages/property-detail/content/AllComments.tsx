@@ -88,6 +88,9 @@ export default function AllComments({ houseId }: AllCommentsProps) {
         },
         {
           onSuccess: () => {
+            formik.values.rating = 0;
+            formik.values.title = "";
+            formik.values.caption = "";
             cancelReply();
             setRating(0);
           },
@@ -109,23 +112,44 @@ export default function AllComments({ houseId }: AllCommentsProps) {
       <div
         ref={handleRef}
         id="sendComment"
-        className="flex flex-col mb-4 gap-3"
+        className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 transition-all duration-300"
       >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-6">
           <SectionName sectionName={t("userComments")} />
           {parentId && (
             <button
-              className="bg-red-500 cursor-pointer p-2 rounded-xl text-white"
               onClick={cancelReply}
+              className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
             >
-              لفو پاسخ
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              لغو پاسخ به {repliedUser}
             </button>
           )}
         </div>
-        <div className="flex justify-between">
-          <div className="flex flex-col w-[calc(66.6%-30px)]">
+
+        <div className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex-1">
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              عنوان نظر
+            </label>
             <Input
-              className="border-border h-[51px] w-full px-4 py-6 placeholder:text-text-secondary items-start rounded-tr-2xl rounded-br-2xl"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
               dir="rtl"
               value={formik.values.title}
               onChange={formik.handleChange}
@@ -134,36 +158,53 @@ export default function AllComments({ houseId }: AllCommentsProps) {
               placeholder="عنوان نظر خود را بنویسید..."
             />
           </div>
-          <div className="flex items-center max-w-[calc(50%-30px)]">
-            <StarRatings
-              rating={rating}
-              changeRating={setRating}
-              starDimension="25px"
-              starSpacing="12px"
-              starRatedColor="#586cff"
-              starEmptyColor="lightgray"
-              numberOfStars={5}
-              name="rating"
-              allowHalfStar={true}
-              isSelectable={true}
-            />
+
+          <div className="md:w-64">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              امتیاز شما
+            </label>
+            <div className="bg-gray-50 dark:bg-gray-700 p-2 rounded-xl flex justify-center">
+              <StarRatings
+                rating={rating}
+                changeRating={setRating}
+                starDimension="22px"
+                starSpacing="6px"
+                starRatedColor="#586cff"
+                starEmptyColor="#e5e7eb"
+                starHoverColor="#586cff"
+                starRatedHoverColor="#586cff"
+                numberOfStars={5}
+                name="rating"
+                allowHalfStar={true}
+                isSelectable={true}
+              />
+            </div>
           </div>
         </div>
 
-        <Input
-          className="border-border h-[102px] px-4 py-6 placeholder:text-text-secondary items-start rounded-3xl"
-          dir="rtl"
-          value={formik.values.caption}
-          onChange={formik.handleChange}
-          id="caption"
-          name="caption"
-          placeholder={t("commentPlaceholder")}
-        />
-        {formik.errors.caption && (
-          <span className="text-red-500 text-sm text-right">
-            {formik.errors.caption}
-          </span>
-        )}
+        <div className="mb-4">
+          <label
+            htmlFor="caption"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
+            متن نظر
+          </label>
+          <textarea
+            className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none transition-all"
+            dir="rtl"
+            value={formik.values.caption}
+            onChange={formik.handleChange}
+            id="caption"
+            name="caption"
+            placeholder={t("commentPlaceholder")}
+          />
+          {formik.errors.caption && (
+            <span className="text-red-500 dark:text-red-400 text-sm mt-1 block">
+              {formik.errors.caption}
+            </span>
+          )}
+        </div>
+
         <Button
           disabled={isPending && !token}
           handleClick={() => {
@@ -171,12 +212,58 @@ export default function AllComments({ houseId }: AllCommentsProps) {
               setIsLogin(true);
             }
           }}
-          className="bg-primary w-full flex items-center justify-center !rounded-full h-12 mt-1 text-white cursor-pointer"
+          className={`w-full flex items-center justify-center rounded-xl h-12 mt-2 text-white font-medium transition-all ${
+            isPending || !token
+              ? "bg-blue-400 dark:bg-blue-600 cursor-not-allowed"
+              : "bg-blue-600 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-800"
+          }`}
         >
-          <LoginModal isOpen={isLogin} />
-          {!isPending && (parentId ? "پاسخ به " + repliedUser : t("send"))}
-          {isPending && <ClipLoader className="!my-auto" color="#ffffff" />}
+          {!isPending && (
+            <>
+              {parentId ? (
+                <span className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  پاسخ به {repliedUser}
+                </span>
+              ) : (
+                <span className="flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {t("send")}
+                </span>
+              )}
+            </>
+          )}
+          {isPending && (
+            <div className="flex items-center gap-2">
+              <ClipLoader color="#ffffff" size={20} />
+              <span>در حال ارسال...</span>
+            </div>
+          )}
         </Button>
+
+        <LoginModal isOpen={isLogin} />
       </div>
       {loadingComment && <ClipLoader className="mx-auto" color="#586cff" />}
       {/* Render the comments */}

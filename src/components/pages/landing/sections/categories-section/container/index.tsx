@@ -19,7 +19,7 @@ import Reveal from "@/components/common/reveal";
 
 export default async function Category() {
   // Fetch data
-  const categories = await getAllCategories();
+  const categories = await getAllCategories({ page: 1, limit: 6 });
   // Hooks
   const t = await getTranslations("HomePage");
   return (
