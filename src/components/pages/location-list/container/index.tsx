@@ -57,7 +57,7 @@ export default function LocationsListContainer() {
             Array(6)
               .fill(null)
               .map((_, index) => <LocationCardSkeleton key={index} />)}
-          {locations?.map((card) => (
+          {locations?.data.map((card) => (
             <div
               key={card.id}
               className="bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border rounded-[40px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)]"

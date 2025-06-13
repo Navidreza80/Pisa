@@ -53,6 +53,8 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
                 <CarouselItem key={index}>
                   <div className="h-[200px] relative">
                     <Image
+                      width={500}
+                      height={500}
                       unoptimized
                       src={photo}
                       alt={`${item.title} - تصویر ${index + 1}`}

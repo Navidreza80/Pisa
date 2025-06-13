@@ -29,7 +29,7 @@ export default async function Category() {
       </Reveal>
       <div className="container mx-auto p-4">
         <div className="flex grow flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
-          {(categories as Array<{ id: string; name: string }>).map(
+          {(categories as Array<{ id: string; name: string }>).data.map(
             (card, index) => (
               <div
                 key={card.id}

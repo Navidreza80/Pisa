@@ -9,16 +9,20 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { HouseItemsInterface } from "@/types/house";
+import { ClipLoader } from "react-spinners";
+import { Spinner } from "reactstrap";
 
 interface IProps {
   recommendation: HouseItemsInterface;
   reason: string;
   children: React.ReactNode;
+  isPending: boolean;
 }
 
 const ResultModal: React.FC<IProps> = ({
   recommendation,
   reason,
+  isPending,
   children,
 }) => {
   return (
@@ -34,6 +38,11 @@ const ResultModal: React.FC<IProps> = ({
           )}
           {recommendation && <HouseCard item={recommendation} />}
         </div>
+        {isPending && (
+          <div className="flex flex-col gap-1 items-center mx-auto">
+            درحال بارگذاری <ClipLoader />
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );

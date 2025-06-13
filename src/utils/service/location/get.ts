@@ -12,7 +12,7 @@ export async function getAllLocations(
   params: { page?: number; limit?: number } = {}
 ): Promise<Location[]> {
   try {
-    const response = await http.get<Location[]>(`/locations`, { params });
+    const response = await http.get<{data: Location[], totalCount: number}>(`/locations`, { params });
     return response;
   } catch (error) {
     console.error("Error fetching locations:", error);

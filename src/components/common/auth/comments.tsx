@@ -1,16 +1,16 @@
 "use client";
 // React & Next
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 // Dependencies
-import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 import axios from "axios";
-import "swiper/css";
 import { format } from "date-fns-jalali";
+import { AnimatePresence, motion } from "framer-motion";
+import "swiper/css";
 import "swiper/css/navigation";
+import { Autoplay, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // SVGs
 import QuoteSVG from "@/components/common/svg/quote";
@@ -20,6 +20,7 @@ import ToRight from "@/components/common/svg/to-right";
 
 // Types
 import type Comment from "@/types/auth";
+import formatToPersianDate from "@/utils/helper/format-date";
 
 /**
  * Comment component to show user comments on website in auth pages
@@ -30,7 +31,7 @@ import type Comment from "@/types/auth";
 
 export default function CommentsSwiper() {
   const swiperRef = useRef<any>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<{ data: Comment[] }>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,18 +50,6 @@ export default function CommentsSwiper() {
     }
     fetchComments();
   }, []);
-
-  const formatDate = (dateString: string) => {
-    if (!dateString) return "بدون تاریخ";
-
-    try {
-      const date = new Date(dateString);
-      return format(date, "yyyy/M/d");
-    } catch (e) {
-      console.error("خطا در تبدیل تاریخ:", e);
-      return dateString;
-    }
-  };
 
   const handleNavigation = (direction: "prev" | "next") => {
     if (!swiperRef.current) return;
@@ -103,7 +92,7 @@ export default function CommentsSwiper() {
             }}
             dir="rtl"
           >
-            {comments.map((comment) => (
+            {comments.data.map((comment) => (
               <SwiperSlide key={comment.id}>
                 <div className="w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md">
                   <div className="flex justify-end">
@@ -143,7 +132,7 @@ export default function CommentsSwiper() {
                           dir="rtl"
                           className="font-[500]  text-[14px] text-[#5F5F5F]"
                         >
-                          {formatDate(comment.created_at)}
+                          {formatToPersianDate(comment.created_at)}
                         </p>
                       </div>
                     </div>

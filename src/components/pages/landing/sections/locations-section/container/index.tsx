@@ -32,7 +32,7 @@ const PopularLocations: React.FC<IProps> = async ({
         </div>
       </Reveal>
       <div className="flex gap-[24px] justify-center md:justify-center lg:justify-between flex-wrap w-full">
-        {locations.map((card: Location) => (
+        {locations.data.map((card: Location) => (
           <div
             key={card.id}
             className=" flex-1 bg-surface transition-transform duration-300 cursor-pointer border-[1px] border-border  p-[12px] rounded-[40px] lg:min-w-[389px] md:min-w-[389px] min-w-[350px] w-[calc(33.3%-22px)]"
