@@ -1,10 +1,6 @@
-type Place = {
-  id: number;
-  name: string;
-  image: string;
-  hints: string[];
-};
+import { Place } from "../types/index";
 
+// Array of places with their details for the game
 const PLACES: Place[] = [
   {
     id: 1,
