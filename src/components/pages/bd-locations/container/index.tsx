@@ -1,10 +1,12 @@
 "use client";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import FilterModal from "@/components/common/dashboard/FilterModal";
 import Line from "@/components/common/dashboard/line";
 import ModalStep2 from "@/components/common/dashboard/modalStep2";
-import FilterModal from "@/components/common/dashboard/FilterModal";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import EditSVG from "@/components/dashboard/svg/EditSVG";
-import TableDashboard from "@/components/common/dashboard/Table";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,11 +15,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import Title from "@/components/common/dashboard/Title";
+import { useState } from "react";
 
 const destinations = [
   {
@@ -53,7 +54,6 @@ export default function BuyerLocations() {
   const t = useTranslations("DestinationsList");
   const [provinceFilter, setProvinceFilter] = useState("all");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
-  const [viewMode, setViewMode] = useState<"table" | "card">("table");
 
   const tableHeaderItems = [
     { text: t("tableHeaders.city"), clx: "rounded-r-xl" },
@@ -61,20 +61,6 @@ export default function BuyerLocations() {
     { text: t("tableHeaders.status"), clx: null },
     { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
   ];
-
-  // Function to determine view mode based on screen size
-  const handleResize = () => {
-    if (typeof window !== "undefined") {
-      setViewMode(window.innerWidth < 768 ? "card" : "table");
-    }
-  };
-
-  // Set initial view mode and add resize listener
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const filteredDestinations = destinations.filter((d) => {
     return provinceFilter === "all" || d.province === provinceFilter;
@@ -94,7 +80,7 @@ export default function BuyerLocations() {
   };
 
   return (
-    <div>
+    <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -257,6 +243,6 @@ export default function BuyerLocations() {
           </Card>
         ))}
       </div>
-    </div>
+    </ContainerDashboard>
   );
 }

@@ -6,6 +6,7 @@ import Title from "@/components/common/dashboard/Title";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const properties = [
   {
@@ -69,7 +70,7 @@ export default function SellerFinanceManagement() {
   const t = useTranslations("FinanceManagement");
 
   return (
-    <div>
+    <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -167,6 +168,6 @@ export default function SellerFinanceManagement() {
           </Card>
         ))}
       </div>
-    </div>
+    </ContainerDashboard>
   );
 }

@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import FilterModal from "@/components/common/dashboard/FilterModal";
 import Title from "@/components/common/dashboard/Title";
 import ReserveTableContent from "@/components/pages/bd-bookings/contents/content";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const tableHeaderItems = [
   { text: "hotelName", clx: "rounded-r-xl" },
@@ -64,7 +65,7 @@ export default function BookingList({
   ];
 
   return (
-    <>
+    <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -194,6 +195,6 @@ export default function BookingList({
           </Card>
         ))}
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

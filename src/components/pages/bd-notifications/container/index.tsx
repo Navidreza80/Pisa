@@ -14,6 +14,7 @@ import {
   tableHeaderItems,
 } from "@/utils/constant/folder";
 import { useState } from "react";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 export default function BuyerNotifications() {
   const t = useTranslations("Notifications");
@@ -48,7 +49,7 @@ export default function BuyerNotifications() {
   ];
 
   return (
-    <>
+    <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
         <Title text={t("title")} />
         <div className="flex gap-4 ">
@@ -156,6 +157,6 @@ export default function BuyerNotifications() {
           </div>
         ))}
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

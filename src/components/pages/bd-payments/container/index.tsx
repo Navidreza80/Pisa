@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import InputSelect from "@/components/common/inputs/select-input";
 import Title from "@/components/common/dashboard/Title";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const tableHeaderItems = [
   { text: "date", clx: "rounded-r-xl" },
@@ -58,7 +59,7 @@ export default function BuyerPayments() {
   ];
 
   return (
-    <>
+    <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -155,6 +156,6 @@ export default function BuyerPayments() {
           </div>
         ))}
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

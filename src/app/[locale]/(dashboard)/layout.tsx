@@ -23,7 +23,7 @@ export default async function Layout({
       <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
         <HeaderDashboard />
         <Tags />
-        <main className="flex-1 bg-background p-8 rounded-[12px]">
+        <main>
           {children}
         </main>
       </div>

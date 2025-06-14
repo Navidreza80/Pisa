@@ -52,7 +52,7 @@ const Tags = () => {
   return (
     <>
       {pathname.includes("/seller/finance") && (
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between animate-fade-up">
           {financeitems.map((item, index) => {
             return <Tag key={index} item={item} />;
           })}
@@ -60,7 +60,7 @@ const Tags = () => {
       )}
       {pathname.endsWith("/seller") && (
         <>
-          <div className="w-full flex flex-wrap justify-between">
+          <div className="w-full flex flex-wrap justify-between animate-fade-up">
             {dashboarditems.map((item, index) => {
               return <Tag key={index} item={item} />;
             })}

@@ -30,7 +30,7 @@ async function HeaderDashboard() {
     { text: "خروج", icon: <SignoutSVG /> },
   ];
   return (
-    <div className="bg-background rounded-[12px] px-[19px] h-[66px] flex justify-between">
+    <div className="bg-background animate-fade-down rounded-[12px] px-[19px] h-[66px] flex justify-between">
       {!decodedUser ? (
         <span></span>
       ) : (

@@ -5,8 +5,8 @@ import FilterModal from "@/components/dashboard/filter-modal";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import EditSVG from "@/components/dashboard/svg/EditSVG";
-import TableDashboard from "@/components/dashboard/table";
-import Title from "@/components/dashboard/title";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,7 @@ import {
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const properties = [
   {
@@ -88,7 +89,7 @@ export default function SellerDashboardProperties() {
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   return (
-    <div>
+    <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -310,6 +311,6 @@ export default function SellerDashboardProperties() {
           </Card>
         ))}
       </div>
-    </div>
+    </ContainerDashboard>
   );
 }

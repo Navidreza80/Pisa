@@ -6,8 +6,8 @@ import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import TableDashboard from "@/components/dashboard/table";
-import Title from "@/components/dashboard/title";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const tableHeaderItems = [
   { text: "propertyName", clx: "rounded-r-xl" },
@@ -69,7 +70,7 @@ export default function SellerReservationManagement() {
   ];
 
   return (
-    <>
+    <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
         <Title text={t("pageTitle")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -313,6 +314,6 @@ export default function SellerReservationManagement() {
           </Card>
         ))}
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

@@ -43,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={direction()}>
-      <body className="bg-background  text-text w-[100%] max-h-screen animate-fade flex justify-center font-yekan">
+      <body className="bg-background  text-text w-[100%] max-h-screen flex justify-center font-yekan">
         <NextIntlClientProvider>
           <Providers>
             <main className="w-full">{children}</main>

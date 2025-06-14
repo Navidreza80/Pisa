@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const tableHeaderItems = (t) => [
   {
@@ -63,8 +64,8 @@ export default function SellerMainDashboard() {
   };
 
   return (
-    <>
-      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
+    <ContainerDashboard>
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0 animate-fade-up">
         <Link
           href={"/dashboard/seller/reservations"}
           className="flex gap-1.5 py-2 w-full"
@@ -98,7 +99,7 @@ export default function SellerMainDashboard() {
         ))}
       </div>
       {/* Desktop view - Table */}
-      <div className="hidden md:block">
+      <div className="hidden md:block animate-fade-up">
         <TableDashboard
           headerSecondary={true}
           tableHeader={tableHeaderItems(t)}
@@ -176,6 +177,6 @@ export default function SellerMainDashboard() {
           ))}
         />
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

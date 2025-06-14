@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Title from "@/components/common/dashboard/Title";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const bookings = [
   {
@@ -48,7 +49,7 @@ export default function BuyerFavorites() {
   ];
 
   return (
-    <>
+    <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -170,6 +171,6 @@ export default function BuyerFavorites() {
           </div>
         ))}
       </div>
-    </>
+    </ContainerDashboard>
   );
 }

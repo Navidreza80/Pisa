@@ -12,7 +12,7 @@ import { MoreHorizontal } from "lucide-react";
 
 export const BookingCard = ({ booking, t, onActionClick }) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-border mb-4 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm border border-border mb-4 overflow-hidden animate-fade-up">
       <div className="flex gap-3 p-3 border-b border-border">
         <div className="bg-text-secondary/30 w-20 h-16 rounded-[12px]" />
         <div className="flex-1">

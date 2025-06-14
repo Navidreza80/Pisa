@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import Line from "./buyer/line";
+import Line from "../common/dashboard/line";
 import CloseBtn from "./close-btn";
 import { useTranslations } from "next-intl";
 

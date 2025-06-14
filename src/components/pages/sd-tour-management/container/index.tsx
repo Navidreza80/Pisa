@@ -1,11 +1,12 @@
 "use client";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import FilterModal from "@/components/common/dashboard/FilterModal";
 import Line from "@/components/common/dashboard/line";
 import ModalStep2 from "@/components/common/dashboard/modalStep2";
-import FilterModal from "@/components/common/dashboard/FilterModal";
-import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
-import EditSVG from "@/components/dashboard/svg/EditSVG";
 import TableDashboard from "@/components/common/dashboard/Table";
 import Title from "@/components/common/dashboard/Title";
+import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
+import EditSVG from "@/components/dashboard/svg/EditSVG";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,7 @@ import {
 } from "@/components/ui/popover";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const properties = [
   {
@@ -80,7 +81,7 @@ export default function SellerTourManagement() {
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   return (
-    <div>
+    <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
@@ -276,6 +277,6 @@ export default function SellerTourManagement() {
           </Card>
         ))}
       </div>
-    </div>
+    </ContainerDashboard>
   );
 }
