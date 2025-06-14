@@ -1,40 +1,37 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { BarChart4, Clock, Flame, Heart, Sparkles, Trophy } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef } from "react";
 import confetti from "canvas-confetti";
-import { Progress } from "@/components/ui/Progress";
+import { AnimatePresence } from "framer-motion";
+import { Flame, Trophy } from "lucide-react";
+import { useCallback, useEffect, useRef } from "react";
+
+// Css Import
+import "@/app/[locale]/globals.css"
 
 // Components
-import { GameScreen } from "../content/components/GameScreen";
-import { GameOverScreen } from "../content/components/GameOverScreen";
 import { GameModeSelection } from "../content/components/GameModeSelection";
-import { LoadingScreen } from "../content/components/LoadingScreen";
-import { StatsDialog } from "../content/components/StatsDialog";
+import { GameOverScreen } from "../content/components/GameOverScreen";
+import { GameScreen } from "../content/components/GameScreen";
 import { LeaderboardDialog } from "../content/components/LeaderboardDialog";
+import { StatsDialog } from "../content/components/StatsDialog";
 
 // Hooks
+import { useGameState } from "../content/hooks/useGameState";
+import { useHighScores } from "../content/hooks/useHighScores";
 import { useMousePosition } from "../content/hooks/useMousePosition";
 import { useTheme } from "../content/hooks/useTheme";
-import { useHighScores } from "../content/hooks/useHighScores";
-import { useGameState } from "../content/hooks/useGameState";
 
 // Types and constants
-import { GameMode } from "../content/types/index";
-import { GAME_MODES, TIMER_DURATION } from "../content/utils/constants";
 import LoadingPage from "@/app/loading";
 
 // Main component
 export default function GuessThePlace() {
   // Refs
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const scoreRef = useRef<HTMLDivElement>(null);
+  const scoreRef = useRef<HTMLDivElement>(null); 
 
   // Custom hooks
   const { mousePosition, handleMouseMove } = useMousePosition(containerRef);
-  const { isDark, toggleTheme } = useTheme();
   const { highScores, showLeaderboard, setShowLeaderboard, addHighScore } =
     useHighScores();
   const {
@@ -103,7 +100,6 @@ export default function GuessThePlace() {
       onMouseMove={handleMouseMove}
       className="min-h-screen text-text flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden transition-colors duration-500"
     >
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-70" />
 
       {/* Streak display */}
       {streak > 0 && !gameOver && (
@@ -187,63 +183,6 @@ export default function GuessThePlace() {
           />
         ) : null}
       </AnimatePresence>
-
-      {/* Animation styles */}
-      <style jsx global>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(5deg);
-          }
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-        }
-        .animate-float {
-          animation: float 10s ease-in-out infinite;
-        }
-
-        @keyframes glitch {
-          0% {
-            transform: translate(0);
-          }
-          20% {
-            transform: translate(-2px, 2px);
-          }
-          40% {
-            transform: translate(-2px, -2px);
-          }
-          60% {
-            transform: translate(2px, 2px);
-          }
-          80% {
-            transform: translate(2px, -2px);
-          }
-          100% {
-            transform: translate(0);
-          }
-        }
-        .animate-glitch {
-          animation: glitch 0.2s ease-in-out;
-        }
-
-        .score-pulse {
-          animation: score-pulse 0.5s ease-in-out;
-        }
-        @keyframes score-pulse {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.2);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </div>
   );
 }

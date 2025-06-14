@@ -578,5 +578,72 @@
     "pleaseSignFirst": "Lütfen önce imzalayın",
     "contractSaved": "Sözleşme başarıyla oluşturuldu ve kaydedildi!",
     "contractError": "Sözleşme oluşturulurken hata!"
+  },
+  "guessPlace": {
+    "imageAlt": "Yeri Tahmin Et",
+    "questionCounter": "{current} / {total} Soru",
+    "reduceBlur": "Bulanıklığı Azalt",
+    "tabs": {
+      "guess": "Tahmin",
+      "hints": "İpuçları"
+    },
+    "inputPlaceholder": "Yer adını girin",
+    "checkButton": "Kontrol Et",
+    "resetButton": "Yeniden Başlat",
+    "statsButton": "İstatistikleri Gör",
+    "feedback": {
+      "correct": "Tebrikler! Doğru tahmin",
+      "incorrect": "Yanlış!",
+      "correctAnswer": "Doğru cevap: {answer}"
+    },
+    "hints": {
+      "title": "İpuçları",
+      "showHint": "İpucu Göster",
+      "moreHints": "Daha Fazla İpucu"
+    },
+    "timeLeft": "{seconds} saniye",
+    "gameOver": {
+      "title": "Oyun Bitti!",
+      "finalScore": "Son puanınız:",
+      "maxStreak": "En yüksek seri:",
+      "leaderboardButton": "Lider Tablosu",
+      "statsButton": "Oyun İstatistikleri"
+    },
+    "modeSelection": {
+      "title": "Oyun Modunu Seçin",
+      "leaderboardButton": "Lider Tablosunu Gör"
+    },
+    "modes": {
+      "normal": {
+        "title": "Normal Mod",
+        "description": "Zaman sınırı yok, yeni başlayanlar için uygun"
+      },
+      "timeAttack": {
+        "title": "Zaman Saldırısı Modu",
+        "description": "Her tahmin için 30 saniye, zorlu ve heyecanlı"
+      },
+      "endless": {
+        "title": "Sonsuz Mod",
+        "description": "Hata yapana kadar oyun devam eder"
+      }
+    },
+    "difficulty": {
+      "title": "Zorluk Seviyesi Seçin",
+      "easy": "Kolay",
+      "medium": "Orta",
+      "hard": "Zor"
+    },
+    "stats": {
+      "title": "Oyun İstatistikleri",
+      "currentScore": "Mevcut Puan",
+      "maxStreak": "En Yüksek Seri",
+      "difficulty": "Zorluk Seviyesi",
+      "gameMode": "Oyun Modu",
+      "viewLeaderboard": "Lider Tablosunu Gör"
+    },
+    "leaderboard": {
+      "title": "Lider Tablosu",
+      "emptyMessage": "Henüz kayıtlı puan yok!"
+    }
   }
 }

@@ -580,5 +580,72 @@
     "pleaseSignFirst": "Please sign first",
     "contractSaved": "Contract successfully created and saved!",
     "contractError": "Error creating the contract!"
+  },
+  "guessPlace": {
+    "imageAlt": "Guess the place",
+    "questionCounter": "Question {current} of {total}",
+    "reduceBlur": "Reduce blur",
+    "tabs": {
+      "guess": "Guess",
+      "hints": "Hints"
+    },
+    "inputPlaceholder": "Enter the place name",
+    "checkButton": "Check",
+    "resetButton": "Restart",
+    "statsButton": "View stats",
+    "feedback": {
+      "correct": "Well done! You guessed correctly",
+      "incorrect": "Wrong!",
+      "correctAnswer": "Correct answer: {answer}"
+    },
+    "hints": {
+      "title": "Hints",
+      "showHint": "Show hint",
+      "moreHints": "More hints"
+    },
+    "timeLeft": "{seconds} seconds",
+    "gameOver": {
+      "title": "Game Over!",
+      "finalScore": "Your final score:",
+      "maxStreak": "Highest streak:",
+      "leaderboardButton": "Leaderboard",
+      "statsButton": "Game stats"
+    },
+    "modeSelection": {
+      "title": "Select game mode",
+      "leaderboardButton": "View leaderboard"
+    },
+    "modes": {
+      "normal": {
+        "title": "Normal mode",
+        "description": "No time limit, suitable for beginners"
+      },
+      "timeAttack": {
+        "title": "Time Attack mode",
+        "description": "30 seconds per guess, challenging and exciting"
+      },
+      "endless": {
+        "title": "Endless mode",
+        "description": "Game continues until you make a mistake"
+      }
+    },
+    "difficulty": {
+      "title": "Select difficulty level",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "stats": {
+      "title": "Game statistics",
+      "currentScore": "Current score",
+      "maxStreak": "Highest streak",
+      "difficulty": "Difficulty level",
+      "gameMode": "Game mode",
+      "viewLeaderboard": "View leaderboard"
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "emptyMessage": "No scores recorded yet!"
+    }
   }
 }

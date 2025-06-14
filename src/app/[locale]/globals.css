@@ -382,3 +382,57 @@ html[dir="ltr"] .menu-items {
   border-radius: 0 0 50px 50px;
   z-index: 1;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.animate-glitch {
+  animation: glitch 0.2s ease-in-out;
+}
+
+.score-pulse {
+  animation: score-pulse 0.5s ease-in-out;
+}
+@keyframes score-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
