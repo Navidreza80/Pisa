@@ -1,10 +1,6 @@
-type Place = {
-  id: number;
-  name: string;
-  image: string;
-  hints: string[];
-};
+import { Place } from "../types/index";
 
+// Array of places with their details for the game
 const PLACES: Place[] = [
   {
     id: 1,
@@ -77,7 +73,7 @@ const PLACES: Place[] = [
   },
   {
     id: 11,
-    name: "بندرعباس",
+    name: "بندر عباس",
     image:
       "https://www.flytoday.ir/blog/wp-content/uploads/2022/11/header_1068x580-8-1024x556-1.jpg",
     hints: ["جنوب ایران", "بندر مهم", "گرمای طاقت فرسا", "غذای دریایی"],
@@ -153,7 +149,7 @@ const PLACES: Place[] = [
   },
   {
     id: 22,
-    name: "خرم‌آباد",
+    name: "خرم آباد",
     image:
       "https://www.flytoday.ir/blog/wp-content/uploads/2023/09/%D8%AC%D8%A7%D9%87%D8%A7%DB%8C-%D8%AF%DB%8C%D8%AF%D9%86%DB%8C-%D8%AE%D8%B1%D9%85-%D8%A2%D8%A8%D8%A7%D8%AF.jpg",
     hints: ["قلعه فلک‌الافلاک", "غرب ایران", "آبشار نوژیان", "کوهستان"],
@@ -187,7 +183,7 @@ const PLACES: Place[] = [
   },
   {
     id: 27,
-    name: "شهرکرد",
+    name: "شهر کرد",
     image:
       "https://last-cdn.com/2024/08/18/Km6HbIoWCpd9OYC4OhJucVun8Sr9LjWcaoj87DAS.jpg",
     hints: ["مرکز چهارمحال", "سردترین شهر ایران", "عشایر", "مناطق کوهستانی"],
@@ -290,7 +286,7 @@ const PLACES: Place[] = [
   },
   {
     id: 42,
-    name: "صومعه‌سرا",
+    name: "صومعه سرا",
     image:
       "https://media.shabestan.news/old/fa/Original/1401/12/23/IMG08205727.jpg",
     hints: ["تالاب انزلی", "مناطق جنگلی", "برنج معروف", "پل خشتی"],
@@ -350,7 +346,7 @@ const PLACES: Place[] = [
   },
   {
     id: 50,
-    name: "مشگین‌شهر",
+    name: "مشگین شهر",
     image:
       "https://lahzeakhar.com/Files/Eventimg/338ed51a-b76c-49a6-bd38-870e97f70b35.webp",
     hints: ["قلعه قهقهه", "آب گرم", "مناطق تاریخی", "کوه سبلان"],
@@ -404,7 +400,7 @@ const PLACES: Place[] = [
   },
   {
     id: 58,
-    name: "نورآباد",
+    name: "نور آباد",
     image: "https://upload.wikimedia.org/wikipedia/commons/c/c5/New_koshk.jpg",
     hints: ["مناطق تاریخی", "طبیعت زیبا", "کوهستان", "لرستان"],
   },
@@ -425,7 +421,7 @@ const PLACES: Place[] = [
 
   {
     id: 61,
-    name: "فریدون‌شهر",
+    name: "فریدون شهر",
     image: "https://cdn.mashreghnews.ir/d/2022/02/07/4/3389773.jpg",
     hints: ["مناطق سردسیر", "طبیعت زیبا", "اصفهان", "آب و هوای خنک"],
   },
@@ -459,7 +455,7 @@ const PLACES: Place[] = [
   },
   {
     id: 66,
-    name: "نجف‌آباد",
+    name: "نجف آباد",
     image: "https://www.injaisfahan.ir/images/news/2018/02/19/1519069498.jpg",
     hints: ["شهر صنعتی", "مناطق تاریخی", "اصفهان", "پسته معروف"],
   },
@@ -508,7 +504,7 @@ const PLACES: Place[] = [
   },
   {
     id: 73,
-    name: "خرم‌بید",
+    name: "خرم بید",
     image: "https://sepanja.com/public/uploads/place/822/1398716163440.jpg",
     hints: ["مناطق تاریخی", "طبیعت زیبا", "فارس", "آب و هوای معتدل"],
   },
@@ -590,7 +586,7 @@ const PLACES: Place[] = [
   },
   {
     id: 85,
-    name: "نی‌ریز",
+    name: "نی ریز",
     image:
       "https://bashgahfarhangian.com/wp-content/uploads/2022/05/DSC_2811-HDR_10-1-scaled.jpg",
     hints: ["مناطق تاریخی", "طبیعت زیبا", "فارس", "آب و هوای گرم"],

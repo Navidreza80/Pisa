@@ -619,5 +619,72 @@
     "pleaseSignFirst": "لطفاً ابتدا امضا کنید",
     "contractSaved": "قولنامه با موفقیت ایجاد و ذخیره شد!",
     "contractError": "خطا در ایجاد قولنامه!"
+  },
+  "guessPlace": {
+    "imageAlt": "حدس بزن",
+    "questionCounter": "سوال {current} از {total}",
+    "reduceBlur": "واضح‌تر کردن",
+    "tabs": {
+      "guess": "حدس بزن",
+      "hints": "راهنماها"
+    },
+    "inputPlaceholder": "اسم مکان را وارد کن",
+    "checkButton": "بررسی",
+    "resetButton": "شروع دوباره",
+    "statsButton": "دیدن آمار",
+    "feedback": {
+      "correct": "آفرین! درست حدس زدی",
+      "incorrect": "اشتباه بود!",
+      "correctAnswer": "پاسخ صحیح: {answer}"
+    },
+    "hints": {
+      "title": "راهنماها",
+      "showHint": "نمایش راهنمایی",
+      "moreHints": "راهنمایی بیشتر"
+    },
+    "timeLeft": "{seconds} ثانیه",
+    "gameOver": {
+      "title": "بازی تمام شد!",
+      "finalScore": "امتیاز نهایی شما:",
+      "maxStreak": "بیشترین امتیاز متوالی:",
+      "leaderboardButton": "جدول امتیازات",
+      "statsButton": "آمار بازی"
+    },
+    "modeSelection": {
+      "title": "انتخاب حالت بازی",
+      "leaderboardButton": "مشاهده جدول امتیازات"
+    },
+    "modes": {
+      "normal": {
+        "title": "حالت عادی",
+        "description": "بدون محدودیت زمان، مناسب برای تازه‌کارها"
+      },
+      "timeAttack": {
+        "title": "حالت زمان محدود",
+        "description": "30ثانیه برای هر حدس، چالشی و هیجان‌انگیز"
+      },
+      "endless": {
+        "title": "حالت بی‌پایان",
+        "description": "بازی تا زمانی که اشتباه کنید ادامه دارد"
+      }
+    },
+    "difficulty": {
+      "title": "انتخاب سطح دشواری",
+      "easy": "آسان",
+      "medium": "متوسط",
+      "hard": "سخت"
+    },
+    "stats": {
+      "title": "آمار بازی",
+      "currentScore": "امتیاز فعلی",
+      "maxStreak": "بیشترین امتیاز متوالی",
+      "difficulty": "سطح دشواری",
+      "gameMode": "حالت بازی",
+      "viewLeaderboard": "مشاهده جدول امتیازات"
+    },
+    "leaderboard": {
+      "title": "جدول امتیازات",
+      "emptyMessage": "هنوز امتیازی ثبت نشده است!"
+    }
   }
 }

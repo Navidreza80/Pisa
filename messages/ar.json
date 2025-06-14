@@ -578,5 +578,72 @@
     "pleaseSignFirst": "يرجى التوقيع أولاً",
     "contractSaved": "تم إنشاء العقد وحفظه بنجاح!",
     "contractError": "حدث خطأ أثناء إنشاء العقد!"
+  },
+  "guessPlace": {
+    "imageAlt": "خمن المكان",
+    "questionCounter": "سؤال {current} من {total}",
+    "reduceBlur": "تقليل الضبابية",
+    "tabs": {
+      "guess": "خمن",
+      "hints": "تلميحات"
+    },
+    "inputPlaceholder": "أدخل اسم المكان",
+    "checkButton": "تحقق",
+    "resetButton": "إعادة البدء",
+    "statsButton": "عرض الإحصائيات",
+    "feedback": {
+      "correct": "أحسنت! لقد خمنت بشكل صحيح",
+      "incorrect": "خطأ!",
+      "correctAnswer": "الإجابة الصحيحة: {answer}"
+    },
+    "hints": {
+      "title": "تلميحات",
+      "showHint": "عرض تلميح",
+      "moreHints": "المزيد من التلميحات"
+    },
+    "timeLeft": "{seconds} ثانية",
+    "gameOver": {
+      "title": "انتهت اللعبة!",
+      "finalScore": "درجتك النهائية:",
+      "maxStreak": "أعلى سلسلة تصحيحات:",
+      "leaderboardButton": "لوحة المتصدرين",
+      "statsButton": "إحصائيات اللعبة"
+    },
+    "modeSelection": {
+      "title": "اختر نمط اللعب",
+      "leaderboardButton": "عرض لوحة المتصدرين"
+    },
+    "modes": {
+      "normal": {
+        "title": "النمط العادي",
+        "description": "بدون حدود زمنية، مناسب للمبتدئين"
+      },
+      "timeAttack": {
+        "title": "نمط الهجوم الزمني",
+        "description": "30 ثانية لكل تخمين، تحدي ومثير"
+      },
+      "endless": {
+        "title": "نمط لا نهائي",
+        "description": "تستمر اللعبة حتى تخطئ"
+      }
+    },
+    "difficulty": {
+      "title": "اختر مستوى الصعوبة",
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب"
+    },
+    "stats": {
+      "title": "إحصائيات اللعبة",
+      "currentScore": "الدرجة الحالية",
+      "maxStreak": "أعلى سلسلة تصحيحات",
+      "difficulty": "مستوى الصعوبة",
+      "gameMode": "نمط اللعب",
+      "viewLeaderboard": "عرض لوحة المتصدرين"
+    },
+    "leaderboard": {
+      "title": "لوحة المتصدرين",
+      "emptyMessage": "لا توجد نتائج مسجلة بعد!"
+    }
   }
 }
