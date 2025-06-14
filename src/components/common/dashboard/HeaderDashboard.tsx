@@ -1,15 +1,15 @@
 import { auth } from "@/auth";
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
-import { jwtDecode, JwtPayload } from "jwt-decode";
-import { ChevronDown, PlusCircle } from "lucide-react";
+import DashboardTitle from "@/components/common/dashboard/DashboardTitle";
+import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
+import SignoutSVG from "@/components/dashboard/svg/SignoutSVG";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import DashboardTitle from "@/components/common/dashboard/DashboardTitle";
-import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
-import SignoutSVG from "@/components/dashboard/svg/SignoutSVG";
+import { getServerCookie } from "@/utils/service/storage/server-cookie";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+import { ChevronDown, PlusCircle } from "lucide-react";
 import NotificationSettingModal from "./NotificationSettingModal";
 import WarningModal from "./WarningModal";
 
@@ -95,7 +95,13 @@ async function HeaderDashboard() {
               </p>
             </div>
             <div className="flex-col flex-wrap justify-between md:hidden flex">
-              <div className="bg-border rounded-full w-10 h-10"></div>
+              {/* <Image
+                width={50}
+                height={50}
+                alt="user"
+                src={decodedUser.profilePicture}
+                className="bg-border rounded-full w-10 h-10"
+              /> */}
             </div>
           </div>
           <div className="my-auto cursor-pointer md:flex hidden">

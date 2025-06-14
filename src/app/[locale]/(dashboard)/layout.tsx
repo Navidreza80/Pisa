@@ -19,13 +19,11 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex bg-border justify-between gap-[19px] p-[19px]">
+    <div className="flex bg-border min-h-[100vh] justify-between gap-[19px] p-[19px]">
       <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
         <HeaderDashboard />
         <Tags />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </div>
       <BuyerSideBar />
     </div>

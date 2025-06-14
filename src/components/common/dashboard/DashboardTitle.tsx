@@ -4,11 +4,12 @@ import { usePathname } from "@/i18n/navigation";
 import HeaderTitleSVG from "../../dashboard/svg/HeaderTitleSVG";
 import LogoSVG from "@/components/common/svg/logo";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 export default function DashboardTitle() {
   const pathname = usePathname();
   const isSeller = pathname.includes("/seller");
-  const t = useTranslations('Dashboard');
+  const t = useTranslations("Dashboard");
 
   const getTitle = () => {
     if (isSeller) {
@@ -22,24 +23,24 @@ export default function DashboardTitle() {
         !pathname.includes("/Tour") &&
         !pathname.includes("/notification")
       ) {
-        return t('dashboard');
+        return t("dashboard");
       } else if (pathname.includes("/properties")) {
-        return t('propertyManagement');
+        return t("propertyManagement");
       } else if (pathname.includes("/reservations")) {
-        return t('reservationManagement');
+        return t("reservationManagement");
       } else if (pathname.includes("/information")) {
-        return t('userInformation');
+        return t("userInformation");
       } else if (pathname.includes("/finance")) {
-        return t('financialManagement');
+        return t("financialManagement");
       } else if (pathname.includes("/reviews")) {
-        return t('reviewManagement');
+        return t("reviewManagement");
       } else if (pathname.includes("/notification")) {
-        return t('notifications');
+        return t("notifications");
       } else if (pathname.includes("/Tour")) {
-        return t('tourManagement');
+        return t("tourManagement");
       }
 
-      return t('dashboard');
+      return t("dashboard");
     } else {
       if (
         pathname.includes("/dashboard") &&
@@ -49,19 +50,19 @@ export default function DashboardTitle() {
         !pathname.includes("/payments") &&
         !pathname.includes("/notifications")
       ) {
-        return t('dashboard');
+        return t("dashboard");
       } else if (pathname.includes("/information")) {
-        return t('userInformation');
+        return t("userInformation");
       } else if (pathname.includes("/reservations")) {
-        return t('reservationManagement');
+        return t("reservationManagement");
       } else if (pathname.includes("/favorites")) {
-        return t('favorites');
+        return t("favorites");
       } else if (pathname.includes("/payments")) {
-        return t('payments');
+        return t("payments");
       } else if (pathname.includes("/notifications")) {
-        return t('notifications');
+        return t("notifications");
       }
-      return t('dashboard');
+      return t("dashboard");
     }
   };
 
@@ -80,7 +81,18 @@ export default function DashboardTitle() {
           isSeller ? "text-orange-600 " : " "
         }`}
       >
-        {getTitle()}
+        {getTitle()
+          .split("")
+          .map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
       </h2>
     </div>
   );

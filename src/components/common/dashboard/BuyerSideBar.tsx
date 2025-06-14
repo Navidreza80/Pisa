@@ -16,6 +16,7 @@ import SignoutSVG from "../../dashboard/svg/SignoutSVG";
 import TourManagementSVG from "../../dashboard/svg/TourManagementSVG";
 import BuyerSideBarItems from "./buyerSideBarItems";
 import { useTranslations } from "next-intl";
+import MobileBottomNavbar from "./MobileBottomNav";
 
 function BuyerSideBar() {
   const pathname = usePathname();
@@ -111,63 +112,66 @@ function BuyerSideBar() {
   };
 
   return (
-    <div
-      className={`${!collapsed ? "lg:w-[19%] md:w-[70px] w-[70px]" : " w-[70px]"} transition-all duration-300 animate-fade-left`}
-    >
-      <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
-        <div>
-          <div
-            className={`flex ${!collapsed ? "lg:justify-between md:justify-center justify-center" : "justify-center"} mt-2`}
-          >
+    <>
+      <div
+        className={`${!collapsed ? "lg:w-[19%] md:w-[70px] w-[70px]" : " w-[70px]"} transition-all duration-300 animate-fade-left lg:block md:block hidden`}
+      >
+        <div className="h-[calc(100vh-32px)] sticky top-[19px] rounded-[12px] bg-background p-4 flex flex-col flex-wrap justify-between">
+          <div>
             <div
-              className={`cursor-pointer my-auto lg:block md:hidden hidden ${collapsed ? "rotate-180" : ""}`}
-              onClick={toggleSideBar}
+              className={`flex ${!collapsed ? "lg:justify-between md:justify-center justify-center" : "justify-center"} mt-2`}
             >
-              <SignoutSVG />
+              <div
+                className={`cursor-pointer my-auto lg:block md:hidden hidden ${collapsed ? "rotate-180" : ""}`}
+                onClick={toggleSideBar}
+              >
+                <SignoutSVG />
+              </div>
+              <div>
+                <House className="cursor-pointer lg:hidden md:block block" />
+              </div>
+              {!collapsed && (
+                <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
+                  Piza
+                </h2>
+              )}
             </div>
-            <div>
-              <House className="cursor-pointer lg:hidden md:block block" />
-            </div>
-            {!collapsed && (
-              <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
-                Piza
-              </h2>
-            )}
-          </div>
 
-          <div dir="rtl" className="flex flex-col gap-4 mt-10">
-            <BuyerSideBarItems collapsed={collapsed} items={items} />
-          </div>
-        </div>
-        {isSeller && !collapsed ? (
-          <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
-            <div className="flex flex-col flex-wrap justify-between">
-              <p className="text-[20px] text-text ">{t("newReviews")}</p>
-              <p className="text-text-secondary text-[14px] ">
-                {t("reviewCount", { count: 5 })}
-              </p>
-            </div>
-            <div className="mb-auto pt-[2px]">
-              <ReviewsSVG />
+            <div dir="rtl" className="flex flex-col gap-4 mt-10">
+              <BuyerSideBarItems collapsed={collapsed} items={items} />
             </div>
           </div>
-        ) : (
-          !collapsed && (
-            <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
+          {isSeller && !collapsed ? (
+            <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
               <div className="flex flex-col flex-wrap justify-between">
-                <p className="text-[20px] text-text ">{t("wallet")}</p>
+                <p className="text-[20px] text-text ">{t("newReviews")}</p>
                 <p className="text-text-secondary text-[14px] ">
-                  {t("noBalance")}
+                  {t("reviewCount", { count: 5 })}
                 </p>
               </div>
-              <div className="my-auto">
-                <MoneySVG />
+              <div className="mb-auto pt-[2px]">
+                <ReviewsSVG />
               </div>
             </div>
-          )
-        )}
+          ) : (
+            !collapsed && (
+              <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
+                <div className="flex flex-col flex-wrap justify-between">
+                  <p className="text-[20px] text-text ">{t("wallet")}</p>
+                  <p className="text-text-secondary text-[14px] ">
+                    {t("noBalance")}
+                  </p>
+                </div>
+                <div className="my-auto">
+                  <MoneySVG />
+                </div>
+              </div>
+            )
+          )}
+        </div>
       </div>
-    </div>
+      <MobileBottomNavbar />
+    </>
   );
 }
 

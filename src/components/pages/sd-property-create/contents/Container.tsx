@@ -3,6 +3,7 @@ import ChangeStep from "@/components/pages/sd-property-create/contents/ChangeSte
 import Stepper from "./Stepper";
 import { DashboardBackSVG } from "@/components/svg";
 import Link from "next/link";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 export default function PropertyContainer({
   children,
