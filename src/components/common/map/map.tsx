@@ -44,7 +44,6 @@ const MapComponent = ({
 
   return (
     <>
-      {typeof window !== "undefined" && (
         <MapContainer
           className={`!z-10 h-full w-full ${className}`}
           center={initialLocation}
@@ -58,7 +57,6 @@ const MapComponent = ({
           <MapClickHandler onClick={onMapClick} />
           {children}
         </MapContainer>
-      )}
     </>
   );
 };

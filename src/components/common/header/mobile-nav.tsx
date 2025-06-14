@@ -3,7 +3,7 @@
 import { MenuOutlined } from "@ant-design/icons";
 
 // Icons
-import { Book, Home, User } from "lucide-react";
+import { Home, User } from "lucide-react";
 
 // Next built in components
 import { Link } from "@/i18n/navigation";
@@ -14,16 +14,16 @@ import { useLocale, useTranslations } from "next-intl";
 // shadcn/ui Sheet
 import {
   Sheet,
-  SheetTrigger,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetClose,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 
 /**
  * Mobile navigation component for mobile mode.
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered mobile navigation
  */
@@ -31,7 +31,7 @@ import {
 export default function MobileNav() {
   // Hooks
   const locale = useLocale();
-  const t = useTranslations("Header")
+  const t = useTranslations("Header");
 
   // Determine direction based on locale
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
@@ -39,20 +39,19 @@ export default function MobileNav() {
   // Navigation items
   const navItems = [
     { text: t("about"), url: "/about-us", icon: <User /> },
-    { text: t("blogs"), url: "/blogs", icon: <Book /> },
     { text: t("home"), url: "/", icon: <Home /> },
-    { text: t("rent"), url: "/rent", icon: <Home /> },
+    { text: t("rent"), url: "/rent" },
     { text: t("reserve"), url: "/reserve", icon: <Home /> },
+    { text: "دفاتر املاک", url: "/realestate" },
+    { text: "تورها", url: "/tours" },
+    { text: "مقاصد رویایی", url: "/locations" },
   ];
 
   return (
     <div className="hidden max-[600px]:block">
       <Sheet>
         <SheetTrigger asChild>
-          <MenuOutlined
-            className="!text-text"
-            style={{ fontSize: "50px" }}
-          />
+          <MenuOutlined className="!text-text" style={{ fontSize: "50px" }} />
         </SheetTrigger>
         <SheetContent
           side={direction === "rtl" ? "right" : "left"}

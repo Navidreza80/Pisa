@@ -1,10 +1,13 @@
-"use server"
+"use server";
 
-import LocationsListContainer from "@/components/pages/location-list/container"
+import Container from "@/components/common/container";
+import LocationsListContainer from "@/components/pages/location-list/container";
 
 const Page = async () => {
   return (
-    <LocationsListContainer />
-  )
-}
-export default Page
+    <Container>
+      <LocationsListContainer />
+    </Container>
+  );
+};
+export default Page;

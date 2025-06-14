@@ -63,7 +63,7 @@ export default async function Footer() {
 
   return (
     <Container>
-      <div className="border-t w-[85.5%] border-border my-10 flex flex-col py-10">
+      <div className="border-t w-[85.5%] border-text my-10 flex flex-col py-10">
         <div className="flex justify-end mb-10">
           <LogoSVG size="w-[106px] h-[36px]" />
         </div>

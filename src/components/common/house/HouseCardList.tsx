@@ -150,9 +150,14 @@ export default function HouseCardList({
             onClick={() => {
               setCurrentLoc([card.location.lat, card.location.lng]);
             }}
-            className="bg-[#586CFF] cursor-pointer absolute z-10 py-1 px-3 rounded-[100px] bottom-2 right-2"
+            className="group bg-[#586CFF] cursor-pointer z-10 py-1 px-3 rounded-[100px] bottom-9 right-2
+    transition-all duration-300
+    hover:bg-[#586CFF]/70 hover:backdrop-blur-md
+    hover:shadow-lg hover:shadow-[#586CFF]/30
+    hover:border hover:border-white/30 relative overflow-hidden"
           >
-            <LocationSVG color="white" />
+            <span className="absolute inset-0 bg-white/10 group-hover:bg-white/15 transition-all duration-300"></span>
+            <LocationSVG color="white" className="relative z-10" />
           </button>
         )}
         {/* Compare section */}
@@ -167,9 +172,14 @@ export default function HouseCardList({
       >
         {/* Title and rate section */}
         <div dir="ltr" className="flex justify-between items-center w-full">
-          <span className="w-[67px] h-8 flex items-center justify-between px-1 gap-1 font-semibold">
-            <Star className="group-hover:text-primary transition-colors duration-300" />
-            {card.rate}
+          <span className="w-[80px] h-9 flex items-center justify-between px-2 py-1 gap-1.5 font-semibold bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 group">
+            <Star className="w-5 h-5 text-yellow-400 group-hover:text-primary transition-colors duration-300 fill-yellow-400/30 group-hover:fill-primary/20" />
+            <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
+              {card.rate}
+              <span className="text-xs text-gray-400 dark:text-gray-500 ml-0.5">
+                /5
+              </span>
+            </span>
           </span>
           <Reveal width="100%">
             <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">

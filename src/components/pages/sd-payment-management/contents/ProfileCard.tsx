@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
 import Line from "@/components/common/dashboard/line";
 import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";

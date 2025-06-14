@@ -2,7 +2,11 @@ import { auth } from "@/auth";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { ChevronDown, PlusCircle } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import DashboardTitle from "@/components/common/dashboard/DashboardTitle";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 import SignoutSVG from "@/components/dashboard/svg/SignoutSVG";
@@ -52,21 +56,18 @@ async function HeaderDashboard() {
                     </div>
                     {dropdownItems.map((item, index) => {
                       return index == 1 ? (
-                        <NotificationSettingModal>
-                          <div
-                            key={index}
-                            className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
-                          >
+                        <NotificationSettingModal key={index}>
+                          <div className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end">
                             {item.text} {item.icon}
                           </div>
                         </NotificationSettingModal>
                       ) : index == 2 ? (
-                        <WarningModal title="آیا از خروج خود مطمعن هستید؟">
+                        <WarningModal
+                          key={index}
+                          title="آیا از خروج خود مطمعن هستید؟"
+                        >
                           {" "}
-                          <div
-                            key={index}
-                            className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
-                          >
+                          <div className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end">
                             {item.text} {item.icon}
                           </div>
                         </WarningModal>

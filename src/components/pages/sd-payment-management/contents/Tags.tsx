@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Tag from "./Tag";
 import TagDashboard from "./TagDashboard";
-import { title } from "process";
 
 const Tags = () => {
   const financeitems = [
@@ -35,7 +34,7 @@ const Tags = () => {
       },
       {
         type: "income",
-        title:"آمار درآمد ها",
+        title: "آمار درآمد ها",
         data: {
           totalIncome: {
             label: "درآمد کل",

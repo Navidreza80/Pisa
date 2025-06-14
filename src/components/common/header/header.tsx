@@ -46,7 +46,7 @@ export default async function Header() {
 
   return (
     <Container>
-      <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28">
+      <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28 font-yekan">
         {!decodedUser ? (
           <TransitionLink href="/auth/login">
             <Button className="cursor-pointer" radius="sm" size="lg">
@@ -54,13 +54,7 @@ export default async function Header() {
             </Button>
           </TransitionLink>
         ) : (
-          <UserProfile
-            user={{
-              name: decodedUser.name,
-              email: decodedUser.email,
-              profilePicture: decodedUser.image,
-            }}
-          />
+          <UserProfile user={decodedUser} />
         )}
         <Navbar />
         <div className="flex justify-end items-center gap-x-3">

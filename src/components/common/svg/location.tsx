@@ -1,4 +1,10 @@
-export default function LocationSVG({color}:{color:string}) {
+export default function LocationSVG({
+  color,
+  className,
+}: {
+  color: string;
+  className: string;
+}) {
   return (
     <svg
       width="24"
@@ -6,6 +12,7 @@ export default function LocationSVG({color}:{color:string}) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M14.5 10C14.0697 8.55426 12.5855 7.5 11 7.5C9.067 7.5 7.5 9.067 7.5 11C7.5 12.7632 8.80385 14.2574 10.5 14.5"

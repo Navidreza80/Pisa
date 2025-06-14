@@ -1,18 +1,18 @@
 "use client";
-import { useState } from "react";
+import HouseSkeleton from "@/components/common/house/house-skeleton";
 import HouseCardList from "@/components/common/house/HouseCardList";
 import SearchSVG from "@/components/common/svg/search";
-import Map from "../contents/Map";
-import "../styles/scrollbar.css";
 import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
 import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import { useHouses } from "@/utils/hooks/use-houses";
-import { FilterModal } from "../modals/BookingFilterModal";
-import HouseSkeleton from "@/components/common/house/house-skeleton";
 import { Megaphone } from "lucide-react";
+import { useState } from "react";
+import Map from "../contents/Map";
+import { FilterModal } from "../modals/BookingFilterModal";
+import "../styles/scrollbar.css";
 
 export default function ReserveListContainer() {
   const [currentLoc, setCurrentLoc] = useState<[number, number]>([34, 52]);
@@ -25,7 +25,7 @@ export default function ReserveListContainer() {
   };
 
   return (
-    <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap">
+    <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center lg:justify-start md:justify-center lg:flex-nowrap md:flex-wrap flex-wrap font-yekan">
       {typeof window !== "undefined" && (
         <Map currentLoc={currentLoc} houses={houses} />
       )}
@@ -61,19 +61,23 @@ export default function ReserveListContainer() {
                 key={i}
               />
             ))}
-          {houses?.map((item, index) => {
-            return (
-              <HouseCardList
-                setCurrentLoc={setCurrentLoc}
-                showOnMap
-                width="lg:w-[calc(50%-12.475px)] md:w-[calc(50%-10px)] w-full"
-                minWidth="min-w-[315px]"
-                key={index}
-                showFacilities={false}
-                card={item}
-              />
-            );
-          })}
+          {houses?.length > 0 ? (
+            houses?.map((item, index) => {
+              return (
+                <HouseCardList
+                  setCurrentLoc={setCurrentLoc}
+                  showOnMap
+                  width="lg:w-[calc(50%-12.475px)] md:w-[calc(50%-10px)] w-full"
+                  minWidth="min-w-[315px]"
+                  key={index}
+                  showFacilities={false}
+                  card={item}
+                />
+              );
+            })
+          ) : (
+            <div className="font-bold text-2xl mt-1">نتیجه ای یافت نشد.</div>
+          )}
         </div>
       </div>
     </div>

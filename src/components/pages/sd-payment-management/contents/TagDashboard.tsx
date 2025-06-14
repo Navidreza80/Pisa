@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+
 import ProfileCard from "./ProfileCard";
 import IncomeCard from "./IncomeCard";
 

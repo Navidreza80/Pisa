@@ -90,7 +90,7 @@ const Rent = () => {
       </div>
       <span className="h-[1px] w-full my-auto bg-[#EAEAEA]" />
       {/* Lists */}
-      <div className="flex justify-between flex-wrap">
+      <div className="flex lg:justify-between md:justify-center justify-center flex-wrap">
         {isLoading &&
           [...Array(6)].map((_, i) => (
             <HouseSkeleton
@@ -99,17 +99,21 @@ const Rent = () => {
               key={i}
             />
           ))}
-        {houses?.map((card: HouseItemsInterface, index: number) => (
-          <HouseCardList
-            key={index}
-            discount
-            showRooms
-            showCapacity
-            showBathrooms
-            showParking
-            card={card}
-          />
-        ))}
+        {houses?.length > 0 ? (
+          houses?.map((card: HouseItemsInterface, index: number) => (
+            <HouseCardList
+              key={index}
+              discount
+              showRooms
+              showCapacity
+              showBathrooms
+              showParking
+              card={card}
+            />
+          ))
+        ) : (
+          <div className="font-bold text-2xl">نتیجه ای یافت نشد.</div>
+        )}
       </div>
     </div>
   );

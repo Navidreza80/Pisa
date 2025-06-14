@@ -1,4 +1,5 @@
 // Third party components
+import Header from "@/components/common/header/header";
 import ReserveListContainer from "@/components/pages/reserve-list/container";
 
 /**
@@ -18,5 +19,10 @@ import ReserveListContainer from "@/components/pages/reserve-list/container";
  */
 
 export default async function ReservePage() {
-  return <ReserveListContainer />;
+  return (
+    <>
+      <Header />
+      <ReserveListContainer />
+    </>
+  );
 }

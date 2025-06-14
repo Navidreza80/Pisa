@@ -1,8 +1,8 @@
 'use client';
 
+import { fetchHouses } from '@/utils/service/house/get';
 import { useQuery } from '@tanstack/react-query';
 import { useAppSelector } from '../react-redux/store/hook';
-import { fetchHouses } from '@/utils/service/house/get';
 
 export const useHouses = () => {
   const filters = useAppSelector((state) => state.reserveFilters);

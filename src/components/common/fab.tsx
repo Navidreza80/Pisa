@@ -22,6 +22,7 @@ import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
 import ChatAssistant from "./chat/ai-assistant";
 import Chat from "./chat/chat-with-admin";
+import BackToTopButton from "./BackToTopBtn";
 
 /**
  * Floating action buttons component.
@@ -275,7 +276,7 @@ export default function FloatingActions() {
   return (
     <>
       <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
-
+      {!open && <BackToTopButton />}
       <div className="fixed z-50 bottom-6 rtl:left-6 right-6 flex flex-col items-end gap-2">
         {open && (
           <div className="flex flex-col items-end gap-2 mb-1 animate-fade-in">

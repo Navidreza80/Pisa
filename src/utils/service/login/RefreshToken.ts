@@ -6,10 +6,7 @@ import { toast } from "react-toastify";
 
 // Cookies
 import { setClientCookie } from "../storage/client-cookie";
-import {
-  getServerCookie,
-  setServerCookie,
-} from "../storage/server-cookie";
+import { getServerCookie, setServerCookie } from "../storage/server-cookie";
 
 export const RefreshToken = async () => {
   const refreshToken = await getServerCookie("serverRefreshToken");
@@ -29,8 +26,8 @@ export const RefreshToken = async () => {
     }
 
     if (res) {
-      // console.log(res)
-      // toast.success("refresh token successfully")
+      // console.log(res);
+      // toast.success("refresh token successfully");
       await setServerCookie("serverAccessToken", res.accessToken);
       setClientCookie("clientAccessToken", res.accessToken, 1);
     }
