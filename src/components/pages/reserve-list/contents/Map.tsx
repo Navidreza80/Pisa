@@ -1,13 +1,21 @@
 "use client";
-import type { HouseItemsInterface } from "@/types/house";
-import Image from "next/image";
-import Link from "next/link";
-import { Marker, Popup } from "react-leaflet";
-import { CustomMarkerIcon } from "@/components/common/map/custom-map-icon";
+import { CustomMarker } from "@/components/common/map/custom-map-icon";
 import MapComponent from "@/components/common/map/map";
 import { RecenterMap } from "@/components/common/map/recenter-map";
 import ArrowLeftSVG from "@/components/common/svg/arrow-left";
 import MapSVG from "@/components/common/svg/map";
+import type { HouseItemsInterface } from "@/types/house";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
 
 export default function Map({
   houses,
@@ -26,11 +34,7 @@ export default function Map({
           const { title, photos, location, price, address } = house;
           return (
             // Marker
-            <Marker
-              key={index}
-              position={[location.lat, location.lng]}
-              icon={CustomMarkerIcon({ photoUrl: photos[0] })}
-            >
+            <CustomMarker key={index} position={location} photoUrl={photos[0]}>
               {/* Popup content */}
               <Popup>
                 <div className="popup-content overflow-hidden" dir="rtl">
@@ -68,7 +72,7 @@ export default function Map({
                   </div>
                 </div>
               </Popup>
-            </Marker>
+            </CustomMarker>
           );
         })}
       </MapComponent>

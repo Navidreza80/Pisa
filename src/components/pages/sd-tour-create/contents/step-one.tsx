@@ -4,7 +4,7 @@ import {
 } from "@/utils/hooks/react-redux/store/hook";
 import { setTourObject } from "@/utils/hooks/react-redux/store/slices/create-tour";
 
-export default function AddTourStepOne() {
+export default function AddTourStepOne(z) {
   const inputs = [
     { text: "نام تور :", placeHolder: "تور سالار دره", value: "tourName" },
     {

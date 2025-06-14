@@ -11,16 +11,16 @@ export const metadata: Metadata = {
   description: "Find your dream house with ease just by couple of clicks!"
 };
 
-export default async function RootLayout({
+export default async function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <main className="w-full flex-wrap">
+    <div className="w-full flex-wrap">
       <Header />
       {children}
       <Footer />
-    </main>
+    </div>
   );
 }

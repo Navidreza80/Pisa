@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Seek what you've been reserved and overall status.",
 };
 
-export default async function Layout({
+export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default async function Layout({
       <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
         <HeaderDashboard />
         <Tags />
-        <main>{children}</main>
+        <div>{children}</div>
       </div>
       <BuyerSideBar />
     </div>

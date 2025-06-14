@@ -268,14 +268,14 @@ function LocationSVG({ color }: { color?: string }) {
         d="M22.3569 14.125C22.3569 19.125 16.7678 23.5 16.7678 23.5C16.7678 23.5 11.1787 19.125 11.1787 14.125C11.1787 11 13.6628 8.5 16.7678 8.5C19.8729 8.5 22.3569 11 22.3569 14.125Z"
         stroke={color ? color : "#777777"}
         strokeWidth="2"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         strokeLinejoin="round"
       />
       <path
         d="M16.7678 16C17.7967 16 18.6309 15.1605 18.6309 14.125C18.6309 13.0895 17.7967 12.25 16.7678 12.25C15.7389 12.25 14.9048 13.0895 14.9048 14.125C14.9048 15.1605 15.7389 16 16.7678 16Z"
         stroke={color ? color : "#777777"}
         strokeWidth="2"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         strokeLinejoin="round"
       />
     </svg>
@@ -300,14 +300,14 @@ function MapSVG({ color }: { color?: string }) {
         d="M22.3569 14.125C22.3569 19.125 16.7678 23.5 16.7678 23.5C16.7678 23.5 11.1787 19.125 11.1787 14.125C11.1787 11 13.6628 8.5 16.7678 8.5C19.8729 8.5 22.3569 11 22.3569 14.125Z"
         stroke={color ? color : "#777777"}
         strokeWidth="2"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         strokeLinejoin="round"
       />
       <path
         d="M16.7678 16C17.7967 16 18.6309 15.1605 18.6309 14.125C18.6309 13.0895 17.7967 12.25 16.7678 12.25C15.7389 12.25 14.9048 13.0895 14.9048 14.125C14.9048 15.1605 15.7389 16 16.7678 16Z"
         stroke={color ? color : "#777777"}
         strokeWidth="2"
-        stroke-miterlimit="10"
+        strokeMiterlimit="10"
         strokeLinejoin="round"
       />
     </svg>

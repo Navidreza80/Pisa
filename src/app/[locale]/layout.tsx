@@ -46,7 +46,7 @@ export default async function RootLayout({
       <body className="bg-background  text-text w-[100%] max-h-screen flex justify-center font-yekan">
         <NextIntlClientProvider>
           <Providers>
-            <main className="w-full">{children}</main>
+            <div className="w-full">{children}</div>
             <FloatingActions />
             <TokenRefresher />
           </Providers>

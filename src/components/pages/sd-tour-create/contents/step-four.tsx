@@ -2,7 +2,6 @@
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 import { setTourObject } from "@/utils/hooks/react-redux/store/slices/create-tour";
 import { UploadDropzone } from "@/utils/uploadthing";
-import "@uploadthing/react/styles.css";
 
 const AddTourStepFour = () => {
   const dispatch = useAppDispatch();

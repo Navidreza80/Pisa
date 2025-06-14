@@ -9,7 +9,7 @@ import FaqSection from "../sections/faq-section/container";
 
 export default function AboutUsPageContainer() {
   return (
-    <main className="min-h-screen py-[20px] mx-auto w-[85.5%]">
+    <div className="min-h-screen py-[20px] mx-auto w-[85.5%]">
       <div className="w-full">
         {/* Hero section */}
         <TeamMemberSection />
@@ -26,6 +26,6 @@ export default function AboutUsPageContainer() {
         {/* FAQ section */}
         <FaqSection />
       </div>
-    </main>
+    </div>
   );
 }
