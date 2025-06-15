@@ -15,7 +15,7 @@ import {
 import { MdDiscount } from "react-icons/md";
 import Button from "../../../common/button";
 import InputText from "../../../common/inputs/text-input-with-label";
-import TableDashboard from "../../../dashboard/table";
+import TableDashboard from "@/components/common/dashboard/Table";
 import { TravelersSVG } from "../../../svg";
 import Body from "../contents/Body";
 import Header from "../contents/Header";

@@ -1,6 +1,6 @@
 "use client";
 // Icons
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuIcon } from "lucide-react";
 
 // Icons
 import { Home, User } from "lucide-react";
@@ -51,7 +51,7 @@ export default function MobileNav() {
     <div className="hidden max-[600px]:block">
       <Sheet>
         <SheetTrigger asChild>
-          <MenuOutlined className="!text-text" style={{ fontSize: "50px" }} />
+          <MenuIcon className="!text-text" style={{ fontSize: "50px" }} />
         </SheetTrigger>
         <SheetContent
           side={direction === "rtl" ? "right" : "left"}

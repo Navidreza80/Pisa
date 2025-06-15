@@ -13,7 +13,6 @@ import Tilt from "react-parallax-tilt";
 import { SwiperSlide } from "swiper/react";
 
 // SVGs
-import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
@@ -27,7 +26,15 @@ import { FeatureItem, TopSaleCardListProps } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
-import { CalendarRange, House, Layers3, Star, Tag, User } from "lucide-react";
+import {
+  Bath,
+  CalendarRange,
+  House,
+  Layers3,
+  Star,
+  Tag,
+  User,
+} from "lucide-react";
 import { useDispatch } from "react-redux";
 import Reveal from "../reveal";
 
@@ -77,7 +84,7 @@ export default function HouseCardList({
     },
     {
       id: "bathrooms",
-      icon: <BathroomSVG />,
+      icon: <Bath />,
       value: card.bathrooms,
       label: t("bathrooms"),
       show: showBathrooms,
