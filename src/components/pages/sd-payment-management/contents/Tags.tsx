@@ -58,7 +58,7 @@ const Tags = () => {
           })}
         </div>
       )}
-      {pathname.endsWith("/seller") && (
+     { (pathname.endsWith("/seller") || pathname.endsWith("/buyer")) && (
         <>
           <div className="w-full flex flex-wrap justify-between animate-fade-up">
             {dashboarditems.map((item, index) => {
