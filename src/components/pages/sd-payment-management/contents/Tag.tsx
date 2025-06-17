@@ -1,4 +1,5 @@
 "use client";
+
 import { formatNumber } from "@/utils/helper/format-number";
 import Line from "@/components/common/dashboard/line";
 import { PinSVG } from "@/components/svg";
@@ -8,6 +9,10 @@ import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 
 const Tag = ({ item }) => {
   const pathname = usePathname();
+
+  // تعیین اینکه آیا مسیر فعلی به seller یا buyer ختم می شود
+  const isSellerOrBuyerPath = pathname.endsWith("/seller") || pathname.endsWith("/buyer");
+
   return (
     <div className="w-[calc(50%-10px)] md:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] px-3 md:px-[19px] h-[130px] rounded-xl bg-background flex flex-row-reverse flex-wrap mb-4 md:mb-0">
       <div className="h-[60px] flex items-center flex-row-reverse gap-x-2.5">
@@ -15,14 +20,15 @@ const Tag = ({ item }) => {
           <PinSVG />
         </div>
         <div className="flex flex-col flex-wrap gap-1 justify-between mt-4">
-          {pathname.endsWith("/seller") && (
+          {/* تغییر شرط برای نمایش textNumber در هر دو مسیر seller و buyer */}
+          {isSellerOrBuyerPath && (
             <p className="font-semibold text-xl h-5">{item.textNumber}</p>
           )}
           <p className="font-medium h-5">{item.text}</p>
         </div>
       </div>
       <Line className="!mb-0 w-full" />
-      {pathname.endsWith("/finance") && (
+      {pathname.includes("/finance") && (
         <div
           dir="rtl"
           className="font-medium text-center w-full py-[13px] text-[20px]"
@@ -30,9 +36,11 @@ const Tag = ({ item }) => {
           {formatNumber(item.price)} تومان
         </div>
       )}
-      {pathname.endsWith("/seller") && (
+      {/* تغییر شرط برای نمایش لینک "مشاهده" در هر دو مسیر seller و buyer */}
+      {/* آدرس لینک همانند قبل فقط به /dashboard/seller/ اشاره می کند */}
+      {isSellerOrBuyerPath && (
         <Link
-          href={"/dashboard/seller/" + item.href}
+          href={"/dashboard/seller/" + item.href} // این خط تغییر نکرد
           className="flex justify-between py-2 w-full"
         >
           <ViewMoreSVG />

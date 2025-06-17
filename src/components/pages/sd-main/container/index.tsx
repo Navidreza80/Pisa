@@ -19,6 +19,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import { usePathname } from "next/navigation";
 
 const tableHeaderItems = (t) => [
   {
@@ -33,6 +34,8 @@ const tableHeaderItems = (t) => [
 
 export default function SellerMainDashboard() {
   const t = useTranslations("BookingListSellerDashboard");
+  const pathname = usePathname();
+
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   const bookings = [
@@ -63,6 +66,14 @@ export default function SellerMainDashboard() {
     console.log(`Action ${action} on booking ${id}`);
   };
 
+  let pageTitleText;
+  if (pathname.endsWith("/seller")) {
+    pageTitleText = t("pageTitle.sellerDashboard");
+  } else if (pathname.endsWith("/buyer")) {
+    pageTitleText = t("pageTitle.buyerDashboard");
+  }
+  // --- else آخر حذف شد ---
+
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0 animate-fade-up">
@@ -79,7 +90,7 @@ export default function SellerMainDashboard() {
         </Link>
         <div className="flex gap-1.5 w-90 rtl">
           <h1 className="text-xl font-semibold my-auto order-1 md:order-2">
-            {t("pageTitle")}
+            {pageTitleText}
           </h1>
           <div className="my-auto">
             <SellerReserveSVG />
