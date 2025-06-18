@@ -14,15 +14,10 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 // Third party components
-import { JwtPayload } from "@/types/user";
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { jwtDecode } from "jwt-decode";
-import { MdSupportAgent } from "react-icons/md";
 import { toast } from "react-toastify";
-import ChatAssistant from "./chat/ai-assistant";
-import Chat from "./chat/chat-with-admin";
 import BackToTopButton from "./BackToTopBtn";
+import ChatAssistant from "./chat/ai-assistant";
 
 /**
  * Floating action buttons component.
@@ -39,7 +34,6 @@ export default function FloatingActions() {
   const [open, setOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [listening, setListening] = useState(false);
-  const [supportOpen, setSupportOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [theme, setTheme] = useState("light");
   const dispatch = useAppDispatch();
@@ -84,10 +78,6 @@ export default function FloatingActions() {
     toggleTheme();
   }, [theme]);
 
-  // Check if the user logged in
-  const token = getClientCookie("clientAccessToken");
-  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
-
   // Process voice commands
   const processVoiceCommand = (text: string) => {
     const command = text.toLowerCase().trim();
@@ -103,18 +93,6 @@ export default function FloatingActions() {
 
     if (command.includes("reserve") || command.includes("booking")) {
       router.push("/reserve");
-      return true;
-    }
-
-    if (command.includes("dark")) {
-      setTheme("dark");
-      dispatch(toggleDarkMode());
-      return true;
-    }
-
-    if (command.includes("solar")) {
-      setTheme("solarized");
-      dispatch(toggleDarkMode());
       return true;
     }
 
@@ -377,19 +355,6 @@ export default function FloatingActions() {
               <span>{t("Assistant.chat")}</span>
             </button>
             <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
-
-            <button
-              onClick={() => setSupportOpen(true)}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs"
-            >
-              <MdSupportAgent className="w-4 h-4 text-red-500" />
-              <span>پشتیبانی</span>
-            </button>
-            <Chat
-              onOpenChange={() => setSupportOpen(!supportOpen)}
-              isOpen={supportOpen}
-              userId={decoded && decoded.id}
-            />
           </div>
         )}
         <button

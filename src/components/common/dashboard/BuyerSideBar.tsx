@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { House } from "lucide-react";
+import { Car, House, MessageCircleIcon } from "lucide-react";
 import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
 import FavoriteSVG from "../../dashboard/svg/FavoriteSVG";
@@ -50,7 +50,7 @@ function BuyerSideBar() {
     },
     {
       name: t("reviewManagement"),
-      icon: <ReviewsSVG />,
+      icon: <MessageCircleIcon />,
       href: "/dashboard/seller/reviews",
       management: true,
     },
@@ -61,7 +61,7 @@ function BuyerSideBar() {
     },
     {
       name: t("tourManagement"),
-      icon: <TourManagementSVG />,
+      icon: <Car />,
       href: "/dashboard/seller/Tour",
       management: true,
     },
@@ -78,13 +78,6 @@ function BuyerSideBar() {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
-      management: true,
-    },
-    {
-      name: t("locationManagement"),
-      icon: <ReserveSVG />,
-      href: "/dashboard/buyer/locations",
-      management: true,
     },
     {
       name: t("favorites"),

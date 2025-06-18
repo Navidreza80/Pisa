@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Reveal from "@/components/common/reveal";
 import MapSVG from "@/components/common/svg/map";
-import { getTours } from "@/lib/actions/tours";
+// import { getTours } from "@/lib/actions/tours";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";

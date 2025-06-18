@@ -46,15 +46,12 @@ export default function Navbar() {
   // Other pages items
   const otherItems = [
     { text: "درباره ما", url: "/about-us" },
-    { text: "مقاصد رویایی", url: "/locations" },
     { text: "تور های گردشگری", url: "/tours" },
-    { text: "دفاتر مشاور املاک", url: "/realestate" },
   ];
 
   const isRentActive = pathname === "/rent" || pathname === "/reserve";
 
-  const isOthersActive =
-    pathname === "/locations" || pathname == "/tours" || pathname == "/tours";
+  const isOthersActive = pathname == "/tours";
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownTwoOpen, setIsDropdownTwoOpen] = useState(false);
@@ -72,11 +69,9 @@ export default function Navbar() {
         >
           {pathname == "/about-us"
             ? "درباره ما"
-            : pathname == "/location"
-              ? "مقاصد رویایی"
-              : pathname == "/tours"
-                ? "تور های گردشگری"
-                : "صفحات بیشتر"}
+            : pathname == "/tours"
+              ? "تور های گردشگری"
+              : "صفحات بیشتر"}
           {isDropdownTwoOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -105,9 +100,7 @@ export default function Navbar() {
         <DropdownMenuTrigger
           dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
-            isRentActive
-              ? "text-primary  font-bold"
-              : "text-text font-semibold"
+            isRentActive ? "text-primary  font-bold" : "text-text font-semibold"
           }`}
         >
           {pathname == "/reserve" ? t("reserve") : t("rent")}
