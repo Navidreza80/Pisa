@@ -1,8 +1,7 @@
-import ToursDetailContainer from "@/components/pages/tour-detail/container"
 
 const Page = () => {
   return (
-    <ToursDetailContainer />
+    <div>salam</div>
   )
 }
 export default Page
