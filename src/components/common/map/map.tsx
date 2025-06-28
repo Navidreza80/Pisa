@@ -3,6 +3,7 @@
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { useMapEvent } from "react-leaflet";
 
 // Dynamically import Leaflet components to prevent SSR
 const LazyMapContainer = dynamic(
@@ -11,10 +12,6 @@ const LazyMapContainer = dynamic(
 );
 const LazyTileLayer = dynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
-);
-const LazyMapEvents = dynamic(
-  () => import("react-leaflet").then((mod) => mod.useMapEvents),
   { ssr: false }
 );
 
@@ -28,7 +25,7 @@ interface MapComponentProps {
 
 const MapClickHandler = ({ onClick }: { onClick?: (latlng: any) => void }) => {
   const MapEvents = () => {
-    LazyMapEvents({
+    useMapEvent({
       click: (e) => {
         onClick?.(e.latlng);
       },

@@ -47,7 +47,7 @@ export const useLoginUser = () => {
       await setServerCookie("serverAccessToken", response.accessToken);
       await setServerCookie("serverRefreshToken", response.refreshToken);
       setClientCookie("clientAccessToken", response.accessToken, 15);
-  
+      console.log(response.accessToken);
       router.push("/");
     },
     onError: (error: AxiosError) => {

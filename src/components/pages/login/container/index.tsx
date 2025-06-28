@@ -1,22 +1,18 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useLoginUser } from "@/utils/service/login/post";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import EmailSVG from "@/components/common/svg/email";
-import Password from "@/components/common/svg/password";
 import Button from "@/components/common/auth/button";
 import InputAuth from "@/components/common/auth/input-auth";
 import OrUnderline from "@/components/common/auth/or-underline";
 import WelcomeTitle from "@/components/common/auth/welcome-title";
+import EmailSVG from "@/components/common/svg/email";
 import GithubSVG from "@/components/common/svg/github";
+import Password from "@/components/common/svg/password";
 import { login } from "@/lib/actions/auth";
-import { createUser } from "@/lib/actions/user";
-import { JwtPayload } from "@/types/user";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
-import { jwtDecode } from "jwt-decode";
+import { useLoginUser } from "@/utils/service/login/post";
+import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import * as Yup from "yup";
 
 /**
  * Login user component
@@ -29,8 +25,6 @@ function LoginContainer() {
   // Hooks
   const { mutate } = useLoginUser();
   const t = useTranslations("Auth");
-  const token = getClientCookie("clientAccessToken");
-  const decoded = typeof token == "string" && jwtDecode<JwtPayload>(token);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().required("ایمیل الزامی است"),
@@ -45,12 +39,8 @@ function LoginContainer() {
     },
     validationSchema: LoginSchema,
     onSubmit: async (value) => {
+      console.log(value)
       await mutate(value);
-      try {
-        if (decoded) await createUser(decoded.id, decoded.email, decoded.name);
-      } catch (e) {
-        console.log(e);
-      }
     },
   });
 

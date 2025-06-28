@@ -88,7 +88,7 @@ export default function BookingList({
             ...item,
             text: t(`tableHeaders.${item.text}`),
           }))}
-          tableContent={bookingList.map((booking, index) => (
+          tableContent={bookingList.data.map((booking, index) => (
             <ReserveTableContent key={index} booking={booking} />
           ))}
         />

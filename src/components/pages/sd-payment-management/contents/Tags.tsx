@@ -3,8 +3,14 @@
 import { usePathname } from "next/navigation";
 import Tag from "./Tag";
 import TagDashboard from "./TagDashboard";
+import { useQuery } from "@tanstack/react-query";
+import getDashboardSummary from "@/utils/service/dashboard/get";
 
 const Tags = () => {
+  const { data: dashboardSummary } = useQuery({
+    queryKey: ["DASHBOARD"],
+    queryFn: getDashboardSummary,
+  });
   const financeitems = [
     { text: "درآمد ماه قبل", price: 1200000 },
     { text: "درآمد ماه جاری", price: 1200000 },
@@ -12,10 +18,18 @@ const Tags = () => {
     { text: "موجودی قابل برداشت", price: 1400000 },
   ];
   const dashboarditems = [
-    { text: "بازدید های امروز", textNumber: 5, href: "reservations" },
-    { text: "رزرو های در انتظار", textNumber: 5, href: "reservations" },
+    { text: "بازدید های امروز", textNumber: 4, href: "reservations" },
+    {
+      text: "رزرو های در انتظار",
+      textNumber: dashboardSummary?.bookings,
+      href: "reservations",
+    },
     { text: "رزرو های فعال", textNumber: 5, href: "reservations" },
-    { text: "کل املاک ها", textNumber: 5, href: "properties" },
+    {
+      text: "کل املاک ها",
+      textNumber: dashboardSummary?.houses,
+      href: "properties",
+    },
   ];
 
   const dashboarditems2 = {
@@ -58,7 +72,7 @@ const Tags = () => {
           })}
         </div>
       )}
-     { (pathname.endsWith("/seller") || pathname.endsWith("/buyer")) && (
+      {(pathname.endsWith("/seller") || pathname.endsWith("/buyer")) && (
         <>
           <div className="w-full flex flex-wrap justify-between animate-fade-up">
             {dashboarditems.map((item, index) => {

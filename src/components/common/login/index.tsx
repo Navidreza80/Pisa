@@ -16,7 +16,6 @@ import GoogleSVG from "@/components/common/svg/google";
 
 // API
 import { login } from "@/lib/actions/auth";
-import { createUser } from "@/lib/actions/user";
 import { JwtPayload } from "@/types/user";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { jwtDecode } from "jwt-decode";
