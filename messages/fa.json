@@ -577,7 +577,10 @@
     "close": "بستن"
   },
   "BookingListSellerDashboard": {
-    "pageTitle": "رزرو های اخیر مشتریان",
+    "pageTitle": {        
+    "sellerDashboard": "رزروهای اخیر مشتریان",
+    "buyerDashboard": "رزروهای اخیر"
+  },
     "actions": {
       "view": "مشاهده",
       "approve": "تایید",
@@ -601,7 +604,9 @@
       "approved": "تایید شده",
       "pending": "در انتظار تایید"
     }
+    
   },
+
   "Signature": {
     "digitalSignatureTitle": "سیستم ثبت امضای دیجیتال",
     "contractNumber": "قولنامه شماره: {number}",
