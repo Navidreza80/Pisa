@@ -11,6 +11,7 @@ export interface HouseInterFace {
 
 export interface HouseItemsInterface {
   parking: number;
+  caption: string;
   id: number;
   yard_type: string;
   capacity: number;

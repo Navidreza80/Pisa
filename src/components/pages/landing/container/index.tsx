@@ -13,6 +13,7 @@ import Comments from "../sections/comments-section/container";
 export default async function HomeContainer() {
   const data: HouseItemsInterface[] = await fetchHouses({
     transactionType: "",
+    limit: 3,
   });
   const tehranHouses = data.filter((e) => e.address?.includes("تهران")).length;
   const shirazHouses = data.filter((e) => e.address?.includes("شیراز")).length;
@@ -20,6 +21,7 @@ export default async function HomeContainer() {
     e.address?.includes("اصفهان")
   ).length;
   const houseLength = data.length;
+
   return (
     <Container>
       <div className="flex flex-col flex-wrap gap-[118px] w-[85.5%]">

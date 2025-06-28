@@ -10,18 +10,21 @@ const Marker = dynamic(
   { ssr: false }
 );
 
-const Popup = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Popup),
-  { ssr: false }
-);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
 
 interface CustomMarkerProps {
   position: LatLngExpression;
-  photoUrl: string;
+  photoUrl?: string;
   children?: React.ReactNode;
 }
 
-export const CustomMarker = ({ position, photoUrl, children }: CustomMarkerProps) => {
+export const CustomMarker = ({
+  position,
+  photoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlLizy-fqB2rnwwBTlPO9bWzjJMTz8qu_meA&s",
+  children,
+}: CustomMarkerProps) => {
   const [icon, setIcon] = useState<DivIcon | null>(null);
 
   useEffect(() => {

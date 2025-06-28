@@ -1,10 +1,9 @@
 "use client"
 
-import AddTourContainer from "@/components/pages/sd-tour-create/container"
 
 const AddTour = () => {
   return (
-    <AddTourContainer />
+    <div>add tour</div>
   )
 }
 export default AddTour

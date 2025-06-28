@@ -21,12 +21,14 @@ export default function InputSelect({
   items,
   label,
   color,
+  name,
   className,
   withLabel,
   onChange,
   value,
 }: {
   className?: string;
+  name?: string;
   items?: any;
   onChange?: (selectedValue: number | string) => void;
   label?: string;
@@ -49,7 +51,7 @@ export default function InputSelect({
   };
 
   return (
-    <Select value={String(value)} onValueChange={handleChange}>
+    <Select name={name} value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
         dir="rtl"
         className={`${className} cursor-pointer outline-0 focus:outline-0  ${color ? color : ""} !h-[48px] z-[1000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
@@ -73,9 +75,9 @@ export default function InputSelect({
         dir="rtl"
         className="!p-0 !border-none rounded-[16px] bg-surface z-[100] font-medium relative "
       >
-        {items?.map((item) => (
+        {items?.map((item, index) => (
           <SelectItem
-            key={item.id}
+            key={index}
             value={String(item.value ?? item.id ?? item.text)}
             className=" z-[100] relative font-medium text-text"
           >

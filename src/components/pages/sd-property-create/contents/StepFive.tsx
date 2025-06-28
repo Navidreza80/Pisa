@@ -7,25 +7,44 @@ import {
   RentSVG,
   YardSVG,
 } from "@/components/svg";
+import { HouseItemsInterface } from "@/types/house";
+import { formatNumber } from "@/utils/helper/format-number";
+import { getTransactionType } from "@/utils/helper/GetTransactionType";
 
-const AddPropertyStepFive = () => {
+interface IProps {
+  createdProperty: HouseItemsInterface;
+}
+
+const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
+  const {
+    title,
+    capacity,
+    rooms,
+    bathrooms,
+    parking,
+    yard_type,
+    transaction_type,
+    price,
+    address,
+    caption,
+  } = createdProperty;
   const facilities = [
     {
-      text: "خیابان ولیعصر، تهران، منطقه مرکزی",
+      text: address,
       svg: <LocationWithOutBorder />,
     },
     {
-      text: "2 خوابه ، 2 حمامه  ، 1 پارکینگ ، ظرفیت 6 نفر",
+      text: `${rooms} خوابه ، ${bathrooms} حمامه  ، ${parking} پارکینگ ، ظرفیت ${capacity} نفر`,
       svg: <HouseSVG />,
     },
-    { text: "حیاط بالکنی", svg: <YardSVG /> },
-    { text: "رهن ، اجاره", svg: <RentSVG /> },
+    { text: `حیاط ${yard_type}`, svg: <YardSVG /> },
+    { text: getTransactionType(transaction_type)?.text, svg: <RentSVG /> },
   ];
   const facilities2 = [
     { text: "برچسب ها :", items: ["آپارتمان", "مسکونی", "بالکن"] },
     { text: "مسکونی", svg: <BuildingSVG /> },
     { text: "آپارتمانی", svg: <House2SVG /> },
-    { text: " 750,000,000", svg: <DollarSVG /> },
+    { text: formatNumber(Number(price)), svg: <DollarSVG /> },
   ];
   return (
     <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:flex-row md:justify-between md:flex-row-reverse">
@@ -36,16 +55,17 @@ const AddPropertyStepFive = () => {
       {/* Description Section */}
       <div className="w-full md:w-[53.4%] order-2 md:order-none">
         <h1 className="text-xl md:text-2xl font-semibold mb-3 md:mb-[18px] text-right">
-          آپارتمان لوکس زعفرانیه
+          {title}
         </h1>
         <p className="text-sm md:text-[15px] font-medium text-text-secondary leading-relaxed md:leading-6 text-right">
-          آپارتمانی دنج و آرام در قلب شهر، جایی که زندگی روزمره راحت و سبک‌تر
-          است. فضایی مدرن با طراحی منحصربه‌فرد، یادآور خانه‌های دنج و دل‌نشین.
-          محلی برای لحظه‌های خوش، آرامش و شروعی نو در زندگی روزمره‌تان.
+          {caption}
         </p>
       </div>
       {/* Facilities Section 1 */}
-      <div dir="rtl" className="w-full md:w-[41.8%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-3 md:order-none mt-4 md:mt-0">
+      <div
+        dir="rtl"
+        className="w-full md:w-[41.8%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-3 md:order-none mt-4 md:mt-0"
+      >
         {facilities.map((item, index) => {
           return (
             <div
@@ -59,7 +79,10 @@ const AddPropertyStepFive = () => {
         })}
       </div>
       {/* Facilities Section 2 */}
-      <div dir="rtl" className="w-full md:w-[53.4%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-4 md:order-none mt-4 md:mt-0">
+      <div
+        dir="rtl"
+        className="w-full md:w-[53.4%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-4 md:order-none mt-4 md:mt-0"
+      >
         {facilities2.map((item, index) => {
           return (
             <div
