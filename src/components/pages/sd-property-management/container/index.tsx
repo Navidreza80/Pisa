@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/popover";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
+import { deleteHouse } from "@/utils/service/house/delete";
 import { putHouse } from "@/utils/service/house/put";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import EditHouse from "../content/EditHouse";
+import { useMutation } from "@tanstack/react-query";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
@@ -39,21 +41,26 @@ export default function SellerDashboardProperties({ houses }) {
   const router = useRouter();
   const t = useTranslations("SellerPropertyList");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
-  const handleEdit = async (data, id) => {
-    await editHouse(data, id);
-    router.refresh();
-  };
-  const editHouse = (data, id) => {
-    try {
-      toast.promise(() => putHouse(data, id), {
+  const { mutate: handleEdit } = useMutation({
+    mutationKey: ["EDIT_HOUSE"],
+    mutationFn: (payload) =>
+      toast.promise(() => putHouse(payload.data, payload.id), {
         error: "خطا",
         success: "اطلاعات ملک با موفقیت ویرایش شد",
         pending: "درحال پردازش...",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      }),
+    onSuccess: () => router.refresh(),
+  });
+  const { mutate: handleDelete } = useMutation({
+    mutationKey: ["DELETE_HOUSE"],
+    mutationFn: (id) =>
+      toast.promise(() => deleteHouse(id), {
+        error: "خطا",
+        success: " ملک با موفقیت حذف شد",
+        pending: "درحال پردازش...",
+      }),
+    onSuccess: () => router.refresh(),
+  });
 
   return (
     <ContainerDashboard>
@@ -123,11 +130,14 @@ export default function SellerDashboardProperties({ houses }) {
                     <div className="space-y-2">
                       <EditHouse
                         house={property}
-                        onSubmit={(data) => handleEdit(data, property.id)}
+                        onSubmit={(data) =>
+                          handleEdit({ data: data, id: property.id })
+                        }
                       />
 
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <ModalStep2
+                          onConfirm={() => handleDelete(property.id)}
                           name={t("delete")}
                           desc={t("deleteWarning")}
                           title={t("deleteConfirm")}
