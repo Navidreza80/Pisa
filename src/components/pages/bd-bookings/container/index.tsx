@@ -90,7 +90,7 @@ export default function BookingList({
           tableContent={bookingList.data.map((booking, index) => (
             <ReserveTableContent key={index} booking={booking} />
           ))}
-          currentPage={Number(page)}
+          currentPage={Number(page) || 1}
           totalCount={bookingList.totalCount}
           pageSize={2}
           onPageChange={(page) => handleSetParam("page", page.toString())}

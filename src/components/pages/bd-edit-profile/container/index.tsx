@@ -1,20 +1,20 @@
 "use client";
 
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import CameraSVG from "@/components/dashboard/svg/CameraSVG";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUser } from "@/utils/service/user/get";
 import { useEditUser } from "@/utils/service/user/put";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import { useState } from "react";
 
 export default function BuyerInformation() {
   const { mutate } = useEditUser();
   const { data } = useUser();
+  const [password, setPassword] = useState("");
   const t = useTranslations("UserInformation");
-
   const formik = useFormik({
     initialValues: {
       firstName: data?.firstName,
@@ -23,16 +23,7 @@ export default function BuyerInformation() {
       phoneNumber: data?.phoneNumber,
     },
     onSubmit: (values) => {
-      toast.promise(
-        async () => {
-          await mutate(values);
-        },
-        {
-          pending: t("toast.pending"),
-          success: t("toast.success"),
-          error: t("toast.error"),
-        }
-      );
+      mutate(values);
     },
   });
 
@@ -61,12 +52,6 @@ export default function BuyerInformation() {
       value: formik.values.phoneNumber,
       onChange: formik.handleChange,
     },
-  ];
-
-  const inputsSecurity = [
-    { placeHolder: t("securityForm.currentPassword") },
-    { placeHolder: t("securityForm.newPassword") },
-    { placeHolder: t("securityForm.confirmPassword") },
   ];
 
   return (
@@ -151,7 +136,10 @@ export default function BuyerInformation() {
               {t("security.description")}
             </p>
             <div className="mt-4 flex justify-center md:justify-end gap-2">
-              <Button className="bg-primary cursor-pointer rounded-xl hover:bg-primary text-white">
+              <Button
+                onClick={() => mutate({ password: password })}
+                className="bg-primary cursor-pointer rounded-xl hover:bg-primary text-white"
+              >
                 {t("buttons.applyChanges")}
               </Button>
               <Button variant="ghost">{t("buttons.cancel")}</Button>
@@ -160,17 +148,13 @@ export default function BuyerInformation() {
 
           <div
             dir="rtl"
-            className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]"
+            className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]"
           >
-            {inputsSecurity.map((item) => {
-              return (
-                <Input
-                  key={item.placeHolder}
-                  placeholder={item.placeHolder}
-                  className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-                />
-              );
-            })}
+            <Input
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="رمز عبور جدید"
+              className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+            />
           </div>
         </div>
       </form>

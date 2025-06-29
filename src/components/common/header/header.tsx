@@ -34,6 +34,7 @@ export default async function Header() {
   // Hooks
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
+  console.log(token);
   var decodedUser;
   if (token) {
     decodedUser =

@@ -1,9 +1,9 @@
 // Interceptor
+import { UserProfileProps } from "@/types/user";
 import http from "@/utils/interceptor";
 import { useQuery } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { getClientCookie } from "../storage/client-cookie";
-import { JwtPayload, UserProfileProps } from "@/types/user";
 
 /**
  * Get use info.
