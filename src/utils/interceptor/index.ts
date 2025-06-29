@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   getServerCookie,
   setServerCookie,
@@ -14,14 +15,42 @@ const onSuccess = <T>(response: AxiosResponse<T>): T => {
   return response.data;
 };
 
-const onError = (error: AxiosError): Promise<never> => {
+export const onError = (error: AxiosError): Promise<never> => {
   if (error.response) {
-    //
-    if (error.response.status >= 404 && error.response.status < 500) {
-      console.log("Client Error:" + error.response.status);
+    const { status, data } = error.response;
+
+    // 401 Unauthorized or 403 Forbidden
+    if (status === 401 || status === 403) {
+      toast.info(
+        "دسترسی شما به امکانات سایت منقضی شده. لطفا دوباره وارد شوید!"
+      );
+      setTimeout(() => {
+        window.location.href = "/auth/login";
+      }, 1500);
     }
+
+    // 400–499 (Other Client Errors)
+    else if (status >= 400 && status < 500) {
+      const message = (data as any)?.message || `خطای کاربر: ${status}`;
+      toast.warning(message);
+      console.warn("Client Error:", status, data);
+    }
+
+    // 500+ Server Errors
+    else if (status >= 500) {
+      toast.error("خطایی در سرور رخ داده است. لطفاً بعداً امتحان کنید.");
+      console.error("Server Error:", status, data);
+    }
+  } else if (error.request) {
+    // No response received
+    toast.error("پاسخی از سرور دریافت نشد. اتصال اینترنت خود را بررسی کنید.");
+    console.error("No response received:", error.request);
+  } else {
+    // Request setup error
+    toast.error("مشکلی در ارسال درخواست رخ داد.");
+    console.error("Axios setup error:", error.message);
   }
-  console.error(error);
+
   return Promise.reject(error);
 };
 

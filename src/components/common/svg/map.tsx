@@ -1,8 +1,14 @@
-export default function MapSVG({ color }: { color?: string }) {
+export default function MapSVG({
+  color,
+  size,
+}: {
+  color?: string;
+  size?: string;
+}) {
   return (
     <svg
-      width="24"
-      height="24"
+      width={size ? size : "24"}
+      height={size ? size : "24"}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

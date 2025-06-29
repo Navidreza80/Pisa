@@ -1,32 +1,30 @@
 "use client";
+import InputText from "@/components/common/inputs/text-inputs";
+import { SaveSVG, ShareSVG } from "@/components/svg";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 import { setReservedDates } from "@/utils/hooks/react-redux/store/slices/book-hotel-slice";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
-import PersianCalendar from "persian-calender";
-import "persian-calender/dist/index.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-import InputText from "@/components/common/inputs/text-inputs";
-import { SaveSVG, ShareSVG } from "@/components/svg";
 import SectionName from "../SectionName";
+import { Calendar22 } from "@/components/ui/date-picker";
 
 export default function ReserveForm({ price }: { price: string }) {
   const t = useTranslations("SingleHouse");
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const [dateStart, setDateStart] = useState<Date | string>("");
-  const [dateExit, setDateExit] = useState<Date | string>("");
+  const [dateStart, setDateStart] = useState<Date | undefined>(new Date());
+  const [dateExit, setDateExit] = useState<Date | undefined>(new Date());
   const router = useRouter();
-
 
   const handleContinue = (travelersCount: string) => {
     const params = new URLSearchParams(URLSearchParams.toString());
-    params.set("enterDate", dateStart.toString());
-    params.set("exitDate", dateExit.toString());
+    if (dateStart) params.set("enterDate", dateStart.toString());
+    if (dateExit) params.set("exitDate", dateExit.toString());
     params.set("travelersCount", travelersCount);
     router.push(`/reserve/${id}?${params.toString()}`);
   };
@@ -54,37 +52,11 @@ export default function ReserveForm({ price }: { price: string }) {
         <div className="w-full flex flex-wrap justify-between gap-3">
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("dateEnter")}</p>
-            <PersianCalendar
-              responsive={true}
-              onChange={(date: Date) => setDateStart(date)}
-              animate={true}
-              inputStyle={{
-                width: "100%",
-                height: "48px",
-                borderRadius: "16px",
-                textAlign: "right",
-                borderColor: "#eaeaea",
-              }}
-              theme="default"
-              showHolidays={true}
-            />
+            <Calendar22 setDate={setDateStart} date={dateStart} />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("dateExit")}</p>
-            <PersianCalendar
-              responsive={true}
-              onChange={(date: Date) => setDateExit(date)}
-              animate={true}
-              inputStyle={{
-                width: "100%",
-                height: "48px",
-                borderRadius: "16px",
-                textAlign: "right",
-                borderColor: "#eaeaea",
-              }}
-              theme="default"
-              showHolidays={true}
-            />
+            <Calendar22 setDate={setDateExit} date={dateExit} />
           </div>
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <p>{t("capacity")}</p>{" "}

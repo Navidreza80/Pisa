@@ -30,35 +30,41 @@ export default async function MainImages({
           />
         )}
         {/* + n other pictures section */}
-        <div
-          dir="rtl"
-          className="w-[calc(33.33333333333333%-10.7px)]  text-text border rounded-t-2xl flex justify-center items-center border-border rounded-b-3xl h-[192px]"
-        >
-          <svg
-            width="20"
-            height="21"
-            viewBox="0 0 20 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        {photos.length > 3 && (
+          <div
+            dir="rtl"
+            className="w-[calc(33.33333333333333%-10.7px)]  text-text border rounded-t-2xl flex justify-center items-center border-border rounded-b-3xl h-[192px]"
           >
-            <path
-              d="M7.50004 5.5C7.50004 5.5 12.5 9.18242 12.5 10.5C12.5 11.8177 7.5 15.5 7.5 15.5"
-              stroke="black"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          12+ عکس دیگر
-        </div>
-        <img
-          src={photos[1]}
-          className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
-        />
-        <img
-          src={photos[2]}
-          className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
-        />
+            <svg
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.50004 5.5C7.50004 5.5 12.5 9.18242 12.5 10.5C12.5 11.8177 7.5 15.5 7.5 15.5"
+                stroke="black"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            12+ عکس دیگر
+          </div>
+        )}
+        {photos[1] && (
+          <img
+            src={photos[1]}
+            className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
+          />
+        )}
+        {photos[2] && (
+          <img
+            src={photos[2]}
+            className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
+          />
+        )}
       </div>
     </>
   );

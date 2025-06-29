@@ -1,9 +1,9 @@
+import { LabelManager } from "@/components/common/inputs/label-handler";
 import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-input-with-label";
-import { ArrowLeftSVG } from "@/components/svg";
 import { Fragment } from "react";
 
-export default function AddPropertyStepThree({ formik }) {
+export default function AddPropertyStepThree({ formik, setYard_type, tags, setTags }) {
   const inputs = [
     {
       text: "تعداد اتاق:",
@@ -31,8 +31,13 @@ export default function AddPropertyStepThree({ formik }) {
       text: "نوع حیاط:",
       placeHolder: null,
       isSelect: true,
-      name: "yard_type",
-      value: formik.values.yard_type,
+      onChange: (e) => setYard_type(e),
+      items: [
+        { value: "روستایی", text: "روستایی" },
+        { value: "ساحلی", text: "ساحلی" },
+        { value: "شهری", text: "شهری" },
+        { value: "جنگلی", text: "جنگلی" },
+      ],
     },
   ];
   return (
@@ -50,15 +55,25 @@ export default function AddPropertyStepThree({ formik }) {
             />
           ) : (
             <Fragment key={index}>
-              {index == 4 && (
-                <ArrowLeftSVG className="absolute left-[calc(50%-11px)] top-36" />
-              )}
-              <InputSelect withLabel label={item.text} className="!w-full" />
+              <InputSelect
+                withLabel
+                items={item.items}
+                label={item.text}
+                className="!w-full"
+              />
             </Fragment>
           );
         })}
       </div>
-      <InputSelect className="!w-full mt-[19px]" withLabel label="برچسب  ها:" />
+      <LabelManager
+        labels={tags}
+        onChange={setTags}
+        maxLabels={3}
+        maxLength={20}
+        modalTitle="اضافه کردن برچسب"
+        inputTitle="برچسب ها"
+        emptyState="برچسبی اضافه نشده است"
+      />
     </>
   );
 }

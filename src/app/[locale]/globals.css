@@ -362,12 +362,18 @@ html[dir="ltr"] .menu-items {
 .popup-content {
   background: #586cff;
   border-radius: 16px;
-  padding: 16px 18px 12px 18px;
-  max-width: 295px;
   color: #fff;
   position: relative;
-  font-family: inherit;
-  box-shadow: 0 4px 24px 0 rgba(88, 108, 255, 0.18);
+  padding: 3px 8px 3px 8px;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+  display: none;
 }
 
 .popup-content::after {

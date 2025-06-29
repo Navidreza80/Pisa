@@ -41,7 +41,7 @@ const Reveal = ({
         initial="hidden"
         animate={slideControls}
         transition={{ duration: 0.5, ease: "easeIn" }}
-        className="absolute top-1 bottom-1 left-0 right-0 blur-[1px] bg-[#ffffff] z-20"
+        className="absolute top-1 bottom-1 left-0 right-0 bg-background z-20"
       ></motion.div>
     </div>
   );

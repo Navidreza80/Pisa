@@ -32,7 +32,7 @@ export const LoginUser = async (
  * Shows toast notifications and redirects on success.
  * @returns Mutation hook for checking email and password.
  */
-export const useLoginUser = () => {
+export const useLoginUser = (href: string = "/") => {
   // Hooks
   const router = useRouter();
   const t = useTranslations("Auth");
@@ -46,9 +46,9 @@ export const useLoginUser = () => {
       toast.success(t("loginSuccess"));
       await setServerCookie("serverAccessToken", response.accessToken);
       await setServerCookie("serverRefreshToken", response.refreshToken);
-      setClientCookie("clientAccessToken", response.accessToken, 15);
+      setClientCookie("clientAccessToken", response.accessToken);
       console.log(response.accessToken);
-      router.push("/");
+      router.push(href);
     },
     onError: (error: AxiosError) => {
       if (error.response?.status === 400) {

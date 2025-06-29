@@ -21,11 +21,13 @@ interface LabelManagerProps {
   placeholder?: string;
   modalTitle?: string;
   inputTitle?: string;
+  emptyState?: string;
 }
 
 export function LabelManager({
   modalTitle,
   inputTitle,
+  emptyState,
   labels,
   onChange,
   maxLabels = 10,
@@ -49,10 +51,10 @@ export function LabelManager({
   return (
     <div className="w-full space-y-3">
       {/* Labels container with subtle background */}
-      <div className="flex flex-wrap flex-row-reverse items-center gap-2 w-full min-h-16 p-3 bg-muted/30 rounded-lg border">
+      <div className="flex flex-wrap flex-row-reverse items-center gap-2 w-full min-h-16 p-3 bg-muted/30 rounded-2xl border border-border mt-4">
         {labels.length === 0 && (
-          <p className="text-muted-foreground text-sm flex items-center h-full">
-            ایتمی اضافه نشده است
+          <p className="text-muted-foreground text-sm flex items-center h-full text-text-secondary">
+            {emptyState ? emptyState : "ایتمی اضافه نشده است"}
           </p>
         )}
         {labels.map((label, index) => (
@@ -79,7 +81,7 @@ export function LabelManager({
                 className="flex items-center justify-center w-8 h-8 text-white rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
                 aria-label="Add label"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4 cursor-pointer" />
               </button>
             </DialogTrigger>
             <DialogContent dir="rtl" className="sm:max-w-[425px] bg-background">
@@ -88,9 +90,15 @@ export function LabelManager({
               </DialogHeader>
               <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="label-text" className="w-full flex flex-row-reverse" dir="ltr">{inputTitle}</Label>
+                  <Label
+                    htmlFor="label-text"
+                    className="w-full flex flex-row-reverse"
+                    dir="ltr"
+                  >
+                    {inputTitle}
+                  </Label>
                   <Input
-                  className="border-border focus:outline-0"
+                    className="border-border focus:outline-0"
                     id="label-text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
@@ -109,11 +117,19 @@ export function LabelManager({
                 </div>
                 <div className="flex justify-end gap-2 flex-row-reverse">
                   <DialogTrigger asChild>
-                    <Button type="button" variant="outline" className="border-border">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="border-border"
+                    >
                       لغو
                     </Button>
                   </DialogTrigger>
-                  <Button type="submit" className="text-white" disabled={!inputValue.trim()}>
+                  <Button
+                    type="submit"
+                    className="text-white"
+                    disabled={!inputValue.trim()}
+                  >
                     تایید
                   </Button>
                 </div>

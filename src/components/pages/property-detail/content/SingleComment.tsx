@@ -1,10 +1,11 @@
 import ArrowSVG from "@/components/common/svg/arrow";
+import UserModal from "@/components/common/UserModal";
 import { Comments } from "@/types/comments";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { toast } from "react-toastify";
 
 // Define the prop types for SingleComment
@@ -37,6 +38,7 @@ export default function SingleComment({
       });
     }
   };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div
@@ -48,6 +50,14 @@ export default function SingleComment({
         isReply ? "border-r-2 border-blue-500" : ""
       }`}
     >
+      <UserModal
+        user={{
+          name: comment.user.fullName,
+          profilePicture: comment.user.profilePicture,
+        }}
+        open={isOpen}
+        onClose={() => setIsOpen((prev) => !prev)}
+      />
       {isReply && (
         <div className="h-full flex-shrink-0">
           <div className="w-10 h-10 flex justify-center items-center bg-blue-50 dark:bg-blue-900/30 rounded-full">
@@ -85,7 +95,8 @@ export default function SingleComment({
               unoptimized={true}
               width={48}
               height={48}
-              className="w-full h-full object-cover"
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="w-full h-full object-cover cursor-pointer"
               src={
                 comment.user?.profilePicture ||
                 "https://img.icons8.com/?size=100&id=7820&format=png&color=000000"
@@ -127,7 +138,7 @@ export default function SingleComment({
                   showReply ? "rotate-180" : "rotate-0"
                 }`}
               />
-              مشاهده پاسخ‌ها 
+              مشاهده پاسخ‌ها
             </button>
           )}
 

@@ -74,7 +74,7 @@ export default function UserProfile({ user }: UserProfileProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-48 rounded-lg animate-fade-down shadow-lg bg-background dark:bg-background-dark border border-border dark:border-border-dark overflow-hidden z-10">
+        <div className="absolute left-0 mt-2 w-48 rounded-lg animate-fade-down bg-background dark:bg-background-dark border border-border dark:border-border-dark overflow-hidden z-10">
           <div className="p-3 border-b border-border dark:border-border-dark">
             <p className="font-medium">
               {user.email?.replace("@gmail.com", "")}

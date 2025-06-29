@@ -1,17 +1,18 @@
 "use client";
 
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import FilterModal from "@/components/common/dashboard/FilterModal";
 import Line from "@/components/common/dashboard/line";
 import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
+import InputSelect from "@/components/common/inputs/select-input";
+import ReserveTableContent from "@/components/pages/bd-bookings/contents/content";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Reservation } from "@/types/reserve";
 import { useTranslations } from "next-intl";
-import FilterModal from "@/components/common/dashboard/FilterModal";
-import Title from "@/components/common/dashboard/Title";
-import ReserveTableContent from "@/components/pages/bd-bookings/contents/content";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const tableHeaderItems = [
   { text: "hotelName", clx: "rounded-r-xl" },
@@ -26,55 +27,53 @@ const tableHeaderItems = [
 export default function BookingList({
   bookingList,
 }: {
-  bookingList: Reservation[];
+  bookingList: { data: Reservation[]; totalCount: number };
 }) {
   const t = useTranslations("BookingList");
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // Mock data with translations
-  const bookings = [
-    {
-      id: 1,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      passengers: 2,
-      status: t("status.approved"),
-      paymentStatus: t("status.approved"),
-      cancelled: false,
-    },
-    {
-      id: 2,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      passengers: 2,
-      status: t("status.pending"),
-      paymentStatus: t("status.approved"),
-      cancelled: false,
-    },
-    {
-      id: 3,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      passengers: 2,
-      status: t("status.approved"),
-      paymentStatus: t("status.cancelled"),
-      cancelled: true,
-    },
-  ];
+  const page = searchParams.get("page");
+  const sort = searchParams.get("sort");
+  const order = searchParams.get("order");
+
+  const handleSetParam = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value);
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
-          <FilterModal></FilterModal>
-          <Input
-            dir="rtl"
-            placeholder={t("searchPlaceholder")}
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
-          />
+          <FilterModal>
+            <div className="grid grid-cols-2 gap-3 w-full">
+              <InputSelect
+                onChange={(sort) => handleSetParam("sort", sort.toString())}
+                className="!w-full"
+                items={[
+                  { text: "زمان ساخت", value: "created_at" },
+                  { text: "تاریخ آپدیت", value: "updated_at" },
+                ]}
+                label="مرتب سازی:"
+                withLabel
+                value={sort || "created_at"}
+              />
+              <InputSelect
+                onChange={(order) => handleSetParam("order", order.toString())}
+                items={[
+                  { text: "صعودی", value: "ASC" },
+                  { text: "نزولی", value: "DESC" },
+                ]}
+                className="!w-full"
+                label="روند:"
+                withLabel
+                value={order || "DESC"}
+              />
+            </div>
+          </FilterModal>
         </div>
       </div>
 
@@ -91,12 +90,16 @@ export default function BookingList({
           tableContent={bookingList.data.map((booking, index) => (
             <ReserveTableContent key={index} booking={booking} />
           ))}
+          currentPage={Number(page)}
+          totalCount={bookingList.totalCount}
+          pageSize={2}
+          onPageChange={(page) => handleSetParam("page", page.toString())}
         />
       </div>
 
       {/* Card view for mobile */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {bookings.map((booking) => (
+        {bookingList.data.map((booking) => (
           <Card key={booking.id} className="overflow-hidden border-border">
             <CardContent className="p-0">
               <div className="p-4 space-y-3">

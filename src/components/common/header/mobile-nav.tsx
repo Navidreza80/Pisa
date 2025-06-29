@@ -42,9 +42,6 @@ export default function MobileNav() {
     { text: t("home"), url: "/", icon: <Home /> },
     { text: t("rent"), url: "/rent" },
     { text: t("reserve"), url: "/reserve", icon: <Home /> },
-    { text: "دفاتر املاک", url: "/realestate" },
-    { text: "تورها", url: "/tours" },
-    { text: "مقاصد رویایی", url: "/locations" },
   ];
 
   return (

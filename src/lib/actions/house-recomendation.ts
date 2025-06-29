@@ -24,7 +24,7 @@ export async function getHouseRecommendation(): Promise<HouseSuggestionResponse>
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "deepseek/deepseek-r1-distill-qwen-32b:free",
+          model: "deepseek/deepseek-r1-0528:free",
           messages: [
             {
               role: "system",

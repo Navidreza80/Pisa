@@ -5,7 +5,7 @@ import Http from "../../interceptor";
 import { toast } from "react-toastify";
 
 // Cookies
-import { setClientCookie } from "../storage/client-cookie";
+import { getClientCookie, setClientCookie } from "../storage/client-cookie";
 import { getServerCookie, setServerCookie } from "../storage/server-cookie";
 
 export const RefreshToken = async () => {
@@ -18,9 +18,9 @@ export const RefreshToken = async () => {
     if (res.status === 403) {
       if (typeof window !== "undefined") {
         toast.info(
-          "دسترسی شما به امکانات سایت منقضی شده  لطفا دوباره وارد شوید"
+          "دسترسی شما به امکانات سایت منقضی شده لطفا دوباره وارد شوید"
         );
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
       }
       return;
     }
@@ -29,7 +29,14 @@ export const RefreshToken = async () => {
       // console.log(res);
       // toast.success("refresh token successfully");
       await setServerCookie("serverAccessToken", res.accessToken);
-      setClientCookie("clientAccessToken", res.accessToken, 1);
+      setClientCookie("clientAccessToken", res.accessToken, 2);
+      console.log("ServerAccessToken: ", res.accessToken);
+      const clientCookie = getClientCookie("clientAccessToken");
+      if (clientCookie == res.accessToken) {
+        console.log(true);
+      } else {
+        console.log(false);
+      }
     }
   } catch (error) {
     console.error("Error:", error);

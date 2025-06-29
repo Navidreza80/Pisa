@@ -8,10 +8,6 @@ import type { HouseItemsInterface } from "@/types/house";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-const Marker = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false }
-);
 
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
@@ -38,7 +34,7 @@ export default function Map({
               {/* Popup content */}
               <Popup>
                 <div className="popup-content overflow-hidden" dir="rtl">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Image
                         width={50}
@@ -48,23 +44,23 @@ export default function Map({
                         unoptimized
                         className="w-[40px] aspect-square rounded-full"
                       />
-                      <span className="font-bold  text-white text-base">
+                      <span className="font-bold  text-white text-base font-yekan w-auto whitespace-nowrap">
                         {title}
                       </span>
                     </div>
                     <Link
                       href="#"
-                      className="!text-white  flex text-sm underline ml-2"
+                      className="!text-white font-yekan flex text-sm mr-[23px] no-underline"
                     >
                       بیشتر
                       <ArrowLeftSVG />
                     </Link>
                   </div>
                   <div className="flex items-center w-2/3 relative right-11 text-white text-sm mb-1 gap-2">
-                    <MapSVG />
-                    <span className="truncate ">{address}</span>
+                    <MapSVG size="30" />
+                    <span className="truncate font-yekan">{address}</span>
                   </div>
-                  <div className="relative right-11 mt-2">
+                  <div className="relative right-11 mt-2 font-yekan">
                     <span className="text-white text-base flex items-center gap-2 ">
                       {price?.toLocaleString()}
                       <span className="text-xs">تومان</span>

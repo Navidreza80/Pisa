@@ -25,6 +25,6 @@ export function getClientCookie(name: string) {
 
 // Function for deleting cookies
 export const deleteClientCookie = (name: string) => {
-  if (typeof document === "undefined") return null;
-  document.cookie = name + "=; Max-Age=-99999999;";
+  if (typeof document === "undefined") return;
+  document.cookie = `${name}=; Max-Age=0; path=/`;
 };

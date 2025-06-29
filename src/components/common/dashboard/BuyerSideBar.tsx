@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { Car, House, MessageCircleIcon } from "lucide-react";
+import { House } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
 import FavoriteSVG from "../../dashboard/svg/FavoriteSVG";
@@ -13,9 +14,7 @@ import PropertySVG from "../../dashboard/svg/propertySVG";
 import ReserveSVG from "../../dashboard/svg/ReserveSVG";
 import ReviewsSVG from "../../dashboard/svg/reviewsSVG";
 import SignoutSVG from "../../dashboard/svg/SignoutSVG";
-import TourManagementSVG from "../../dashboard/svg/TourManagementSVG";
 import BuyerSideBarItems from "./buyerSideBarItems";
-import { useTranslations } from "next-intl";
 import MobileBottomNavbar from "./MobileBottomNav";
 
 function BuyerSideBar() {
@@ -34,36 +33,16 @@ function BuyerSideBar() {
       name: t("propertyManagement"),
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
-      management: true,
     },
     {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
-      management: true,
     },
     {
       name: t("financialManagement"),
       icon: <PaymentSVG />,
       href: "/dashboard/seller/finance",
-      management: true,
-    },
-    {
-      name: t("reviewManagement"),
-      icon: <MessageCircleIcon />,
-      href: "/dashboard/seller/reviews",
-      management: true,
-    },
-    {
-      name: t("notifications"),
-      icon: <NotifSVG />,
-      href: "/dashboard/seller/notifications",
-    },
-    {
-      name: t("tourManagement"),
-      icon: <Car />,
-      href: "/dashboard/seller/Tour",
-      management: true,
     },
   ];
 

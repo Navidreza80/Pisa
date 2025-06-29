@@ -1,31 +1,28 @@
 "use client";
 // Next & React
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Dependencies
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { FaBath, FaBed, FaCar, FaUser } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
-import { useDispatch } from "react-redux";
 
 // Third party components
-import { Badge } from "@/components/ui/badge";
 import Button from "@/components/common/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatNumber } from "@/utils/helper/format-number";
 
 // Types
-import type { HouseItemsInterface } from "@/types/house";
 
 // Hook & API
-import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
-import { deleteComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
-import { getHouseById } from "@/utils/service/house/get-by-id";
+import getHousesComparisonByIds from "@/utils/service/comparison/get";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import LoadingCustomized from "@/components/common/loading";
 
 /**
  * About us page - Display team members, missions, location and FAQ
@@ -40,27 +37,16 @@ const ComparisonPage = () => {
   const t = useTranslations("Comparison");
   const router = useRouter();
   const locale = useLocale();
-  const [houses, setHouses] = useState<HouseItemsInterface[]>([]);
-  const Ids = useAppSelector((state) => state.comparisonIds);
-  const dispatch = useDispatch();
   const isRTL = locale === "ar" || locale === "fa";
-  useEffect(() => {
-    fetchHouseById();
+  const searchParams = useSearchParams();
+  const idsParam = searchParams.get("ids");
+  console.log(idsParam);
+  const { data: houses } = useQuery({
+    queryKey: ["COMPARE_HOUSES"],
+    queryFn: () => getHousesComparisonByIds(idsParam),
+  });
 
-    return () => {
-      dispatch(deleteComparisonIds());
-    };
-  }, []);
-
-  // Fetching houses logic
-  const fetchHouseById = async () => {
-    if (Ids.ids) {
-      const data1 = await getHouseById(Ids.ids[0]);
-      const data2 = await getHouseById(Ids.ids[1]);
-      setHouses([data1, data2]);
-    }
-    return;
-  };
+  if (!houses) return <LoadingCustomized title={"در حال مقایسه کردن دو خانه..."} />;
 
   // Rating
   const renderRating = (rating: number) => {
@@ -120,7 +106,7 @@ const ComparisonPage = () => {
         {/* Compare virtually */}
         <TabsContent value="visual" className="mt-4 sm:mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {houses.map((house, index) => (
+            {houses?.map((house, index) => (
               <motion.div
                 dir={isRTL ? "rtl" : "ltr"}
                 key={house.id}

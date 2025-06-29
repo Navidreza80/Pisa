@@ -64,7 +64,7 @@ export const CustomMarker = ({
 
   return (
     <Marker position={position} icon={icon}>
-      {children && <Popup>{children}</Popup>}
+      {children && children}
     </Marker>
   );
 };

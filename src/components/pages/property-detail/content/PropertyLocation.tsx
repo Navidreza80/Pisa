@@ -1,23 +1,18 @@
 "use client";
+import { CustomMarker } from "@/components/common/map/custom-map-icon";
+import MapComponent from "@/components/common/map/map";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer } from "react-leaflet";
 
 export default function PropertyLocation({
   propertyLocation,
+  photoUrl,
 }: {
   propertyLocation: [lat: number, lng: number];
+  photoUrl: string;
 }) {
   return (
-    <MapContainer
-      className="!z-10 h-full w-full rounded-4xl animate-fade-left"
-      center={propertyLocation}
-      zoom={13}
-      scrollWheelZoom={false}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-    </MapContainer>
+    <MapComponent className="rounded-xl" initialLocation={propertyLocation} initialZoom={13}>
+      <CustomMarker position={propertyLocation} photoUrl={photoUrl} />
+    </MapComponent>
   );
 }

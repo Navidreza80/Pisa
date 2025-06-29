@@ -11,17 +11,18 @@ import { useState } from "react";
 
 const AddPropertyContainer = () => {
   const [createdProperty, setCreatedProperty] = useState({});
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const id = useAppSelector((state) => state.stepsId.id);
-  const [property_type, setProperty_type] = useState();
   const [location, setLocation] = useState({
     lat: "",
     lng: "",
   });
-  const [yard_type, setYard_type] = useState();
+  const [categories, setCategories] = useState();
   const [transaction_type, setTransaction_type] = useState();
+  const [yard_type, setYard_type] = useState();
   const formik = useFormik({
     initialValues: {
-      title: "",
       address: "",
       caption: "",
       price: "",
@@ -34,15 +35,18 @@ const AddPropertyContainer = () => {
     onSubmit: async (values) => {
       setCreatedProperty({
         ...values,
-        property_type,
         yard_type,
+        categories,
         transaction_type,
+        tags,
+        title,
         location,
       });
       console.log({
         ...values,
-        property_type,
         yard_type,
+        tags,
+        categories,
         transaction_type,
         location,
       });
@@ -53,9 +57,10 @@ const AddPropertyContainer = () => {
       <PropertyContainer>
         {id == 1 ? (
           <AddPropertyStepOne
-            setProperty_type={setProperty_type}
+            title={title}
+            setTitle={setTitle}
             setTransaction_type={setTransaction_type}
-            setYard_type={setYard_type}
+            setCategories={setCategories}
             formik={formik}
           />
         ) : id == 2 ? (
@@ -65,7 +70,12 @@ const AddPropertyContainer = () => {
             formik={formik}
           />
         ) : id == 3 ? (
-          <AddPropertyStepThree formik={formik} />
+          <AddPropertyStepThree
+            setTags={setTags}
+            tags={tags}
+            setYard_type={setYard_type}
+            formik={formik}
+          />
         ) : id == 4 ? (
           <AddPropertyStepFour />
         ) : (

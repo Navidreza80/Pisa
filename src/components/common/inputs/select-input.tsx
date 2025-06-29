@@ -81,7 +81,7 @@ export default function InputSelect({
             value={String(item.value ?? item.id ?? item.text)}
             className=" z-[100] relative font-medium text-text"
           >
-            {item.area_name || item.text}
+            {item.area_name || item.text || item.name}
           </SelectItem>
         ))}
       </SelectContent>

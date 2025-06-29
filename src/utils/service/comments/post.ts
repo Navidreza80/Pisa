@@ -44,8 +44,5 @@ export const usePostComment = () => {
         queryKey: ["comments", variables.houseId],
       });
     },
-    onError: (error) => {
-      toast.error(error.message);
-    },
   });
 };

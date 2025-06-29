@@ -9,10 +9,10 @@ import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
-import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import StarRatings from "react-star-ratings";
+import dynamic from "next/dynamic";
+const StarRatings = dynamic(() => import("react-star-ratings"), { ssr: false });
 import * as Yup from "yup";
 import RenderComments from "./RenderComments";
 
@@ -157,6 +157,11 @@ export default function AllComments({ houseId }: AllCommentsProps) {
               name="title"
               placeholder="عنوان نظر خود را بنویسید..."
             />
+            {formik.errors.title && (
+              <span className="text-red-500 dark:text-red-400 text-sm mt-1 block">
+                {formik.errors.title}
+              </span>
+            )}
           </div>
 
           <div className="md:w-64">
@@ -207,11 +212,6 @@ export default function AllComments({ houseId }: AllCommentsProps) {
 
         <Button
           disabled={isPending && !token}
-          handleClick={() => {
-            if (!token) {
-              setIsLogin(true);
-            }
-          }}
           className={`w-full flex items-center justify-center rounded-xl h-12 mt-2 text-white font-medium transition-all ${
             isPending || !token
               ? "bg-blue-400 dark:bg-blue-600 cursor-not-allowed"

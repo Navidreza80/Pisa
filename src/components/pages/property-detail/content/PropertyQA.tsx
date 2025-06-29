@@ -9,8 +9,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns-jalali";
 import {
   AlertCircle,
+  AlertCircleIcon,
   CheckCircle2Icon,
   MessageCircle,
+  MessageCircleQuestionIcon,
   Reply,
   Send,
 } from "lucide-react";
@@ -37,7 +39,7 @@ interface CreateAnswerDto {
   answer: string;
 }
 
-const PropertyQA = ({ houseId = "4" }) => {
+const PropertyQA = ({ houseId }) => {
   const [newQuestion, setNewQuestion] = useState("");
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const [answerInput, setAnswerInput] = useState("");
@@ -197,7 +199,7 @@ const ErrorDisplay = ({ message }: { message: string }) => (
 
 const EmptyState = () => (
   <div className="text-center py-8 flex flex-col items-center">
-    <MessageQuestionIcon className="w-12 h-12 text-text mb-3" />
+    <MessageCircleQuestionIcon className="w-12 h-12 text-text mb-3" />
     <h3 className="text-gray-500 dark:text-gray-400 font-medium">
       هنوز پرسشی ثبت نشده است
     </h3>

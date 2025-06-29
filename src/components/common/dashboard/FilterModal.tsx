@@ -38,14 +38,9 @@ const FilterModal = ({ children }) => {
             <CloseBtn onClick={toggleIsOpen} />
           </header>
           <Line className="w-full" />
-          <div className="flex flex-wrap justify-between gap-5 py-[19px]">
+          <div className="w-full py-[19px]">
             {children}
           </div>
-          <footer className="w-full flex justify-center">
-            <Button className="!w-auto">
-              {t('applyFilters')}
-            </Button>
-          </footer>
         </div>
       </DialogContent>
     </Dialog>

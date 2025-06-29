@@ -3,6 +3,22 @@ import Button from "../button";
 import AddSVG from "@/components/dashboard/svg/AddSVG";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import React from "react";
+
+type TableDashboardProps = {
+  tableContent: React.ReactNode;
+  pageInation?: boolean;
+  headerCLX?: string;
+  tableHeader: { text: string | null; clx: string | null }[];
+  headerSecondary?: boolean;
+  add?: React.ReactNode;
+  href?: string;
+  addTitle?: string;
+  currentPage?: number;
+  totalCount?: number;
+  pageSize?: number;
+  onPageChange?: (page: number) => void;
+};
 
 const TableDashboard = ({
   tableContent,
@@ -13,8 +29,14 @@ const TableDashboard = ({
   add,
   href,
   addTitle,
-}) => {
+  currentPage = 1,
+  totalCount = 0,
+  pageSize = 10,
+  onPageChange,
+}: TableDashboardProps) => {
   const t = useTranslations("WarningModal");
+  const totalPages = Math.ceil(totalCount / pageSize);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   return (
     <>
       <Table
@@ -40,15 +62,18 @@ const TableDashboard = ({
         </thead>
         <tbody>{tableContent}</tbody>
       </Table>
-      {pageInation && (
+      {pageInation && totalPages > 1 && (
         <div
           className={`flex ${add ? "justify-between w-full" : "justify-start"} mt-[71px] items-center`}
         >
           <div className="flex justify-start gap-2">
-            {[1, 2, 3, 4, 5].map((p) => (
+            {pageNumbers.map((p) => (
               <button
                 key={p}
-                className={`w-8 h-8 rounded-full border text-sm ${p === 1 ? "bg-primary text-white" : "bg-background"}`}
+                className={`w-8 h-8 cursor-pointer rounded-full border text-sm transition-colors ${
+                  p === currentPage ? "bg-primary text-white" : "bg-background"
+                }`}
+                onClick={() => onPageChange?.(p)}
               >
                 {p}
               </button>

@@ -66,7 +66,7 @@ export default function HouseCardList({
   const router = useRouter();
 
   useEffect(() => {
-    if (Ids.ids?.length == 2) router.push("/comparison");
+    if (Ids.ids?.length == 2) router.push(`/comparison?ids=${Ids.ids}`);
     return;
   }, [Ids.ids]);
 
