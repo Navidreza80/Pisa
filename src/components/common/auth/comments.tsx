@@ -2,6 +2,7 @@
 // React & Next
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Dependencies
 import axios from "axios";
@@ -21,6 +22,7 @@ import type Comment from "@/types/auth";
 import formatToPersianDate from "@/utils/helper/format-date";
 
 export default function CommentsSwiper() {
+  const t = useTranslations("comments");
   const SLIDE_DURATION = 5000;
   const swiperRef = useRef<any>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -33,7 +35,6 @@ export default function CommentsSwiper() {
   const remainingTimeRef = useRef(SLIDE_DURATION);
   const isHovered = useRef(false);
 
-
   useEffect(() => {
     async function fetchComments() {
       try {
@@ -43,13 +44,13 @@ export default function CommentsSwiper() {
         setComments(response.data.data);
       } catch (error: any) {
         console.error("Error fetching comments:", error);
-        setError("مشکلی در دریافت کامنت‌ها پیش آمده است.");
+        setError(t("error"));
       } finally {
         setLoading(false);
       }
     }
     fetchComments();
-  }, []);
+  }, [t]);
 
   const startTimer = (reset = true) => {
     if (progressInterval.current) {
@@ -135,7 +136,7 @@ export default function CommentsSwiper() {
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   if (loading) {
-    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">در حال بارگذاری...</div>;
+    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("loading")}</div>;
   }
 
   if (error) {
@@ -143,7 +144,7 @@ export default function CommentsSwiper() {
   }
 
   if (comments.length === 0) {
-    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">نظری یافت نشد</div>;
+    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("noComments")}</div>;
   }
 
   return (
@@ -190,7 +191,7 @@ export default function CommentsSwiper() {
                       exit={{ opacity: 0, x: -50 }}
                       transition={{ duration: 0.4 }}
                     >
-                      {comment.caption || "بدون توضیح"}
+                      {comment.caption || t("noDescription")}
                     </motion.p>
                   </AnimatePresence>
                 </div>
@@ -206,7 +207,7 @@ export default function CommentsSwiper() {
                     />
                     <div className="flex flex-col text-right">
                       <p className="font-[600] text-[16px] text-[#232323]">
-                        {comment.user?.name || "کاربر ناشناس"}
+                        {comment.user?.name || t("unknownUser")}
                       </p>
                       <p
                         dir="rtl"
@@ -218,9 +219,11 @@ export default function CommentsSwiper() {
                   </div>
                   <div className="flex justify-center gap-4">
                     <button className="my-auto" onClick={() => handleNavigation("prev")}>
+                      <span className="sr-only">{t("prev")}</span>
                       <ToRight />
                     </button>
                     <button className="my-auto" onClick={() => handleNavigation("next")}>
+                      <span className="sr-only">{t("next")}</span>
                       <ToLeft />
                     </button>
                     <div dir="ltr" className="flex !justify-start items-center my-auto gap-6">

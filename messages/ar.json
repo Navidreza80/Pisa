@@ -34,7 +34,8 @@
     "capacity": "أشخاص",
     "parking": "موقف سيارات",
     "property": "نوع العقار",
-    "CommentsPiza": "تعليقات المستخدمين حول البيتزا"
+    "CommentsPiza": "تعليقات المستخدمين حول البيتزا",
+    "toman": "تومان"
   },
   "Header": {
     "login": "تسجيل/تسجيل الدخول",
@@ -208,7 +209,8 @@
     "district": "الحي",
     "addToComparison": "إضافة للمقارنة",
     "new": "جديد",
-    "squareMeters": "متر مربع"
+    "squareMeters": "متر مربع",
+    "toman": "تومان"
   },
   "SingleHouse": {
     "facilities": "مرافق الفندق",
@@ -644,6 +646,26 @@
     "leaderboard": {
       "title": "لوحة المتصدرين",
       "emptyMessage": "لا توجد نتائج مسجلة بعد!"
+    },
+    "comments": {
+      "loading": "جاري التحميل...",
+      "error": "حدث خطأ أثناء جلب التعليقات.",
+      "noComments": "لا توجد تعلیقات",
+      "unknownUser": "مستخدم مجهول",
+      "noDescription": "لا يوجد وصف",
+      "prev": "السابق",
+      "next": "التالي"
+    },
+    "userModal": {
+      "title": "تفاصيل المستخدم",
+      "profilePictureAlt": "صورة الملف الشخصي"
+    },
+    "notificationSettings": {
+      "title": "إعدادات الإشعارات",
+      "reservation": "إشعار الحجز",
+      "payment": "إشعار الدفع",
+      "discount": "إشعار الخصم",
+      "system": "إشعار النظام"
     }
   }
 }

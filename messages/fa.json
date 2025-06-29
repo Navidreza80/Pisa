@@ -34,7 +34,8 @@
     "capacity": "نفر",
     "parking": "پارکینگ",
     "property": "نوع ملک",
-    "CommentsPiza": "نظرات کاربران پیزا"
+    "CommentsPiza": "نظرات کاربران پیزا",
+    "toman":"تومان"
   },
   "Header": {
     "login": "ثبت نام و ورود",
@@ -210,6 +211,7 @@
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
     "squareMeters": "متر مربع",
+    "toman": "تومان", 
     "parking": "پارکینگ"
   },
   "Payment": {
@@ -686,5 +688,25 @@
       "title": "جدول امتیازات",
       "emptyMessage": "هنوز امتیازی ثبت نشده است!"
     }
+  }, 
+  "comments": {
+    "loading": "در حال بارگذاری...",
+    "error": "مشکلی در دریافت کامنت‌ها پیش آمده است.",
+    "noComments": "نظری یافت نشد",
+    "unknownUser": "کاربر ناشناس",
+    "noDescription": "بدون توضیح",
+    "prev": "قبلی",
+    "next": "بعدی"
+  },
+    "userModal": {
+    "title": "مشخصات کاربر",
+    "profilePictureAlt": "تصویر پروفایل"
+  },
+    "notificationSettings": {
+    "title": "تنظیمات نوتیفیکیشن",
+    "reservation": "نوتیفیکیشن رزرو",
+    "payment": "نوتیفیکیشن پرداخت",
+    "discount": "نوتیفیکیشن تخفیف",
+    "system": "نوتیفیکیشن سیستمی"
   }
 }

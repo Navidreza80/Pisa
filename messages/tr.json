@@ -34,7 +34,8 @@
     "capacity": "kişi",
     "parking": "Otopark",
     "property": "Mülk Türü",
-    "CommentsPiza": "Pizza Kullanıcı Yorumları"
+    "CommentsPiza": "Pizza Kullanıcı Yorumları",
+    "toman": "Tümen"
   },
   "Header": {
     "login": "Kayıt Ol/Giriş Yap",
@@ -208,7 +209,8 @@
     "district": "Bölge",
     "addToComparison": "Karşılaştırmaya Ekle",
     "new": "Yeni",
-    "squareMeters": "Metrekare"
+    "squareMeters": "Metrekare",
+    "toman": "Tümen"
   },
   "SingleHouse": {
     "facilities": "Otel Olanakları",
@@ -644,6 +646,26 @@
     "leaderboard": {
       "title": "Lider Tablosu",
       "emptyMessage": "Henüz kayıtlı puan yok!"
+    },
+    "comments": {
+      "loading": "Yükleniyor...",
+      "error": "Yorumlar alınırken bir hata oluştu.",
+      "noComments": "Yorum bulunamadı",
+      "unknownUser": "Bilinmeyen kullanıcı",
+      "noDescription": "Açıklama yok",
+      "prev": "Önceki",
+      "next": "Sonraki"
+    },
+    "userModal": {
+      "title": "Kullanıcı Detayları",
+      "profilePictureAlt": "Profil resmi"
+    },
+    "notificationSettings": {
+      "title": "Bildirim Ayarları",
+      "reservation": "Rezervasyon Bildirimi",
+      "payment": "Ödeme Bildirimi",
+      "discount": "İndirim Bildirimi",
+      "system": "Sistem Bildirimi"
     }
   }
 }

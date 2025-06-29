@@ -34,7 +34,8 @@
     "capacity": "people",
     "parking": "parking",
     "property": "Property Type",
-    "CommentsPiza": "Piza User Comments"
+    "CommentsPiza": "Piza User Comments",
+    "toman": "Toman"
   },
   "Header": {
     "google": "Sign up in Piza with Google",
@@ -646,6 +647,26 @@
     "leaderboard": {
       "title": "Leaderboard",
       "emptyMessage": "No scores recorded yet!"
+    },
+    "comments": {
+      "loading": "Loading...",
+      "error": "An error occurred while fetching comments.",
+      "noComments": "No comments found",
+      "unknownUser": "Unknown user",
+      "noDescription": "No description",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "userModal": {
+      "title": "User Details",
+      "profilePictureAlt": "Profile picture"
+    },
+    "notificationSettings": {
+      "title": "Notification Settings",
+      "reservation": "Reservation Notification",
+      "payment": "Payment Notification",
+      "discount": "Discount Notification",
+      "system": "System Notification"
     }
   }
 }
