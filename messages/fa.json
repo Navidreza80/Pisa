@@ -34,7 +34,8 @@
     "capacity": "نفر",
     "parking": "پارکینگ",
     "property": "نوع ملک",
-    "CommentsPiza": "نظرات کاربران پیزا"
+    "CommentsPiza": "نظرات کاربران پیزا",
+    "toman":"تومان"
   },
   "Header": {
     "login": "ثبت نام و ورود",
@@ -210,6 +211,7 @@
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
     "squareMeters": "متر مربع",
+    "toman": "تومان", 
     "parking": "پارکینگ"
   },
   "Payment": {

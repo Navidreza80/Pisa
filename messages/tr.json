@@ -34,7 +34,8 @@
     "capacity": "kişi",
     "parking": "Otopark",
     "property": "Mülk Türü",
-    "CommentsPiza": "Pizza Kullanıcı Yorumları"
+    "CommentsPiza": "Pizza Kullanıcı Yorumları",
+    "toman":"Tümen"
   },
   "Header": {
     "login": "Kayıt Ol/Giriş Yap",
@@ -208,7 +209,8 @@
     "district": "Bölge",
     "addToComparison": "Karşılaştırmaya Ekle",
     "new": "Yeni",
-    "squareMeters": "Metrekare"
+    "squareMeters": "Metrekare",
+    "toman":"Tümen"
   },
   "SingleHouse": {
     "facilities": "Otel Olanakları",

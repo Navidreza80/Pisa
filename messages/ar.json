@@ -34,7 +34,8 @@
     "capacity": "أشخاص",
     "parking": "موقف سيارات",
     "property": "نوع العقار",
-    "CommentsPiza": "تعليقات المستخدمين حول البيتزا"
+    "CommentsPiza": "تعليقات المستخدمين حول البيتزا",
+    "toman": "تومان"
   },
   "Header": {
     "login": "تسجيل/تسجيل الدخول",
@@ -208,7 +209,8 @@
     "district": "الحي",
     "addToComparison": "إضافة للمقارنة",
     "new": "جديد",
-    "squareMeters": "متر مربع"
+    "squareMeters": "متر مربع",
+    "toman": "تومان"
   },
   "SingleHouse": {
     "facilities": "مرافق الفندق",

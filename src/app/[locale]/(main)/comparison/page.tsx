@@ -160,7 +160,7 @@ const ComparisonPage = () => {
                         </div>
                       </div>
                       <div className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">
-                        {formatNumber(Number(house.price))} تومان
+                        {formatNumber(Number(house.price))} {t("view")}
                       </div>
                     </div>
 
@@ -295,7 +295,7 @@ const ComparisonPage = () => {
                         key={house.id}
                         className="p-3 sm:p-4 text-center text-xs sm:text-sm"
                       >
-                        {house.price} تومان
+                        {house.price} {t("toman")}
                       </td>
                     ))}
                   </tr>

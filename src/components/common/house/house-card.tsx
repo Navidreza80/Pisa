@@ -114,7 +114,7 @@ export default function HouseCard({ item }: { item: HouseItemsInterface }) {
       <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
         {item.price && (
           <span className="font-medium  text-[#586CFF]">
-            {parseInt(item.price).toLocaleString()} تومان
+            {parseInt(item.price).toLocaleString()} {t("toman")}
             {item.transaction_type === "rental" && (
               <span className="text-xs text-gray-500 mr-1">
                 {t("perNight")}
