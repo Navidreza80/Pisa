@@ -25,11 +25,6 @@ function BuyerSideBar() {
   const sellerItems = [
     { name: t("dashboard"), icon: <DashboardSVG />, href: "/dashboard/seller" },
     {
-      name: t("userInformation"),
-      icon: <InfoSVG />,
-      href: "/dashboard/seller/profile",
-    },
-    {
       name: t("propertyManagement"),
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",

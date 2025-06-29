@@ -12,14 +12,16 @@ const ModalStep2 = ({
   title,
   desc,
   button,
-  name
+  name,
+  onConfirm,
 }: {
   title: string;
   desc?: string;
   button: string;
   name: string;
+  onConfirm: any;
 }) => {
-  const t = useTranslations('Sidebar');
+  const t = useTranslations("Sidebar");
 
   return (
     <Dialog>
@@ -47,11 +49,14 @@ const ModalStep2 = ({
                 )}
               </div>
               <div className="flex justify-center">
-                <button className="bg-primary py-[9px] px-[26px] rounded-[12px] text-white text-[16px] cursor-pointer">
+                <button
+                  onClick={onConfirm}
+                  className="bg-primary py-[9px] px-[26px] rounded-[12px] text-white text-[16px] cursor-pointer"
+                >
                   {button}
                 </button>
                 <button className="w-[87px] text-center text-text text-[16px] cursor-pointer">
-                  {t('cancel')}
+                  لفو
                 </button>
               </div>
             </div>

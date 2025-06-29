@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "../button";
 import WarningSVG from "../svg/warning";
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
 
-const WarningModal = ({ title, children }) => {
+const WarningModal = ({ title, children, onConfirm }) => {
   const t = useTranslations("WarningModal");
 
   return (
@@ -30,7 +30,9 @@ const WarningModal = ({ title, children }) => {
             <Button className="!bg-transparent !text-text">
               {t("cancel")}
             </Button>
-            <Button>{t("agree")}</Button>
+            <Button handleClick={onConfirm} className=" !w-auto">
+              {t("agree")}
+            </Button>
           </div>
         </div>
       </DialogContent>
