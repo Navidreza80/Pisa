@@ -119,7 +119,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
               isHotel={isHotel}
             />
             {/* Map section */}
-            {!isHotel && (
+            {!isHotel && location.lat && location.lat && (
               <>
                 <div className="h-[349px] rounded-4xl">
                   <PropertyLocation

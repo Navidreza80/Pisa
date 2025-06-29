@@ -1,12 +1,13 @@
 "use client";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import Line from "@/components/common/dashboard/line";
 import ModalStep2 from "@/components/common/dashboard/modalStep2";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import FilterModal from "@/components/dashboard/filter-modal";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import EditSVG from "@/components/dashboard/svg/EditSVG";
-import TableDashboard from "@/components/common/dashboard/Table";
-import Title from "@/components/common/dashboard/Title";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,78 +16,44 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import formatToPersianDate from "@/utils/helper/format-date";
+import { getTransactionType } from "@/utils/helper/GetTransactionType";
+import { putHouse } from "@/utils/service/house/put";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
-
-const properties = [
-  {
-    id: 1,
-    name: "هتل ساران زبید رشت",
-    price: "۸٬۰۰۰٬۰۰۰",
-    score: "۴ از ۵",
-    views: 5,
-    reservations: 5,
-    status: "فعال",
-  },
-  {
-    id: 2,
-    name: "هتل ساران زبید رشت",
-    price: "۸٬۰۰۰٬۰۰۰",
-    score: "۴ از ۵",
-    views: 5,
-    reservations: 5,
-    status: "در انتظار",
-  },
-  {
-    id: 3,
-    name: "هتل ساران زبید رشت",
-    price: "۸٬۰۰۰٬۰۰۰",
-    score: "۴ از ۵",
-    views: 5,
-    reservations: 5,
-    status: "غیرفعال",
-  },
-  {
-    id: 4,
-    name: "هتل ساران زبید رشت",
-    price: "۸٬۰۰۰٬۰۰۰",
-    score: "۴ از ۵",
-    views: 5,
-    reservations: 5,
-    status: "در انتظار",
-  },
-  {
-    id: 5,
-    name: "هتل ساران زبید رشت",
-    price: "۸٬۰۰۰٬۰۰۰",
-    score: "۴ از ۵",
-    views: 5,
-    reservations: 5,
-    status: "فعال",
-  },
-];
-
-const statusColor = {
-  فعال: "bg-green-400 text-white",
-  "در انتظار": "bg-yellow-400 text-black",
-  غیرفعال: "bg-red-400 text-white",
-};
+import { toast } from "react-toastify";
+import EditHouse from "../content/EditHouse";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
+  { text: "تاریخ ساخت", clx: null },
+  { text: "نوع پرداخت", clx: null },
   { text: t("tableHeaders.price"), clx: null },
   { text: t("tableHeaders.rating"), clx: null },
-  { text: t("tableHeaders.visits"), clx: null },
-  { text: t("tableHeaders.reservations"), clx: null },
-  { text: t("tableHeaders.status"), clx: null },
   { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
 ];
 
-export default function SellerDashboardProperties() {
+export default function SellerDashboardProperties({ houses }) {
+  const router = useRouter();
   const t = useTranslations("SellerPropertyList");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
+  const handleEdit = async (data, id) => {
+    await editHouse(data, id);
+    router.refresh();
+  };
+  const editHouse = (data, id) => {
+    try {
+      toast.promise(() => putHouse(data, id), {
+        error: "خطا",
+        success: "اطلاعات ملک با موفقیت ویرایش شد",
+        pending: "درحال پردازش...",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ContainerDashboard>
@@ -120,34 +87,30 @@ export default function SellerDashboardProperties() {
           addTitle={t("addProperty")}
           headerSecondary={true}
           tableHeader={tableHeaderItems(t)}
-          tableContent={properties.map((property) => (
+          tableContent={houses.map((property) => (
             <tr key={property.id} className="bg-table-main/30 rounded-xl">
               <td className="pl-6 rounded-r-xl">
                 <div className="flex gap-2 ">
-                  <div className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]" />
+                  <img
+                    src={property.photos[0]}
+                    className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
+                  />
                   <div className="py-7  text-[18px] font-medium">
-                    {property.name}
+                    {property.title}
                   </div>
                 </div>
+              </td>
+              <td className="font-bold">
+                {formatToPersianDate(property.last_updated)}
+              </td>
+              <td className="text-lg">
+                {getTransactionType(property.transaction_type)?.text}
               </td>
               <td className="px-6 py-7  text-[18px] font-medium">
                 {property.price}
               </td>
               <td className="px-6 py-7 text-[18px] font-medium">
-                {property.score}
-              </td>
-              <td className="px-6 py-7 text-[18px] font-medium">
-                {property.views} {t("times")}
-              </td>
-              <td className="px-6 py-7 text-[18px] font-medium">
-                {property.reservations} {t("times")}
-              </td>
-              <td className="px-6 py-7">
-                <span
-                  className={`px-3 py-1 rounded-full  text-[13px] font-medium text-sm ${statusColor[property.status]}`}
-                >
-                  {property.status}
-                </span>
+                {property.rating || "بدون امتیاز"}
               </td>
               <td className="px-6 py-2 relative rounded-l-xl">
                 <Popover>
@@ -158,18 +121,11 @@ export default function SellerDashboardProperties() {
                   </PopoverTrigger>
                   <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
                     <div className="space-y-2">
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>{t("activate")}</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>{t("edit")}</h1>
-                        <div className="my-auto">
-                          <EditSVG />
-                        </div>
-                      </div>
+                      <EditHouse
+                        house={property}
+                        onSubmit={(data) => handleEdit(data, property.id)}
+                      />
+
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <ModalStep2
                           name={t("delete")}
@@ -192,7 +148,7 @@ export default function SellerDashboardProperties() {
 
       {/* Card view for mobile */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {properties.map((property) => (
+        {houses.map((property) => (
           <Card key={property.id} className="overflow-hidden border-border">
             <CardContent className="p-4">
               {/* Header with property name and actions */}
@@ -239,13 +195,8 @@ export default function SellerDashboardProperties() {
 
                 <div className="flex flex-col items-end">
                   <h2 className="text-lg font-bold text-right">
-                    {property.name}
+                    {property.title}
                   </h2>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs mt-2 ${statusColor[property.status]}`}
-                  >
-                    {property.status}
-                  </span>
                 </div>
               </div>
 
@@ -265,25 +216,7 @@ export default function SellerDashboardProperties() {
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.rating")}:
                   </p>
-                  <p className="font-medium">{property.score}</p>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.visits")}:
-                  </p>
-                  <p className="font-medium">
-                    {property.views} {t("times")}
-                  </p>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.reservations")}:
-                  </p>
-                  <p className="font-medium">
-                    {property.reservations} {t("times")}
-                  </p>
+                  <p className="font-medium">{property.rate}</p>
                 </div>
               </div>
 

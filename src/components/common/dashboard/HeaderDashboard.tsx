@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import DashboardTitle from "@/components/common/dashboard/DashboardTitle";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
-import SignoutSVG from "@/components/dashboard/svg/SignoutSVG";
 import {
   Popover,
   PopoverContent,
@@ -9,9 +8,9 @@ import {
 } from "@/components/ui/popover";
 import { getServerCookie } from "@/utils/service/storage/server-cookie";
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { ChevronDown, PlusCircle } from "lucide-react";
-import NotificationSettingModal from "./NotificationSettingModal";
-import WarningModal from "./WarningModal";
+import { ChevronDown } from "lucide-react";
+import DropdownMenu from "./DropdownMenu";
+import UserRole from "./UserRole";
 
 async function HeaderDashboard() {
   const token = await getServerCookie("serverAccessToken");
@@ -24,11 +23,6 @@ async function HeaderDashboard() {
     decodedUser = decodedUser?.user;
   }
 
-  const dropdownItems = [
-    { text: "شارژ کردن کیف پول", icon: <PlusCircle /> },
-    { text: "تنظیمات نوتیفیکیشن", icon: <SignoutSVG /> },
-    { text: "خروج", icon: <SignoutSVG /> },
-  ];
   return (
     <div className="bg-background animate-fade-down rounded-[12px] px-[19px] h-[66px] flex justify-between">
       {!decodedUser ? (
@@ -47,39 +41,14 @@ async function HeaderDashboard() {
                       <div className="w-[37px] aspect-square bg-fade rounded-lg " />
                       <div className="flex flex-col">
                         <h1 className="text-[13px] font-medium">
-                          امیر محمد ملایی
+                          {decodedUser.name || "user"}
                         </h1>
                         <h1 className="text-[12px] text-fade font-medium">
-                          +989123456789
+                          {decodedUser.phoneNumber || "نامشخص"}
                         </h1>
                       </div>
                     </div>
-                    {dropdownItems.map((item, index) => {
-                      return index == 1 ? (
-                        <NotificationSettingModal key={index}>
-                          <div className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end">
-                            {item.text} {item.icon}
-                          </div>
-                        </NotificationSettingModal>
-                      ) : index == 2 ? (
-                        <WarningModal
-                          key={index}
-                          title="آیا از خروج خود مطمعن هستید؟"
-                        >
-                          {" "}
-                          <div className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end">
-                            {item.text} {item.icon}
-                          </div>
-                        </WarningModal>
-                      ) : (
-                        <div
-                          key={index}
-                          className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
-                        >
-                          {item.text} {item.icon}
-                        </div>
-                      );
-                    })}
+                    <DropdownMenu />
                   </div>
                 </div>
               </PopoverContent>
@@ -88,11 +57,9 @@ async function HeaderDashboard() {
           <div className="flex gap-2">
             <div className="flex-col flex-wrap justify-between md:flex hidden">
               <h1 className="text-text font-yekan font-bold">
-                {decodedUser.name || "User"}
+                {decodedUser.name || "user"}
               </h1>
-              <p className="text-text-secondary text-[12px] font-yekan font-semibold">
-                خریدار
-              </p>
+              <UserRole />
             </div>
             <div className="flex-col flex-wrap justify-between md:hidden flex">
               {/* <Image

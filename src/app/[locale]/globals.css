@@ -360,6 +360,7 @@ html[dir="ltr"] .menu-items {
 }
 
 .popup-content {
+  width: 350px;
   background: #586cff;
   border-radius: 16px;
   color: #fff;
