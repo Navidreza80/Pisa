@@ -26,8 +26,12 @@ const tableHeaderItems = [
 
 export default function BookingList({
   bookingList,
+  noFilter = false,
+  title,
 }: {
   bookingList: { data: Reservation[]; totalCount: number };
+  title?: string;
+  noFilter?: boolean;
 }) {
   const t = useTranslations("BookingList");
   const router = useRouter();
@@ -46,34 +50,38 @@ export default function BookingList({
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <Title text={t("title")} />
+        <Title text={title || t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
-          <FilterModal>
-            <div className="grid grid-cols-2 gap-3 w-full">
-              <InputSelect
-                onChange={(sort) => handleSetParam("sort", sort.toString())}
-                className="!w-full"
-                items={[
-                  { text: "زمان ساخت", value: "created_at" },
-                  { text: "تاریخ آپدیت", value: "updated_at" },
-                ]}
-                label="مرتب سازی:"
-                withLabel
-                value={sort || "created_at"}
-              />
-              <InputSelect
-                onChange={(order) => handleSetParam("order", order.toString())}
-                items={[
-                  { text: "صعودی", value: "ASC" },
-                  { text: "نزولی", value: "DESC" },
-                ]}
-                className="!w-full"
-                label="روند:"
-                withLabel
-                value={order || "DESC"}
-              />
-            </div>
-          </FilterModal>
+          {!noFilter && (
+            <FilterModal>
+              <div className="grid grid-cols-2 gap-3 w-full">
+                <InputSelect
+                  onChange={(sort) => handleSetParam("sort", sort.toString())}
+                  className="!w-full"
+                  items={[
+                    { text: "زمان ساخت", value: "created_at" },
+                    { text: "تاریخ آپدیت", value: "updated_at" },
+                  ]}
+                  label="مرتب سازی:"
+                  withLabel
+                  value={sort || "created_at"}
+                />
+                <InputSelect
+                  onChange={(order) =>
+                    handleSetParam("order", order.toString())
+                  }
+                  items={[
+                    { text: "صعودی", value: "ASC" },
+                    { text: "نزولی", value: "DESC" },
+                  ]}
+                  className="!w-full"
+                  label="روند:"
+                  withLabel
+                  value={order || "DESC"}
+                />
+              </div>
+            </FilterModal>
+          )}
         </div>
       </div>
 

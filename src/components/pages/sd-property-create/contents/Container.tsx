@@ -6,6 +6,7 @@ import Link from "next/link";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 export default function PropertyContainer({
+  createHouse,
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -30,7 +31,7 @@ export default function PropertyContainer({
         <Line className="w-full" />
         <Stepper />
         {children}
-        <ChangeStep />
+        <ChangeStep createHouse={createHouse} />
       </div>
     </ContainerDashboard>
   );

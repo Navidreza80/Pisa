@@ -22,6 +22,8 @@ import Header from "../contents/Header";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { getAgeGroup } from "@/utils/helper/age-identifier";
 import { bookHotel } from "@/utils/service/reserve/post";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 // Card component for mobile view
 const TravelerCard = ({ traveler }) => {
@@ -88,24 +90,19 @@ export default function BookingStepTwo() {
     { text: "مبلغ خدمات", clx: baseCLX },
     { text: "قیمت", clx: `rounded-l-xl ${baseCLX}` },
   ];
-  const travelers = [
-    {
-      id: 1,
-      age: "بزرگسال",
-      name: "نویدرضا عباس زاده",
-      gender: "مرد",
-      nationalNumber: "09229167194",
-      birthDate: "1350 / 5 / 12",
-      services: "-",
-      servicesPrice: "-",
-      price: "1.520.000 ت",
-    },
-  ];
+
   const dispatch = useAppDispatch();
   const booking = useAppSelector((state) => state.bookingCreate);
-  const handleClick = async () => {
-    await bookHotel(booking);
-  };
+  const { mutate: handleClick } = useMutation({
+    mutationKey: ["BOOK_HOTEL"],
+    mutationFn: () =>
+      toast.promise(() => bookHotel(booking), {
+        pending: "درحال پردازش...",
+        success: "هتل با موفقیت رزرو شد",
+        error: "خطا در رزرو هتل",
+      }),
+    onSuccess: () => dispatch(setBookingSteps(1)),
+  });
   return (
     <div className="flex flex-col gap-y-4 md:gap-y-[38px] mt-4 md:mt-8">
       {/* Edit travelers */}
@@ -120,9 +117,9 @@ export default function BookingStepTwo() {
         </Header>
         {/* Travelers - Mobile Cards */}
         <div className="md:hidden px-2 py-3">
-          {travelers.map((traveler) => (
+          {/* {booking.traveler_details.map((traveler) => (
             <TravelerCard key={traveler.id} traveler={traveler} />
-          ))}
+          ))} */}
         </div>
         {/* Travelers - Desktop Table */}
         <div className="hidden md:block overflow-x-auto">
@@ -224,11 +221,10 @@ export default function BookingStepTwo() {
             startContent={<ChevronLeft />}
             handleClick={() => {
               handleClick();
-              dispatch(setBookingSteps(3));
             }}
             className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
           >
-            پرداخت انلاین
+            رزرو هتل
           </Button>
           <Button
             endContent={<ChevronRight />}

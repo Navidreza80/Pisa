@@ -3,7 +3,12 @@ import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-input-with-label";
 import { Fragment } from "react";
 
-export default function AddPropertyStepThree({ formik, setYard_type, tags, setTags }) {
+export default function AddPropertyStepThree({
+  formik,
+  setYard_type,
+  tags,
+  setTags,
+}) {
   const inputs = [
     {
       text: "تعداد اتاق:",
@@ -31,13 +36,14 @@ export default function AddPropertyStepThree({ formik, setYard_type, tags, setTa
       text: "نوع حیاط:",
       placeHolder: null,
       isSelect: true,
-      onChange: (e) => setYard_type(e),
+
       items: [
         { value: "روستایی", text: "روستایی" },
         { value: "ساحلی", text: "ساحلی" },
         { value: "شهری", text: "شهری" },
         { value: "جنگلی", text: "جنگلی" },
       ],
+      onChange: (e) => setYard_type(e),
     },
   ];
   return (
@@ -56,6 +62,7 @@ export default function AddPropertyStepThree({ formik, setYard_type, tags, setTa
           ) : (
             <Fragment key={index}>
               <InputSelect
+                onChange={item.onChange}
                 withLabel
                 items={item.items}
                 label={item.text}

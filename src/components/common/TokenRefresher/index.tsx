@@ -26,7 +26,7 @@ export default function TokenRefresher() {
       () => {
         RefreshToken();
       },
-      1 * 60 * 1000
+      10 * 60 * 1000
     ); // Every 2 minutes
 
     return () => clearInterval(interval); // Clean up on unmount

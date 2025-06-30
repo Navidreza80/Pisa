@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
 import ProfileCard from "./ProfileCard";
 import IncomeCard from "./IncomeCard";
+import ReservationChart from "./ReservationChart"
 
 const TagDashboard = ({ data }) => {
-  return (
-    <div className="w-full flex flex-wrap justify-between md:h-[255px] h-auto md:gap-y-0 gap-y-5 animate-fade-up">
-      {data.map((card, index) => {
-        if (card.type === "profile") {
-          return <ProfileCard key={index} data={card.data} />;
-        }
-        if (card.type === "income") {
-          return <IncomeCard key={index} data={card.data} title={card.title} />;
-        }
-        return null;
-      })}
-    </div>
-  );
+  return data.map((card, index) => {
+    if (card.type === "profile") {
+      return <ProfileCard key={index} data={card.data} />;
+    }
+    if (card.type === "income") {
+      return <IncomeCard key={index} data={card.data} title={card.title} />;
+    }
+    if (card.type === "reservation") {
+      return <ReservationChart key={index} data={card.data} title={card.title} />;
+    }
+    return null;
+  });
 };
 
 export default TagDashboard;

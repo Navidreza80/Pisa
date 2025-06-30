@@ -29,16 +29,6 @@ function BuyerSideBar() {
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
     },
-    {
-      name: t("reservationManagement"),
-      icon: <ReserveSVG />,
-      href: "/dashboard/seller/reservations",
-    },
-    {
-      name: t("financialManagement"),
-      icon: <PaymentSVG />,
-      href: "/dashboard/seller/finance",
-    },
   ];
 
   const buyerItems = [
@@ -52,21 +42,6 @@ function BuyerSideBar() {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
-    },
-    {
-      name: t("favorites"),
-      icon: <FavoriteSVG />,
-      href: "/dashboard/buyer/favorites",
-    },
-    {
-      name: t("payments"),
-      icon: <PaymentSVG />,
-      href: "/dashboard/buyer/payments",
-    },
-    {
-      name: t("notifications"),
-      icon: <NotifSVG />,
-      href: "/dashboard/buyer/notifications",
     },
   ];
 
