@@ -10,6 +10,7 @@ import {
 import { HouseItemsInterface } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
+import Image from "next/image";
 
 interface IProps {
   createdProperty: HouseItemsInterface | undefined;
@@ -41,7 +42,7 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
     { text: getTransactionType(transaction_type)?.text, svg: <RentSVG /> },
   ];
   const facilities2 = [
-    { text: "برچسب ها :", items: ["آپارتمان", "مسکونی", "بالکن"] },
+    { text: "برچسب ها :", items: createdProperty?.tags },
     { text: "مسکونی", svg: <BuildingSVG /> },
     { text: "آپارتمانی", svg: <House2SVG /> },
     { text: formatNumber(Number(price)), svg: <DollarSVG /> },
@@ -50,7 +51,11 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
     <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:flex-row md:justify-between md:flex-row-reverse">
       {/* Image Section */}
       <div className="w-full md:w-[41.8%] order-1 md:order-none">
-        <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl"></div>
+        {createdProperty?.photos[0] ? (
+          <Image unoptimized width={500} height={500} alt="houseImage" src={createdProperty?.photos[0]} />
+        ) : (
+          <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />
+        )}
       </div>
       {/* Description Section */}
       <div className="w-full md:w-[53.4%] order-2 md:order-none">

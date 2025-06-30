@@ -1,7 +1,7 @@
 "use client";
 import InputText from "@/components/common/inputs/text-input-with-label";
 
-const AddPropertyStepFour = ({ setPhotoURL, photoURL, handleChange }) => {
+const AddPropertyStepFour = ({ photoURL, handleChange }) => {
   return (
     <div className="mt-8 flex flex-col justify-center items-center">
       <div className="flex flex-row-reverse justify-start flex-wrap text-[20px] font-bold w-full">

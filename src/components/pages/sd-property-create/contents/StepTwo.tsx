@@ -26,6 +26,11 @@ export default function AddPropertyStepTwo({ formik, setLocation, location }) {
           name="address"
           onChange={formik.handleChange}
         />
+        {formik.touched.address && formik.errors.address ? (
+          <div className="text-red-500 text-sm mt-1 text-right">
+            {formik.errors.address}
+          </div>
+        ) : null}
         <h1
           dir="rtl"
           className="leading-8 md:leading-10 text-text text-base md:text-[20px] font-semibold mt-6 md:mt-[68px]"
