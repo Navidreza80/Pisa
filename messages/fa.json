@@ -419,7 +419,8 @@
       "approve": "تایید رزرو",
       "cancel": "لغو رزرو",
       "delete": "حذف",
-      "details": "جزئیات"
+      "details": "جزئیات",
+      "payment": "پرداخت"
     },
     "tableHeaders": {
       "empty": "",

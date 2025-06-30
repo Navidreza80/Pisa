@@ -20,6 +20,8 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import ReserveDetail from "./reserveDetail";
+import Link from "next/link";
+import PaymentSVG from "@/components/dashboard/svg/PaymentSVG";
 
 export default function ReserveTableContent({
   booking,
@@ -127,6 +129,16 @@ export default function ReserveTableContent({
                 <div className="my-auto">
                   <DeletePopover />
                 </div>
+              </div>
+              <div
+                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
+              >
+                <Link href={`/payment/${booking.id}`}>
+                  <h1>{t("actions.payment")}</h1>
+                  <div className="my-auto">
+                    <PaymentSVG />
+                  </div>
+                </Link>
               </div>
             </div>
           </PopoverContent>

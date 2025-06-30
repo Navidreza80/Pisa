@@ -378,6 +378,7 @@
       "approve": "الموافقة على الحجز",
       "cancel": "إلغاء الحجز",
       "delete": "حذف",
+      "payment": "دفع",
       "details": "تفاصيل"
     },
     "tableHeaders": {

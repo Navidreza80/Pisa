@@ -378,6 +378,7 @@
       "approve": "Rezervasyonu Onayla",
       "cancel": "Rezervasyonu İptal Et",
       "delete": "Sil",
+      "payment": "Ödeme",
       "details": "Detaylar"
     },
     "tableHeaders": {
