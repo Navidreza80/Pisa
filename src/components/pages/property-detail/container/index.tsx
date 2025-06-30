@@ -77,7 +77,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
         {/* Mid section */}
         <div dir="rtl" className="w-full flex justify-between flex-wrap gap-8">
           {/* Main images */}
-          <div className="w-[47%]">
+          <div className="lg:w-[47%] md:w-full w-full">
             <MainImages show3D photos={photos ? photos : []} sticky={true} />
           </div>
           {/* Left section */}

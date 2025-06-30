@@ -3,7 +3,6 @@
 import { MenuIcon } from "lucide-react";
 
 // Icons
-import { Home, User } from "lucide-react";
 
 // Next built in components
 import { Link } from "@/i18n/navigation";
@@ -38,10 +37,10 @@ export default function MobileNav() {
 
   // Navigation items
   const navItems = [
-    { text: t("about"), url: "/about-us", icon: <User /> },
-    { text: t("home"), url: "/", icon: <Home /> },
+    { text: t("about"), url: "/about-us" },
+    { text: t("home"), url: "/" },
     { text: t("rent"), url: "/rent" },
-    { text: t("reserve"), url: "/reserve", icon: <Home /> },
+    { text: t("reserve"), url: "/reserve" },
   ];
 
   return (
@@ -64,7 +63,6 @@ export default function MobileNav() {
                 key={index}
                 className="flex items-center gap-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors px-3 py-3"
               >
-                <span className="text-xl">{item.icon}</span>
                 <SheetClose asChild>
                   <Link
                     href={item.url}

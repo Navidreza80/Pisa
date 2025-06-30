@@ -27,6 +27,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import EditHouse from "../content/EditHouse";
 import { useMutation } from "@tanstack/react-query";
+import { formatNumber } from "@/utils/helper/format-number";
+import Image from "next/image";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
@@ -162,56 +164,16 @@ export default function SellerDashboardProperties({ houses }) {
           <Card key={property.id} className="overflow-hidden border-border">
             <CardContent className="p-4">
               {/* Header with property name and actions */}
-              <div className="flex justify-between items-start mb-3">
-                <Popover
-                  open={openPopoverId === property.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? property.id : null)
-                  }
-                >
-                  <PopoverTrigger asChild>
-                    <button className="text-xl font-bold cursor-pointer">
-                      ...
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
-                    <div className="space-y-2">
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>{t("activate")}</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <h1>{t("edit")}</h1>
-                        <div className="my-auto">
-                          <EditSVG />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <ModalStep2
-                          name={t("delete")}
-                          desc={t("deleteWarning")}
-                          title={t("deleteConfirm")}
-                          button={t("delete")}
-                        />
-                        <div className="my-auto">
-                          <DeleteSVG />
-                        </div>
-                      </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-
-                <div className="flex flex-col items-end">
-                  <h2 className="text-lg font-bold text-right">
+              <div className="flex justify-between items-start mb-3 w-full">
+                <div className="flex flex-col items-end w-full">
+                  <h2 className="text-lg font-bold text-center w-full">
                     {property.title}
                   </h2>
                 </div>
               </div>
 
               {/* Property image placeholder */}
-              <div className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3" />
+              <Image alt="houseImage" unoptimized src={property.photos[0]} width={100} height={100} className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3" />
 
               {/* Property details */}
               <div className="grid grid-cols-2 gap-3 text-right">
@@ -219,35 +181,28 @@ export default function SellerDashboardProperties({ houses }) {
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.price")}:
                   </p>
-                  <p className="font-medium">{property.price}</p>
+                  <p className="font-medium">{formatNumber(property.price)}</p>
                 </div>
 
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.rating")}:
                   </p>
-                  <p className="font-medium">{property.rate}</p>
+                  <p className="font-medium">
+                    {property.rating || "بدون امتیاز"}
+                  </p>
                 </div>
               </div>
 
               {/* Action buttons */}
               <div className="flex justify-end gap-2 pt-3 border-t border-border mt-3">
                 <Button
+                  onClick={() => handleDelete(property.id)}
                   variant="outline"
                   size="sm"
-                  className="text-red-500 border-red-200"
+                  className="text-red-500 border-red-200 cursor-pointer"
                 >
                   {t("delete")}
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-primary text-primary"
-                >
-                  {t("edit")}
-                </Button>
-                <Button size="sm" className="bg-primary text-white">
-                  {t("activate")}
                 </Button>
               </div>
             </CardContent>

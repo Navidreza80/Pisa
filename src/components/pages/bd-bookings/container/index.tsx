@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Reservation } from "@/types/reserve";
+import formatToPersianDate from "@/utils/helper/format-date";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -111,27 +112,16 @@ export default function BookingList({
           <Card key={booking.id} className="overflow-hidden border-border">
             <CardContent className="p-0">
               <div className="p-4 space-y-3">
-                {/* Header with hotel name and actions */}
-                <div className="flex justify-end items-start">
-                  <h2 className="text-lg font-bold text-right">
-                    {booking.hotel}
-                  </h2>
-                </div>
-
                 {/* Booking details */}
                 <div className="flex flex-col gap-2 text-right">
                   <div className="space-y-1">
                     <p className="text-sm text-text-secondary">
                       {t("tableHeaders.bookingDate")}
                     </p>
-                    <p className="font-medium">{booking.date}</p>
-                  </div>
-
-                  <div className="space-y-1">
-                    <p className="text-sm text-text-secondary">
-                      :{t("tableHeaders.totalPrice")}
+                    <p className="font-medium">
+                      {booking.reservedDates.length > 0 &&
+                        formatToPersianDate(booking.reservedDates[0].value)}
                     </p>
-                    <p className="font-medium">{booking.total}</p>
                   </div>
 
                   <div className="space-y-1">
@@ -139,7 +129,9 @@ export default function BookingList({
                       :{t("tableHeaders.passengerCount")}
                     </p>
                     <p className="font-medium">
-                      {t("passengerCount", { count: booking.passengers })}
+                      {t("passengerCount", {
+                        count: booking.traveler_details.length,
+                      })}
                     </p>
                   </div>
                 </div>
@@ -150,16 +142,8 @@ export default function BookingList({
                     <span className="text-sm text-text-secondary">
                       :{t("tableHeaders.bookingStatus")}
                     </span>
-                    <span
-                      className={cn(
-                        "px-2 py-1 rounded-full text-white text-xs",
-                        booking.status === t("status.approved") &&
-                          "bg-lime-400",
-                        booking.status === t("status.pending") &&
-                          "bg-orange-400"
-                      )}
-                    >
-                      {booking.status}
+                    <span>
+                      {booking.status == "pending" ? "در انتظار" : "تایید شده"}
                     </span>
                   </div>
 
@@ -167,39 +151,8 @@ export default function BookingList({
                     <span className="text-sm text-text-secondary">
                       {t("tableHeaders.paymentStatus")}
                     </span>
-                    <span
-                      className={cn(
-                        "px-2 py-1 rounded-full text-white text-xs",
-                        booking.paymentStatus === t("status.approved") &&
-                          "bg-lime-400",
-                        booking.paymentStatus === t("status.cancelled") &&
-                          "bg-rose-400"
-                      )}
-                    >
-                      {booking.paymentStatus}
-                    </span>
+                    <span>تایید شده</span>
                   </div>
-                </div>
-
-                {/* Action buttons */}
-                <div className="flex justify-end gap-2 pt-2 border-t border-border mt-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="text-red-500 border-red-200"
-                  >
-                    {t("actions.delete")}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-orange-200 text-orange-500"
-                  >
-                    {t("actions.cancel")}
-                  </Button>
-                  <Button size="sm" className="bg-primary text-white">
-                    {t("actions.details")}
-                  </Button>
                 </div>
               </div>
             </CardContent>

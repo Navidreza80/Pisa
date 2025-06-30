@@ -33,7 +33,7 @@ export default async function MainImages({
         {photos.length > 3 && (
           <div
             dir="rtl"
-            className="w-[calc(33.33333333333333%-10.7px)]  text-text border rounded-t-2xl flex justify-center items-center border-border rounded-b-3xl h-[192px]"
+            className="lg:w-[calc(33.33333333333333%-10.7px)] md:hidden hidden  text-text border rounded-t-2xl lg:flex justify-center items-center border-border rounded-b-3xl h-[192px]"
           >
             <svg
               width="20"
@@ -56,13 +56,13 @@ export default async function MainImages({
         {photos[1] && (
           <img
             src={photos[1]}
-            className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
+            className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
           />
         )}
         {photos[2] && (
           <img
             src={photos[2]}
-            className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl rounded-b-3xl h-[192px]"
+            className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
           />
         )}
       </div>

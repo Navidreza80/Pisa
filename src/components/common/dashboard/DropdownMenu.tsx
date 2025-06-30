@@ -27,24 +27,14 @@ export default function DropdownMenu() {
             ? router.push("/dashboard/seller")
             : "",
     },
-    { text: "خروج", icon: <SignoutSVG /> },
   ];
-  return dropdownItems.map((item, index) => {
-    return index == 1 ? (
-      <WarningModal key={index} title="آیا از خروج خود مطمعن هستید؟">
-        {" "}
-        <div className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end">
-          {item.text} {item.icon}
-        </div>
-      </WarningModal>
-    ) : (
-      <div
-        key={index}
-        onClick={item.onClick}
-        className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
-      >
-        {item.text} {item.icon}
-      </div>
-    );
-  });
+  return dropdownItems.map((item, index) => (
+    <div
+      key={index}
+      onClick={item.onClick}
+      className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
+    >
+      {item.text} {item.icon}
+    </div>
+  ));
 }
