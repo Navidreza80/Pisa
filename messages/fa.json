@@ -35,7 +35,7 @@
     "parking": "پارکینگ",
     "property": "نوع ملک",
     "CommentsPiza": "نظرات کاربران پیزا",
-    "toman":"تومان"
+    "toman": "تومان"
   },
   "Header": {
     "login": "ثبت نام و ورود",
@@ -211,7 +211,7 @@
     "addToComparison": "افزودن به مقایسه",
     "new": "جدید",
     "squareMeters": "متر مربع",
-    "toman": "تومان", 
+    "toman": "تومان",
     "parking": "پارکینگ"
   },
   "Payment": {
@@ -689,7 +689,7 @@
       "title": "جدول امتیازات",
       "emptyMessage": "هنوز امتیازی ثبت نشده است!"
     }
-  }, 
+  },
   "comments": {
     "loading": "در حال بارگذاری...",
     "error": "مشکلی در دریافت کامنت‌ها پیش آمده است.",
@@ -699,15 +699,21 @@
     "prev": "قبلی",
     "next": "بعدی"
   },
-    "userModal": {
+  "userModal": {
     "title": "مشخصات کاربر",
     "profilePictureAlt": "تصویر پروفایل"
   },
-    "notificationSettings": {
+  "notificationSettings": {
     "title": "تنظیمات نوتیفیکیشن",
     "reservation": "نوتیفیکیشن رزرو",
     "payment": "نوتیفیکیشن پرداخت",
     "discount": "نوتیفیکیشن تخفیف",
     "system": "نوتیفیکیشن سیستمی"
+  },
+  "AddPropertyStepFour": {
+    "title": "تصاویر ملک",
+    "subtitle1": "یک تصویر بهتر از هزار کلمه",
+    "subtitle2": "با قرار دادن عکس شانس دیده شدن ملک‌تان را ۵ برابر کنید",
+    "imageLinkLabel": "لینک عکس:"
   }
 }

@@ -667,6 +667,12 @@
       "payment": "إشعار الدفع",
       "discount": "إشعار الخصم",
       "system": "إشعار النظام"
+    },
+    "AddPropertyStepFour": {
+      "title": "صور العقار",
+      "subtitle1": "صورة واحدة تساوي ألف كلمة",
+      "subtitle2": "زِد visibility عقارك 5 أضعاف بالصور",
+      "imageLinkLabel": "رابط الصورة:"
     }
   }
 }

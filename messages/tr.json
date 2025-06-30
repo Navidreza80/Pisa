@@ -667,6 +667,12 @@
       "payment": "Ödeme Bildirimi",
       "discount": "İndirim Bildirimi",
       "system": "Sistem Bildirimi"
+    },
+    "AddPropertyStepFour": {
+      "title": "Emlak Görselleri",
+      "subtitle1": "Bir resim bin kelimeye bedeldir",
+      "subtitle2": "Fotoğraflarla emlak görünürlüğünüzü 5 kat artırın",
+      "imageLinkLabel": "Resim Bağlantısı:"
     }
   }
 }
