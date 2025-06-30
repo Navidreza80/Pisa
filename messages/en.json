@@ -379,7 +379,8 @@
       "approve": "Approve Reservation",
       "cancel": "Cancel Reservation",
       "delete": "Delete",
-      "details": "Details"
+      "details": "Details",
+      "payment": "Payment"
     },
     "tableHeaders": {
       "empty": "",
