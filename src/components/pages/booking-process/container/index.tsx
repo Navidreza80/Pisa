@@ -10,17 +10,7 @@ export default function BookingProcessContainer() {
   return (
     <div className="flex flex-col flex-wrap w-[85.5%]">
       <Stepper />
-      {id == 1 ? (
-        <BookingStepOne />
-      ) : id == 2 ? (
-        <BookingStepTwo />
-      ) : id == 3 ? (
-        <div>3</div>
-      ) : id == 4 ? (
-        <div>d4</div>
-      ) : (
-        <div>d5</div>
-      )}
+      {id == 1 ? <BookingStepOne /> : id == 2 ? <BookingStepTwo /> : ""}
     </div>
   );
 }

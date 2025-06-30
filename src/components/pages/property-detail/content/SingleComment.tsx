@@ -50,14 +50,6 @@ export default function SingleComment({
         isReply ? "border-r-2 border-blue-500" : ""
       }`}
     >
-      <UserModal
-        user={{
-          name: comment.user.fullName,
-          profilePicture: comment.user.profilePicture,
-        }}
-        open={isOpen}
-        onClose={() => setIsOpen((prev) => !prev)}
-      />
       {isReply && (
         <div className="h-full flex-shrink-0">
           <div className="w-10 h-10 flex justify-center items-center bg-blue-50 dark:bg-blue-900/30 rounded-full">

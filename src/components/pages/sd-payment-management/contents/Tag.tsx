@@ -15,9 +15,7 @@ const Tag = ({ item }) => {
           <PinSVG />
         </div>
         <div className="flex flex-col flex-wrap gap-1 justify-between mt-4">
-          {pathname.endsWith("/seller") && (
-            <p className="font-semibold text-xl h-5">{item.textNumber}</p>
-          )}
+          <p className="font-semibold text-xl h-5">{item.textNumber}</p>
           <p className="font-medium h-5">{item.text}</p>
         </div>
       </div>
@@ -30,15 +28,13 @@ const Tag = ({ item }) => {
           {formatNumber(item.price)} تومان
         </div>
       )}
-      {pathname.endsWith("/seller") && (
-        <Link
-          href={"/dashboard/seller/" + item.href}
-          className="flex justify-between py-2 w-full"
-        >
-          <ViewMoreSVG />
-          <p className="font-medium text-text-secondary">مشاهده</p>
-        </Link>
-      )}
+      <Link
+        href={"/dashboard/seller/" + item.href}
+        className="flex justify-between py-2 w-full"
+      >
+        <ViewMoreSVG />
+        <p className="font-medium text-text-secondary">مشاهده</p>
+      </Link>
     </div>
   );
 };

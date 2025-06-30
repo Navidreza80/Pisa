@@ -79,14 +79,14 @@ const TableDashboard = ({
               </button>
             ))}
           </div>
-          {add && (
-            <Link href={href}>
-              <Button className="gap-1.5 !w-full">
-                <AddSVG /> {t("add")} {addTitle}
-              </Button>
-            </Link>
-          )}
         </div>
+      )}
+      {add && (
+        <Link href={href}>
+          <Button className="gap-1.5 !w-auto">
+            <AddSVG /> {t("add")} {addTitle}
+          </Button>
+        </Link>
       )}
     </>
   );

@@ -8,7 +8,7 @@ export default async function Page({
 }) {
   const { page, sort, order } = await searchParams;
   const data = await getBookingList({ page, limit: 2, sort, order });
-  console.log(data)
+
 
   return <BookingList bookingList={data} />;
 }

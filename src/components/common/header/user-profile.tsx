@@ -27,7 +27,7 @@ export default function UserProfile({ user }: UserProfileProps) {
   const t = useTranslations("Header");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
   // UseEffects
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -55,7 +55,7 @@ export default function UserProfile({ user }: UserProfileProps) {
           {user?.profilePicture ? (
             <Image
               unoptimized
-              src={user.profilePicture}
+              src={user.profilePicture || null}
               alt={user.name || "User"}
               width={32}
               height={32}

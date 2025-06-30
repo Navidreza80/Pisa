@@ -12,7 +12,7 @@ import { formatNumber } from "@/utils/helper/format-number";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
 
 interface IProps {
-  createdProperty: HouseItemsInterface;
+  createdProperty: HouseItemsInterface | undefined;
 }
 
 const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {

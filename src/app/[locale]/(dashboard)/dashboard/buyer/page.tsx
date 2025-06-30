@@ -1,10 +1,10 @@
-import SellerMainDashboard from "@/components/pages/sd-main/container"
+import BuyerDashboardMain from "@/components/pages/bd-main/container"
 
 
 const Page = async () => {
   return (
    
-    <SellerMainDashboard />
+    <BuyerDashboardMain />
   )
 }
 export default Page

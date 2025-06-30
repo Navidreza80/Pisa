@@ -1,26 +1,52 @@
 "use client";
+import { HouseItemsInterface } from "@/types/house";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
-import AddPropertyStepOne from "../contents/StepOne";
-import AddPropertyStepTwo from "../contents/StepTwo";
-import AddPropertyStepThree from "../contents/StepThree";
-import AddPropertyStepFour from "../contents/StepFour";
-import AddPropertyStepFive from "../contents/StepFive";
-import PropertyContainer from "../contents/Container";
+import postHouse from "@/utils/service/house/post";
 import { useFormik } from "formik";
 import { useState } from "react";
+import PropertyContainer from "../contents/Container";
+import AddPropertyStepFive from "../contents/StepFive";
+import AddPropertyStepFour from "../contents/StepFour";
+import AddPropertyStepOne from "../contents/StepOne";
+import AddPropertyStepThree from "../contents/StepThree";
+import AddPropertyStepTwo from "../contents/StepTwo";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const AddPropertyContainer = () => {
-  const [createdProperty, setCreatedProperty] = useState({});
-  const [title, setTitle] = useState("");
+  // Hooks
+  const [createdProperty, setCreatedProperty] = useState<HouseItemsInterface>();
+  const [photoURL, setPhotoURL] = useState(["", "", "", ""]);
+  const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const id = useAppSelector((state) => state.stepsId.id);
-  const [location, setLocation] = useState({
+  const [location, setLocation] = useState<{ lat: string; lng: string }>({
     lat: "",
     lng: "",
   });
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState<{ name: string }>();
   const [transaction_type, setTransaction_type] = useState();
   const [yard_type, setYard_type] = useState();
+
+  // Create house function
+  const { mutate: createHouse } = useMutation({
+    mutationKey: ["CREATE_HOUSE"],
+    mutationFn: () =>
+      toast.promise(() => postHouse(createdProperty), {
+        pending: "درحال پردازش...",
+        success: "آگهی با موفقیت ساخته شد",
+        error: "خطا در ساخت آگهی",
+      }),
+  });
+
+  // Handle changing photoURL state
+  const handleChange = (index: number, value: string) => {
+    const updated = [...photoURL];
+    updated[index] = value;
+    setPhotoURL(updated);
+  };
+
+  // Formik initialValues / onSubmit
   const formik = useFormik({
     initialValues: {
       address: "",
@@ -36,25 +62,33 @@ const AddPropertyContainer = () => {
       setCreatedProperty({
         ...values,
         yard_type,
-        categories,
+        photos: photoURL,
+        categories: {
+          name: categories,
+        },
         transaction_type,
         tags,
         title,
         location,
       });
       console.log({
+        photos: photoURL,
         ...values,
         yard_type,
         tags,
-        categories,
+        categories: {
+          name: categories,
+        },
         transaction_type,
         location,
       });
     },
   });
+
+  // JSX render
   return (
     <form onSubmit={formik.handleSubmit}>
-      <PropertyContainer>
+      <PropertyContainer createHouse={createHouse}>
         {id == 1 ? (
           <AddPropertyStepOne
             title={title}
@@ -77,7 +111,11 @@ const AddPropertyContainer = () => {
             formik={formik}
           />
         ) : id == 4 ? (
-          <AddPropertyStepFour />
+          <AddPropertyStepFour
+            handleChange={handleChange}
+            photoURL={photoURL}
+            setPhotoURL={setPhotoURL}
+          />
         ) : (
           <AddPropertyStepFive createdProperty={createdProperty} />
         )}

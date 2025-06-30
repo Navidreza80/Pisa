@@ -7,16 +7,19 @@ import {
 } from "@/utils/hooks/react-redux/store/hook";
 import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 
-const ChangeStep = () => {
+const ChangeStep = ({ createHouse }) => {
   const id = useAppSelector((state) => state.stepsId.id);
   const dispatch = useAppDispatch();
   return (
     <div className="mt-[19px] flex gap-[19px]">
       <Button
-        handleClick={() => dispatch(setStepsId(id == 5 ? 1 : id + 1))}
+        handleClick={() => {
+          if (id == 5) createHouse();
+          dispatch(setStepsId(id == 5 ? 1 : id + 1));
+        }}
         className="!w-auto gap-2"
       >
-        <ArrowSVG className="rotate-90" /> مرحله بعد{" "}
+        <ArrowSVG className="rotate-90" /> {id == 5 ? "ساخت آگهی" : "مرحله بعد"}
       </Button>
       <Button
         handleClick={() => dispatch(setStepsId(id == 1 ? 5 : id - 1))}
