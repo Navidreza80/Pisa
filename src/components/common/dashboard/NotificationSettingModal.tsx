@@ -8,18 +8,22 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import CloseBtn from "./CloseBtn";
+import { getTranslations } from "next-intl/server";
 
-const NotificationSettingModal = ({
+const NotificationSettingModal = async ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  const t = await getTranslations("notificationSettings");
+
   const switchInputs = [
-    { text: "نوتیفیکیشن رزرو" },
-    { text: "نوتیفیکیشن پرداخت" },
-    { text: "نوتیفیکیشن تخفیف" },
-    { text: "نوتیفیکیشن سیستمی" },
+    { text: t("reservationNotification") },
+    { text: t("paymentNotification") },
+    { text: t("discountNotification") },
+    { text: t("systemNotification") },
   ];
+
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -28,25 +32,24 @@ const NotificationSettingModal = ({
           <DialogTitle className="hidden"></DialogTitle>
         </DialogHeader>
         <div className="px-[19px] pt-[26px] w-full flex justify-between items-center flex-row-reverse">
-          <h1 className="text-2xl">تنظیمات نوتیفیکیشن</h1>
+          <h1 className="text-2xl">{t("title")}</h1>
           <CloseBtn />
         </div>
         <Line className="w-full !my-0" />
         <div className="flex px-[19px] pt-[19px] gap-y-[19px] flex-col">
-          {switchInputs.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="w-full text-xl flex justify-between items-center"
-              >
-                <Switch className="bg-fade" />
-                {item.text}
-              </div>
-            );
-          })}
+          {switchInputs.map((item, index) => (
+            <div
+              key={index}
+              className="w-full text-xl flex justify-between items-center"
+            >
+              <Switch className="bg-fade" />
+              <span>{item.text}</span>
+            </div>
+          ))}
         </div>
       </DialogContent>
     </Dialog>
   );
 };
+
 export default NotificationSettingModal;

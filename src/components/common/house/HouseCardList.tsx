@@ -258,7 +258,7 @@ export default function HouseCardList({
             <div className="relative opacity-[0.5]">
               <div className="flex flex-row-reverse gap-[5px] ">
                 <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-                  تومان
+                  {t("toman")}
                 </p>
                 <h1 className="text-[20px] font-[700] my-auto ">
                   {formatNumber(Number(card.price))}
@@ -271,7 +271,7 @@ export default function HouseCardList({
             <p className="text-[16px] font-[700] my-auto">/</p>
             <div className="flex flex-row-reverse gap-[5px]">
               <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-                تومان
+                {t("toman")}
               </p>
               <h1 className="text-[20px] font-[700] my-auto ">
                 {formatNumber(Number(Number(card.price) * 50) / 100)}
