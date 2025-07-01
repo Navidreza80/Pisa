@@ -19,6 +19,7 @@ import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import LocationSVG from "../svg/location";
 import PersonSVG from "../svg/person";
+import NoImage from "@/assets/images/no.jpg";
 
 // Types
 import { TransitionLink } from "@/components/common/TransitionLink";
@@ -67,7 +68,6 @@ export default function HouseCardList({
 
   useEffect(() => {
     if (Ids.ids?.length == 2) router.push(`/comparison?ids=${Ids.ids}`);
-    return;
   }, [Ids.ids]);
 
   // Redux
@@ -145,7 +145,11 @@ export default function HouseCardList({
             <SwiperSlide key={idx} className="w-full h-[221px] relative">
               <img
                 className="object-cover w-full h-full"
-                src={photo}
+                src={
+                  photo !== null && photo != "" && photo.startsWith("https")
+                    ? photo
+                    : NoImage.src
+                }
                 alt={`${card.title} - تصویر ${idx + 1}`}
               />
             </SwiperSlide>

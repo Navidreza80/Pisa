@@ -3,20 +3,23 @@
 import Button from "@/components/common/button";
 import HouseCard from "@/components/common/house/house-card";
 import { HouseItemsInterface } from "@/types/house";
+import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { Search } from "lucide-react";
 // Import shadcn dialog and input
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
-export default function ResultButton({ houses }: { houses: Array<HouseItemsInterface> }) {
+export default function ResultButton({
+  houses,
+}: {
+  houses: Array<HouseItemsInterface>;
+}) {
   // Hooks
   const t = useTranslations("HomePage");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,24 +29,17 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  
   // Filter houses based on search query
-  const filteredHouses = houses?.filter(house => {
+  const filteredHouses = houses?.filter((house) => {
     const searchLower = searchQuery.toLowerCase();
     return (
       (house.title && house.title.toLowerCase().includes(searchLower)) ||
       (house.address && house.address.toLowerCase().includes(searchLower)) ||
-      (house.tags && house.tags.some(tag => tag.toLowerCase().includes(searchLower)))
+      (house.tags &&
+        house.tags.some((tag) => tag.toLowerCase().includes(searchLower)))
     );
   });
-  
+
   return (
     <>
       <Button
@@ -53,9 +49,11 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
         {t("result")}
       </Button>
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-[700px] overflow-y-auto">
+        <DialogContent className="max-w-[700px] h-[100%] overflow-y-scroll">
           <DialogHeader>
-            <DialogTitle className="text-right w-full">{t("searchResults")}</DialogTitle>
+            <DialogTitle className="text-right w-full">
+              {t("searchResults")}
+            </DialogTitle>
           </DialogHeader>
           <div className="py-4 text-right" dir="rtl">
             <div className="mb-4 relative">
@@ -78,7 +76,9 @@ export default function ResultButton({ houses }: { houses: Array<HouseItemsInter
               </div>
             ) : (
               <p className="text-center text-text-secondary">
-                {searchQuery ? "نتیجه‌ای برای جستجوی شما یافت نشد" : "نتیجه‌ای یافت نشد"}
+                {searchQuery
+                  ? "نتیجه‌ای برای جستجوی شما یافت نشد"
+                  : "نتیجه‌ای یافت نشد"}
               </p>
             )}
           </div>

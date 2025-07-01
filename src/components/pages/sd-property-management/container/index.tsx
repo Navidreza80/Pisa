@@ -5,9 +5,7 @@ import ModalStep2 from "@/components/common/dashboard/modalStep2";
 import TableDashboard from "@/components/common/dashboard/Table";
 import Title from "@/components/common/dashboard/Title";
 import FilterModal from "@/components/dashboard/filter-modal";
-import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
-import EditSVG from "@/components/dashboard/svg/EditSVG";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,18 +15,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import formatToPersianDate from "@/utils/helper/format-date";
+import { formatNumber } from "@/utils/helper/format-number";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
 import { deleteHouse } from "@/utils/service/house/delete";
 import { putHouse } from "@/utils/service/house/put";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import EditHouse from "../content/EditHouse";
-import { useMutation } from "@tanstack/react-query";
-import { formatNumber } from "@/utils/helper/format-number";
-import Image from "next/image";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
@@ -42,7 +39,7 @@ export const tableHeaderItems = (t) => [
 export default function SellerDashboardProperties({ houses }) {
   const router = useRouter();
   const t = useTranslations("SellerPropertyList");
-  const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
+
   const { mutate: handleEdit } = useMutation({
     mutationKey: ["EDIT_HOUSE"],
     mutationFn: (payload) =>
@@ -173,7 +170,14 @@ export default function SellerDashboardProperties({ houses }) {
               </div>
 
               {/* Property image placeholder */}
-              <Image alt="houseImage" unoptimized src={property.photos[0]} width={100} height={100} className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3" />
+              <Image
+                alt="houseImage"
+                unoptimized
+                src={property.photos[0]}
+                width={100}
+                height={100}
+                className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3"
+              />
 
               {/* Property details */}
               <div className="grid grid-cols-2 gap-3 text-right">

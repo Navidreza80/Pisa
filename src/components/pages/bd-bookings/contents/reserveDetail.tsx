@@ -1,9 +1,10 @@
+import CloseBtn from "@/components/common/dashboard/CloseBtn";
+import Line from "@/components/common/dashboard/line";
 import BathroomSVG from "@/components/common/svg/bathroom";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import Share from "@/components/common/svg/share";
 import Star from "@/components/common/svg/star";
-import Line from "@/components/common/dashboard/line";
 import {
   Dialog,
   DialogContent,
@@ -11,11 +12,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CloseBtn from "@/components/common/dashboard/CloseBtn";
-import { useTranslations } from "next-intl";
-import React from "react";
 import { HouseItemsInterface } from "@/types/house";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
+import React from "react";
 
 const ReserveDetail = ({
   isOpen,
@@ -102,9 +102,6 @@ const ReserveDetail = ({
           </div>
           <footer className="flex justify-between px-[19px]">
             <div className="flex gap-[19px]">
-              <button className="px-[19px] py-[12px] rounded-xl bg-primary text-white">
-                {t("reservations")}
-              </button>
               <button className="px-[19px] py-[12px] rounded-xl bg-primary text-white">
                 پرداختی ها
               </button>

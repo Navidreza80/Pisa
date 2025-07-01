@@ -23,6 +23,9 @@ import getHousesComparisonByIds from "@/utils/service/comparison/get";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import LoadingCustomized from "@/components/common/loading";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 
 /**
  * About us page - Display team members, missions, location and FAQ
@@ -40,13 +43,20 @@ const ComparisonPage = () => {
   const isRTL = locale === "ar" || locale === "fa";
   const searchParams = useSearchParams();
   const idsParam = searchParams.get("ids");
-  console.log(idsParam);
   const { data: houses } = useQuery({
     queryKey: ["COMPARE_HOUSES"],
     queryFn: () => getHousesComparisonByIds(idsParam),
   });
+  // Redux
+  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(setComparisonIds(""));
+    };
+  }, []);
 
-  if (!houses) return <LoadingCustomized title={"در حال مقایسه کردن دو خانه..."} />;
+  if (!houses)
+    return <LoadingCustomized title={"در حال مقایسه کردن دو خانه..."} />;
 
   // Rating
   const renderRating = (rating: number) => {
@@ -146,7 +156,7 @@ const ComparisonPage = () => {
                         </div>
                       </div>
                       <div className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">
-                        {formatNumber(Number(house.price))} {t("view")}
+                        {formatNumber(Number(house.price))} تومان
                       </div>
                     </div>
 

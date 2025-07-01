@@ -96,6 +96,21 @@ export default function FloatingActions() {
       return true;
     }
 
+    if (command.includes("about us")) {
+      router.push("/about-us");
+      return true;
+    }
+
+    if (command.includes("dashboard")) {
+      router.push("/dashboard/buyer");
+      return true;
+    }
+
+    if (command.includes("rent")) {
+      router.push("/rent");
+      return true;
+    }
+
     if (command.includes("home") || command.includes("main")) {
       router.push("/");
       return true;

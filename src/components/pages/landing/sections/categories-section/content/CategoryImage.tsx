@@ -9,6 +9,7 @@ import estakhr from "@/assets/images/landing/category/estakhr.png";
 import kolbe from "@/assets/images/landing/category/kolbei.png";
 import Villa from "@/assets/images/landing/category/vilaii.png";
 import jungle from "@/assets/images/jungle-house.jpg";
+import NoImage from "@/assets/images/no.jpg";
 import beach from "@/assets/images/beach-house.jpg";
 
 // Hooks
@@ -52,7 +53,7 @@ const CategoryImage = ({ name, id }: { name: string; id: string }) => {
                     ? jungle.src
                     : id == "6"
                       ? beach.src
-                      : null
+                      : NoImage.src
         }
         alt={name}
         width={1000}

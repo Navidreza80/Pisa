@@ -1,7 +1,10 @@
 "use client";
 
+import TableDashboard from "@/components/common/dashboard/Table";
+import Modal from "@/components/common/modal/modal";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
+import PaymentSVG from "@/components/dashboard/svg/PaymentSVG";
 import {
   Popover,
   PopoverContent,
@@ -14,14 +17,21 @@ import formatToPersianDateWithMoment from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getHouseById } from "@/utils/service/house/get-by-id";
 import { deleteReservation } from "@/utils/service/reserve/delete";
+import { Users } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import ReserveDetail from "./reserveDetail";
-import Link from "next/link";
-import PaymentSVG from "@/components/dashboard/svg/PaymentSVG";
+
+const tableHeaderItems = [
+  { text: "نام", clx: "rounded-r-xl" },
+  { text: "کدملی", clx: null },
+  { text: "جنسیت", clx: null },
+  { text: "تاریخ تولد", clx: "rounded-l-xl" },
+];
 
 export default function ReserveTableContent({
   booking,
@@ -130,9 +140,35 @@ export default function ReserveTableContent({
                   <DeletePopover />
                 </div>
               </div>
-              <div
-                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
-              >
+              <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
+                <Modal title="اطلاعات مسافران" trigger={<h1 className="cursor-pointer">مسافران</h1>}>
+                  <TableDashboard
+                    tableHeader={tableHeaderItems}
+                    tableContent={booking.traveler_details.map(
+                      (traveler, index) => (
+                        <tr key={index}>
+                          <td className="py-2 px-4 text-[18px] font-medium">
+                            {traveler.firstName}
+                          </td>
+                          <td className="py-2 px-4 text-[18px] font-medium">
+                            {traveler.nationalId}
+                          </td>
+                          <td className="py-2 px-4 text-[18px] font-medium">
+                            {traveler.gender}
+                          </td>
+                          <td className="py-2 px-4 text-[18px] font-medium">
+                            {traveler.birthDate}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  />
+                </Modal>
+                <div className="my-auto">
+                  <Users />
+                </div>
+              </div>
+              <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
                 <Link href={`/payment/${booking.id}`}>
                   <h1>{t("actions.payment")}</h1>
                   <div className="my-auto">
