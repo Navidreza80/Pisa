@@ -36,9 +36,11 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
 
   // Fetching related properties server side
   const relatedHouses: HouseItemsInterface[] = await fetchHouses({
-    transactionType: "",
-    search: propertyDetails?.address,
+    transactionType: propertyDetails?.transaction_type,
+    limit: 3
   });
+
+  console.log(relatedHouses)
 
   // Handle if the property detail is undefined
   if (!propertyDetails) {
@@ -141,7 +143,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
         {/* Bottom section */}
         <RelatedHouse
           relatedHouses={relatedHouses.filter(
-            (e) => e.id.toString != id.toString
+            (e) => e.id != id
           )}
         />
       </div>
