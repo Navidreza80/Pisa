@@ -131,6 +131,12 @@ export default function ReserveTableContent({
                   <DetailPopover />
                 </div>
               </div>
+                <Link className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1" href={`/payment/${booking.id}`}>
+                  <h1>{t("actions.payment")}</h1>
+                  <div className="my-auto">
+                    <PaymentSVG />
+                  </div>
+                </Link>
               <div
                 onClick={() => deleteBooking(booking.id.toString())}
                 className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
@@ -167,14 +173,6 @@ export default function ReserveTableContent({
                 <div className="my-auto">
                   <Users />
                 </div>
-              </div>
-              <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                <Link href={`/payment/${booking.id}`}>
-                  <h1>{t("actions.payment")}</h1>
-                  <div className="my-auto">
-                    <PaymentSVG />
-                  </div>
-                </Link>
               </div>
             </div>
           </PopoverContent>
