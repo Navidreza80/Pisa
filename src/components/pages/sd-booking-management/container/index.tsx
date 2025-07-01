@@ -112,9 +112,9 @@ export default function SellerReservationManagement() {
               <td className="py-2 px-4">
                 <span
                   className={cn(
-                    "px-2 py-1 rounded-full text-white text-[13px] font-medium",
-                    booking.status === t("status.approved") && "bg-lime-400",
-                    booking.status === t("status.pending") && "bg-orange-400"
+                    "px-2 py-1 rounded-full text-text text-[13px] font-medium",
+                    booking.status === "confirmed" && "bg-lime-400",
+                    booking.status === "pending" && "bg-orange-400"
                   )}
                 >
                   {booking.status}

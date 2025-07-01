@@ -36,7 +36,7 @@ export default function Navbar() {
 
   // Header NavBar Items
   const navItems = [
-    { text: "درباره ما", url: "/about-us" },
+    { text: t("about"), url: "/about-us" },
     { text: t("home"), url: "/" },
   ];
 

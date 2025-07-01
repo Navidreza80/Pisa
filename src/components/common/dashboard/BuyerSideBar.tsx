@@ -16,6 +16,7 @@ import ReviewsSVG from "../../dashboard/svg/reviewsSVG";
 import SignoutSVG from "../../dashboard/svg/SignoutSVG";
 import BuyerSideBarItems from "./buyerSideBarItems";
 import MobileBottomNavbar from "./MobileBottomNav";
+import Link from "next/link";
 
 function BuyerSideBar() {
   const pathname = usePathname();
@@ -73,9 +74,9 @@ function BuyerSideBar() {
                 <House className="cursor-pointer lg:hidden md:block block" />
               </div>
               {!collapsed && (
-                <h2 className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
+                <Link href={"/"} className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
                   Piza
-                </h2>
+                </Link>
               )}
             </div>
 

@@ -88,7 +88,7 @@ export default function ReserveTableContent({
         <span
           className={cn(
             "px-2 py-1 rounded-full text-white text-xs",
-            booking.status === "approved" && "bg-lime-400",
+            booking.status === "confirmed" && "bg-lime-400",
             booking.status === "pending" && "bg-orange-400"
           )}
         >
@@ -131,7 +131,7 @@ export default function ReserveTableContent({
                   <DetailPopover />
                 </div>
               </div>
-                <Link className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1" href={`/payment/${booking.id}`}>
+                <Link className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1" href={`/payment/${booking.houseId.toString()}`}>
                   <h1>{t("actions.payment")}</h1>
                   <div className="my-auto">
                     <PaymentSVG />
