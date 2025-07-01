@@ -13,15 +13,16 @@ const ChangeStep = ({ createHouse }) => {
   return (
     <div className="mt-[19px] flex gap-[19px]">
       <Button
+        type="submit"
         handleClick={() => {
           if (id == 5) createHouse();
-          dispatch(setStepsId(id == 5 ? 1 : id + 1));
         }}
         className="!w-auto gap-2"
       >
         <ArrowSVG className="rotate-90" /> {id == 5 ? "ساخت آگهی" : "مرحله بعد"}
       </Button>
       <Button
+        type="button"
         handleClick={() => dispatch(setStepsId(id == 1 ? 5 : id - 1))}
         className="!w-auto gap-2"
       >

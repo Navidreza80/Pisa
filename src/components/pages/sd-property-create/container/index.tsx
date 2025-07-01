@@ -1,6 +1,9 @@
 "use client";
 import { HouseItemsInterface } from "@/types/house";
-import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/utils/hooks/react-redux/store/hook";
 import postHouse from "@/utils/service/house/post";
 import { useFormik } from "formik";
 import { useState } from "react";
@@ -12,6 +15,8 @@ import AddPropertyStepThree from "../contents/StepThree";
 import AddPropertyStepTwo from "../contents/StepTwo";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
+import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 
 const AddPropertyContainer = () => {
   // Hooks
@@ -20,13 +25,14 @@ const AddPropertyContainer = () => {
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const id = useAppSelector((state) => state.stepsId.id);
+  const dispatch = useAppDispatch();
   const [location, setLocation] = useState<{ lat: string; lng: string }>({
     lat: "",
     lng: "",
   });
-  const [categories, setCategories] = useState<{ name: string }>();
-  const [transaction_type, setTransaction_type] = useState();
-  const [yard_type, setYard_type] = useState();
+  const [categories, setCategories] = useState<string>("آپارتمان");
+  const [transaction_type, setTransaction_type] = useState("rental");
+  const [yard_type, setYard_type] = useState("شهری");
 
   // Create house function
   const { mutate: createHouse } = useMutation({
@@ -46,6 +52,22 @@ const AddPropertyContainer = () => {
     setPhotoURL(updated);
   };
 
+  const stepOneValidation = Yup.object().shape({
+    caption: Yup.string().required("توضیحات الزامی است"),
+    capacity: Yup.string().required("ظرفیت الزامی است"),
+    price: Yup.string().required("قیمت الزامی است"),
+  });
+
+  const stepTwoValidation = Yup.object().shape({
+    address: Yup.string().required("آدرس الزامی است"),
+  });
+
+  const stepThreeValidation = Yup.object().shape({
+    bathrooms: Yup.string().required("تعداد حمام الزامی است"),
+    rooms: Yup.string().required("تعداد پارکینگ الزامی است"),
+    parking: Yup.string().required("تعداد اتاق الزامی است"),
+  });
+
   // Formik initialValues / onSubmit
   const formik = useFormik({
     initialValues: {
@@ -57,8 +79,17 @@ const AddPropertyContainer = () => {
       rooms: "",
       parking: "",
     },
-    // validationSchema: ContactSchema,
+    validationSchema:
+      id == 1
+        ? stepOneValidation
+        : id == 2
+          ? stepTwoValidation
+          : id == 3
+            ? stepThreeValidation
+            : "",
     onSubmit: async (values) => {
+      console.log("FormSubmitted!!!");
+      dispatch(setStepsId(id == 5 ? 1 : id + 1));
       setCreatedProperty({
         ...values,
         yard_type,
@@ -69,17 +100,6 @@ const AddPropertyContainer = () => {
         transaction_type,
         tags,
         title,
-        location,
-      });
-      console.log({
-        photos: photoURL,
-        ...values,
-        yard_type,
-        tags,
-        categories: {
-          name: categories,
-        },
-        transaction_type,
         location,
       });
     },
@@ -96,6 +116,8 @@ const AddPropertyContainer = () => {
             setTransaction_type={setTransaction_type}
             setCategories={setCategories}
             formik={formik}
+            categories={categories}
+            transaction_type={transaction_type}
           />
         ) : id == 2 ? (
           <AddPropertyStepTwo
@@ -109,6 +131,7 @@ const AddPropertyContainer = () => {
             tags={tags}
             setYard_type={setYard_type}
             formik={formik}
+            yard_type={yard_type}
           />
         ) : id == 4 ? (
           <AddPropertyStepFour

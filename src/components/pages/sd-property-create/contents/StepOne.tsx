@@ -3,6 +3,7 @@ import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-input-with-label";
 import LoadingCustomized from "@/components/common/loading";
 import getAllCategories from "@/utils/service/categories/categories";
+import { getRecommendedDescription } from "@/utils/service/recommendation/recommendCaption";
 import { getRecommendedTitle } from "@/utils/service/recommendation/recommendTitle";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
@@ -15,8 +16,10 @@ export default function AddPropertyStepOne({
   setTransaction_type,
   title,
   setTitle,
+  transaction_type,
+  categories,
 }) {
-  const { data: categories } = useQuery({
+  const { data: categoryList } = useQuery({
     queryKey: ["CATEGORIES"],
     queryFn: () => getAllCategories(),
   });
@@ -25,7 +28,24 @@ export default function AddPropertyStepOne({
     mutationKey: ["GET_RECOMMENDATION"],
     mutationFn: () => getRecommendedTitle(title),
     onError: (e) => toast.error(e),
+    onSuccess: (res) => setTitle(res),
   });
+
+  const { mutate: getDescriptionRecommendation, isPending: descPending } =
+    useMutation({
+      mutationKey: ["GET_CAPTION_RECOMMENDATION"],
+      mutationFn: () =>
+        getRecommendedDescription({
+          title: title,
+          capacity: formik.values.capacity,
+          caption: formik.values.caption,
+          categories: categories,
+          transactionType: transaction_type,
+          price: formik.values.price,
+        }),
+      onError: (e) => toast.error(e),
+      onSuccess: (res) => (formik.values.caption = res),
+    });
 
   if (!categories) return <LoadingCustomized title="درحال پردازش اطلاعات..." />;
 
@@ -36,6 +56,12 @@ export default function AddPropertyStepOne({
       isSelect: false,
       name: "capacity",
       value: formik.values.capacity,
+      validation:
+        formik.touched.capacity && formik.errors.capacity ? (
+          <div className="text-red-500 text-sm mt-1 text-right">
+            {formik.errors.capacity}
+          </div>
+        ) : null,
     },
 
     {
@@ -44,6 +70,12 @@ export default function AddPropertyStepOne({
       isSelect: false,
       name: "price",
       value: formik.values.price,
+      validation:
+        formik.touched.price && formik.errors.price ? (
+          <div className="text-red-500 text-sm mt-1 text-right">
+            {formik.errors.price}
+          </div>
+        ) : null,
     },
     {
       text: "نوع معامله:",
@@ -56,13 +88,15 @@ export default function AddPropertyStepOne({
         { value: "direct_purchase", text: "پرداخت مسقیم" },
       ],
       onChange: (e) => setTransaction_type(e),
+      value: transaction_type,
     },
     {
       text: "نوع ملک:",
       placeHolder: null,
       isSelect: true,
-      items: categories.data,
+      items: categoryList?.data,
       onChange: (e) => setCategories(e),
+      value: categories,
     },
   ];
 
@@ -87,6 +121,7 @@ export default function AddPropertyStepOne({
           ></input>
           {title.length > 10 && (
             <Button
+              type="button"
               handleClick={() => getTitleRecommendation()}
               className="w-auto bg-gradient-to-r from-purple-600 cursor-pointer via-indigo-500 to-blue-500 text-white font-semibold shadow-lg hover:from-purple-700 hover:to-blue-600 transition-all duration-300 rounded-xl px-4 py-2 absolute top-0 left-2"
             >
@@ -96,16 +131,19 @@ export default function AddPropertyStepOne({
         </div>
         {inputs.map((item, index) => {
           return !item.isSelect ? (
-            <InputText
-              name={item.name}
-              onChange={formik.handleChange}
-              key={index}
-              placeHolder={item.placeHolder}
-              label={item.text}
-            />
+            <div key={index}>
+              <InputText
+                name={item.name}
+                onChange={formik.handleChange}
+                placeHolder={item.placeHolder}
+                label={item.text}
+              />
+              {item.validation}
+            </div>
           ) : (
             <Fragment key={index}>
               <InputSelect
+                value={item.value}
                 items={item.items}
                 onChange={item.onChange}
                 withLabel
@@ -116,13 +154,36 @@ export default function AddPropertyStepOne({
           );
         })}
       </div>
-      <InputText
-        name="caption"
-        onChange={formik.handleChange}
-        className="w-full mt-[19px]"
-        height="h-[150px] md:h-[215px]"
-        label="توضیحات  ملک:"
-      />
+      <div dir="rtl" className={`relative`}>
+        {" "}
+        <InputText
+          name="caption"
+          value={formik.values.caption}
+          onChange={formik.handleChange}
+          className="w-full mt-[19px]"
+          height="h-[150px] md:h-[215px]"
+          label="توضیحات  ملک:"
+        />
+        {title.length > 10 &&
+          formik.values.capacity &&
+          categories &&
+          transaction_type &&
+          formik.values.price &&
+          formik.values.caption && (
+            <Button
+              type="button"
+              handleClick={() => getDescriptionRecommendation()}
+              className="w-auto bg-gradient-to-r from-purple-600 cursor-pointer via-indigo-500 to-blue-500 text-white font-semibold shadow-lg hover:from-purple-700 hover:to-blue-600 transition-all duration-300 rounded-xl px-4 py-2 absolute top-0 left-2"
+            >
+              {descPending ? <ClipLoader color="white" /> : "نوشتن با AI"}
+            </Button>
+          )}
+      </div>
+      {formik.touched.caption && formik.errors.caption ? (
+        <div className="text-red-500 text-sm mt-1 text-right">
+          {formik.errors.caption}
+        </div>
+      ) : null}
     </>
   );
 }
