@@ -668,6 +668,12 @@
       "payment": "Payment Notification",
       "discount": "Discount Notification",
       "system": "System Notification"
+    },
+    "AddPropertyStepFour": {
+      "title": "Property Images",
+      "subtitle1": "A picture is worth a thousand words",
+      "subtitle2": "Increase your property's visibility by 5x with photos",
+      "imageLinkLabel": "Image URL:"
     }
   }
 }
