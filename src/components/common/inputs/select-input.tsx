@@ -53,7 +53,6 @@ export default function InputSelect({
   return (
     <Select name={name} value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
-        dir="rtl"
         className={`${className} cursor-pointer outline-0 focus:outline-0  ${color ? color : ""} !h-[48px] z-[1000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}

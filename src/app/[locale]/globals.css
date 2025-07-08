@@ -37,6 +37,7 @@ body {
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant solarized (&:where(.solarized, .solarized *));
 
+
 @keyframes content-pop {
   from {
     transform: translateY(100px) scale(0.95);
@@ -46,14 +47,6 @@ body {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
-}
-
-.ltr {
-  direction: ltr !important;
-}
-
-.rtl {
-  direction: rtl !important ;
 }
 
 @keyframes curtain-open {
@@ -211,35 +204,11 @@ body {
 }
 
 html[dir="rtl"] {
-  text-align: left;
-}
-
-html[dir="rtl"] .text-right {
-  text-align: left !important;
-}
-
-html[dir="rtl"] .text-left {
   text-align: right !important;
-}
-
-html[dir="rtl"] .flex-row-reverse {
-  flex-direction: row !important;
 }
 
 html[dir="ltr"] {
-  text-align: right;
-}
-
-html[dir="ltr"] .text-left {
-  text-align: right !important;
-}
-
-html[dir="ltr"] .text-right {
-  text-align: right !important;
-}
-
-html[dir="ltr"] .flex-row {
-  flex-direction: row-reverse !important;
+  text-align: left !important;
 }
 
 html[dir="rtl"] .menu-items {

@@ -1,9 +1,4 @@
-export const sortOptions = [
-  { id: 1, value: "price", text: "قیمت (کم به زیاد)" },
-  { id: 2, value: "-price", text: "قیمت (زیاد به کم)" },
-  { id: 3, value: "rate", text: "امتیاز هتل" },
-  { id: 4, value: "name", text: "نام هتل" },
-];
+export const sortOptions = [{ id: 1, value: "price", text: "Price" }];
 
 // Facility options
 export const facilityOptions = [
@@ -75,4 +70,3 @@ export const tableHeaderItems = [
   { text: "تاریخ", clx: null },
   { text: "-", clx: "text-transparent rounded-l-xl" },
 ];
-

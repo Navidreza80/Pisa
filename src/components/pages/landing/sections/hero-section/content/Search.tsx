@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 import ResultButton from "./ResultButton";
 
 export default function Search() {
-
   // Hooks
   const t = useTranslations("HomePage");
   const filterItems = [
@@ -59,12 +58,11 @@ export default function Search() {
   };
 
   return (
-    <div className="absolute w-full min-h-[135px] bottom-20 bg-background border border-border rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-end max-[1150px]:hidden flex animate-fade-up opacity-0">
+    <div className="absolute w-full min-h-[135px] bottom-20 bg-background border border-border rounded-4xl z-10 scale-[102%] flex-wrap gap-y-2.5 justify-start max-[1150px]:hidden flex animate-fade-up opacity-0">
       <div className="flex justify-end gap-5 px-6">
         {filterItems.map((item, index) => {
           return (
             <div
-              dir={tab.id == item.id ? "rtl" : "ltr"}
               key={item.id}
               className={`flex overflow-hidden flex-col gap-1.5 animate-[var(--animation-fade-in)] [animation-delay:${
                 0.5 + index * 0.1
@@ -87,15 +85,12 @@ export default function Search() {
           );
         })}
       </div>
-      <div
-        dir="rtl"
-        className="w-full p-2 px-5 h-1/2 flex justify-between items-center flex-wrap gap-y-3 animate-[var(--animation-fade-in)] [animation-delay:0.7s] [animation-fill-mode:both] opacity-0"
-      >
+      <div className="w-full p-2 px-5 h-1/2 flex justify-between items-center flex-wrap gap-y-3 animate-[var(--animation-fade-in)] [animation-delay:0.7s] [animation-fill-mode:both] opacity-0">
         {inputItems.map((input, index) => {
           return (
             <div
               key={input.id}
-              className={`flex gap-3 items-center text-sm font-medium animate-fade-left animate-delay-[${(index * 100 + 800).toString}ms]`}
+              className={`flex gap-3  items-center text-sm font-medium animate-fade-left animate-delay-[${(index * 100 + 800).toString}ms]`}
             >
               <label className="cursor-pointer" htmlFor={input.id}>
                 {input.text}
@@ -106,7 +101,6 @@ export default function Search() {
                 value={input.value || ""}
                 onChange={(value) => handleChange(input.id, value)}
                 width={161}
-                dir="rtl"
               />
             </div>
           );

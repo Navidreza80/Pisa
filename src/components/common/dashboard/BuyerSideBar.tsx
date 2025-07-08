@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { House } from "lucide-react";
+import { Bell, House } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
@@ -30,6 +30,16 @@ function BuyerSideBar() {
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
     },
+    {
+      name: "مدیریت مالی",
+      icon: <PaymentSVG />,
+      href: "/dashboard/seller/finance",
+    },
+    {
+      name: "مدیریت رزروها",
+      icon: <ReserveSVG />,
+      href: "/dashboard/seller/reservations",
+    },
   ];
 
   const buyerItems = [
@@ -43,6 +53,21 @@ function BuyerSideBar() {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
+    },
+    {
+      name: "اعلان ها",
+      icon: <Bell />,
+      href: "/dashboard/buyer/notifications",
+    },
+    {
+      name: "پرداخت ها",
+      icon: <PaymentSVG />,
+      href: "/dashboard/buyer/payments",
+    },
+    {
+      name: "علاقه مندی ها",
+      icon: <FavoriteSVG />,
+      href: "/dashboard/buyer/favorites",
     },
   ];
 
@@ -74,7 +99,10 @@ function BuyerSideBar() {
                 <House className="cursor-pointer lg:hidden md:block block" />
               </div>
               {!collapsed && (
-                <Link href={"/"} className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden">
+                <Link
+                  href={"/"}
+                  className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden"
+                >
                   Piza
                 </Link>
               )}

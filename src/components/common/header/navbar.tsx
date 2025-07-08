@@ -36,8 +36,8 @@ export default function Navbar() {
 
   // Header NavBar Items
   const navItems = [
-    { text: t("about"), url: "/about-us" },
     { text: t("home"), url: "/" },
+    { text: t("about"), url: "/about-us" },
   ];
 
   // Rent dropdown items
@@ -52,9 +52,23 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-center gap-14 p-1 max-[600px]:hidden">
+      {navItems.map((item, index) => {
+        return (
+          <TransitionLink
+            key={index}
+            href={item.url}
+            className={`${
+              pathname == item.url
+                ? "text-primary font-bold hover:border-primary"
+                : "text-text"
+            } font-semibold hover:text-primary transition-colors duration-300 `}
+          >
+            {item.text}
+          </TransitionLink>
+        );
+      })}
       <DropdownMenu onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger
-          dir="rtl"
           className={`flex items-center outline-none gap-1 hover:text-primary transition-colors duration-300 hover:border-primary cursor-pointer ${
             isRentActive ? "text-primary  font-bold" : "text-text font-semibold"
           }`}
@@ -84,21 +98,6 @@ export default function Navbar() {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
-      {navItems.map((item, index) => {
-        return (
-          <TransitionLink
-            key={index}
-            href={item.url}
-            className={`${
-              pathname == item.url
-                ? "text-primary font-bold hover:border-primary"
-                : "text-text"
-            } font-semibold hover:text-primary transition-colors duration-300 `}
-          >
-            {item.text}
-          </TransitionLink>
-        );
-      })}
     </div>
   );
 }

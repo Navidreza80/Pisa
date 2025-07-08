@@ -33,11 +33,11 @@ export default async function RootLayout({
     switch (locale) {
       case "fa":
       case "ar":
-        return "ltr";
+        return "rtl";
       case "tr":
       case "en":
       default:
-        return "rtl";
+        return "ltr";
     }
   };
 

@@ -48,6 +48,19 @@ export default async function Header() {
   return (
     <Container>
       <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28 font-yekan">
+        {/* Logo SVG */}
+        <div className="flex justify-start items-center gap-x-3">
+          <Link href="/">
+            {" "}
+            <LogoSVG size="w-[106px] h-[36px] md:w-[71px] md:h-[24px] lg:w-[54px] lg:h-[29px]" />
+          </Link>
+          {/* Mobile Navbar */}
+          <MobileNav />
+        </div>
+
+        {/* Main Navbar */}
+        <Navbar />
+        {/* Auth buttons */}
         {!decodedUser ? (
           <TransitionLink href="/auth/login">
             <Button className="cursor-pointer" radius="sm" size="lg">
@@ -57,15 +70,6 @@ export default async function Header() {
         ) : (
           <UserProfile user={decodedUser} />
         )}
-        <Navbar />
-        <div className="flex justify-end items-center gap-x-3">
-          <Link href="/">
-            {" "}
-            <LogoSVG size="w-[106px] h-[36px] md:w-[71px] md:h-[24px] lg:w-[54px] lg:h-[29px]" />
-          </Link>
-
-          <MobileNav />
-        </div>
       </div>
     </Container>
   );
