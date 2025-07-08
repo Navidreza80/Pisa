@@ -16,8 +16,6 @@ const PropertyAgentSection: React.FC<IProps> = async ({
   houseLength,
   houses,
 }) => {
-
-
   return (
     <div dir="rtl">
       <Reveal>
@@ -41,6 +39,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
             </div>
           </div>
           <Image
+            unoptimized
             src={AI}
             width={500}
             height={500}
