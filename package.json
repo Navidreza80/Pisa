@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npm install --platform=linux --arch=x64 sharp && npm rebuild"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",

@@ -1,7 +1,0 @@
-[build]
-  command = "npm install && npm run build"
-  publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "18"
-  NPM_FLAGS = "--platform=linux --arch=x64"
