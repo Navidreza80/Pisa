@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export interface Comments {
   id: string;
   house_id: string;

@@ -19,12 +19,13 @@ import ToRight from "@/components/common/svg/to-right";
 
 // Types
 import type Comment from "@/types/auth";
+import { Swiper as SwiperType } from 'swiper';
 import formatToPersianDate from "@/utils/helper/format-date";
 
 export default function CommentsSwiper() {
   const t = useTranslations("comments");
   const SLIDE_DURATION = 5000;
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +43,7 @@ export default function CommentsSwiper() {
           "https://delta-project.liara.run/api/comments"
         );
         setComments(response.data.data);
-      } catch (error: any) {
+      } catch (error) {
         console.error("Error fetching comments:", error);
         setError(t("error"));
       } finally {

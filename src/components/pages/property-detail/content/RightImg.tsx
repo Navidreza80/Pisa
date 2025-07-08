@@ -3,6 +3,7 @@
 import { useState } from "react";
 import VirtualTour from "./VirtualTour";
 import Button from "../../../common/button";
+import Image from "next/image";
 
 function RightImg({ photos }: { photos: string[] }) {
   const [show3DTour, setShow3DTour] = useState(false);
@@ -66,7 +67,7 @@ function RightImg({ photos }: { photos: string[] }) {
           </div>
         </div>
       ) : (
-        <img
+        <Image
           src={photos[0]}
           className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
           alt="Property"

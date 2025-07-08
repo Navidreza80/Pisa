@@ -52,7 +52,7 @@ function threeDigitToWords(num: number): string {
   const s = Math.floor(num / 100);
   const d = Math.floor((num % 100) / 10);
   const y = num % 10;
-  let parts: string[] = [];
+  const parts: string[] = [];
 
   if (s) parts.push(sadgan[s]);
   if (d === 1) {

@@ -32,6 +32,7 @@ export interface HouseItemsInterface {
     lat: number;
     lng: number;
   };
+  sellerId: string
 }
 
 export interface TopSaleCardListProps {

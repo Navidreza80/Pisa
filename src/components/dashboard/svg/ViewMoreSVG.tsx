@@ -1,4 +1,3 @@
-import { JSX } from "react";
 
 const ViewMoreSVG = () => {
   return (

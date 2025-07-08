@@ -2,7 +2,7 @@
 import InputText from "@/components/common/inputs/text-input-with-label";
 import { useTranslations } from 'next-intl';
 
-const AddPropertyStepFour = ({ setPhotoURL, photoURL, handleChange }) => {
+const AddPropertyStepFour = ({ photoURL, handleChange }) => {
   const t = useTranslations('AddPropertyStepFour');
 
   return (

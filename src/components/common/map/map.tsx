@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";

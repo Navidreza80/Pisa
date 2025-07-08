@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import RightImg from "./RightImg";
+import Image from "next/image";
 
 export default async function MainImages({
   photos,
@@ -23,7 +24,9 @@ export default async function MainImages({
       >
         {show3D && <RightImg photos={photos} />}
         {!show3D && (
-          <img
+          <Image
+            fill
+            unoptimized
             src={photos[0]}
             className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
             alt="Property"
@@ -54,13 +57,19 @@ export default async function MainImages({
           </div>
         )}
         {photos[1] && (
-          <img
+          <Image
+            fill
+            alt="image"
+            unoptimized
             src={photos[1]}
             className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
           />
         )}
         {photos[2] && (
-          <img
+          <Image
+            fill
+            unoptimized
+            alt="image"
             src={photos[2]}
             className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
           />

@@ -1,11 +1,10 @@
 "use client";
 
+import { getBookingList } from "@/utils/service/reserve/get";
+import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 import Tag from "./Tag";
 import TagDashboard from "./TagDashboard";
-import { useQuery } from "@tanstack/react-query";
-import getDashboardSummary from "@/utils/service/dashboard/get";
-import { getBookingList } from "@/utils/service/reserve/get";
 
 const Tags = () => {
   const { data: bookingList } = useQuery({

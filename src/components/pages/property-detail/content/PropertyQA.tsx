@@ -5,7 +5,7 @@ import formatToPersianDate from "@/utils/helper/format-date";
 import { getPropertyQA } from "@/utils/service/property-qa/get";
 import postQuestion from "@/utils/service/property-qa/post";
 import postAnswer from "@/utils/service/property-qa/post-answer";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { format } from "date-fns-jalali";
 import {
   AlertCircle,

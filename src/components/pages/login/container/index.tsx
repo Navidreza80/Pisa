@@ -12,7 +12,6 @@ import { useLoginUser } from "@/utils/service/login/post";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import * as Yup from "yup";
 
 /**

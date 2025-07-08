@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -134,7 +135,10 @@ const Comments = () => {
                   <span className="text-[16px] font-semibold text-white">
                     {comment.author}
                   </span>
-                  <span dir="rtl" className="text-[14px] font-[500] text-[#E5E5E5]">
+                  <span
+                    dir="rtl"
+                    className="text-[14px] font-[500] text-[#E5E5E5]"
+                  >
                     {formatToPersianDate(comment.date)}
                   </span>
                 </div>

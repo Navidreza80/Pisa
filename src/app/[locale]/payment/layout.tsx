@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 // CSS
 import "../globals.css";
+import Image from "next/image";
 
 // metadata
 export const metadata: Metadata = {
@@ -21,12 +22,19 @@ export default async function PaymentLayout({
         <div className="bg-[#2b73e3] h-[68px]">
           <div className="absolute top-[24px] w-full">
             <div className="w-[1056px] h-22 bg-white px-4 mx-auto flex justify-between text  rounded-[14px] shadow-[0_3px_12px_0_rgba(0,0,0,0.06)]">
-              <img src="https://media.licdn.com/dms/image/v2/C4E0BAQHC7ECm9fEtIw/company-logo_200_200/company-logo_200_200/0/1631350095747?e=2147483647&v=beta&t=rLJVkgf7_lU0UYJhQ9JWy6b7KN7YYMJQFfFvejDfV90" />
+              <Image
+                unoptimized
+                fill
+                alt="image"
+                src="https://media.licdn.com/dms/image/v2/C4E0BAQHC7ECm9fEtIw/company-logo_200_200/company-logo_200_200/0/1631350095747?e=2147483647&v=beta&t=rLJVkgf7_lU0UYJhQ9JWy6b7KN7YYMJQFfFvejDfV90"
+              />
               <h1 className="my-auto text-[18px] font-extrabold">
                 درگاه پرداخت اینترنتی سِپ
               </h1>
-              <img
-                className=""
+              <Image
+                unoptimized
+                fill
+                alt="image"
                 src={
                   "https://polam.io/wp-content/uploads/2023/09/%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D8%A8%D8%A7%D9%86%DA%A9-%D8%B3%D8%A7%D9%85%D8%A7%D9%86.jpg"
                 }

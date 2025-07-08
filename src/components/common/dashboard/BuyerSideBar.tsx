@@ -3,12 +3,12 @@
 import { usePathname } from "@/i18n/navigation";
 import { Bell, House } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
 import FavoriteSVG from "../../dashboard/svg/FavoriteSVG";
 import InfoSVG from "../../dashboard/svg/InfoSVG";
 import MoneySVG from "../../dashboard/svg/MoneySVG";
-import NotifSVG from "../../dashboard/svg/NotifSVG";
 import PaymentSVG from "../../dashboard/svg/PaymentSVG";
 import PropertySVG from "../../dashboard/svg/propertySVG";
 import ReserveSVG from "../../dashboard/svg/ReserveSVG";
@@ -16,7 +16,6 @@ import ReviewsSVG from "../../dashboard/svg/reviewsSVG";
 import SignoutSVG from "../../dashboard/svg/SignoutSVG";
 import BuyerSideBarItems from "./buyerSideBarItems";
 import MobileBottomNavbar from "./MobileBottomNav";
-import Link from "next/link";
 
 function BuyerSideBar() {
   const pathname = usePathname();

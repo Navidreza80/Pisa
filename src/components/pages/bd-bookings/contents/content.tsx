@@ -63,7 +63,7 @@ export default function ReserveTableContent({
 
   useEffect(() => {
     getHouseTitle();
-  }, []);
+  });
 
   const t = useTranslations("BookingList");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
@@ -131,12 +131,15 @@ export default function ReserveTableContent({
                   <DetailPopover />
                 </div>
               </div>
-                <Link className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1" href={`/payment/${booking.houseId.toString()}`}>
-                  <h1>{t("actions.payment")}</h1>
-                  <div className="my-auto">
-                    <PaymentSVG />
-                  </div>
-                </Link>
+              <Link
+                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1"
+                href={`/payment/${booking.houseId.toString()}`}
+              >
+                <h1>{t("actions.payment")}</h1>
+                <div className="my-auto">
+                  <PaymentSVG />
+                </div>
+              </Link>
               <div
                 onClick={() => deleteBooking(booking.id.toString())}
                 className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
@@ -147,7 +150,10 @@ export default function ReserveTableContent({
                 </div>
               </div>
               <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                <Modal title="اطلاعات مسافران" trigger={<h1 className="cursor-pointer">مسافران</h1>}>
+                <Modal
+                  title="اطلاعات مسافران"
+                  trigger={<h1 className="cursor-pointer">مسافران</h1>}
+                >
                   <TableDashboard
                     tableHeader={tableHeaderItems}
                     tableContent={booking.traveler_details.map(

@@ -14,7 +14,7 @@ import UserRole from "./UserRole";
 
 async function HeaderDashboard() {
   const token = await getServerCookie("serverAccessToken");
-  var decodedUser;
+  let decodedUser;
   if (token) {
     decodedUser =
       typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;

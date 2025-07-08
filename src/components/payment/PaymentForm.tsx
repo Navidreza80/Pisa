@@ -5,15 +5,14 @@ import SimpleCaptcha from "@/components/ui/captcha";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import { formatNumber } from "@/utils/helper/format-number";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 // Main payment form component
 function PaymentForm({ price, id }: { price: number; id: number }) {

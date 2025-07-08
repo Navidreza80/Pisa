@@ -25,58 +25,6 @@ import { bookHotel } from "@/utils/service/reserve/post";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-// Card component for mobile view
-const TravelerCard = ({ traveler }) => {
-  return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-border mb-3">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-primary font-semibold">{traveler.price}</span>
-        <span className="bg-primary/10 text-primary px-2 py-1 rounded-lg text-xs">
-          {traveler.age}
-        </span>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex justify-between">
-          <span className="text-fade text-xs">نام و نام خانوادگی:</span>
-          <span className="font-medium text-sm">{traveler.name}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span className="text-fade text-xs">جنسیت:</span>
-          <span className="font-medium text-sm">{traveler.gender}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span className="text-fade text-xs">کدملی / شماره یا پاسپورت:</span>
-          <span className="font-medium text-sm">{traveler.nationalNumber}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span className="text-fade text-xs">تاریخ تولد:</span>
-          <span className="font-medium text-sm">{traveler.birthDate}</span>
-        </div>
-
-        {traveler.services !== "-" && (
-          <div className="flex justify-between">
-            <span className="text-fade text-xs">خدمات:</span>
-            <span className="font-medium text-sm">{traveler.services}</span>
-          </div>
-        )}
-
-        {traveler.servicesPrice !== "-" && (
-          <div className="flex justify-between">
-            <span className="text-fade text-xs">مبلغ خدمات:</span>
-            <span className="font-medium text-sm">
-              {traveler.servicesPrice}
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
 export default function BookingStepTwo() {
   const baseCLX = "text-xs md:text-5 text-center text-fade";
   const tableBaseCLX = "text-xs md:text-base font-semibold text-center";

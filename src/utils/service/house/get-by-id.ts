@@ -1,6 +1,3 @@
-// Dependencies
-import { AxiosResponse } from "axios";
-
 // Types
 import type { HouseItemsInterface } from "@/types/house";
 

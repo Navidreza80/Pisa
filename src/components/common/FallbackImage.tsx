@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import Image from "next/image";
+import { useState } from "react";
 
 interface FallbackImageProps {
   src: string;
@@ -13,7 +14,7 @@ export default function FallbackImage({
   src,
   alt,
   className,
-  fallbackSrc = 'https://via.placeholder.com/150'
+  fallbackSrc = "https://via.placeholder.com/150",
 }: FallbackImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
 
@@ -22,7 +23,9 @@ export default function FallbackImage({
   };
 
   return (
-    <img
+    <Image
+      fill
+      unoptimized
       src={imgSrc}
       alt={alt}
       className={className}

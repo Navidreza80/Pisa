@@ -97,7 +97,10 @@ export default function SellerDashboardProperties({ houses }) {
             <tr key={property.id} className="bg-table-main/30 rounded-xl">
               <td className="pl-6 rounded-r-xl">
                 <div className="flex gap-2 ">
-                  <img
+                  <Image
+                    fill
+                    unoptimized
+                    alt="image"
                     src={property.photos[0]}
                     className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
                   />

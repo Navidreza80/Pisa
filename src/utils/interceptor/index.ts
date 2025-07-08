@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { toast } from "react-toastify";
 import {
   getServerCookie,

@@ -1,11 +1,10 @@
 import ArrowSVG from "@/components/common/svg/arrow";
-import UserModal from "@/components/common/UserModal";
 import { Comments } from "@/types/comments";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 
 // Define the prop types for SingleComment
@@ -38,7 +37,6 @@ export default function SingleComment({
       });
     }
   };
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div
@@ -87,7 +85,6 @@ export default function SingleComment({
               unoptimized={true}
               width={48}
               height={48}
-              onClick={() => setIsOpen((prev) => !prev)}
               className="w-full h-full object-cover cursor-pointer"
               src={
                 comment.user?.profilePicture ||

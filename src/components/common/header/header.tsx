@@ -35,7 +35,7 @@ export default async function Header() {
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
   console.log(token);
-  var decodedUser;
+  let decodedUser;
   if (token) {
     decodedUser =
       typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;

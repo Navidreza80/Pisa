@@ -1,11 +1,9 @@
 "use client";
 
-import { User } from "lucide-react";
-import WarningModal from "./WarningModal";
-import SignoutSVG from "@/components/dashboard/svg/SignoutSVG";
-import { usePathname, useRouter } from "next/navigation";
-import { jwtDecode } from "jwt-decode";
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
+import { jwtDecode } from "jwt-decode";
+import { User } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function DropdownMenu() {
   const pathname = usePathname();

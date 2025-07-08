@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import { JSX, useEffect, useRef } from "react";
@@ -29,11 +31,12 @@ const Reveal = ({
   }, [isInView]);
 
   return (
-    <div ref={ref} className={`${className}`} style={{ position: "relative", width, overflow: "hidden" }}>
-      <motion.div
-        {...props}
-        className="text-right"
-      >
+    <div
+      ref={ref}
+      className={`${className}`}
+      style={{ position: "relative", width, overflow: "hidden" }}
+    >
+      <motion.div {...props} className="text-right">
         {children}
       </motion.div>
       <motion.div

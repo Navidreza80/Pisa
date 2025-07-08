@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/common/button";
-import LoginModal from "@/components/common/login";
 import { Input } from "@/components/ui/input";
 import { getAllPropertyComments } from "@/utils/service/comments/get";
 import { usePostComment } from "@/utils/service/comments/post";
@@ -9,12 +8,12 @@ import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import dynamic from "next/dynamic";
-const StarRatings = dynamic(() => import("react-star-ratings"), { ssr: false });
 import * as Yup from "yup";
 import RenderComments from "./RenderComments";
+const StarRatings = dynamic(() => import("react-star-ratings"), { ssr: false });
 
 // Dynamically importing the SectionName component
 const SectionName = dynamic(() => import("./SectionName"), {
@@ -34,7 +33,6 @@ interface FormValues {
 }
 
 export default function AllComments({ houseId }: AllCommentsProps) {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
   const token = getClientCookie("clientAccessToken");
   const t = useTranslations("SingleHouse");
   const [repliedUser, setRepliedUser] = useState<string | null>(null);
@@ -262,8 +260,6 @@ export default function AllComments({ houseId }: AllCommentsProps) {
             </div>
           )}
         </Button>
-
-        <LoginModal isOpen={isLogin} />
       </div>
       {loadingComment && <ClipLoader className="mx-auto" color="#586cff" />}
       {/* Render the comments */}

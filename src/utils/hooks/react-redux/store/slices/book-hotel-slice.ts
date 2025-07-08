@@ -61,8 +61,8 @@ const bookingSlice = createSlice({
     setSharedMobile: (state, action: PayloadAction<string>) => {
       state.sharedMobile = action.payload;
     },
-    resetBooking: (state) => {
-      return { ...initialState }; // Return a new state to reset
+    resetBooking: () => {
+      return { ...initialState };
     },
   },
 });

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import type { HouseItemsInterface } from "@/types/house";
 import { ClipLoader } from "react-spinners";
-import { Spinner } from "reactstrap";
 
 interface IProps {
   recommendation: HouseItemsInterface;

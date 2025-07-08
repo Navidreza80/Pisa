@@ -1,13 +1,15 @@
+/* eslint-disable */
+
 "use client";
 // React
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // Dependencies
 import { toggleAppTheme } from "@/utils/hooks/react-redux/store/slices/themeSlice";
 import { Menu, Transition } from "@headlessui/react";
 
 // Icons
-import { Globe, Mic, Moon, Stars, Sun } from "lucide-react";
+import { Globe, Moon, Stars, Sun } from "lucide-react";
 
 // Change lang
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -15,7 +17,6 @@ import { useLocale, useTranslations } from "next-intl";
 
 // Third party components
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
-import { toast } from "react-toastify";
 import BackToTopButton from "./BackToTopBtn";
 import ChatAssistant from "./chat/ai-assistant";
 
@@ -33,13 +34,8 @@ export default function FloatingActions() {
   // States
   const [open, setOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  const [listening, setListening] = useState(false);
-  const [transcript, setTranscript] = useState("");
   const [theme, setTheme] = useState("light");
   const dispatch = useAppDispatch();
-
-  // Create a properly typed ref for the SpeechRecognition instance
-  const recognitionRef = useRef<any>(null);
 
   // Change lang
   const locale = useLocale();
@@ -77,194 +73,6 @@ export default function FloatingActions() {
   useEffect(() => {
     toggleTheme();
   }, [theme]);
-
-  // Process voice commands
-  const processVoiceCommand = (text: string) => {
-    const command = text.toLowerCase().trim();
-
-    // Show what was recognized
-    setTranscript(text);
-
-    // Command mapping
-    if (command.includes("chat") || command.includes("assistant")) {
-      setChatOpen(true);
-      return true;
-    }
-
-    if (command.includes("reserve") || command.includes("booking")) {
-      router.push("/reserve");
-      return true;
-    }
-
-    if (command.includes("about us")) {
-      router.push("/about-us");
-      return true;
-    }
-
-    if (command.includes("dashboard")) {
-      router.push("/dashboard/buyer");
-      return true;
-    }
-
-    if (command.includes("rent")) {
-      router.push("/rent");
-      return true;
-    }
-
-    if (command.includes("home") || command.includes("main")) {
-      router.push("/");
-      return true;
-    }
-
-    // Language commands
-    if (command.includes("english") || command.includes("انگلیسی")) {
-      changeLanguage("en");
-      return true;
-    }
-
-    if (
-      command.includes("persian") ||
-      command.includes("farsi") ||
-      command.includes("فارسی")
-    ) {
-      changeLanguage("fa");
-      return true;
-    }
-
-    if (command.includes("turkish") || command.includes("türkçe")) {
-      changeLanguage("tr");
-      return true;
-    }
-
-    if (command.includes("arabic") || command.includes("عربی")) {
-      changeLanguage("ar");
-      return true;
-    }
-
-    return false;
-  };
-
-  // Initialize speech recognition
-  useEffect(() => {
-    // Only run in browser
-    if (typeof window === "undefined") return;
-
-    // Get the appropriate SpeechRecognition constructor
-    const SpeechRecognition =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) return;
-
-    // Clean up previous instance if it exists
-    if (recognitionRef.current) {
-      recognitionRef.current.abort();
-      recognitionRef.current = null;
-    }
-
-    // Create and configure a new instance
-    const recognition = new SpeechRecognition();
-    recognition.lang =
-      locale === "fa"
-        ? "fa-IR"
-        : locale === "ar"
-          ? "ar-SA"
-          : locale === "tr"
-            ? "tr-TR"
-            : "en-US";
-    recognition.interimResults = true;
-    recognition.continuous = false;
-    recognition.maxAlternatives = 1;
-
-    // Handle results
-    recognition.onresult = (event: any) => {
-      const current = event.resultIndex;
-      const result = event.results[current];
-      const text = result[0].transcript;
-
-      // Only process final results
-      if (result.isFinal) {
-        const commandProcessed = processVoiceCommand(text);
-
-        if (!commandProcessed) {
-          toast.info("درحال پردازش");
-        } else {
-          toast.success("دستور با موفقیت اجرا شد");
-        }
-      }
-    };
-
-    // Handle end of speech
-    recognition.onend = () => {
-      setListening(false);
-      setTranscript("");
-    };
-
-    // Handle errors
-    recognition.onerror = (event: any) => {
-      setListening(false);
-      setTranscript("");
-
-      if (event.error === "no-speech") {
-        toast.info(t("Fab.noSpeech") || "No speech detected");
-      } else if (event.error === "not-allowed") {
-        toast.error(t("Fab.microphoneBlocked") || "Microphone access blocked");
-      } else {
-        toast.error(t("Fab.speechError") || "Speech recognition error");
-      }
-    };
-
-    // Store the instance in the ref
-    recognitionRef.current = recognition;
-
-    // Clean up on unmount or when locale changes
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.abort();
-        recognitionRef.current = null;
-      }
-    };
-  }, [locale, t, router, dispatch]);
-
-  // Handle voice command button click
-  const handleVoiceCommand = () => {
-    if (typeof window === "undefined") return;
-
-    // Check if speech recognition is supported
-    const SpeechRecognition =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      toast.info(
-        t("Fab.notSupported") ||
-          "Voice recognition is not supported in this browser."
-      );
-      return;
-    }
-
-    // Toggle listening state
-    if (!listening) {
-      setListening(true);
-      setTranscript("");
-
-      try {
-        if (recognitionRef.current) {
-          recognitionRef.current.start();
-        }
-      } catch (error) {
-        toast.error(t("Fab.startError") || "Could not start voice recognition");
-        setListening(false);
-      }
-    } else {
-      setListening(false);
-      setTranscript("");
-
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    }
-  };
 
   return (
     <>
@@ -339,25 +147,6 @@ export default function FloatingActions() {
                   : theme === "solarized"
                     ? t("Fab.solarized") || "Solarized"
                     : t("Fab.light") || "Light"}
-              </span>
-            </button>
-
-            <button
-              onClick={handleVoiceCommand}
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs ${
-                listening ? "ring-2 ring-blue-400" : ""
-              }`}
-              aria-pressed={listening}
-            >
-              <Mic
-                className={`w-4 h-4 ${
-                  listening ? "text-blue-500 animate-pulse" : "text-gray-500"
-                }`}
-              />
-              <span>
-                {listening
-                  ? transcript || t("Fab.listening") || "Listening..."
-                  : t("Fab.voice") || "Voice"}
               </span>
             </button>
 

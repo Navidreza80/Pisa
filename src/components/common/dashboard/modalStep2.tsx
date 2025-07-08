@@ -6,7 +6,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ErrorSVG from "../../dashboard/svg/ErrorSVG";
-import { useTranslations } from "next-intl";
 
 const ModalStep2 = ({
   title,
@@ -19,10 +18,8 @@ const ModalStep2 = ({
   desc?: string;
   button: string;
   name: string;
-  onConfirm: any;
+  onConfirm: () => void;
 }) => {
-  const t = useTranslations("Sidebar");
-
   return (
     <Dialog>
       <DialogTrigger asChild>

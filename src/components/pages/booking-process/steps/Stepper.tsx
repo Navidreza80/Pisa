@@ -1,13 +1,11 @@
 "use client";
 
 import {
-    ApartmentSVG,
-    CorrectSVG,
-    GallerySVG,
-    MoneySVG,
-    SearchSVG,
-    TicketSVG,
-    TravelersSVG
+  ApartmentSVG,
+  MoneySVG,
+  SearchSVG,
+  TicketSVG,
+  TravelersSVG
 } from "@/components/svg";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { useEffect, useState } from "react";

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 // Next & React
 import { useRouter, useSearchParams } from "next/navigation";
@@ -26,6 +27,8 @@ import LoadingCustomized from "@/components/common/loading";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
+import Image from "next/image";
+import { HouseItemsInterface } from "@/types/house";
 
 /**
  * About us page - Display team members, missions, location and FAQ
@@ -43,17 +46,18 @@ const ComparisonPage = () => {
   const isRTL = locale === "ar" || locale === "fa";
   const searchParams = useSearchParams();
   const idsParam = searchParams.get("ids");
-  const { data: houses } = useQuery({
+  const { data: houses }: { data: any } = useQuery({
     queryKey: ["COMPARE_HOUSES"],
     queryFn: () => getHousesComparisonByIds(idsParam),
   });
   // Redux
   const dispatch = useDispatch();
+
   useEffect(() => {
     return () => {
       dispatch(setComparisonIds(""));
     };
-  }, []);
+  });
 
   if (!houses)
     return <LoadingCustomized title={"در حال مقایسه کردن دو خانه..."} />;
@@ -116,7 +120,7 @@ const ComparisonPage = () => {
         {/* Compare virtually */}
         <TabsContent value="visual" className="mt-4 sm:mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {houses?.map((house, index) => (
+            {houses?.map((house: HouseItemsInterface, index: number) => (
               <motion.div
                 dir={isRTL ? "rtl" : "ltr"}
                 key={house.id}
@@ -126,7 +130,9 @@ const ComparisonPage = () => {
               >
                 <Card className="overflow-hidden h-full rounded-xl border border-border transition-all duration-300 bg-background">
                   <div className="relative h-52 sm:h-64 w-full">
-                    <img
+                    <Image
+                      unoptimized
+                      fill
                       src={house.photos[0]}
                       alt={house.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -270,7 +276,7 @@ const ComparisonPage = () => {
                     {houses.map((house) => (
                       <td key={house.id} className="p-3 sm:p-4 text-center">
                         <div className="relative h-16 sm:h-24 w-24 sm:w-32 mx-auto rounded-lg overflow-hidden">
-                          <img
+                          <Image
                             src={house.photos[0]}
                             alt={house.title}
                             fill

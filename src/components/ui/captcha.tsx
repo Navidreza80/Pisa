@@ -1,18 +1,19 @@
-"use client"
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { Input } from '@/components/ui/input';
+"use client";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 const AdvancedCaptcha = ({ onVerify }) => {
-  const [captchaCode, setCaptchaCode] = useState('');
-  const [userInput, setUserInput] = useState('');
+  const [captchaCode, setCaptchaCode] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isInitialMount = useRef(true);
 
   // Generate random captcha code
   const generateCaptcha = useCallback(() => {
-    const chars = '0123456789';
-    let result = '';
+    const chars = "0123456789";
+    let result = "";
     for (let i = 0; i < 5; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
@@ -22,16 +23,16 @@ const AdvancedCaptcha = ({ onVerify }) => {
   // Draw captcha with distortions
   const drawCaptcha = useCallback((code: string) => {
     if (!canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // Background
-    ctx.fillStyle = '#f3f3f3';
+    ctx.fillStyle = "#f3f3f3";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw random lines
@@ -39,14 +40,8 @@ const AdvancedCaptcha = ({ onVerify }) => {
       ctx.strokeStyle = `rgba(43, 115, 227, ${Math.random() * 0.5 + 0.2})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height
-      );
-      ctx.lineTo(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height
-      );
+      ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+      ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
       ctx.stroke();
     }
 
@@ -65,19 +60,19 @@ const AdvancedCaptcha = ({ onVerify }) => {
     }
 
     // Draw text with distortions
-    ctx.font = 'bold 28px Arial';
-    ctx.fillStyle = '#2b73e3';
-    
+    ctx.font = "bold 28px Arial";
+    ctx.fillStyle = "#2b73e3";
+
     for (let i = 0; i < code.length; i++) {
       // Add random rotation and spacing
       ctx.save();
       ctx.translate(30 + i * 25, 35);
       ctx.rotate((Math.random() - 0.5) * 0.4);
-      
+
       // Add random character scaling
       const scale = 0.8 + Math.random() * 0.4;
       ctx.scale(scale, scale);
-      
+
       ctx.fillText(code[i], 0, 0);
       ctx.restore();
     }
@@ -88,7 +83,7 @@ const AdvancedCaptcha = ({ onVerify }) => {
     const newCode = generateCaptcha();
     setCaptchaCode(newCode);
     drawCaptcha(newCode);
-    setUserInput('');
+    setUserInput("");
     setIsVerified(false);
     if (onVerify) onVerify(false);
   }, [generateCaptcha, drawCaptcha, onVerify]);
@@ -112,8 +107,10 @@ const AdvancedCaptcha = ({ onVerify }) => {
   return (
     <div className="flex flex-col items-center space-y-4 w-full">
       <div className="space-y-2 w-full">
-        <label className="block text-sm font-medium text-gray-700">کد امنیتی</label>
-        
+        <label className="block text-sm font-medium text-gray-700">
+          کد امنیتی
+        </label>
+
         <div className="flex flex-col sm:flex-row gap-3 w-full">
           {/* Captcha Display */}
           <div className="relative flex items-center justify-center">
@@ -126,8 +123,15 @@ const AdvancedCaptcha = ({ onVerify }) => {
           </div>
 
           {/* Input Field */}
-                    <div className='flex rounded-[8px] w-[267px] h-[48px] px-4 justify-between bg-[#f3f3f3] border-[#eeeeee]'>
-          <img src="https://img.icons8.com/?size=100&id=70688&format=png&color=2b73e3" className="w-6 my-auto h-6 cursor-pointer" onClick={refreshCaptcha}/>
+          <div className="flex rounded-[8px] w-[267px] h-[48px] px-4 justify-between bg-[#f3f3f3] border-[#eeeeee]">
+            <Image
+              fill
+              unoptimized
+              alt="image"
+              src="https://img.icons8.com/?size=100&id=70688&format=png&color=2b73e3"
+              className="w-6 my-auto h-6 cursor-pointer"
+              onClick={refreshCaptcha}
+            />
             <Input
               dir="ltr"
               type="text"
@@ -143,13 +147,7 @@ const AdvancedCaptcha = ({ onVerify }) => {
       </div>
 
       {/* Verification Status */}
-      {isVerified ? (
-        <></>
-      ) : (
-        userInput.length === 6 && (
-          <></>
-        )
-      )}
+      {isVerified ? <></> : userInput.length === 6 && <></>}
     </div>
   );
 };
