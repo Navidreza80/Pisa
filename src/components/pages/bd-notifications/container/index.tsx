@@ -139,14 +139,14 @@ export default function BuyerNotifications() {
             key={item.id}
             className="bg-surface rounded-2xl border border-border p-4"
           >
-            <div className="mt-3 space-y-2 text-right">
+            <div className="mt-3 space-y-2 ">
               <div className="flex justify-end items-center gap-2">
                 <span className="font-medium">{item.date}</span>
                 <span>{t("dateLabel")}</span>
               </div>
 
               <div className="flex flex-col items-end">
-                <p className="text-right">{item.text}</p>
+                <p className="">{item.text}</p>
               </div>
               <div dir="rtl" className="flex">
                 <ButtonDashboard text={t("markAsRead")} clx="bg-primary">

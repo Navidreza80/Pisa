@@ -44,7 +44,7 @@ export const BookingCard = ({ booking, t, onActionClick }) => {
               <MoreHorizontal className="h-5 w-5" />
             </button>
           </PopoverTrigger>
-          <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+          <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
             <div className="space-y-2">
               <div
                 className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1"

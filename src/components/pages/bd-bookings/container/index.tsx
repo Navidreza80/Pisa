@@ -111,7 +111,7 @@ export default function BookingList({
             <CardContent className="p-0">
               <div className="p-4 space-y-3">
                 {/* Booking details */}
-                <div className="flex flex-col gap-2 text-right">
+                <div className="flex flex-col gap-2 ">
                   <div className="space-y-1">
                     <p className="text-sm text-text-secondary">
                       {t("tableHeaders.bookingDate")}

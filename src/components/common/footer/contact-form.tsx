@@ -55,7 +55,7 @@ export default function ContactForm() {
 
   return (
     <div className="w-full bg-background/50 rounded-xl mb-6">
-      <h2 className="text-xl font-bold mb-6 text-right">{t("contact")}</h2>
+      <h2 className="text-xl font-bold mb-6  ">{t("contact")}</h2>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col w-full md:flex-row-reverse gap-4 items-center justify-end mx-auto"
@@ -74,14 +74,14 @@ export default function ContactForm() {
             id="title"
             name="title"
             placeholder={t("title")}
-            className="h-[48px] text-right rounded-xl border-border"
+            className="h-[48px]  rounded-xl border-border"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.title}
             status={formik.touched.title && formik.errors.title ? "error" : ""}
           />
           {formik.touched.title && formik.errors.title ? (
-            <div className="text-red-500 text-sm mt-1 text-right">
+            <div className="text-red-500 text-sm mt-1 ">
               {formik.errors.title}
             </div>
           ) : null}
@@ -92,7 +92,7 @@ export default function ContactForm() {
             id="message"
             name="message"
             placeholder={t("desc")}
-            className="h-[48px] text-right rounded-xl border-border"
+            className="h-[48px]  rounded-xl border-border"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.message}
@@ -101,7 +101,7 @@ export default function ContactForm() {
             }
           />
           {formik.touched.message && formik.errors.message ? (
-            <div className="text-red-500 text-sm mt-1 text-right">
+            <div className="text-red-500 text-sm mt-1 ">
               {formik.errors.message}
             </div>
           ) : null}

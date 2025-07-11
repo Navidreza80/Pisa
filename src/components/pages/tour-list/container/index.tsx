@@ -29,7 +29,7 @@ export default async function ToursListContainer() {
       <div>
         {/* Title */}
         <Reveal>
-          <div className="text-right text-text text-[36px] font-[700]">
+          <div className=" text-text text-[36px] font-[700]">
             {t("TourPageTitle")}
           </div>
         </Reveal>

@@ -29,11 +29,11 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
         </Link>
       </div>
       <div className="max-[600px]:w-[100%]">
-        <h1 className="text-[36px] text-right font-[700] text-text mb-[24px]">
+        <h1 className="text-[36px]  font-[700] text-text mb-[24px]">
           {title}
         </h1>
         {desc && (
-          <p className="text-[14px] text-right mb-6 font-[600] text-text-secondary">
+          <p className="text-[14px]  mb-6 font-[600] text-text-secondary">
             {desc}
           </p>
         )}

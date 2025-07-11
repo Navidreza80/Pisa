@@ -22,7 +22,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
     <div dir="rtl">
       <Reveal>
         {/* Title */}
-        <div className="text-right text-[28px] font-[700] mb-4">
+        <div className=" text-[28px] font-[700] mb-4">
           از هوش مصنوعی مشاوره بگیر!
         </div>
       </Reveal>

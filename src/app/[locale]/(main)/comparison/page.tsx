@@ -254,7 +254,7 @@ const ComparisonPage = () => {
                 <thead>
                   <tr className="bg-primary/10">
                     <th
-                      className={`p-3 sm:p-4 text-xs sm:text-sm ${isRTL ? "text-left" : "text-right"}`}
+                      className={`p-3 sm:p-4 text-xs sm:text-sm ${isRTL ? "" : ""}`}
                     >
                       {t("specifications")}
                     </th>

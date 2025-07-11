@@ -122,9 +122,9 @@ export default function HouseCardList({
     <Tilt
       transitionSpeed={2500}
       className={`flex flex-col group hover:shadow-lg flex-wrap overflow-hidden justify-between border ${
-        minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-[350px]"
+        minWidth ? minWidth : "lg:min-w-[391px] md:min-w-[391px] min-w-full"
       } ${
-        width ? width : "w-[calc(33.3%-20px)]"
+        width ? width : "lg:w-[calc(33.3%-20px)]"
       } p-4 rounded-[40px] gap-[13px] border-border`}
     >
       <motion.div
@@ -136,7 +136,7 @@ export default function HouseCardList({
       >
         {/* Photo slider section */}
         <Slider
-          className="w-[340px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
+          className="w-[200px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop
@@ -198,7 +198,7 @@ export default function HouseCardList({
             </span>
           </span>
           <Reveal width="100%">
-            <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
+            <h1 className="font-semibold text-right group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
               {card.title}
             </h1>
           </Reveal>
@@ -221,7 +221,7 @@ export default function HouseCardList({
       {/* House facilities section */}
       {showFacilities && (
         <>
-          <div className="flex flex-row-reverse justify-between">
+          <div className="md:flex hidden flex-row-reverse justify-between max-w-full">
             {visibleFeatures.map((feature, index) => (
               <Fragment key={feature.id}>
                 {index > 0 && <div className="bg-border w-[1px]" />}

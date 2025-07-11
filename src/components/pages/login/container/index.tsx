@@ -80,7 +80,7 @@ function LoginContainer() {
           type="text"
         >
           {formik.errors.email && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.email}
             </span>
           )}
@@ -96,7 +96,7 @@ function LoginContainer() {
           onChange={formik.handleChange}
         >
           {formik.errors.password && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.password}
             </span>
           )}

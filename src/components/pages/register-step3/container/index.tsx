@@ -73,7 +73,7 @@ function Register3() {
           icon={<MobileSVG />}
         >
           {formik.errors.phoneNumber && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.phoneNumber}
             </span>
           )}
@@ -87,7 +87,7 @@ function Register3() {
           icon={<Password />}
         >
           {formik.errors.password && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.password}
             </span>
           )}
@@ -101,7 +101,7 @@ function Register3() {
           icon={<RepeatPassword />}
         >
           {formik.errors.repeatedPassword && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.repeatedPassword}
             </span>
           )}

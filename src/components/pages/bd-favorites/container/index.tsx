@@ -92,7 +92,7 @@ export default function BuyerFavorites() {
           tableContent={bookings.map((booking) => (
             <tr
               key={booking.id}
-              className="text-right border-b hover:bg-background/30"
+              className=" border-b hover:bg-background/30"
             >
               <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.hotel}
@@ -103,7 +103,7 @@ export default function BuyerFavorites() {
               <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.address}
               </td>
-              <td className="py-2 px-4 text-left">
+              <td className="py-2 px-4 ">
                 <Popover
                   open={openPopoverId === booking.id}
                   onOpenChange={(open) =>
@@ -113,7 +113,7 @@ export default function BuyerFavorites() {
                   <PopoverTrigger asChild>
                     <div className="text-2xl font-bold cursor-pointer">...</div>
                   </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
+                  <PopoverContent className=" w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
                     <div>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
                         <h1>{t("actions.reserve")}</h1>
@@ -145,10 +145,10 @@ export default function BuyerFavorites() {
             className="bg-surface rounded-2xl border border-border p-4"
           >
             <div className="flex items-start justify-end">
-              <h2 className="text-lg font-bold text-right">{booking.hotel}</h2>
+              <h2 className="text-lg font-bold ">{booking.hotel}</h2>
             </div>
 
-            <div className="mt-3 space-y-2 text-right">
+            <div className="mt-3 space-y-2 ">
               <div className="flex justify-end items-center gap-2">
                 <span className="font-medium">{booking.price}</span>
                 <span>{t("priceLabel")}</span>
@@ -156,7 +156,7 @@ export default function BuyerFavorites() {
 
               <div className="flex flex-col items-end">
                 <span className="text-text-secondary">{t("addressLabel")}</span>
-                <p className="text-right">{booking.address}</p>
+                <p className="">{booking.address}</p>
               </div>
 
               <div className="flex justify-end gap-2 pt-2">

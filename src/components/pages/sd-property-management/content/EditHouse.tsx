@@ -105,7 +105,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
               id={name}
               value={(formData as any)[name]}
               onChange={handleChange}
-              className="p-2 text-right border rounded-md focus:outline-none focus:ring focus:ring-primary text-sm"
+              className="p-2  border rounded-md focus:outline-none focus:ring focus:ring-primary text-sm"
             />
           </div>
         ))}
@@ -123,7 +123,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
             rows={3}
             value={formData.caption}
             onChange={handleChange}
-            className="p-2 text-right border rounded-md resize-none focus:outline-none focus:ring focus:ring-primary text-sm"
+            className="p-2  border rounded-md resize-none focus:outline-none focus:ring focus:ring-primary text-sm"
           />
         </div>
 

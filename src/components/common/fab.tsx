@@ -78,10 +78,10 @@ export default function FloatingActions() {
     <>
       <ChatAssistant isOpen={chatOpen} setIsOpen={setChatOpen} />
       {!open && <BackToTopButton />}
-      <div className="fixed z-50 bottom-6 ltr:left-6 right-6 flex-col items-start ltr:items-end gap-2 lg:flex md:flex hidden">
+      <div className="fixed z-50 bottom-6 ltr:left-6 right-6 flex-col items-start ltr:items-end gap-2 flex">
         {open && (
           <div className="flex flex-col items-start ltr:items-end gap-2 mb-1 animate-fade-in">
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative inline-block ">
               <div>
                 <Menu.Button className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg shadow bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-800 dark:text-gray-100 text-xs">
                   <Globe className="w-4 h-4 text-purple-500" />

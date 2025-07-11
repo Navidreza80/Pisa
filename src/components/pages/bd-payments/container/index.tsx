@@ -132,10 +132,10 @@ export default function BuyerPayments() {
             className="bg-surface rounded-2xl border border-border p-4"
           >
             <div className="flex items-start justify-end">
-              <h2 className="text-lg font-bold text-right">{item.date}</h2>
+              <h2 className="text-lg font-bold ">{item.date}</h2>
             </div>
 
-            <div className="mt-3 space-y-2 text-right">
+            <div className="mt-3 space-y-2 ">
               <div className="flex justify-end items-center gap-2">
                 <span className="font-medium">{item.status}</span>
                 <span>:{t("statusLabel")}</span>
@@ -150,7 +150,7 @@ export default function BuyerPayments() {
                 <span className="text-text-secondary">
                   :{t("trackingCodeLabel")}
                 </span>
-                <p className="text-right">{item.trackingCode}</p>
+                <p className="">{item.trackingCode}</p>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ const Modal: React.FC<IProps> = ({ trigger, children, title, className }) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className={className}>
         <DialogHeader>
-          <DialogTitle className="text-right">{title}</DialogTitle>
+          <DialogTitle className="">{title}</DialogTitle>
         </DialogHeader>
         {children}
       </DialogContent>

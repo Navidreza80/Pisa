@@ -133,7 +133,7 @@ export default function SellerReservationManagement() {
                   {booking.paymentStatus}
                 </span>
               </td>
-              <td className="py-2 px-4 text-left rounded-l-xl">
+              <td className="py-2 px-4  rounded-l-xl">
                 <Popover
                   open={openPopoverId === booking.id}
                   onOpenChange={(open) =>
@@ -143,7 +143,7 @@ export default function SellerReservationManagement() {
                   <PopoverTrigger asChild>
                     <div className="text-2xl font-bold cursor-pointer">...</div>
                   </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
                         <h1>{t("actions.approve")}</h1>
@@ -196,7 +196,7 @@ export default function SellerReservationManagement() {
                       ...
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
                     <div className="space-y-2">
                       <div className="w-full flex gap-2 cursor-pointer hover:bg-border rounded px-1">
                         <h1>{t("actions.approve")}</h1>
@@ -226,13 +226,13 @@ export default function SellerReservationManagement() {
                   </PopoverContent>
                 </Popover>
 
-                <h2 className="text-lg font-bold text-right">
+                <h2 className="text-lg font-bold ">
                   {booking.hotel}
                 </h2>
               </div>
 
               {/* Booking details */}
-              <div dir="rtl" className="grid grid-cols-2 gap-3 text-right">
+              <div dir="rtl" className="grid grid-cols-2 gap-3 ">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.travelerInfo")}:

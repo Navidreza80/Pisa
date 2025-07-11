@@ -126,7 +126,7 @@ export default function SellerFinanceManagement() {
                 >
                   {property.status}
                 </span>
-                <div className="text-right">
+                <div className="">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.date")}:
                   </p>
@@ -135,7 +135,7 @@ export default function SellerFinanceManagement() {
               </div>
 
               {/* Transaction details */}
-              <div className="grid grid-cols-1 gap-3 text-right">
+              <div className="grid grid-cols-1 gap-3 ">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.trackingNumber")}:

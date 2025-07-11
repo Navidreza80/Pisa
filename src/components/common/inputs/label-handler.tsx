@@ -86,7 +86,7 @@ export function LabelManager({
             </DialogTrigger>
             <DialogContent dir="rtl" className="sm:max-w-[425px] bg-background">
               <DialogHeader className="mb-4">
-                <DialogTitle className="text-right">{modalTitle}</DialogTitle>
+                <DialogTitle className="">{modalTitle}</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
                 <div className="space-y-2">

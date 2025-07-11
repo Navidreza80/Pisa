@@ -109,7 +109,7 @@ const FilterModal = () => {
         {inputs.map((item, index) => {
           return (
             <div key={index} className="space-y-2">
-              <label className="block text-right text-sm font-medium">
+              <label className="block  text-sm font-medium">
                 {item.text}
               </label>
               {item.type == "select" ? (

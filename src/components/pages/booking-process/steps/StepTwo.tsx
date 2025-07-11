@@ -78,7 +78,7 @@ export default function BookingStepTwo() {
             tableContent={booking.traveler_details.map((traveler) => (
               <tr
                 key={traveler.id}
-                className="text-right hover:bg-background/30"
+                className=" hover:bg-background/30"
               >
                 <td className={tableBaseCLX}>
                   {getAgeGroup(traveler.birthDate)}

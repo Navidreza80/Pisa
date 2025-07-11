@@ -59,10 +59,10 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
       </div>
       {/* Description Section */}
       <div className="w-full md:w-[53.4%] order-2 md:order-none">
-        <h1 className="text-xl md:text-2xl font-semibold mb-3 md:mb-[18px] text-right">
+        <h1 className="text-xl md:text-2xl font-semibold mb-3 md:mb-[18px] ">
           {title}
         </h1>
-        <p className="text-sm md:text-[15px] font-medium text-text-secondary leading-relaxed md:leading-6 text-right">
+        <p className="text-sm md:text-[15px] font-medium text-text-secondary leading-relaxed md:leading-6 ">
           {caption}
         </p>
       </div>

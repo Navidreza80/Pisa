@@ -15,18 +15,18 @@ const TopSales: React.FC<IProps> = async ({ data }) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-[32px]">
-        <Button>
-          <Link href="/reserve">{t("seeMore")}</Link>
-        </Button>
         <div className="flex flex-row-reverse gap-[20px]">
           <Reveal>
-            <div className="font-bold text-right text-[28px]">
+            <div className="font-bold  whitespace-nowrap md:text-[28px] text-xl">
               {t.rich("hot", {
                 br: () => <br />,
               })}
             </div>
           </Reveal>
         </div>
+        <Button>
+          <Link href="/reserve">{t("seeMore")}</Link>
+        </Button>
       </div>
       <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap">
         {data.map((card: HouseItemsInterface, index: number) => (
@@ -40,9 +40,8 @@ const TopSales: React.FC<IProps> = async ({ data }) => {
           />
         ))}
       </div>
-      <div className="flex gap-[30px] justify-center md:justify-center lg:justify-between flex-wrap"></div>
     </div>
   );
 };
 
-export default TopSales
+export default TopSales;

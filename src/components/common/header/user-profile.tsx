@@ -86,13 +86,13 @@ export default function UserProfile({ user }: UserProfileProps) {
           <div className="p-2">
             <Link
               href="/dashboard/seller"
-              className="w-full cursor-pointer text-left px-3 py-2 text-sm rounded-md hover:bg-surface dark:hover:bg-surface-dark transition-colors"
+              className="w-full cursor-pointer  px-3 py-2 text-sm rounded-md hover:bg-surface dark:hover:bg-surface-dark transition-colors"
             >
               {t("profile")}
             </Link>
             <button
               onClick={handleLogout}
-              className="w-full cursor-pointer text-left px-3 py-2 text-sm rounded-md text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              className="w-full cursor-pointer  px-3 py-2 text-sm rounded-md text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
               {t("logout")}
             </button>

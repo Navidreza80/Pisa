@@ -58,7 +58,7 @@ export default function AddPropertyStepOne({
       value: formik.values.capacity,
       validation:
         formik.touched.capacity && formik.errors.capacity ? (
-          <div className="text-red-500 text-sm mt-1 text-right">
+          <div className="text-red-500 text-sm mt-1 ">
             {formik.errors.capacity}
           </div>
         ) : null,
@@ -72,7 +72,7 @@ export default function AddPropertyStepOne({
       value: formik.values.price,
       validation:
         formik.touched.price && formik.errors.price ? (
-          <div className="text-red-500 text-sm mt-1 text-right">
+          <div className="text-red-500 text-sm mt-1 ">
             {formik.errors.price}
           </div>
         ) : null,
@@ -180,7 +180,7 @@ export default function AddPropertyStepOne({
           )}
       </div>
       {formik.touched.caption && formik.errors.caption ? (
-        <div className="text-red-500 text-sm mt-1 text-right">
+        <div className="text-red-500 text-sm mt-1 ">
           {formik.errors.caption}
         </div>
       ) : null}

@@ -67,7 +67,7 @@ export default function ReserveForm({ price }: { price: string }) {
               name="travelersCount"
             />
             {formik.errors.travelersCount && (
-              <span className="text-red-500 text-sm text-right">
+              <span className="text-red-500 text-sm ">
                 {formik.errors.travelersCount}
               </span>
             )}

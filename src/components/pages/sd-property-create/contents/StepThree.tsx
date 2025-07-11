@@ -19,7 +19,7 @@ export default function AddPropertyStepThree({
       value: formik.values.rooms,
       validation:
         formik.touched.rooms && formik.errors.rooms ? (
-          <div className="text-red-500 text-sm mt-1 text-right">
+          <div className="text-red-500 text-sm mt-1 ">
             {formik.errors.rooms}
           </div>
         ) : null,
@@ -32,7 +32,7 @@ export default function AddPropertyStepThree({
       value: formik.values.bathrooms,
       validation:
         formik.touched.bathrooms && formik.errors.bathrooms ? (
-          <div className="text-red-500 text-sm mt-1 text-right">
+          <div className="text-red-500 text-sm mt-1 ">
             {formik.errors.bathrooms}
           </div>
         ) : null,
@@ -46,7 +46,7 @@ export default function AddPropertyStepThree({
       value: formik.values.parking,
       validation:
         formik.touched.parking && formik.errors.parking ? (
-          <div className="text-red-500 text-sm mt-1 text-right">
+          <div className="text-red-500 text-sm mt-1 ">
             {formik.errors.parking}
           </div>
         ) : null,

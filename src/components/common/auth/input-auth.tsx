@@ -21,7 +21,7 @@ export default function InputAuth({
 }: InputAuthProps) {
   return (
     <div className="max-[600px]:w-[100%]">
-      <p className="text-[14px] font-[500] text-right mb-[15px] text-black dark:text-white">
+      <p className="text-[14px] font-[500]  mb-[15px] text-black dark:text-white">
         {text}
       </p>
       <div className="relative h-[48px]">

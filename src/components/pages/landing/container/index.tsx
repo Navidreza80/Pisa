@@ -26,10 +26,10 @@ export default async function HomeContainer() {
     <Container>
       <div className="flex flex-col flex-wrap gap-[118px] w-[85.5%]">
         <HeroSection />
-        <div className="animate-[var(--animation-content-pop)] [animation-timeline:scroll(root)] [animation-range:200px_600px] flex flex-col flex-wrap gap-[120px]">
-          <Offers data={data} />
-          <Category />
+        <div className="animate-[var(--animation-content-pop)] [animation-timeline:scroll(root)] [animation-range:200px_600px] flex flex-col flex-wrap gap-[120px] w-full">
           <TopSales data={data} />
+          <Category />
+
           <Rank />
           <PopularLocations
             tehranHouses={tehranHouses}
@@ -37,7 +37,6 @@ export default async function HomeContainer() {
             esfahanHouses={esfahanHouses}
           />
           <PropertyAgentSection houses={data} houseLength={houseLength} />
-          <Comments />
         </div>
       </div>
     </Container>

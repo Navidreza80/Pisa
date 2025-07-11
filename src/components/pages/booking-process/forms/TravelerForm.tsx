@@ -25,7 +25,7 @@ const TravelerForm = ({
 
   return (
     <div className="flex w-full flex-wrap gap-4 pb-3">
-      <h1 className="w-full text-right py-2 text-primary text-2xl font-semibold">
+      <h1 className="w-full  py-2 text-primary text-2xl font-semibold">
         مسافر {travelerIndex + 1}
       </h1>
       {fields.map(({ label, field, type }) => (

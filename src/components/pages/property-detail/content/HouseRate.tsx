@@ -2,7 +2,7 @@ import StarDisplay from "@/components/common/StarDisplay";
 
 export default function HouseRate({ rate }: { rate: number }) {
   return (
-    <section className="space-y-2 text-right">
+    <section className="space-y-2 ">
       <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200">
         امتیاز هتل
       </h3>

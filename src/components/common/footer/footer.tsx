@@ -63,11 +63,11 @@ export default async function Footer() {
 
   return (
     <Container>
-      <div className="border-t w-[85.5%] border-text my-10 flex flex-col py-10">
-        <div className="flex justify-end mb-10">
+      <div className="border-t w-[85.5%] items-start border-text my-10 flex flex-col py-10">
+        <div className="flex mb-10">
           <LogoSVG size="w-[106px] h-[36px]" />
         </div>
-        <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
+        <div className="flex flex-col items-start md:flex-row justify-between gap-8 md:gap-16">
           {footerColumns.map((column, index) => (
             <FooterColumn
               key={`column-${index}`}
@@ -76,13 +76,13 @@ export default async function Footer() {
             />
           ))}
 
-          <div className="flex flex-col items-end md:w-auto lg:max-w-md">
-            <p className="text-text leading-6 text-right mb-5">
+          <div className="flex flex-col md:w-auto lg:max-w-md">
+            <p className="text-text leading-6   mb-5">
               {t("footerAbout")}
             </p>
           </div>
         </div>
-        <div className="my-8">
+        <div className="my-8 w-full">
           <ContactForm />
         </div>
         <div className="flex flex-wrap gap-10 justify-end items-center mt-4">

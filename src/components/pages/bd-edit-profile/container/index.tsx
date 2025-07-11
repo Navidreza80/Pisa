@@ -57,7 +57,7 @@ export default function BuyerInformation() {
   return (
     <ContainerDashboard>
       <form onSubmit={formik.handleSubmit}>
-        <div className="mb-8 text-center md:text-right">
+        <div className="mb-8 text-center md:">
           <h2 className="text-text text-[20px] font-extrabold font-yekan">
             {t("profileImage.title")}
           </h2>
@@ -89,7 +89,7 @@ export default function BuyerInformation() {
 
         <div className="h-[1px] bg-border" />
         <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
-          <div className="text-center md:text-right">
+          <div className="text-center md:">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("personalInfo.title")}
             </h2>
@@ -128,7 +128,7 @@ export default function BuyerInformation() {
 
         <div className="h-[1px] bg-border" />
         <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
-          <div className="text-center md:text-right">
+          <div className="text-center md:">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("security.title")}
             </h2>

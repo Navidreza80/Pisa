@@ -72,7 +72,7 @@ function Register1() {
         >
           {" "}
           {formik.errors.email && (
-            <span className="text-red-500 text-sm text-right">
+            <span className="text-red-500 text-sm ">
               {formik.errors.email}
             </span>
           )}

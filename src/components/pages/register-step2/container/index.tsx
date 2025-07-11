@@ -61,10 +61,10 @@ export default function Register2() {
         <LogoSVGClient />
       </div>
       <div dir="rtl">
-        <h1 className="text-[36px] text-right font-[700] text-[#000000] dark:text-[#ffffff] mb-[30px]">
+        <h1 className="text-[36px]  font-[700] text-[#000000] dark:text-[#ffffff] mb-[30px]">
           {t("SignUpTitle")}
         </h1>
-        <div className="text-[14px] text-right flex gap-[3px] font-[600] text-[#767676] dark:text-[#d1d1d1]">
+        <div className="text-[14px]  flex gap-[3px] font-[600] text-[#767676] dark:text-[#d1d1d1]">
           {t("SignUpDesc2")}
         </div>
       </div>
@@ -73,7 +73,7 @@ export default function Register2() {
         className="w-full flex flex-col items-center mt-4"
         onSubmit={formik.handleSubmit}
       >
-        <span className="text-[14px] w-full font-[500] mb-[8px] text-right text-[#222] dark:text-[#d1d1d1]">
+        <span className="text-[14px] w-full font-[500] mb-[8px]  text-[#222] dark:text-[#d1d1d1]">
           {t("VerificationCode")}
         </span>
 
@@ -109,7 +109,7 @@ export default function Register2() {
           </InputOTP>
         </div>
         {!code && (
-          <span className="text-red-500 text-sm text-right">
+          <span className="text-red-500 text-sm ">
             لطفا کد تایید را وارد کنید
           </span>
         )}

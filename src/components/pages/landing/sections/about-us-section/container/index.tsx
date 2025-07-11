@@ -9,7 +9,7 @@ function Rank() {
   const t = useTranslations("HomePage");
   return (
     <div className="flex flex-row-reverse gap-4 lg:justify-between w-full">
-      <div className="flex flex-col flex-wrap gap-[24px] lg:w-auto md:w-full w-full">
+      <div className="flex flex-col flex-wrap gap-[24px] lg:w-auto md:w-full w-full min-w-full">
         <div className="flex lg:justify-end md:justify-center justify-center">
           <RankSVG />
         </div>

@@ -18,14 +18,14 @@ export default async function HeroSection() {
       <Search />
       <div className="flex lg:justify-start md:justify-center justify-center items-start flex-wrap flex-col mt-7 animate-fade-left">
         <Reveal className="w-full">
-          <h1 className="text-4xl w-full font-bold leading-[50px] ltr:lg:text-left lg:text-right md:text-center text-center">
+          <h1 className="text-4xl w-full font-bold leading-[50px] ltr:lg: lg: md:text-center text-center">
             {t.rich("title", {
               br: () => <br />,
             })}
           </h1>
         </Reveal>
         <Reveal className="md:mx-0 mx-auto ">
-          <h2 className="leading-[30px] ltr:lg:text-left lg:text-right md:text-center text-center text-base text-text-secondary  font-semibold mt-8">
+          <h2 className="leading-[30px] ltr:lg: lg: md:text-center text-center text-base text-text-secondary  font-semibold mt-8">
             {t.rich("subTitle", {
               br: () => <br />,
             })}

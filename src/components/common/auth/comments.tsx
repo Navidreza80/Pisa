@@ -149,7 +149,7 @@ export default function CommentsSwiper() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 text-right">
+    <div className="w-full max-w-4xl mx-auto px-4 ">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -186,7 +186,7 @@ export default function CommentsSwiper() {
                     <motion.p
                       key={comment.id}
                       dir="rtl"
-                      className="text-right text-[#232323] text-[16px] font-[600]"
+                      className=" text-[#232323] text-[16px] font-[600]"
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -50 }}
@@ -206,7 +206,7 @@ export default function CommentsSwiper() {
                       height={48}
                       className="rounded-full border-black border-[1px]"
                     />
-                    <div className="flex flex-col text-right">
+                    <div className="flex flex-col ">
                       <p className="font-[600] text-[16px] text-[#232323]">
                         {comment.user?.name || t("unknownUser")}
                       </p>

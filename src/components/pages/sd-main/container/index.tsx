@@ -133,7 +133,7 @@ export default function SellerMainDashboard() {
                   {booking.status}
                 </span>
               </td>
-              <td className="py-2 px-4 text-left rounded-l-xl">
+              <td className="py-2 px-4  rounded-l-xl">
                 <Popover
                   open={openPopoverId === booking.id}
                   onOpenChange={(open) =>
@@ -143,7 +143,7 @@ export default function SellerMainDashboard() {
                   <PopoverTrigger asChild>
                     <div className="text-2xl font-bold cursor-pointer">...</div>
                   </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
                     <div className="space-y-2">
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
                         <h1>{t("actions.approve")}</h1>

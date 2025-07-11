@@ -26,9 +26,9 @@ export default function UserModal({ user, open, onClose }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="w-[90%] max-w-sm rounded-2xl text-right font-vazir">
+      <DialogContent className="w-[90%] max-w-sm rounded-2xl  font-vazir">
         <DialogHeader>
-          <DialogTitle className="text-lg text-gray-800 text-right">
+          <DialogTitle className="text-lg text-gray-800 ">
             {t("title")}
           </DialogTitle>
         </DialogHeader>

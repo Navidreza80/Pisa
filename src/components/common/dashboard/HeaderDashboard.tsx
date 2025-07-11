@@ -34,7 +34,7 @@ async function HeaderDashboard() {
               <PopoverTrigger asChild>
                 <ChevronDown />
               </PopoverTrigger>
-              <PopoverContent className="text-right w-[180px] p-1 bg-background px-1 border-border shadow-sm shadow-border z-[1000]">
+              <PopoverContent className=" w-[180px] p-1 bg-background px-1 border-border shadow-sm shadow-border z-[1000]">
                 <div className="px-[10px]">
                   <div className="w-full h-full flex flex-col">
                     <div className="py-[10px] w-full flex gap-2 flex-row-reverse">

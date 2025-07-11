@@ -1,9 +1,4 @@
 "use client";
-// Icons
-import { MenuIcon } from "lucide-react";
-
-// Icons
-
 // Next built in components
 import { Link } from "@/i18n/navigation";
 
@@ -19,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { MenuIcon } from "lucide-react";
 
 /**
  * Mobile navigation component for mobile mode.
@@ -47,7 +43,7 @@ export default function MobileNav() {
     <div className="hidden max-[600px]:block">
       <Sheet>
         <SheetTrigger asChild>
-          <MenuIcon className="!text-text" style={{ fontSize: "50px" }} />
+          <MenuIcon className="text-text" size={64} />
         </SheetTrigger>
         <SheetContent
           side={direction === "rtl" ? "right" : "left"}
@@ -67,7 +63,7 @@ export default function MobileNav() {
                   <Link
                     href={item.url}
                     className={` text-base text-text ${
-                      direction === "rtl" ? "text-right" : "text-left"
+                      direction === "rtl" ? "" : ""
                     }`}
                   >
                     {item.text}

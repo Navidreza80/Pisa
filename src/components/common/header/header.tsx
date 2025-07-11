@@ -50,7 +50,7 @@ export default async function Header() {
       <div className="h-20 w-[85.5%] py-6 flex items-center justify-between max-[600px]:h-28 font-yekan">
         {/* Logo SVG */}
         <div className="flex justify-start items-center gap-x-3">
-          <Link href="/">
+          <Link href="/" className="hidden md:block">
             {" "}
             <LogoSVG size="w-[106px] h-[36px] md:w-[71px] md:h-[24px] lg:w-[54px] lg:h-[29px]" />
           </Link>

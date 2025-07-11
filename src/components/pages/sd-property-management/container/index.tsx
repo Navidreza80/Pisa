@@ -128,7 +128,7 @@ export default function SellerDashboardProperties({ houses }) {
                       ...
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
+                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
                     <div className="space-y-2">
                       <EditHouse
                         house={property}
@@ -183,7 +183,7 @@ export default function SellerDashboardProperties({ houses }) {
               />
 
               {/* Property details */}
-              <div className="grid grid-cols-2 gap-3 text-right">
+              <div className="grid grid-cols-2 gap-3 ">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.price")}:

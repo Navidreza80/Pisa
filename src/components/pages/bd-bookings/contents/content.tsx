@@ -68,7 +68,7 @@ export default function ReserveTableContent({
   const t = useTranslations("BookingList");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   return (
-    <tr key={booking.id} className="text-right border-b hover:bg-background/30">
+    <tr key={booking.id} className=" border-b hover:bg-background/30">
       <td className="py-2 px-4 text-[18px] font-medium">
         {house.title || <ClipLoader color="#586cff" />}
       </td>
@@ -108,7 +108,7 @@ export default function ReserveTableContent({
           تایید شده
         </span>
       </td>
-      <td className="py-2 px-4 text-left">
+      <td className="py-2 px-4 ">
         <Popover
           open={openPopoverId === booking.id}
           onOpenChange={(open) => setOpenPopoverId(open ? booking.id : null)}
@@ -116,7 +116,7 @@ export default function ReserveTableContent({
           <PopoverTrigger asChild>
             <div className="text-2xl font-bold cursor-pointer">...</div>
           </PopoverTrigger>
-          <PopoverContent className="text-right w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
+          <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
             <div className="space-y-2">
               <div
                 onClick={() => setDetailModal((prev: boolean) => !prev)}

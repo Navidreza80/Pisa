@@ -51,11 +51,11 @@ export default function ResultButton({
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-[700px] h-[100%] overflow-y-scroll">
           <DialogHeader>
-            <DialogTitle className="text-right w-full">
+            <DialogTitle className=" w-full">
               {t("searchResults")}
             </DialogTitle>
           </DialogHeader>
-          <div className="py-4 text-right" dir="rtl">
+          <div className="py-4 " dir="rtl">
             <div className="mb-4 relative">
               <Input
                 placeholder="جستجو در نتایج..."
