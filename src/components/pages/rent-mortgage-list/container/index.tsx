@@ -47,7 +47,7 @@ const Rent = () => {
           )}
         </div>
         {/* Filter and Sort Options */}
-        <div className="flex animate-fade-up flex-row-reverse flex-wrap ltr:justify-end gap-[16px] py-4">
+        <div className="flex animate-fade-up flex-row-reverse flex-wrap justify-end gap-[16px] py-4">
           {filtersItems.map((item) => (
             <button
               key={item.text}
