@@ -1,14 +1,12 @@
+import Container from "@/components/common/container";
 import { HouseItemsInterface } from "@/types/house";
 import { fetchHouses } from "@/utils/service/house/get";
-import Container from "@/components/common/container";
-import PropertyAgentSection from "../sections/property-agent-section/container";
-import HeroSection from "../sections/hero-section/container";
-import Offers from "../sections/offers-section/container";
-import Category from "../sections/categories-section/container";
-import TopSales from "../sections/top-sale-section/container";
-import PopularLocations from "../sections/locations-section/container";
 import Rank from "../sections/about-us-section/container";
-import Comments from "../sections/comments-section/container";
+import Category from "../sections/categories-section/container";
+import HeroSection from "../sections/hero-section/container";
+import PopularLocations from "../sections/locations-section/container";
+import PropertyAgentSection from "../sections/property-agent-section/container";
+import TopSales from "../sections/top-sale-section/container";
 
 export default async function HomeContainer() {
   const data: HouseItemsInterface[] = await fetchHouses({
