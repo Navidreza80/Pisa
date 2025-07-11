@@ -27,7 +27,6 @@ export default async function HomeContainer() {
         <div className="animate-[var(--animation-content-pop)] [animation-timeline:scroll(root)] [animation-range:200px_600px] flex flex-col flex-wrap gap-[120px] w-full">
           <TopSales data={data} />
           <Category />
-
           <Rank />
           <PopularLocations
             tehranHouses={tehranHouses}
