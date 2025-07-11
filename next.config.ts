@@ -2,6 +2,9 @@ import { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizeCss: false,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -1,9 +1,7 @@
 "use server";
 
-import AI from "@/assets/images/AI.png";
 import Reveal from "@/components/common/reveal";
 import { HouseItemsInterface } from "@/types/house";
-import Image from "next/image";
 import Agent from "../content/Agent";
 import Status from "../content/Status";
 
@@ -16,8 +14,6 @@ const PropertyAgentSection: React.FC<IProps> = async ({
   houseLength,
   houses,
 }) => {
-
-
   return (
     <div dir="rtl">
       <Reveal>
@@ -40,13 +36,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
               </div>
             </div>
           </div>
-          <Image
-            src={AI}
-            width={500}
-            height={500}
-            alt="AI Image"
-            className="w-[356px] h-[450px] rotate-y-180"
-          />
+          <div className="w-[356px] h-[450px] rotate-y-180" />
         </div>
       </div>
     </div>
