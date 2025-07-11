@@ -136,7 +136,7 @@ export default function HouseCardList({
       >
         {/* Photo slider section */}
         <Slider
-          className="w-[200px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
+          className="w-[300px] md:w-[391px] lg:w-[391px] h-[221px] overflow-hidden"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop

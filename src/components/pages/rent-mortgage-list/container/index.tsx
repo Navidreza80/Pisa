@@ -33,7 +33,7 @@ const Rent = () => {
   };
 
   return (
-    <div dir="rtl" className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
+    <div className="w-[85.5%] pt-[32px] flex flex-wrap gap-[24px] ">
       {/* Title */}
       <div>
         <div className="flex gap-[8px] mb-[32px] animate-fade-down">
@@ -47,7 +47,7 @@ const Rent = () => {
           )}
         </div>
         {/* Filter and Sort Options */}
-        <div className="flex animate-fade-up flex-row-reverse flex-wrap justify-end gap-[16px] p-4">
+        <div className="flex animate-fade-up flex-row-reverse flex-wrap ltr:justify-end gap-[16px] py-4">
           {filtersItems.map((item) => (
             <button
               key={item.text}
@@ -82,9 +82,9 @@ const Rent = () => {
               onChange={(e) => handleChange("search", e.target.value)}
               type="text"
               placeholder={t("searchPlaceholder")}
-              className="w-full h-full border border-gray-300 rounded-[16px] p-4 pr-[48px] text-sm outline-none placeholder:text-[#A6A6A6]"
+              className="w-full h-full border border-gray-300 rounded-[16px] p-4 pr-[48px] ltr:pl-[48px] text-sm outline-none placeholder:text-[#A6A6A6]"
             />
-            <SearchSVG className="absolute top-[12px] right-[12px]" />
+            <SearchSVG className="absolute top-[12px] right-[12px] ltr:left-[12px]" />
           </div>
         </div>
       </div>
@@ -103,7 +103,6 @@ const Rent = () => {
           houses?.map((card: HouseItemsInterface, index: number) => (
             <HouseCardList
               key={index}
-              discount
               showRooms
               showCapacity
               showBathrooms
