@@ -87,7 +87,22 @@ export default function BookingList({
       <Line />
 
       {/* Table view for desktop */}
-
+      <div className="hidden md:block">
+        <TableDashboard
+          headerSecondary={true}
+          tableHeader={tableHeaderItems.map((item) => ({
+            ...item,
+            text: t(`tableHeaders.${item.text}`),
+          }))}
+          tableContent={bookingList.data.map((booking, index) => (
+            <ReserveTableContent key={index} booking={booking} />
+          ))}
+          currentPage={Number(page) || 1}
+          totalCount={bookingList.totalCount}
+          pageSize={2}
+          onPageChange={(page) => handleSetParam("page", page.toString())}
+        />
+      </div>
 
       {/* Card view for mobile */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
