@@ -107,7 +107,7 @@ export default function BuyerInformation() {
             </div>
           </div>
           <div
-            dir="rtl"
+            
             className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]"
           >
             {inputs.map((item) => {
@@ -147,7 +147,7 @@ export default function BuyerInformation() {
           </div>
 
           <div
-            dir="rtl"
+            
             className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]"
           >
             <Input

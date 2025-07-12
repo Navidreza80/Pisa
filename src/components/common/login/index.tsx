@@ -57,7 +57,7 @@ export default function LoginModal({
   return (
     <Dialog open={isOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent dir="rtl" className="max-w-[448px] h-[470px] px-6 py-6">
+      <DialogContent  className="max-w-[448px] h-[470px] px-6 py-6">
         <DialogHeader>
           <DialogTitle className="mx-auto text-primary text-3xl">
             ورود

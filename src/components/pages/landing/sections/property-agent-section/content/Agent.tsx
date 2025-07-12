@@ -75,7 +75,7 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
             value={budget}
             onChange={(e) => setBudget(Number(e.target.value))}
             className="w-[55%] h-12 rounded-2xl border-border"
-            dir="ltr"
+            
             placeholder="1,200,000"
           />
           <div className="border w-[40%] h-12 rounded-2xl border-border flex justify-between items-center">

@@ -24,7 +24,7 @@ export default function LoadingCustomized({ title }: { title: string }) {
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <p className="text-xl text-gray-700 font-medium" dir="rtl">{title}</p>
+          <p className="text-xl text-gray-700 font-medium" >{title}</p>
         </motion.div>
       </div>
     </div>

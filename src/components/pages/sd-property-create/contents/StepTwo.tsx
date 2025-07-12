@@ -32,7 +32,7 @@ export default function AddPropertyStepTwo({ formik, setLocation, location }) {
           </div>
         ) : null}
         <h1
-          dir="rtl"
+          
           className="leading-8 md:leading-10 text-text text-base md:text-[20px] font-semibold mt-6 md:mt-[68px]"
         >
           با انتخاب موقعیت مکانی ملک خود از روی نقشه به راحتی

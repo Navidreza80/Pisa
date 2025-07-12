@@ -104,7 +104,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      dir="rtl"
+      
       className="mt-3.5 flex gap-y-6 flex-col"
     >
       <div
@@ -148,7 +148,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
             </label>
             <Input
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
-              dir="rtl"
+              
               value={formik.values.title}
               onChange={formik.handleChange}
               id="title"
@@ -194,7 +194,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
           </label>
           <textarea
             className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none transition-all"
-            dir="rtl"
+            
             value={formik.values.caption}
             onChange={formik.handleChange}
             id="caption"

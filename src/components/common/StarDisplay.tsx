@@ -31,5 +31,5 @@ export default function StarDisplay({ rating, size = 20 }: Props) {
     return <StarOff key={index} size={size} className="text-gray-300" />;
   });
 
-  return <div dir="ltr" className="flex gap-1">{stars}</div>;
+  return <div  className="flex gap-1">{stars}</div>;
 }

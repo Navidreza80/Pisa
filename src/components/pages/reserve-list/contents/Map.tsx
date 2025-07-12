@@ -39,7 +39,7 @@ export default function Map({
               >
                 {/* Popup content */}
                 <Popup>
-                  <div className="popup-content overflow-hidden" dir="rtl">
+                  <div className="popup-content overflow-hidden" >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Image

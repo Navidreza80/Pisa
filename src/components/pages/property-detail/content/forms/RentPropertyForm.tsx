@@ -48,7 +48,7 @@ export default async function RentForm() {
           <div className="h-12 bg-gray-600 aspect-square rounded-full"></div>
           <div className="flex flex-col justify-between">
             <h4 className="text-text">عباس بهبودی</h4>
-            <h4 className="text-text-secondary " dir="rtl">
+            <h4 className="text-text-secondary " >
               13 اردیبهشت 1404
             </h4>
           </div>

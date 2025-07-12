@@ -40,7 +40,7 @@ const TableDashboard = ({
   return (
     <>
       <Table
-        dir="rtl"
+        
         responsive
         className="w-full text-sm border-separate border-spacing-y-4"
       >

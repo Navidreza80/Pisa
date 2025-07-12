@@ -35,7 +35,7 @@ export default async function MainImages({
         {/* + n other pictures section */}
         {photos.length > 3 && (
           <div
-            dir="rtl"
+            
             className="lg:w-[calc(33.33333333333333%-10.7px)] md:hidden hidden  text-text border rounded-t-2xl lg:flex justify-center items-center border-border rounded-b-3xl h-[192px]"
           >
             <svg

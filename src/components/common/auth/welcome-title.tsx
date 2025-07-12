@@ -20,7 +20,7 @@ export default function WelcomeTitle({ title, desc }: WelcomeTitleProps) {
   return (
     <>
       <div
-        dir="rtl"
+        
         className="max-[600px]:w-[100%] mb-6 flex justify-between items-center"
       >
         <LogoSVG size="w-[106px] h-[36px]" />

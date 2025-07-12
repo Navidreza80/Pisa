@@ -27,7 +27,7 @@ const ResultModal: React.FC<IProps> = ({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent dir="rtl" className="max-w-[448px] px-6 py-6">
+      <DialogContent  className="max-w-[448px] px-6 py-6">
         <DialogHeader>
           <DialogTitle></DialogTitle>
         </DialogHeader>

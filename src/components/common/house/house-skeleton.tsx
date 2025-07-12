@@ -47,8 +47,8 @@ export default function HouseSkeleton({
           </div>
         ))}
       </div>
-      <div dir="rtl" className="flex justify-between">
-        <div className="flex gap-1" dir="rtl">
+      <div  className="flex justify-between">
+        <div className="flex gap-1" >
           <div className="flex flex-row-reverse gap-[10px]">
             <div className="relative">
               <div className="flex flex-row-reverse gap-[5px]">

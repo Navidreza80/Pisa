@@ -68,7 +68,7 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
       </div>
       {/* Facilities Section 1 */}
       <div
-        dir="rtl"
+        
         className="w-full md:w-[41.8%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-3 md:order-none mt-4 md:mt-0"
       >
         {facilities.map((item, index) => {
@@ -85,7 +85,7 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
       </div>
       {/* Facilities Section 2 */}
       <div
-        dir="rtl"
+        
         className="w-full md:w-[53.4%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-4 md:order-none mt-4 md:mt-0"
       >
         {facilities2.map((item, index) => {

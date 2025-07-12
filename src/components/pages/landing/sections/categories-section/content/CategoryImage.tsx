@@ -57,8 +57,8 @@ const CategoryImage = ({ name, id }: { name: string; id: string }) => {
         }
         alt={name}
         width={1000}
-        height={1000}
-        className="w-full md:h-full h-[200px] relative z-20 rounded-4xl object-cover opacity-85
+        height={300}
+        className="w-full md:h-full max-h-[200px] relative z-20 rounded-4xl object-cover opacity-85
                 transition-all duration-500 ease-in-out 
                 group-hover:opacity-60 group-hover:scale-110"
       />

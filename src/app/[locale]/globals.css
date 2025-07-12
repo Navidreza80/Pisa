@@ -37,7 +37,6 @@ body {
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant solarized (&:where(.solarized, .solarized *));
 
-
 @keyframes content-pop {
   from {
     transform: translateY(100px) scale(0.95);
@@ -209,16 +208,6 @@ html[dir="rtl"] {
 
 html[dir="ltr"] {
   text-align: left !important;
-}
-
-html[dir="rtl"] .menu-items {
-  left: 0;
-  right: auto;
-}
-
-html[dir="ltr"] .menu-items {
-  right: 0;
-  left: auto;
 }
 
 .animate-fadeIn {

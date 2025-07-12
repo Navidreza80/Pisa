@@ -35,7 +35,7 @@ const ModalStep2 = ({
               <div className="mx-auto">
                 <ErrorSVG />
               </div>
-              <div dir="rtl">
+              <div >
                 <h1 className="text-xl font-bold text-text text-center">
                   {title}
                 </h1>

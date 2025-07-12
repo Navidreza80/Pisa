@@ -69,7 +69,7 @@ export function FilterModal() {
           </div>
         ))}
         <div className="space-y-4">
-          <div dir="rtl" className="flex flex-col gap-4">
+          <div  className="flex flex-col gap-4">
             <div className="flex gap-1.5">
               <h1 className="text-text-secondary">{t("priceFrom")}</h1>
               <p className="text-text ">{filters?.minPrice}</p>

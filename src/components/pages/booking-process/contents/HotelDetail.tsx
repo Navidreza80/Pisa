@@ -77,8 +77,8 @@ const HotelDetail = ({
           تایید و ادامه فرایند
         </Button>
         <div className="flex gap-1 flex-row-reverse text-lg md:text-2xl">
-          <h1 dir="rtl">قیمت بلیط :</h1>
-          <h3 dir="rtl" className="text-primary">
+          <h1 >قیمت بلیط :</h1>
+          <h3  className="text-primary">
             {formatNumber(Number(hotelDetail?.price))} ت
           </h3>
         </div>

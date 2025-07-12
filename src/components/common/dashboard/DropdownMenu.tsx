@@ -30,7 +30,7 @@ export default function DropdownMenu() {
     <div
       key={index}
       onClick={item.onClick}
-      className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] font-medium justify-end"
+      className="py-[10px] cursor-pointer hover:text-text/80 transition-all duration-300 border-t border-border w-full flex gap-2 text-[13px] rtl:flex-row-reverse font-medium justify-end"
     >
       {item.text} {item.icon}
     </div>

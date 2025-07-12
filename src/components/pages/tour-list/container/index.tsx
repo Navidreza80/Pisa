@@ -25,7 +25,7 @@ export default async function ToursListContainer() {
   const tours: Tour[] = await getTours();
 
   return (
-    <div dir="rtl" className="px-20 pt-10">
+    <div  className="px-20 pt-10">
       <div>
         {/* Title */}
         <Reveal>

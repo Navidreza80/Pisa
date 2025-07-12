@@ -133,7 +133,7 @@ const AdvancedCaptcha = ({ onVerify }) => {
               onClick={refreshCaptcha}
             />
             <Input
-              dir="ltr"
+              
               type="text"
               value={userInput}
               onChange={(e) => !isVerified && setUserInput(e.target.value)}

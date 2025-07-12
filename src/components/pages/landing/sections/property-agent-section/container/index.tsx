@@ -4,6 +4,8 @@ import Reveal from "@/components/common/reveal";
 import { HouseItemsInterface } from "@/types/house";
 import Agent from "../content/Agent";
 import Status from "../content/Status";
+import Image from "next/image";
+import AI from "@/assets/images/AI.png"
 
 interface IProps {
   houseLength: number;
@@ -15,7 +17,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
   houses,
 }) => {
   return (
-    <div dir="rtl">
+    <div >
       <Reveal>
         {/* Title */}
         <div className=" text-[28px] font-[700] mb-4">
@@ -36,7 +38,7 @@ const PropertyAgentSection: React.FC<IProps> = async ({
               </div>
             </div>
           </div>
-          <div className="w-[356px] h-[450px] rotate-y-180" />
+          <Image src={AI} width={356} height={450} alt="AI Image" className="w-[356px] h-[450px] rotate-y-180" />
         </div>
       </div>
     </div>

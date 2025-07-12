@@ -38,7 +38,6 @@ async function HeaderDashboard() {
                 <div className="px-[10px]">
                   <div className="w-full h-full flex flex-col">
                     <div className="py-[10px] w-full flex gap-2 flex-row-reverse">
-                      <div className="w-[37px] aspect-square bg-fade rounded-lg " />
                       <div className="flex flex-col">
                         <h1 className="text-[13px] font-medium">
                           {decodedUser.name || "user"}

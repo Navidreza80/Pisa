@@ -12,7 +12,7 @@ export const HotelInfoHeader = ({
   <div className="flex flex-col md:flex-row-reverse md:justify-between p-2 rounded-2xl gap-4 md:gap-0">
     <div className="flex gap-4 flex-row-reverse">
       <div className="bg-fade w-[120px] md:w-[156px] rounded-[20px] h-full md:h-[110px]" />
-      <div dir="rtl" className="flex flex-col justify-between gap-y-3">
+      <div  className="flex flex-col justify-between gap-y-3">
         <span className="w-[82px] h-[28px] rounded-[8px] bg-primary flex items-center justify-center gap-1 text-[13px] text-white">
           <Star className="w-4 aspect-square text-white" />
           {isLoading ? (

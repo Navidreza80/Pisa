@@ -55,7 +55,7 @@ const PopularLocations: React.FC<IProps> = async ({
 
             <div className="p-4 flex flex-row-reverse justify-between items-center text-center">
               <Reveal>
-                <span className="text-text-secondary " dir="rtl">
+                <span className="text-text-secondary " >
                   (
                   {card.area_name.includes("تهران")
                     ? tehranHouses

@@ -78,7 +78,7 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
           <div className="space-y-1">
             <label className="block text-sm font-medium">شماره کارت</label>
             <Input
-              dir="ltr"
+              
               className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
               placeholder="---- ---- ---- ----"
               maxLength={19}
@@ -96,7 +96,7 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
               شماره شناسایی دوم (CVV2)
             </label>
             <Input
-              dir="ltr"
+              
               className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
               placeholder="CVV2"
               maxLength={4}
@@ -114,7 +114,7 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Input
-                  dir="ltr"
+                  
                   className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
                   placeholder="سال"
                   maxLength={2}
@@ -129,7 +129,7 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
               </div>
               <div>
                 <Input
-                  dir="ltr"
+                  
                   className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
                   placeholder="ماه"
                   maxLength={2}
@@ -149,7 +149,7 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
           <div className="space-y-1">
             <label className="block text-sm font-medium">رمز دوم</label>
             <Input
-              dir="ltr"
+              
               className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
               type="password"
               placeholder="رمز دوم"

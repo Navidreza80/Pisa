@@ -76,7 +76,7 @@ export default function SellerReservationManagement() {
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
-            dir="rtl"
+            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
@@ -232,7 +232,7 @@ export default function SellerReservationManagement() {
               </div>
 
               {/* Booking details */}
-              <div dir="rtl" className="grid grid-cols-2 gap-3 ">
+              <div  className="grid grid-cols-2 gap-3 ">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.travelerInfo")}:

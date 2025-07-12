@@ -36,7 +36,7 @@ function InputSelect({
   return (
     <Select value={String(value)} onValueChange={handleChange}>
       <SelectTrigger
-        dir="rtl"
+        
         className={`${className} !h-[48px] z-[10000000000] text-text-secondary relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
         }`}

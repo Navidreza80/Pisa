@@ -107,7 +107,7 @@ function BuyerSideBar() {
               )}
             </div>
 
-            <div dir="rtl" className="flex flex-col gap-4 mt-10">
+            <div  className="flex flex-col gap-4 mt-10">
               <BuyerSideBarItems collapsed={collapsed} items={items} />
             </div>
           </div>

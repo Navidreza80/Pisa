@@ -34,7 +34,7 @@ export default function ReserveListContainer() {
               value={filters.search || ""}
               onChange={(e) => handleChange("search", e.target.value)}
               className="h-12 border rounded-2xl border-border px-4 py-3 w-full pr-16"
-              dir="rtl"
+              
               placeholder="جستجو کنید ..."
             />
             <span className="absolute right-6 top-3.5">
@@ -48,7 +48,7 @@ export default function ReserveListContainer() {
           <FilterModal />
         </div>
         <div
-          dir="rtl"
+          
           className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full lg:pl-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center"
         >
           {isLoading &&

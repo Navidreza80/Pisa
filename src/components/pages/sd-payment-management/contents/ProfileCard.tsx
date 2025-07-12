@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Line from "@/components/common/dashboard/line";
 import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
@@ -7,24 +6,25 @@ import InfoSVG from "@/components/dashboard/svg/InfoSVG";
 import { PieChart, Pie, Cell } from "recharts";
 
 const ProfileCard = ({ data }) => (
-  <div className="md:w-[calc(50%-15px)] w-full p-4 bg-background rounded-xl">
-    <div className="flex justify-between">
-      <Link href="/dashboard/seller/reservations" className="flex gap-4">
-        <div className="my-auto">
-          <ViewMoreSVG />
-        </div>
-        <h1 className="my-auto text-text-secondary">ویرایش</h1>
+  <div className="w-full p-4 bg-background rounded-xl md:w-[calc(50%-15px)]">
+    {/* Top: Edit + Status */}
+    <div className="flex flex-col-reverse md:flex-row justify-between gap-4">
+      <Link href="/dashboard/seller/reservations" className="flex gap-2 items-center">
+        <ViewMoreSVG />
+        <h1 className="text-text-secondary">ویرایش</h1>
       </Link>
-      <div className="flex gap-2 rtl">
-        <div className="my-auto">
-          <InfoSVG />
-        </div>
-        <h2 className="text-lg font-semibold my-auto">{data.status.label}</h2>
+      <div className="flex gap-2 items-center rtl">
+        <InfoSVG />
+        <h2 className="text-lg font-semibold">{data.status.label}</h2>
       </div>
     </div>
+
     <Line />
-    <div className="flex justify-between h-[150px]">
-      <div className="w-[30%] my-auto">
+
+    {/* Main Section: Pie Chart + Info */}
+    <div className="flex flex-col md:flex-row justify-between items-center h-auto md:h-[150px] gap-6 mt-4">
+      {/* Pie Chart */}
+      <div className="w-full md:w-[30%] flex justify-center">
         <PieChart width={120} height={120}>
           <Pie
             data={[
@@ -47,11 +47,12 @@ const ProfileCard = ({ data }) => (
         </PieChart>
       </div>
 
-      <div className="w-[60%] h-full flex flex-col flex-wrap justify-between">
-        <span className="text-[36px] text-text font-bold h-10">
+      {/* Info Text */}
+      <div className="w-full md:w-[60%] flex flex-col gap-2 text-center md:text-right">
+        <span className="text-[28px] md:text-[36px] text-text font-bold">
           {data.status.completion}%
         </span>
-        <p className="text-lg text-text">{data.status.hint}</p>
+        <p className="text-base md:text-lg text-text">{data.status.hint}</p>
         <p className="text-xs text-text-secondary">
           آخرین تغییرات در {data.status.lastUpdated}
         </p>

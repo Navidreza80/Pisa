@@ -148,7 +148,7 @@ export default function BuyerNotifications() {
               <div className="flex flex-col items-end">
                 <p className="">{item.text}</p>
               </div>
-              <div dir="rtl" className="flex">
+              <div  className="flex">
                 <ButtonDashboard text={t("markAsRead")} clx="bg-primary">
                   <TickSVG />
                 </ButtonDashboard>

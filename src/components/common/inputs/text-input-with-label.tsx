@@ -30,7 +30,7 @@ export default function InputText({
   height?: string;
 }) {
   return (
-    <div dir="rtl" className={`relative ${className}`}>
+    <div  className={`relative ${className}`}>
       <div
         className={`text-fade font-medium text-[13px] absolute top-[-10] ${color ? color : "bg-background"} right-2 px-2`}
       >

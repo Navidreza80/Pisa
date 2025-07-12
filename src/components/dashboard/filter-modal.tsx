@@ -28,7 +28,7 @@ const FilterModal = ({ children }) => {
           </Button>
         </div>
       </DialogTrigger>
-      <DialogContent className="bg-background p-0 !h-auto w-[633px]" dir="rtl">
+      <DialogContent className="bg-background p-0 !h-auto w-[633px]" >
         <DialogHeader>
           <DialogTitle></DialogTitle>
         </DialogHeader>

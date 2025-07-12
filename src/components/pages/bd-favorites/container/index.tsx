@@ -76,7 +76,7 @@ export default function BuyerFavorites() {
             />
           </FilterModal>
           <Input
-            dir="rtl"
+            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
           />

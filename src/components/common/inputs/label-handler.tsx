@@ -84,7 +84,7 @@ export function LabelManager({
                 <Plus className="h-4 w-4 cursor-pointer" />
               </button>
             </DialogTrigger>
-            <DialogContent dir="rtl" className="sm:max-w-[425px] bg-background">
+            <DialogContent  className="sm:max-w-[425px] bg-background">
               <DialogHeader className="mb-4">
                 <DialogTitle className="">{modalTitle}</DialogTitle>
               </DialogHeader>
@@ -93,7 +93,7 @@ export function LabelManager({
                   <Label
                     htmlFor="label-text"
                     className="w-full flex flex-row-reverse"
-                    dir="ltr"
+                    
                   >
                     {inputTitle}
                   </Label>

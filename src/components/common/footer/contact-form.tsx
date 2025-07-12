@@ -59,7 +59,7 @@ export default function ContactForm() {
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col w-full md:flex-row-reverse gap-4 items-center justify-end mx-auto"
-        dir="rtl"
+        
       >
         <div className="w-full md:w-auto">
           <Button

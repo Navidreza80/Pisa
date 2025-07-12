@@ -172,7 +172,7 @@ export default function CommentsSwiper() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 1 },
           }}
-          dir="rtl"
+          
         >
           {comments.map((comment) => (
             <SwiperSlide key={comment.id}>
@@ -185,7 +185,7 @@ export default function CommentsSwiper() {
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={comment.id}
-                      dir="rtl"
+                      
                       className=" text-[#232323] text-[16px] font-[600]"
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -211,7 +211,7 @@ export default function CommentsSwiper() {
                         {comment.user?.name || t("unknownUser")}
                       </p>
                       <p
-                        dir="rtl"
+                        
                         className="font-[500]  text-[14px] text-[#5F5F5F]"
                       >
                         {formatToPersianDate(comment.created_at)}
@@ -227,7 +227,7 @@ export default function CommentsSwiper() {
                       <span className="sr-only">{t("next")}</span>
                       <ToLeft />
                     </button>
-                    <div dir="ltr" className="flex !justify-start items-center my-auto gap-6">
+                    <div  className="flex !justify-start items-center my-auto gap-6">
                       <div className="relative w-11 h-11">
                         <svg className="w-full h-full" viewBox="0 0 40 40">
                           <circle

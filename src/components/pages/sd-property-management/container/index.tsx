@@ -68,7 +68,7 @@ export default function SellerDashboardProperties({ houses }) {
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
-            dir="rtl"
+            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />

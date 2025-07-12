@@ -103,10 +103,10 @@ export default function AddPropertyStepOne({
   return (
     <>
       <div
-        dir="rtl"
+        
         className="mt-5 md:mt-[33px] grid w-full grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-x-4 md:gap-x-[63px] gap-y-[19px] relative"
       >
-        <div dir="rtl" className={`relative`}>
+        <div  className={`relative`}>
           <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
             نام ملک:
           </div>
@@ -154,7 +154,7 @@ export default function AddPropertyStepOne({
           );
         })}
       </div>
-      <div dir="rtl" className={`relative`}>
+      <div  className={`relative`}>
         {" "}
         <InputText
           name="caption"

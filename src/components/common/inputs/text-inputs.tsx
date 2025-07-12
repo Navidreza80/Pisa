@@ -30,7 +30,7 @@ export default function InputText({
       {...props}
       onChange={onChange}
       value={value}
-      dir="rtl"
+      
       className={`${className} border bg-background border-border  text-text ${
         width ? width : "w-[155px]"
       } h-[48px] px-[11px] rounded-2xl`}

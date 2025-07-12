@@ -73,7 +73,7 @@ export default function InputSelect({
         />
       </SelectTrigger>
       <SelectContent
-        dir="rtl"
+        
         className="!p-0 !border-none rounded-[16px] bg-surface z-[100] font-medium relative "
       >
         {items?.map((item, index) => (

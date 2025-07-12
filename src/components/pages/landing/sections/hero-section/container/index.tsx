@@ -18,14 +18,14 @@ export default async function HeroSection() {
       <Search />
       <div className="flex lg:justify-start md:justify-center justify-center items-start flex-wrap flex-col mt-7 animate-fade-left">
         <Reveal className="min-w-full">
-          <h1 className="md:text-4xl lg:text-right ltr:lg:text-left text-[28px] whitespace-nowrap min-w-full mx-auto font-bold md:leading-[50px] ltr:lg: lg: md:text-center text-center">
+          <h1 className="md:text-4xl text-right ltr:text-left text-[28px] whitespace-nowrap min-w-full mx-auto font-bold md:leading-[50px]">
             {t.rich("title", {
               br: () => <br />,
             })}
           </h1>
         </Reveal>
         <Reveal className="md:mx-0 mx-auto min-w-full">
-          <h2 className="md:leading-[30px] lg:text-right ltr:lg:text-left whitespace-nowrap md:text-center text-center md:text-base text-[13px] text-text-secondary font-semibold mt-8">
+          <h2 className="md:leading-[30px] text-right ltr:text-left whitespace-nowrap md:text-base text-[13px] text-text-secondary font-semibold mt-8">
             {t.rich("subTitle", {
               br: () => <br />,
             })}
@@ -46,7 +46,7 @@ export default async function HeroSection() {
             </div>
           </Button>
         </Link>
-        <BuildingsSvg width={350} height={350} />
+        <BuildingsSvg width={350} height={280} />
       </div>
       <div className="w-[497px] h-[594px] relative md:hidden max-[1300px]:hidden lg:block sm:hidden animate-fade-right">
         <Image

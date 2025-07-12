@@ -27,7 +27,7 @@ export default function InputAuth({
       <div className="relative h-[48px]">
         <Input
           {...props}
-          dir="rtl"
+          
           className="h-full max-[600px]:h-[56px] max-[600px]:w-[100%] placeholder:!text-fade
                      !text-text
                      py-[12px] !rounded-[16px] !pr-[40px] 

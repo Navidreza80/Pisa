@@ -187,7 +187,13 @@ export default function HouseCardList({
         className="flex gap-[9px] flex-wrap justify-end"
       >
         {/* Title and rate section */}
-        <div dir="ltr" className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center w-full">
+          <Reveal width="200px">
+            <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text whitespace-nowrap overflow-hidden text-ellipsis">
+              {card.title}
+            </h1>
+          </Reveal>
+
           <span className="w-[80px] h-9 flex items-center justify-between px-2 py-1 gap-1.5 font-semibold bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 group">
             <Star className="w-5 h-5 text-yellow-400 group-hover:text-primary transition-colors duration-300 fill-yellow-400/30 group-hover:fill-primary/20" />
             <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
@@ -197,16 +203,11 @@ export default function HouseCardList({
               </span>
             </span>
           </span>
-          <Reveal width="100%">
-            <h1 className="font-semibold text-right group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text ">
-              {card.title}
-            </h1>
-          </Reveal>
         </div>
 
         {/* Address section */}
-        <div dir="rtl" className="flex w-full justify-start gap-[5px]">
-          <div dir="rtl" className="flex gap-1.5">
+        <div className="flex w-full justify-start gap-[5px]">
+          <div className="flex gap-1.5">
             <MapSVG color="gray" />
             <Reveal>
               <h1 className="text-right font-[500] text-[14px] text-text-secondary ">
@@ -221,7 +222,7 @@ export default function HouseCardList({
       {/* House facilities section */}
       {showFacilities && (
         <>
-          <div className="md:flex hidden flex-row-reverse justify-between max-w-full">
+          <div className="md:flex hidden flex-row-reverse whitespace-nowrap justify-between max-w-full">
             {visibleFeatures.map((feature, index) => (
               <Fragment key={feature.id}>
                 {index > 0 && <div className="bg-border w-[1px]" />}
@@ -240,8 +241,8 @@ export default function HouseCardList({
 
       {/* Price section */}
       {!discount ? (
-        <div dir="rtl" className="flex justify-between">
-          <div className="flex gap-1" dir="rtl">
+        <div className="flex justify-between">
+          <div className="flex gap-1">
             <div className="flex flex-row-reverse gap-[10px]">
               <div className="relative">
                 <div className="flex flex-row-reverse gap-[5px] ">
@@ -258,7 +259,7 @@ export default function HouseCardList({
         </div>
       ) : (
         // Price with discount section
-        <div dir="rtl" className="flex justify-between">
+        <div className="flex justify-between">
           <div className="flex flex-row gap-[10px]">
             <div className="bg-[#FF5555] rounded-[100px] flex flex-row-reverse gap-[2px] px-[12px] py-[5px] ">
               <h1 className="text-white text-[16px] font-[700]">%</h1>

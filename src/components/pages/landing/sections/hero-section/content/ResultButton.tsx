@@ -55,7 +55,7 @@ export default function ResultButton({
               {t("searchResults")}
             </DialogTitle>
           </DialogHeader>
-          <div className="py-4 " dir="rtl">
+          <div className="py-4 " >
             <div className="mb-4 relative">
               <Input
                 placeholder="جستجو در نتایج..."

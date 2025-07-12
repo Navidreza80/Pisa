@@ -1,7 +1,7 @@
-const RankSVG = () => {
+const RankSVG = ({ className }) => {
   return (
     <svg
-      className="hover:shadow-amber-200  rounded-full cursor-pointer hover:animate-shake hover:shadow-md transition-all duration-300"
+      className={`hover:shadow-amber-200 ${className}  rounded-full cursor-pointer hover:animate-shake hover:shadow-md transition-all duration-300`}
       width="64"
       height="64"
       viewBox="0 0 64 64"

@@ -43,7 +43,7 @@ export default function SingleComment({
       initial={{ opacity: 0, x: isReply ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      dir="rtl"
+      
       className={`flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-gray-800 transition-shadow duration-300 ${
         isReply ? "border-r-2 border-blue-500" : ""
       }`}

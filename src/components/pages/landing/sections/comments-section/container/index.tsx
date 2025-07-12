@@ -136,7 +136,7 @@ const Comments = () => {
                     {comment.author}
                   </span>
                   <span
-                    dir="rtl"
+                    
                     className="text-[14px] font-[500] text-[#E5E5E5]"
                   >
                     {formatToPersianDate(comment.date)}
@@ -154,7 +154,7 @@ const Comments = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div dir="ltr" className="flex !justify-start items-center mt-8 gap-6">
+      <div  className="flex !justify-start items-center mt-8 gap-6">
         <div className="relative w-11 h-11">
           <svg className="w-full h-full" viewBox="0 0 40 40">
             <circle

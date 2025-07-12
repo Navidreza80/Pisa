@@ -48,7 +48,7 @@ const ReserveDetail = ({
           <div className="p-[19px] font-medium text-[15px] text-text-secondary leading-7 flex justify-between">
             <div className="flex flex-col w-[452px]">
               <p>{house.caption || "بدون توضیحات"}</p>
-              <div dir="rtl" className="flex gap-2.5 mt-5 items-center">
+              <div  className="flex gap-2.5 mt-5 items-center">
                 <span className="text-fade font-medium">{t("tags")}:</span>
                 {house.tags.map((item, index) => {
                   return (
@@ -62,7 +62,7 @@ const ReserveDetail = ({
                 })}
               </div>
             </div>
-            <div className="flex flex-col gap-[19px]" dir="rtl">
+            <div className="flex flex-col gap-[19px]" >
               <div className="w-[410px] h-[325px] bg-gray-200 rounded-lg relative">
                 <Image
                   src={house.photos[0]}

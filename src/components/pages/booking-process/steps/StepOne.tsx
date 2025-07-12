@@ -81,7 +81,7 @@ export default function BookingStepOne() {
           </h1>
         </Header>
 
-        <div dir="rtl" className="w-full flex flex-wrap gap-5 px-2 md:px-4">
+        <div  className="w-full flex flex-wrap gap-5 px-2 md:px-4">
           <div className="w-full flex">
             <ChevronUp
               onClick={() => setShowTravelers(!showTravelers)}

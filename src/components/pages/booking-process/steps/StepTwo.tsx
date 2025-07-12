@@ -184,8 +184,8 @@ export default function BookingStepTwo() {
         </div>
 
         <div className="flex gap-1 flex-row-reverse text-lg md:text-2xl">
-          <h1 dir="rtl">قیمت هتل :</h1>
-          <h3 dir="rtl" className="text-primary">
+          <h1 >قیمت هتل :</h1>
+          <h3  className="text-primary">
             {formatNumber(1500000)}ت
           </h3>
         </div>

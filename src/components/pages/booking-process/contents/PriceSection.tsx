@@ -4,7 +4,7 @@ import Button from "../../../common/button";
 
 export const PriceSection = ({ price }: { price?: string }) => (
   <div className="flex md:flex-col md:justify-evenly justify-between sm:flex-row items-center">
-    <p dir="rtl" className="text-xl md:text-2xl text-primary">
+    <p  className="text-xl md:text-2xl text-primary">
       {formatNumber(Number(price))} ت
     </p>
     <Link href="/reserve">

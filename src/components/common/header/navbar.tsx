@@ -85,7 +85,7 @@ export default function Navbar() {
           className=" bg-background border-border"
         >
           {rentItems.map((item, index) => (
-            <DropdownMenuItem key={index} asChild dir="rtl">
+            <DropdownMenuItem key={index} asChild >
               <TransitionLink
                 href={item.url}
                 className={`w-full cursor-pointer hover:text-primary transition-colors duration-300  ${

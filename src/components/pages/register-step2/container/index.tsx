@@ -57,10 +57,10 @@ export default function Register2() {
 
   return (
     <div className="w-full flex flex-col gap-[32px]">
-      <div dir="rtl">
+      <div >
         <LogoSVGClient />
       </div>
-      <div dir="rtl">
+      <div >
         <h1 className="text-[36px]  font-[700] text-[#000000] dark:text-[#ffffff] mb-[30px]">
           {t("SignUpTitle")}
         </h1>
@@ -115,7 +115,7 @@ export default function Register2() {
         )}
 
         <div
-          dir="rtl"
+          
           className="flex items-center justify-between w-full mb-6 px-2"
         >
           <span className="flex bg-[#586CFF30] dark:bg-[#586CFF80] gap-[12px] p-[8px] pl-[12px] rounded-[100px]">

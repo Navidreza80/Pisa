@@ -17,7 +17,7 @@ const WarningModal = ({ title, children, onConfirm }) => {
       <DialogTrigger asChild>
         <div>{children}</div>
       </DialogTrigger>
-      <DialogContent className="bg-background" dir="rtl">
+      <DialogContent className="bg-background" >
         <DialogHeader>
           <DialogTitle></DialogTitle>
         </DialogHeader>
