@@ -26,18 +26,18 @@ import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import ReserveDetail from "./reserveDetail";
 
-const tableHeaderItems = [
-  { text: "نام", clx: "rounded-r-xl" },
-  { text: "کدملی", clx: null },
-  { text: "جنسیت", clx: null },
-  { text: "تاریخ تولد", clx: "rounded-l-xl" },
-];
-
 export default function ReserveTableContent({
   booking,
 }: {
   booking: Reservation;
 }) {
+  const t = useTranslations("BookingList");
+  const tableHeaderItems = [
+    { text: t("name"), clx: "rounded-r-xl" },
+    { text: t("nationalCode"), clx: null },
+    { text: t("gender"), clx: null },
+    { text: t("birthDate"), clx: "rounded-l-xl" },
+  ];
   const router = useRouter();
   const handleDelete = async (id: string) => {
     await deleteReservation(id);
@@ -46,8 +46,8 @@ export default function ReserveTableContent({
   const deleteBooking = async (id: string) => {
     try {
       toast.promise(() => handleDelete(id), {
-        success: "رزرو با موفقیت حذف شد",
-        pending: "در حال پزدازش...",
+        success: t("success"),
+        pending: t("pending"),
       });
     } catch (err) {
       console.log(err);
@@ -64,8 +64,6 @@ export default function ReserveTableContent({
   useEffect(() => {
     getHouseTitle();
   });
-
-  const t = useTranslations("BookingList");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   return (
     <tr key={booking.id} className=" border-b hover:bg-background/30">
@@ -92,21 +90,11 @@ export default function ReserveTableContent({
             booking.status === "pending" && "bg-orange-400"
           )}
         >
-          {booking.status == "pending" ? "در انتظار" : "تایید شده"}
+          {booking.status == "pending" ? t("pendingStatus") : t("submit")}
         </span>
       </td>
       <td className="py-2 px-4 text-[13px] font-medium">
-        <span
-        //   className={cn(
-        //     "px-2 py-1 rounded-full text-white text-xs",
-        //     booking.paymentStatus === t("status.approved") &&
-        //       "bg-lime-400",
-        //     booking.paymentStatus === t("status.cancelled") &&
-        //       "bg-rose-400"
-        //   )}
-        >
-          تایید شده
-        </span>
+        <span>{t("submit")}</span>
       </td>
       <td className="py-2 px-4 ">
         <Popover
@@ -151,8 +139,8 @@ export default function ReserveTableContent({
               </div>
               <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
                 <Modal
-                  title="اطلاعات مسافران"
-                  trigger={<h1 className="cursor-pointer">مسافران</h1>}
+                  title={t("travelerInformation")}
+                  trigger={<h1 className="cursor-pointer">{t("travelers")}</h1>}
                 >
                   <TableDashboard
                     tableHeader={tableHeaderItems}

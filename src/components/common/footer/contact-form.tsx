@@ -15,22 +15,19 @@ import postMessage from "@/utils/service/contact-us/post";
 
 /**
  * RContact us form component
- * 
+ *
  * @component
  * @returns {JSX.Element} - Rendered contact us form
  */
-
-// Schema
-const ContactSchema = Yup.object().shape({
-  title: Yup.string().required("عنوان الزامی است"),
-  message: Yup.string()
-    .required("پیام الزامی است")
-    .min(10, "پیام باید حداقل 10 کاراکتر باشد"),
-});
-
 export default function ContactForm() {
   // Hooks
-  const t = useTranslations("Footer")
+  const t = useTranslations("Footer");
+
+  // Schema
+  const ContactSchema = Yup.object().shape({
+    title: Yup.string().required(t("titleVal")),
+    message: Yup.string().required(t("messageVal")).min(10, t("messageChar")),
+  });
 
   // Posting user message logic.
   const formik = useFormik({
@@ -40,16 +37,12 @@ export default function ContactForm() {
     },
     validationSchema: ContactSchema,
     onSubmit: async (values, { resetForm }) => {
-      try {
-        toast.promise(postMessage(values), {
-          pending: "در حال پردازش",
-          success: "پیام شما با موفقیت ارسال شد",
-          error: "خطا!",
-        });
-        resetForm();
-      } catch {
-        toast.error("خطا در ارسال پیام");
-      }
+      toast.promise(postMessage(values), {
+        pending: t("pending"),
+        success: t("success"),
+        error: t("error"),
+      });
+      resetForm();
     },
   });
 
@@ -59,7 +52,6 @@ export default function ContactForm() {
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col w-full md:flex-row-reverse gap-4 items-center justify-end mx-auto"
-        
       >
         <div className="w-full md:w-auto">
           <Button

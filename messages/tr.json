@@ -1,4 +1,20 @@
 {
+  "BookingProcess": {
+    "error": "Lütfen önce rezervasyon tarihini seçin",
+    "continue": "Onayla ve sürece devam et",
+    "price": "Bilet fiyatı:",
+    "changeHotel": "Otel değiştir"
+  },
+  "Overall": {
+    "anonymous": "Anonim",
+    "user": "Kullanıcı",
+    "cancel": "İptal",
+    "noItem": "Öğe eklenmedi",
+    "usedItems": "Kullanılmış öğeler",
+    "character": "Karakter",
+    "submit": "Onayla",
+    "star": "Yıldız"
+  },
   "HomePage": {
     "title": "Hayalinizdeki evi bulmanın<br></br> en kolay yolu",
     "subTitle": "İstediğiniz mülkü rezerve edin, ipotek alın, kiralayın ve hatta satın alın/satın<br></br> su içmek kadar kolay, sadece Piza'da",
@@ -35,7 +51,22 @@
     "parking": "Otopark",
     "property": "Mülk Türü",
     "CommentsPiza": "Pizza Kullanıcı Yorumları",
-    "toman": "Tümen"
+    "toman": "Tümen",
+    "footerColumns": {
+      "title1": "Delta İletişim",
+      "title2": "Müşteri Hizmetleri",
+      "title3": "Konaklama Rezervasyonu Nasıl Yapılır?",
+      "col1": "02123456789 - 09123456789",
+      "col2": "Gilan, Rasht, Azadi Meydanı, Aliabad Kavşağı yanı",
+      "col3": "Zahed",
+      "col4": "Misafir SSS",
+      "col5": "Ev Sahibi SSS",
+      "col6": "Konaklama nasıl kaydedilir?",
+      "col7": "Kullanıcı Gizliliği",
+      "col8": "Konaklama Rezervasyon Rehberi",
+      "col9": "Ödeme Yöntemi",
+      "col10": "Konaklama rezervasyonu nasıl yapılır?"
+    }
   },
   "Header": {
     "login": "Kayıt Ol/Giriş Yap",
@@ -154,7 +185,13 @@
     "isSending": "Mesaj gönderiliyor",
     "send": "Mesaj Gönder",
     "title": "Mesaj Başlığı",
-    "desc": "Mesajınızın içeriği"
+    "desc": "Mesajınızın içeriği",
+    "titleVal": "Başlık zorunludur",
+    "messageVal": "Mesaj zorunludur",
+    "messageChar": "Mesaj en az 10 karakter olmalıdır",
+    "pending": "İşleniyor",
+    "success": "Mesajınız başarıyla gönderildi",
+    "error": "Hata!"
   },
   "Filters": {
     "filter": "Filtreler",
@@ -186,6 +223,7 @@
     "searchPlaceholder": "Ara..."
   },
   "Comparison": {
+    "comparing": "İki ev karşılaştırılıyor...",
     "title": "Ev Karşılaştırma",
     "subtitle": "İlgilendiğiniz evlerin özelliklerini karşılaştırın ve en iyi seçimi yapın",
     "bedrooms": "Yatak Odası",
@@ -276,11 +314,7 @@
       "email": "E-posta",
       "phoneNumber": "Telefon Numarası"
     },
-    "securityForm": {
-      "currentPassword": "Mevcut Şifre",
-      "newPassword": "Yeni Şifre",
-      "confirmPassword": "Yeni Şifreyi Onayla"
-    },
+    "newPassword": "Yeni Şifre",
     "buttons": {
       "applyChanges": "Değişiklikleri Uygula",
       "cancel": "İptal"
@@ -365,6 +399,22 @@
     }
   },
   "BookingList": {
+    "createdAt": "Oluşturulma zamanı",
+    "updatedAt": "Güncelleme tarihi",
+    "sort": "Sırala:",
+    "asc": "Artan",
+    "desc": "Azalan",
+    "order": "Sıra:",
+    "submit": "Onaylandı",
+    "name": "İsim",
+    "nationalCode": "Ulusal kod",
+    "gender": "Cinsiyet",
+    "birthDate": "Doğum tarihi",
+    "success": "Rezervasyon başarıyla silindi",
+    "pending": "Rezervasyon siliniyor...",
+    "pendingStatus": "Beklemede",
+    "travelerInformation": "Yolcu bilgileri",
+    "travelers": "Yolcular",
     "title": "Rezervasyonlarınızın Listesi",
     "filtersButton": "Filtreler",
     "searchPlaceholder": "Otel adı giriniz...",
@@ -489,7 +539,12 @@
     "notifications": "Bildirimler",
     "tourManagement": "Tur Yönetimi",
     "favorites": "Favoriler",
-    "payments": "Ödemeler"
+    "payments": "Ödemeler",
+    "buyerPanel": "Alıcı Paneli",
+    "sellerPanel": "Satıcı Paneli",
+    "buyer": "Alıcı",
+    "seller": "Satıcı",
+    "recentBookings": "Son rezervasyonlar"
   },
   "Sidebar": {
     "dashboard": "Pano",
@@ -525,7 +580,9 @@
     "bathrooms": "{count} Banyo",
     "reservations": "Rezervasyonlar",
     "currency": "T",
-    "purchasePrice": "Satın Alma Fiyatı"
+    "purchasePrice": "Satın Alma Fiyatı",
+    "withoutDesc": "Açıklama yok",
+    "payments": "Ödemeler"
   },
   "WarningModal": {
     "cancel": "Vazgeç",

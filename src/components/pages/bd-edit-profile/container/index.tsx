@@ -11,10 +11,10 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function BuyerInformation() {
+  const t = useTranslations("UserInformation");
   const { mutate } = useEditUser();
   const { data } = useUser();
   const [password, setPassword] = useState("");
-  const t = useTranslations("UserInformation");
   const formik = useFormik({
     initialValues: {
       firstName: data?.firstName,
@@ -106,10 +106,7 @@ export default function BuyerInformation() {
               <Button variant="ghost">{t("buttons.cancel")}</Button>
             </div>
           </div>
-          <div
-            
-            className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]"
-          >
+          <div className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]">
             {inputs.map((item) => {
               return (
                 <Input
@@ -146,13 +143,10 @@ export default function BuyerInformation() {
             </div>
           </div>
 
-          <div
-            
-            className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]"
-          >
+          <div className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]">
             <Input
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="رمز عبور جدید"
+              placeholder={t("newPassword")}
               className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
             />
           </div>

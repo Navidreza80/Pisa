@@ -58,10 +58,10 @@ export default function BookingList({
                   onChange={(sort) => handleSetParam("sort", sort.toString())}
                   className="!w-full"
                   items={[
-                    { text: "زمان ساخت", value: "created_at" },
-                    { text: "تاریخ آپدیت", value: "updated_at" },
+                    { text: t("createdAt"), value: "created_at" },
+                    { text: t("updatedAt"), value: "updated_at" },
                   ]}
-                  label="مرتب سازی:"
+                  label={t("sort")}
                   withLabel
                   value={sort || "created_at"}
                 />
@@ -70,11 +70,11 @@ export default function BookingList({
                     handleSetParam("order", order.toString())
                   }
                   items={[
-                    { text: "صعودی", value: "ASC" },
-                    { text: "نزولی", value: "DESC" },
+                    { text: t("asc"), value: "ASC" },
+                    { text: t("desc"), value: "DESC" },
                   ]}
                   className="!w-full"
-                  label="روند:"
+                  label={t("order")}
                   withLabel
                   value={order || "DESC"}
                 />
@@ -141,7 +141,7 @@ export default function BookingList({
                       :{t("tableHeaders.bookingStatus")}
                     </span>
                     <span>
-                      {booking.status == "pending" ? "در انتظار" : "تایید شده"}
+                      {booking.status == "pending" ? t("pending") : t("submit")}
                     </span>
                   </div>
 
@@ -149,7 +149,7 @@ export default function BookingList({
                     <span className="text-sm text-text-secondary">
                       {t("tableHeaders.paymentStatus")}
                     </span>
-                    <span>تایید شده</span>
+                    <span>{t("submit")}</span>
                   </div>
                 </div>
               </div>

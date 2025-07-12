@@ -47,8 +47,8 @@ const ReserveDetail = ({
           <Line />
           <div className="p-[19px] font-medium text-[15px] text-text-secondary leading-7 flex justify-between">
             <div className="flex flex-col w-[452px]">
-              <p>{house.caption || "بدون توضیحات"}</p>
-              <div  className="flex gap-2.5 mt-5 items-center">
+              <p>{house.caption || t("withoutDesc")}</p>
+              <div className="flex gap-2.5 mt-5 items-center">
                 <span className="text-fade font-medium">{t("tags")}:</span>
                 {house.tags.map((item, index) => {
                   return (
@@ -62,7 +62,7 @@ const ReserveDetail = ({
                 })}
               </div>
             </div>
-            <div className="flex flex-col gap-[19px]" >
+            <div className="flex flex-col gap-[19px]">
               <div className="w-[410px] h-[325px] bg-gray-200 rounded-lg relative">
                 <Image
                   src={house.photos[0]}
@@ -103,7 +103,7 @@ const ReserveDetail = ({
           <footer className="flex justify-between px-[19px]">
             <div className="flex gap-[19px]">
               <button className="px-[19px] py-[12px] rounded-xl bg-primary text-white">
-                پرداختی ها
+                {t("payments")}
               </button>
             </div>
             <div className="bg-[#D9D9D9] w-[410px] h-[44px] rounded-xl px-[20px] flex items-center justify-center">

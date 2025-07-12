@@ -1,10 +1,12 @@
-"use client"
+"use client";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 const UserRole = () => {
-  function getUserRoleFromPath(path: string): "فروشنده" | "خریدار" | null {
-    if (path.includes("/seller")) return "فروشنده";
-    if (path.includes("/buyer")) return "خریدار";
+  const t = useTranslations("Dashboard");
+  function getUserRoleFromPath(path: string) {
+    if (path.includes("/seller")) return t("seller");
+    if (path.includes("/buyer")) return t("buyer");
     return null;
   }
   const pathname = usePathname();

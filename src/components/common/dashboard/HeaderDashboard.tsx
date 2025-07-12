@@ -11,8 +11,10 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import { ChevronDown } from "lucide-react";
 import DropdownMenu from "./DropdownMenu";
 import UserRole from "./UserRole";
+import { getTranslations } from "next-intl/server";
 
 async function HeaderDashboard() {
+  const t = await getTranslations("Overall");
   const token = await getServerCookie("serverAccessToken");
   let decodedUser;
   if (token) {
@@ -40,10 +42,10 @@ async function HeaderDashboard() {
                     <div className="py-[10px] w-full flex gap-2 flex-row-reverse">
                       <div className="flex flex-col">
                         <h1 className="text-[13px] font-medium">
-                          {decodedUser.name || "user"}
+                          {decodedUser.name || t("user")}
                         </h1>
                         <h1 className="text-[12px] text-fade font-medium">
-                          {decodedUser.phoneNumber || "نامشخص"}
+                          {decodedUser.phoneNumber || t("anonymous")}
                         </h1>
                       </div>
                     </div>
@@ -56,18 +58,9 @@ async function HeaderDashboard() {
           <div className="flex gap-2">
             <div className="flex-col flex-wrap justify-between md:flex hidden">
               <h1 className="text-text font-yekan font-bold">
-                {decodedUser.name || "user"}
+                {decodedUser.name || t("user")}
               </h1>
               <UserRole />
-            </div>
-            <div className="flex-col flex-wrap justify-between md:hidden flex">
-              {/* <Image
-                width={50}
-                height={50}
-                alt="user"
-                src={decodedUser.profilePicture}
-                className="bg-border rounded-full w-10 h-10"
-              /> */}
             </div>
           </div>
           <div className="my-auto cursor-pointer md:flex hidden">

@@ -30,12 +30,12 @@ function BuyerSideBar() {
       href: "/dashboard/seller/properties",
     },
     {
-      name: "مدیریت مالی",
+      name: t("financialManagement"),
       icon: <PaymentSVG />,
       href: "/dashboard/seller/finance",
     },
     {
-      name: "مدیریت رزروها",
+      name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
     },
@@ -54,17 +54,17 @@ function BuyerSideBar() {
       href: "/dashboard/buyer/reservations",
     },
     {
-      name: "اعلان ها",
+      name: t("notifications"),
       icon: <Bell />,
       href: "/dashboard/buyer/notifications",
     },
     {
-      name: "پرداخت ها",
+      name: t("payments"),
       icon: <PaymentSVG />,
       href: "/dashboard/buyer/payments",
     },
     {
-      name: "علاقه مندی ها",
+      name: t("favorites"),
       icon: <FavoriteSVG />,
       href: "/dashboard/buyer/favorites",
     },
@@ -107,7 +107,7 @@ function BuyerSideBar() {
               )}
             </div>
 
-            <div  className="flex flex-col gap-4 mt-10">
+            <div className="flex flex-col gap-4 mt-10">
               <BuyerSideBarItems collapsed={collapsed} items={items} />
             </div>
           </div>

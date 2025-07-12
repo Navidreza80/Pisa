@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface LabelManagerProps {
   labels: string[];
@@ -34,6 +35,7 @@ export function LabelManager({
   maxLength = 30,
   placeholder = "Enter label text",
 }: LabelManagerProps) {
+  const t = useTranslations("Overall");
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -54,7 +56,7 @@ export function LabelManager({
       <div className="flex flex-wrap flex-row-reverse items-center gap-2 w-full min-h-16 p-3 bg-muted/30 rounded-2xl border border-border mt-4">
         {labels.length === 0 && (
           <p className="text-muted-foreground text-sm flex items-center h-full text-text-secondary">
-            {emptyState ? emptyState : "ایتمی اضافه نشده است"}
+            {emptyState ? emptyState : t("noItem")}
           </p>
         )}
         {labels.map((label, index) => (
@@ -84,7 +86,7 @@ export function LabelManager({
                 <Plus className="h-4 w-4 cursor-pointer" />
               </button>
             </DialogTrigger>
-            <DialogContent  className="sm:max-w-[425px] bg-background">
+            <DialogContent className="sm:max-w-[425px] bg-background">
               <DialogHeader className="mb-4">
                 <DialogTitle className="">{modalTitle}</DialogTitle>
               </DialogHeader>
@@ -93,7 +95,6 @@ export function LabelManager({
                   <Label
                     htmlFor="label-text"
                     className="w-full flex flex-row-reverse"
-                    
                   >
                     {inputTitle}
                   </Label>
@@ -108,10 +109,10 @@ export function LabelManager({
                   />
                   <div className="flex justify-between text-xs my-3 text-muted-foreground">
                     <span className="text-text-secondary">
-                      {labels.length}/{maxLabels} ایتم استفاده شده
+                      {labels.length}/{maxLabels} {t("usedItems")}
                     </span>
                     <span className="text-text-secondary">
-                      {inputValue.length}/{maxLength} کاراکتر
+                      {inputValue.length}/{maxLength} {t("character")}
                     </span>
                   </div>
                 </div>
@@ -122,7 +123,7 @@ export function LabelManager({
                       variant="outline"
                       className="border-border"
                     >
-                      لغو
+                      {t("cancel")}
                     </Button>
                   </DialogTrigger>
                   <Button
@@ -130,7 +131,7 @@ export function LabelManager({
                     className="text-white"
                     disabled={!inputValue.trim()}
                   >
-                    تایید
+                    {t("submit")}
                   </Button>
                 </div>
               </form>

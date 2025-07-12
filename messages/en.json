@@ -1,4 +1,20 @@
 {
+  "BookingProcess": {
+    "error": "Please select a booking date first",
+    "continue": "Confirm and continue process",
+    "price": "Ticket price:",
+    "changeHotel": "Change hotel"
+  },
+  "Overall": {
+    "anonymous": "Anonymous",
+    "user": "User",
+    "cancel": "Cancel",
+    "noItem": "No item has been added",
+    "usedItems": "Used items",
+    "character": "Character",
+    "submit": "Confirm",
+    "star": "Star"
+  },
   "HomePage": {
     "title": "The easiest way to find<br></br> your dream home",
     "subTitle": "Reserve, mortgage, rent, and even buy/sell your desired property<br></br> as easy as drinking water, only in Piza",
@@ -35,7 +51,22 @@
     "parking": "parking",
     "property": "Property Type",
     "CommentsPiza": "Piza User Comments",
-    "toman": "Toman"
+    "toman": "Toman",
+    "footerColumns": {
+      "title1": "Delta Contact",
+      "title2": "Customer Service",
+      "title3": "How to Book Accommodation",
+      "col1": "02123456789 - 09123456789",
+      "col2": "Gilan, Rasht, Azadi Square, next to Aliabad Intersection",
+      "col3": "Zahed",
+      "col4": "Guest FAQs",
+      "col5": "Host FAQs",
+      "col6": "How to register accommodation?",
+      "col7": "User Privacy",
+      "col8": "Accommodation Booking Guide",
+      "col9": "Payment Method",
+      "col10": "How to book accommodation"
+    }
   },
   "Header": {
     "google": "Sign up in Piza with Google",
@@ -156,7 +187,13 @@
     "isSending": "Sending message",
     "send": "Send Message",
     "title": "Message Title",
-    "desc": "Your message content"
+    "desc": "Your message content",
+    "titleVal": "Title is required",
+    "messageVal": "Message is required",
+    "messageChar": "Message must be at least 10 characters",
+    "pending": "Processing",
+    "success": "Your message has been sent successfully",
+    "error": "Error!"
   },
   "Filters": {
     "filter": "Filters",
@@ -188,6 +225,7 @@
     "searchPlaceholder": "Search..."
   },
   "Comparison": {
+    "comparing": "Comparing two houses...",
     "title": "House Comparison",
     "subtitle": "Compare the features of your favorite houses and make the best choice",
     "bedrooms": "Bedrooms",
@@ -277,11 +315,7 @@
       "email": "Email",
       "phoneNumber": "Phone Number"
     },
-    "securityForm": {
-      "currentPassword": "Current Password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm New Password"
-    },
+    "newPassword": "New Password",
     "buttons": {
       "applyChanges": "Apply Changes",
       "cancel": "Cancel"
@@ -366,6 +400,22 @@
     }
   },
   "BookingList": {
+    "createdAt": "Creation time",
+    "updatedAt": "Update date",
+    "sort": "Sort:",
+    "asc": "Ascending",
+    "desc": "Descending",
+    "order": "Order:",
+    "submit": "Confirmed",
+    "name": "Name",
+    "nationalCode": "National code",
+    "gender": "Gender",
+    "birthDate": "Birth date",
+    "success": "Booking successfully deleted",
+    "pending": "Deleting booking...",
+    "pendingStatus": "Pending",
+    "travelerInformation": "Traveler information",
+    "travelers": "Travelers",
     "title": "Your Reservations List",
     "filtersButton": "Filters",
     "searchPlaceholder": "Enter hotel name...",
@@ -490,7 +540,12 @@
     "notifications": "Notifications",
     "tourManagement": "Tour Management",
     "favorites": "Favorites",
-    "payments": "Payments"
+    "payments": "Payments",
+    "buyerPanel": "Buyer Panel",
+    "sellerPanel": "Seller Panel",
+    "buyer": "Buyer",
+    "seller": "Seller",
+    "recentBookings": "Recent bookings"
   },
   "Sidebar": {
     "dashboard": "Dashboard",
@@ -526,7 +581,9 @@
     "bathrooms": "{count} Bathroom",
     "reservations": "Reservations",
     "currency": "T",
-    "purchasePrice": "Purchase Price"
+    "purchasePrice": "Purchase Price",
+    "withoutDesc": "No description",
+    "payments": "Payments"
   },
   "WarningModal": {
     "cancel": "Cancel",

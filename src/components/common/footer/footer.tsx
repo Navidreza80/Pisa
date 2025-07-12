@@ -31,32 +31,32 @@ export default async function Footer() {
   // Footer columns data
   const footerColumns = [
     {
-      title: "راه ارتباطی دلتا",
+      title: t("footerColumns.title1"),
       items: [
-        { text: "۰۲۱۲۳۴۵۶۷۸۹ - ۰۹۱۲۳۴۵۶۷۸۹", className: "mb-2" },
+        { text: t("footerColumns.col1"), className: "mb-2" },
         { text: "Delta@gmail.com", className: "mb-4" },
         {
-          text: "گیلان، رشت، میدان آزادی، جنب چهار راه علی آباد",
+          text: t("footerColumns.col2"),
           className: "mb-1",
         },
-        { text: "زاهد", className: "" },
+        { text: t("footerColumns.col3"), className: "" },
       ],
     },
     {
-      title: "خدمات مشتریان",
+      title: t("footerColumns.title2"),
       items: [
-        { text: "پرسش های متداول مهمان", className: "mb-2" },
-        { text: "پرسش های متداول میزبان", className: "mb-2" },
-        { text: "چطور اقامتگاه ثبت کنم؟", className: "mb-2" },
-        { text: "حریم شخصی کاربران", className: "" },
+        { text: t("footerColumns.col4"), className: "mb-2" },
+        { text: t("footerColumns.col5"), className: "mb-2" },
+        { text: t("footerColumns.col6"), className: "mb-2" },
+        { text: t("footerColumns.col7"), className: "" },
       ],
     },
     {
-      title: "نحوه رزرو اقامتگاه",
+      title: t("footerColumns.title3"),
       items: [
-        { text: "راهنمای رزرو اقامتگاه", className: "mb-2", highlight: true },
-        { text: "شیوه پرداخت", className: "mb-2" },
-        { text: "نحو رزرو اقامتگاه", className: "" },
+        { text: t("footerColumns.col8"), className: "mb-2", highlight: true },
+        { text: t("footerColumns.col9"), className: "mb-2" },
+        { text: t("footerColumns.col10"), className: "" },
       ],
     },
   ];

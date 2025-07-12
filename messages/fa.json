@@ -1,4 +1,20 @@
 {
+  "BookingProcess": {
+    "error": "لطفا ابتدا تاریخ رزرو را انتخاب کنید",
+    "continue": "تایید و ادامه فرایند",
+    "price": "قیمت بلیط :",
+    "changeHotel": "تغییر هتل"
+  },
+  "Overall": {
+    "anonymous": "نامشخص",
+    "user": "کاربر",
+    "cancel": "لغو",
+    "noItem": "ایتمی اضافه نشده است",
+    "usedItems": "ایتم استفاده شده",
+    "character": "کاراکتر",
+    "submit": "تایید",
+    "star": "ستاره"
+  },
   "HomePage": {
     "title": "راحت ترین راه برای پیدا کردن<br></br> خونه مورد علاقت",
     "subTitle": "رزرو ، رهن ، اجاره و حتی خرید و فروش ملک مورد نظرتون <br></br> مثل آب خوردن فقط در پیزا",
@@ -35,7 +51,22 @@
     "parking": "پارکینگ",
     "property": "نوع ملک",
     "CommentsPiza": "نظرات کاربران پیزا",
-    "toman": "تومان"
+    "toman": "تومان",
+    "footerColumns": {
+      "title1": "راه ارتباطی دلتا",
+      "title2": "خدمات مشتریان",
+      "title3": "نحوه رزرو اقامتگاه",
+      "col1": "02123456789 - 09123456789",
+      "col2": "گیلان، رشت، میدان آزادی، جنب چهار راه علی آباد",
+      "col3": "زاهد",
+      "col4": "پرسش های متداول مهمان",
+      "col5": "پرسش های متداول میزبان",
+      "col6": "چطور اقامتگاه ثبت کنم؟",
+      "col7": "حریم شخصی کاربران",
+      "col8": "راهنمای رزرو اقامتگاه",
+      "col9": "شیوه پرداخت",
+      "col10": "نحو رزرو اقامتگاه"
+    }
   },
   "Header": {
     "login": "ثبت نام و ورود",
@@ -155,7 +186,13 @@
     "isSending": "درحال ارسال پیام",
     "send": "ارسال پیام",
     "title": "عنوان پیام",
-    "desc": "متن پیام شما"
+    "desc": "متن پیام شما",
+    "titleVal": "عنوان الزامی است",
+    "messageVal": "پیام الزامی است",
+    "messageChar": "پیام باید حداقل 10 کاراکتر باشد",
+    "pending": "در حال پردازش",
+    "success": "پیام شما با موفقیت ارسال شد",
+    "error": "خطا!"
   },
   "Filters": {
     "filter": "فیلتر ها",
@@ -187,6 +224,7 @@
     "searchPlaceholder": "جستجو کنید..."
   },
   "Comparison": {
+    "comparing": "درحال مقایسه کردن دو خانه...",
     "title": "مقایسه خانه ها",
     "subtitle": "مقایسه ویژگی‌های خانه‌های مورد نظر خود را انجام دهید و بهترین انتخاب را داشته باشید",
     "bedrooms": "اتاق خواب",
@@ -317,11 +355,7 @@
       "email": "ایمیل",
       "phoneNumber": "شماره موبایل"
     },
-    "securityForm": {
-      "currentPassword": "رمز عبور قبلی",
-      "newPassword": "رمز عبور جدید",
-      "confirmPassword": "تکرار رمز عبور جدید"
-    },
+    "newPassword": "رمز عبور جدید",
     "buttons": {
       "applyChanges": "اعمال تغییرات",
       "cancel": "انصراف"
@@ -405,7 +439,24 @@
       "transactionType": "نوع تراکنش"
     }
   },
+
   "BookingList": {
+    "createdAt": "زمان ساخت",
+    "updatedAt": "تاریخ آپدیت",
+    "sort": "مرتب سازی:",
+    "asc": "صعودی",
+    "desc": "نزولی",
+    "order": "روند:",
+    "submit": "تایید شده",
+    "name": "نام",
+    "nationalCode": "کدملی",
+    "gender": "جنسیت",
+    "birthDate": "تاریخ تولد",
+    "success": "رزرو با موفقیت حذف شد",
+    "pending": "در حال حذف رزرو...",
+    "pendingStatus": "در انتظار",
+    "travelerInformation": "اطلاعات مسافران",
+    "travelers": "مسافران",
     "title": "لیست رزرو های شما",
     "filtersButton": "فیلتر ها",
     "searchPlaceholder": "نام هتل مورد نظر .....",
@@ -528,9 +579,13 @@
     "financialManagement": "مدیریت مالی",
     "reviewManagement": "مدیریت نظرات",
     "notifications": "اعلان‌ها",
-    "tourManagement": "مدیریت تور ها",
     "favorites": "علاقه‌مندی‌ها",
-    "payments": "پرداخت‌ها"
+    "payments": "پرداخت‌ها",
+    "buyerPanel": "پنل خریدار",
+    "sellerPanel": "پنل فروشنده",
+    "buyer": "خریدار",
+    "seller": "فروشنده",
+    "recentBookings": "رزرو های اخیر"
   },
   "Sidebar": {
     "dashboard": "داشبورد",
@@ -566,7 +621,9 @@
     "bathrooms": "{count} حمام",
     "reservations": "رزرو ها",
     "currency": "ت",
-    "purchasePrice": "قیمت خرید"
+    "purchasePrice": "قیمت خرید",
+    "withoutDesc": "بدون توضیحات",
+    "payments": "پرداختی ها"
   },
   "WarningModal": {
     "cancel": "انصراف",

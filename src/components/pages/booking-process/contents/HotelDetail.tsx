@@ -1,4 +1,3 @@
-// components/hotel/HotelDetail.tsx
 import { HouseItemsInterface } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getHouseById } from "@/utils/service/house/get-by-id";
@@ -11,6 +10,7 @@ import Body from "./Body";
 import { HotelInfoHeader } from "./hotel-info-header";
 import { PriceSection } from "./PriceSection";
 import { ReservationDates } from "../forms/ReservationDates";
+import { useTranslations } from "next-intl";
 
 const HotelDetail = ({
   children,
@@ -19,11 +19,11 @@ const HotelDetail = ({
   children: React.ReactNode;
   handleSubmit: () => void;
 }) => {
+  const t = useTranslations("BookingProcess");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [hotelDetail, setHotelDetail] = useState<HouseItemsInterface | null>(
     null
   );
-
   const { id } = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const dateStart = searchParams.get("enterDate");
@@ -32,7 +32,7 @@ const HotelDetail = ({
 
   useEffect(() => {
     if (!dateStart || !dateEnd) {
-      toast.error("لطفا ابتدا تاریخ رزرو را انتخاب کنید");
+      toast.error(t("error"));
       router.push(`/property-detail/${id}`);
     }
   }, [dateStart, dateEnd, id, router]);
@@ -74,11 +74,11 @@ const HotelDetail = ({
           startContent={<ChevronLeft />}
           className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-auto"
         >
-          تایید و ادامه فرایند
+          {t("continue")}
         </Button>
         <div className="flex gap-1 flex-row-reverse text-lg md:text-2xl">
-          <h1 >قیمت بلیط :</h1>
-          <h3  className="text-primary">
+          <h1>{t("price")}</h1>
+          <h3 className="text-primary">
             {formatNumber(Number(hotelDetail?.price))} ت
           </h3>
         </div>

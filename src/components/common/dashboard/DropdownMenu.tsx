@@ -3,9 +3,11 @@
 import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { jwtDecode } from "jwt-decode";
 import { User } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function DropdownMenu() {
+  const t = useTranslations("Dashboard");
   const pathname = usePathname();
   const router = useRouter();
   const token = getClientCookie("clientAccessToken");
@@ -13,9 +15,9 @@ export default function DropdownMenu() {
   const dropdownItems = [
     {
       text: pathname.includes("/seller")
-        ? "پنل بایر"
+        ? t("buyerPanel")
         : pathname.includes("/buyer") && role == "seller"
-          ? "پنل سلر"
+          ? t("sellerPanel")
           : "",
       icon: <User />,
       onClick: () =>

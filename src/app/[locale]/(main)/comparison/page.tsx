@@ -59,8 +59,7 @@ const ComparisonPage = () => {
     };
   });
 
-  if (!houses)
-    return <LoadingCustomized title={"در حال مقایسه کردن دو خانه..."} />;
+  if (!houses) return <LoadingCustomized title={t("comparing")} />;
 
   // Rating
   const renderRating = (rating: number) => {
