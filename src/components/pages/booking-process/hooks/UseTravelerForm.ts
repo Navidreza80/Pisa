@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { TravelerData, ValidationErrors } from "@/types/booking";
+import { useTranslations } from "next-intl";
 
 const useTravelerForm = (count: number) => {
+  const t = useTranslations("ReserveDetail")
   const [travelersData, setTravelersData] = useState<TravelerData[]>(
     Array(count).fill(null).map(() => ({
       firstName: "",
@@ -17,11 +19,11 @@ const useTravelerForm = (count: number) => {
   );
 
   const validateField = (field: keyof TravelerData, value: string) => {
-    if (!value.trim()) return "این فیلد اجباری است";
+    if (!value.trim()) return t("val1");
     if (field === "nationalId" && !/^\d{10}$/.test(value))
-      return "کد ملی باید ۱۰ رقمی باشد";
+      return t("val2");
     if (field === "birthDate" && !/^\d{4}-\d{2}-\d{2}$/.test(value))
-      return "فرمت تاریخ صحیح نیست (YYYY-MM-DD)";
+      return t("val3");
     return undefined;
   };
 

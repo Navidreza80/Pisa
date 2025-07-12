@@ -24,8 +24,10 @@ import HotelDetail from "../contents/HotelDetail";
 import SendToOthersForm from "../forms/SendToOthersForm";
 import TravelerForm from "../forms/TravelerForm";
 import useTravelerForm from "../hooks/UseTravelerForm";
+import { useTranslations } from "next-intl";
 
 export default function BookingStepOne() {
+  const t = useTranslations("ReserveDetail")
   const [showTravelers, setShowTravelers] = useState(true);
   const { id } = useParams();
   const dispatch = useAppDispatch();
@@ -55,7 +57,7 @@ export default function BookingStepOne() {
       if (typeof dateStart == "string" && typeof dateEnd == "string") {
         dispatch(setReservedDates([dateStart, dateEnd]));
       } else {
-        toast.error("لظفا ابتدا تاریخ را وارد کنید");
+        toast.error(t("dateError"));
       }
       if (booking.sharedEmail && booking.sharedMobile) {
         dispatch(setSharedEmail(booking.sharedEmail));
@@ -74,10 +76,10 @@ export default function BookingStepOne() {
       <Body>
         <Header>
           <h1 className="flex gap-3 items-center text-sm md:text-base">
-            مشخصات مسافران <TravelersSVG color="black" />
+            {t("travelerDetails")} <TravelersSVG color="black" />
           </h1>
           <h1 className="flex gap-3 items-center text-primary text-sm md:text-base">
-            انتخاب مسافران قبلی <TimePastSVG color="#586cff" />
+            {t("choosePrevious")} <TimePastSVG color="#586cff" />
           </h1>
         </Header>
 
@@ -102,7 +104,7 @@ export default function BookingStepOne() {
 
           <Line className="w-full" />
           <Button className="bg-transparent !text-text border-2 border-primary text-sm md:text-base">
-            افزودن مسافر
+            {t("addTraveler")}
           </Button>
         </div>
       </Body>

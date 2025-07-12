@@ -24,19 +24,21 @@ import { getAgeGroup } from "@/utils/helper/age-identifier";
 import { bookHotel } from "@/utils/service/reserve/post";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export default function BookingStepTwo() {
+  const t = useTranslations("ReserveDetail");
   const baseCLX = "text-xs md:text-5 text-center text-fade";
   const tableBaseCLX = "text-xs md:text-base font-semibold text-center";
   const tableHeaderItems = [
-    { text: "بازه سنی", clx: `rounded-r-xl ${baseCLX}` },
-    { text: "نام و نام خانوادگی", clx: baseCLX },
-    { text: "جنسیت", clx: baseCLX },
-    { text: "کدملی / شماره یا پاسپورت", clx: baseCLX },
-    { text: "تاریخ تولد", clx: baseCLX },
-    { text: "خدمات", clx: baseCLX },
-    { text: "مبلغ خدمات", clx: baseCLX },
-    { text: "قیمت", clx: `rounded-l-xl ${baseCLX}` },
+    { text: t("ageRange"), clx: `rounded-r-xl ${baseCLX}` },
+    { text: t("fullName"), clx: baseCLX },
+    { text: t("gender"), clx: baseCLX },
+    { text: t("passport"), clx: baseCLX },
+    { text: t("birthDate"), clx: baseCLX },
+    { text: t("services"), clx: baseCLX },
+    { text: t("servicesPrice"), clx: baseCLX },
+    { text: t("price"), clx: `rounded-l-xl ${baseCLX}` },
   ];
 
   const dispatch = useAppDispatch();
@@ -45,9 +47,9 @@ export default function BookingStepTwo() {
     mutationKey: ["BOOK_HOTEL"],
     mutationFn: () =>
       toast.promise(() => bookHotel(booking), {
-        pending: "درحال پردازش...",
-        success: "هتل با موفقیت رزرو شد",
-        error: "خطا در رزرو هتل",
+        pending: t("pending"),
+        success: t("success"),
+        error: t("error"),
       }),
     onSuccess: () => dispatch(setBookingSteps(1)),
   });
@@ -57,10 +59,10 @@ export default function BookingStepTwo() {
       <Body>
         <Header>
           <h1 className="flex gap-2 md:gap-3 items-center text-sm md:text-base">
-            مشخصات مسافران <TravelersSVG color="black" />
+            {t("travelerDetails")} <TravelersSVG color="black" />
           </h1>
           <h1 className="flex gap-2 md:gap-3 items-center text-primary text-sm md:text-base">
-            ویرایش مسافران <Edit className="text-primary w-4 md:w-5" />
+            {t("editTravelers")} <Edit className="text-primary w-4 md:w-5" />
           </h1>
         </Header>
         {/* Travelers - Mobile Cards */}
@@ -76,10 +78,7 @@ export default function BookingStepTwo() {
             pageInation={false}
             tableHeader={tableHeaderItems}
             tableContent={booking.traveler_details.map((traveler) => (
-              <tr
-                key={traveler.id}
-                className=" hover:bg-background/30"
-              >
+              <tr key={traveler.id} className=" hover:bg-background/30">
                 <td className={tableBaseCLX}>
                   {getAgeGroup(traveler.birthDate)}
                 </td>
@@ -105,16 +104,12 @@ export default function BookingStepTwo() {
       <Body>
         <Header>
           <h1 className="flex gap-2 md:gap-3 items-center text-sm md:text-base">
-            هزینه جانبی <CircleDollarSign className="text-text w-4 md:w-5" />
+            {t("extraPrice")}{" "}
+            <CircleDollarSign className="text-text w-4 md:w-5" />
           </h1>
         </Header>
         <div className="w-full justify-between flex px-2 md:px-4 py-3 md:py-5 leading-7 md:leading-10 text-sm md:text-base">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-          از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-          سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-          متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-          درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-          نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص{" "}
+          {t("lorem")}
         </div>
       </Body>
 
@@ -123,21 +118,21 @@ export default function BookingStepTwo() {
         <Header>
           <h1 className="flex gap-2 md:gap-3 items-center flex-wrap text-sm md:text-base">
             <span className="text-primary text-xs md:text-base">
-              (.اطلاعات بلیط و اطلاع رسانی بعدی به این آدرس ارسال می شود)
+              {t("willSendToThis")}
             </span>{" "}
-            اطلاع رسانی سفر <MegaphoneIcon className="w-4 md:w-5" />
+            {t("announcement")} <MegaphoneIcon className="w-4 md:w-5" />
           </h1>
         </Header>
         <div className="w-full flex flex-col md:flex-row px-2 md:px-4 py-3 md:py-5 md:justify-end items-start md:items-center gap-2 md:gap-[25px]">
           <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
-            <Dot className="w-4 md:w-5" /> : ایمیل
+            <Dot className="w-4 md:w-5" /> {t("email")}
             <span className="text-primary break-all">
               {booking.sharedEmail}
             </span>
           </div>
           <span className="hidden md:block bg-border h-4 w-0.5" />
           <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
-            <Dot className="w-4 md:w-5" /> : شماره تماس
+            <Dot className="w-4 md:w-5" /> {t("phoneNumber")}
             <span className="text-primary">{booking.sharedMobile}</span>
           </div>
         </div>
@@ -147,16 +142,16 @@ export default function BookingStepTwo() {
       <Body>
         <Header>
           <h1 className="flex gap-2 md:gap-3 items-center text-sm md:text-base">
-            کد تخفیف <MdDiscount className="w-4 md:w-5" />
+            {t("discountCode")} <MdDiscount className="w-4 md:w-5" />
           </h1>
         </Header>
         <div className="w-full flex flex-col-reverse md:flex-row px-2 md:px-4 py-3 md:py-5 md:justify-end items-center gap-3 md:gap-[25px]">
           <Button className="bg-transparent !text-text border-2 border-primary text-sm md:text-base w-full md:w-auto">
-            اعمال کد تخفیف
+            {t("applyCode")}
           </Button>
           <InputText
             color="bg-border/30 border-border rounded-xl"
-            label="کد تخفیف :"
+            label={t("discountCode2")}
             className="!rounded-full w-full md:w-auto"
           />
         </div>
@@ -172,22 +167,20 @@ export default function BookingStepTwo() {
             }}
             className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
           >
-            رزرو هتل
+            {"reserveHotel"}
           </Button>
           <Button
             endContent={<ChevronRight />}
             handleClick={() => dispatch(setBookingSteps(1))}
             className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
           >
-            مرحله قبل
+            {t("previousStep")}
           </Button>
         </div>
 
         <div className="flex gap-1 flex-row-reverse text-lg md:text-2xl">
-          <h1 >قیمت هتل :</h1>
-          <h3  className="text-primary">
-            {formatNumber(1500000)}ت
-          </h3>
+          <h1>{t("hotelPrice")}</h1>
+          <h3 className="text-primary">{formatNumber(1500000)}ت</h3>
         </div>
       </div>
     </div>

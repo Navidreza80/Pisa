@@ -5,19 +5,21 @@ import {
   MoneySVG,
   SearchSVG,
   TicketSVG,
-  TravelersSVG
+  TravelersSVG,
 } from "@/components/svg";
 import { useAppSelector } from "@/utils/hooks/react-redux/store/hook";
 import { useEffect, useState } from "react";
 import Line from "../../../common/dashboard/line";
+import { useTranslations } from "next-intl";
 
 const Stepper = () => {
+  const t = useTranslations("chooseHotel");
   const stepsItems = [
-    { text: "انتخاب هتل", id: 1 },
-    { text: "مشخصات مسافران ", id: 2 },
-    { text: "تایید اطلاعات", id: 3 },
-    { text: "پرداخت انلاین", id: 4 },
-    { text: "صدور بلیط", id: 5 },
+    { text: t("chooseHotel"), id: 1 },
+    { text: t("travelerDetails"), id: 2 },
+    { text: t("submitInformation2"), id: 3 },
+    { text: t("payOnline"), id: 4 },
+    { text: t("sendTicket"), id: 5 },
   ];
 
   const id = useAppSelector((state) => state.bookingSteps.id);
