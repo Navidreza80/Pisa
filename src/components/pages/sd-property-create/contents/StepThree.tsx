@@ -1,6 +1,7 @@
 import { LabelManager } from "@/components/common/inputs/label-handler";
 import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-input-with-label";
+import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 
 export default function AddPropertyStepThree({
@@ -10,9 +11,10 @@ export default function AddPropertyStepThree({
   tags,
   setTags,
 }) {
+  const t = useTranslations("Dashboard")
   const inputs = [
     {
-      text: "تعداد اتاق:",
+      text: t("roomCount"),
       placeHolder: null,
       isSelect: false,
       name: "rooms",
@@ -25,7 +27,7 @@ export default function AddPropertyStepThree({
         ) : null,
     },
     {
-      text: "تعداد حمام:",
+      text: t("bathroomCount"),
       placeHolder: null,
       isSelect: false,
       name: "bathrooms",
@@ -39,7 +41,7 @@ export default function AddPropertyStepThree({
     },
 
     {
-      text: "تعداد پارکینگ:",
+      text: t("parkingCount"),
       placeHolder: null,
       isSelect: false,
       name: "parking",
@@ -52,15 +54,15 @@ export default function AddPropertyStepThree({
         ) : null,
     },
     {
-      text: "نوع حیاط:",
+      text: t("yardType"),
       placeHolder: null,
       isSelect: true,
       value: yard_type,
       items: [
-        { value: "روستایی", text: "روستایی" },
-        { value: "ساحلی", text: "ساحلی" },
-        { value: "شهری", text: "شهری" },
-        { value: "جنگلی", text: "جنگلی" },
+        { value: "روستایی", text: t("village") },
+        { value: "ساحلی", text: t("beach") },
+        { value: "شهری", text: t("city") },
+        { value: "جنگلی", text: t("jungle")},
       ],
       onChange: (e) => setYard_type(e),
     },
@@ -99,9 +101,9 @@ export default function AddPropertyStepThree({
         onChange={setTags}
         maxLabels={3}
         maxLength={20}
-        modalTitle="اضافه کردن برچسب"
-        inputTitle="برچسب ها"
-        emptyState="برچسبی اضافه نشده است"
+        modalTitle={t("addTag")}
+        inputTitle={t("tags")}
+        emptyState={t("noTag")}
       />
     </>
   );

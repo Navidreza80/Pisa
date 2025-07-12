@@ -29,8 +29,8 @@ import EditHouse from "../content/EditHouse";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
-  { text: "تاریخ ساخت", clx: null },
-  { text: "نوع پرداخت", clx: null },
+  { text: t("createdAt"), clx: null },
+  { text: t("transactionType"), clx: null },
   { text: t("tableHeaders.price"), clx: null },
   { text: t("tableHeaders.rating"), clx: null },
   { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
@@ -44,9 +44,9 @@ export default function SellerDashboardProperties({ houses }) {
     mutationKey: ["EDIT_HOUSE"],
     mutationFn: (payload) =>
       toast.promise(() => putHouse(payload.data, payload.id), {
-        error: "خطا",
-        success: "اطلاعات ملک با موفقیت ویرایش شد",
-        pending: "درحال پردازش...",
+        error: t("editError"),
+        success: t("editSuccess"),
+        pending: t("editLoading"),
       }),
     onSuccess: () => router.refresh(),
   });
@@ -54,9 +54,9 @@ export default function SellerDashboardProperties({ houses }) {
     mutationKey: ["DELETE_HOUSE"],
     mutationFn: (id) =>
       toast.promise(() => deleteHouse(id), {
-        error: "خطا",
-        success: " ملک با موفقیت حذف شد",
-        pending: "درحال پردازش...",
+        error: t("deleteError"),
+        success: t("deleteSuccess"),
+        pending: t("deleteLoading"),
       }),
     onSuccess: () => router.refresh(),
   });
@@ -119,7 +119,7 @@ export default function SellerDashboardProperties({ houses }) {
                 {property.price}
               </td>
               <td className="px-6 py-7 text-[18px] font-medium">
-                {property.rating || "بدون امتیاز"}
+                {property.rating || t("noRate")}
               </td>
               <td className="px-6 py-2 relative rounded-l-xl">
                 <Popover>

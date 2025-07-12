@@ -4,12 +4,14 @@
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import "photo-sphere-viewer/dist/photo-sphere-viewer.css";
+import { useTranslations } from "next-intl";
 
 interface VirtualTourProps {
   img: string;
 }
 
 const VirtualTourComponent = ({ img }: VirtualTourProps) => {
+  const t = useTranslations("SingleHouse")
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerInstance = useRef<any>(null);
 
@@ -30,7 +32,7 @@ const VirtualTourComponent = ({ img }: VirtualTourProps) => {
           });
         }
       } catch (error) {
-        console.error("خطا در بارگذاری تور مجازی:", error);
+        console.error(error);
       }
     };
 
@@ -65,7 +67,7 @@ const VirtualTour = dynamic(() => Promise.resolve(VirtualTourComponent), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[387px] flex items-center justify-center bg-gray-100">
-      <p>در حال بارگزاری بازدید 3 بعدی</p>
+      <p> {t("loading3D")} </p>
     </div>
   ),
 });

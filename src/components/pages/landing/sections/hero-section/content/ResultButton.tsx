@@ -58,7 +58,7 @@ export default function ResultButton({
           <div className="py-4 " >
             <div className="mb-4 relative">
               <Input
-                placeholder="جستجو در نتایج..."
+                placeholder={t("searchInResults")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="rounded-lg pr-10 border-border"
@@ -77,8 +77,8 @@ export default function ResultButton({
             ) : (
               <p className="text-center text-text-secondary">
                 {searchQuery
-                  ? "نتیجه‌ای برای جستجوی شما یافت نشد"
-                  : "نتیجه‌ای یافت نشد"}
+                  ? t("noResultsFoundDepend")
+                  : t("noResultsFound")}
               </p>
             )}
           </div>

@@ -29,7 +29,7 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
   const [userInput, setUserInput] = useState("");
   const [reason, setReason] = useState("");
   const [budget, setBudget] = useState<number>();
-  const t = useTranslations("Auth");
+  const t = useTranslations("HomePage");
   const [recommendation, setRecommendation] = useState<HouseItemsInterface>();
   const [isRent, setIsRent] = useState(false);
 
@@ -48,10 +48,10 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
       const data: HouseItemsInterface = await getHouseById(res.houseId);
       setRecommendation(data);
       setReason(res.reason);
-      toast.success("خانه مورد نظر پیدا شد");
+      toast.success(t("propertyFound"));
     },
     onError: (error) => {
-      toast.error("خطا در دریافت پیشنهاد");
+      toast.error(t("errorNotFound"));
       console.error(error);
     },
     onSettled: () => {
@@ -65,9 +65,9 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
       <div className="lg:w-1/3 md:w-full w-full flex justify-between flex-wrap lg:gap-y-0 gap-y-3 md:gap-y-3">
         <div className="flex gap-1.5 items-center">
           <Reveal>
-            <h1 className="text-primary font-semibold text-[20px]">بودجه</h1>
+            <h1 className="text-primary font-semibold text-[20px]">{t("budget")}</h1>
           </Reveal>
-          <span className="text-fade font-medium text-sm">( تومان )</span>
+          <span className="text-fade font-medium text-sm">{t("tooman")}</span>
         </div>
         <div className="w-full flex justify-between">
           <Input
@@ -83,19 +83,19 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
               onClick={() => setIsRent((prev) => !prev)}
               className={`h-full cursor-pointer transition-all duration-300 ${!isRent ? "bg-primary text-white" : "text-primary"} px-2 rounded-2xl flex items-center justify-center`}
             >
-              رهن و اجاره
+              {t("rentAndMortgage")}
             </span>
             <span
               onClick={() => setIsRent((prev) => !prev)}
               className={`h-full cursor-pointer transition-all duration-300 px-4 ${isRent ? "bg-primary text-white" : "text-primary"} rounded-2xl  flex items-center justify-center`}
             >
-              رزرو
+             {t("reserveAI")}
             </span>
           </div>
         </div>
         <div className="flex gap-1.5 items-center">
           <Reveal>
-            <h1 className="text-primary font-semibold text-[20px]">توضیجات</h1>
+            <h1 className="text-primary font-semibold text-[20px]">{t("descriptionAI")}</h1>
           </Reveal>
           <Info className="text-fade" />
         </div>
@@ -103,14 +103,14 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           className="w-full h-[238px] rounded-2xl border-border relative placeholder:absolute placeholder:top-4 placeholder:right-4"
-          placeholder="خانه 2 خوابه در شیراز..."
+          placeholder={t("aiPlaceholder")}
         />
         <ResultModal isPending={isPending} reason={reason} recommendation={recommendation}>
           <button
             onClick={async () => await mutate()}
             className="w-full bg-primary group hover:scale-105 transition-all duration-300 rounded-2xl text-[20px] font-semibold cursor-pointer h-12 text-white flex justify-center items-center gap-1"
           >
-            {isPending ? "درحال بارگذاری..." : "بزن بریم"}
+            {isPending ? t("loading") : t("letsGo")}
             <Stars className="group-hover:shadow-sm rounded-full group-hover:shadow-amber-200 transition-all duration-300" />
           </button>
         </ResultModal>

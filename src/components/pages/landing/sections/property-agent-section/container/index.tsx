@@ -6,6 +6,7 @@ import Agent from "../content/Agent";
 import Status from "../content/Status";
 import Image from "next/image";
 import AI from "@/assets/images/AI.png"
+import { getTranslations } from "next-intl/server";
 
 interface IProps {
   houseLength: number;
@@ -16,12 +17,13 @@ const PropertyAgentSection: React.FC<IProps> = async ({
   houseLength,
   houses,
 }) => {
+  const t = await getTranslations("HomePage")
   return (
     <div >
       <Reveal>
         {/* Title */}
         <div className=" text-[28px] font-[700] mb-4">
-          از هوش مصنوعی مشاوره بگیر!
+          {t("askAI")}
         </div>
       </Reveal>
       <div className="flex grow flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
@@ -30,11 +32,11 @@ const PropertyAgentSection: React.FC<IProps> = async ({
           <div className="flex justify-end flex-col items-center">
             <div className="flex gap-9">
               <div className="flex flex-col items-center">
-                <Status text={"خانه"} value={houseLength} />
+                <Status text={t("home")} value={houseLength} />
                 <div className="border h-2.5 border-primary w-[1px]"></div>
-                <Status text={"شهر"} value={27} />
+                <Status text={t("city")} value={27} />
                 <div className="border h-2.5 border-primary w-[1px]"></div>
-                <Status text={"هتل"} value={82} />
+                <Status text={t("hotel")} value={82} />
               </div>
             </div>
           </div>

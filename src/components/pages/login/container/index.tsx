@@ -27,8 +27,8 @@ function LoginContainer() {
   const t = useTranslations("Auth");
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required("ایمیل الزامی است"),
-    password: Yup.string().required("رمز عبور الزامی است"),
+    email: Yup.string().required(t("emailRequired")),
+    password: Yup.string().required(t("passwordRequired")),
   });
 
   // Posting user email and password logic

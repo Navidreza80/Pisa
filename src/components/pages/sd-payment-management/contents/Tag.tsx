@@ -5,8 +5,10 @@ import { PinSVG } from "@/components/svg";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
+import { useTranslations } from "next-intl";
 
 const Tag = ({ item }) => {
+  const t = useTranslations("Dashboard")
   const pathname = usePathname();
   return (
     <div className="w-[calc(50%-10px)] md:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] px-3 md:px-[19px] h-[130px] rounded-xl bg-background flex flex-wrap mb-4 md:mb-0">
@@ -25,14 +27,14 @@ const Tag = ({ item }) => {
           
           className="font-medium text-center w-full py-[13px] text-[20px]"
         >
-          {formatNumber(item.price)} تومان
+          {formatNumber(item.price)} {t("tooman")}
         </div>
       )}
       <Link
         href={"/dashboard/seller/" + item.href}
         className="flex justify-between py-2 w-full"
       >
-        <p className="font-medium text-text-secondary">مشاهده</p>
+        <p className="font-medium text-text-secondary"> {t("view")} </p>
         <ViewMoreSVG />
       </Link>
     </div>

@@ -3,6 +3,7 @@ import { Comments } from "@/types/comments";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
@@ -29,6 +30,7 @@ export default function SingleComment({
   sectionRefs,
   setRepliedUser,
 }: SingleCommentProps) {
+  const t = useTranslations("SingleHouse")
   const scrollToSection = (sectionId: string) => {
     if (sectionRefs) {
       sectionRefs.current[sectionId]?.scrollIntoView({
@@ -99,7 +101,7 @@ export default function SingleComment({
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white truncate">
-            {comment.user ? comment.user.firstName : "کاربر"}
+            {comment.user ? comment.user.firstName : t("user")}
           </h2>
           <span className="text-xs text-gray-500 dark:text-gray-400">
             {formatToPersianDate(comment.created_at)}

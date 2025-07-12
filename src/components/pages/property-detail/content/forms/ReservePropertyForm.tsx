@@ -29,7 +29,7 @@ export default function ReserveForm({ price }: { price: string }) {
     router.push(`/reserve/${id}?${params.toString()}`);
   };
   const reserveSchema = Yup.object().shape({
-    travelersCount: Yup.number().required("لطفا تعداد مسافران را وارد کنید"),
+    travelersCount: Yup.number().required(t("chooseTravelers")),
   });
   const formik = useFormik({
     validationSchema: reserveSchema,
@@ -39,9 +39,9 @@ export default function ReserveForm({ price }: { price: string }) {
         dispatch(setReservedDates([dateStart.toString(), dateExit.toString()]));
         handleContinue(values.travelersCount);
       } else if (!dateStart) {
-        toast.error("لطفا ابتدا تاریخ رفت را انتخاب کنید");
+        toast.error(t("chooseStartDate"));
       } else if (!dateExit) {
-        toast.error("لطفا ابتدا تاریخ برگشت را انتخاب کنید");
+        toast.error(t("chooseExitDate"));
       }
     },
   });
@@ -75,7 +75,7 @@ export default function ReserveForm({ price }: { price: string }) {
           <div className="!w-[calc(50%-27px)] flex flex-col gap-y-3">
             <div className="flex gap-1 items-center">
               <p>{t("discount")}</p>
-              <p className="text-[13px] text-fade">(اختیاری)</p>
+              <p className="text-[13px] text-fade">{t("optional")}</p>
             </div>
             <InputText width="!w-full" />
           </div>
@@ -85,10 +85,10 @@ export default function ReserveForm({ price }: { price: string }) {
       <div className="mt-6 flex gap-4 justify-between flex-wrap">
         {/* Price */}
         <div className="flex flex-col gap-3">
-          <h1 className="text-text">قیمت</h1>
+          <h1 className="text-text">{t("price")}</h1>
           <div className="flex flex-row-reverse gap-[5px]">
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-              تومان
+              {t("tooman")}
             </p>
             <h1 className="text-[20px] font-[700] my-auto ">
               {formatNumber(Number(price))}
@@ -110,7 +110,7 @@ export default function ReserveForm({ price }: { price: string }) {
           type="submit"
           className="bg-primary cursor-pointer hover:bg-[#4A5FE3] font-semibold w-full focus:scale-95 focus:shadow-lg transition-all rounded-full mt-4 h-12 flex justify-center items-center text-white"
         >
-          همین الان رزرو کن
+          {t("reserveNow")}
         </button>
       </div>
     </form>

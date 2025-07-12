@@ -17,7 +17,7 @@ export default async function RentForm() {
           <div className="flex w-full flex-row gap-[5px] justify-end">
             {/* Currency */}
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-              تومان
+              {t("tooman")}
             </p>
             {/* Price */}
             <h1 className="text-[20px] font-[700] !text-text my-auto ">
@@ -32,7 +32,7 @@ export default async function RentForm() {
           <div className="flex w-full flex-row gap-[5px] justify-end">
             {/* Currency */}
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
-              تومان
+              {t("tooman")}
             </p>
             {/* Price */}
             <h1 className="text-[20px] font-[700] !text-text my-auto ">
@@ -48,9 +48,7 @@ export default async function RentForm() {
           <div className="h-12 bg-gray-600 aspect-square rounded-full"></div>
           <div className="flex flex-col justify-between">
             <h4 className="text-text">عباس بهبودی</h4>
-            <h4 className="text-text-secondary " >
-              13 اردیبهشت 1404
-            </h4>
+            <h4 className="text-text-secondary ">13 اردیبهشت 1404</h4>
           </div>
         </div>
         {/* Chat and phone number section */}

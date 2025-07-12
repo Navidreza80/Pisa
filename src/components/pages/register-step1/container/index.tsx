@@ -35,7 +35,7 @@ function Register1() {
 
   // Schema
   const StepOneSchema = Yup.object().shape({
-    email: Yup.string().required("ایمیل الزامی است"),
+    email: Yup.string().required(t("emailRequired")),
   });
 
   // Registering user logic
@@ -72,9 +72,7 @@ function Register1() {
         >
           {" "}
           {formik.errors.email && (
-            <span className="text-red-500 text-sm ">
-              {formik.errors.email}
-            </span>
+            <span className="text-red-500 text-sm ">{formik.errors.email}</span>
           )}
         </InputAuth>
         <Button text={t("SendVerificationCode")} />

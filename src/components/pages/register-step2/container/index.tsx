@@ -110,7 +110,7 @@ export default function Register2() {
         </div>
         {!code && (
           <span className="text-red-500 text-sm ">
-            لطفا کد تایید را وارد کنید
+            {t("codeValidation")}
           </span>
         )}
 

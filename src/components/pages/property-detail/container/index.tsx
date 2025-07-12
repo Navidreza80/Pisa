@@ -2,19 +2,20 @@ import Container from "@/components/common/container";
 import type { HouseItemsInterface } from "@/types/house";
 import { fetchHouses } from "@/utils/service/house/get";
 import { getHouseById } from "@/utils/service/house/get-by-id";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import AllComments from "../content/AllComments";
+import Facilities from "../content/Facilities";
 import HeaderSection from "../content/HeaderSection";
 import HouseRate from "../content/HouseRate";
 import MainImages from "../content/MainImages";
 import ParagraphSection from "../content/ParagraphSection";
-import TitleSection from "../content/TitleSection";
-import Facilities from "../content/Facilities";
 import PropertyLocation from "../content/PropertyLocation";
-import ReserveForm from "../content/forms/ReservePropertyForm";
-import RentForm from "../content/forms/RentPropertyForm";
-import AllComments from "../content/AllComments";
-import RelatedHouse from "../content/RelatedHouse";
 import PropertyQA from "../content/PropertyQA";
+import RelatedHouse from "../content/RelatedHouse";
+import TitleSection from "../content/TitleSection";
+import RentForm from "../content/forms/RentPropertyForm";
+import ReserveForm from "../content/forms/ReservePropertyForm";
 
 /**
  * Single property page - Displaying detail of property
@@ -30,6 +31,7 @@ import PropertyQA from "../content/PropertyQA";
  */
 
 export default async function PropertyDetailContainer({ id }: { id: string }) {
+  const t = await getTranslations("SingleHouse");
   // Fetching property details server side
   let propertyDetails;
   if (typeof id == "string") propertyDetails = await getHouseById(id);
@@ -37,10 +39,10 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
   // Fetching related properties server side
   const relatedHouses: HouseItemsInterface[] = await fetchHouses({
     transactionType: propertyDetails?.transaction_type,
-    limit: 3
+    limit: 3,
   });
 
-  console.log(relatedHouses)
+  console.log(relatedHouses);
 
   // Handle if the property detail is undefined
   if (!propertyDetails) {
@@ -77,7 +79,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           title={title ? title : ""}
         />
         {/* Mid section */}
-        <div  className="w-full flex justify-between flex-wrap gap-8">
+        <div className="w-full flex justify-between flex-wrap gap-8">
           {/* Main images */}
           <div className="lg:w-[47%] md:w-full w-full">
             <MainImages show3D photos={photos ? photos : []} sticky={true} />
@@ -86,11 +88,11 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
             {/* Title section */}
             {isHotel && (
-              <TitleSection textContent={`چرا ${title} رو انتخاب کنیم؟`} />
+              <TitleSection textContent={`${title}`} />
             )}
             {/* Description section */}
             <ParagraphSection
-              textContent={caption ? caption : "این ملک توضیحاتی ندارد"}
+              textContent={caption ? caption : t("noDescription")}
             />
             {isHotel && (
               <>
@@ -141,11 +143,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           </div>
         </div>
         {/* Bottom section */}
-        <RelatedHouse
-          relatedHouses={relatedHouses.filter(
-            (e) => e.id != id
-          )}
-        />
+        <RelatedHouse relatedHouses={relatedHouses.filter((e) => e.id != id)} />
       </div>
     </Container>
   );

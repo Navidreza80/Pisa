@@ -13,8 +13,10 @@ import { useState } from "react";
 import Map from "../contents/Map";
 import { FilterModal } from "../modals/BookingFilterModal";
 import "../styles/scrollbar.css";
+import { useTranslations } from "next-intl";
 
 export default function ReserveListContainer() {
+  const t = useTranslations("Reserve")
   const [currentLoc, setCurrentLoc] = useState<[number, number]>([34, 52]);
   const { data: houses, isLoading } = useHouses();
   const filters = useAppSelector((state) => state.reserveFilters);
@@ -35,14 +37,14 @@ export default function ReserveListContainer() {
               onChange={(e) => handleChange("search", e.target.value)}
               className="h-12 border rounded-2xl border-border px-4 py-3 w-full pr-16"
               
-              placeholder="جستجو کنید ..."
+              placeholder={t("search")}
             />
             <span className="absolute right-6 top-3.5">
               <SearchSVG />
             </span>
           </div>
           <div className="flex whitespace-nowrap items-center justify-center gap-1 text-sm font-medium border-border rounded-2xl border px-2 h-12">
-            تعداد آگهی: {houses?.length}
+            {t("propertiesCount")} {houses?.length}
             <Megaphone />
           </div>
           <FilterModal />
@@ -74,7 +76,7 @@ export default function ReserveListContainer() {
               );
             })
           ) : (
-            <div className="font-bold text-2xl mt-1">نتیجه ای یافت نشد.</div>
+            <div className="font-bold text-2xl mt-1">{t("noResult")}</div>
           )}
         </div>
       </div>

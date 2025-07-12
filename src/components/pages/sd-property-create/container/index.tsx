@@ -17,8 +17,10 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
+import { useTranslations } from "next-intl";
 
 const AddPropertyContainer = () => {
+  const t = useTranslations("Dashboard")
   // Hooks
   const [createdProperty, setCreatedProperty] = useState<HouseItemsInterface>();
   const [photoURL, setPhotoURL] = useState(["", "", "", ""]);
@@ -39,9 +41,9 @@ const AddPropertyContainer = () => {
     mutationKey: ["CREATE_HOUSE"],
     mutationFn: () =>
       toast.promise(() => postHouse(createdProperty), {
-        pending: "درحال پردازش...",
-        success: "آگهی با موفقیت ساخته شد",
-        error: "خطا در ساخت آگهی",
+        pending: t("pendingProperty"),
+        success: t("successProperty"),
+        error: t("errorProperty"),
       }),
   });
 
@@ -53,19 +55,19 @@ const AddPropertyContainer = () => {
   };
 
   const stepOneValidation = Yup.object().shape({
-    caption: Yup.string().required("توضیحات الزامی است"),
-    capacity: Yup.string().required("ظرفیت الزامی است"),
-    price: Yup.string().required("قیمت الزامی است"),
+    caption: Yup.string().required(t("descVal")),
+    capacity: Yup.string().required(t("capacityVal")),
+    price: Yup.string().required(t("priceVal")),
   });
 
   const stepTwoValidation = Yup.object().shape({
-    address: Yup.string().required("آدرس الزامی است"),
+    address: Yup.string().required(t("addressVal")),
   });
 
   const stepThreeValidation = Yup.object().shape({
-    bathrooms: Yup.string().required("تعداد حمام الزامی است"),
-    rooms: Yup.string().required("تعداد پارکینگ الزامی است"),
-    parking: Yup.string().required("تعداد اتاق الزامی است"),
+    bathrooms: Yup.string().required(t("bathroomVal")),
+    rooms: Yup.string().required(t("parkingVal")),
+    parking: Yup.string().required(t("roomVal")),
   });
 
   // Formik initialValues / onSubmit

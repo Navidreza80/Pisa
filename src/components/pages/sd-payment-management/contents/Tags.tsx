@@ -5,8 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 import Tag from "./Tag";
 import TagDashboard from "./TagDashboard";
+import { useTranslations } from "next-intl";
 
 const Tags = () => {
+  const t = useTranslations("Dashboard")
   const { data: bookingList } = useQuery({
     queryKey: ["BOOKING_LIST"],
     queryFn: getBookingList,
@@ -25,21 +27,21 @@ const Tags = () => {
   }));
 
   const financeitems = [
-    { text: "درآمد ماه قبل", price: 1200000 },
-    { text: "درآمد ماه جاری", price: 1200000 },
-    { text: "درآمد کل", price: 1300000 },
-    { text: "موجودی قابل برداشت", price: 1400000 },
+    { text: t("lastMonthIncome"), price: 1200000 },
+    { text: t("currentIncome"), price: 1200000 },
+    { text: t("totalIncome"), price: 1300000 },
+    { text: t("canDeposit"), price: 1400000 },
   ];
   const dashboarditems = [
-    { text: "بازدید های امروز", textNumber: 4, href: "reservations" },
+    { text: t("totalVisit"), textNumber: 4, href: "reservations" },
     {
-      text: "رزرو های در انتظار",
+      text: t("pendingReserves"),
       textNumber: 6,
       href: "reservations",
     },
-    { text: "رزرو های فعال", textNumber: 5, href: "reservations" },
+    { text: t("activeReserves"), textNumber: 5, href: "reservations" },
     {
-      text: "کل املاک ها",
+      text: t("totalProperties"),
       textNumber: 12,
       href: "properties",
     },
@@ -51,11 +53,11 @@ const Tags = () => {
         type: "profile",
         data: {
           status: {
-            label: "وضعیت پروفایل شما",
+            label: t("profileStatus"),
             completion: 40,
             minRequired: 2,
-            hint: "برای اینکه بازدید خوبی داشته باشید، پروفایل شما باید حداقل %70 تکمیل شده باشد.",
-            lastUpdated: "3 دقیقه پیش",
+            hint: t("hint"),
+            lastUpdated: t("lastUpdatedProfile"),
           },
         },
       },
@@ -66,7 +68,7 @@ const Tags = () => {
     cards: [
       {
         type: "reservation",
-        title: "نمودار رزرو های شما",
+        title: t("reservationChart"),
         data: chartData,
       },
     ],
@@ -76,14 +78,14 @@ const Tags = () => {
     cards: [
       {
         type: "income",
-        title: "آمار درآمد ها",
+        title: t("incomeData"),
         data: {
           totalIncome: {
-            label: "درآمد کل",
+            label: t("totalIncome"),
             value: 1150000000,
           },
           currentMonthIncome: {
-            label: "درآمد ماه جاری",
+            label: t("currentIncome"),
             value: 195000000,
           },
         },

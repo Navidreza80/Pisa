@@ -4,6 +4,7 @@ import Stepper from "./Stepper";
 import { DashboardBackSVG } from "@/components/svg";
 import Link from "next/link";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import { useTranslations } from "next-intl";
 
 export default function PropertyContainer({
   createHouse,
@@ -11,6 +12,7 @@ export default function PropertyContainer({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const t = useTranslations("Dashboard");
   return (
     <ContainerDashboard>
       <div className="px-2 md:px-0">
@@ -21,11 +23,11 @@ export default function PropertyContainer({
               href="/dashboard/seller/properties"
               className="text-[#0059FF] text-sm md:text-base font-medium"
             >
-              لیست املاک من
+              {t("propertiesList")}
             </Link>
           </div>
           <h1 className="text-lg md:text-base font-semibold order-1 md:order-2">
-            ساخت اگهی ملک جدید
+            {t("createNewProperty")}
           </h1>
         </header>
         <Line className="w-full" />

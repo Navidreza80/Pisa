@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { HouseItemsInterface } from "@/types/house";
+import { useTranslations } from "next-intl";
 import { ClipLoader } from "react-spinners";
 
 interface IProps {
@@ -24,10 +25,11 @@ const ResultModal: React.FC<IProps> = ({
   isPending,
   children,
 }) => {
+  const t = useTranslations("HomePage");
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent  className="max-w-[448px] px-6 py-6">
+      <DialogContent className="max-w-[448px] px-6 py-6">
         <DialogHeader>
           <DialogTitle></DialogTitle>
         </DialogHeader>
@@ -39,7 +41,7 @@ const ResultModal: React.FC<IProps> = ({
         </div>
         {isPending && (
           <div className="flex flex-col gap-1 items-center mx-auto">
-            درحال بارگذاری <ClipLoader />
+            {t("loading")} <ClipLoader />
           </div>
         )}
       </DialogContent>

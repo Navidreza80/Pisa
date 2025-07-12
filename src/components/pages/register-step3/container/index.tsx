@@ -35,10 +35,10 @@ function Register3() {
   // Schema
   const RegisterStepThree = Yup.object().shape({
     repeatedPassword: Yup.string()
-      .required("تکرار رمز عبور الزامی است")
-      .oneOf([Yup.ref("password"), null], "رمز عبور صحیح تکرار نشده است"),
-    password: Yup.string().required("رمز عبور الزامی است"),
-    phoneNumber: Yup.string().required("رمز عبور الزامی است"),
+      .required(t("repeatPassVal"))
+      .oneOf([Yup.ref("password"), null], t("wrongRepeat")),
+    password: Yup.string().required(t("passVal")),
+    phoneNumber: Yup.string().required(t("phoneNumberVal")),
   });
 
   // Complete user register by posting user info logic

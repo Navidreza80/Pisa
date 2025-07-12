@@ -6,6 +6,7 @@ import getAllCategories from "@/utils/service/categories/categories";
 import { getRecommendedDescription } from "@/utils/service/recommendation/recommendCaption";
 import { getRecommendedTitle } from "@/utils/service/recommendation/recommendTitle";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
@@ -19,6 +20,7 @@ export default function AddPropertyStepOne({
   transaction_type,
   categories,
 }) {
+  const t = useTranslations("Dashboard")
   const { data: categoryList } = useQuery({
     queryKey: ["CATEGORIES"],
     queryFn: () => getAllCategories(),
@@ -47,11 +49,11 @@ export default function AddPropertyStepOne({
       onSuccess: (res) => (formik.values.caption = res),
     });
 
-  if (!categories) return <LoadingCustomized title="درحال پردازش اطلاعات..." />;
+  if (!categories) return <LoadingCustomized title={t("loadingInformation")}/>;
 
   const inputs = [
     {
-      text: "ظرفیت(نفر):",
+      text: t("capacity2"),
       placeHolder: null,
       isSelect: false,
       name: "capacity",
@@ -65,8 +67,8 @@ export default function AddPropertyStepOne({
     },
 
     {
-      text: "قیمت:",
-      placeHolder: "ریال",
+      text: t("price2"),
+      placeHolder: t("rial"),
       isSelect: false,
       name: "price",
       value: formik.values.price,
@@ -78,20 +80,20 @@ export default function AddPropertyStepOne({
         ) : null,
     },
     {
-      text: "نوع معامله:",
+      text: t("transactionType"),
       placeHolder: null,
       isSelect: true,
       items: [
-        { value: "reservation", text: "رزرو" },
-        { value: "mortgage", text: "رهن" },
-        { value: "rental", text: "اجاره" },
-        { value: "direct_purchase", text: "پرداخت مسقیم" },
+        { value: "reservation", text: t("reserve") },
+        { value: "mortgage", text: t("mortgage") },
+        { value: "rental", text: t("rent") },
+        { value: "direct_purchase", text: t("directPurchase") },
       ],
       onChange: (e) => setTransaction_type(e),
       value: transaction_type,
     },
     {
-      text: "نوع ملک:",
+      text: t("propertyType"),
       placeHolder: null,
       isSelect: true,
       items: categoryList?.data,
@@ -108,7 +110,7 @@ export default function AddPropertyStepOne({
       >
         <div  className={`relative`}>
           <div className="text-fade font-medium text-[13px] absolute top-[-10] bg-background right-2 px-2">
-            نام ملک:
+            {t("propertyType")}
           </div>
           <input
             name="title"
@@ -117,7 +119,7 @@ export default function AddPropertyStepOne({
             }}
             value={title}
             className="w-full border bg-background border-border placeholder:text-text text-text h-[48px] px-[11px] rounded-2xl focus:outline-0 outline-0"
-            placeholder="آپارتمان لوکس در ساری"
+            placeholder={t("propertyTitlePlaceholder")}
           ></input>
           {title.length > 10 && (
             <Button
@@ -125,7 +127,7 @@ export default function AddPropertyStepOne({
               handleClick={() => getTitleRecommendation()}
               className="w-auto bg-gradient-to-r from-purple-600 cursor-pointer via-indigo-500 to-blue-500 text-white font-semibold shadow-lg hover:from-purple-700 hover:to-blue-600 transition-all duration-300 rounded-xl px-4 py-2 absolute top-0 left-2"
             >
-              {isPending ? <ClipLoader color="white" /> : "نوشتن با AI"}
+              {isPending ? <ClipLoader color="white" /> : t("writeWithAI")}
             </Button>
           )}
         </div>
@@ -162,7 +164,7 @@ export default function AddPropertyStepOne({
           onChange={formik.handleChange}
           className="w-full mt-[19px]"
           height="h-[150px] md:h-[215px]"
-          label="توضیحات  ملک:"
+          label={t("propertyDescriptionPlaceholder")}
         />
         {title.length > 10 &&
           formik.values.capacity &&
@@ -175,7 +177,7 @@ export default function AddPropertyStepOne({
               handleClick={() => getDescriptionRecommendation()}
               className="w-auto bg-gradient-to-r from-purple-600 cursor-pointer via-indigo-500 to-blue-500 text-white font-semibold shadow-lg hover:from-purple-700 hover:to-blue-600 transition-all duration-300 rounded-xl px-4 py-2 absolute top-0 left-2"
             >
-              {descPending ? <ClipLoader color="white" /> : "نوشتن با AI"}
+              {descPending ? <ClipLoader color="white" /> : t("writeWithAI")}
             </Button>
           )}
       </div>

@@ -111,7 +111,7 @@ const Rent = () => {
             />
           ))
         ) : (
-          <div className="font-bold text-2xl">نتیجه ای یافت نشد.</div>
+          <div className="font-bold text-2xl">{t("noResult")}</div>
         )}
       </div>
     </div>

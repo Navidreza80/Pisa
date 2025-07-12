@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const LocationName: React.FC<IProps> = ({ area_name }) => {
-  //   TODO: SET LOCATION IN BOOKING LIST PAGE URL
   return (
     <Link href="/reserve">
       <p className="text-lg text-[20px] font-[600] text-text ">{area_name}</p>

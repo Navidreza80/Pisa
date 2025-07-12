@@ -57,8 +57,8 @@ export default function AllComments({ houseId }: AllCommentsProps) {
   const { mutate, isPending } = usePostComment();
 
   const commentSchema = Yup.object().shape({
-    title: Yup.string().required("عنوان الزامی است"),
-    caption: Yup.string().required("متن الزامی است"),
+    title: Yup.string().required(t("titleRequired")),
+    caption: Yup.string().required(t("messageRequired")),
   });
 
   const cancelReply = () => {
@@ -133,7 +133,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-              لغو پاسخ به {repliedUser}
+              {t("cancelReply")} {repliedUser}
             </button>
           )}
         </div>
@@ -144,7 +144,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
               htmlFor="title"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              عنوان نظر
+              {t("commentTitle")}
             </label>
             <Input
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
@@ -153,7 +153,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
               onChange={formik.handleChange}
               id="title"
               name="title"
-              placeholder="عنوان نظر خود را بنویسید..."
+              placeholder={t("titlePlaceholder")}
             />
             {formik.errors.title && (
               <span className="text-red-500 dark:text-red-400 text-sm mt-1 block">
@@ -164,7 +164,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
 
           <div className="md:w-64">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              امتیاز شما
+              {t("yourRate")}
             </label>
             <div className="bg-gray-50 dark:bg-gray-700 p-2 rounded-xl flex justify-center">
               <StarRatings
@@ -190,7 +190,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
             htmlFor="caption"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
           >
-            متن نظر
+            {t("commentMessage")}
           </label>
           <textarea
             className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none transition-all"
@@ -256,7 +256,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
           {isPending && (
             <div className="flex items-center gap-2">
               <ClipLoader color="#ffffff" size={20} />
-              <span>در حال ارسال...</span>
+              <span>{t("sending")}</span>
             </div>
           )}
         </Button>
@@ -285,7 +285,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
             scrollToSection("sendComment");
           }}
         >
-          {rows > data?.length ? "مشاهده کمتر" : "مشاهده بیشتر"}
+          {rows > data?.length ? t("seeLess") : t("seeMore")}
         </Button>
       )}
     </form>

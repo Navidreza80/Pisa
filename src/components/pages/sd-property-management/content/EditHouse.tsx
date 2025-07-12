@@ -75,7 +75,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
           </div>
         </div>
       }
-      title="ویرایش اطلاعات ملک"
+      title={t("editProperty")}
       className="max-w-2xl"
     >
       <form
@@ -83,14 +83,14 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
         className="space-y-4 p-2 h-80 my-auto overflow-y-scroll"
       >
         {[
-          { name: "title", label: "عنوان" },
-          { name: "address", label: "آدرس" },
-          { name: "price", label: "قیمت" },
-          { name: "capacity", label: "ظرفیت", type: "number" },
-          { name: "bathrooms", label: "تعداد سرویس", type: "number" },
-          { name: "parking", label: "پارکینگ", type: "number" },
-          { name: "rooms", label: "اتاق‌ها", type: "number" },
-          { name: "yard_type", label: "نوع حیاط" },
+          { name: "title", label: t("title2") },
+          { name: "address", label: t("address") },
+          { name: "price", label: t("price") },
+          { name: "capacity", label: t("capacity"), type: "number" },
+          { name: "bathrooms", label: t("bathrooms"), type: "number" },
+          { name: "parking", label: t("parking"), type: "number" },
+          { name: "rooms", label: t("rooms"), type: "number" },
+          { name: "yard_type", label: t("yardType") },
         ].map(({ name, label, type = "text" }) => (
           <div key={name} className="flex flex-col">
             <label
@@ -115,7 +115,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
             htmlFor="caption"
             className="mb-1 font-semibold text-sm text-gray-700"
           >
-            توضیحات
+            {t("description")}
           </label>
           <textarea
             name="caption"
@@ -128,7 +128,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
         </div>
 
         <Button type="submit" className="w-full mt-4 text-white cursor-pointer">
-          ارسال اطلاعات
+          {t("sendInformation")}
         </Button>
       </form>
     </Modal>

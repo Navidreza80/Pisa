@@ -32,7 +32,7 @@ export default async function Category() {
       <div className="container mx-auto py-4">
         <div className="flex grow flex-wrap justify-center md:justify-center lg:justify-between gap-6 mb-6">
           {(categories as Array<{ id: string; name: string }>).data.map(
-            (card, index) => (
+            (card) => (
               <div
                 key={card.id}
                 className={`flex-1 transition-all ease-in-out bg-black relative rounded-4xl overflow-hidden max-h-[300px]"
