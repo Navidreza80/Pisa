@@ -90,7 +90,7 @@ export function FilterModal() {
             step={100000}
           />
         </div>
-        <div className="flex justify-end gap-2 pt-4">
+        <div className="flex gap-2 pt-4">
           <Button
             className="text-white"
             handleClick={() => dispatch(resetReserveFilters())}

@@ -20,7 +20,7 @@ export default async function RelatedHouse({
         </div>
         <div
           
-          className="flex gap-[30px] justify-center w-full md:justify-center lg:justify-between flex-wrap"
+          className="flex gap-[30px] justify-center w-full md:justify-center lg:justify-start flex-wrap"
         >
           {relatedHouses.map((card: HouseItemsInterface, index: number) => (
             <HouseCardList

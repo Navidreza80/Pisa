@@ -102,7 +102,7 @@ export default function Agent({ houses }: { houses: HouseItemsInterface[] }) {
         <Input
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          className="w-full h-[238px] rounded-2xl border-border relative placeholder:absolute placeholder:top-4 placeholder:right-4"
+          className="w-full h-[238px] rounded-2xl border-border relative placeholder:absolute placeholder:top-4 rtl:placeholder:right-4 ltr:placeholder:left-4"
           placeholder={t("aiPlaceholder")}
         />
         <ResultModal isPending={isPending} reason={reason} recommendation={recommendation}>

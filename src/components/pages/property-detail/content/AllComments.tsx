@@ -104,13 +104,12 @@ export default function AllComments({ houseId }: AllCommentsProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      
       className="mt-3.5 flex gap-y-6 flex-col"
     >
       <div
         ref={handleRef}
         id="sendComment"
-        className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 transition-all duration-300"
+        className="bg-white dark:bg-gray-800 rounded-xl mb-6 transition-all duration-300"
       >
         <div className="flex justify-between items-center mb-6">
           <SectionName sectionName={t("userComments")} />
@@ -148,7 +147,6 @@ export default function AllComments({ houseId }: AllCommentsProps) {
             </label>
             <Input
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
-              
               value={formik.values.title}
               onChange={formik.handleChange}
               id="title"
@@ -194,7 +192,6 @@ export default function AllComments({ houseId }: AllCommentsProps) {
           </label>
           <textarea
             className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none transition-all"
-            
             value={formik.values.caption}
             onChange={formik.handleChange}
             id="caption"
@@ -235,21 +232,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
                   پاسخ به {repliedUser}
                 </span>
               ) : (
-                <span className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {t("send")}
-                </span>
+                <span className="flex items-center gap-1">{t("send")}</span>
               )}
             </>
           )}
@@ -261,7 +244,6 @@ export default function AllComments({ houseId }: AllCommentsProps) {
           )}
         </Button>
       </div>
-      {loadingComment && <ClipLoader className="mx-auto" color="#586cff" />}
       {/* Render the comments */}
       {data?.map((comment) => {
         return (
@@ -274,7 +256,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
           />
         );
       })}
-      {data?.length && (
+      {data?.length ? (
         <Button
           className="mx-auto"
           handleClick={() => {
@@ -287,6 +269,8 @@ export default function AllComments({ houseId }: AllCommentsProps) {
         >
           {rows > data?.length ? t("seeLess") : t("seeMore")}
         </Button>
+      ) : (
+        <div></div>
       )}
     </form>
   );

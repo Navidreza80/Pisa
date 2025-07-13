@@ -108,7 +108,7 @@ export default function ReserveForm({ price }: { price: string }) {
         </div>
         <button
           type="submit"
-          className="bg-primary cursor-pointer hover:bg-[#4A5FE3] font-semibold w-full focus:scale-95 focus:shadow-lg transition-all rounded-full mt-4 h-12 flex justify-center items-center text-white"
+          className="bg-primary cursor-pointer hover:bg-[#4A5FE3] font-semibold w-full focus:scale-95 focus:shadow-lg transition-all rounded-2xl mt-4 h-12 flex justify-center items-center text-white"
         >
           {t("reserveNow")}
         </button>

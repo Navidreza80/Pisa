@@ -258,6 +258,7 @@
     "searchPlaceholder": "Ara..."
   },
   "Comparison": {
+    "tooman": "Tümen",
     "comparing": "İki ev karşılaştırılıyor...",
     "title": "Ev Karşılaştırma",
     "subtitle": "İlgilendiğiniz evlerin özelliklerini karşılaştırın ve en iyi seçimi yapın",

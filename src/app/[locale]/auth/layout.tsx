@@ -19,12 +19,12 @@ export default async function AuthLayout({
   return (
     <div className="w-[100%] max-h-screen ">
       <div className="flex justify-center max-h-screen p-[16px]">
-        <Auth />
         <div className="w-[100%] animate-fade-left max-[1300px]:w-full flex justify-center">
           <div className="max-[1300px]:w-[80%] mt-10 max-[600px]:w-[100%]  max-[1300px]:justify-center my-auto w-[390px] max-h-[calc(100vh-16px)] flex flex-wrap flex-col gap-[24px]">
             {children}
           </div>
         </div>
+        <Auth />
       </div>
     </div>
   );

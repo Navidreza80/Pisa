@@ -5,11 +5,9 @@ import Image from "next/image";
 export default async function MainImages({
   photos,
   sticky,
-  show3D,
 }: {
   photos: string[];
   sticky: boolean;
-  show3D: boolean;
 }) {
   return (
     <>
@@ -22,22 +20,10 @@ export default async function MainImages({
           }
         )}
       >
-        {show3D && <RightImg photos={photos} />}
-        {!show3D && (
-          <Image
-            fill
-            unoptimized
-            src={photos[0]}
-            className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
-            alt="Property"
-          />
-        )}
+        <RightImg photos={photos} />
         {/* + n other pictures section */}
         {photos.length > 3 && (
-          <div
-            
-            className="lg:w-[calc(33.33333333333333%-10.7px)] md:hidden hidden  text-text border rounded-t-2xl lg:flex justify-center items-center border-border rounded-b-3xl h-[192px]"
-          >
+          <div className="lg:w-[calc(33.33333333333333%-10.7px)] md:hidden hidden  text-text border rounded-t-2xl lg:flex justify-center items-center border-border rounded-b-3xl h-[192px]">
             <svg
               width="20"
               height="21"

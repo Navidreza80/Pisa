@@ -10,9 +10,9 @@ export default async function HeaderSection({
   return (
     <div className="w-full flex flex-col gap-3">
       <h1 className="text-[32px] text-text font-bold">{title}</h1>
-      <h3 className="text-text-secondary flex gap-2 justify-end">
-        {address}
+      <h3 className="text-text-secondary flex gap-2">
         <MapSVG color="gray" />
+        {address}
       </h3>
     </div>
   );

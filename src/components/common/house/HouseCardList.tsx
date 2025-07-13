@@ -166,7 +166,7 @@ export default function HouseCardList({
             onClick={() => {
               setCurrentLoc([card.location.lat, card.location.lng]);
             }}
-            className="group bg-[#586CFF] cursor-pointer z-10 py-1 px-3 rounded-[100px] bottom-9 right-2
+            className="group bg-[#586CFF] cursor-pointer z-10 py-1 px-3 rounded-[100px] bottom-9 ltr:left-2 rtl:right-2
     transition-all duration-300
     hover:bg-[#586CFF]/70 hover:backdrop-blur-md
     hover:shadow-lg hover:shadow-[#586CFF]/30
@@ -179,7 +179,7 @@ export default function HouseCardList({
         {/* Compare section */}
         <button
           onClick={() => dispatch(setComparisonIds(String(card.id)))}
-          className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 right-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
+          className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-2 ltr:left-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
       </motion.div>
       <TransitionLink
@@ -189,20 +189,22 @@ export default function HouseCardList({
         {/* Title and rate section */}
         <div className="flex justify-between items-center w-full">
           <Reveal width="200px">
-            <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full text-right text-[20px] text-text whitespace-nowrap overflow-hidden text-ellipsis">
+            <h1 className="font-semibold group-hover:text-primary transition-all duration-300 w-full ltr:text-left rtl:text-right text-[20px] text-text whitespace-nowrap overflow-hidden text-ellipsis">
               {card.title}
             </h1>
           </Reveal>
 
-          <span className="w-[80px] h-9 flex items-center justify-between px-2 py-1 gap-1.5 font-semibold bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 group">
-            <Star className="w-5 h-5 text-yellow-400 group-hover:text-primary transition-colors duration-300 fill-yellow-400/30 group-hover:fill-primary/20" />
-            <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
-              {card.rate}
-              <span className="text-xs text-gray-400 dark:text-gray-500 ml-0.5">
-                /5
+          {card.rate && (
+            <span className="w-[80px] h-9 flex items-center justify-between px-2 py-1 gap-1.5 font-semibold bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:border-primary/30 hover:bg-primary/5 group">
+              <Star className="w-5 h-5 text-yellow-400 group-hover:text-primary transition-colors duration-300 fill-yellow-400/30 group-hover:fill-primary/20" />
+              <span className="text-sm whitespace-nowrap text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
+                <span className="text-xs text-gray-400 dark:text-gray-500 ml-0.5">
+                  5 /
+                </span>
+                {`${" " + card.rate + " "}`}
               </span>
             </span>
-          </span>
+          )}
         </div>
 
         {/* Address section */}

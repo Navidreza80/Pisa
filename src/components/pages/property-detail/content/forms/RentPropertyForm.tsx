@@ -14,7 +14,7 @@ export default async function RentForm() {
           {/* Title */}
           {t("mortgageFrom")}
           {/* Value */}
-          <div className="flex w-full flex-row gap-[5px] justify-end">
+          <div className="flex w-full flex-row gap-[5px]">
             {/* Currency */}
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
               {t("tooman")}
@@ -29,7 +29,7 @@ export default async function RentForm() {
           {/* Title */}
           {t("rentFrom")}
           {/* Value */}
-          <div className="flex w-full flex-row gap-[5px] justify-end">
+          <div className="flex w-full flex-row gap-[5px]">
             {/* Currency */}
             <p className="text-[12px] font-[700] my-auto text-text-secondary ">
               {t("tooman")}

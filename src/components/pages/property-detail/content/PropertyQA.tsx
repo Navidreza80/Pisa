@@ -105,7 +105,7 @@ const PropertyQA = ({ houseId }) => {
   if (isError) return <ErrorDisplay message={error.message} />;
 
   return (
-    <div className="rounded-xl p-6">
+    <div className="rounded-xl">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-text"> {t("QA")} </h2>
         <div className="text-sm text-text-secondary">
@@ -134,7 +134,7 @@ const PropertyQA = ({ houseId }) => {
             <Button
               handleClick={handleSubmitQuestion}
               disabled={questionMutation.isPending || !newQuestion.trim()}
-              className="px-6 py-2 rounded-lg disabled:opacity-50 mx-auto disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 shadow-md"
+              className="w-full px-6 py-2 rounded-lg disabled:opacity-50 mx-auto disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 shadow-md"
             >
               {questionMutation.isPending ? t("sending") : t("sendQuestion")}
             </Button>
