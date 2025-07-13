@@ -50,7 +50,7 @@ export default function UserProfile({ user }: UserProfileProps) {
     <div className="relative" ref={dropdownRef}>
       <Modal
         trigger={
-          <button
+          <div
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-2 cursor-pointer rounded-full border border-border dark:border-border-dark p-1 hover:bg-surface dark:hover:bg-surface transition-colors"
           >
@@ -74,7 +74,7 @@ export default function UserProfile({ user }: UserProfileProps) {
                 </div>
               )}
             </div>
-          </button>
+          </div>
         }
       >
         {" "}

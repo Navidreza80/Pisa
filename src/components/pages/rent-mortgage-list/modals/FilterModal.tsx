@@ -18,6 +18,7 @@ import InputSelect from "@/components/common/inputs/select-input";
 import InputText from "@/components/common/inputs/text-inputs";
 import Modal from "@/components/common/modal/modal";
 import { useTranslations } from "next-intl";
+import DivButton from "@/components/common/DivButton";
 
 /**
  * Filter rent component for filtering houses.
@@ -97,21 +98,13 @@ const FilterModal = () => {
   return (
     <Modal
       className="lg:!max-w-[1184px] md:!max-w-[700px] !max-w-[400px]"
-      trigger={
-        <Button
-          className={`flex !w-auto items-center hover:bg-[#4A5FE3] whitespace-nowrap justify-center overflow-hidden transition-all text-white h-12 text-[16px] rounded-2xl`}
-        >
-          {t("filter")}
-        </Button>
-      }
+      trigger={<DivButton className="!w-auto px-4">{t("filter")}</DivButton>}
     >
       <div className="flex flex-wrap justify-between gap-6">
         {inputs.map((item, index) => {
           return (
             <div key={index} className="space-y-2">
-              <label className="block  text-sm font-medium">
-                {item.text}
-              </label>
+              <label className="block  text-sm font-medium">{item.text}</label>
               {item.type == "select" ? (
                 <InputSelect
                   items={item.items}
@@ -122,7 +115,9 @@ const FilterModal = () => {
               ) : (
                 <InputText
                   value={item.value}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(item.name, e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleChange(item.name, e.target.value)
+                  }
                   width="w-[262px]"
                 />
               )}

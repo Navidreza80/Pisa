@@ -44,7 +44,8 @@ export default async function MainImages({
         )}
         {photos[1] && (
           <Image
-            fill
+            width={300}
+            height={192}
             alt="image"
             unoptimized
             src={photos[1]}
@@ -53,7 +54,8 @@ export default async function MainImages({
         )}
         {photos[2] && (
           <Image
-            fill
+            width={300}
+            height={192}
             unoptimized
             alt="image"
             src={photos[2]}

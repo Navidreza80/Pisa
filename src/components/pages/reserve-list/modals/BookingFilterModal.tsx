@@ -13,6 +13,7 @@ import {
 } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import { useTranslations } from "next-intl";
 import InputSelect from "../../../common/inputs/select-input";
+import DivButton from "@/components/common/DivButton";
 
 /**
  * Filter reservation houses component.
@@ -52,7 +53,7 @@ export function FilterModal() {
   return (
     <Modal
       className="!max-w-[350px]"
-      trigger={<Button className="!w-auto">{t("filter")}</Button>}
+      trigger={<DivButton className="!w-auto px-4">{t("filter")}</DivButton>}
     >
       <div className="space-y-6">
         {filterInputs.map((item, index) => (
@@ -90,7 +91,7 @@ export function FilterModal() {
             step={100000}
           />
         </div>
-        <div className="flex gap-2 pt-4">
+        <div className="flex ltr:justify-end justify-start gap-2 pt-4">
           <Button
             className="text-white"
             handleClick={() => dispatch(resetReserveFilters())}

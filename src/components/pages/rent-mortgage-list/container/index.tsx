@@ -90,7 +90,7 @@ const Rent = () => {
       </div>
       <span className="h-[1px] w-full my-auto bg-[#EAEAEA]" />
       {/* Lists */}
-      <div className="flex lg:justify-between md:justify-center justify-center flex-wrap">
+      <div className="flex lg:justify-between gap-y-4 md:justify-center justify-center flex-wrap">
         {isLoading &&
           [...Array(6)].map((_, i) => (
             <HouseSkeleton

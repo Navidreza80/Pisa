@@ -70,7 +70,9 @@ function RightImg({ photos }: { photos: string[] }) {
         </div>
       ) : (
         <Image
-          fill
+          height={387}
+          unoptimized
+          width={1000}
           src={photos[0]}
           className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
           alt="Property"
