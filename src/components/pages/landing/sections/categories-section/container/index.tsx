@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // API
 import getAllCategories from "@/utils/service/categories/categories";
 

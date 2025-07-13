@@ -40,7 +40,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [parentId, setParentId] = useState<number | null>(null);
 
-  const { data, isPending: loadingComment } = useQuery({
+  const { data } = useQuery({
     queryKey: ["comments", houseId, rows],
     queryFn: () => getAllPropertyComments(houseId, rows),
     staleTime: 0,

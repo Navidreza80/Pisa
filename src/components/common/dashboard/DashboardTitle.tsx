@@ -1,10 +1,9 @@
 "use client";
 
-import { usePathname } from "@/i18n/navigation";
-import HeaderTitleSVG from "../../dashboard/svg/HeaderTitleSVG";
 import LogoSVG from "@/components/common/svg/logo";
-import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function DashboardTitle() {
   const pathname = usePathname();

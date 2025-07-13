@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { HouseItemsInterface } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getHouseById } from "@/utils/service/house/get-by-id";
