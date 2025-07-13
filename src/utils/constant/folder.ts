@@ -66,7 +66,7 @@ export const DashboardBuyerFavorite = [
 // Dashboard notification table header
 
 export const tableHeaderItems = [
-  { text: "اعلان ها", clx: "rounded-r-xl" },
+  { text: "اعلان ها", clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
   { text: "تاریخ", clx: null },
-  { text: "-", clx: "text-transparent rounded-l-xl" },
+  { text: "-", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
 ];

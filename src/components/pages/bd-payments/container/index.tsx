@@ -14,12 +14,12 @@ import Title from "@/components/common/dashboard/Title";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 
 const tableHeaderItems = [
-  { text: "date", clx: "rounded-r-xl" },
+  { text: "date", clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
   { text: "trackingCode", clx: null },
   { text: "amount", clx: null },
   { text: "paymentStatus", clx: null },
   { text: "transactionType", clx: null },
-  { text: "empty", clx: "rounded-l-xl" },
+  { text: "empty", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
 ];
 
 export default function BuyerPayments() {
@@ -61,7 +61,6 @@ export default function BuyerPayments() {
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <InputSelect
             withLabel
@@ -78,6 +77,7 @@ export default function BuyerPayments() {
             onChange={(val) => setStatusFilter(val)}
           />
         </div>
+        <Title text={t("title")} />
       </div>
 
       <Line />

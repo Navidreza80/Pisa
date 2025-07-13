@@ -42,16 +42,18 @@ export default function BuyerFavorites() {
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
   const tableHeaderItems = [
-    { text: t("tableHeaders.hotel"), clx: "rounded-r-xl" },
+    { text: t("tableHeaders.hotel"), clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
     { text: t("tableHeaders.price"), clx: null },
     { text: t("tableHeaders.address"), clx: null },
-    { text: t("tableHeaders.empty"), clx: "text-transparent rounded-l-xl" },
+    {
+      text: t("tableHeaders.empty"),
+      clx: "text-transparent rtl:rounded-l-xl ltr:rounded-r-xl",
+    },
   ];
 
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal>
             <InputSelect
@@ -76,11 +78,11 @@ export default function BuyerFavorites() {
             />
           </FilterModal>
           <Input
-            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-100"
           />
         </div>
+        <Title text={t("title")} />
       </div>
 
       <Line />
@@ -90,10 +92,7 @@ export default function BuyerFavorites() {
         <TableDashboard
           headerSecondary={true}
           tableContent={bookings.map((booking) => (
-            <tr
-              key={booking.id}
-              className=" border-b hover:bg-background/30"
-            >
+            <tr key={booking.id} className=" border-b hover:bg-background/30">
               <td className="py-2 px-4 text-[18px] font-medium">
                 {booking.hotel}
               </td>

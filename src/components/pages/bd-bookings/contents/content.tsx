@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import TableDashboard from "@/components/common/dashboard/Table";
@@ -63,7 +65,7 @@ export default function ReserveTableContent({
 
   useEffect(() => {
     getHouseTitle();
-  });
+  }, []);
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   return (
     <tr key={booking.id} className=" border-b hover:bg-background/30">

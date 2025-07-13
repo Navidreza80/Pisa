@@ -68,13 +68,6 @@ export default function DashboardTitle() {
 
   return (
     <div className="flex gap-2">
-      {isSeller ? (
-        <div className="my-auto">
-          <HeaderTitleSVG />
-        </div>
-      ) : (
-        " "
-      )}
       <LogoSVG size="w-20 md:block block lg:hidden" />
       <h2
         className={`text-xl md:hidden hidden lg:block font-bold my-auto font-yekan text-text${

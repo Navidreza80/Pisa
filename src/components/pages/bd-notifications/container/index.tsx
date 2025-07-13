@@ -30,7 +30,7 @@ export default function BuyerNotifications() {
     },
     {
       id: 2,
-      date: t("mockData.date1"), // Same date format
+      date: t("mockData.date1"),
       text: t("mockData.text2"),
     },
   ];
@@ -43,7 +43,7 @@ export default function BuyerNotifications() {
     },
     {
       id: 2,
-      date: t("mockData.date1"), // Same date format
+      date: t("mockData.date1"),
       text: t("mockData.text2"),
     },
   ];
@@ -51,7 +51,6 @@ export default function BuyerNotifications() {
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <Title text={t("title")} />
         <div className="flex gap-4 ">
           <WarningModal title={t("markAllAsReadConfirmation")}>
             <Button className="!w-auto">{t("markAsRead")}</Button>
@@ -61,6 +60,7 @@ export default function BuyerNotifications() {
             items={DashboardBuyerNotifications}
           />
         </div>
+        <Title text={t("title")} />
       </div>
       {/* Divider Line */}
       <Line />
@@ -148,7 +148,7 @@ export default function BuyerNotifications() {
               <div className="flex flex-col items-end">
                 <p className="">{item.text}</p>
               </div>
-              <div  className="flex">
+              <div className="flex">
                 <ButtonDashboard text={t("markAsRead")} clx="bg-primary">
                   <TickSVG />
                 </ButtonDashboard>

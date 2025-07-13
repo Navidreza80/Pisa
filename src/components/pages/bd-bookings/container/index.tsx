@@ -14,13 +14,13 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const tableHeaderItems = [
-  { text: "hotelName", clx: "rounded-r-xl" },
+  { text: "hotelName", clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
   { text: "bookingDate", clx: null },
   { text: "totalPrice", clx: null },
   { text: "passengerCount", clx: null },
   { text: "bookingStatus", clx: null },
   { text: "paymentStatus", clx: null },
-  { text: "empty", clx: "rounded-l-xl" },
+  { text: "empty", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
 ];
 
 export default function BookingList({
@@ -49,7 +49,6 @@ export default function BookingList({
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row-reverse flex-wrap gap-4">
-        <Title text={title || t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           {!noFilter && (
             <FilterModal>
@@ -82,6 +81,7 @@ export default function BookingList({
             </FilterModal>
           )}
         </div>
+        <Title text={title || t("title")} />
       </div>
 
       <Line />

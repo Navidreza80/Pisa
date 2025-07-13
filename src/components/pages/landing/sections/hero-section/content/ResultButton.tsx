@@ -61,11 +61,11 @@ export default function ResultButton({
                 placeholder={t("searchInResults")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="rounded-lg pr-10 border-border"
+                className="rounded-lg ltr:pl-10 rtl:pr-10 border-border"
               />
               <Search
                 size={18}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                className="absolute rtl:right-3 ltr:left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
               />
             </div>
             {filteredHouses && filteredHouses.length > 0 ? (

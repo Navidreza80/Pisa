@@ -72,15 +72,14 @@ export default function SellerReservationManagement() {
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <Title text={t("pageTitle")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
-            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
+        <Title text={t("pageTitle")} />
       </div>
       <Line />
 
@@ -226,13 +225,11 @@ export default function SellerReservationManagement() {
                   </PopoverContent>
                 </Popover>
 
-                <h2 className="text-lg font-bold ">
-                  {booking.hotel}
-                </h2>
+                <h2 className="text-lg font-bold ">{booking.hotel}</h2>
               </div>
 
               {/* Booking details */}
-              <div  className="grid grid-cols-2 gap-3 ">
+              <div className="grid grid-cols-2 gap-3 ">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.travelerInfo")}:

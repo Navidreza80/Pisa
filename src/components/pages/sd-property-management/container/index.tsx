@@ -64,15 +64,14 @@ export default function SellerDashboardProperties({ houses }) {
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
-            
             placeholder={t("searchPlaceholder")}
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
+        <Title text={t("title")} />
       </div>
       <Line />
 
@@ -98,13 +97,14 @@ export default function SellerDashboardProperties({ houses }) {
               <td className="pl-6 rounded-r-xl">
                 <div className="flex gap-2 ">
                   <Image
-                    fill
+                    width={200}
+                    height={200}
                     unoptimized
                     alt="image"
                     src={property.photos[0]}
                     className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
                   />
-                  <div className="py-7  text-[18px] font-medium">
+                  <div className="py-7 text-[18px] font-medium truncate overflow-hidden whitespace-nowrap w-[200px]">
                     {property.title}
                   </div>
                 </div>

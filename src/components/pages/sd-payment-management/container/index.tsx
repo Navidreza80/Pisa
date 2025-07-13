@@ -72,11 +72,11 @@ export default function SellerFinanceManagement() {
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <InputSelect withLabel label={t("transactionType")} />
           <InputSelect withLabel label={t("paymentStatus")} />
         </div>
+        <Title text={t("title")} />
       </div>
       <Line />
 
