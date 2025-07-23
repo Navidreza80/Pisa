@@ -25,8 +25,8 @@ export default async function Payment({ params: { id } }: { params: any }) {
               <div className="text-[#2d3a4a] text-2xl font-bold mt-2">Piza</div>
             </div>
             <Image
-              unoptimized
-              fill
+              width={24}
+              height={24}
               alt="image"
               className="my-auto w-[24px] h-[24px]"
               src="https://images.vexels.com/media/users/3/223411/isolated/preview/7a8154be7b9b50412fc2cf63b636e370-store-icon-flat-store.png"
@@ -44,10 +44,11 @@ export default async function Payment({ params: { id } }: { params: any }) {
               </div>
             </div>
             <Image
+              width={24}
+              height={24}
               className="my-auto w-[28px] h-[28px]"
               src="https://img.icons8.com/?size=100&id=56960&format=png&color=797979"
               unoptimized
-              fill
               alt="image"
             />
           </div>
@@ -62,10 +63,11 @@ export default async function Payment({ params: { id } }: { params: any }) {
               </div>
             </div>
             <Image
+              width={24}
+              height={24}
               className="my-auto w-[28px] h-[28px]"
               src="https://img.icons8.com/?size=100&id=HOkn2leeoong&format=png&color=797979"
               unoptimized
-              fill
               alt="image"
             />
           </div>
@@ -78,10 +80,11 @@ export default async function Payment({ params: { id } }: { params: any }) {
               </div>
             </div>
             <Image
+              width={24}
+              height={24}
               className="my-auto w-[28px] h-[28px]"
               src="https://img.icons8.com/?size=100&id=53372&format=png&color=797979"
               unoptimized
-              fill
               alt="image"
             />
           </div>

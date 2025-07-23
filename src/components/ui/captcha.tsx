@@ -125,7 +125,8 @@ const AdvancedCaptcha = ({ onVerify }) => {
           {/* Input Field */}
           <div className="flex rounded-[8px] w-[267px] h-[48px] px-4 justify-between bg-[#f3f3f3] border-[#eeeeee]">
             <Image
-              fill
+              width={24}
+              height={24}
               unoptimized
               alt="image"
               src="https://img.icons8.com/?size=100&id=70688&format=png&color=2b73e3"
