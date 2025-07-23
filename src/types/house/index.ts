@@ -10,6 +10,7 @@ export interface HouseInterFace {
 }
 
 export interface HouseItemsInterface {
+  isFavorite: boolean;
   parking: number;
   caption: string;
   id: number;
@@ -32,7 +33,7 @@ export interface HouseItemsInterface {
     lat: number;
     lng: number;
   };
-  sellerId: string
+  sellerId: string;
 }
 
 export interface TopSaleCardListProps {
