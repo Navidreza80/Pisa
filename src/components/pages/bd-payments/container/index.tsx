@@ -12,6 +12,8 @@ import { useTranslations } from "next-intl";
 import InputSelect from "@/components/common/inputs/select-input";
 import Title from "@/components/common/dashboard/Title";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import formatToPersianDate from "@/utils/helper/format-date";
+import { MdPending } from "react-icons/md";
 
 const tableHeaderItems = [
   { text: "date", clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
@@ -22,41 +24,10 @@ const tableHeaderItems = [
   { text: "empty", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
 ];
 
-export default function BuyerPayments() {
+export default function BuyerPayments({ paymentList }) {
   const t = useTranslations("TransactionList");
   const [typeFilter, setTypeFilter] = useState(t("filters.all"));
   const [statusFilter, setStatusFilter] = useState(t("filters.all"));
-
-  // Mock data with translations
-  const transactions = [
-    {
-      id: 1,
-      date: t("mockData.date"),
-      time: "13:33",
-      trackingCode: "137245678913476456",
-      amount: "1250000",
-      status: t("status.approved"),
-      type: t("types.walletCharge"),
-    },
-    {
-      id: 2,
-      date: t("mockData.date"),
-      time: "13:33",
-      trackingCode: "137245678913476456",
-      amount: "1250000",
-      status: t("status.approved"),
-      type: t("types.walletCharge"),
-    },
-    {
-      id: 3,
-      date: t("mockData.date"),
-      time: "13:33",
-      trackingCode: "137245678913476456",
-      amount: "1250000",
-      status: t("status.rejected"),
-      type: t("types.reservation"),
-    },
-  ];
 
   return (
     <ContainerDashboard>
@@ -87,15 +58,15 @@ export default function BuyerPayments() {
             ...item,
             text: t(`tableHeaders.${item.text}`),
           }))}
-          tableContent={transactions.map((tx) => (
+          tableContent={paymentList.payments.map((tx) => (
             <tr
               key={tx.id}
               className="bg-background hover:bg-background/30 rounded-xl overflow-hidden"
             >
               <td className="p-2 text-[18px] font-medium rounded-r-xl">
-                {tx.date} - {tx.time}
+                {formatToPersianDate(tx.createdAt)}
               </td>
-              <td className="p-2 text-[18px] font-medium">{tx.trackingCode}</td>
+              <td className="p-2 text-[18px] font-medium">123456789</td>
               <td className="p-2 text-[18px] font-medium">
                 {formatNumber(Number(tx.amount))} {t("currency")}
               </td>
@@ -107,15 +78,21 @@ export default function BuyerPayments() {
                       : "bg-red-400"
                   }`}
                 >
-                  {tx.status === t("status.approved") ? (
+                  {tx.status === "confirmed" ? (
                     <CheckCircle size={14} />
+                  ) : tx.status === "pending" ? (
+                    <MdPending size={14} />
                   ) : (
                     <XCircle size={14} />
                   )}
-                  {tx.status}
+                  {tx.status == "pending"
+                    ? "در انتظار"
+                    : tx.status == "confirmed"
+                      ? "تایید شده"
+                      : "لغو شده"}
                 </span>
               </td>
-              <td className="p-2 text-[18px] font-medium">{tx.type}</td>
+              <td className="p-2 text-[18px] font-medium">رزرو</td>
               <td className="p-2 text-[13px] font-medium text-primary cursor-pointer hover:underline rounded-l-xl">
                 {t("viewReceipt")}
               </td>
@@ -126,7 +103,7 @@ export default function BuyerPayments() {
 
       {/* Card view for mobile screens */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {transactions.map((item) => (
+        {paymentList.payments.map((item) => (
           <div
             key={item.id}
             className="bg-surface rounded-2xl border border-border p-4"
