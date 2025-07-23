@@ -15,29 +15,9 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Title from "@/components/common/dashboard/Title";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import Link from "next/link";
 
-const bookings = [
-  {
-    id: 1,
-    hotel: "هتل سراوان رانین رشت",
-    price: "1،800،000ت",
-    address: " گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظ....گیلان ، رشت...",
-  },
-  {
-    id: 2,
-    hotel: "هتل سراوان رانین رشت",
-    price: "1،800،000ت",
-    address: " گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظ....گیلان ، رشت...",
-  },
-  {
-    id: 3,
-    hotel: "هتل سراوان رانین رشت",
-    price: "1،800،000ت",
-    address: " گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظ....گیلان ، رشت...",
-  },
-];
-
-export default function BuyerFavorites() {
+export default function BuyerFavorites({ favorites }) {
   const t = useTranslations("Favorites");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
@@ -91,22 +71,22 @@ export default function BuyerFavorites() {
       <div className="hidden md:block">
         <TableDashboard
           headerSecondary={true}
-          tableContent={bookings.map((booking) => (
-            <tr key={booking.id} className=" border-b hover:bg-background/30">
+          tableContent={favorites.map((favorite) => (
+            <tr key={favorite.id} className=" border-b hover:bg-background/30">
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.hotel}
+                {favorite.house.title}
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.price}
+                {favorite.house.price}
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.address}
+                {favorite.house.address}
               </td>
               <td className="py-2 px-4 ">
                 <Popover
-                  open={openPopoverId === booking.id}
+                  open={openPopoverId === favorite.id}
                   onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
+                    setOpenPopoverId(open ? favorite.id : null)
                   }
                 >
                   <PopoverTrigger asChild>
@@ -114,12 +94,15 @@ export default function BuyerFavorites() {
                   </PopoverTrigger>
                   <PopoverContent className=" w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
                     <div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
+                      <Link
+                        href={`/property-detail/${favorite.house_id}`}
+                        className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1"
+                      >
                         <h1>{t("actions.reserve")}</h1>
                         <div className="my-auto">
                           <CheckPopover />
                         </div>
-                      </div>
+                      </Link>
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
                         <h1>{t("actions.delete")}</h1>
                         <div className="my-auto">
@@ -138,24 +121,24 @@ export default function BuyerFavorites() {
 
       {/* Card view for mobile screens */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {bookings.map((booking) => (
+        {favorites.map((favorite) => (
           <div
-            key={booking.id}
+            key={favorite.id}
             className="bg-surface rounded-2xl border border-border p-4"
           >
             <div className="flex items-start justify-end">
-              <h2 className="text-lg font-bold ">{booking.hotel}</h2>
+              <h2 className="text-lg font-bold ">{favorite.house.title}</h2>
             </div>
 
             <div className="mt-3 space-y-2 ">
               <div className="flex justify-end items-center gap-2">
-                <span className="font-medium">{booking.price}</span>
+                <span className="font-medium">{favorite.house.price}</span>
                 <span>{t("priceLabel")}</span>
               </div>
 
               <div className="flex flex-col items-end">
                 <span className="text-text-secondary">{t("addressLabel")}</span>
-                <p className="">{booking.address}</p>
+                <p className="">{favorite.house.address}</p>
               </div>
 
               <div className="flex justify-end gap-2 pt-2">

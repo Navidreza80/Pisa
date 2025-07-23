@@ -85,22 +85,13 @@ export default function ReserveTableContent({
       console.log(err);
     }
   };
-  const [house, setHouse] = useState<HouseItemsInterface>({});
   const [detailModal, setDetailModal] = useState<boolean>(false);
 
-  const getHouseTitle = async () => {
-    const res = await getHouseById(booking.houseId.toString());
-    setHouse(res);
-  };
-
-  useEffect(() => {
-    getHouseTitle();
-  }, []);
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   return (
     <tr key={booking.id} className=" border-b hover:bg-background/30">
       <td className="py-2 px-4 text-[18px] font-medium">
-        {house.title || <ClipLoader color="#586cff" />}
+        {booking.house.title}
       </td>
       <td className="py-2 px-4 text-[18px] font-medium">
         {booking.reservedDates.length > 0 &&
@@ -150,7 +141,7 @@ export default function ReserveTableContent({
                 <ReserveDetail
                   isOpen={detailModal}
                   toggleModal={() => setDetailModal((prev: boolean) => !prev)}
-                  house={house}
+                  houseId={booking.houseId}
                 />
                 <div className="my-auto">
                   <DetailPopover />

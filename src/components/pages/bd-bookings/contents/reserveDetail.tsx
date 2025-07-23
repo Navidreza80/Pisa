@@ -15,21 +15,31 @@ import {
 import { HouseItemsInterface } from "@/types/house";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NoImage from "@/assets/images/no.jpg";
+import { getHouseById } from "@/utils/service/house/get-by-id";
 
 const ReserveDetail = ({
   isOpen,
   toggleModal,
-  house,
+  houseId,
 }: {
   isOpen: boolean;
   toggleModal: React.SetStateAction<boolean>;
-  house: HouseItemsInterface;
+  houseId: HouseItemsInterface;
 }) => {
+  const [house, setHouse] = useState<HouseItemsInterface>({});
+  const getHouse = async () => {
+    const res = await getHouseById(houseId.toString());
+    setHouse(res);
+  };
+
+  useEffect(() => {
+    getHouse();
+  }, []);
   const t = useTranslations("ReserveDetail");
 
-  return (
+  return house ? (
     <Dialog open={isOpen}>
       <DialogTrigger asChild>
         <h1>{t("details")}</h1>
@@ -120,6 +130,8 @@ const ReserveDetail = ({
         </div>
       </DialogContent>
     </Dialog>
+  ) : (
+    <div>در حال بارگزاری</div>
   );
 };
 export default ReserveDetail;

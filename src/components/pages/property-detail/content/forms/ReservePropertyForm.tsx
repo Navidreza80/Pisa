@@ -46,7 +46,7 @@ export default function ReserveForm({ price }: { price: string }) {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form id="#reserve_form" onSubmit={formik.handleSubmit}>
       <div className="mt-10 flex flex-col gap-4">
         <SectionName sectionName={t("reserve")} />
         <div className="w-full flex flex-wrap justify-between gap-3">
