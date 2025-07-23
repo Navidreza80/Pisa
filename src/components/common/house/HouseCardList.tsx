@@ -4,7 +4,7 @@
 // React & Next
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // Third party components
 import Slider from "@/components/common/slider/Slider";
@@ -32,6 +32,7 @@ import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/compari
 import {
   Bath,
   CalendarRange,
+  Heart,
   House,
   Layers3,
   Star,
@@ -41,6 +42,9 @@ import {
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import Reveal from "../reveal";
+import { useMutation } from "@tanstack/react-query";
+import createFavorite from "@/utils/service/favorites/post";
+import { toast } from "react-toastify";
 
 /**
  * Filter reservation houses component.
@@ -68,6 +72,16 @@ export default function HouseCardList({
   const t = useTranslations("HomePage");
   const Ids = useAppSelector((state) => state.comparisonIds);
   const router = useRouter();
+  const [isFavorite, setIsFavorite] = useState(card.isFavorite);
+
+  const { mutate: addFavorite } = useMutation({
+    mutationKey: ["CREATE_FAVORITE"],
+    mutationFn: (house_id: string) => createFavorite(house_id),
+    onSuccess: () => {
+      toast.success("ملک به لیست علاقه مندی افزوده شد")
+      setIsFavorite((prev) => !prev);
+    },
+  });
 
   useEffect(() => {
     if (Ids.ids?.length == 2) router.push(`/comparison?ids=${Ids.ids}`);
@@ -163,7 +177,7 @@ export default function HouseCardList({
               unoptimized
               className="object-cover w-full h-[221px]"
               src={NoImage}
-              alt={'تصویر عکس'}
+              alt={"تصویر عکس"}
             />
           )}
         </Slider>
@@ -188,6 +202,12 @@ export default function HouseCardList({
           onClick={() => dispatch(setComparisonIds(String(card.id)))}
           className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-2 ltr:left-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
+        <button
+          onClick={() => addFavorite(card.id.toString())}
+          className={`${isFavorite ? "bg-primary" : "bg-white"} cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-14 ltr:left-14 bg-white flex justify-center items-center`}
+        >
+          <Heart className={`${isFavorite ? "text-white" : "text-black"}`} />
+        </button>
       </motion.div>
       <TransitionLink
         href={`/property-detail/${card.id}`}
