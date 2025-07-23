@@ -30,7 +30,7 @@ export default function ResultButton({
   };
 
   // Filter houses based on search query
-  const filteredHouses = houses?.filter((house) => {
+  const filteredHouses = houses?.length > 0 && houses?.filter((house) => {
     const searchLower = searchQuery.toLowerCase();
     return (
       (house.title && house.title.toLowerCase().includes(searchLower)) ||

@@ -12,7 +12,7 @@ import type { HouseFilters, HouseItemsInterface } from "@/types/house";
 
 export const fetchHouses = async (
   params: HouseFilters
-): Promise<HouseItemsInterface[]> => {
+): Promise<{ houses: HouseItemsInterface[]; totalCount: number }> => {
   // Always include transactionType even if empty
   const requiredParams = {
     transactionType: params.transactionType || "", // Force include

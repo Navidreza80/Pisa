@@ -141,7 +141,7 @@ export default function HouseCardList({
           pagination={{ clickable: true }}
           loop
         >
-          {(card.photos && card.photos.length > 0
+          {/* {(card.photos && card.photos.length > 0
             ? card.photos
             : "../../../assets/images/auth/jangal.png"
           ).map((photo: string, idx: number) => (
@@ -158,7 +158,7 @@ export default function HouseCardList({
                 alt={`${card.title} - تصویر ${idx + 1}`}
               />
             </SwiperSlide>
-          ))}
+          ))} */}
         </Slider>
         {/* Map icon section */}
         {showOnMap && (
