@@ -48,7 +48,7 @@ export default async function RootLayout({
           <Providers>
             <div className="w-full">{children}</div>
             <FloatingActions />
-            <TokenRefresher />
+            {/* <TokenRefresher /> */}
           </Providers>
         </NextIntlClientProvider>
       </body>

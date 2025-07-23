@@ -99,8 +99,8 @@ const Rent = () => {
               key={i}
             />
           ))}
-        {houses?.length > 0 ? (
-          houses?.map((card: HouseItemsInterface, index: number) => (
+        {houses && houses?.totalCount > 0 ? (
+          houses?.houses.map((card: HouseItemsInterface, index: number) => (
             <HouseCardList
               key={index}
               showRooms

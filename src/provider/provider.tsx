@@ -20,7 +20,6 @@ const Providers = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
       <Provider store={store}>{children}</Provider>
-      <TokenRefresher />
     </QueryClientProvider>
   );
 };

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { DivIcon, LatLngExpression } from "leaflet";
+import { StaticImageData } from "next/image";
 
 // Dynamic imports for react-leaflet components
 const Marker = dynamic(
@@ -12,7 +13,7 @@ const Marker = dynamic(
 
 interface CustomMarkerProps {
   position: LatLngExpression;
-  photoUrl?: string;
+  photoUrl?: string | StaticImageData;
   children?: React.ReactNode;
 }
 
@@ -35,7 +36,7 @@ export const CustomMarker = ({
               className: "custom-marker-icon",
               html: `
                 <div class="marker-img-wrapper">
-                  <img src="${photoUrl}" class="marker-img" />
+                  <img src="${typeof photoUrl == "string" ? photoUrl : photoUrl.src}" class="marker-img" />
                   <div class="marker-pointer"></div>
                 </div>
               `,

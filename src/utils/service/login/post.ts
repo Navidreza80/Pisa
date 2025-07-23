@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { loginUserResponse } from "./../../../types/auth/index";
 // Types
 import type { loginUserParams } from "@/types/auth";
@@ -15,6 +17,7 @@ import { setServerCookie } from "@/utils/service/storage/server-cookie";
 // Next
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
 
 /**
  * Login email by posting email and password to server.
@@ -47,6 +50,7 @@ export const useLoginUser = (href: string = "/") => {
       await setServerCookie("serverAccessToken", response.accessToken);
       await setServerCookie("serverRefreshToken", response.refreshToken);
       setClientCookie("clientAccessToken", response.accessToken);
+      handleSaveId(response.accessToken);
       console.log(response.accessToken);
       router.push(href);
     },
@@ -60,4 +64,10 @@ export const useLoginUser = (href: string = "/") => {
       }
     },
   });
+};
+
+const handleSaveId = (token: string) => {
+  const decoded: any = typeof token == "string" && jwtDecode(token);
+  setServerCookie("userId", decoded.id);
+  setClientCookie("clientUserId", decoded.id);
 };

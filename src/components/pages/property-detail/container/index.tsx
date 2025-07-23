@@ -16,6 +16,7 @@ import RelatedHouse from "../content/RelatedHouse";
 import TitleSection from "../content/TitleSection";
 import RentForm from "../content/forms/RentPropertyForm";
 import ReserveForm from "../content/forms/ReservePropertyForm";
+import NoImage from "@/assets/images/no.jpg";
 
 /**
  * Single property page - Displaying detail of property
@@ -35,14 +36,13 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
   // Fetching property details server side
   let propertyDetails;
   if (typeof id == "string") propertyDetails = await getHouseById(id);
+  console.log(propertyDetails);
 
   // Fetching related properties server side
-  const relatedHouses: HouseItemsInterface[] = await fetchHouses({
+  const { houses }: { houses: HouseItemsInterface[] } = await fetchHouses({
     transactionType: propertyDetails?.transaction_type,
     limit: 3,
   });
-
-  console.log(relatedHouses);
 
   // Handle if the property detail is undefined
   if (!propertyDetails) {
@@ -87,9 +87,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
             {/* Title section */}
-            {isHotel && (
-              <TitleSection textContent={`${title}`} />
-            )}
+            {isHotel && <TitleSection textContent={`${title}`} />}
             {/* Description section */}
             <ParagraphSection
               textContent={caption ? caption : t("noDescription")}
@@ -97,16 +95,16 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
             {isHotel && (
               <>
                 {/* Image section */}
-                {photos && (
+                {
                   <Image
                     width={500}
                     height={500}
                     alt={title || "houseImage"}
-                    src={photos[1]}
+                    src={photos[1] || NoImage}
                     className="h-[253px] w-full rounded-3xl"
                     unoptimized
                   />
-                )}
+                }
               </>
             )}
             {/* Rate section */}
@@ -123,12 +121,12 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
               isHotel={isHotel}
             />
             {/* Map section */}
-            {!isHotel && location.lat && location.lat && (
+            {!isHotel && location && location.lat && location.lat && (
               <>
                 <div className="h-[349px] rounded-4xl">
                   <PropertyLocation
-                    photoUrl={photos[0]}
-                    propertyLocation={[location.lat, location.lng]}
+                    photoUrl={photos !== null ? photos[0] : NoImage}
+                    propertyLocation={[31, location.lng]}
                   />
                 </div>
               </>
@@ -143,7 +141,9 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           </div>
         </div>
         {/* Bottom section */}
-        <RelatedHouse relatedHouses={relatedHouses.filter((e) => e.id != id)} />
+        <RelatedHouse
+          relatedHouses={houses.filter((e) => e.id != Number(id))}
+        />
       </div>
     </Container>
   );

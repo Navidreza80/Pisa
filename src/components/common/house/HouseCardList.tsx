@@ -15,13 +15,13 @@ import Tilt from "react-parallax-tilt";
 import { SwiperSlide } from "swiper/react";
 
 // SVGs
+import NoImage from "@/assets/images/no.jpg";
 import BedSVG from "@/components/common/svg/bed";
 import CarSVG from "@/components/common/svg/car";
 import MapSVG from "@/components/common/svg/map";
 import ParkSVG from "@/components/common/svg/park";
 import LocationSVG from "../svg/location";
 import PersonSVG from "../svg/person";
-import NoImage from "@/assets/images/no.jpg";
 
 // Types
 import { TransitionLink } from "@/components/common/TransitionLink";
@@ -38,9 +38,9 @@ import {
   Tag,
   User,
 } from "lucide-react";
+import Image from "next/image";
 import { useDispatch } from "react-redux";
 import Reveal from "../reveal";
-import Image from "next/image";
 
 /**
  * Filter reservation houses component.
@@ -141,24 +141,31 @@ export default function HouseCardList({
           pagination={{ clickable: true }}
           loop
         >
-          {/* {(card.photos && card.photos.length > 0
-            ? card.photos
-            : "../../../assets/images/auth/jangal.png"
-          ).map((photo: string, idx: number) => (
-            <SwiperSlide key={idx} className="w-full h-[221px] relative">
-              <Image
-                fill
-                unoptimized
-                className="object-cover w-full h-full"
-                src={
-                  photo !== null && photo != "" && photo.startsWith("https")
-                    ? photo
-                    : NoImage.src
-                }
-                alt={`${card.title} - تصویر ${idx + 1}`}
-              />
-            </SwiperSlide>
-          ))} */}
+          {card.photos !== null && card.photos.length > 0 ? (
+            card.photos.map((photo: string, idx: number) => (
+              <SwiperSlide key={idx} className="w-full h-[221px] relative">
+                <Image
+                  fill
+                  unoptimized
+                  className="object-cover w-full h-full"
+                  src={
+                    photo !== null && photo != "" && photo.startsWith("https")
+                      ? photo
+                      : NoImage.src
+                  }
+                  alt={`${card.title} - تصویر ${idx + 1}`}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+            <Image
+              fill
+              unoptimized
+              className="object-cover w-full h-[221px]"
+              src={NoImage}
+              alt={'تصویر عکس'}
+            />
+          )}
         </Slider>
         {/* Map icon section */}
         {showOnMap && (

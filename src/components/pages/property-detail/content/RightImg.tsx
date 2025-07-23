@@ -5,6 +5,7 @@ import VirtualTour from "./VirtualTour";
 import Button from "../../../common/button";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import NoImage from "@/assets/images/no.jpg";
 
 function RightImg({ photos }: { photos: string[] }) {
   const t = useTranslations("SingleHouse");
@@ -73,7 +74,7 @@ function RightImg({ photos }: { photos: string[] }) {
           height={387}
           unoptimized
           width={1000}
-          src={photos[0]}
+          src={photos[0] || NoImage}
           className="w-full h-[387px] rounded-t-3xl rounded-b-2xl object-cover"
           alt="Property"
         />

@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import NoImage from "@/assets/images/no.jpg"
 
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
@@ -37,7 +38,7 @@ export default function Map({
               <CustomMarker
                 key={index}
                 position={location}
-                photoUrl={photos[0]}
+                photoUrl={photos !== null ? photos[0] : NoImage.src}
               >
                 {/* Popup content */}
                 <Popup>
@@ -47,7 +48,7 @@ export default function Map({
                         <Image
                           width={50}
                           height={50}
-                          src={photos[0]}
+                          src={photos !== null ? photos[0] : NoImage.src}
                           alt={title}
                           unoptimized
                           className="w-[40px] aspect-square rounded-full"

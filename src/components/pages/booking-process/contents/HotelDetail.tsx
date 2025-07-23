@@ -58,7 +58,7 @@ const HotelDetail = ({
   return (
     <div className="flex flex-col gap-y-4 md:gap-y-[38px] mt-4 md:mt-8">
       <Body>
-        <div className="w-full flex flex-col md:flex-row-reverse md:justify-between p-2 rounded-2xl gap-4 md:gap-0">
+        <div className="w-full flex flex-col md:flex-row md:justify-between p-2 rounded-2xl gap-4 md:gap-0">
           {" "}
           <HotelInfoHeader hotel={hotelDetail} isLoading={isLoading} />
           <span className="border-2 border-border h-[2px] md:h-[107px] w-full md:w-auto" />

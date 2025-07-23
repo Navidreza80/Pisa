@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 export default function ResultButton({
   houses,
 }: {
-  houses: Array<HouseItemsInterface>;
+  houses: Array<HouseItemsInterface> | undefined;
 }) {
   // Hooks
   const t = useTranslations("HomePage");
@@ -49,7 +49,7 @@ export default function ResultButton({
         {t("result")}
       </Button>
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-[700px] h-[100%] overflow-y-scroll">
+        <DialogContent className="max-w-[700px] max-h-[100%] overflow-y-scroll">
           <DialogHeader>
             <DialogTitle className=" w-full">
               {t("searchResults")}

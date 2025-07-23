@@ -16,6 +16,7 @@ import { HouseItemsInterface } from "@/types/house";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
+import NoImage from "@/assets/images/no.jpg";
 
 const ReserveDetail = ({
   isOpen,
@@ -50,22 +51,23 @@ const ReserveDetail = ({
               <p>{house.caption || t("withoutDesc")}</p>
               <div className="flex gap-2.5 mt-5 items-center">
                 <span className="text-fade font-medium">{t("tags")}:</span>
-                {house.tags.map((item, index) => {
-                  return (
-                    <span
-                      className="rounded-xl border border-primary flex items-center justify-center w-[117px] h-[36px]"
-                      key={index}
-                    >
-                      {item}
-                    </span>
-                  );
-                })}
+                {house.tags !== null &&
+                  house.tags.map((item, index) => {
+                    return (
+                      <span
+                        className="rounded-xl border border-primary flex items-center justify-center w-[117px] h-[36px]"
+                        key={index}
+                      >
+                        {item}
+                      </span>
+                    );
+                  })}
               </div>
             </div>
             <div className="flex flex-col gap-[19px]">
               <div className="w-[410px] h-[325px] bg-gray-200 rounded-lg relative">
                 <Image
-                  src={house.photos[0]}
+                  src={house.photos !== null ? house.photos[0] : NoImage}
                   unoptimized
                   alt="houseImage"
                   width={500}

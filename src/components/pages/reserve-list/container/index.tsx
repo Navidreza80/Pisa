@@ -18,7 +18,7 @@ import { useTranslations } from "next-intl";
 export default function ReserveListContainer() {
   const t = useTranslations("Reserve");
   const [currentLoc, setCurrentLoc] = useState<[number, number]>([34, 52]);
-  const { data: houses, isLoading } = useHouses();
+  const { data, isLoading } = useHouses();
   const filters = useAppSelector((state) => state.reserveFilters);
   const dispatch = useAppDispatch();
 
@@ -34,7 +34,7 @@ export default function ReserveListContainer() {
             <FilterModal />
             <div className="flex whitespace-nowrap items-center justify-center gap-1 text-sm font-medium border-border rounded-2xl border px-2 h-12">
               <Megaphone />
-              {t("propertiesCount")} {houses?.length}
+              {t("propertiesCount")} {data?.totalCount}
             </div>
             <div className="relative w-[calc(100%-242px)]">
               <input
@@ -57,8 +57,8 @@ export default function ReserveListContainer() {
                   key={i}
                 />
               ))}
-            {houses?.length > 0 ? (
-              houses?.map((item, index) => {
+            {data?.houses && data?.houses?.length > 0 ? (
+              data.houses.map((item, index) => {
                 return (
                   <HouseCardList
                     setCurrentLoc={setCurrentLoc}
@@ -76,7 +76,7 @@ export default function ReserveListContainer() {
             )}
           </div>
         </div>
-        <Map currentLoc={currentLoc} houses={houses} />
+        <Map currentLoc={currentLoc} houses={data?.houses} />
       </div>
     </div>
   );

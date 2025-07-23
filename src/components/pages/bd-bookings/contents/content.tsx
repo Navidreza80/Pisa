@@ -19,7 +19,7 @@ import formatToPersianDateWithMoment from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getHouseById } from "@/utils/service/house/get-by-id";
 import { deleteReservation } from "@/utils/service/reserve/delete";
-import { Users } from "lucide-react";
+import { Users, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,8 @@ import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import ReserveDetail from "./reserveDetail";
+import { cancelBooking } from "@/utils/service/reserve/cancel";
+import { continueBooking } from "@/utils/service/reserve/continue";
 
 export default function ReserveTableContent({
   booking,
@@ -45,11 +47,39 @@ export default function ReserveTableContent({
     await deleteReservation(id);
     router.refresh();
   };
+  const handleCancel = async (id: string) => {
+    await cancelBooking(id);
+    router.refresh();
+  };
+  const handleContinue = async (id: string) => {
+    await continueBooking(id);
+    router.refresh();
+  };
   const deleteBooking = async (id: string) => {
     try {
       toast.promise(() => handleDelete(id), {
         success: t("success"),
         pending: t("pending"),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const cancelReserve = async (id: string) => {
+    try {
+      toast.promise(() => handleCancel(id), {
+        success: "رزرو با موفقیت لغو شد",
+        pending: "درحال لغو رزرو...",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const continueReserve = async (id: string) => {
+    try {
+      toast.promise(() => handleContinue(id), {
+        success: "رزرو با موفقیت بازیابی شد",
+        pending: "درحال بازیابی رزرو...",
       });
     } catch (err) {
       console.log(err);
@@ -89,10 +119,15 @@ export default function ReserveTableContent({
           className={cn(
             "px-2 py-1 rounded-full text-white text-xs",
             booking.status === "confirmed" && "bg-lime-400",
-            booking.status === "pending" && "bg-orange-400"
+            booking.status === "pending" && "bg-orange-400",
+            booking.status === "canceled" && "bg-red-400"
           )}
         >
-          {booking.status == "pending" ? t("pendingStatus") : t("submit")}
+          {booking.status == "pending"
+            ? t("pendingStatus")
+            : booking.status == "confirmed"
+              ? t("submit")
+              : "لغو شده"}
         </span>
       </td>
       <td className="py-2 px-4 text-[13px] font-medium">
@@ -139,6 +174,28 @@ export default function ReserveTableContent({
                   <DeletePopover />
                 </div>
               </div>
+              {booking.status == "pending" && (
+                <div
+                  onClick={() => cancelReserve(booking.id.toString())}
+                  className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
+                >
+                  <h1>لغو رزرو</h1>
+                  <div className="my-auto">
+                    <X />
+                  </div>
+                </div>
+              )}
+              {booking.status == "canceled" && (
+                <div
+                  onClick={() => continueReserve(booking.id.toString())}
+                  className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
+                >
+                  <h1>بازیابی رزرو</h1>
+                  <div className="my-auto">
+                    <X />
+                  </div>
+                </div>
+              )}
               <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
                 <Modal
                   title={t("travelerInformation")}

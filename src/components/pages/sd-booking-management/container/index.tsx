@@ -20,6 +20,10 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
+import { useQuery } from "@tanstack/react-query";
+import { GetSellerBooking } from "@/utils/service/reserve/GetSellerBookings";
+import formatToPersianDate from "@/utils/helper/format-date";
+import { formatNumber } from "@/utils/helper/format-number";
 
 const tableHeaderItems = [
   { text: "propertyName", clx: "rounded-r-xl" },
@@ -35,39 +39,12 @@ export default function SellerReservationManagement() {
   const t = useTranslations("BookingListSeller");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
-  // Mock data with translations
-  const bookings = [
-    {
-      id: 1,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      traveler: t("mockData.travelerInfo"),
-      status: t("status.approved"),
-      paymentStatus: t("status.approved"),
-      cancelled: false,
-    },
-    {
-      id: 2,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      traveler: t("mockData.travelerInfo"),
-      status: t("status.pending"),
-      paymentStatus: t("status.approved"),
-      cancelled: false,
-    },
-    {
-      id: 3,
-      hotel: t("mockData.hotelName"),
-      date: t("mockData.bookingDate"),
-      total: t("mockData.totalPrice", { price: "1,800,000" }),
-      traveler: t("mockData.travelerInfo"),
-      status: t("status.approved"),
-      paymentStatus: t("status.cancelled"),
-      cancelled: true,
-    },
-  ];
+  const { data } = useQuery({
+    queryKey: ["SELLERS_BOOKINGS"],
+    queryFn: GetSellerBooking,
+  });
+
+  console.log(data);
 
   return (
     <ContainerDashboard>
@@ -91,45 +68,44 @@ export default function SellerReservationManagement() {
             ...item,
             text: t(`tableHeaders.${item.text}`),
           }))}
-          tableContent={bookings.map((booking) => (
+          tableContent={data?.bookings.map((booking) => (
             <tr
               key={booking.id}
               className="font-yekan font-semibold border-b hover:bg-table-header/50 cursor-pointer"
             >
               <td className="py-2 px-4 text-[18px] font-medium rounded-r-xl">
-                {booking.hotel}
+                نام ملک
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.traveler}
+                {booking.traveler_details[0].firstName}
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.date}
+                {formatToPersianDate(booking.reservedDates[0].value)}
               </td>
               <td className="py-2 px-4 text-[18px] font-medium">
-                {booking.total}
+                {formatNumber(1200000)}
               </td>
               <td className="py-2 px-4">
                 <span
                   className={cn(
-                    "px-2 py-1 rounded-full text-text text-[13px] font-medium",
+                    "px-2 py-1 rounded-full text-text text-[13px] font-medium text-white",
                     booking.status === "confirmed" && "bg-lime-400",
-                    booking.status === "pending" && "bg-orange-400"
+                    booking.status === "pending" && "bg-orange-400",
+                    booking.status === "canceled" && "bg-red-400"
                   )}
                 >
-                  {booking.status}
+                  {booking.status == "pending"
+                    ? "در انتظار"
+                    : booking.status == "confirmed"
+                      ? "تایید شده"
+                      : "لغو شده"}
                 </span>
               </td>
               <td className="py-2 px-4">
                 <span
-                  className={cn(
-                    "px-2 py-1 rounded-full text-white text-[13px] font-medium",
-                    booking.paymentStatus === t("status.approved") &&
-                      "bg-lime-400",
-                    booking.paymentStatus === t("status.cancelled") &&
-                      "bg-rose-400"
-                  )}
+                  className={"px-2 py-1 rounded-full text-[13px] font-medium"}
                 >
-                  {booking.paymentStatus}
+                  پرداخت نشده
                 </span>
               </td>
               <td className="py-2 px-4  rounded-l-xl">
@@ -179,7 +155,7 @@ export default function SellerReservationManagement() {
 
       {/* Card view for mobile */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {bookings.map((booking) => (
+        {data?.bookings.map((booking) => (
           <Card key={booking.id} className="overflow-hidden border-border">
             <CardContent className="p-4">
               {/* Header with property name and actions */}

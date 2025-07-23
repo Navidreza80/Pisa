@@ -29,6 +29,7 @@ export default function Search() {
 
   const [tab, setTab] = useState(filterItems[2]);
   const { data: houses } = useLandingHouses();
+  console.log(houses)
 
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.landingFilters);
@@ -106,7 +107,7 @@ export default function Search() {
             </div>
           );
         })}
-        <ResultButton houses={houses} />
+        <ResultButton houses={houses?.houses} />
       </div>
     </div>
   );

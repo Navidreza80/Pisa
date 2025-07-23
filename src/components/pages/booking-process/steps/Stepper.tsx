@@ -13,13 +13,13 @@ import Line from "../../../common/dashboard/line";
 import { useTranslations } from "next-intl";
 
 const Stepper = () => {
-  const t = useTranslations("chooseHotel");
+  const t = useTranslations("ReserveDetail");
   const stepsItems = [
-    { text: t("chooseHotel"), id: 1 },
-    { text: t("travelerDetails"), id: 2 },
-    { text: t("submitInformation2"), id: 3 },
-    { text: t("payOnline"), id: 4 },
     { text: t("sendTicket"), id: 5 },
+    { text: t("payOnline"), id: 4 },
+    { text: t("submitInformation2"), id: 3 },
+    { text: t("travelerDetails"), id: 2 },
+    { text: t("chooseHotel"), id: 1 },
   ];
 
   const id = useAppSelector((state) => state.bookingSteps.id);
