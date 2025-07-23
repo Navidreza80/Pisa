@@ -1,4 +1,3 @@
-// @/utils/service/user/uploadUserPicture.ts
 import http from "@/utils/interceptor";
 import { getClientCookie } from "../storage/client-cookie";
 import { useMutation } from "@tanstack/react-query";

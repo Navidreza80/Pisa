@@ -8,12 +8,16 @@ import {
 } from "@/utils/hooks/react-redux/store/hook";
 import { setReserveFilters } from "@/utils/hooks/react-redux/store/slices/reserve-slice";
 import { useHouses } from "@/utils/hooks/use-houses";
+import { useSaveSearch } from "@/utils/service/save-seach/useSaveSearch";
 import { Megaphone } from "lucide-react";
-import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import Map from "../contents/Map";
 import { FilterModal } from "../modals/BookingFilterModal";
+import SaveSearchModal from "../modals/SaveSearchModal";
 import "../styles/scrollbar.css";
-import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+import SavedSearchList from "../contents/SavedSearchList";
 
 export default function ReserveListContainer() {
   const t = useTranslations("Reserve");
@@ -21,6 +25,38 @@ export default function ReserveListContainer() {
   const { data, isLoading } = useHouses();
   const filters = useAppSelector((state) => state.reserveFilters);
   const dispatch = useAppDispatch();
+  const { mutate: saveSearchMutation } = useSaveSearch();
+
+  const saveSearch = async (note: string) => {
+    const searchQuery = filters.search;
+
+    if (!searchQuery) {
+      toast.warn("ابتدا عبارتی را جستجو کنید.");
+      return;
+    }
+
+    saveSearchMutation({ searchQuery, note });
+  };
+
+  const [showSavedSearches, setShowSavedSearches] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleSelectSavedSearch = (query: string) => {
+    dispatch(setReserveFilters({ search: query }));
+    setShowSavedSearches(false);
+  };
+
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setShowSavedSearches(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
 
   const handleChange = (name: string, value: string) => {
     dispatch(setReserveFilters({ [name]: value }));
@@ -36,18 +72,34 @@ export default function ReserveListContainer() {
               <Megaphone />
               {t("propertiesCount")} {data?.totalCount}
             </div>
-            <div className="relative w-[calc(100%-242px)]">
+            <div className="relative w-[calc(100%-242px)] flex gap-2 items-center">
               <input
                 value={filters.search || ""}
                 onChange={(e) => handleChange("search", e.target.value)}
+                onFocus={() => setShowSavedSearches(true)}
                 className="h-12 border rounded-2xl border-border px-4 py-3 w-full rtl:pr-16 ltr:pl-16"
                 placeholder={t("search")}
               />
               <span className="absolute rtl:right-6 ltr:left-6 top-3.5">
                 <SearchSVG />
               </span>
+
+              {showSavedSearches && (
+                <div className="absolute top-full left-0 mt-1 w-full z-50">
+                  <SavedSearchList onSelect={handleSelectSavedSearch} />
+                </div>
+              )}
+
+              {filters.search?.trim() && (
+                <SaveSearchModal
+                  searchQuery={filters.search}
+                  onSave={saveSearch}
+                />
+              )}
             </div>
+
           </div>
+
           <div className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full rtl:lg:pl-[22px] ltr:pr-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center">
             {isLoading &&
               [...Array(6)].map((_, i) => (
