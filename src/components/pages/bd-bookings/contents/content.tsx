@@ -13,22 +13,19 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { HouseItemsInterface } from "@/types/house";
 import { Reservation } from "@/types/reserve";
 import formatToPersianDateWithMoment from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
-import { getHouseById } from "@/utils/service/house/get-by-id";
+import { cancelBooking } from "@/utils/service/reserve/cancel";
+import { continueBooking } from "@/utils/service/reserve/continue";
 import { deleteReservation } from "@/utils/service/reserve/delete";
 import { Users, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import ReserveDetail from "./reserveDetail";
-import { cancelBooking } from "@/utils/service/reserve/cancel";
-import { continueBooking } from "@/utils/service/reserve/continue";
 
 export default function ReserveTableContent({
   booking,

@@ -62,6 +62,8 @@ const ReserveDetail = ({
               <div className="flex gap-2.5 mt-5 items-center">
                 <span className="text-fade font-medium">{t("tags")}:</span>
                 {house.tags !== null &&
+                  house.tags !== undefined &&
+                  house.tags.length > 0 &&
                   house.tags.map((item, index) => {
                     return (
                       <span
@@ -76,14 +78,16 @@ const ReserveDetail = ({
             </div>
             <div className="flex flex-col gap-[19px]">
               <div className="w-[410px] h-[325px] bg-gray-200 rounded-lg relative">
-                <Image
-                  src={house.photos !== null ? house.photos[0] : NoImage}
-                  unoptimized
-                  alt="houseImage"
-                  width={500}
-                  height={500}
-                  className="absolute inset-0 w-full h-full rounded-lg"
-                />
+                {house?.photos && (
+                  <Image
+                    src={house?.photos !== null ? house.photos[0] : NoImage}
+                    unoptimized
+                    alt="houseImage"
+                    width={500}
+                    height={500}
+                    className="absolute inset-0 w-full h-full rounded-lg"
+                  />
+                )}
                 <span className="absolute top-[15px] right-[15px] h-10 py-1 px-3 bg-primary rounded-[10px] text-white flex gap-1.5 items-center">
                   <Star />
                   {t("starRating", { stars: house.rate })}
