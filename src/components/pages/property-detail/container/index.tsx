@@ -63,6 +63,8 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
     parking,
     location,
     caption,
+    sellerName,
+    createdAt,
   } = propertyDetails;
 
   // Getting isHotel value based on transaction type
@@ -133,7 +135,16 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
             )}
 
             {/* Reserve section */}
-            {isHotel ? <ReserveForm price={price} /> : <RentForm />}
+            {isHotel ? (
+              <ReserveForm price={price} />
+            ) : (
+              <RentForm
+                houseId={id}
+                sellerName={sellerName}
+                date={createdAt}
+                price={Number(price)}
+              />
+            )}
             {/* Comments section */}
             <AllComments houseId={id} />
             {/* QA Section */}

@@ -7,17 +7,21 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const AddPropertyStepFour = () => {
+const AddPropertyStepFour = ({ houseId, refresh }) => {
   const [file, setFile] = useState();
   console.log(file);
-  const { mutate: uploadHousePicture } = useMutation({
+  const { mutate: uploadHousePicture, isPending } = useMutation({
     mutationKey: ["ADD_PICTURE"],
     mutationFn: (formData) =>
-      toast.promise(postHousePicture({ id: 48, formData: formData }), {
+      toast.promise(postHousePicture({ id: houseId, formData: formData }), {
         pending: "در حال آپلود عکس...",
         success: "عکس با موفقیت آپلود شد",
         error: "خطا در آپلود عکس",
       }),
+    onSuccess: () => {
+      setFile(null);
+      refresh();
+    },
   });
   const t = useTranslations("AddPropertyStepFour");
 
@@ -65,14 +69,17 @@ const AddPropertyStepFour = () => {
             </div>
           </label>
         ) : (
-          <div className="w-[189px] h-[189px] rounded-2xl overflow-hidden">
+          <div className="w-[189px] h-[189px] rounded-2xl overflow-hidden bg-black relative">
             <Image
               src={URL.createObjectURL(file)}
               alt="uploaded image"
-              className="object-cover w-[189px] h-[189px]"
+              className={`object-cover w-[189px] ${isPending ? "opacity-80" : "opacity-100"} h-[189px]`}
               width={189}
               height={189}
             />
+            <div className="absolute bottom-0 left-2 w-full h-full flex justify-center items-center">
+              {isPending && <span className="text-white">در حال بارگذاری...</span>}
+            </div>
           </div>
         )}
       </div>

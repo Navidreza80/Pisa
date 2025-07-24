@@ -1,6 +1,7 @@
 "use client";
 import InputText from "@/components/common/inputs/text-inputs";
-import { SaveSVG, ShareSVG } from "@/components/svg";
+import { ShareSVG } from "@/components/svg";
+import { Calendar22 } from "@/components/ui/date-picker";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useAppDispatch } from "@/utils/hooks/react-redux/store/hook";
 import { setReservedDates } from "@/utils/hooks/react-redux/store/slices/book-hotel-slice";
@@ -10,8 +11,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import SaveProperty from "../SaveProperty";
 import SectionName from "../SectionName";
-import { Calendar22 } from "@/components/ui/date-picker";
 
 export default function ReserveForm({ price }: { price: string }) {
   const t = useTranslations("SingleHouse");
@@ -98,9 +99,7 @@ export default function ReserveForm({ price }: { price: string }) {
         {/* save & share section */}
         <div className="flex gap-6">
           {/* Save */}
-          <p className="border-text-secondary border rounded-full w-12 h-12 flex justify-center items-center">
-            <SaveSVG />
-          </p>
+          <SaveProperty houseId={id} />
           {/* Share */}
           <p className="w-12 h-12 bg-primary rounded-full flex justify-center items-center">
             <ShareSVG />

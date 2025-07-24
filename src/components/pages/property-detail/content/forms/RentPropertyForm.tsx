@@ -1,8 +1,20 @@
 import { getTranslations } from "next-intl/server";
 import SectionName from "../SectionName";
 import { MessageCircleMoreIcon } from "lucide-react";
+import SaveProperty from "../SaveProperty";
+import formatToPersianDate from "@/utils/helper/format-date";
 
-export default async function RentForm() {
+export default async function RentForm({
+  houseId,
+  sellerName,
+  date,
+  price,
+}: {
+  houseId: string;
+  sellerName: string;
+  date: Date;
+  price: number;
+}) {
   const t = await getTranslations("SingleHouse");
   return (
     <div className="mt-1.5 flex flex-col gap-6">
@@ -21,7 +33,7 @@ export default async function RentForm() {
             </p>
             {/* Price */}
             <h1 className="text-[20px] font-[700] !text-text my-auto ">
-              1200000
+              {price}
             </h1>
           </div>
         </div>
@@ -36,19 +48,21 @@ export default async function RentForm() {
             </p>
             {/* Price */}
             <h1 className="text-[20px] font-[700] !text-text my-auto ">
-              1200000
+              {price}
             </h1>
           </div>
         </div>
       </div>
       {/* Bottom section */}
-      <div className="w-full lg:flex-nowrap md:flex-wrap flex-wrap flex gap-x-[105px] gap-y-[17px] justify-between">
+      <div className="w-full lg:flex-nowrap md:flex-wrap flex-wrap flex gap-y-[17px] justify-between">
         {/* User info section */}
         <div className="flex gap-x-3">
           <div className="h-12 bg-gray-600 aspect-square rounded-full"></div>
           <div className="flex flex-col justify-between">
-            <h4 className="text-text">عباس بهبودی</h4>
-            <h4 className="text-text-secondary ">13 اردیبهشت 1404</h4>
+            <h4 className="text-text whitespace-nowrap">{sellerName || "کاربر"}</h4>
+            <h4 className="text-text-secondary text-sm whitespace-nowrap">
+              {formatToPersianDate(date)}
+            </h4>
           </div>
         </div>
         {/* Chat and phone number section */}
@@ -57,6 +71,7 @@ export default async function RentForm() {
           <span className="border-primary border rounded-full h-full aspect-square flex items-center justify-center">
             <MessageCircleMoreIcon className="text-primary" />
           </span>
+          <SaveProperty houseId={houseId} />
           {/* Phone number */}
           <span className="h-full w-[292px] text-white rounded-full  flex justify-center items-center bg-primary">
             {t("phoneNumber")}: 09064052060

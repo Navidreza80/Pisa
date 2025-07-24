@@ -22,11 +22,11 @@ const ChangeStep = ({ createHouse }) => {
         className="!w-auto gap-2"
       >
         <ArrowSVG className="rotate-90" />{" "}
-        {id == 5 ? t("createProperty") : t("nextStep")}
+        {id == 4 ? t("createProperty") : t("nextStep")}
       </Button>
       <Button
         type="button"
-        handleClick={() => dispatch(setStepsId(id == 1 ? 5 : id - 1))}
+        handleClick={() => dispatch(setStepsId(id == 1 ? 4 : id - 1))}
         className="!w-auto gap-2"
       >
         {t("previousStep")}

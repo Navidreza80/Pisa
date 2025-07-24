@@ -4,29 +4,28 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
+import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 import postHouse from "@/utils/service/house/post";
+import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 import PropertyContainer from "../contents/Container";
 import AddPropertyStepFive from "../contents/StepFive";
-import AddPropertyStepFour from "../contents/StepFour";
 import AddPropertyStepOne from "../contents/StepOne";
 import AddPropertyStepThree from "../contents/StepThree";
 import AddPropertyStepTwo from "../contents/StepTwo";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import * as Yup from "yup";
-import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
-import { useTranslations } from "next-intl";
 
 const AddPropertyContainer = () => {
   const t = useTranslations("Dashboard");
   // Hooks
   const [createdProperty, setCreatedProperty] = useState<HouseItemsInterface>();
-  const [photoURL, setPhotoURL] = useState(["", "", "", ""]);
+
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
-  const id = 5;
+  const id = useAppSelector((state) => state.stepsId.id);
   const dispatch = useAppDispatch();
   const [location, setLocation] = useState<{ lat: string; lng: string }>({
     lat: "",
@@ -46,7 +45,6 @@ const AddPropertyContainer = () => {
         error: t("errorProperty"),
       }),
   });
-
 
   const stepOneValidation = Yup.object().shape({
     caption: Yup.string().required(t("descVal")),
@@ -128,10 +126,8 @@ const AddPropertyContainer = () => {
             formik={formik}
             yard_type={yard_type}
           />
-        ) : id == 4 ? (
-          <AddPropertyStepFive createdProperty={createdProperty} />
         ) : (
-          <AddPropertyStepFour />
+          <AddPropertyStepFive createdProperty={createdProperty} />
         )}
       </PropertyContainer>
     </form>

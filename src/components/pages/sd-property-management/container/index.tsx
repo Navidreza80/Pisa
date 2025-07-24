@@ -1,15 +1,16 @@
 "use client";
+import NoImage from "@/assets/images/no.jpg";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import Line from "@/components/common/dashboard/line";
 import ModalStep2 from "@/components/common/dashboard/modalStep2";
 import TableDashboard from "@/components/common/dashboard/Table";
 import Title from "@/components/common/dashboard/Title";
+import Modal from "@/components/common/modal/modal";
 import FilterModal from "@/components/dashboard/filter-modal";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import NoImage from "@/assets/images/no.jpg";
 import {
   Popover,
   PopoverContent,
@@ -21,11 +22,13 @@ import { getTransactionType } from "@/utils/helper/GetTransactionType";
 import { deleteHouse } from "@/utils/service/house/delete";
 import { putHouse } from "@/utils/service/house/put";
 import { useMutation } from "@tanstack/react-query";
+import { Camera } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import AddPropertyStepFour from "../../sd-property-create/contents/StepFour";
 import EditHouse from "../content/EditHouse";
 
 export const tableHeaderItems = (t) => [
@@ -139,6 +142,18 @@ export default function SellerDashboardProperties({ houses }) {
                           handleEdit({ data: data, id: property.id })
                         }
                       />
+                      <Modal
+                        trigger={
+                          <div className="w-full whitespace-nowrap flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
+                            <h1>افزودن عکس</h1>
+                            <div className="my-auto">
+                              <Camera />
+                            </div>
+                          </div>
+                        }
+                      >
+                        <AddPropertyStepFour refresh={router.refresh} houseId={property.id} />
+                      </Modal>
 
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
                         <ModalStep2
