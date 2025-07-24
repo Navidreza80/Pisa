@@ -146,7 +146,7 @@ export default function ReserveTableContent({
               </div>
               <Link
                 className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1"
-                href={`/payment/${booking.houseId.toString()}`}
+                href={`/payment/${booking.houseId.toString()}?bookingId=${booking.id.toString()}`}
               >
                 <h1>{t("actions.payment")}</h1>
                 <div className="my-auto">
