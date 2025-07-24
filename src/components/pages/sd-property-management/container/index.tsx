@@ -9,6 +9,7 @@ import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import NoImage from "@/assets/images/no.jpg";
 import {
   Popover,
   PopoverContent,
@@ -101,7 +102,9 @@ export default function SellerDashboardProperties({ houses }) {
                     height={200}
                     unoptimized
                     alt="image"
-                    src={property.photos[0]}
+                    src={
+                      property.photos !== null ? property.photos[0] : NoImage
+                    }
                     className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
                   />
                   <div className="py-7 text-[18px] font-medium truncate overflow-hidden whitespace-nowrap w-[200px]">
@@ -176,7 +179,7 @@ export default function SellerDashboardProperties({ houses }) {
               <Image
                 alt="houseImage"
                 unoptimized
-                src={property.photos[0]}
+                src={property.photos !== null ? property.photos[0] : NoImage}
                 width={100}
                 height={100}
                 className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3"

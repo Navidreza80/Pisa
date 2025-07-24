@@ -1,16 +1,12 @@
 /* eslint-disable */
 
 import SellerDashboardProperties from "@/components/pages/sd-property-management/container";
-import { fetchHouses } from "@/utils/service/house/get";
-import { getServerCookie } from "@/utils/service/storage/server-cookie";
-import { jwtDecode } from "jwt-decode";
+import { getAllSellerHouses } from "@/utils/service/house/GetSellerHouses";
 
 const Page = async () => {
-  const token = await getServerCookie("serverAccessToken");
-  const decoded: any = typeof token == "string" && jwtDecode(token);
-  const houses = await fetchHouses({ limit: 100, page: 1 });
-  const sellerHouses = houses.filter((el) => el.sellerId == decoded.id);
+  const houses = await getAllSellerHouses();
+  console.log(houses)
 
-  return <SellerDashboardProperties houses={sellerHouses} />;
+  return <SellerDashboardProperties houses={houses.houses} />;
 };
 export default Page;

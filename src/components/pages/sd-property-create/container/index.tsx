@@ -20,13 +20,13 @@ import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 import { useTranslations } from "next-intl";
 
 const AddPropertyContainer = () => {
-  const t = useTranslations("Dashboard")
+  const t = useTranslations("Dashboard");
   // Hooks
   const [createdProperty, setCreatedProperty] = useState<HouseItemsInterface>();
   const [photoURL, setPhotoURL] = useState(["", "", "", ""]);
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
-  const id = useAppSelector((state) => state.stepsId.id);
+  const id = 5;
   const dispatch = useAppDispatch();
   const [location, setLocation] = useState<{ lat: string; lng: string }>({
     lat: "",
@@ -47,12 +47,6 @@ const AddPropertyContainer = () => {
       }),
   });
 
-  // Handle changing photoURL state
-  const handleChange = (index: number, value: string) => {
-    const updated = [...photoURL];
-    updated[index] = value;
-    setPhotoURL(updated);
-  };
 
   const stepOneValidation = Yup.object().shape({
     caption: Yup.string().required(t("descVal")),
@@ -95,7 +89,6 @@ const AddPropertyContainer = () => {
       setCreatedProperty({
         ...values,
         yard_type,
-        photos: photoURL,
         categories: {
           name: categories,
         },
@@ -136,13 +129,9 @@ const AddPropertyContainer = () => {
             yard_type={yard_type}
           />
         ) : id == 4 ? (
-          <AddPropertyStepFour
-            handleChange={handleChange}
-            photoURL={photoURL}
-            setPhotoURL={setPhotoURL}
-          />
-        ) : (
           <AddPropertyStepFive createdProperty={createdProperty} />
+        ) : (
+          <AddPropertyStepFour />
         )}
       </PropertyContainer>
     </form>

@@ -17,7 +17,7 @@ const ChangeStep = ({ createHouse }) => {
       <Button
         type="submit"
         handleClick={() => {
-          if (id == 5) createHouse();
+          if (id == 4) createHouse();
         }}
         className="!w-auto gap-2"
       >

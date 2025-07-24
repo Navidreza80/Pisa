@@ -53,17 +53,7 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
     <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:flex-row md:justify-between md:flex-row-reverse">
       {/* Image Section */}
       <div className="w-full md:w-[41.8%] order-1 md:order-none">
-        {createdProperty?.photos[0] ? (
-          <Image
-            unoptimized
-            width={500}
-            height={500}
-            alt="houseImage"
-            src={createdProperty?.photos[0]}
-          />
-        ) : (
-          <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />
-        )}
+        <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />
       </div>
       {/* Description Section */}
       <div className="w-full md:w-[53.4%] order-2 md:order-none">
