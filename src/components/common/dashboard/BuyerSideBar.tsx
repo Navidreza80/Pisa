@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { Bell, House } from "lucide-react";
+import { Bell, Bookmark, House } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
@@ -67,6 +67,11 @@ function BuyerSideBar() {
       name: t("favorites"),
       icon: <FavoriteSVG />,
       href: "/dashboard/buyer/favorites",
+    },
+    {
+      name: "ذخیره شده ها",
+      icon: <Bookmark />,
+      href: "/dashboard/buyer/whishlist",
     },
   ];
 

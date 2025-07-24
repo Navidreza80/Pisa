@@ -16,6 +16,8 @@ export interface HouseItemsInterface {
   id: number;
   yard_type: string;
   capacity: number;
+  sellerName: string;
+  createdAt: Date;
   categories: {
     id: number;
     name: string;

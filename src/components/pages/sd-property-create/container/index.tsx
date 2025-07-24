@@ -4,26 +4,25 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
+import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
 import postHouse from "@/utils/service/house/post";
+import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 import PropertyContainer from "../contents/Container";
 import AddPropertyStepFive from "../contents/StepFive";
-import AddPropertyStepFour from "../contents/StepFour";
 import AddPropertyStepOne from "../contents/StepOne";
 import AddPropertyStepThree from "../contents/StepThree";
 import AddPropertyStepTwo from "../contents/StepTwo";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import * as Yup from "yup";
-import { setStepsId } from "@/utils/hooks/react-redux/store/slices/steps-slice";
-import { useTranslations } from "next-intl";
 
 const AddPropertyContainer = () => {
-  const t = useTranslations("Dashboard")
+  const t = useTranslations("Dashboard");
   // Hooks
   const [createdProperty, setCreatedProperty] = useState<HouseItemsInterface>();
-  const [photoURL, setPhotoURL] = useState(["", "", "", ""]);
+
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const id = useAppSelector((state) => state.stepsId.id);
@@ -46,13 +45,6 @@ const AddPropertyContainer = () => {
         error: t("errorProperty"),
       }),
   });
-
-  // Handle changing photoURL state
-  const handleChange = (index: number, value: string) => {
-    const updated = [...photoURL];
-    updated[index] = value;
-    setPhotoURL(updated);
-  };
 
   const stepOneValidation = Yup.object().shape({
     caption: Yup.string().required(t("descVal")),
@@ -95,7 +87,6 @@ const AddPropertyContainer = () => {
       setCreatedProperty({
         ...values,
         yard_type,
-        photos: photoURL,
         categories: {
           name: categories,
         },
@@ -134,12 +125,6 @@ const AddPropertyContainer = () => {
             setYard_type={setYard_type}
             formik={formik}
             yard_type={yard_type}
-          />
-        ) : id == 4 ? (
-          <AddPropertyStepFour
-            handleChange={handleChange}
-            photoURL={photoURL}
-            setPhotoURL={setPhotoURL}
           />
         ) : (
           <AddPropertyStepFive createdProperty={createdProperty} />

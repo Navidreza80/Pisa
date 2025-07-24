@@ -2,21 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import SimpleCaptcha from "@/components/ui/captcha";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { formatNumber } from "@/utils/helper/format-number";
 import { usePayment } from "@/utils/service/payments/addPayments";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 function PaymentForm({ price, id }: { price: number; id: number }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const bookingId = searchParams.get("bookingId");
 
   // States
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -26,10 +24,10 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
   const [expYear, setExpYear] = useState("");
   const [expMonth, setExpMonth] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
-  const [description, setDescription] = useState(""); // optional description
+  const [description, setDescription] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const paymentMutation = usePayment(); 
+  const paymentMutation = usePayment();
 
   // Format card number #### #### #### ####
   const formatCardNumber = (value: string) => {
@@ -63,15 +61,15 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
     if (Object.keys(newErrors).length === 0 && captchaVerified) {
       try {
         await paymentMutation.mutateAsync({
-          amount: Number(price), 
-          description: description.trim() || "توضیحاتی ندارد", 
-          callbackUrl: "http://localhost:3000/signature", 
-          bookingId: Number(id), 
+          amount: Number(price),
+          description: description.trim() || "توضیحاتی ندارد",
+          callbackUrl: "http://localhost:3000/signature",
+          bookingId: Number(bookingId),
         });
 
-        router.push(`/signature/${id}`); 
+        router.push(`/signature/${id}`);
       } catch (error) {
-        alert("خطا در ثبت پرداخت. لطفا دوباره تلاش کنید."); 
+        alert("خطا در ثبت پرداخت. لطفا دوباره تلاش کنید.");
       }
     }
   };
@@ -80,7 +78,9 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
     <Card className="w-[700px] bg-white border-none">
       <CardHeader>
         <CardTitle className="rounded-[8px] h-[48px] w-full bg-[#eef4fd] flex flex-col px-[10px]">
-          <h1 className="text-[#2b73e3] my-auto h-4">اطلاعات کارت خود را وارد کنید</h1>
+          <h1 className="text-[#2b73e3] my-auto h-4">
+            اطلاعات کارت خود را وارد کنید
+          </h1>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -95,12 +95,16 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
               value={cardNumber}
               onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
             />
-            {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+            {errors.cardNumber && (
+              <p className="text-red-500 text-sm">{errors.cardNumber}</p>
+            )}
           </div>
 
           {/* CVV2 */}
           <div className="space-y-1">
-            <label className="block text-sm font-medium">شماره شناسایی دوم (CVV2)</label>
+            <label className="block text-sm font-medium">
+              شماره شناسایی دوم (CVV2)
+            </label>
             <Input
               className="text-center text-lg bg-[#f3f3f3] border-[#eeeeee]"
               placeholder="CVV2"
@@ -108,7 +112,9 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
               value={cvv2}
               onChange={(e) => setCvv2(e.target.value.replace(/\D/g, ""))}
             />
-            {errors.cvv2 && <p className="text-red-500 text-sm">{errors.cvv2}</p>}
+            {errors.cvv2 && (
+              <p className="text-red-500 text-sm">{errors.cvv2}</p>
+            )}
           </div>
 
           {/* Expiry Date */}
@@ -121,9 +127,13 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
                   placeholder="سال"
                   maxLength={2}
                   value={expYear}
-                  onChange={(e) => setExpYear(e.target.value.replace(/\D/g, ""))}
+                  onChange={(e) =>
+                    setExpYear(e.target.value.replace(/\D/g, ""))
+                  }
                 />
-                {errors.expYear && <p className="text-red-500 text-sm">{errors.expYear}</p>}
+                {errors.expYear && (
+                  <p className="text-red-500 text-sm">{errors.expYear}</p>
+                )}
               </div>
               <div>
                 <Input
@@ -131,9 +141,13 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
                   placeholder="ماه"
                   maxLength={2}
                   value={expMonth}
-                  onChange={(e) => setExpMonth(e.target.value.replace(/\D/g, ""))}
+                  onChange={(e) =>
+                    setExpMonth(e.target.value.replace(/\D/g, ""))
+                  }
                 />
-                {errors.expMonth && <p className="text-red-500 text-sm">{errors.expMonth}</p>}
+                {errors.expMonth && (
+                  <p className="text-red-500 text-sm">{errors.expMonth}</p>
+                )}
               </div>
             </div>
           </div>
@@ -146,9 +160,13 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
               type="password"
               placeholder="رمز دوم"
               value={secondPassword}
-              onChange={(e) => setSecondPassword(e.target.value.replace(/\D/g, ""))}
+              onChange={(e) =>
+                setSecondPassword(e.target.value.replace(/\D/g, ""))
+              }
             />
-            {errors.secondPassword && <p className="text-red-500 text-sm">{errors.secondPassword}</p>}
+            {errors.secondPassword && (
+              <p className="text-red-500 text-sm">{errors.secondPassword}</p>
+            )}
           </div>
 
           {/* Captcha */}
@@ -185,7 +203,9 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
             className="w-full !bg-[#00c234] hover:!bg-[#73d791] text-white py-3 rounded-md"
             disabled={!captchaVerified || paymentMutation.isLoading}
           >
-            {paymentMutation.isLoading ? "در حال پردازش..." : `پرداخت ${formatNumber(price * 10)} ریال`}
+            {paymentMutation.isLoading
+              ? "در حال پردازش..."
+              : `پرداخت ${formatNumber(price * 10)} ریال`}
           </Button>
 
           {/* Cancel button */}
