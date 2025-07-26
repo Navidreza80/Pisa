@@ -1,4 +1,7 @@
-export const sortOptions = [{ id: 1, value: "price", text: "Price" }];
+export const sortOptions = [
+  { id: 1, value: "price", text: "قیمت" },
+  { id: 1, value: "rate", text: "امتیاز" },
+];
 
 // Facility options
 export const facilityOptions = [

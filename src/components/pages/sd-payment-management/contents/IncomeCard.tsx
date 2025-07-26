@@ -21,24 +21,24 @@ const IncomeCard = ({ data, title }) => {
         {/* Current Month Income */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex gap-2 items-center mt-2 sm:mt-0">
-            <p className="text-text text-lg sm:text-xl">{t("currentIncome")}</p>
             <span className="rounded-full w-4 h-4 bg-primary" />
+            <p className="text-text text-lg sm:text-xl">{t("currentIncome")}</p>
           </div>
           <div className="flex gap-2 justify-center text-lg rounded-xl text-background w-full sm:w-auto px-4 py-2 font-bold bg-primary">
-            <p>{t("tooman")}</p>
             <p>{formatNumber(data.currentMonthIncome.value)}</p>
+            <p>{t("tooman")}</p>
           </div>
         </div>
 
         {/* Total Income */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex gap-2 items-center mt-2 sm:mt-0">
-            <p className="text-text text-lg sm:text-xl">{t("totalIncome")}</p>
             <span className="rounded-full w-4 h-4 bg-border/50" />
+            <p className="text-text text-lg sm:text-xl">{t("totalIncome")}</p>
           </div>
           <div className="flex gap-2 justify-center text-lg rounded-xl w-full sm:w-auto px-4 py-2 font-bold bg-border/50">
-            <p>{t("tooman")}</p>
             <p>{formatNumber(data.totalIncome.value)}</p>
+            <p>{t("tooman")}</p>
           </div>
         </div>
       </div>

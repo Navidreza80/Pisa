@@ -1,5 +1,7 @@
 "use client";
+import HouseSkeleton from "@/components/common/house/house-skeleton";
 import HouseCardList from "@/components/common/house/HouseCardList";
+import SearchSVG from "@/components/common/svg/search";
 import { HouseItemsInterface } from "@/types/house";
 import {
   useAppDispatch,
@@ -7,13 +9,27 @@ import {
 } from "@/utils/hooks/react-redux/store/hook";
 import { setRentFilters } from "@/utils/hooks/react-redux/store/slices/rent-slice";
 import { useRentHouses } from "@/utils/hooks/use-houses";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import FilterModal from "../modals/FilterModal";
-import HouseSkeleton from "@/components/common/house/house-skeleton";
-import { useTranslations } from "next-intl";
-import SearchSVG from "@/components/common/svg/search";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const Rent = () => {
+  const [page, setPage] = useState(1);
+  const pageSize = 1;
+  const dispatch = useAppDispatch();
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    dispatch(setRentFilters({ page: newPage }));
+  };
   const t = useTranslations("rent");
   const filters = useAppSelector((state) => state.rentFilters);
 
@@ -26,7 +42,7 @@ const Rent = () => {
 
   const [selectedFilter, setSelectedFilter] = useState(t("all"));
   const { data: houses, isLoading } = useRentHouses();
-  const dispatch = useAppDispatch();
+  const totalPages = Math.ceil((houses?.totalCount || 0) / pageSize);
 
   const handleChange = (name: string, value: string | null) => {
     dispatch(setRentFilters({ [name]: value }));
@@ -90,7 +106,7 @@ const Rent = () => {
       </div>
       <span className="h-[1px] w-full my-auto bg-[#EAEAEA]" />
       {/* Lists */}
-      <div className="flex lg:justify-between gap-y-4 md:justify-center justify-center flex-wrap">
+      <div className="flex lg:justify-between gap-y-4 md:justify-center justify-center flex-wrap w-full">
         {isLoading &&
           [...Array(6)].map((_, i) => (
             <HouseSkeleton
@@ -100,18 +116,65 @@ const Rent = () => {
             />
           ))}
         {houses && houses?.totalCount > 0 ? (
-          houses?.houses.map((card: HouseItemsInterface, index: number) => (
-            <HouseCardList
-              key={index}
-              showRooms
-              showCapacity
-              showBathrooms
-              showParking
-              card={card}
-            />
-          ))
+          <>
+            {houses?.houses.map((card: HouseItemsInterface, index: number) => (
+              <HouseCardList
+                key={index}
+                showRooms
+                showCapacity
+                showBathrooms
+                showParking
+                card={card}
+              />
+            ))}
+            {totalPages > 1 && (
+              <div dir="ltr" className="w-full my-3 flex justify-center">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious
+                        onClick={() => page > 1 && handlePageChange(page - 1)}
+                        className={`cursor-pointer
+                              page === 1 ? "pointer-events-none opacity-50" : ""
+                            `}
+                      />
+                    </PaginationItem>
+
+                    {Array.from({ length: totalPages }, (_, i) => (
+                      <PaginationItem key={i}>
+                        <PaginationLink
+                          isActive={i + 1 === page}
+                          onClick={() => handlePageChange(i + 1)}
+                        >
+                          {i + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))}
+
+                    <PaginationItem>
+                      <PaginationNext
+                        onClick={() =>
+                          page < totalPages && handlePageChange(page + 1)
+                        }
+                        className={`
+                              cursor-pointer
+                              ${
+                                page === totalPages
+                                  ? "pointer-events-none opacity-50"
+                                  : ""
+                              }
+                            `}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
+          </>
         ) : (
-          <div className="font-bold text-2xl">{t("noResult")}</div>
+          !isLoading && (
+            <div className="font-bold text-2xl mt-1">{t("noResult")}</div>
+          )
         )}
       </div>
     </div>
