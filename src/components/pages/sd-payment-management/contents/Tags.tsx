@@ -8,7 +8,7 @@ import TagDashboard from "./TagDashboard";
 import { useTranslations } from "next-intl";
 
 const Tags = () => {
-  const t = useTranslations("Dashboard")
+  const t = useTranslations("Dashboard");
   const { data: bookingList } = useQuery({
     queryKey: ["BOOKING_LIST"],
     queryFn: getBookingList,
@@ -110,7 +110,6 @@ const Tags = () => {
             })}
           </div>
           <div className="w-full flex flex-wrap justify-between md:h-[255px] h-auto md:gap-y-0 gap-y-5 animate-fade-up">
-            <TagDashboard data={dashboarditems2.cards} />
             {pathname.endsWith("/seller") ? (
               <TagDashboard data={sellerItems.cards} />
             ) : pathname.endsWith("/buyer") ? (
@@ -118,6 +117,7 @@ const Tags = () => {
             ) : (
               ""
             )}
+            <TagDashboard data={dashboarditems2.cards} />
           </div>
         </>
       )}

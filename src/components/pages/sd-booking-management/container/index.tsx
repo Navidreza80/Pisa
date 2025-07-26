@@ -35,7 +35,11 @@ const tableHeaderItems = [
   { text: "empty", clx: "rounded-l-xl" },
 ];
 
-export default function SellerReservationManagement() {
+export default function SellerReservationManagement({
+  isFilter = true,
+}: {
+  isFilter: boolean;
+}) {
   const t = useTranslations("BookingListSeller");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 

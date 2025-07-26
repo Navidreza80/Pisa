@@ -7,8 +7,8 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import "./globals.css";
 // Third party components
 import FloatingActions from "@/components/common/fab";
-import Providers from "@/provider/provider";
 import TokenRefresher from "@/components/common/TokenRefresher";
+import Providers from "@/provider/provider";
 
 // metadata
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ export default async function RootLayout({
           <Providers>
             <div className="w-full">{children}</div>
             <FloatingActions />
-            {/* <TokenRefresher /> */}
+            <TokenRefresher />
           </Providers>
         </NextIntlClientProvider>
       </body>

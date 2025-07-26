@@ -93,23 +93,20 @@ function BuyerSideBar() {
             <div
               className={`flex ${!collapsed ? "lg:justify-between md:justify-center justify-center" : "justify-center"} mt-2`}
             >
+              {!collapsed && (
+                <Link
+                  href={"/"}
+                  className="text-text text-3xl font-extrabold lg:block md:hidden hidden"
+                >
+                  پیزا
+                </Link>
+              )}
               <div
                 className={`cursor-pointer my-auto lg:block md:hidden hidden ${collapsed ? "rotate-180" : ""}`}
                 onClick={toggleSideBar}
               >
                 <SignoutSVG />
               </div>
-              <div>
-                <House className="cursor-pointer lg:hidden md:block block" />
-              </div>
-              {!collapsed && (
-                <Link
-                  href={"/"}
-                  className="text-text text-4xl font-bold font-yekan lg:block md:hidden hidden"
-                >
-                  Piza
-                </Link>
-              )}
             </div>
 
             <div className="flex flex-col gap-4 mt-10">
