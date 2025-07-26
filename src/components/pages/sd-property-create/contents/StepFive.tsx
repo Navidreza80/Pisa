@@ -50,7 +50,7 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
     { text: formatNumber(Number(price)), svg: <DollarSVG /> },
   ];
   return (
-    <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:flex-row md:justify-between md:flex-row-reverse">
+    <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:justify-between md:flex-row-reverse">
       {/* Image Section */}
       <div className="w-full md:w-[41.8%] order-1 md:order-none">
         <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />

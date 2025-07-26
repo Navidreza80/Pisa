@@ -2,7 +2,6 @@
 import Http from "../../interceptor";
 
 // Dependencies
-import { toast } from "react-toastify";
 
 // Cookies
 import { getClientCookie, setClientCookie } from "../storage/client-cookie";
@@ -17,9 +16,7 @@ export const RefreshToken = async () => {
     // If the user token expires and access to the site's features is denied, the user will be redirected to the login page.
     if (res.status === 403) {
       if (typeof window !== "undefined") {
-        toast.info(
-          "دسترسی شما به امکانات سایت منقضی شده لطفا دوباره وارد شوید"
-        );
+        console.log("unauthorized")
         window.location.href = "/auth/login";
       }
       return;

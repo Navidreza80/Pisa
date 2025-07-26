@@ -91,6 +91,18 @@ export default function BuyerInformation() {
 
         <div className="h-[1px] bg-border" />
         <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
+          <div className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]">
+            {inputs.map((item) => (
+              <Input
+                key={item.name}
+                name={item.name}
+                placeholder={item.placeHolder}
+                className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+                value={item.value}
+                onChange={formik.handleChange}
+              />
+            ))}
+          </div>
           <div className="text-center">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("personalInfo.title")}
@@ -108,23 +120,18 @@ export default function BuyerInformation() {
               <Button variant="ghost">{t("buttons.cancel")}</Button>
             </div>
           </div>
-
-          <div className="flex flex-col flex-wrap gap-4 w-full md:w-[calc(55%)]">
-            {inputs.map((item) => (
-              <Input
-                key={item.name}
-                name={item.name}
-                placeholder={item.placeHolder}
-                className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-                value={item.value}
-                onChange={formik.handleChange}
-              />
-            ))}
-          </div>
         </div>
 
         <div className="h-[1px] bg-border" />
         <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
+          <div className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]">
+            <Input
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={t("newPassword")}
+              className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+            />
+          </div>
+
           <div className="text-center">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("security.title")}
@@ -141,14 +148,6 @@ export default function BuyerInformation() {
               </Button>
               <Button variant="ghost">{t("buttons.cancel")}</Button>
             </div>
-          </div>
-
-          <div className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]">
-            <Input
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={t("newPassword")}
-              className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
-            />
           </div>
         </div>
       </form>

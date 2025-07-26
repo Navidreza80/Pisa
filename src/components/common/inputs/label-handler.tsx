@@ -53,7 +53,7 @@ export function LabelManager({
   return (
     <div className="w-full space-y-3">
       {/* Labels container with subtle background */}
-      <div className="flex flex-wrap flex-row-reverse items-center gap-2 w-full min-h-16 p-3 bg-muted/30 rounded-2xl border border-border mt-4">
+      <div className="flex flex-wrap flex-row items-center gap-2 w-full min-h-16 p-3 bg-muted/30 rounded-2xl border border-border mt-4">
         {labels.length === 0 && (
           <p className="text-muted-foreground text-sm flex items-center h-full text-text-secondary">
             {emptyState ? emptyState : t("noItem")}

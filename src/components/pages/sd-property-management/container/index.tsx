@@ -68,6 +68,7 @@ export default function SellerDashboardProperties({ houses }) {
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
+        <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap justify-end">
           <FilterModal />
           <Input
@@ -75,7 +76,6 @@ export default function SellerDashboardProperties({ houses }) {
             className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
           />
         </div>
-        <Title text={t("title")} />
       </div>
       <Line />
 
@@ -152,7 +152,10 @@ export default function SellerDashboardProperties({ houses }) {
                           </div>
                         }
                       >
-                        <AddPropertyStepFour refresh={router.refresh} houseId={property.id} />
+                        <AddPropertyStepFour
+                          refresh={router.refresh}
+                          houseId={property.id}
+                        />
                       </Modal>
 
                       <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">

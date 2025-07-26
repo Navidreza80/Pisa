@@ -3,6 +3,14 @@ import HouseSkeleton from "@/components/common/house/house-skeleton";
 import HouseCardList from "@/components/common/house/HouseCardList";
 import SearchSVG from "@/components/common/svg/search";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
   useAppDispatch,
   useAppSelector,
 } from "@/utils/hooks/react-redux/store/hook";
@@ -13,14 +21,23 @@ import { useState } from "react";
 import Map from "../contents/Map";
 import { FilterModal } from "../modals/BookingFilterModal";
 import "../styles/scrollbar.css";
+
 import { useTranslations } from "next-intl";
 
 export default function ReserveListContainer() {
+  const [page, setPage] = useState(1);
+  const pageSize = 10;
+
   const t = useTranslations("Reserve");
   const [currentLoc, setCurrentLoc] = useState<[number, number]>([34, 52]);
   const { data, isLoading } = useHouses();
+  const totalPages = Math.ceil((data?.totalCount || 0) / pageSize);
   const filters = useAppSelector((state) => state.reserveFilters);
   const dispatch = useAppDispatch();
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    dispatch(setReserveFilters({ page: newPage }));
+  };
 
   const handleChange = (name: string, value: string) => {
     dispatch(setReserveFilters({ [name]: value }));
@@ -58,21 +75,70 @@ export default function ReserveListContainer() {
                 />
               ))}
             {data?.houses && data?.houses?.length > 0 ? (
-              data.houses.map((item, index) => {
-                return (
-                  <HouseCardList
-                    setCurrentLoc={setCurrentLoc}
-                    showOnMap
-                    width="lg:w-[calc(50%-12.475px)] md:w-[calc(50%-10px)] w-full"
-                    minWidth="min-w-[315px]"
-                    key={index}
-                    showFacilities={false}
-                    card={item}
-                  />
-                );
-              })
+              <>
+                {data.houses.map((item, index) => {
+                  return (
+                    <HouseCardList
+                      setCurrentLoc={setCurrentLoc}
+                      showOnMap
+                      width="lg:w-[calc(50%-12.475px)] md:w-[calc(50%-10px)] w-full"
+                      minWidth="min-w-[315px]"
+                      key={index}
+                      showFacilities={false}
+                      card={item}
+                    />
+                  );
+                })}
+                {totalPages > 1 && (
+                  <div dir="ltr" className="w-full my-3 flex justify-center">
+                    <Pagination>
+                      <PaginationContent>
+                        <PaginationItem>
+                          <PaginationPrevious
+                            onClick={() =>
+                              page > 1 && handlePageChange(page - 1)
+                            }
+                            className={`cursor-pointer
+                              page === 1 ? "pointer-events-none opacity-50" : ""
+                            `}
+                          />
+                        </PaginationItem>
+
+                        {Array.from({ length: totalPages }, (_, i) => (
+                          <PaginationItem key={i}>
+                            <PaginationLink
+                              isActive={i + 1 === page}
+                              onClick={() => handlePageChange(i + 1)}
+                            >
+                              {i + 1}
+                            </PaginationLink>
+                          </PaginationItem>
+                        ))}
+
+                        <PaginationItem>
+                          <PaginationNext
+                            onClick={() =>
+                              page < totalPages && handlePageChange(page + 1)
+                            }
+                            className={`
+                              cursor-pointer
+                              ${
+                                page === totalPages
+                                  ? "pointer-events-none opacity-50"
+                                  : ""
+                              }
+                            `}
+                          />
+                        </PaginationItem>
+                      </PaginationContent>
+                    </Pagination>
+                  </div>
+                )}
+              </>
             ) : (
-              <div className="font-bold text-2xl mt-1">{t("noResult")}</div>
+              !isLoading && (
+                <div className="font-bold text-2xl mt-1">{t("noResult")}</div>
+              )
             )}
           </div>
         </div>

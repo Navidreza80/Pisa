@@ -1,10 +1,12 @@
 /* eslint-disable */
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { deleteClientCookie } from "../service/storage/client-cookie";
 import {
   getServerCookie,
   setServerCookie,
 } from "../service/storage/server-cookie";
-import axios, { AxiosResponse, AxiosError } from "axios";
+import deleteServerCookieAction from "./deleteServerCookieAction";
 
 export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -16,15 +18,15 @@ const onSuccess = <T>(response: AxiosResponse<T>): T => {
   return response.data;
 };
 
-export const onError = (error: AxiosError): Promise<never> => {
+export const onError = async (error: AxiosError): Promise<never> => {
   if (error.response) {
     const { status, data } = error.response;
 
     // 401 Unauthorized or 403 Forbidden
     if (status === 401 || status === 403) {
-      toast.info(
-        "دسترسی شما به امکانات سایت منقضی شده. لطفا دوباره وارد شوید!"
-      );
+      deleteServerCookieAction("serverAccessToken");
+      deleteClientCookie("clientAccessToken");
+      console.log("unauthorized");
       setTimeout(() => {
         window.location.href = "/auth/login";
       }, 1500);
@@ -60,7 +62,8 @@ instance.interceptors.response.use(onSuccess, onError);
 instance.interceptors.request.use(
   async (config) => {
     const token = await getServerCookie("serverAccessToken");
-    if (token != null) {
+    console.log(token);
+    if (typeof token == "string") {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;

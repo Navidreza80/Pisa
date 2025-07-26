@@ -15,11 +15,10 @@ import { useTranslations } from "next-intl";
 const Stepper = () => {
   const t = useTranslations("Dashboard");
   const stepsItems = [
-    { text: t("basicInformation"), id: 1 },
-    { text: t("address"), id: 2 },
+    { text: t("finalSubmition"), id: 4 },
     { text: t("facilities"), id: 3 },
-    { text: t("propertyImage"), id: 4 },
-    { text: t("finalSubmition"), id: 5 },
+    { text: t("address"), id: 2 },
+    { text: t("basicInformation"), id: 1 },
   ];
 
   const id = useAppSelector((state) => state.stepsId.id);
@@ -75,7 +74,7 @@ const Stepper = () => {
           >
             {!isLast && (
               <Line
-                className={`w-[30px] md:w-[87px] ${
+                className={`w-[30px] md:w-[120px] ${
                   item.id == id
                     ? "!border-black"
                     : id > item.id

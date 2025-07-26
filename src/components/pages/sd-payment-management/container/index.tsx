@@ -7,49 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
-
-const properties = [
-  {
-    id: 1,
-    date: "12 مرداد - 1401 / 12:33",
-    number: "123456789123456",
-    price: 1250000,
-    transaction: "شارژ کیف پول",
-    status: "فعال",
-  },
-  {
-    id: 2,
-    date: "12 مرداد - 1401 / 12:33",
-    number: "123456789123456",
-    price: 1250000,
-    transaction: "شارژ کیف پول",
-    status: "فعال",
-  },
-  {
-    id: 3,
-    date: "12 مرداد - 1401 / 12:33",
-    number: "123456789123456",
-    price: 1250000,
-    transaction: "شارژ کیف پول",
-    status: "فعال",
-  },
-  {
-    id: 4,
-    date: "12 مرداد - 1401 / 12:33",
-    number: "123456789123456",
-    price: 1250000,
-    transaction: "شارژ کیف پول",
-    status: "فعال",
-  },
-  {
-    id: 5,
-    date: "12 مرداد - 1401 / 12:33",
-    number: "123456789123456",
-    price: 1250000,
-    transaction: "شارژ کیف پول",
-    status: "فعال",
-  },
-];
+import formatToPersianDate from "@/utils/helper/format-date";
 
 const statusColor = {
   فعال: "bg-green-400 text-white",
@@ -66,7 +24,7 @@ export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
 ];
 
-export default function SellerFinanceManagement() {
+export default function SellerFinanceManagement({ payments }) {
   const t = useTranslations("FinanceManagement");
 
   return (
@@ -85,26 +43,26 @@ export default function SellerFinanceManagement() {
         <TableDashboard
           addTitle={t("property")}
           tableHeader={tableHeaderItems(t)}
-          tableContent={properties.map((property) => (
-            <tr key={property.id} className="rounded-xl">
+          tableContent={payments.data.map((payment) => (
+            <tr key={payment.id} className="rounded-xl">
               <td className="pl-6 py-7 rounded-r-xl text-[20px] font-medium">
-                {property.date}
+                {formatToPersianDate(payment)}
               </td>
               <td className="px-6 py-7 text-[20px] font-medium">
-                {property.number}
+                {payment.transactionId || "نامعتبر"}
               </td>
               <td className="px-6 py-7 text-[20px] font-medium">
-                {formatNumber(property.price)}
+                {formatNumber(payment.amount)}
               </td>
               <td className="px-6 py-7 text-[13px] font-medium">
                 <span
-                  className={`px-3 py-1 rounded-full text-sm ${statusColor[property.status]}`}
+                  className={`px-3 py-1 rounded-full text-sm ${statusColor[payment.status]}`}
                 >
-                  {property.status}
+                  {payment.status == "confirmed" ? "فعال" : payment.status == "pending" ? "در انتظار" : "غیرفعال"}
                 </span>
               </td>
               <td className="px-6 py-7  text-[16px] font-medium">
-                {property.transaction}
+                رزرو
               </td>
               <td className="px-6 py-2  text-[16px] font-medium relative rounded-l-xl">
                 {t("viewReceipt")}
@@ -116,21 +74,21 @@ export default function SellerFinanceManagement() {
 
       {/* Card view for mobile */}
       <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {properties.map((property) => (
-          <Card key={property.id} className="overflow-hidden border-border">
+        {payments.data.map((payment) => (
+          <Card key={payment.id} className="overflow-hidden border-border">
             <CardContent className="p-4">
               {/* Transaction date and status */}
               <div className="flex justify-between items-start mb-3">
                 <span
-                  className={`px-3 py-1 rounded-full text-sm ${statusColor[property.status]}`}
+                  className={`px-3 py-1 rounded-full text-sm ${statusColor[payment.status]}`}
                 >
-                  {property.status}
+                  {payment.status}
                 </span>
                 <div className="">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.date")}:
                   </p>
-                  <p className="font-medium">{property.date}</p>
+                  <p className="font-medium">{formatToPersianDate(payment)}</p>
                 </div>
               </div>
 
@@ -140,21 +98,21 @@ export default function SellerFinanceManagement() {
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.trackingNumber")}:
                   </p>
-                  <p className="font-medium">{property.number}</p>
+                  <p className="font-medium">{payment.transactionId|| "نامعتبر"}</p>
                 </div>
 
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.amount")}:
                   </p>
-                  <p className="font-medium">{formatNumber(property.price)}</p>
+                  <p className="font-medium">{formatNumber(payment.amount)}</p>
                 </div>
 
                 <div className="space-y-1">
                   <p className="text-sm text-gray-500">
                     {t("tableHeaders.transactionType")}:
                   </p>
-                  <p className="font-medium">{property.transaction}</p>
+                  <p className="font-medium">رزرو</p>
                 </div>
               </div>
 

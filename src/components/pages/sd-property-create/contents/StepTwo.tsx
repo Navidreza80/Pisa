@@ -4,9 +4,9 @@ import MapComponent from "@/components/common/map/map";
 import { useTranslations } from "next-intl";
 
 export default function AddPropertyStepTwo({ formik, setLocation, location }) {
-  const t = useTranslations("Dashboard")
+  const t = useTranslations("Dashboard");
   return (
-    <div className="flex flex-col md:flex-row justify-between w-full mt-6 md:mt-[61px] mb-6 md:mb-[51px] h-auto md:h-[366px] gap-4 md:gap-0">
+    <div className="flex flex-col md:flex-row-reverse justify-between w-full mt-6 md:mt-[61px] mb-6 md:mb-[51px] h-auto md:h-[366px] gap-4 md:gap-0">
       <div className="w-full md:w-[62.8%] h-[250px] md:h-auto order-2 md:order-1">
         <MapComponent
           className="rounded-[14px] h-full"
@@ -21,6 +21,7 @@ export default function AddPropertyStepTwo({ formik, setLocation, location }) {
           )}
         </MapComponent>
       </div>
+
       <div className="w-full md:w-[34.4%] flex flex-col order-1 md:order-2">
         <InputText
           className="text"
@@ -33,11 +34,8 @@ export default function AddPropertyStepTwo({ formik, setLocation, location }) {
             {formik.errors.address}
           </div>
         ) : null}
-        <h1
-          
-          className="leading-8 md:leading-10 text-text text-base md:text-[20px] font-semibold mt-6 md:mt-[68px]"
-        >
-{t("location1")}
+        <h1 className="leading-8 md:leading-10 text-text text-base md:text-[20px] font-semibold mt-6 md:mt-[68px]">
+          {t("location1")}
           <div className="flex flex-wrap md:flex-nowrap">
             <p className="text-primary"> {t("location2")} </p>
             <p> {t("location3")} </p>

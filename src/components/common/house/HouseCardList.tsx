@@ -45,6 +45,7 @@ import Reveal from "../reveal";
 import { useMutation } from "@tanstack/react-query";
 import createFavorite from "@/utils/service/favorites/post";
 import { toast } from "react-toastify";
+import deleteFavorite from "@/utils/service/favorites/delete";
 
 /**
  * Filter reservation houses component.
@@ -74,12 +75,29 @@ export default function HouseCardList({
   const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(card.isFavorite);
 
-  const { mutate: addFavorite } = useMutation({
+  const { mutate: addFavorite, isPending } = useMutation({
     mutationKey: ["CREATE_FAVORITE"],
-    mutationFn: (house_id: string) => createFavorite(house_id),
+    mutationFn: (house_id: string) =>
+      toast.promise(createFavorite(house_id), {
+        pending: "درحال پردازش...",
+        success: "ملک به لیست علاقه مندی افزوده شد",
+        error: "خطا در افزودن ملک به علاقه مندی",
+      }),
     onSuccess: () => {
-      toast.success("ملک به لیست علاقه مندی افزوده شد")
-      setIsFavorite((prev) => !prev);
+      setIsFavorite(true);
+    },
+  });
+
+  const { mutate: removeFavorite } = useMutation({
+    mutationKey: ["DELETE_FAVORITE"],
+    mutationFn: (house_id: string) =>
+      toast.promise(deleteFavorite(house_id), {
+        pending: "درحال پردازش...",
+        success: "ملک از لیست علاقه مندی حذف شد",
+        error: "خطا در حذف ملک از علاقه مندی",
+      }),
+    onSuccess: () => {
+      setIsFavorite(false);
     },
   });
 
@@ -203,8 +221,15 @@ export default function HouseCardList({
           className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-2 ltr:left-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
         <button
-          onClick={() => addFavorite(card.id.toString())}
-          className={`${isFavorite ? "bg-primary" : "bg-white"} cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-14 ltr:left-14 bg-white flex justify-center items-center`}
+          onClick={() => {
+            if (!isFavorite) {
+              addFavorite(card.id.toString());
+            } else if (isFavorite) {
+              removeFavorite(card.id.toString());
+            }
+          }}
+          disabled={isPending}
+          className={`${isFavorite ? "bg-primary" : "bg-white"} cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-14 ltr:left-14 flex justify-center items-center`}
         >
           <Heart className={`${isFavorite ? "text-white" : "text-black"}`} />
         </button>

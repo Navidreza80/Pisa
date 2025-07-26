@@ -27,6 +27,7 @@ async function HeaderDashboard() {
 
   return (
     <div className="bg-background animate-fade-down rounded-[12px] px-[19px] h-[66px] flex justify-between">
+      <DashboardTitle />
       {!decodedUser ? (
         <span></span>
       ) : (
@@ -68,7 +69,6 @@ async function HeaderDashboard() {
           </div>
         </div>
       )}
-      <DashboardTitle />
     </div>
   );
 }
