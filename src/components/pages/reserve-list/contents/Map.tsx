@@ -24,7 +24,7 @@ export default function Map({
 }) {
   const t = useTranslations("Reserve");
   return (
-    <div className="lg:min-w-[45%] animate-jump-in md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none rtl:lg:rounded-tr-3xl ltr:lg:rounded-tl-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
+    <div className="lg:w-[45%] animate-jump-in md:w-full lg:border-0 md:border-3 border-3 w-full border-primary lg:aspect-square lg:rounded-none rtl:lg:rounded-tr-3xl ltr:lg:rounded-tl-3xl md:rounded-3xl rounded-3xl lg:!h-[calc(100vh-80px)] h-64 md:h-64 lg:mb-0 md:mb-5 mb-5 overflow-hidden">
       <MapComponent initialLocation={currentLoc} initialZoom={5}>
         {/* Recenter map when the location changes */}
         <RecenterMap center={currentLoc} />

@@ -82,7 +82,8 @@ export default function ReserveListContainer() {
   return (
     <div className="w-full flex justify-end">
       <div className="lg:h-[calc(100vh-80px)] md:h-auto h-auto w-[calc(100%-7.25%)] flex mx-auto md:mx-auto lg:mx-0 justify-center md:justify-center lg:justify-start lg:flex-nowrap md:flex-wrap flex-wrap font-yekan">
-        <div className="flex-grow animate-fade-left">
+        <div className="flex-grow animate-fade-left w-[55%]">
+          {/* Filter and Search */}
           <div className="h-[62px] w-full pb-6 rtl:lg:pl-7 ltr:lg:pr-7 md:pl-0 pl-0 flex gap-4">
             <FilterModal />
             <div className="flex whitespace-nowrap items-center justify-center gap-1 text-sm font-medium border-border rounded-2xl border px-2 h-12">
@@ -117,6 +118,7 @@ export default function ReserveListContainer() {
           </div>
 
           <div className="lg:overflow-y-scroll md:overflow-y-auto overflow-y-auto w-full rtl:lg:pl-[22px] ltr:pr-[22px] md:pl-0 pl-0 custom-scrollbar lg:max-h-[calc(100vh-142px)] md:h-auto h-auto flex flex-wrap gap-[24.95px] lg:justify-between md:justify-center justify-center">
+            {/* Skeleton and Data */}
             {isLoading &&
               [...Array(6)].map((_, i) => (
                 <HouseSkeleton
@@ -187,6 +189,7 @@ export default function ReserveListContainer() {
                 )}
               </>
             ) : (
+              // Empty State
               !isLoading && (
                 <div className="font-bold text-2xl mt-1">{t("noResult")}</div>
               )
