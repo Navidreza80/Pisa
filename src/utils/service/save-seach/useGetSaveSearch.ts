@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import http from "@/utils/interceptor";
 import { getClientCookie } from "../storage/client-cookie";
-import { toast } from "react-toastify"; // ✅ import toast
+import { toast } from "react-toastify";
 
-// Define the shape of a saved search
 type SavedSearch = {
   id: number;
   userId: number;
@@ -13,11 +12,9 @@ type SavedSearch = {
   updatedAt: string;
 };
 
-// Fetch saved searches from API (requires auth token)
 async function getSavedSearches(): Promise<SavedSearch[]> {
   const token = getClientCookie("clientAccessToken");
 
-  // 🔒 Handle unauthenticated user
   if (!token) {
     toast.warn("ابتدا وارد حساب کاربری خود شوید.");
     throw new Error("Unauthenticated");
@@ -32,12 +29,11 @@ async function getSavedSearches(): Promise<SavedSearch[]> {
   return response;
 }
 
-// React Query hook for consuming saved searches in UI
 export function useGetSavedSearches() {
   return useQuery({
     queryKey: ["saved-searches"],
     queryFn: getSavedSearches,
     staleTime: 100000,
-    retry: false, // 🔁 prevent retry when unauthenticated
+    retry: false, // do not retry on token absence
   });
 }
