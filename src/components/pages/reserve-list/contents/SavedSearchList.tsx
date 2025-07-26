@@ -11,15 +11,14 @@ type SavedSearchListProps = {
 };
 
 export default function SavedSearchList({ onSelect }: SavedSearchListProps) {
-    const { data, isLoading, error } = useGetSavedSearches();
+    const { data, isLoading } = useGetSavedSearches();
     const { mutate: deleteSearch } = useDeleteSavedSearch();
 
     if (isLoading) return <div className=" w-full  bg-background border border-border rounded-md shadow-md mt-1 p-2 text-sm text-gray-500">در حال بارگذاری...</div>;
-    if (error) return <div className=" w-full  bg-background border border-border rounded-md shadow-md mt-1 p-2 text-sm text-red-500">خطا در دریافت جستجوها</div>;
     if (!data || data.length === 0) return <></>;
 
     return (
-        <ul className="max-h-48 w-full overflow-auto bg-background border border-border rounded-md shadow-md mt-1">
+        <ul className="max-h-30 w-full overflow-y-scroll bg-background border border-border rounded-md shadow-md mt-1">
             {data.map((item) => (
                 <li
                     key={item.id}
@@ -31,7 +30,7 @@ export default function SavedSearchList({ onSelect }: SavedSearchListProps) {
                         >
                             {item.searchQuery}
                         </h1>
-                        <p className="text-[12px] text-text-secondary truncate">{item.note}</p>
+                        <p className="text-[12px] text-text-secondary truncate">{item.note || "یادداشتی وجود ندارد."}</p>
                     </div>
 
                     <button
