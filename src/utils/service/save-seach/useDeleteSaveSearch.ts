@@ -9,18 +9,22 @@ export function useDeleteSavedSearch() {
   return useMutation({
     mutationFn: async (id: string) => {
       const token = getClientCookie("clientAccessToken");
-      if (!token) throw new Error("توکن یافت نشد");
+
+      if (!token) {
+        toast.warn("ابتدا وارد حساب کاربری خود شوید.");
+        throw new Error("توکن یافت نشد");
+      }
 
       await http.delete(`/saved-searches/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     },
     onSuccess: () => {
-      toast.success("جستجوی ذخیره‌شده حذف شد");
-      queryClient.invalidateQueries(["saved-searches"]);
+      toast.success("جستجوی ذخیره‌شده حذف شد.");
+      queryClient.invalidateQueries(["saved-searches"]); // ✅ refresh list
     },
     onError: () => {
-      toast.error("حذف جستجو با خطا مواجه شد");
+      toast.error("حذف جستجو با خطا مواجه شد.");
     },
   });
 }

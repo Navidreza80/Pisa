@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import http from "@/utils/interceptor"; 
 import { getClientCookie } from "../storage/client-cookie";
@@ -9,12 +9,15 @@ interface SaveSearchPayload {
 }
 
 export function useSaveSearch() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (data: SaveSearchPayload) => {
       const token = getClientCookie("clientAccessToken");
 
       if (!token) {
-        throw new Error("توکن یافت نشد. لطفاً وارد شوید.");
+        toast.warn("ابتدا وارد حساب کاربری خود شوید.");
+        throw new Error("توکن یافت نشد");
       }
 
       const response = await http.post("/saved-searches", data, {
@@ -31,6 +34,7 @@ export function useSaveSearch() {
     },
     onSuccess: () => {
       toast.success("جستجو با موفقیت ذخیره شد.");
+      queryClient.invalidateQueries(["saved-searches"]); // ✅ refresh list
     },
     onError: (error: any) => {
       toast.error(error?.message || "خطا در ذخیره‌سازی");
