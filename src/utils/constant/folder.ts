@@ -71,5 +71,5 @@ export const DashboardBuyerFavorite = [
 export const tableHeaderItems = [
   { text: "اعلان ها", clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
   { text: "تاریخ", clx: null },
-  { text: "-", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
+  { text: "", clx: "rtl:rounded-l-xl ltr:rounded-r-xl" },
 ];
