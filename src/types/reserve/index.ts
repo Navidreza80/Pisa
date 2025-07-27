@@ -12,7 +12,7 @@ interface TravelerDetail {
 }
 
 export interface Reservation {
-  id: number;
+  id: string;
   houseId: number;
   reservedDates: ReservedDate[];
   traveler_details: TravelerDetail[];
