@@ -6,12 +6,18 @@ import { usePathname } from "next/navigation";
 import Tag from "./Tag";
 import TagDashboard from "./TagDashboard";
 import { useTranslations } from "next-intl";
+import { getOverallSellerStatus } from "@/utils/service/payments/OverallStatus";
 
 const Tags = () => {
   const t = useTranslations("Dashboard");
   const { data: bookingList } = useQuery({
     queryKey: ["BOOKING_LIST"],
     queryFn: getBookingList,
+  });
+
+  const { data: paymentStatus } = useQuery({
+    queryKey: ["PAYMENT_OVERALL"],
+    queryFn: getOverallSellerStatus,
   });
 
   const reservationCountByDay = {};
@@ -27,10 +33,13 @@ const Tags = () => {
   }));
 
   const financeitems = [
-    { text: t("lastMonthIncome"), price: 1200000 },
-    { text: t("currentIncome"), price: 1200000 },
-    { text: t("totalIncome"), price: 1300000 },
-    { text: t("canDeposit"), price: 1400000 },
+    {
+      text: t("lastMonthIncome"),
+      price: paymentStatus?.totalPerviousMonthAmount,
+    },
+    { text: t("currentIncome"), price: paymentStatus?.totalCurrentMonthAmount },
+    { text: t("totalIncome"), price: paymentStatus?.totalAmount },
+    { text: t("canDeposit"), price: paymentStatus?.totalAmount },
   ];
   const dashboarditems = [
     { text: t("totalVisit"), textNumber: 4, href: "reservations" },
@@ -96,7 +105,7 @@ const Tags = () => {
   return (
     <>
       {pathname.includes("/seller/finance") && (
-        <div className="w-full flex justify-between animate-fade-up">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 animate-fade-up">
           {financeitems.map((item, index) => {
             return <Tag key={index} item={item} />;
           })}
@@ -104,7 +113,7 @@ const Tags = () => {
       )}
       {(pathname.endsWith("/seller") || pathname.endsWith("/buyer")) && (
         <>
-          <div className="w-full flex flex-wrap justify-between animate-fade-up">
+          <div className="w-full grid lg:grid-cols-4 gap-x-5 md:grid-cols-2 grid-cols-1 animate-fade-up">
             {dashboarditems.map((item, index) => {
               return <Tag key={index} item={item} />;
             })}

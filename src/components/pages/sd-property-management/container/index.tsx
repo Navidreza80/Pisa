@@ -137,7 +137,7 @@ export default function SellerDashboardProperties({
       <TableDashboard
         add={true}
         card={
-          <div className="grid grid-cols-1 gap-4 mt-4">
+          <div className="grid grid-cols-1 gap-4 mt-4 w-full">
             {houses.map((property) => (
               <Card
                 key={property.id}

@@ -6,10 +6,12 @@ import { getServerCookie } from "../storage/server-cookie";
  * Get all sellers customers booking.
  * @returns response with array of objects including all sellers customers bookings.
  */
-export async function GetSellerBooking({
-  params,
-}: {
-  params: { limit?: string; search?: string };
+export async function GetSellerBooking(params: {
+  page?: string;
+  limit?: string;
+  status?: string;
+  sort?: string;
+  order?: string;
 }) {
   try {
     const userId = await getServerCookie("userId");

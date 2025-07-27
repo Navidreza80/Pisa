@@ -70,7 +70,7 @@ export default function InputSelect({
       >
         {withLabel && (
           <div
-            className={`text-fade font-medium text-[13px] outline-0 focus:outline-0  absolute top-[-10] ${color ? color : "bg-background"} right-2 px-2`}
+            className={`text-fade font-light text-[13px] outline-0 focus:outline-0  absolute top-[-10] ${color ? color : "bg-background"} right-2 px-2`}
           >
             {label}
           </div>
@@ -85,7 +85,7 @@ export default function InputSelect({
           <SelectItem
             key={index}
             value={String(item.value ?? item.id ?? item.text)}
-            className=" z-[100] relative font-medium text-text"
+            className=" z-[100] font-light relative text-text text-base"
           >
             {item.area_name || item.text || item.name}
           </SelectItem>

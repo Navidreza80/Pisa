@@ -6,12 +6,13 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 import { useTranslations } from "next-intl";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Tag = ({ item }) => {
   const t = useTranslations("Dashboard");
   const pathname = usePathname();
   return (
-    <div className="w-[calc(50%-10px)] md:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] px-3 md:px-[19px] h-[130px] rounded-xl bg-background flex flex-wrap mb-4 md:mb-0">
+    <div className=" px-3 w-full md:px-[19px] h-[130px] rounded-xl bg-background flex flex-wrap mb-4 md:mb-0">
       <div className="h-[60px] flex items-center flex-row-reverse gap-x-2.5">
         <div className="flex flex-col flex-wrap gap-1 justify-center">
           {item.textNumber && (
@@ -25,8 +26,8 @@ const Tag = ({ item }) => {
       </div>
       <Line className="!mb-0 w-full" />
       {pathname.endsWith("/finance") ? (
-        <div className="font-medium text-center w-full py-[13px] text-[20px]">
-          {formatNumber(item.price)} {t("tooman")}
+        <div className="font-medium text-center w-full py-[13px] text-[20px] flex gap-x-2 justify-center items-center">
+          {item.price ? formatNumber(item.price) :  item.price === 0 ? "0" : <Skeleton className="w-[100px] h-4" />} {t("tooman")}
         </div>
       ) : (
         <Link

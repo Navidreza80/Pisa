@@ -2,11 +2,7 @@ import { cancelBooking } from "@/utils/service/reserve/cancel";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const useCancelBooking = ({
-  refetch,
-}: {
-  refetch: () => void | Promise<unknown>;
-}) => {
+const useCancelBooking = (refetch: () => void) => {
   const { mutate: handleCancel } = useMutation({
     mutationKey: ["CANCEL_BOOKING"],
     mutationFn: (id: string) =>

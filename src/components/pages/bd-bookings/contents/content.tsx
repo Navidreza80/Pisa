@@ -2,29 +2,28 @@
 
 "use client";
 
+import ModalStep2 from "@/components/common/dashboard/modalStep2";
 import TableDashboard from "@/components/common/dashboard/Table";
 import Modal from "@/components/common/modal/modal";
+import CancelSVG from "@/components/common/svg/CancelSVG";
+import ConfirmSVG from "@/components/common/svg/ConfirmSVG";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import PaymentSVG from "@/components/dashboard/svg/PaymentSVG";
+import DetailSVG from "@/components/dashboard/svg/DetailPopover";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
 import { Reservation } from "@/types/reserve";
 import formatToPersianDateWithMoment from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
-import { cancelBooking } from "@/utils/service/reserve/cancel";
-import { continueBooking } from "@/utils/service/reserve/continue";
-import { deleteReservation } from "@/utils/service/reserve/delete";
-import { Users, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import useCancelBooking from "../../sd-booking-management/content/hooks/useCancelBooking";
+import useContinueBooking from "../../sd-booking-management/content/hooks/useContinueBooking";
+import useDeleteBooking from "../../sd-booking-management/content/hooks/useDeleteBooking";
+import Status from "../../sd-booking-management/content/Status";
+import PopoverItem from "../../sd-property-management/content/PopoverItem";
 import ReserveDetail from "./reserveDetail";
 
 export default function ReserveTableContent({
@@ -40,51 +39,10 @@ export default function ReserveTableContent({
     { text: t("birthDate"), clx: "rounded-l-xl" },
   ];
   const router = useRouter();
-  const handleDelete = async (id: string) => {
-    await deleteReservation(id);
-    router.refresh();
-  };
-  const handleCancel = async (id: string) => {
-    await cancelBooking(id);
-    router.refresh();
-  };
-  const handleContinue = async (id: string) => {
-    await continueBooking(id);
-    router.refresh();
-  };
-  const deleteBooking = async (id: string) => {
-    try {
-      toast.promise(() => handleDelete(id), {
-        success: t("success"),
-        pending: t("pending"),
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const cancelReserve = async (id: string) => {
-    try {
-      toast.promise(() => handleCancel(id), {
-        success: "رزرو با موفقیت لغو شد",
-        pending: "درحال لغو رزرو...",
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const continueReserve = async (id: string) => {
-    try {
-      toast.promise(() => handleContinue(id), {
-        success: "رزرو با موفقیت بازیابی شد",
-        pending: "درحال بازیابی رزرو...",
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const [detailModal, setDetailModal] = useState<boolean>(false);
+  const { handleDelete } = useDeleteBooking(() => router.refresh());
+  const { handleCancel } = useCancelBooking(() => router.refresh());
+  const { handleContinue } = useContinueBooking(() => router.refresh());
 
-  const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
   return (
     <tr key={booking.id} className=" border-b hover:bg-background/30">
       <td className="py-2 px-4 text-[18px] font-medium">
@@ -103,118 +61,85 @@ export default function ReserveTableContent({
         })}
       </td>
       <td className="py-2 px-4 text-[13px] font-medium">
-        <span
-          className={cn(
-            "px-2 py-1 rounded-full text-white text-xs",
-            booking.status === "confirmed" && "bg-lime-400",
-            booking.status === "pending" && "bg-orange-400",
-            booking.status === "canceled" && "bg-red-400"
-          )}
-        >
-          {booking.status == "pending"
-            ? t("pendingStatus")
-            : booking.status == "confirmed"
-              ? t("submit")
-              : "لغو شده"}
-        </span>
+        <Status status={booking.status} />
       </td>
       <td className="py-2 px-4 text-[13px] font-medium">
-        <span>{t("submit")}</span>
+        <Status status={"canceled"} />
       </td>
       <td className="py-2 px-4 ">
-        <Popover
-          open={openPopoverId === booking.id}
-          onOpenChange={(open) => setOpenPopoverId(open ? booking.id : null)}
-        >
+        <Popover>
           <PopoverTrigger asChild>
             <div className="text-2xl font-bold cursor-pointer">...</div>
           </PopoverTrigger>
           <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
             <div className="space-y-2">
-              <div
-                onClick={() => setDetailModal((prev: boolean) => !prev)}
-                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1"
-              >
-                <ReserveDetail
-                  isOpen={detailModal}
-                  toggleModal={() => setDetailModal((prev: boolean) => !prev)}
-                  houseId={booking.houseId}
-                />
-                <div className="my-auto">
-                  <DetailPopover />
-                </div>
-              </div>
-              <Link
-                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1"
-                href={`/payment/${booking.houseId.toString()}?bookingId=${booking.id.toString()}`}
-              >
-                <h1>{t("actions.payment")}</h1>
-                <div className="my-auto">
-                  <PaymentSVG />
-                </div>
-              </Link>
-              <div
-                onClick={() => deleteBooking(booking.id.toString())}
-                className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
-              >
-                <h1>{t("actions.delete")}</h1>
-                <div className="my-auto">
-                  <DeletePopover />
-                </div>
-              </div>
+              <ReserveDetail
+                trigger={<PopoverItem icon={<DetailSVG />} title={"جزییات"} />}
+                houseId={booking.houseId}
+              />
+              <PopoverItem
+                icon={<ConfirmSVG />}
+                title={t("actions.payment")}
+                handleClick={() =>
+                  router.push(
+                    `/payment/${booking.houseId.toString()}?bookingId=${booking.id.toString()}`
+                  )
+                }
+              />
+              <ModalStep2
+                title="آیا از حذف این رزرو مطمعنید؟"
+                desc="امکان بازگشت پس از حذف وجود ندارد!"
+                button="حذف رزرو"
+                trigger={
+                  <PopoverItem
+                    icon={<DeletePopover />}
+                    title={t("actions.delete")}
+                  />
+                }
+                onConfirm={() => handleDelete(booking.id.toString())}
+              />
               {booking.status == "pending" && (
-                <div
-                  onClick={() => cancelReserve(booking.id.toString())}
-                  className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
-                >
-                  <h1>لغو رزرو</h1>
-                  <div className="my-auto">
-                    <X />
-                  </div>
-                </div>
+                <PopoverItem
+                  title="لغو رزرو"
+                  icon={<CancelSVG />}
+                  handleClick={() => handleCancel(booking.id.toString())}
+                />
               )}
               {booking.status == "canceled" && (
-                <div
-                  onClick={() => continueReserve(booking.id.toString())}
-                  className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1"
-                >
-                  <h1>بازیابی رزرو</h1>
-                  <div className="my-auto">
-                    <X />
-                  </div>
-                </div>
+                <PopoverItem
+                  title="بازیابی رزرو"
+                  icon={<ConfirmSVG />}
+                  handleClick={() => handleContinue(booking.id.toString())}
+                />
               )}
-              <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                <Modal
-                  title={t("travelerInformation")}
-                  trigger={<h1 className="cursor-pointer">{t("travelers")}</h1>}
-                >
-                  <TableDashboard
-                    tableHeader={tableHeaderItems}
-                    tableContent={booking.traveler_details.map(
-                      (traveler, index) => (
-                        <tr key={index}>
-                          <td className="py-2 px-4 text-[18px] font-medium">
-                            {traveler.firstName}
-                          </td>
-                          <td className="py-2 px-4 text-[18px] font-medium">
-                            {traveler.nationalId}
-                          </td>
-                          <td className="py-2 px-4 text-[18px] font-medium">
-                            {traveler.gender}
-                          </td>
-                          <td className="py-2 px-4 text-[18px] font-medium">
-                            {traveler.birthDate}
-                          </td>
-                        </tr>
-                      )
-                    )}
-                  />
-                </Modal>
-                <div className="my-auto">
-                  <Users />
-                </div>
-              </div>
+              <Modal
+                title={t("travelerInformation")}
+                trigger={
+                  <PopoverItem icon={<ConfirmSVG />} title={t("travelers")} />
+                }
+              >
+                <TableDashboard
+                  tableHeader={tableHeaderItems}
+                  tableContent={booking.traveler_details.map(
+                    (traveler, index) => (
+                      <tr key={index}>
+                        <td className="py-2 px-4 text-[18px] font-medium">
+                          {traveler.firstName}
+                        </td>
+                        <td className="py-2 px-4 text-[18px] font-medium">
+                          {traveler.nationalId}
+                        </td>
+                        <td className="py-2 px-4 text-[18px] font-medium">
+                          {traveler.gender}
+                        </td>
+                        <td className="py-2 px-4 text-[18px] font-medium">
+                          {traveler.birthDate}
+                        </td>
+                      </tr>
+                    )
+                  )}
+                />
+              </Modal>
             </div>
           </PopoverContent>
         </Popover>

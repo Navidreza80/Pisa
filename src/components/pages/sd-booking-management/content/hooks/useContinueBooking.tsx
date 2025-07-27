@@ -2,11 +2,7 @@ import { continueBooking } from "@/utils/service/reserve/continue";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const useContinueBooking = ({
-  refetch,
-}: {
-  refetch: () => void | Promise<unknown>;
-}) => {
+const useContinueBooking = (refetch: () => void) => {
   const { mutate: handleContinue } = useMutation({
     mutationKey: ["CONTINUE_BOOKING"],
     mutationFn: (id: string) =>
