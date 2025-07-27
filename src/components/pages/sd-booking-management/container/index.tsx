@@ -1,29 +1,31 @@
 "use client";
 
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import Line from "@/components/common/dashboard/line";
-import FilterModal from "@/components/dashboard/filter-modal";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
 import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
 import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import TableDashboard from "@/components/common/dashboard/Table";
-import Title from "@/components/common/dashboard/Title";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
-import { useQuery } from "@tanstack/react-query";
-import { GetSellerBooking } from "@/utils/service/reserve/GetSellerBookings";
+import { Reservation } from "@/types/reserve";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
+import { GetSellerBooking } from "@/utils/service/reserve/GetSellerBookings";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import PopoverItem from "../../sd-property-management/content/PopoverItem";
+import Status from "../content/Status";
 
 const tableHeaderItems = [
   { text: "propertyName", clx: "rounded-r-xl" },
@@ -37,42 +39,69 @@ const tableHeaderItems = [
 
 export default function SellerReservationManagement({
   isFilter = true,
+  endItem,
+  limit = "5",
 }: {
-  isFilter: boolean;
+  isFilter?: boolean;
+  endItem?: React.ReactNode;
+  limit?: string;
 }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  // const search = searchParams.get("search");
+  const page = searchParams.get("page");
+  const handleSetParam = (key: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value.toString());
+    router.push(`?${params.toString()}`);
+  };
+
   const t = useTranslations("BookingListSeller");
   const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
-
   const { data } = useQuery({
     queryKey: ["SELLERS_BOOKINGS"],
-    queryFn: GetSellerBooking,
+    queryFn: () => GetSellerBooking({ params: { limit } }),
   });
-
-  console.log(data);
 
   return (
     <ContainerDashboard>
-      <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <div className="flex gap-[19px] flex-wrap justify-end">
-          <FilterModal />
-          <Input
-            placeholder={t("searchPlaceholder")}
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
-          />
-        </div>
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <Title text={t("pageTitle")} />
+        {/* {isFilter ? (
+          <div className="flex gap-[19px] flex-wrap justify-between">
+            <Input
+              defaultValue={search || ""}
+              onChange={(e) => {
+                setTimeout(() => {
+                  handleSetParam("search", e.target.value);
+                }, 1000);
+              }}
+              placeholder={t("searchPlaceholder")}
+              className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl flex-1 md:w-100"
+            />
+            <FilterModal>
+              <div>Hello</div>
+            </FilterModal>
+          </div>
+        ) : (
+          endItem
+        )} */}
       </div>
       <Line />
 
       {/* Table view for desktop */}
       <div className="hidden md:block">
         <TableDashboard
+          currentPage={Number(page) || 1}
+          totalCount={data?.totalCount}
+          pageSize={5}
+          onPageChange={(page) => handleSetParam("page", page.toString())}
           headerSecondary={true}
           tableHeader={tableHeaderItems.map((item) => ({
             ...item,
             text: t(`tableHeaders.${item.text}`),
           }))}
-          tableContent={data?.bookings.map((booking) => (
+          tableContent={data?.bookings.map((booking: Reservation) => (
             <tr
               key={booking.id}
               className="font-yekan font-semibold border-b hover:bg-table-header/50 cursor-pointer"
@@ -89,21 +118,8 @@ export default function SellerReservationManagement({
               <td className="py-2 px-4 text-[18px] font-medium">
                 {formatNumber(1200000)}
               </td>
-              <td className="py-2 px-4">
-                <span
-                  className={cn(
-                    "px-2 py-1 rounded-full text-text text-[13px] font-medium text-white",
-                    booking.status === "confirmed" && "bg-lime-400",
-                    booking.status === "pending" && "bg-orange-400",
-                    booking.status === "canceled" && "bg-red-400"
-                  )}
-                >
-                  {booking.status == "pending"
-                    ? "در انتظار"
-                    : booking.status == "confirmed"
-                      ? "تایید شده"
-                      : "لغو شده"}
-                </span>
+              <td className="py-2 px-4 w-auto">
+                <Status status={booking.status} />
               </td>
               <td className="py-2 px-4">
                 <span
@@ -113,41 +129,30 @@ export default function SellerReservationManagement({
                 </span>
               </td>
               <td className="py-2 px-4  rounded-l-xl">
-                <Popover
-                  open={openPopoverId === booking.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
-                  }
-                >
+                <Popover>
                   <PopoverTrigger asChild>
-                    <div className="text-2xl font-bold cursor-pointer">...</div>
+                    <button className="text-xl font-bold cursor-pointer">
+                      ...
+                    </button>
                   </PopoverTrigger>
-                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                    <div className="space-y-2">
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.approve")}</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.cancel")}</h1>
-                        <div className="my-auto">
-                          <CanclePopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.details")}</h1>
-                        <div className="my-auto">
-                          <DetailPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                        <h1>{t("actions.delete")}</h1>
-                        <div className="my-auto">
-                          <DeletePopover />
-                        </div>
-                      </div>
+                  <PopoverContent className="p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px] !w-auto">
+                    <div className="flex flex-col">
+                      <PopoverItem
+                        icon={<CheckPopover />}
+                        title={t("actions.approve")}
+                      />
+                      <PopoverItem
+                        icon={<CanclePopover />}
+                        title={t("actions.cancel")}
+                      />
+                      <PopoverItem
+                        icon={<DetailPopover />}
+                        title={t("actions.details")}
+                      />
+                      <PopoverItem
+                        icon={<DeletePopover />}
+                        title={t("actions.delete")}
+                      />
                     </div>
                   </PopoverContent>
                 </Popover>

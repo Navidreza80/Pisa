@@ -28,6 +28,7 @@ export default function InputSelect({
   withLabel,
   onChange,
   value,
+  defaultValue,
 }: {
   className?: string;
   name?: string;
@@ -38,6 +39,7 @@ export default function InputSelect({
   withLabel?: boolean;
   width?: number;
   color?: string;
+  defaultValue?: string;
 }) {
   // Hooks
   const t = useTranslations("HomePage");
@@ -53,7 +55,13 @@ export default function InputSelect({
   };
 
   return (
-    <Select dir="rtl" name={name} value={String(value)} onValueChange={handleChange}>
+    <Select
+      dir="rtl"
+      {...(value !== undefined ? { value: String(value) } : { defaultValue })}
+      name={name}
+      defaultValue={defaultValue}
+      onValueChange={handleChange}
+    >
       <SelectTrigger
         className={`${className} cursor-pointer outline-0 focus:outline-0  ${color ? color : ""} !h-[48px] z-[1000] text-fade relative rounded-2xl shadow-none !font-medium border-border ${
           width ? `w-[${width}px]` : "w-[162px]"
@@ -72,10 +80,7 @@ export default function InputSelect({
           placeholder={t("choose")}
         />
       </SelectTrigger>
-      <SelectContent
-        
-        className="!p-0 !border-none rounded-[16px] bg-surface z-[100] font-medium relative "
-      >
+      <SelectContent className="!p-0 !border-none rounded-[16px] bg-surface z-[100] font-medium relative ">
         {items?.map((item, index) => (
           <SelectItem
             key={index}

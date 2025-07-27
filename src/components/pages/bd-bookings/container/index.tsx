@@ -99,7 +99,7 @@ export default function BookingList({
           ))}
           currentPage={Number(page) || 1}
           totalCount={bookingList.totalCount}
-          pageSize={2}
+          pageSize={5}
           onPageChange={(page) => handleSetParam("page", page.toString())}
         />
       </div>

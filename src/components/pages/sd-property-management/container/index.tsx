@@ -5,9 +5,11 @@ import Line from "@/components/common/dashboard/line";
 import ModalStep2 from "@/components/common/dashboard/modalStep2";
 import TableDashboard from "@/components/common/dashboard/Table";
 import Title from "@/components/common/dashboard/Title";
+import InputSelect from "@/components/common/inputs/select-input";
 import Modal from "@/components/common/modal/modal";
 import FilterModal from "@/components/dashboard/filter-modal";
 import DeleteSVG from "@/components/dashboard/svg/DeleteSVG";
+import EditSVG from "@/components/dashboard/svg/EditSVG";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,6 +18,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { TFunction } from "@/types";
+import { HouseItemsInterface } from "@/types/house";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
@@ -25,13 +29,13 @@ import { useMutation } from "@tanstack/react-query";
 import { Camera } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import AddPropertyStepFour from "../../sd-property-create/contents/StepFour";
 import EditHouse from "../content/EditHouse";
+import PopoverItem from "../content/PopoverItem";
 
-export const tableHeaderItems = (t) => [
+export const tableHeaderItems = (t: TFunction) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
   { text: t("createdAt"), clx: null },
   { text: t("transactionType"), clx: null },
@@ -40,13 +44,39 @@ export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.empty"), clx: "rounded-l-xl" },
 ];
 
-export default function SellerDashboardProperties({ houses }) {
+const sortItems = [
+  { text: "قیمت", value: "price" },
+  { text: "تاریخ ساخت", value: "createdAt" },
+];
+
+const orderItems = [
+  { text: "صعودی", value: "ASC" },
+  { text: "نزولی", value: "DESC" },
+];
+
+export default function SellerDashboardProperties({
+  houses,
+  totalCount,
+}: {
+  houses: HouseItemsInterface[];
+  totalCount: number;
+}) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+  const sort = searchParams.get("sort");
+  const order = searchParams.get("");
+  const search = searchParams.get("search");
   const t = useTranslations("SellerPropertyList");
+  const handleSetParam = (key: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value.toString());
+    router.push(`?${params.toString()}`);
+  };
 
   const { mutate: handleEdit } = useMutation({
     mutationKey: ["EDIT_HOUSE"],
-    mutationFn: (payload) =>
+    mutationFn: (payload: { data: HouseItemsInterface; id: number }) =>
       toast.promise(() => putHouse(payload.data, payload.id), {
         error: t("editError"),
         success: t("editSuccess"),
@@ -56,7 +86,7 @@ export default function SellerDashboardProperties({ houses }) {
   });
   const { mutate: handleDelete } = useMutation({
     mutationKey: ["DELETE_HOUSE"],
-    mutationFn: (id) =>
+    mutationFn: (id: number) =>
       toast.promise(() => deleteHouse(id), {
         error: t("deleteError"),
         success: t("deleteSuccess"),
@@ -67,176 +97,241 @@ export default function SellerDashboardProperties({ houses }) {
 
   return (
     <ContainerDashboard>
-      <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
+      {/* Header: Filter & Search */}
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
-        <div className="flex gap-[19px] flex-wrap justify-end">
-          <FilterModal />
+        <div className="flex gap-[19px] flex-wrap justify-between">
           <Input
+            defaultValue={search || ""}
+            onChange={(e) => {
+              setTimeout(() => {
+                handleSetParam("search", e.target.value);
+              }, 1000);
+            }}
             placeholder={t("searchPlaceholder")}
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
+            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl flex-1 md:w-100"
           />
+          <FilterModal>
+            <InputSelect
+              className="!w-full"
+              withLabel
+              onChange={(val) => handleSetParam("sort", val)}
+              label="مرتب سازی"
+              items={sortItems}
+              defaultValue={sort || "price"}
+            />
+            <InputSelect
+              className="!w-full"
+              defaultValue={order || "ASC"}
+              withLabel
+              onChange={(val) => handleSetParam("order", val)}
+              label="روند"
+              items={orderItems}
+            />
+          </FilterModal>
         </div>
       </div>
       <Line />
 
-      {/* Add button for mobile view */}
-      <div className="md:hidden flex justify-end mb-4">
-        <Link href="/dashboard/seller/properties/add">
-          <Button className="bg-primary text-white">
-            {t("addProperty")} +
-          </Button>
-        </Link>
-      </div>
-
       {/* Table view for desktop */}
-      <div className="hidden md:block">
-        <TableDashboard
-          add={true}
-          href={"/dashboard/seller/properties/add"}
-          addTitle={t("addProperty")}
-          headerSecondary={true}
-          tableHeader={tableHeaderItems(t)}
-          tableContent={houses.map((property) => (
-            <tr key={property.id} className="bg-table-main/30 rounded-xl">
-              <td className="pl-6 rounded-r-xl">
-                <div className="flex gap-2 ">
+      <TableDashboard
+        add={true}
+        card={
+          <div className="grid grid-cols-1 gap-4 mt-4">
+            {houses.map((property) => (
+              <Card
+                key={property.id}
+                className="overflow-hidden shadow-none border-border"
+              >
+                <CardContent className="p-2">
+                  {/* Header with property name and actions */}
+                  <div className="flex justify-between items-start mb-3 w-full">
+                    <div className="flex flex-col items-end w-full">
+                      <h2 className="text-lg font-bold text-center w-full">
+                        {property.title}
+                      </h2>
+                    </div>
+                  </div>
+
+                  {/* Property image placeholder */}
                   <Image
-                    width={200}
-                    height={200}
+                    alt="houseImage"
                     unoptimized
-                    alt="image"
                     src={
                       property.photos !== null ? property.photos[0] : NoImage
                     }
-                    className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
+                    width={100}
+                    height={100}
+                    className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3"
                   />
-                  <div className="py-7 text-[18px] font-medium truncate overflow-hidden whitespace-nowrap w-[200px]">
-                    {property.title}
-                  </div>
-                </div>
-              </td>
-              <td className="font-bold">
-                {formatToPersianDate(property.last_updated)}
-              </td>
-              <td className="text-lg">
-                {getTransactionType(property.transaction_type)?.text}
-              </td>
-              <td className="px-6 py-7  text-[18px] font-medium">
-                {property.price}
-              </td>
-              <td className="px-6 py-7 text-[18px] font-medium">
-                {property.rating || t("noRate")}
-              </td>
-              <td className="px-6 py-2 relative rounded-l-xl">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <button className="text-xl font-bold cursor-pointer">
-                      ...
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px]">
-                    <div className="space-y-2">
-                      <EditHouse
-                        house={property}
-                        onSubmit={(data) =>
-                          handleEdit({ data: data, id: property.id })
-                        }
-                      />
-                      <Modal
-                        trigger={
-                          <div className="w-full whitespace-nowrap flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                            <h1>افزودن عکس</h1>
-                            <div className="my-auto">
-                              <Camera />
-                            </div>
-                          </div>
-                        }
-                      >
-                        <AddPropertyStepFour
-                          refresh={router.refresh}
-                          houseId={property.id}
-                        />
-                      </Modal>
 
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-                        <ModalStep2
-                          onConfirm={() => handleDelete(property.id)}
-                          name={t("delete")}
-                          desc={t("deleteWarning")}
-                          title={t("deleteConfirm")}
-                          button={t("delete")}
-                        />
-                        <div className="my-auto">
-                          <DeleteSVG />
-                        </div>
-                      </div>
+                  {/* Property details */}
+                  <div className="grid grid-cols-2 gap-3 ">
+                    <div className="space-y-1">
+                      <p className="text-sm text-gray-500">
+                        {t("tableHeaders.price")}:
+                      </p>
+                      <p className="font-medium">
+                        {formatNumber(property.price)}
+                      </p>
                     </div>
-                  </PopoverContent>
-                </Popover>
-              </td>
-            </tr>
-          ))}
-        />
-      </div>
 
-      {/* Card view for mobile */}
-      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {houses.map((property) => (
-          <Card key={property.id} className="overflow-hidden border-border">
-            <CardContent className="p-4">
-              {/* Header with property name and actions */}
-              <div className="flex justify-between items-start mb-3 w-full">
-                <div className="flex flex-col items-end w-full">
-                  <h2 className="text-lg font-bold text-center w-full">
-                    {property.title}
-                  </h2>
+                    <div className="space-y-1">
+                      <p className="text-sm text-gray-500">
+                        {t("tableHeaders.rating")}:
+                      </p>
+                      <p className="font-medium">
+                        {property.rating || "بدون امتیاز"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="flex gap-2 pt-3 border-t border-border mt-3">
+                    <ModalStep2
+                      onConfirm={() => handleDelete(property.id)}
+                      trigger={
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-red-500 border-red-200 cursor-pointer"
+                        >
+                          {t("delete")}
+                        </Button>
+                      }
+                      desc={t("deleteWarning")}
+                      title={t("deleteConfirm")}
+                      button={t("delete")}
+                    />
+                    {/* Edit House */}
+                    <EditHouse
+                      trigger={
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-primary border-primary/80 cursor-pointer"
+                        >
+                          {t("edit")}
+                        </Button>
+                      }
+                      house={property}
+                      onSubmit={(data) =>
+                        handleEdit({ data: data, id: property.id })
+                      }
+                    />
+                    {/* Add Photo */}
+                    <Modal
+                      trigger={
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-primary border-primary/80 cursor-pointer"
+                        >
+                          افزودن عکس
+                        </Button>
+                      }
+                    >
+                      <AddPropertyStepFour
+                        refresh={router.refresh}
+                        houseId={property.id}
+                      />
+                    </Modal>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        }
+        currentPage={Number(page) || 1}
+        totalCount={totalCount}
+        pageSize={5}
+        onPageChange={(page) => handleSetParam("page", page.toString())}
+        href={"/dashboard/seller/properties/add"}
+        addTitle={t("addProperty")}
+        headerSecondary={true}
+        tableHeader={tableHeaderItems(t)}
+        tableContent={houses.map((property) => (
+          // Table content
+          <tr key={property.id} className="bg-table-main/30 rounded-xl">
+            <td className="pl-6 rounded-r-xl">
+              <div className="flex gap-2 ">
+                <Image
+                  width={200}
+                  height={200}
+                  unoptimized
+                  alt="image"
+                  src={property.photos !== null ? property.photos[0] : NoImage}
+                  className="bg-text-secondary/30 w-27 h-20 m-0.5 rounded-[12px]"
+                />
+                <div className="py-7 text-[18px] font-medium truncate overflow-hidden whitespace-nowrap w-[100px]">
+                  {property.title}
                 </div>
               </div>
+            </td>
+            <td className="font-bold">
+              {formatToPersianDate(property.last_updated)}
+            </td>
+            <td className="text-lg">
+              {getTransactionType(property.transaction_type)?.text}
+            </td>
+            <td className="px-6 py-7  text-[18px] font-medium">
+              {property.price}
+            </td>
+            <td className="px-6 py-7 text-[18px] font-medium">
+              {property.rating || t("noRate")}
+            </td>
+            <td className="px-6 py-2 relative rounded-l-xl">
+              {/* Popover */}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="text-xl font-bold cursor-pointer">
+                    ...
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px] !w-auto">
+                  <div className="flex flex-col gap-y-2">
+                    {/* Edit House */}
+                    <EditHouse
+                      trigger={
+                        <PopoverItem icon={<EditSVG />} title="ویرایش ملک" />
+                      }
+                      house={property}
+                      onSubmit={(data) =>
+                        handleEdit({ data: data, id: property.id })
+                      }
+                    />
 
-              {/* Property image placeholder */}
-              <Image
-                alt="houseImage"
-                unoptimized
-                src={property.photos !== null ? property.photos[0] : NoImage}
-                width={100}
-                height={100}
-                className="bg-text-secondary/30 w-full h-[120px] rounded-[12px] mb-3"
-              />
+                    {/* Add Photo */}
+                    <Modal
+                      trigger={
+                        <PopoverItem icon={<Camera />} title="افزودن عکس" />
+                      }
+                    >
+                      <AddPropertyStepFour
+                        refresh={router.refresh}
+                        houseId={property.id}
+                      />
+                    </Modal>
 
-              {/* Property details */}
-              <div className="grid grid-cols-2 gap-3 ">
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.price")}:
-                  </p>
-                  <p className="font-medium">{formatNumber(property.price)}</p>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.rating")}:
-                  </p>
-                  <p className="font-medium">
-                    {property.rating || "بدون امتیاز"}
-                  </p>
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div className="flex justify-end gap-2 pt-3 border-t border-border mt-3">
-                <Button
-                  onClick={() => handleDelete(property.id)}
-                  variant="outline"
-                  size="sm"
-                  className="text-red-500 border-red-200 cursor-pointer"
-                >
-                  {t("delete")}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+                    {/* Delete House */}
+                    <div className="w-full flex gap-[15px] cursor-pointer hover:bg-border rounded-xl px-1">
+                      <ModalStep2
+                        onConfirm={() => handleDelete(property.id)}
+                        trigger={
+                          <PopoverItem icon={<DeleteSVG />} title="حذف ملک" />
+                        }
+                        desc={t("deleteWarning")}
+                        title={t("deleteConfirm")}
+                        button={t("delete")}
+                      />
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </td>
+          </tr>
         ))}
-      </div>
+      />
     </ContainerDashboard>
   );
 }

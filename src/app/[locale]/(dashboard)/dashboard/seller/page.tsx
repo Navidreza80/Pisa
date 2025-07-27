@@ -1,5 +1,6 @@
+import SellerMain from "@/components/pages/sd-main/container";
 
 const Page = async () => {
-  return <div></div>;
+  return <SellerMain />;
 };
 export default Page;

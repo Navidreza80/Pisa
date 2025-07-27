@@ -16,8 +16,8 @@ interface IProps {
 const Modal: React.FC<IProps> = ({ trigger, children, title, className }) => {
   return (
     <Dialog>
-      <DialogTrigger>
-        {trigger}
+      <DialogTrigger asChild>
+        <div>{trigger}</div>
       </DialogTrigger>
       <DialogContent className={className}>
         <DialogHeader>

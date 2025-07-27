@@ -7,7 +7,7 @@ export default async function Page({
   searchParams: Promise<{ page: string; sort: string; order: string }>;
 }) {
   const { page, sort, order } = await searchParams;
-  const data = await getBookingList({ page, limit: 2, sort, order });
+  const data = await getBookingList({ page, limit: 5, sort, order });
 
 
   return <BookingList bookingList={data} />;

@@ -21,7 +21,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex bg-border min-h-[100vh] justify-between gap-[19px] p-[19px]">
       <BuyerSideBar />
-      <div className="flex flex-col flex-wrap gap-[19px] w-[100%] mb-10">
+      <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
         <HeaderDashboard />
         <Tags />
         <div>{children}</div>

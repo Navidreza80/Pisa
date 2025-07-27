@@ -14,6 +14,8 @@ import Link from "next/link";
 // React
 import { useEffect, useRef, useState } from "react";
 import Modal from "../modal/modal";
+import { FaSignOutAlt } from "react-icons/fa";
+import { User } from "lucide-react";
 
 /**
  * User profile component to show when the user is signed in.
@@ -49,6 +51,7 @@ export default function UserProfile({ user }: UserProfileProps) {
   return (
     <div className="relative" ref={dropdownRef}>
       <Modal
+        className="!w-[300px]"
         trigger={
           <div
             onClick={() => setIsOpen(!isOpen)}
@@ -93,14 +96,16 @@ export default function UserProfile({ user }: UserProfileProps) {
           <div className="flex flex-col p-2">
             <Link
               href="/dashboard/seller"
-              className="block w-full text-sm px-4 py-2 rounded-md text-text hover:bg-surface dark:hover:bg-surface-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors"
+              className="w-full flex gap-2 text-lg px-4 py-2 rounded-md text-text hover:bg-surface dark:hover:bg-surface-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors"
             >
+              <User />
               {t("profile")}
             </Link>
             <button
               onClick={handleLogout}
-              className="block w-full text-sm px-4 py-2 rounded-md text-red-500 text-left rtl:text-right hover:bg-red-50 dark:hover:bg-red-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-colors"
+              className="w-full items-center flex gap-2 text-lg px-4 py-2 rounded-md text-red-500 text-left rtl:text-right hover:bg-red-50 dark:hover:bg-red-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-colors"
             >
+              <FaSignOutAlt />
               {t("logout")}
             </button>
           </div>

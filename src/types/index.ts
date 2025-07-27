@@ -5,3 +5,6 @@ export default interface PageProps {
     [key: string]: string | string[] | undefined;
   };
 }
+
+
+export type TFunction = (key: string, values?: Record<string, unknown>) => string;

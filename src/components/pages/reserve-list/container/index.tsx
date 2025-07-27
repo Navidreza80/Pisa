@@ -101,13 +101,13 @@ export default function ReserveListContainer() {
 
   return (
     <div className="w-full flex justify-end">
-      <div className="lg:h-[calc(100vh-80px)] md:h-auto w-[calc(100%-7.25%)] flex flex-wrap lg:flex-nowrap font-yekan mx-auto">
+      <div className="lg:h-[calc(100vh-80px)] md:h-auto w-[calc(100%-7.25%)] flex flex-wrap lg:flex-nowrap">
         {/* Left Column: Filter + Results */}
         <div className="flex-grow animate-fade-left w-[55%]">
           {/* Top Bar: Filters + Search + Result Count */}
           <div className="h-[62px] w-full pb-6 rtl:lg:pl-7 ltr:lg:pr-7 flex gap-4">
             <FilterModal />
-            <div className="flex items-center gap-1 text-sm font-medium border rounded-2xl px-2 h-12">
+            <div className="flex items-center gap-1 text-sm font-medium border rounded-2xl px-2 h-12 whitespace-nowrap">
               <Megaphone />
               {t("propertiesCount")} {data?.totalCount}
             </div>
@@ -146,7 +146,7 @@ export default function ReserveListContainer() {
           </div>
 
           {/* Results List: Houses or Skeleton */}
-          <div className="custom-scrollbar overflow-y-auto lg:max-h-[calc(100vh-142px)] px-0 flex flex-wrap gap-[24.95px] justify-center lg:justify-between">
+          <div className="custom-scrollbar overflow-y-auto lg:max-h-[calc(100vh-142px)]  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between">
             {isLoading &&
               [...Array(6)].map((_, i) => (
                 <HouseSkeleton

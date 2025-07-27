@@ -26,7 +26,7 @@ const NotificationSettingModal = async ({
 
   return (
     <Dialog>
-      <DialogTrigger>{children}</DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="w-[564px] h-[361px] p-0 bg-background flex flex-col">
         <DialogHeader className="hidden">
           <DialogTitle className="hidden"></DialogTitle>
