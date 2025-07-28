@@ -1,0 +1,54 @@
+"use client";
+
+import http from "@/utils/interceptor";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
+interface ResetPasswordParams {
+  email: string;
+  resetCode: string;
+  newPassword: string;
+}
+
+interface ResetPasswordResponse {
+  message?: string;
+}
+
+const resetPassword = async (params: ResetPasswordParams) => {
+  console.log("[resetPassword] sending params:", params);
+  const response = await http.post<ResetPasswordResponse>(
+    "/auth/forgot-password/reset",
+    params
+  );
+  console.log("[resetPassword] response:", response.data);
+  return response;
+};
+
+export const useResetPassword = () => {
+  const router = useRouter();
+  const t = useTranslations("Auth");
+
+  return useMutation({
+    mutationKey: ["RESET_PASSWORD"],
+    mutationFn: resetPassword,
+    retry: 0,
+    onSuccess: () => {
+      toast.success(t("success"));
+      router.push("/");
+    },
+    onError: (error: AxiosError) => {
+      console.error("[useResetPassword] error:", error);
+
+      if (error.response?.status && error.response.status >= 500) {
+        toast.info(t("serverError"));
+      } else if (error.response?.status === 400) {
+        toast.error(t("invalidCode"));
+      } else {
+        toast.error(t("genericError"));
+      }
+    },
+  });
+};

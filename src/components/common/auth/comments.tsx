@@ -23,7 +23,7 @@ import { Swiper as SwiperType } from 'swiper';
 import formatToPersianDate from "@/utils/helper/format-date";
 
 export default function CommentsSwiper() {
-  const t = useTranslations("comments");
+  const t = useTranslations("Auth");
   const SLIDE_DURATION = 5000;
   const swiperRef = useRef<SwiperType | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
