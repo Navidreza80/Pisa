@@ -17,6 +17,7 @@ import AddPropertyStepFive from "../contents/StepFive";
 import AddPropertyStepOne from "../contents/StepOne";
 import AddPropertyStepThree from "../contents/StepThree";
 import AddPropertyStepTwo from "../contents/StepTwo";
+import useNotification from "@/utils/hooks/useNotification";
 
 const AddPropertyContainer = () => {
   const t = useTranslations("Dashboard");
@@ -35,6 +36,12 @@ const AddPropertyContainer = () => {
   const [transaction_type, setTransaction_type] = useState("rental");
   const [yard_type, setYard_type] = useState("شهری");
 
+  const { sendNotification } = useNotification({
+    title: "شما یک ملک جدید ساخته اید!",
+    message: "مشاهده ملک",
+    type: "new_property",
+  });
+
   // Create house function
   const { mutate: createHouse } = useMutation({
     mutationKey: ["CREATE_HOUSE"],
@@ -44,6 +51,7 @@ const AddPropertyContainer = () => {
         success: t("successProperty"),
         error: t("errorProperty"),
       }),
+    onSuccess: () => sendNotification(),
   });
 
   const stepOneValidation = Yup.object().shape({
@@ -82,8 +90,7 @@ const AddPropertyContainer = () => {
             ? stepThreeValidation
             : "",
     onSubmit: async (values) => {
-      console.log("FormSubmitted!!!");
-      dispatch(setStepsId(id == 5 ? 1 : id + 1));
+      dispatch(setStepsId(id == 4 ? 1 : id + 1));
       setCreatedProperty({
         ...values,
         yard_type,

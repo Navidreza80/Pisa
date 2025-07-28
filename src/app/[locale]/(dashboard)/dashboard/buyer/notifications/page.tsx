@@ -1,5 +1,7 @@
+import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
 import BuyerNotifications from "@/components/pages/bd-notifications/container";
 import { getAllNotifications } from "@/utils/service/notifications/get";
+import { getTranslations } from "next-intl/server";
 
 const Page = async ({
   searchParams,
@@ -11,6 +13,7 @@ const Page = async ({
     order: string;
   }>;
 }) => {
+  const t = await getTranslations("Dashboard");
   const { page } = await searchParams;
   const notifications = await getAllNotifications({
     page,
@@ -18,10 +21,13 @@ const Page = async ({
   });
 
   return (
-    <BuyerNotifications
-      notifications={notifications.data}
-      totalCount={notifications.totalCount}
-    />
+    <>
+      <HeaderDashboard title={t("notifications")} />
+      <BuyerNotifications
+        notifications={notifications.data}
+        totalCount={notifications.totalCount}
+      />
+    </>
   );
 };
 export default Page;

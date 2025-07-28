@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { cache } from "react";
 import DashboardTitle from "@/components/common/dashboard/DashboardTitle";
 import Notif2SVG from "@/components/dashboard/svg/Notif2SVG";
 import {
@@ -15,7 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { JwtPayload } from "@/types/user";
 import Image from "next/image";
 
-async function HeaderDashboard() {
+const HeaderDashboard = cache(async ({ title }: { title: string }) => {
   const t = await getTranslations("Overall");
   const token = await getServerCookie("serverAccessToken");
   let decodedUser;
@@ -29,16 +30,26 @@ async function HeaderDashboard() {
 
   return (
     <div className="bg-background animate-fade-down rounded-[12px] px-[19px] h-[66px] flex justify-between">
-      <DashboardTitle />
+      {/* Title */}
+      <DashboardTitle title={title} />
       {!decodedUser ? (
         <span></span>
       ) : (
         <div className="flex gap-2 md:gap-4 my-auto">
+          {/* Notifications */}
           <div className="my-auto cursor-pointer md:flex hidden">
             <Notif2SVG />
           </div>
 
-          <div className="flex gap-2">
+          {/* User Profile Section */}
+          <div className="flex gap-2 items-center">
+            <Image
+              src={decodedUser.profilePicture}
+              alt="User profile pic"
+              width={37}
+              height={37}
+              className="w-[37px] aspect-square border border-border rounded-lg"
+            />
             <div className="flex-col flex-wrap justify-between md:flex hidden">
               <h1 className="text-text font-yekan font-bold">
                 {decodedUser.name || t("user")}
@@ -47,6 +58,7 @@ async function HeaderDashboard() {
             </div>
           </div>
 
+          {/* User Popover */}
           <div className="my-auto cursor-pointer">
             <Popover>
               <PopoverTrigger asChild>
@@ -82,6 +94,6 @@ async function HeaderDashboard() {
       )}
     </div>
   );
-}
+});
 
 export default HeaderDashboard;

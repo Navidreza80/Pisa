@@ -121,7 +121,7 @@ export default function BuyerNotifications({ notifications, totalCount }) {
               onClick={() => setShowUnRead((prev) => !prev)}
               text={t("status.unread")}
             />
-            {unReadMessages.map(
+            {readMessages.map(
               (tx) =>
                 showUnRead && (
                   <tr
@@ -147,7 +147,7 @@ export default function BuyerNotifications({ notifications, totalCount }) {
               onClick={() => setShowRead((prev) => !prev)}
               text={t("status.read")}
             />
-            {readMessages.map(
+            {unReadMessages.map(
               (tx) =>
                 showRead && (
                   <tr

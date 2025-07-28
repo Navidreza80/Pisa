@@ -1,17 +1,18 @@
+"use client";
 import Line from "@/components/common/dashboard/line";
+import { ChartArea } from "lucide-react";
 import {
+  CartesianGrid,
   LineChart,
   Line as ReLine,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
-import { ChartArea } from "lucide-react";
 
 const ReservationChart = ({ data, title }) => (
-  <div className="md:w-[calc(50%-15px)] w-full p-4 bg-background rounded-xl">
+  <div className="w-full p-4 bg-background rounded-xl">
     <div className="flex gap-2 rtl">
       <div className="my-auto">
         <ChartArea />

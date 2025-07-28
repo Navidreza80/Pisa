@@ -1,7 +1,7 @@
 "use client";
 
-import IncomeCard from "./IncomeCard";
-import ProfileCard from "./ProfileCard";
+import IncomeCard from "../../../common/dashboard/IncomeCard";
+import ProfileCard from "../../../common/dashboard/ProfileCard";
 import ReservationChart from "./ReservationChart";
 
 const TagDashboard = ({ data }) => {

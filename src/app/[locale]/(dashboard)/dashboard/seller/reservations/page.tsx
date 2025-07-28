@@ -1,5 +1,7 @@
+import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
 import SellerReservationManagement from "@/components/pages/sd-booking-management/container";
 import { GetSellerBooking } from "@/utils/service/reserve/GetSellerBookings";
+import { getTranslations } from "next-intl/server";
 
 const Page = async ({
   searchParams,
@@ -11,6 +13,7 @@ const Page = async ({
     order: string;
   }>;
 }) => {
+  const t = await getTranslations("Dashboard");
   const { page, status, sort, order } = await searchParams;
   const data = await GetSellerBooking({
     limit: "5",
@@ -20,10 +23,13 @@ const Page = async ({
     ...(status !== "all" && status && { status: status }),
   });
   return (
-    <SellerReservationManagement
-      bookings={data.bookings}
-      totalCount={data.totalCount}
-    />
+    <>
+      <HeaderDashboard title={t("reservationManagement")} />
+      <SellerReservationManagement
+        bookings={data.bookings}
+        totalCount={data.totalCount}
+      />
+    </>
   );
 };
 export default Page;

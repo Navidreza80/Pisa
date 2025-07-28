@@ -1,10 +1,12 @@
 export interface UserProfileProps {
   user: {
     name?: string;
+    updatedAt: Date;
     email: string;
     profilePicture?: string;
     phoneNumber: string;
   };
+  additionalPercentage: number;
 }
 
 export interface JwtPayload {

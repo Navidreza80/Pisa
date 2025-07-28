@@ -4,14 +4,14 @@ import WalletSVG from "@/components/dashboard/svg/WalletSVG";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";
 
-const IncomeCard = ({ data, title }) => {
+const IncomeCard = ({ data }) => {
   const t = useTranslations("Dashboard");
   return (
-    <div className="w-full md:w-[calc(50%-15px)] p-4 bg-background rounded-xl">
+    <div className="p-4 bg-background rounded-xl">
       {/* Header: Icon + Title */}
       <div className="flex gap-2 items-center rtl">
         <WalletSVG />
-        <h2 className="text-lg font-semibold">{title}</h2>
+        <h2 className="text-lg font-semibold">{data.title}</h2>
       </div>
 
       <Line />
