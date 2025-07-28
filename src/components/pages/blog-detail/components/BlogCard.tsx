@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { CalendarDays, Clock3, Tag, User } from "lucide-react";
 import { Blog } from "@/utils/service/blogs/GetBlogs";
+import Link from "next/link";
 
 interface BlogCardProps {
   blog: Blog;
-  onClick?: () => void; 
+  onClick?: () => void;
 }
 
 export default function BlogCard({ blog, onClick }: BlogCardProps) {
@@ -27,7 +28,7 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
           {blog.title}
         </h2>
 
-        <div className="flex justify-between items-center text-sm text-text-secondary">
+        {/* <div className="flex justify-between items-center text-sm text-text-secondary">
           <div className="flex items-center gap-1">
             <Tag size={16} className="text-fade" />
             <span>{blog.category_name || "بدون دسته"}</span>
@@ -36,7 +37,7 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
             <User size={16} className="text-fade" />
             <span>{blog.author_name || "ناشناس"}</span>
           </div>
-        </div>
+        </div> */}
 
         <p className="text-text-secondary text-sm leading-6 line-clamp-3">
           {blog.caption}
@@ -55,12 +56,15 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
           </div>
         </div>
 
-        <button
-          className="mt-6 text-sm font-semibold text-white bg-primary hover:bg-[#4853e3] px-5 py-2 rounded-xl transition"
-          onClick={onClick}
-        >
-          خواندن مقاله
-        </button>
+
+        <Link key={blog.id} href={`blogs/${blog.id}`} className="w-full">
+          <button
+            className="mt-6 w-full cursor-pointer text-sm font-semibold text-white bg-primary hover:bg-[#4853e3] px-5 py-2 rounded-xl transition"
+            onClick={onClick}
+          >
+            خواندن مقاله
+          </button>
+        </Link>
       </motion.div>
     </Tilt>
   );
