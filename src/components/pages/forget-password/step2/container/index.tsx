@@ -7,18 +7,19 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import Button from "@/components/common/auth/button";
-import LogoSVGClient from "@/components/common/svg/logo-client";
 import TimerSVG from "@/components/common/svg/timer";
-import * as Yup from "yup";
+import WelcomeTitle from "@/components/common/auth/welcome-title";
 import { useVerifyResetCode } from "@/utils/service/forgetPassword/post-verify-email";
 
 export default function ForgetPasswordStep2() {
   const t = useTranslations("Auth");
   const [timer, setTimer] = useState(80);
 
-  const email = typeof window !== "undefined" ? localStorage.getItem("resetEmail") : null;
+  const email =
+    typeof window !== "undefined" ? localStorage.getItem("resetEmail") : null;
 
   const verifyResetCodeMutation = useVerifyResetCode();
 
@@ -44,10 +45,10 @@ export default function ForgetPasswordStep2() {
     }),
     onSubmit: (values) => {
       if (!email) {
-        console.error("[ForgetPasswordStep2] Email not found in localStorage");
+        console.error("No email in localStorage");
         return;
       }
-      console.log("[ForgetPasswordStep2] Submitting code:", values.verificationCode);
+
       verifyResetCodeMutation.mutate({
         email,
         resetCode: values.verificationCode,
@@ -57,18 +58,10 @@ export default function ForgetPasswordStep2() {
 
   return (
     <div className="w-full flex flex-col gap-[32px]">
-      <div>
-        <LogoSVGClient />
-      </div>
-
-      <div>
-        <h1 className="text-[36px] font-[700] text-black dark:text-white mb-[30px]">
-          {t("ResetPassword")}
-        </h1>
-        <p className="text-[14px] font-[600] text-[#767676] dark:text-[#d1d1d1]">
-          {t("ResetCodeDesc")}
-        </p>
-      </div>
+      <WelcomeTitle
+        title={t("ResetPassword")}
+        desc={t("ResetCodeDesc")}
+      />
 
       <form
         onSubmit={formik.handleSubmit}
@@ -79,7 +72,12 @@ export default function ForgetPasswordStep2() {
         </span>
 
         <div className="flex flex-row-reverse justify-center gap-3 mb-4">
-          <InputOTP maxLength={6} onChange={(value) => formik.setFieldValue("verificationCode", value)}>
+          <InputOTP
+            maxLength={6}
+            onChange={(value) =>
+              formik.setFieldValue("verificationCode", value)
+            }
+          >
             <InputOTPGroup className="gap-2">
               {[...Array(6)].map((_, index) => (
                 <InputOTPSlot
@@ -92,9 +90,12 @@ export default function ForgetPasswordStep2() {
           </InputOTP>
         </div>
 
-        {formik.touched.verificationCode && formik.errors.verificationCode && (
-          <span className="text-red-500 text-sm">{formik.errors.verificationCode}</span>
-        )}
+        {formik.touched.verificationCode &&
+          formik.errors.verificationCode && (
+            <span className="text-red-500 text-sm">
+              {formik.errors.verificationCode}
+            </span>
+          )}
 
         <div className="flex items-center justify-between w-full mb-6 px-2">
           <span className="flex bg-[#586CFF30] dark:bg-[#586CFF80] gap-[12px] p-[8px] pl-[12px] rounded-[100px]">
@@ -105,14 +106,17 @@ export default function ForgetPasswordStep2() {
           </span>
         </div>
 
-    
         <Button
           disabled={
             !formik.values.verificationCode ||
             formik.values.verificationCode.length !== 6 ||
             verifyResetCodeMutation.isLoading
           }
-          text={verifyResetCodeMutation.isLoading ? t("Sending") : t("ُSend")}
+          text={
+            verifyResetCodeMutation.isLoading
+              ? t("Sending")
+              : t("ُSend")
+          }
           type="submit"
           className="w-full"
         />

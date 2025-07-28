@@ -20,8 +20,7 @@ import EmailSVG from "@/components/common/svg/email";
 import { useForgotPasswordRequest } from "@/utils/service/forgetPassword/post-step-one";
 
 function ForgotPasswordStep1() {
-  // API Hook
-  const { mutate } = useForgotPasswordRequest();
+  const forgotPasswordMutation = useForgotPasswordRequest();
 
   // Validation Schema
   const Schema = Yup.object().shape({
@@ -37,7 +36,7 @@ function ForgotPasswordStep1() {
     },
     validationSchema: Schema,
     onSubmit: (values) => {
-      mutate({ email: values.email });
+      forgotPasswordMutation.mutate({ email: values.email });
     },
   });
 
@@ -60,15 +59,21 @@ function ForgotPasswordStep1() {
           onChange={formik.handleChange}
           icon={<EmailSVG />}
         >
-          {formik.errors.email && (
+          {formik.errors.email && formik.touched.email && (
             <span className="text-red-500 text-sm">{formik.errors.email}</span>
           )}
         </InputAuth>
 
         {/* Button */}
-        <Link href={"step-2"}>
-          <Button text="ارسال کد تایید" />
-        </Link>
+        <Button
+          text={
+            forgotPasswordMutation.isPending
+              ? "در حال ارسال..."
+              : "ارسال کد تایید"
+          }
+          type="submit"
+          disabled={forgotPasswordMutation.isPending}
+        />
       </div>
 
       <div className="flex justify-center mt-4 gap-[5px]">

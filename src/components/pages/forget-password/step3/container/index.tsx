@@ -1,6 +1,5 @@
 "use client";
 
-// Dependencies
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import * as Yup from "yup";
@@ -9,26 +8,23 @@ import * as Yup from "yup";
 import Password from "@/components/common/svg/password";
 import RepeatPassword from "@/components/common/svg/repeat-pass";
 
-// Third party components
+// Components
 import Button from "@/components/common/auth/button";
 import InputAuth from "@/components/common/auth/input-auth";
 import WelcomeTitle from "@/components/common/auth/welcome-title";
+
+// Hook
 import { useResetPassword } from "@/utils/service/forgetPassword/post-complete-forgetPass";
-/**
- * Forget password reset form
- *
- * @component
- * @returns {JSX.Element}
- */
+
 function ForgetPasswordStep3() {
   const t = useTranslations("Auth");
   const resetPasswordMutation = useResetPassword();
 
   const ForgetPasswordSchema = Yup.object().shape({
+    password: Yup.string().required(t("passVal")),
     repeatedPassword: Yup.string()
       .required(t("repeatPassVal"))
       .oneOf([Yup.ref("password"), null], t("wrongRepeat")),
-    password: Yup.string().required(t("passVal")),
   });
 
   const formik = useFormik({
@@ -37,12 +33,13 @@ function ForgetPasswordStep3() {
       repeatedPassword: "",
     },
     validationSchema: ForgetPasswordSchema,
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       const email = localStorage.getItem("resetEmail");
       const resetCode = localStorage.getItem("resetCode");
 
       if (!email || !resetCode) {
         console.error("Missing email or reset code in localStorage.");
+        toast.error(t("genericError"));
         return;
       }
 
@@ -68,6 +65,7 @@ function ForgetPasswordStep3() {
         <InputAuth
           id="password"
           name="password"
+          type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
           placeHolder={t("passwordDesc")}
@@ -81,6 +79,7 @@ function ForgetPasswordStep3() {
         <InputAuth
           id="repeatedPassword"
           name="repeatedPassword"
+          type="password"
           value={formik.values.repeatedPassword}
           onChange={formik.handleChange}
           placeHolder={t("ConfirmPasswordDesc")}
@@ -99,7 +98,7 @@ function ForgetPasswordStep3() {
 
         {resetPasswordMutation.isError && (
           <p className="text-red-500 text-center mt-2">
-            {t("genericError")}
+            {resetPasswordMutation.error?.response?.data?.message || t("genericError")}
           </p>
         )}
       </div>

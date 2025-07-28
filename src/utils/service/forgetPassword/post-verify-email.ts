@@ -16,31 +16,35 @@ interface VerifyResetCodeResponse {
   token: string;
 }
 
-const verifyResetCode = async (params: VerifyResetCodeParams) => {
-  console.log("[verifyResetCode] sending params:", params);
-  const response = await http.post<VerifyResetCodeResponse>("/auth/forgot-password/verify", params);
-  console.log("[verifyResetCode] response:", response.data);
-  return response;
+const verifyResetCode = async ({ email, resetCode }: VerifyResetCodeParams) => {
+  const body = {
+    email,
+    reset_code: resetCode,
+  };
+
+  const response = await http.post<VerifyResetCodeResponse>(
+    "/auth/forgot-password/verify",
+    body
+  );
+
+  return response.data;
 };
 
 export const useVerifyResetCode = () => {
   const router = useRouter();
   const t = useTranslations("Auth");
 
-
-
   return useMutation({
     mutationKey: ["VERIFY_RESET_CODE"],
     mutationFn: verifyResetCode,
     retry: 0,
-    onSuccess: (response) => {
-      console.log("[useVerifyResetCode] success:", response.data);
+    onSuccess: (data, variables) => {
+      localStorage.setItem("resetCode", variables.resetCode);
       toast.success(t("successCode"));
-      router.push("/auth/forget-password/step-3");
+      router.push("/auth/reset-password/new-password");
     },
-    onError: (error: AxiosError) => {
-      console.error("[useVerifyResetCode] error:", error);
 
+    onError: (error: AxiosError) => {
       if (error.response?.status === 400) {
         toast.error(t("invalidCode"));
       } else if (error.response?.status && error.response.status >= 500) {

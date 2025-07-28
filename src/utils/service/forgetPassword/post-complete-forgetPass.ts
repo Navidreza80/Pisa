@@ -24,7 +24,7 @@ const resetPassword = async (params: ResetPasswordParams) => {
     params
   );
   console.log("[resetPassword] response:", response.data);
-  return response;
+  return response.data;
 };
 
 export const useResetPassword = () => {
