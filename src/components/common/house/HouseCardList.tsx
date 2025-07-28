@@ -73,7 +73,9 @@ export default function HouseCardList({
   const t = useTranslations("HomePage");
   const Ids = useAppSelector((state) => state.comparisonIds);
   const router = useRouter();
-  const [isFavorite, setIsFavorite] = useState(card.isFavorite);
+  const [isFavorite, setIsFavorite] = useState(
+    typeof card.favoriteId == "number" ? true : false
+  );
 
   const { mutate: addFavorite, isPending } = useMutation({
     mutationKey: ["CREATE_FAVORITE"],
@@ -90,8 +92,8 @@ export default function HouseCardList({
 
   const { mutate: removeFavorite } = useMutation({
     mutationKey: ["DELETE_FAVORITE"],
-    mutationFn: (house_id: string) =>
-      toast.promise(deleteFavorite(house_id), {
+    mutationFn: (favorite_id: string) =>
+      toast.promise(deleteFavorite(favorite_id), {
         pending: "درحال پردازش...",
         success: "ملک از لیست علاقه مندی حذف شد",
         error: "خطا در حذف ملک از علاقه مندی",
@@ -225,7 +227,7 @@ export default function HouseCardList({
             if (!isFavorite) {
               addFavorite(card.id.toString());
             } else if (isFavorite) {
-              removeFavorite(card.id.toString());
+              removeFavorite(card.favoriteId.toString());
             }
           }}
           disabled={isPending}

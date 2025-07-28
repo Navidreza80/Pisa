@@ -7,11 +7,11 @@ const ConfirmSVG = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="11" cy="11" r="8.25" stroke="#33363F" stroke-width="2" />
+      <circle cx="11" cy="11" r="8.25" stroke="#33363F" strokeWidth="2" />
       <path
         d="M7.33366 11L10.0837 13.75L14.667 8.25"
         stroke="#33363F"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );

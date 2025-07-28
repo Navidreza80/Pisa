@@ -7,8 +7,8 @@ const CancelSVG = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="10.5" cy="10.5" r="7.875" stroke="#33363F" stroke-width="2" />
-      <path d="M15.75 15.75L5.25 5.25" stroke="#33363F" stroke-width="2" />
+      <circle cx="10.5" cy="10.5" r="7.875" stroke="#33363F" strokeWidth="2" />
+      <path d="M15.75 15.75L5.25 5.25" stroke="#33363F" strokeWidth="2" />
     </svg>
   );
 };

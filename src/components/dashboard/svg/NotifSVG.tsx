@@ -1,10 +1,10 @@
 import React from "react";
 
-function NotifSVG() {
+function NotifSVG({ size = "24" }: { size: string }) {
   return (
     <svg
-      width="24"
-      height="24"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,13 @@ function NotifSVG() {
         d="M9 17C9 17.394 9.0776 17.7841 9.22836 18.1481C9.37913 18.512 9.6001 18.8427 9.87868 19.1213C10.1573 19.3999 10.488 19.6209 10.8519 19.7716C11.2159 19.9224 11.606 20 12 20C12.394 20 12.7841 19.9224 13.1481 19.7716C13.512 19.6209 13.8427 19.3999 14.1213 19.1213C14.3999 18.8427 14.6209 18.512 14.7716 18.1481C14.9224 17.7841 15 17.394 15 17L12 17H9Z"
         fill="currentColor"
       />
-      <circle cx="18" cy="6" r="2.5" fill="currentColor" stroke="currentColor" />
+      <circle
+        cx="18"
+        cy="6"
+        r="2.5"
+        fill="currentColor"
+        stroke="currentColor"
+      />
     </svg>
   );
 }

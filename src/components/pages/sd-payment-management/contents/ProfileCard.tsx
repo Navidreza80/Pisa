@@ -1,12 +1,18 @@
 "use client";
-import Link from "next/link";
 import Line from "@/components/common/dashboard/line";
-import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 import InfoSVG from "@/components/dashboard/svg/InfoSVG";
-import { PieChart, Pie, Cell } from "recharts";
+import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Cell, Pie, PieChart } from "recharts";
 
 const ProfileCard = ({ data }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const t = useTranslations("Dashboard");
   return (
     <div className="w-full p-4 bg-background rounded-xl md:w-[calc(50%-15px)]">
@@ -42,26 +48,28 @@ const ProfileCard = ({ data }) => {
 
         {/* Pie Chart */}
         <div className="w-full md:w-[30%] flex justify-center">
-          <PieChart width={120} height={120}>
-            <Pie
-              data={[
-                { name: t("information"), value: data.status.completion },
-                { name: t("remained"), value: 100 - data.status.completion },
-              ]}
-              cx="50%"
-              cy="50%"
-              innerRadius={40}
-              outerRadius={60}
-              paddingAngle={0}
-              startAngle={90}
-              endAngle={-270}
-              dataKey="value"
-              cornerRadius={0}
-            >
-              <Cell fill="#708df9" stroke="none" />
-              <Cell fill="#F0F0F0" stroke="none" />
-            </Pie>
-          </PieChart>
+          {isClient && (
+            <PieChart width={120} height={120}>
+              <Pie
+                data={[
+                  { name: t("information"), value: data.status.completion },
+                  { name: t("remained"), value: 100 - data.status.completion },
+                ]}
+                cx="50%"
+                cy="50%"
+                innerRadius={40}
+                outerRadius={60}
+                paddingAngle={0}
+                startAngle={90}
+                endAngle={-270}
+                dataKey="value"
+                cornerRadius={0}
+              >
+                <Cell fill="#708df9" stroke="none" />
+                <Cell fill="#F0F0F0" stroke="none" />
+              </Pie>
+            </PieChart>
+          )}
         </div>
       </div>
     </div>

@@ -1,28 +1,50 @@
 "use client";
-import InputSelect from "@/components/common/inputs/select-input";
+import NoImage from "@/assets/images/no.jpg";
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import Line from "@/components/common/dashboard/line";
-import FilterModal from "@/components/common/dashboard/FilterModal";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
+import InputSelect from "@/components/common/inputs/select-input";
+import FilterModal from "@/components/dashboard/filter-modal";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import TableDashboard from "@/components/common/dashboard/Table";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
-import Title from "@/components/common/dashboard/Title";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
-import Link from "next/link";
-import Image from "next/image";
-import NoImage from "@/assets/images/no.jpg";
 import { formatNumber } from "@/utils/helper/format-number";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import PopoverItem from "../../sd-property-management/content/PopoverItem";
+import useDeleteFavorite from "../contents/hooks/useDeleteFavorite";
 
-export default function BuyerFavorites({ favorites }) {
+const sortItems = [{ text: "تاریخ ساخت", value: "createdAt" }];
+
+const orderItems = [
+  { text: "صعودی", value: "ASC" },
+  { text: "نزولی", value: "DESC" },
+];
+
+export default function BuyerFavorites({ favorites, totalCount }) {
   const t = useTranslations("Favorites");
-  const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const { handleDelete } = useDeleteFavorite(() => router.refresh());
+
+  const page = searchParams.get("page");
+  const sort = searchParams.get("sort");
+  const order = searchParams.get("order");
+
+  const handleSetParam = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value);
+    router.push(`?${params.toString()}`);
+  };
 
   const tableHeaderItems = [
     { text: t("tableHeaders.hotel"), clx: "rtl:rounded-r-xl ltr:rounded-l-xl" },
@@ -37,32 +59,28 @@ export default function BuyerFavorites({ favorites }) {
   return (
     <ContainerDashboard>
       <div className="flex items-center justify-between flex-row flex-wrap gap-4">
-        <Title text={t("title")} />
+        <Title text={"لیست املاک مورد علاقه شما"} />
         <div className="flex gap-[19px] flex-wrap">
           <Input
             placeholder={t("searchPlaceholder")}
-            className="h-12 flex-1 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+            className="h-12 flex-1 md:w-100 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
           />
           <FilterModal>
             <InputSelect
               withLabel
-              label={t("filters.propertyType")}
-              className="flex-grow"
+              defaultValue={sort || "createdAt"}
+              items={sortItems}
+              className="!w-full"
+              label={"مرتب سازی بر اساس:"}
+              onChange={(val) => handleSetParam("sort", val.toString())}
             />
             <InputSelect
               withLabel
-              label={t("filters.propertyType")}
-              className="flex-grow"
-            />
-            <InputSelect
-              withLabel
-              label={t("filters.propertyType")}
-              className="flex-grow"
-            />
-            <InputSelect
-              withLabel
-              label={t("filters.propertyType")}
-              className="flex-grow"
+              defaultValue={order || "DESC"}
+              onChange={(val) => handleSetParam("order", val.toString())}
+              items={orderItems}
+              className="!w-full"
+              label={"روند"}
             />
           </FilterModal>
         </div>
@@ -72,6 +90,10 @@ export default function BuyerFavorites({ favorites }) {
 
       {/* Table view for larger screens */}
       <TableDashboard
+        pageSize={5}
+        currentPage={Number(page) || 1}
+        onPageChange={(page) => handleSetParam("page", page.toString())}
+        totalCount={totalCount}
         card={
           <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
             {favorites.map((favorite) => (
@@ -96,13 +118,25 @@ export default function BuyerFavorites({ favorites }) {
                     <p className="">{favorite.house.address}</p>
                   </div>
 
-                  <div className="flex gap-2 pt-2">
-                    <button className="bg-primary text-white px-3 py-1 rounded-lg text-sm">
+                  <div className="flex gap-2 pt-2 flex-wrap">
+                    <Button
+                      onClick={() =>
+                        router.push(`/property-detail/${favorite.house_id}`)
+                      }
+                      variant="outline"
+                      size="sm"
+                      className="border-primary text-primary cursor-pointer flex-1"
+                    >
                       {t("actions.reserve")}
-                    </button>
-                    <button className="bg-red-50 text-red-500 border border-red-200 px-3 py-1 rounded-lg text-sm">
+                    </Button>
+                    <Button
+                      onClick={() => handleDelete(favorite.id)}
+                      variant="outline"
+                      size="sm"
+                      className="border-red-200 text-red-500 cursor-pointer flex-1"
+                    >
                       {t("actions.delete")}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -134,33 +168,24 @@ export default function BuyerFavorites({ favorites }) {
               {favorite.house.address}
             </td>
             <td className="py-2 px-4 ">
-              <Popover
-                open={openPopoverId === favorite.id}
-                onOpenChange={(open) =>
-                  setOpenPopoverId(open ? favorite.id : null)
-                }
-              >
+              <Popover>
                 <PopoverTrigger asChild>
                   <div className="text-2xl font-bold cursor-pointer">...</div>
                 </PopoverTrigger>
                 <PopoverContent className=" w-32 p-1 bg-background px-1 border-border shadow-sm shadow-border">
-                  <div>
-                    <Link
-                      href={`/property-detail/${favorite.house_id}`}
-                      className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1"
-                    >
-                      <h1>{t("actions.reserve")}</h1>
-                      <div className="my-auto">
-                        <CheckPopover />
-                      </div>
-                    </Link>
-                    <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border py-1 rounded-2xl px-1">
-                      <h1>{t("actions.delete")}</h1>
-                      <div className="my-auto">
-                        <DeletePopover />
-                      </div>
-                    </div>
-                  </div>
+                  <PopoverItem
+                    icon={<CheckPopover />}
+                    title={t("actions.reserve")}
+                    handleClick={() =>
+                      router.push(`/property-detail/${favorite.house_id}`)
+                    }
+                  />
+
+                  <PopoverItem
+                    handleClick={() => handleDelete(favorite.id)}
+                    icon={<DeletePopover />}
+                    title={t("actions.delete")}
+                  />
                 </PopoverContent>
               </Popover>
             </td>

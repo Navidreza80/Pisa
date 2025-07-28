@@ -6,7 +6,6 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { toast } from "react-toastify";
 import { deleteClientCookie } from "../service/storage/client-cookie";
 import {
   getServerCookie,
@@ -38,17 +37,13 @@ export const onError = async (error: AxiosError): Promise<never> => {
       }, 1500);
     } else if (status >= 400 && status < 500) {
       const message = (data as any)?.message || `خطای کاربر: ${status}`;
-      toast.warning(message);
       console.warn("Client Error:", status, data);
     } else if (status >= 500) {
-      toast.error("خطایی در سرور رخ داده است. لطفاً بعداً امتحان کنید.");
       console.error("Server Error:", status, data);
     }
   } else if (error.request) {
-    toast.error("پاسخی از سرور دریافت نشد. اتصال اینترنت خود را بررسی کنید.");
     console.error("No response received:", error.request);
   } else {
-    toast.error("مشکلی در ارسال درخواست رخ داد.");
     console.error("Axios setup error:", error.message);
   }
 

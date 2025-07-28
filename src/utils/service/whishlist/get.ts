@@ -1,4 +1,3 @@
-
 // Interceptor
 import http from "@/utils/interceptor";
 
@@ -7,9 +6,14 @@ import http from "@/utils/interceptor";
  * @param params Object containing query parameters like `page` and `limit`
  * @returns response with array of objects including all wishlist.
  */
-export async function getAllWishlist() {
+export async function getAllWishlist(params: {
+  page?: string;
+  limit?: string;
+  sort?: string;
+  order?: string;
+}) {
   try {
-    const response = await http.get("/wishlist");
+    const response = await http.get("/wishlist", { params });
     return response;
   } catch (error) {
     console.error("Error fetching wishlist:", error);

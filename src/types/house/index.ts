@@ -10,7 +10,7 @@ export interface HouseInterFace {
 }
 
 export interface HouseItemsInterface {
-  isFavorite: boolean;
+  favoriteId: number | null;
   parking: number;
   caption: string;
   id: number;

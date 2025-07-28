@@ -71,7 +71,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
   // If its "reservation" the property is hotel
   // If the property is hotel, render some elements and don't render some elements.
   const isHotel =
-    propertyDetails?.transaction_type == "direct_purchase" ? true : false;
+    propertyDetails?.transaction_type == "reservation" ? true : false;
   return (
     <Container>
       <div className="w-[85.5%] flex flex-wrap gap-y-8">
@@ -102,7 +102,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
                     width={500}
                     height={500}
                     alt={title || "houseImage"}
-                    src={photos[1] || NoImage}
+                    src={photos !== null && photos[1] || NoImage}
                     className="h-[253px] w-full rounded-3xl"
                     unoptimized
                   />
