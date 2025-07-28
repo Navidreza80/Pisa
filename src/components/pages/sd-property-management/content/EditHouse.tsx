@@ -2,11 +2,12 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
 import Modal from "@/components/common/modal/modal";
-import { Button } from "@/components/ui/button";
 import EditSVG from "@/components/dashboard/svg/EditSVG";
+import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import PopoverItem from "./PopoverItem";
 
 interface FormData {
   title: string;
@@ -23,9 +24,10 @@ interface FormData {
 interface HotelFormModalProps {
   house?: Partial<FormData>;
   onSubmit: (data: FormData) => void;
+  trigger?: React.ReactNode
 }
 
-export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
+export default function EditHouse({ house, onSubmit, trigger }: HotelFormModalProps) {
   const t = useTranslations("SellerPropertyList");
   const [formData, setFormData] = useState<FormData>({
     title: "",
@@ -67,14 +69,7 @@ export default function EditHouse({ house, onSubmit }: HotelFormModalProps) {
 
   return (
     <Modal
-      trigger={
-        <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded-[10px] px-1">
-          <h1>{t("edit")}</h1>
-          <div className="my-auto">
-            <EditSVG />
-          </div>
-        </div>
-      }
+      trigger={trigger}
       title={t("editProperty")}
       className="max-w-2xl"
     >

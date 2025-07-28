@@ -24,5 +24,5 @@ moment.locale("fa");
 
 export default function formatToPersianDate(date) {
   const persianDate = moment(date);
-  return persianDate.format("jD jMMMM jYYYY / HH:mm");
+  return persianDate.format("jD jMMMM - jYYYY / HH:mm");
 }

@@ -1,6 +1,11 @@
 /* eslint-disable */
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { toast } from "react-toastify";
+
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 import { deleteClientCookie } from "../service/storage/client-cookie";
 import {
   getServerCookie,
@@ -10,10 +15,11 @@ import deleteServerCookieAction from "./deleteServerCookieAction";
 
 export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: baseURL,
 });
 
+/** Typed success handler: extracts only `data` */
 const onSuccess = <T>(response: AxiosResponse<T>): T => {
   return response.data;
 };
@@ -22,7 +28,6 @@ export const onError = async (error: AxiosError): Promise<never> => {
   if (error.response) {
     const { status, data } = error.response;
 
-    // 401 Unauthorized or 403 Forbidden
     if (status === 401 || status === 403) {
       deleteServerCookieAction("serverAccessToken");
       deleteClientCookie("clientAccessToken");
@@ -30,40 +35,29 @@ export const onError = async (error: AxiosError): Promise<never> => {
       setTimeout(() => {
         window.location.href = "/auth/login";
       }, 1500);
-    }
-
-    // 400–499 (Other Client Errors)
-    else if (status >= 400 && status < 500) {
+    } else if (status >= 400 && status < 500) {
       const message = (data as any)?.message || `خطای کاربر: ${status}`;
-      toast.warning(message);
       console.warn("Client Error:", status, data);
-    }
-
-    // 500+ Server Errors
-    else if (status >= 500) {
-      toast.error("خطایی در سرور رخ داده است. لطفاً بعداً امتحان کنید.");
+    } else if (status >= 500) {
       console.error("Server Error:", status, data);
     }
   } else if (error.request) {
-    // No response received
-    toast.error("پاسخی از سرور دریافت نشد. اتصال اینترنت خود را بررسی کنید.");
     console.error("No response received:", error.request);
   } else {
-    // Request setup error
-    toast.error("مشکلی در ارسال درخواست رخ داد.");
     console.error("Axios setup error:", error.message);
   }
 
   return Promise.reject(error);
 };
 
-instance.interceptors.response.use(onSuccess, onError);
+// Set up interceptors
+axiosInstance.interceptors.response.use(onSuccess, onError);
 
-instance.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   async (config) => {
     const token = await getServerCookie("serverAccessToken");
     console.log(token);
-    if (typeof token == "string") {
+    if (typeof token === "string") {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -73,29 +67,23 @@ instance.interceptors.request.use(
   }
 );
 
-export default instance;
-
-// Response interceptor to handle 401 errors (token expired)
-instance.interceptors.response.use(
+// Token refresh logic
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      // Attempt to refresh
       const refreshToken = await getServerCookie("refreshToken");
       if (refreshToken) {
         try {
-          const res = await fetch(
-            "https://delta-project.liara.run/api/auth/refresh",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token: refreshToken }),
-            }
-          );
+          const res = await fetch(`${baseURL}/auth/refresh`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: refreshToken }),
+          });
           if (res.ok) {
             const data = await res.json();
             await setServerCookie("serverAccessToken", data.accessToken);
-            // Retry the original request with new token
+            // No request retry logic here
           }
         } catch (refreshError) {
           console.log(refreshError);
@@ -105,3 +93,22 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+type TypedAxiosInstance = {
+  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+  post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+} & AxiosInstance;
+
+const http = axiosInstance as TypedAxiosInstance;
+
+export default http;

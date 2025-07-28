@@ -12,11 +12,15 @@ interface TravelerDetail {
 }
 
 export interface Reservation {
-  id: number;
-  houseId: number;
+  id: string;
+  house: {
+    title: string;
+    price: string;
+  };
+  houseId: string;
   reservedDates: ReservedDate[];
   traveler_details: TravelerDetail[];
-  status: string;
+  status: "pending" | "confirmed" | "canceled";
   sharedEmail: string;
   sharedMobile: string;
   createdAt: string;

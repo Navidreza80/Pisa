@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 
 // CSS
 import BuyerSideBar from "@/components/common/dashboard/BuyerSideBar";
-import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
-import Tags from "@/components/pages/sd-payment-management/contents/Tags";
 import "../globals.css";
 
 // metadata
@@ -21,10 +19,8 @@ export default async function DashboardLayout({
   return (
     <div className="flex bg-border min-h-[100vh] justify-between gap-[19px] p-[19px]">
       <BuyerSideBar />
-      <div className="flex flex-col flex-wrap gap-[19px] w-[100%] mb-10">
-        <HeaderDashboard />
-        <Tags />
-        <div>{children}</div>
+      <div className="flex flex-col flex-wrap gap-[19px] w-[100%]">
+        {children}
       </div>
     </div>
   );

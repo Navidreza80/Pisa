@@ -9,9 +9,12 @@ import http from "@/utils/interceptor";
  * @returns response with array of objects user's payments.
  */
 
-export async function getAllPayments() {
+export async function getAllPayments(params: {
+  page?: string;
+  limit?: string;
+}) {
   try {
-    const response = await http.get(`/payments`);
+    const response = await http.get(`/payments`, { params });
     return response;
   } catch (error) {
     console.error("Error fetching payments:", error);

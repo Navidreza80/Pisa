@@ -13,8 +13,8 @@ import { useTranslations } from "next-intl";
 
 const FilterModal = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations('FilterModal');
-  
+  const t = useTranslations("FilterModal");
+
   const toggleIsOpen = () => {
     setIsOpen((prev) => !prev);
   };
@@ -24,26 +24,28 @@ const FilterModal = ({ children }) => {
       <DialogTrigger asChild>
         <div>
           <Button handleClick={toggleIsOpen} className="!w-auto h-12">
-            {t('filtersButton')}
+            {t("filtersButton")}
           </Button>
         </div>
       </DialogTrigger>
-      <DialogContent className="bg-background p-0 !h-auto w-[633px]" >
+      <DialogContent className="bg-background p-0 !h-auto w-[633px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
         </DialogHeader>
         <div className="w-full flex justify-center flex-wrap pb-[19px] px-[19px]">
           <header className="flex justify-between items-center w-full">
-            <h1 className="text-2xl font-medium text-text">{t('filtersTitle')}</h1>
+            <h1 className="text-2xl font-medium text-text">
+              {t("filtersTitle")}
+            </h1>
             <CloseBtn onClick={toggleIsOpen} />
           </header>
           <Line className="w-full" />
-          <div className="flex flex-wrap justify-between gap-5 py-[19px]">
+          <div className="grid grid-cols-2 gap-3 py-[19px] w-full">
             {children}
           </div>
           <footer className="w-full flex justify-center">
-            <Button className="!w-auto">
-              {t('applyFilters')}
+            <Button className="!w-auto" handleClick={toggleIsOpen}>
+              {t("applyFilters")}
             </Button>
           </footer>
         </div>

@@ -1,29 +1,37 @@
 "use client";
 
+import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
 import Line from "@/components/common/dashboard/line";
+import ModalStep2 from "@/components/common/dashboard/modalStep2";
+import TableDashboard from "@/components/common/dashboard/Table";
+import Title from "@/components/common/dashboard/Title";
+import InputSelect from "@/components/common/inputs/select-input";
 import FilterModal from "@/components/dashboard/filter-modal";
 import CanclePopover from "@/components/dashboard/svg/CanclePopover";
 import CheckPopover from "@/components/dashboard/svg/CheckPopover";
 import DeletePopover from "@/components/dashboard/svg/DeletePopover";
-import DetailPopover from "@/components/dashboard/svg/DetailPopover";
-import TableDashboard from "@/components/common/dashboard/Table";
-import Title from "@/components/common/dashboard/Title";
+import DetailSVG from "@/components/dashboard/svg/DetailPopover";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
-import { useQuery } from "@tanstack/react-query";
-import { GetSellerBooking } from "@/utils/service/reserve/GetSellerBookings";
+import { Reservation } from "@/types/reserve";
 import formatToPersianDate from "@/utils/helper/format-date";
 import { formatNumber } from "@/utils/helper/format-number";
+import { useTranslations } from "next-intl";
+import { useRouter, useSearchParams } from "next/navigation";
+import { MdRestore } from "react-icons/md";
+import ReserveDetail from "../../bd-bookings/contents/reserveDetail";
+import PopoverItem from "../../sd-property-management/content/PopoverItem";
+import useCancelBooking from "../content/hooks/useCancelBooking";
+import useConfirmBooking from "../content/hooks/useConfirmBooking";
+import useContinueBooking from "../content/hooks/useContinueBooking";
+import useDeleteBooking from "../content/hooks/useDeleteBooking";
+import { InfoRow } from "../content/InFrow";
+import Status from "../content/Status";
 
 const tableHeaderItems = [
   { text: "propertyName", clx: "rounded-r-xl" },
@@ -35,44 +43,223 @@ const tableHeaderItems = [
   { text: "empty", clx: "rounded-l-xl" },
 ];
 
+const StatusItems = [
+  { text: "همه", value: "all" },
+  { text: "تایید شده", value: "confirmed" },
+  { text: "لفو شده", value: "canceled" },
+  { text: "در انتظار", value: "pending" },
+];
+
+const sortItems = [{ text: "تاریخ ساخت", value: "created_at" }];
+
+const orderItems = [
+  { text: "صعودی", value: "ASC" },
+  { text: "نزولی", value: "DESC" },
+];
+
 export default function SellerReservationManagement({
   isFilter = true,
+  endItem,
+  bookings,
+  totalCount,
 }: {
-  isFilter: boolean;
+  isFilter?: boolean;
+  endItem?: React.ReactNode;
+  bookings: Reservation[];
+  totalCount: number;
 }) {
+  const router = useRouter();
   const t = useTranslations("BookingListSeller");
-  const [openPopoverId, setOpenPopoverId] = useState<number | null>(null);
 
-  const { data } = useQuery({
-    queryKey: ["SELLERS_BOOKINGS"],
-    queryFn: GetSellerBooking,
-  });
-
-  console.log(data);
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status");
+  const page = searchParams.get("page");
+  const sort = searchParams.get("sort");
+  const order = searchParams.get("order");
+  const handleSetParam = (key: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value.toString());
+    router.push(`?${params.toString()}`);
+  };
+  const { handleDelete } = useDeleteBooking(() => router.refresh());
+  const { handleCancel } = useCancelBooking(() => router.refresh());
+  const { handleContinue } = useContinueBooking(() => router.refresh());
+  const { handleConfirm } = useConfirmBooking(() => router.refresh());
 
   return (
     <ContainerDashboard>
-      <div className="flex flex-col md:flex-row-reverse justify-between gap-4 md:gap-0">
-        <div className="flex gap-[19px] flex-wrap justify-end">
-          <FilterModal />
-          <Input
-            placeholder={t("searchPlaceholder")}
-            className="h-12 placeholder:text-text-secondary placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl w-full md:w-100"
-          />
-        </div>
+      <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <Title text={t("pageTitle")} />
+        {isFilter ? (
+          <div className="flex gap-[19px] flex-wrap justify-between">
+            <InputSelect
+              className="flex-1"
+              onChange={(val) => handleSetParam("status", val)}
+              withLabel
+              label="وضعیت"
+              items={StatusItems}
+              defaultValue={status || "all"}
+            />
+            <FilterModal>
+              <InputSelect
+                className="!w-full"
+                withLabel
+                onChange={(val) => handleSetParam("sort", val)}
+                label="مرتب سازی"
+                items={sortItems}
+                defaultValue={sort || "created_at"}
+              />
+              <InputSelect
+                className="!w-full"
+                defaultValue={order || "DESC"}
+                withLabel
+                onChange={(val) => handleSetParam("order", val)}
+                label="روند"
+                items={orderItems}
+              />
+            </FilterModal>
+          </div>
+        ) : (
+          endItem
+        )}
       </div>
       <Line />
 
       {/* Table view for desktop */}
-      <div className="hidden md:block">
+      <div>
         <TableDashboard
+          card={
+            <div className="grid grid-cols-1 gap-4 mt-4">
+              {bookings.map((booking: Reservation) => (
+                <Card
+                  key={booking.id}
+                  className="overflow-hidden shadow-none border border-border rounded-2xl"
+                >
+                  <CardContent className="p-4 space-y-4">
+                    {/* Header */}
+                    <div className="flex flex-col">
+                      <h2 className="text-lg font-bold mb-1">{"نام خانه"}</h2>
+                      <p className="text-sm text-gray-500">
+                        {t("tableHeaders.travelerInfo")}:{" "}
+                        {booking.traveler_details?.[0]?.firstName || "-"}
+                      </p>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="space-y-1">
+                      {booking.sharedMobile && (
+                        <p className="text-sm">
+                          شماره موبایل: {booking.sharedMobile}
+                        </p>
+                      )}
+                      {booking.sharedEmail && (
+                        <p className="text-sm">ایمیل: {booking.sharedEmail}</p>
+                      )}
+                    </div>
+
+                    {/* Booking Info Grid */}
+                    <div className="grid grid-cols-1 gap-3">
+                      <InfoRow
+                        label={t("tableHeaders.bookingDate")}
+                        value={formatToPersianDate(
+                          booking.reservedDates?.[0]?.value
+                        )}
+                      />
+                      <InfoRow
+                        label={t("tableHeaders.amount")}
+                        value={`${formatNumber(1500000)} تومان`}
+                      />
+                    </div>
+
+                    {/* Status */}
+                    <div className="flex flex-col gap-2">
+                      <InfoRow
+                        label={t("tableHeaders.bookingStatus")}
+                        value={<Status status={booking.status} />}
+                      />
+                      <InfoRow
+                        label={t("tableHeaders.paymentStatus")}
+                        value={<Status status="canceled" />}
+                      />
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex flex-col gap-2 pt-4 border-t border-border mt-4">
+                      <ReserveDetail
+                        trigger={
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className=" w-full"
+                          >
+                            جزییات
+                          </Button>
+                        }
+                        houseId={booking.houseId}
+                      />
+                      <ModalStep2
+                        button="حذف رزرو"
+                        desc="امکان بازگشت پس از حذف وجود ندارد!"
+                        onConfirm={() => handleDelete(booking.id)}
+                        title="آیا از حذف کردن این رزرو مطمعنید؟"
+                        trigger={
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-red-500 border-red-200 w-full"
+                          >
+                            {t("actions.delete")}
+                          </Button>
+                        }
+                      />
+
+                      {booking.status === "canceled" && (
+                        <Button
+                          onClick={() => handleContinue(booking.id)}
+                          variant="outline"
+                          size="sm"
+                          className="border-green-200 text-green-500"
+                        >
+                          بازیابی
+                        </Button>
+                      )}
+
+                      {booking.status === "pending" && (
+                        <div className="flex flex-col gap-2">
+                          <Button
+                            onClick={() => handleCancel(booking.id)}
+                            variant="outline"
+                            size="sm"
+                            className="border-orange-200 text-orange-500"
+                          >
+                            {t("actions.cancel")}
+                          </Button>
+
+                          <Button
+                            onClick={() => handleConfirm(booking.id)}
+                            size="sm"
+                            className="bg-primary text-white"
+                          >
+                            {t("actions.approve")}
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          }
+          currentPage={Number(page) || 1}
+          totalCount={totalCount}
+          pageSize={5}
+          onPageChange={(page) => handleSetParam("page", page.toString())}
           headerSecondary={true}
           tableHeader={tableHeaderItems.map((item) => ({
             ...item,
             text: t(`tableHeaders.${item.text}`),
           }))}
-          tableContent={data?.bookings.map((booking) => (
+          tableContent={bookings.map((booking: Reservation) => (
             <tr
               key={booking.id}
               className="font-yekan font-semibold border-b hover:bg-table-header/50 cursor-pointer"
@@ -89,21 +276,8 @@ export default function SellerReservationManagement({
               <td className="py-2 px-4 text-[18px] font-medium">
                 {formatNumber(1200000)}
               </td>
-              <td className="py-2 px-4">
-                <span
-                  className={cn(
-                    "px-2 py-1 rounded-full text-text text-[13px] font-medium text-white",
-                    booking.status === "confirmed" && "bg-lime-400",
-                    booking.status === "pending" && "bg-orange-400",
-                    booking.status === "canceled" && "bg-red-400"
-                  )}
-                >
-                  {booking.status == "pending"
-                    ? "در انتظار"
-                    : booking.status == "confirmed"
-                      ? "تایید شده"
-                      : "لغو شده"}
-                </span>
+              <td className="py-2 px-4 w-auto">
+                <Status status={booking.status} />
               </td>
               <td className="py-2 px-4">
                 <span
@@ -113,41 +287,54 @@ export default function SellerReservationManagement({
                 </span>
               </td>
               <td className="py-2 px-4  rounded-l-xl">
-                <Popover
-                  open={openPopoverId === booking.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
-                  }
-                >
+                <Popover>
                   <PopoverTrigger asChild>
-                    <div className="text-2xl font-bold cursor-pointer">...</div>
+                    <button className="text-xl font-bold cursor-pointer">
+                      ...
+                    </button>
                   </PopoverTrigger>
-                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                    <div className="space-y-2">
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.approve")}</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.cancel")}</h1>
-                        <div className="my-auto">
-                          <CanclePopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.details")}</h1>
-                        <div className="my-auto">
-                          <DetailPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                        <h1>{t("actions.delete")}</h1>
-                        <div className="my-auto">
-                          <DeletePopover />
-                        </div>
-                      </div>
+                  <PopoverContent className="p-2 bg-background px-1 border-border shadow-sm shadow-border rounded-[15px] !w-auto">
+                    <div className="flex flex-col">
+                      {booking.status == "pending" && (
+                        <PopoverItem
+                          handleClick={() => handleConfirm(booking.id)}
+                          icon={<CheckPopover />}
+                          title={t("actions.approve")}
+                        />
+                      )}
+                      {booking.status == "pending" && (
+                        <PopoverItem
+                          handleClick={() => handleCancel(booking.id)}
+                          icon={<CanclePopover />}
+                          title={t("actions.cancel")}
+                        />
+                      )}
+                      {booking.status == "canceled" && (
+                        <PopoverItem
+                          handleClick={() => handleContinue(booking.id)}
+                          icon={<MdRestore />}
+                          title={"بازیابی"}
+                        />
+                      )}
+                      <ReserveDetail
+                        trigger={
+                          <PopoverItem icon={<DetailSVG />} title={"جزییات"} />
+                        }
+                        houseId={booking.houseId}
+                      />
+
+                      <ModalStep2
+                        button="حذف رزرو"
+                        desc="امکان بازگشت پس از حذف وجود ندارد!"
+                        onConfirm={() => handleDelete(booking.id)}
+                        title="آیا از حذف کردن این رزرو مطمعنید؟"
+                        trigger={
+                          <PopoverItem
+                            icon={<DeletePopover />}
+                            title={t("actions.delete")}
+                          />
+                        }
+                      />
                     </div>
                   </PopoverContent>
                 </Popover>
@@ -155,141 +342,6 @@ export default function SellerReservationManagement({
             </tr>
           ))}
         />
-      </div>
-
-      {/* Card view for mobile */}
-      <div className="md:hidden grid grid-cols-1 gap-4 mt-4">
-        {data?.bookings.map((booking) => (
-          <Card key={booking.id} className="overflow-hidden border-border">
-            <CardContent className="p-4">
-              {/* Header with property name and actions */}
-              <div className="flex justify-between items-start mb-3">
-                <Popover
-                  open={openPopoverId === booking.id}
-                  onOpenChange={(open) =>
-                    setOpenPopoverId(open ? booking.id : null)
-                  }
-                >
-                  <PopoverTrigger asChild>
-                    <button className="text-xl font-bold cursor-pointer">
-                      ...
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent className=" w-32 p-2 bg-background px-1 border-border shadow-sm shadow-border">
-                    <div className="space-y-2">
-                      <div className="w-full flex gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.approve")}</h1>
-                        <div className="my-auto">
-                          <CheckPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.cancel")}</h1>
-                        <div className="my-auto">
-                          <CanclePopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border rounded px-1">
-                        <h1>{t("actions.details")}</h1>
-                        <div className="my-auto">
-                          <DetailPopover />
-                        </div>
-                      </div>
-                      <div className="w-full flex justify-end gap-2 cursor-pointer hover:bg-border text-red-600 rounded px-1">
-                        <h1>{t("actions.delete")}</h1>
-                        <div className="my-auto">
-                          <DeletePopover />
-                        </div>
-                      </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-
-                <h2 className="text-lg font-bold ">{booking.hotel}</h2>
-              </div>
-
-              {/* Booking details */}
-              <div className="grid grid-cols-2 gap-3 ">
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.travelerInfo")}:
-                  </p>
-                  <p className="font-medium">{booking.traveler}</p>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.bookingDate")}:
-                  </p>
-                  <p className="font-medium">{booking.date}</p>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
-                    {t("tableHeaders.amount")}:
-                  </p>
-                  <p className="font-medium">{booking.total}</p>
-                </div>
-              </div>
-
-              {/* Status badges */}
-              <div className="flex flex-wrap justify-end gap-4 pt-3 mt-3">
-                <div className="flex flex-col items-end gap-1">
-                  <span className="text-sm text-gray-500">
-                    {t("tableHeaders.bookingStatus")}:
-                  </span>
-                  <span
-                    className={cn(
-                      "px-2 py-1 rounded-full text-white text-xs",
-                      booking.status === t("status.approved") && "bg-lime-400",
-                      booking.status === t("status.pending") && "bg-orange-400"
-                    )}
-                  >
-                    {booking.status}
-                  </span>
-                </div>
-
-                <div className="flex flex-col items-end gap-1">
-                  <span className="text-sm text-gray-500">
-                    {t("tableHeaders.paymentStatus")}:
-                  </span>
-                  <span
-                    className={cn(
-                      "px-2 py-1 rounded-full text-white text-xs",
-                      booking.paymentStatus === t("status.approved") &&
-                        "bg-lime-400",
-                      booking.paymentStatus === t("status.cancelled") &&
-                        "bg-rose-400"
-                    )}
-                  >
-                    {booking.paymentStatus}
-                  </span>
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div className="flex justify-end gap-2 pt-3 border-t border-border mt-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-red-500 border-red-200"
-                >
-                  {t("actions.delete")}
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-orange-200 text-orange-500"
-                >
-                  {t("actions.cancel")}
-                </Button>
-                <Button size="sm" className="bg-primary text-white">
-                  {t("actions.approve")}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
       </div>
     </ContainerDashboard>
   );

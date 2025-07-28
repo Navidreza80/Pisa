@@ -1,7 +1,7 @@
 import Close from "../svg/close";
 import { useTranslations } from "next-intl";
 
-const CloseBtn = ({ onClick }) => {
+const CloseBtn = ({ onClick }: {onClick?: () => void}) => {
   const t = useTranslations('FilterModal');
 
   return (

@@ -7,31 +7,33 @@ import {
 } from "@/components/ui/dialog";
 import ErrorSVG from "../../dashboard/svg/ErrorSVG";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 const ModalStep2 = ({
   title,
   desc,
   button,
-  name,
+  trigger,
   onConfirm,
 }: {
   title: string;
   desc?: string;
   button: string;
-  name: string;
+  trigger: React.ReactNode;
   onConfirm: () => void;
 }) => {
   const t = useTranslations("Overall");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <h1>{name}</h1>
+        <div>{trigger}</div>
       </DialogTrigger>
-      <DialogContent className="!p-0 !max-w-fit rounded-[32px] bg-background border-0">
+      <DialogContent className="!p-0 rounded-[32px] bg-background border-0">
         <DialogHeader className="!p-0">
           <DialogTitle></DialogTitle>
         </DialogHeader>
-        <div className="w-135 pb-[19px] ">
+        <div className="md:w-135 pb-[19px] ">
           <div className="p-[19px] font-medium text-[15px] text-text-secondary leading-7 flex justify-between">
             <div className="flex flex-col m-auto gap-[55px]">
               <div className="mx-auto">
@@ -54,7 +56,7 @@ const ModalStep2 = ({
                 >
                   {button}
                 </button>
-                <button className="w-[87px] text-center text-text text-[16px] cursor-pointer">
+                <button onClick={() => setIsOpen(false)} className="w-[87px] text-center text-text text-[16px] cursor-pointer">
                   {t("cancel")}
                 </button>
               </div>

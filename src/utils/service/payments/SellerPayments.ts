@@ -1,6 +1,3 @@
-// Types
-import { Question } from "@/types/qa";
-
 // Interceptor
 import http from "@/utils/interceptor";
 
@@ -9,9 +6,12 @@ import http from "@/utils/interceptor";
  * @returns response with array of objects sellers payments.
  */
 
-export async function getSellerPayments() {
+export async function getSellerPayments(params: {
+  page: string;
+  limit: string;
+}) {
   try {
-    const response = await http.get(`/seller/finance`);
+    const response = await http.get(`/seller/finance`, { params });
     return response;
   } catch (error) {
     console.error("Error fetching payments:", error);

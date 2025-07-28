@@ -27,14 +27,14 @@ const AddPropertyStepFour = ({ houseId, refresh }) => {
 
   return (
     <div className="mt-8 flex flex-col justify-center items-center">
-      <div className="flex flex-row-reverse justify-start flex-wrap text-[20px] font-bold w-full">
+      <div className="flex flex-row flex-wrap text-[20px] font-bold w-full">
         <h1 className="text-base font-medium mb-[19px] w-full text-text-secondary">
           {t("title")}
         </h1>
         <h2 className="text-primary">{t("subtitle1")}</h2>
         <h2 className="text-text font-semibold">{t("subtitle2")}</h2>
       </div>
-      <div className="mt-[81px] grid grid-cols-1 gap-[30px] justify-center">
+      <div className="grid grid-cols-1 gap-[30px] justify-center">
         <input
           type="file"
           id="file-upload"
@@ -48,7 +48,7 @@ const AddPropertyStepFour = ({ houseId, refresh }) => {
         <div className="flex justify-center">
           <button
             type="button"
-            className="mt-4 px-4 py-2 bg-primary text-white rounded-md"
+            className="mt-4 px-4 py-2 bg-primary text-white rounded-md cursor-pointer"
             onClick={() => {
               if (file) {
                 uploadHousePicture(file);

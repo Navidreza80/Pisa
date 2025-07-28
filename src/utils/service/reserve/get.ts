@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Types
 import { Reservation } from "@/types/reserve";
 
@@ -8,7 +10,7 @@ import http from "@/utils/interceptor";
  * Get all users booking.
  * @returns response with array of objects including all users bookings.
  */
-export async function getBookingList(params): Promise<{
+export async function getBookingList(params?: any): Promise<{
   data: Reservation[];
   totalCount: number;
 }> {

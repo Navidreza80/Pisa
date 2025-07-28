@@ -4,7 +4,7 @@ import http from "@/utils/interceptor";
 /**
  * Continue user booking.
  */
-export async function continueBooking(id) {
+export async function continueBooking(id: string) {
   try {
     const response = await http.post(`/bookings/${id}/continue`);
     return response;

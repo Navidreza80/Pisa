@@ -1,22 +1,28 @@
 import React from "react";
 
-function DetailPopover() {
+function DetailSVG() {
   return (
     <svg
-      width="22"
-      height="22"
-      viewBox="0 0 22 22"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="11" cy="11" r="8.25" stroke="currentColor" strokeWidth="2" />
       <path
-        d="M7.33317 11L10.0832 13.75L14.6665 8.25"
-        stroke="currentColor"
-        strokeWidth="2"
+        d="M9.00033 0.666992C4.41699 0.666992 0.666992 4.41699 0.666992 9.00033C0.666992 13.5837 4.41699 17.3337 9.00033 17.3337C13.5837 17.3337 17.3337 13.5837 17.3337 9.00033C17.3337 4.41699 13.5837 0.666992 9.00033 0.666992ZM9.00033 15.667C5.33366 15.667 2.33366 12.667 2.33366 9.00033C2.33366 5.33366 5.33366 2.33366 9.00033 2.33366C12.667 2.33366 15.667 5.33366 15.667 9.00033C15.667 12.667 12.667 15.667 9.00033 15.667Z"
+        fill="black"
+      />
+      <path
+        d="M9.83366 8.16699H8.16699V12.3337H9.83366V8.16699Z"
+        fill="black"
+      />
+      <path
+        d="M9.83366 5.66699H8.16699V7.33366H9.83366V5.66699Z"
+        fill="black"
       />
     </svg>
   );
 }
 
-export default DetailPopover;
+export default DetailSVG;
