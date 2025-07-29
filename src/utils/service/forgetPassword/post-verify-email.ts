@@ -19,7 +19,7 @@ interface VerifyResetCodeResponse {
 const verifyResetCode = async ({ email, resetCode }: VerifyResetCodeParams) => {
   const body = {
     email,
-    reset_code: resetCode,
+    resetCode,
   };
 
   const response = await http.post<VerifyResetCodeResponse>(
