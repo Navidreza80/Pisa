@@ -4,19 +4,37 @@ import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard
 import CameraSVG from "@/components/dashboard/svg/CameraSVG";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import changePass from "@/utils/service/user/change-pass";
 import { useUser } from "@/utils/service/user/get";
-import { useEditUser } from "@/utils/service/user/put";
 import { useUploadPicture } from "@/utils/service/user/uploadUserPicture";
+import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function BuyerInformation() {
   const t = useTranslations("UserInformation");
-  const { mutate } = useEditUser();
   const { mutate: uploadPicture } = useUploadPicture();
   const { data } = useUser();
+  const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
+
+  const { mutate: editPassword } = useMutation({
+    mutationKey: ["CHANGE_PASSWORD"],
+    mutationFn: () =>
+      toast.promise(
+        changePass({
+          currentPassword: oldPassword,
+          newPassword: password,
+        }),
+        {
+          pending: "درحال پردازش...",
+          success: "رمز عبور با موفقیت تغییر یافت.",
+          error: "خطا در تغییر رمز عبور.",
+        }
+      ),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -103,14 +121,14 @@ export default function BuyerInformation() {
               />
             ))}
           </div>
-          <div className="text-center">
+          <div className="text-center md:text-right">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("personalInfo.title")}
             </h2>
             <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
               {t("personalInfo.description")}
             </p>
-            <div className="mt-4 flex justify-center md:justify-end gap-2">
+            <div className="mt-4 flex justify-center md:justify-start gap-2">
               <Button
                 type="submit"
                 className="bg-primary hover:bg-primary rounded-xl text-white cursor-pointer"
@@ -126,22 +144,27 @@ export default function BuyerInformation() {
         <div className="my-8 flex flex-col md:flex-row-reverse justify-between gap-6 md:gap-0">
           <div className="flex flex-col flex-wrap gap-4 w-full justify-center md:w-[calc(55%)]">
             <Input
+              onChange={(e) => setOldPassword(e.target.value)}
+              placeholder={"رمز عبور قبلی"}
+              className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
+            />
+            <Input
               onChange={(e) => setPassword(e.target.value)}
               placeholder={t("newPassword")}
               className="h-12 placeholder:text-text-secondary md:w-[calc(65%)] w-full placeholder:text-[16px] border-border border-[2px] px-5 rounded-2xl"
             />
           </div>
 
-          <div className="text-center">
+          <div className="text-center md:text-right">
             <h2 className="text-text text-[20px] font-extrabold font-yekan ">
               {t("security.title")}
             </h2>
             <p className="text-text-secondary text-[16px] font-[400] font-yekan mb-4">
               {t("security.description")}
             </p>
-            <div className="mt-4 flex justify-center md:justify-end gap-2">
+            <div className="mt-4 flex justify-center md:justify-start gap-2">
               <Button
-                onClick={() => mutate({ password })}
+                onClick={() => editPassword()}
                 className="bg-primary cursor-pointer rounded-xl hover:bg-primary text-white"
               >
                 {t("buttons.applyChanges")}
