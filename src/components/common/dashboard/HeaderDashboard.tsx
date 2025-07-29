@@ -14,6 +14,7 @@ import DropdownMenu from "./DropdownMenu";
 import UserRole from "./UserRole";
 import { getTranslations } from "next-intl/server";
 import { JwtPayload } from "@/types/user";
+import NoImage from "@/assets/images/no.jpg"
 import Image from "next/image";
 
 const HeaderDashboard = cache(async ({ title }: { title: string }) => {
@@ -44,7 +45,7 @@ const HeaderDashboard = cache(async ({ title }: { title: string }) => {
           {/* User Profile Section */}
           <div className="flex gap-2 items-center">
             <Image
-              src={decodedUser.profilePicture}
+              src={decodedUser?.profilePicture && decodedUser.profilePicture !== "" ? decodedUser?.profilePicture : NoImage}
               alt="User profile pic"
               width={37}
               height={37}
