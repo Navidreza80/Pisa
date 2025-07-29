@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Tilt from "react-parallax-tilt";
-import { CalendarDays, Clock3, Tag, User } from "lucide-react";
 import { Blog } from "@/utils/service/blogs/GetBlogs";
+import { motion } from "framer-motion";
+import { CalendarDays, Clock3 } from "lucide-react";
 import Link from "next/link";
+import Tilt from "react-parallax-tilt";
+import { useTranslations } from "next-intl";
+import formatToPersianDate from "@/utils/helper/format-date";
 
 interface BlogCardProps {
   blog: Blog;
@@ -12,6 +14,8 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ blog, onClick }: BlogCardProps) {
+  const t = useTranslations("Blog");
+
   return (
     <Tilt
       options={{ max: 15, scale: 1.02 }}
@@ -28,17 +32,6 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
           {blog.title}
         </h2>
 
-        {/* <div className="flex justify-between items-center text-sm text-text-secondary">
-          <div className="flex items-center gap-1">
-            <Tag size={16} className="text-fade" />
-            <span>{blog.category_name || "بدون دسته"}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <User size={16} className="text-fade" />
-            <span>{blog.author_name || "ناشناس"}</span>
-          </div>
-        </div> */}
-
         <p className="text-text-secondary text-sm leading-6 line-clamp-3">
           {blog.caption}
         </p>
@@ -46,23 +39,16 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
         <div className="flex justify-between items-center text-xs text-fade mt-2">
           <div className="flex items-center gap-1">
             <Clock3 size={16} className="text-primary" />
-            <span>
-              {Math.max(1, Math.ceil(blog.estimated_reading_time.seconds / 60))} دقیقه
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <CalendarDays size={16} className="text-primary" />
-            <span>{new Date(blog.created_at).toLocaleDateString("fa-IR")}</span>
+            <span>{formatToPersianDate(blog.created_at)}</span>
           </div>
         </div>
 
-
-        <Link key={blog.id} href={`blogs/${blog.id}`} className="w-full">
+        <Link key={blog.id} href={`/blogs/${blog.id}`} className="w-full">
           <button
             className="mt-6 w-full cursor-pointer text-sm font-semibold text-white bg-primary hover:bg-[#4853e3] px-5 py-2 rounded-xl transition"
             onClick={onClick}
           >
-            خواندن مقاله
+            {t("readArticle")}
           </button>
         </Link>
       </motion.div>

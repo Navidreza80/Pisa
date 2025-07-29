@@ -174,7 +174,14 @@
     "noDescription": "Açıklama yok",
     "unknownUser": "Bilinmeyen kullanıcı",
     "prev": "Önceki",
-    "next": "Sonraki"
+    "next": "Sonraki",
+    "FP_resetCodeSent": "Şifre sıfırlama kodu e-posta adresinize gönderildi.",
+    "FP_successCode": "Kod başarıyla doğrulandı.",
+    "FP_success": "Şifreniz başarıyla değiştirildi.",
+    "FP_emailNotFound": "Girilen e-posta sistemde bulunamadı.",
+    "FP_invalidCode": "Girilen kod geçersiz.",
+    "FP_serverError": "Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
+    "FP_genericError": "Bir hata oluştu. Lütfen tekrar deneyin."
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",

@@ -23,16 +23,16 @@ export const useForgotPasswordRequest = () => {
     retry: 0,
     onSuccess: (_, variables) => {
       localStorage.setItem("resetEmail", variables.email); 
-      toast.success(t("resetCodeSent"));
+      toast.success(t("FP_resetCodeSent"));
       router.push("/auth/forget-password/step-2"); 
     },
     onError: (error: AxiosError) => {
       if (error.response?.status === 404) {
-        toast.error(t("emailNotFound"));
+        toast.error(t("FP_emailNotFound"));
       } else if (error.response?.status && error.response.status >= 500) {
-        toast.error(t("serverError"));
+        toast.error(t("FP_serverError"));
       } else {
-        toast.error(t("genericError"));
+        toast.error(t("FP_genericError"));
       }
     },
   });
