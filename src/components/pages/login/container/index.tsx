@@ -111,11 +111,19 @@ function LoginContainer() {
         />
       </div>
       <div className="flex justify-center mt-2 gap-[5px]">
-        <span className="text-[14px] font-[500] underline text-[#586CFF] dark:text-[#8b9bff]">
+        <span className="text-[14px] font-[500] text-text">
+          {t("NoAccount")}
+        </span>
+        <span className="text-[14px] font-[500] underline text-primary">
           <Link href="/auth/register/step-1">{t("SignUpTitle")}</Link>
         </span>
-        <span className="text-[14px] font-[500] text-[#222] dark:text-[white]">
-          {t("NoAccount")}
+      </div>
+      <div className="flex justify-center mt-2 gap-[5px]">
+        <span className="text-[14px] font-[500] text-text">
+          رمز عبور خود را فراموش کرده اید؟
+        </span>
+        <span className="text-[14px] font-[500] underline text-primary">
+          <Link href="/auth/forget-password/step-1">فراموشی رمز  عبور</Link>
         </span>
       </div>
     </form>

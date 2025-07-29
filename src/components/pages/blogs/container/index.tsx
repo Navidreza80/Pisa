@@ -130,7 +130,7 @@ export default function BlogPage() {
 
           {/* Blog Cards */}
           <div
-            className="custom-scrollbar overflow-y-auto lg:max-h-[calc(100vh-142px)]  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between"
+            className="custom-scrollbar overflow-y-auto  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between"
           >
             {isLoading &&
               [...Array(6)].map((_, i) => (

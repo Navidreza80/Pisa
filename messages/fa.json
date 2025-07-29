@@ -174,7 +174,14 @@
     "noDescription": "بدون توضیح",
     "unknownUser": "کاربر ناشناس",
     "prev": "قبلی",
-    "next": "بعدی"
+    "next": "بعدی",
+    "FP_resetCodeSent": "کد بازیابی به ایمیل شما ارسال شد.",
+    "FP_successCode": "کد با موفقیت تایید شد.",
+    "FP_success": "رمز عبور با موفقیت تغییر کرد.",
+    "FP_emailNotFound": "ایمیل وارد شده در سیستم یافت نشد.",
+    "FP_invalidCode": "کد وارد شده نامعتبر است.",
+    "FP_serverError": "خطای سرور رخ داده است. لطفاً بعداً تلاش کنید.",
+    "FP_genericError": "خطایی رخ داده است. لطفاً دوباره تلاش کنید."
   },
   "AboutUs": {
     "mentor": "سبحان عرب خزائلی",
@@ -1044,5 +1051,18 @@
       "previous": "قبلی",
       "next": "بعدی"
     }
+  },
+  "Blog": {
+    "title": "بلاگ‌ها",
+    "searchPlaceholder": "جستجو در عنوان...",
+    "newest": "جدیدترین",
+    "oldest": "قدیمی‌ترین",
+    "notFound": "نتیجه‌ای یافت نشد",
+    "author": "نویسنده",
+    "category": "دسته",
+    "relatedBlogs": "مقالات مرتبط",
+    "noRelated": "مطلب مرتبطی یافت نشد.",
+    "readTime": "{{minutes}} دقیقه",
+    "readArticle": "خواندن مقاله"
   }
 }

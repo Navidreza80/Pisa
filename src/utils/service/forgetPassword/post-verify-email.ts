@@ -19,7 +19,7 @@ interface VerifyResetCodeResponse {
 const verifyResetCode = async ({ email, resetCode }: VerifyResetCodeParams) => {
   const body = {
     email,
-    resetCode,
+    resetCode: resetCode,
   };
 
   const response = await http.post<VerifyResetCodeResponse>(
@@ -40,17 +40,17 @@ export const useVerifyResetCode = () => {
     retry: 0,
     onSuccess: (data, variables) => {
       localStorage.setItem("resetCode", variables.resetCode);
-      toast.success(t("successCode"));
-      router.push("/auth/reset-password/new-password");
+      toast.success(t("FP_successCode"));
+      router.push("/auth/forget-password/step-3");
     },
 
     onError: (error: AxiosError) => {
       if (error.response?.status === 400) {
-        toast.error(t("invalidCode"));
+        toast.error(t("FP_invalidCode"));
       } else if (error.response?.status && error.response.status >= 500) {
-        toast.error(t("serverError"));
+        toast.error(t("FP_serverError"));
       } else {
-        toast.error(t("genericError"));
+        toast.error(t("FP_genericError"));
       }
     },
   });

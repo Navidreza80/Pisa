@@ -175,7 +175,14 @@
     "noDescription": "No description",
     "unknownUser": "Unknown user",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "FP_resetCodeSent": "A reset code has been sent to your email.",
+    "FP_successCode": "Code successfully verified.",
+    "FP_success": "Your password has been successfully reset.",
+    "FP_emailNotFound": "The entered email was not found in our system.",
+    "FP_invalidCode": "The entered code is invalid.",
+    "FP_serverError": "A server error occurred. Please try again later.",
+    "FP_genericError": "An error occurred. Please try again."
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",

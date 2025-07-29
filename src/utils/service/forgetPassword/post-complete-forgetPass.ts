@@ -36,18 +36,18 @@ export const useResetPassword = () => {
     mutationFn: resetPassword,
     retry: 0,
     onSuccess: () => {
-      toast.success(t("success"));
+      toast.success(t("FP_success"));
       router.push("/");
     },
     onError: (error: AxiosError) => {
       console.error("[useResetPassword] error:", error);
 
       if (error.response?.status && error.response.status >= 500) {
-        toast.info(t("serverError"));
+        toast.info(t("FP_serverError"));
       } else if (error.response?.status === 400) {
-        toast.error(t("invalidCode"));
+        toast.error(t("FP_invalidCode"));
       } else {
-        toast.error(t("genericError"));
+        toast.error(t("FP_genericError"));
       }
     },
   });

@@ -137,15 +137,15 @@ export default function CommentsSwiper() {
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   if (loading) {
-    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("loading")}</div>;
+    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("loading")}</div></div>;
   }
 
   if (error) {
-    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8 text-red-500">{error}</div>;
+    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl my-auto mx-auto px-4 text-center py-8 text-red-500">{error}</div></div>;
   }
 
   if (comments.length === 0) {
-    return <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("noComments")}</div>;
+    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("noComments")}</div></div>;
   }
 
   return (
