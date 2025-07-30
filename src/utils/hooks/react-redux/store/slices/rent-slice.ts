@@ -1,13 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HouseFilters } from '@/types/house';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HouseFilters } from "@/types/house";
 
 const initialState: HouseFilters = {
   page: 1,
-  sort: 'price',
+  sort: "price",
   order: undefined,
-  search: '',
-  location: '',
-  propertyType: '',
+  search: "",
+  location: "",
+  propertyType: "",
   maxPrice: undefined,
   minRent: undefined,
   maxRent: undefined,
@@ -18,18 +18,18 @@ const initialState: HouseFilters = {
   limit: 10,
   transactionType: '',
   minPrice: 0,
-  rate: undefined
+  rate: undefined,
 };
 
 const filterRentSlice = createSlice({
-  name: 'landingFilter',
+  name: "landingFilter",
   initialState,
   reducers: {
     setRentFilters: (state, action: PayloadAction<Partial<HouseFilters>>) => {
       return { ...state, ...action.payload };
     },
-    resetRentFilters: () => initialState
-  }
+    resetRentFilters: () => initialState,
+  },
 });
 
 export const { setRentFilters, resetRentFilters } = filterRentSlice.actions;

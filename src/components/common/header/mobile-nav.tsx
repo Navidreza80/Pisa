@@ -33,7 +33,7 @@ export default function MobileNav() {
 
   // Navigation items
   const navItems = [
-    { text: t("about"), url: "/about-us" },
+    { text: "بلاگ", url: "/blogs" },
     { text: t("home"), url: "/" },
     { text: t("rent"), url: "/rent" },
     { text: t("reserve"), url: "/reserve" },
@@ -55,21 +55,21 @@ export default function MobileNav() {
           </SheetHeader>
           <div className="flex flex-col mt-2 gap-2 px-2 pb-4">
             {navItems.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors px-3 py-3"
-              >
-                <SheetClose asChild>
-                  <Link
-                    href={item.url}
-                    className={` text-base text-text ${
-                      direction === "rtl" ? "" : ""
-                    }`}
+              <SheetClose asChild key={index}>
+                <Link
+                  href={item.url}
+                  className={` ${
+                    direction === "rtl" ? "" : ""
+                  }`}
+                >
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors px-3 py-3"
                   >
                     {item.text}
-                  </Link>
-                </SheetClose>
-              </div>
+                  </div>
+                </Link>
+              </SheetClose>
             ))}
           </div>
         </SheetContent>
