@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { Bell, Bookmark, House } from "lucide-react";
+import { Bell, Bookmark, House, MessageSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
@@ -38,6 +38,11 @@ function BuyerSideBar() {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/seller/reservations",
+    },
+    {
+      name: "گفتگو",
+      icon: <MessageSquare />,
+      href: "/dashboard/seller/chats",
     },
   ];
 

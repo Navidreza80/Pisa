@@ -8,6 +8,7 @@ import axios, {
 } from "axios";
 import { deleteClientCookie } from "../service/storage/client-cookie";
 import {
+  deleteServerCookie,
   getServerCookie,
   setServerCookie,
 } from "../service/storage/server-cookie";
@@ -29,7 +30,7 @@ export const onError = async (error: AxiosError): Promise<never> => {
     const { status, data } = error.response;
 
     if (status === 401 || status === 403) {
-      deleteServerCookieAction("serverAccessToken");
+      await deleteServerCookie("serverAccessToken");
       deleteClientCookie("clientAccessToken");
       console.log("unauthorized");
       setTimeout(() => {
