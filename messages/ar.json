@@ -762,7 +762,9 @@
     "sellerPanel": "لوحة البائع",
     "buyer": "مشتري",
     "seller": "بائع",
-    "recentBookings": "الحجوزات الحديثة"
+    "recentBookings": "الحجوزات الحديثة",
+    "uploadSuccess": "تم تحميل الصورة بنجاح.",
+    "uploadError": "حدث خطأ أثناء تحميل الصورة. يرجى المحاولة مرة أخرى."
   },
   "Sidebar": {
     "dashboard": "لوحة التحكم",
@@ -996,5 +998,20 @@
       "subtitle2": "زِد visibility عقارك 5 أضعاف بالصور",
       "imageLinkLabel": "رابط الصورة:"
     }
+  },
+  "Blog": {
+    "title": "المدونات",
+    "searchPlaceholder": "ابحث في العنوان...",
+    "newest": "الأحدث",
+    "oldest": "الأقدم",
+    "notFound": "لم يتم العثور على نتائج",
+    "author": "الكاتب",
+    "category": "التصنيف",
+    "relatedBlogs": "مقالات ذات صلة",
+    "noRelated": "لم يتم العثور على محتوى ذي صلة.",
+    "readTime": "{{minutes}} دقيقة قراءة",
+    "readArticle": "قراءة المقال",
+    "filters": "مرشحات",
+    "resetFilters": "إعادة تعيين المرشحات"
   }
 }

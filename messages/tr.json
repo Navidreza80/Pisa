@@ -755,7 +755,9 @@
     "sellerPanel": "Satıcı Paneli",
     "buyer": "Alıcı",
     "seller": "Satıcı",
-    "recentBookings": "Son rezervasyonlar"
+    "recentBookings": "Son rezervasyonlar",
+    "uploadSuccess": "Resim başarıyla yüklendi.",
+    "uploadError": "Resim yüklenirken bir hata oluştu. Lütfen tekrar deneyin."
   },
   "Sidebar": {
     "dashboard": "Pano",
@@ -989,5 +991,20 @@
       "subtitle2": "Fotoğraflarla emlak görünürlüğünüzü 5 kat artırın",
       "imageLinkLabel": "Resim Bağlantısı:"
     }
+  },
+  "Blog": {
+    "title": "Bloglar",
+    "searchPlaceholder": "Başlıkta ara...",
+    "newest": "En Yeni",
+    "oldest": "En Eski",
+    "notFound": "Sonuç bulunamadı",
+    "author": "Yazar",
+    "category": "Kategori",
+    "relatedBlogs": "İlgili Makaleler",
+    "noRelated": "İlgili içerik bulunamadı.",
+    "readTime": "{{minutes}} dakika",
+    "readArticle": "Makaleyi Oku",
+    "filters": "Filtreler",
+    "resetFilters": "Filtreleri Sıfırla"
   }
 }

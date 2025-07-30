@@ -1,16 +1,14 @@
 import http from "@/utils/interceptor";
 import { getClientCookie } from "../storage/client-cookie";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 interface UploadResponse {
   message: string;
   imageUrl: string;
 }
 
-/**
- * Upload profile picture to /users/upload/picture
- * using Bearer token from cookie.
- */
 export async function uploadPicture(file: File): Promise<UploadResponse> {
   const token = getClientCookie("clientAccessToken");
 
@@ -32,7 +30,17 @@ export async function uploadPicture(file: File): Promise<UploadResponse> {
 }
 
 export const useUploadPicture = () => {
+  const t = useTranslations("Dashboard"); 
+
   return useMutation({
     mutationFn: uploadPicture,
+    onSuccess: () => {
+      toast.success(t("uploadSuccess"));
+    },
+    onError: (error: any) => {
+      const fallback = t("uploadError");
+      const serverError = error?.response?.data?.message;
+      toast.error(serverError || fallback);
+    },
   });
 };

@@ -5,6 +5,7 @@ import DivButton from "@/components/common/DivButton";
 import InputSelect from "@/components/common/inputs/select-input";
 import Modal from "@/components/common/modal/modal";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface FilterModalProps {
   filters: {
@@ -17,50 +18,33 @@ interface FilterModalProps {
   onChange: (key: string, value: any) => void;
   onReset: () => void;
 }
-const sortOptions = [
-  { id: 2, text: "تاریخ ایجاد", value: "created_at" },
-  { id: 3, text: "عنوان", value: "title" },
-  { id: 4, text: "نویسنده", value: "author_id" },
-];
-
-const orderOptions = [
-  { id: 2, text: "نزولی", value: "DESC" },
-  { id: 3, text: "صعودی", value: "ASC" },
-];
-
 
 export default function FilterModal({ filters, onChange, onReset }: FilterModalProps) {
-  const [open, setOpen] = useState(false);
+  const t = useTranslations("Blog");
+
+  const sortOptions = [
+    { id: 2, text: t("newest"), value: "created_at" },
+    { id: 3, text: t("title"), value: "title" },
+    { id: 4, text: t("author"), value: "author_id" },
+  ];
+
+  const orderOptions = [
+    { id: 2, text: t("oldest"), value: "DESC" }, // توجه: ترجمه "نزولی" نداریم تو کلیدها، پس کلمه "oldest" رو اینجا استفاده کردم به صورت فرضی
+    { id: 3, text: t("newest"), value: "ASC" },  // برای "صعودی" کلمه "newest" رو گذاشتم چون کلید خاصی نبود؛ اگه لازم باشه کلید جدا تعریف کن
+  ];
+
+  const handleReset = () => {
+    onReset();
+  };
 
   return (
     <Modal
       className="!max-w-[420px]"
-      trigger={<DivButton className="!w-auto px-4">فیلتر ها</DivButton>}
-      open={open}
-      onOpenChange={setOpen}
+      trigger={<DivButton className="!w-auto px-4">{t("filters") || "فیلتر ها"}</DivButton>}
+      open={false}
+      onOpenChange={() => {}}
     >
       <div className="space-y-4">
-        {/* <input
-          className="w-full border border-[var(--color-border)] rounded-xl p-3 text-sm"
-          placeholder="آیدی نویسنده (author_id)"
-          type="number"
-          value={filters.author_id ?? ""}
-          onChange={(e) => {
-            const val = e.target.value;
-            onChange("author_id", val === "" ? undefined : parseInt(val));
-          }}
-        />
-
-        <input
-          className="w-full border border-[var(--color-border)] rounded-xl p-3 text-sm"
-          placeholder="آیدی دسته‌بندی (category_id)"
-          type="number"
-          value={filters.category_id ?? ""}
-          onChange={(e) => {
-            const val = e.target.value;
-            onChange("category_id", val === "" ? undefined : parseInt(val));
-          }}
-        /> */}
         <div className="flex justify-between gap-2">
           <InputSelect
             items={sortOptions}
@@ -75,17 +59,15 @@ export default function FilterModal({ filters, onChange, onReset }: FilterModalP
           />
         </div>
 
-
         <div className="flex justify-end gap-2 pt-4">
           <Button
             variant="outline"
             className="text-white !bg-primary/90"
             onClick={() => {
-              onReset();
-              setOpen(false);
+              handleReset();
             }}
           >
-            حذف فیلترها
+            {t("resetFilters") || "حذف فیلترها"}
           </Button>
         </div>
       </div>

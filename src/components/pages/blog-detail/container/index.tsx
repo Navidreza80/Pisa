@@ -1,9 +1,8 @@
 "use client";
 
 import Container from "@/components/common/container";
-import { Calendar, UserRound, Tag, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import BlogCard from "../components/BlogCard";
-import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -43,7 +42,7 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
       else setSlidesPerView(1);
     };
 
-    updateSlidesPerView(); // run on mount
+    updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
@@ -78,9 +77,9 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
           <div className="flex flex-col gap-6 pt-5">
             <h2 className="text-xl sm:text-2xl font-bold text-text">{t("relatedBlogs")}</h2>
 
-            <div className={`w-full flex justify-center mx-auto`}>
+            <div className="w-full flex justify-center mx-auto">
               {shouldUseSlider ? (
-                <div className={`relative w-full pt-6 !max-w-[${((slidesPerView) * 100) + "px"}]`}>
+                <div className="relative w-full pt-6 max-w-[calc(var(--slidesPerView, 1) * 100%)]">
                   {/* Navigation Buttons */}
                   <button
                     ref={prevRef}
@@ -100,7 +99,6 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
                     modules={[Navigation]}
                     spaceBetween={16}
                     slidesPerView={slidesPerView}
-                    className=""
                     onInit={(swiper) => {
                       if (prevRef.current && nextRef.current) {
                         swiper.params.navigation.prevEl = prevRef.current;
@@ -125,7 +123,7 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
               ) : (
                 <div className="grid gap-6 sm:grid-cols-2 min-[1210px]:grid-cols-3">
                   {relatedBlogs.map((item) => (
-                    <BlogCard blog={item} />
+                    <BlogCard blog={item} key={item.id} />
                   ))}
                 </div>
               )}
