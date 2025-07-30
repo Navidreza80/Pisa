@@ -37,7 +37,7 @@ export default function Navbar() {
   // Header NavBar Items
   const navItems = [
     { text: t("home"), url: "/" },
-    { text: t("about"), url: "/about-us" },
+    { text: "بلاگ", url: "/blogs" },
   ];
 
   // Rent dropdown items
@@ -82,6 +82,7 @@ export default function Navbar() {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="center"
+          dir="rtl"
           className=" bg-background border-border"
         >
           {rentItems.map((item, index) => (

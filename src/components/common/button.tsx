@@ -1,7 +1,6 @@
 "use client";
-import { useInView } from "framer-motion";
 // React
-import { ReactNode, useRef } from "react";
+import { ReactNode } from "react";
 // button sizes
 const SIZES = {
   md: "w-[133px] h-12 px-4 py-[9px]",
@@ -25,7 +24,7 @@ type ButtonProps = {
   className?: string;
   variant?: "bordered" | "solid";
   handleClick?: () => void;
-  type?: string;
+  type?: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;
 };
 
@@ -49,18 +48,11 @@ export default function Button({
   handleClick,
   disabled,
 }: ButtonProps) {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const isInView = useInView(buttonRef, {
-    amount: "all",
-    once: true,
-  });
-
   return (
     <button
       type={type}
-      ref={buttonRef}
       onClick={disabled ? () => "" : handleClick}
-      className={`flex items-center cursor-pointer ${isInView && "animate-jump-in"} hover:bg-[#4A5FE3] font-semibold !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
+      className={`flex items-center cursor-pointer hover:bg-[#4A5FE3] font-semibold !rounded-2xl focus:scale-95 focus:shadow-lg whitespace-nowrap justify-center overflow-hidden transition-all ${className} 
             ${variant === "solid" ? COLORS[color] : `bg-transparent border-border border`} ${
               SIZES[size]
             }`}

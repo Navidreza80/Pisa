@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import SaveProperty from "../SaveProperty";
 import SectionName from "../SectionName";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 
 export default function ReserveForm({ price }: { price: string }) {
   const t = useTranslations("SingleHouse");
@@ -21,6 +22,7 @@ export default function ReserveForm({ price }: { price: string }) {
   const [dateStart, setDateStart] = useState<Date | undefined>(new Date());
   const [dateExit, setDateExit] = useState<Date | undefined>(new Date());
   const router = useRouter();
+  const { handler } = useHandleAuth();
 
   const handleContinue = (travelersCount: string) => {
     const params = new URLSearchParams(URLSearchParams.toString());
@@ -32,19 +34,20 @@ export default function ReserveForm({ price }: { price: string }) {
   const reserveSchema = Yup.object().shape({
     travelersCount: Yup.number().required(t("chooseTravelers")),
   });
+  const onSubmit = (values) => {
+    if (dateExit && dateStart) {
+      dispatch(setReservedDates([dateStart.toString(), dateExit.toString()]));
+      handleContinue(values.travelersCount);
+    } else if (!dateStart) {
+      toast.error(t("chooseStartDate"));
+    } else if (!dateExit) {
+      toast.error(t("chooseExitDate"));
+    }
+  };
   const formik = useFormik({
     validationSchema: reserveSchema,
     initialValues: { travelersCount: "" },
-    onSubmit: (values) => {
-      if (dateExit && dateStart) {
-        dispatch(setReservedDates([dateStart.toString(), dateExit.toString()]));
-        handleContinue(values.travelersCount);
-      } else if (!dateStart) {
-        toast.error(t("chooseStartDate"));
-      } else if (!dateExit) {
-        toast.error(t("chooseExitDate"));
-      }
-    },
+    onSubmit: (values) => handler(() => onSubmit(values)),
   });
   return (
     <form id="#reserve_form" onSubmit={formik.handleSubmit}>
@@ -101,7 +104,13 @@ export default function ReserveForm({ price }: { price: string }) {
           {/* Save */}
           <SaveProperty houseId={id} />
           {/* Share */}
-          <p className="w-12 h-12 bg-primary rounded-full flex justify-center items-center">
+          <p
+            className="w-12 h-12 bg-primary rounded-full flex justify-center items-center cursor-pointer hover:opacity-90 active:scale-95 transition-all duration-300"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("لینک صفحه کپی شد!");
+            }}
+          >
             <ShareSVG />
           </p>
         </div>

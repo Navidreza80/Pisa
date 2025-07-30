@@ -29,7 +29,6 @@ import Map from "../contents/Map";
 import SavedSearchList from "../contents/SavedSearchList";
 import { FilterModal } from "../modals/BookingFilterModal";
 import SaveSearchModal from "../modals/SaveSearchModal";
-import "../styles/scrollbar.css";
 
 export default function ReserveListContainer() {
   // Pagination states

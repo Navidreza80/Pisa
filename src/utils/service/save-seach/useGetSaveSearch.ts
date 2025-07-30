@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import http from "@/utils/interceptor";
-import { getClientCookie } from "../storage/client-cookie";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { getServerCookie } from "../storage/server-cookie";
 
 type SavedSearch = {
   id: number;
@@ -13,7 +13,7 @@ type SavedSearch = {
 };
 
 async function getSavedSearches(): Promise<SavedSearch[]> {
-  const token = getClientCookie("clientAccessToken");
+  const token = await getServerCookie("serverAccessToken");
 
   if (!token) {
     toast.warn("ابتدا وارد حساب کاربری خود شوید.");

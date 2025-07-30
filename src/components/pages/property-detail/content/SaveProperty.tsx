@@ -1,5 +1,6 @@
 "use client";
 import { SaveSVG } from "@/components/svg";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 import postWishlist from "@/utils/service/whishlist/post";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -14,10 +15,13 @@ const SaveProperty = ({ houseId }: { houseId: string }) => {
         error: "خطا در ذخیره سازی.",
       }),
   });
+
+  const { handler } = useHandleAuth();
+
   return (
     <p
-      onClick={() => handleSave()}
-      className="border-text-secondary border rounded-full w-12 h-12 flex justify-center items-center"
+      onClick={() => handler(handleSave)}
+      className="border-text-secondary border rounded-full w-12 h-12 flex justify-center items-center cursor-pointer hover:bg-gray-100 transition-all duration-300 active:scale-95"
     >
       <SaveSVG />
     </p>

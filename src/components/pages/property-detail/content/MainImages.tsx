@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import RightImg from "./RightImg";
 import Image from "next/image";
+import NoImage from "@/assets/images/no.jpg";
 
 export default async function MainImages({
   photos,
@@ -22,7 +23,7 @@ export default async function MainImages({
       >
         <RightImg photos={photos} />
         {/* + n other pictures section */}
-        {photos.length > 3 && (
+        {photos.length > 3 ? (
           <div className="lg:w-[calc(33.33333333333333%-10.7px)] md:hidden hidden  text-text border rounded-t-2xl lg:flex justify-center items-center border-border rounded-b-3xl h-[192px]">
             <svg
               width="20"
@@ -41,27 +42,32 @@ export default async function MainImages({
             </svg>
             12+ عکس دیگر
           </div>
-        )}
-        {photos[1] && (
+        ) : (
           <Image
             width={300}
             height={192}
             alt="image"
             unoptimized
-            src={photos[1]}
+            src={NoImage}
             className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
           />
         )}
-        {photos[2] && (
-          <Image
-            width={300}
-            height={192}
-            unoptimized
-            alt="image"
-            src={photos[2]}
-            className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
-          />
-        )}
+        <Image
+          width={300}
+          height={192}
+          alt="image"
+          unoptimized
+          src={photos && photos[1] ? photos[1] : NoImage}
+          className="w-[calc(33.33333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
+        />
+        <Image
+          width={300}
+          height={192}
+          unoptimized
+          alt="image"
+          src={photos && photos[2] ? photos[2] : NoImage}
+          className="w-[calc(33.3333333333333%-10.7px)] rounded-t-2xl lg:block md:hidden hidden rounded-b-3xl h-[192px]"
+        />
       </div>
     </>
   );
