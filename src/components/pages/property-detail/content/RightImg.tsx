@@ -42,7 +42,6 @@ function RightImg({ photos }: { photos: string[] }) {
     virtualTours.find((tour) => tour.title === current3DImage)?.url ||
     virtualTours[0].url;
 
-  console.log(currentImageUrl);
   return (
     <>
       <Button

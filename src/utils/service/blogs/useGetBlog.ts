@@ -22,6 +22,5 @@ export async function getBlogs(params: BlogQueryParams): Promise<Blog[]> {
   );
 
   const response = await http.get<BlogResponse>("/blogs", { params: filteredParams });
-  console.log(response.data)
   return response.data;
 }

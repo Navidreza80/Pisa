@@ -13,7 +13,7 @@ export interface HouseItemsInterface {
   favoriteId: number | null;
   parking: number;
   caption: string;
-  id: number;
+  id: string;
   yard_type: string;
   capacity: number;
   sellerName: string;

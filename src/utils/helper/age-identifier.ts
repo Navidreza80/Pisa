@@ -41,7 +41,3 @@ export function getAgeGroup(birthDate: Date | string): string {
     return "کهنسال"; // Very elderly
   }
 }
-
-// Example usage:
-const birthDate = "1990-05-15";
-console.log(getAgeGroup(birthDate)); // Output will depend on current date

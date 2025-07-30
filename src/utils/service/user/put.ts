@@ -21,7 +21,7 @@ export const EditUserInfo = async (id, params) => {
     const result = await http.put(`/users/${id}`, params);
     return result;
   } catch (e) {
-    console.log(e);
+    return e;
   }
 };
 

@@ -15,7 +15,6 @@ const ScrollDown = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    console.log("Is in view:", inView);
     controls.start({ opacity: inView ? 0 : 1, transition: { duration: 0.5 } });
   }, [inView, controls]);
 

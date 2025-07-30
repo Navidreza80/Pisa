@@ -20,7 +20,6 @@ export async function getAllPropertyComments(
     );
     return response;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 }

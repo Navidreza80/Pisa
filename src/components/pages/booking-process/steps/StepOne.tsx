@@ -50,7 +50,6 @@ export default function BookingStepOne() {
 
   const handleSubmit = () => {
     if (validateAll()) {
-      console.log("Form is valid:", travelersData);
       dispatch(setHouseId(Number(id)));
       dispatch(setBookingSteps(2));
       dispatch(addTravelers(travelersData));
@@ -67,7 +66,7 @@ export default function BookingStepOne() {
         dispatch(setSharedEmail(data?.user.email));
       }
     } else {
-      console.log("Form has validation errors");
+      return
     }
   };
 

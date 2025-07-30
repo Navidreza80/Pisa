@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
 import SellerDashboardProperties from "@/components/pages/sd-property-management/container";
 import { getAllSellerHouses } from "@/utils/service/house/GetSellerHouses";

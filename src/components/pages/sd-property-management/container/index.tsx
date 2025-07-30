@@ -26,7 +26,7 @@ import { getTransactionType } from "@/utils/helper/GetTransactionType";
 import { deleteHouse } from "@/utils/service/house/delete";
 import { putHouse } from "@/utils/service/house/put";
 import { useMutation } from "@tanstack/react-query";
-import { Camera } from "lucide-react";
+import { Camera, NotepadText } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -34,6 +34,7 @@ import { toast } from "react-toastify";
 import AddPropertyStepFour from "../../sd-property-create/contents/StepFour";
 import EditHouse from "../content/EditHouse";
 import PopoverItem from "../content/PopoverItem";
+import ViewDocuments from "../content/ViewDocuments";
 
 export const tableHeaderItems = (t: TFunction) => [
   { text: t("tableHeaders.propertyName"), clx: "rounded-r-xl" },
@@ -300,6 +301,23 @@ export default function SellerDashboardProperties({
                         handleEdit({ data: data, id: property.id })
                       }
                     />
+
+                    {/* View Documents */}
+                    <Modal
+                      className="min-w-[70vw]"
+                      title="مدارک املاک"
+                      trigger={
+                        <PopoverItem
+                          icon={<NotepadText />}
+                          title="مشاهده مدارک"
+                        />
+                      }
+                    >
+                      <ViewDocuments
+                        houseTitle={property.title}
+                        houseId={property.id}
+                      />
+                    </Modal>
 
                     {/* Add Photo */}
                     <Modal

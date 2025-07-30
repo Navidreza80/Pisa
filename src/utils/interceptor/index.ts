@@ -57,7 +57,6 @@ axiosInstance.interceptors.response.use(onSuccess, onError);
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = await getServerCookie("serverAccessToken");
-    console.log(token);
     if (typeof token === "string") {
       config.headers.Authorization = `Bearer ${token}`;
     }

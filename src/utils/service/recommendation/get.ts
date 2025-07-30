@@ -47,13 +47,9 @@ export const getRecommendation = async (
       .replace(/```json/g, "")
       .replace(/```/g, "")
       .trim();
-    // console.log(rawContent)
-    // console.log(cleanedJson)
     const parsedData = JSON.parse(cleanedJson);
-    // console.log(parsedData)
     return parsedData;
   } catch (error) {
-    console.error("API Error:", error);
     throw error;
   }
 };
