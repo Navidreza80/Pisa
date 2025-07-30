@@ -34,12 +34,10 @@ export default async function Header() {
   // Hooks
   const t = await getTranslations("Header");
   const token = await getServerCookie("serverAccessToken");
-  console.log(token);
   let decodedUser;
   if (token) {
     decodedUser =
       typeof token === "string" ? jwtDecode<JwtPayload>(token) : null;
-    console.log(decodedUser);
   } else {
     decodedUser = await auth();
     decodedUser = decodedUser?.user;

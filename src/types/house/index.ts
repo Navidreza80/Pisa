@@ -11,9 +11,10 @@ export interface HouseInterFace {
 
 export interface HouseItemsInterface {
   favoriteId: number | null;
+  isFavorite: boolean;
   parking: number;
   caption: string;
-  id: number;
+  id: string;
   yard_type: string;
   capacity: number;
   sellerName: string;
@@ -55,6 +56,15 @@ export interface TopSaleCardListProps {
   capacity?: number;
 }
 
+type TransactionType =
+  | "direct_purchase"
+  | "rental"
+  | "mortgage"
+  | "reservation"
+  | "";
+
+type TransactionTypeValue = TransactionType | TransactionType[];
+
 export interface HouseFilters {
   page?: number;
   sort?: string;
@@ -70,7 +80,7 @@ export interface HouseFilters {
   minArea?: number;
   maxArea?: number;
   limit?: number;
-  transactionType?: string;
+  transactionType?: TransactionTypeValue;
   minPrice?: number;
   rate?: number;
 }

@@ -36,7 +36,6 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
   // Fetching property details server side
   let propertyDetails;
   if (typeof id == "string") propertyDetails = await getHouseById(id);
-  console.log(propertyDetails);
 
   // Fetching related properties server side
   const { houses }: { houses: HouseItemsInterface[] } = await fetchHouses({

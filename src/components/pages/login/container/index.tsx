@@ -39,7 +39,6 @@ function LoginContainer() {
     },
     validationSchema: LoginSchema,
     onSubmit: async (value) => {
-      console.log(value);
       await mutate(value);
     },
   });

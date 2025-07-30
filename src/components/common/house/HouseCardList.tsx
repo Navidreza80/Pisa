@@ -46,6 +46,7 @@ import { useMutation } from "@tanstack/react-query";
 import createFavorite from "@/utils/service/favorites/post";
 import { toast } from "react-toastify";
 import deleteFavorite from "@/utils/service/favorites/delete";
+import useFavorite from "@/utils/hooks/useFavorite";
 
 /**
  * Filter reservation houses component.
@@ -73,35 +74,16 @@ export default function HouseCardList({
   const t = useTranslations("HomePage");
   const Ids = useAppSelector((state) => state.comparisonIds);
   const router = useRouter();
-  const [isFavorite, setIsFavorite] = useState(
-    typeof card.favoriteId == "number" ? true : false
+  const [isFavorite, setIsFavorite] = useState(card.isFavorite);
+
+  const { handleFavorite } = useFavorite(
+    isFavorite,
+    card.id,
+    card.favoriteId,
+    () => {
+      setIsFavorite((prev) => !prev);
+    }
   );
-
-  const { mutate: addFavorite, isPending } = useMutation({
-    mutationKey: ["CREATE_FAVORITE"],
-    mutationFn: (house_id: string) =>
-      toast.promise(createFavorite(house_id), {
-        pending: "درحال پردازش...",
-        success: "ملک به لیست علاقه مندی افزوده شد",
-        error: "خطا در افزودن ملک به علاقه مندی",
-      }),
-    onSuccess: () => {
-      setIsFavorite(true);
-    },
-  });
-
-  const { mutate: removeFavorite } = useMutation({
-    mutationKey: ["DELETE_FAVORITE"],
-    mutationFn: (favorite_id: string) =>
-      toast.promise(deleteFavorite(favorite_id), {
-        pending: "درحال پردازش...",
-        success: "ملک از لیست علاقه مندی حذف شد",
-        error: "خطا در حذف ملک از علاقه مندی",
-      }),
-    onSuccess: () => {
-      setIsFavorite(false);
-    },
-  });
 
   useEffect(() => {
     if (Ids.ids?.length == 2) router.push(`/comparison?ids=${Ids.ids}`);
@@ -223,14 +205,7 @@ export default function HouseCardList({
           className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-2 ltr:left-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
         <button
-          onClick={() => {
-            if (!isFavorite) {
-              addFavorite(card.id.toString());
-            } else if (isFavorite) {
-              removeFavorite(card.favoriteId.toString());
-            }
-          }}
-          disabled={isPending}
+          onClick={handleFavorite}
           className={`${isFavorite ? "bg-primary" : "bg-white"} cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-14 ltr:left-14 flex justify-center items-center`}
         >
           <Heart className={`${isFavorite ? "text-white" : "text-black"}`} />

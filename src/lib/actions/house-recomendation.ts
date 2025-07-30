@@ -55,7 +55,6 @@ export async function getHouseRecommendation(): Promise<HouseSuggestionResponse>
 
     const data = await response.json();
     const result = data.choices[0].message.content;
-    console.log(data.choices[0].message.content);
 
     return {
       houseId: result.houseId,

@@ -15,6 +15,7 @@ import WelcomeTitle from "@/components/common/auth/welcome-title";
 
 // Hook
 import { useResetPassword } from "@/utils/service/forgetPassword/post-complete-forgetPass";
+import { toast } from "react-toastify";
 
 function ForgetPasswordStep3() {
   const t = useTranslations("Auth");
@@ -42,12 +43,6 @@ function ForgetPasswordStep3() {
         toast.error(t("genericError"));
         return;
       }
-
-      console.log("[ForgetPasswordStep3] submitting reset with:", {
-        email,
-        resetCode,
-        newPassword: values.password,
-      });
 
       resetPasswordMutation.mutate({
         email,

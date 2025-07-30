@@ -22,7 +22,7 @@ const SendToOthersForm = () => {
     onSubmit: (values) => {
       dispatch(setSharedEmail(values.sharedEmail));
       dispatch(setSharedMobile(values.sharedMobile));
-      console.log(values);
+
     },
   });
   return (

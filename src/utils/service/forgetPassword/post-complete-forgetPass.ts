@@ -18,12 +18,11 @@ interface ResetPasswordResponse {
 }
 
 const resetPassword = async (params: ResetPasswordParams) => {
-  console.log("[resetPassword] sending params:", params);
   const response = await http.post<ResetPasswordResponse>(
     "/auth/forgot-password/reset",
     params
   );
-  console.log("[resetPassword] response:", response.data);
+
   return response.data;
 };
 

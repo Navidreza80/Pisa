@@ -2,6 +2,7 @@
 
 import Button from "@/components/common/button";
 import formatToPersianDate from "@/utils/helper/format-date";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 import { getPropertyQA } from "@/utils/service/property-qa/get";
 import postQuestion from "@/utils/service/property-qa/post";
 import postAnswer from "@/utils/service/property-qa/post-answer";
@@ -41,6 +42,7 @@ interface CreateAnswerDto {
 }
 
 const PropertyQA = ({ houseId }) => {
+  const { handler } = useHandleAuth();
   const t = useTranslations("SingleHouse");
   const [newQuestion, setNewQuestion] = useState("");
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
@@ -56,32 +58,30 @@ const PropertyQA = ({ houseId }) => {
   } = useQuery<Question[]>({
     queryKey: ["QUESTIONS", houseId],
     queryFn: () => getPropertyQA(houseId),
-    staleTime: 1000 * 60 * 5, // 5 minutes cache
+    staleTime: 1000 * 60 * 5,
   });
 
   // Create question mutation with optimistic updates
   const questionMutation = useMutation({
     mutationKey: ["CREATE_QUESTION"],
-    mutationFn: (data: CreateQuestionDto) => {
+    mutationFn: (data: CreateQuestionDto) =>
       toast.promise(postQuestion(data), {
         pending: t("pendingQuestion"),
         success: t("successQuestion"),
         error: t("errorQuestion"),
-      });
-    },
+      }),
     onSuccess: () => refetch(),
   });
 
   // Create answer mutation with optimistic updates
   const answerMutation = useMutation({
     mutationKey: ["ANSWER_QUESTION"],
-    mutationFn: (data: CreateAnswerDto) => {
+    mutationFn: (data: CreateAnswerDto) =>
       toast.promise(postAnswer(data), {
         pending: t("pendingAnswer"),
         success: t("successAnswer"),
         error: t("errorAnswer"),
-      });
-    },
+      }),
     onSuccess: () => refetch(),
   });
 
@@ -132,7 +132,7 @@ const PropertyQA = ({ houseId }) => {
           />
           <div className="flex justify-end">
             <Button
-              handleClick={handleSubmitQuestion}
+              handleClick={() => handler(() => handleSubmitQuestion())}
               disabled={questionMutation.isPending || !newQuestion.trim()}
               className="w-full px-6 py-2 rounded-lg disabled:opacity-50 mx-auto disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 shadow-md"
             >
@@ -239,6 +239,7 @@ const QuestionItem = ({
   error,
 }: QuestionItemProps) => {
   const t = useTranslations("SingleHouse");
+  const { handler } = useHandleAuth();
   return (
     <div className="rounded-lg p-4">
       <div className="flex items-start gap-3">
@@ -293,7 +294,7 @@ const QuestionItem = ({
                       {t("cancel")}
                     </button>
                     <button
-                      onClick={onSubmitAnswer}
+                      onClick={() => handler(() => onSubmitAnswer())}
                       disabled={isLoading || !answerInput.trim()}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2 text-sm"
                     >

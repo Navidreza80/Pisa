@@ -16,6 +16,6 @@ export default async function postHousePicture(data) {
     );
     return result;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }

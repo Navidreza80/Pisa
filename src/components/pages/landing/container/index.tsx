@@ -16,7 +16,6 @@ export default async function HomeContainer() {
     transactionType: "",
     limit: 3,
   });
-  console.log(houses)
   const tehranHouses = houses.filter((e) =>
     e.address?.includes("تهران")
   ).length;

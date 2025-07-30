@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 
 const AddPropertyStepFour = ({ houseId, refresh }) => {
   const [file, setFile] = useState();
-  console.log(file);
   const { mutate: uploadHousePicture, isPending } = useMutation({
     mutationKey: ["ADD_PICTURE"],
     mutationFn: (formData) =>

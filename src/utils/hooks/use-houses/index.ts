@@ -29,7 +29,7 @@ export const useRentHouses = () => {
 
   return useQuery({
     queryKey: ["houses-rent", filters],
-    queryFn: () => fetchHouses({ ...filters, transactionType: "rental", limit: 1 }),
+    queryFn: () => fetchHouses({ ...filters, transactionType: ["rental", "mortgage"], limit: 1 }),
     staleTime: 0,
   });
 };

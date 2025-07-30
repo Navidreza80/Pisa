@@ -15,7 +15,6 @@ export async function GetSellerBooking(params: {
 }) {
   try {
     const userId = await getServerCookie("userId");
-    console.log(userId);
     const response = await http.get(`/bookings/${userId}/customers`, {
       params,
     });

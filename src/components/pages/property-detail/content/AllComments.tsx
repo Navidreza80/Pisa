@@ -13,6 +13,7 @@ import { useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import * as Yup from "yup";
 import RenderComments from "./RenderComments";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 const StarRatings = dynamic(() => import("react-star-ratings"), { ssr: false });
 
 // Dynamically importing the SectionName component
@@ -33,12 +34,12 @@ interface FormValues {
 }
 
 export default function AllComments({ houseId }: AllCommentsProps) {
-  const token = getClientCookie("clientAccessToken");
   const t = useTranslations("SingleHouse");
   const [repliedUser, setRepliedUser] = useState<string | null>(null);
   const [rows, setRows] = useState<number>(3);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const [parentId, setParentId] = useState<number | null>(null);
+  const { handler } = useHandleAuth();
 
   const { data } = useQuery({
     queryKey: ["comments", houseId, rows],
@@ -76,23 +77,25 @@ export default function AllComments({ houseId }: AllCommentsProps) {
     },
     validationSchema: commentSchema,
     onSubmit: () => {
-      mutate(
-        {
-          title: formik.values.title,
-          caption: formik.values.caption,
-          parent_comment_id: parentId,
-          houseId: houseId,
-          rating: rating,
-        },
-        {
-          onSuccess: () => {
-            formik.values.rating = 0;
-            formik.values.title = "";
-            formik.values.caption = "";
-            cancelReply();
-            setRating(0);
+      handler(() =>
+        mutate(
+          {
+            title: formik.values.title,
+            caption: formik.values.caption,
+            parent_comment_id: parentId,
+            houseId: houseId,
+            rating: rating,
           },
-        }
+          {
+            onSuccess: () => {
+              formik.values.rating = 0;
+              formik.values.title = "";
+              formik.values.caption = "";
+              cancelReply();
+              setRating(0);
+            },
+          }
+        )
       );
     },
   });
@@ -206,9 +209,9 @@ export default function AllComments({ houseId }: AllCommentsProps) {
         </div>
 
         <Button
-          disabled={isPending && !token}
+          disabled={isPending}
           className={`w-full flex items-center justify-center rounded-xl h-12 mt-2 text-white font-medium transition-all ${
-            isPending || !token
+            isPending
               ? "bg-blue-400 dark:bg-blue-600 cursor-not-allowed"
               : "bg-blue-600 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-800"
           }`}

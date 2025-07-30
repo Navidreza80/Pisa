@@ -22,14 +22,13 @@ export default function Search() {
   // Hooks
   const t = useTranslations("HomePage");
   const filterItems = [
-    { text: t("sell"), id: 1, type: "direct_purchase" },
-    { text: t("rent"), id: 2, type: "rental" },
     { text: t("reserve"), id: 3, type: "reservation" },
+    { text: t("rent"), id: 2, type: "rental" },
+    { text: t("sell"), id: 1, type: "direct_purchase" },
   ];
 
-  const [tab, setTab] = useState(filterItems[2]);
+  const [tab, setTab] = useState(filterItems[0]);
   const { data: houses } = useLandingHouses();
-  console.log(houses)
 
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.landingFilters);

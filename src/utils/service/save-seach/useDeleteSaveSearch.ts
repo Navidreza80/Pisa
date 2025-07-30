@@ -1,14 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import http from "@/utils/interceptor";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { getClientCookie } from "../storage/client-cookie";
+import { getServerCookie } from "../storage/server-cookie";
 
 export function useDeleteSavedSearch() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const token = getClientCookie("clientAccessToken");
+      const token = await getServerCookie("serverAccessToken");
 
       if (!token) {
         toast.warn("ابتدا وارد حساب کاربری خود شوید.");

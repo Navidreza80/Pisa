@@ -10,6 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import iranYekanFont from "./iranYekanBase64";
 import { formatNumber } from "@/utils/helper/format-number";
 import { useLocale, useTranslations } from "next-intl";
+import { useMutation } from "@tanstack/react-query";
+import sendDocument from "@/utils/service/documents/post";
+import { useParams } from "next/navigation";
 
 interface ContractData {
   contractNumber: string;
@@ -48,6 +51,7 @@ const initialContractData: ContractData = {
 };
 
 const Signature = ({ HouseDetails, decodedUser }) => {
+  const { id } = useParams();
   const t = useTranslations("Signature");
   const locale = useLocale();
   const isRTL = locale === "ar" || locale === "fa";
@@ -57,8 +61,19 @@ const Signature = ({ HouseDetails, decodedUser }) => {
   const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
   const [contractData, setContractData] =
     useState<ContractData>(initialContractData);
+
   const SellerImage =
     "https://upload.wikimedia.org/wikipedia/commons/5/5e/Mohsen_Rezaee_signature.png";
+
+  const { mutate: sendDoc } = useMutation({
+    mutationKey: ["SEND_DOC"],
+    mutationFn: (formData) =>
+      toast.promise(sendDocument(formData), {
+        pending: "در حال ذخیره قرارداد...",
+        success: "قرارداد با موفقیت به فروشنده ارسال شد",
+        error: "خطا در ارسال",
+      }),
+  });
 
   const getMousePos = (
     canvas: HTMLCanvasElement,
@@ -137,81 +152,19 @@ const Signature = ({ HouseDetails, decodedUser }) => {
     });
 
     try {
+      // Persian font setup
       doc.addFileToVFS("IranYekan.ttf", iranYekanFont);
       doc.addFont("IranYekan.ttf", "IranYekan", "normal");
       doc.setFont("IranYekan");
       doc.setR2L(true);
       (doc as any).setLanguage("fa");
+
       const textOptions = {
         align: "right",
         lang: "fa",
         isInputRtl: true,
         isOutputRtl: true,
       };
-      doc.setFontSize(18);
-      doc.setTextColor(60, 53, 147);
-      doc.text("قـولـنـامـه رسـمـی خـریـد و فـروش", 190, 20, {
-        align: "center",
-        ...textOptions,
-      });
-      doc.setDrawColor(40, 53, 147);
-      doc.setLineWidth(0.5);
-      doc.line(50, 22, 190, 22);
-      doc.setFontSize(12);
-      doc.setTextColor(0, 0, 0);
-      doc.text(
-        `شماره قرارداد: ${contractData.contractNumber}`,
-        190,
-        30,
-        textOptions
-      );
-      doc.text(`تاریخ: ${contractData.date}`, 190, 35, textOptions);
-      const contractContent = [
-        `این قرارداد در تاریخ ${contractData.date} ما بین:`,
-        `۱- آقا/خانم ${contractData.sellerName} فرزند ... متولد ... دارای شناسنامه شماره ... صادره از ... و کد ملی ${contractData.sellerNationalId} به عنوان فروشنده`,
-        `و`,
-        `۲- آقا/خانم ${decodedUser.name} فرزند ... متولد ... دارای شناسنامه شماره ... صادره از ... و کد ملی ${contractData.buyerNationalId} به عنوان خریدار`,
-        `منعقد گردید. طرفین با توجه به اهلیت قانونی و اختیار تام، نسبت به انعقاد این قرارداد اقدام نموده‌اند.`,
-        ``,
-        `موضوع قرارداد: ${contractData.propertyType} واقع در ${HouseDetails.address} با مساحت تقریبی ${contractData.propertySize} و مشخصات کامل ...`,
-        `مبلغ معامله: ${formatNumber(HouseDetails.price)} ) مبلغ به حروف: ${numberToPersianWords(Number(HouseDetails.price))} تومان (`,
-        `نحوه پرداخت: اینترنتی)piza(`,
-        `موعد تحویل: ${contractData.date}`,
-        ``,
-        `شرایط و تعهدات خاص:`,
-        ...contractData.terms.map(
-          (term, index) => `ماده ${index + 1}: ${term}`
-        ),
-        ``,
-        `تعهدات طرفین:`,
-        `الف( پول واریز شه`,
-        `ب( خونه سالم نگه داشته شه`,
-        `ج( در صورت عدم انجام تعهدات خسارت پرداخت شه`,
-        ``,
-        `این قرارداد در ${contractData.pages || "۳"} نسخه با اعتبار یکسان تنظیم و پس از امضای طرفین، هر نسخه نزد آنها باقی می‌ماند.`,
-        `کلیه اختلافات ناشی از این قرارداد از طریق مراجع قضایی تهران رسیدگی خواهد شد.`,
-      ];
-      let yPos = 45;
-      contractContent.forEach((paragraph) => {
-        const splitText = (doc as any).splitTextToSize(
-          paragraph,
-          190,
-          textOptions
-        );
-        doc.text(splitText, 190, yPos, textOptions);
-        yPos += splitText.length * 7;
-        if (yPos > 270) {
-          doc.addPage();
-          doc.setR2L(true);
-          (doc as any).setLanguage("fa");
-          yPos = 20;
-        }
-      });
-      const persianFont = "...";
-
-      doc.addPage();
-      doc.setR2L(true);
-      (doc as any).setLanguage("fa");
 
       doc.setFontSize(16);
       doc.setTextColor(40, 53, 147);
@@ -223,27 +176,23 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       doc.setFontSize(12);
       doc.setTextColor(0, 0, 0);
 
+      // Seller info
       const sellerInfo = [
         `نام و نام خانوادگی: ${contractData.sellerName}`,
         `کد ملی: ${contractData.sellerNationalId}`,
         `تاریخ: ${contractData.date}`,
       ];
-
-      sellerInfo.forEach((text, index) => {
-        doc.text(text, 180, 40 + index * 10, textOptions);
+      sellerInfo.forEach((text, i) => {
+        doc.text(text, 180, 40 + i * 10, textOptions);
       });
       doc.text("امضای فروشنده", 180, 80, textOptions);
-      doc.addImage(SellerImage, "PNG", 140, 85, 35, 13);
+      doc.addImage(SellerImage, "PNG", 145, 85, 25, 9); // Smaller image = lower file size
 
+      // Buyer section
       doc.text("امضای خریدار", 80, 80, textOptions);
 
-      if (
-        buyerSignatureDataURL &&
-        buyerSignatureDataURL.startsWith("data:image/png")
-      ) {
-        doc.addImage(buyerSignatureDataURL, "PNG", 40, 85, 50, 20);
-      } else {
-        doc.text("بدون امضا", 160, 90, textOptions);
+      if (buyerSignatureDataURL?.startsWith("data:image/png")) {
+        doc.addImage(buyerSignatureDataURL, "PNG", 50, 85, 35, 14); // Lower quality size
       }
 
       const buyerInfo = [
@@ -251,11 +200,11 @@ const Signature = ({ HouseDetails, decodedUser }) => {
         `کد ملی: ${contractData.buyerNationalId}`,
         `تاریخ: ${contractData.date}`,
       ];
-
-      buyerInfo.forEach((text, index) => {
-        doc.text(text, 80, 40 + index * 10, textOptions);
+      buyerInfo.forEach((text, i) => {
+        doc.text(text, 80, 40 + i * 10, textOptions);
       });
 
+      // Footer
       doc.setFontSize(10);
       doc.setTextColor(100, 100, 100);
       doc.text(
@@ -264,12 +213,27 @@ const Signature = ({ HouseDetails, decodedUser }) => {
         120,
         { align: "center", ...textOptions }
       );
+
       return doc;
     } catch (error) {
       console.error("خطا در تولید PDF:", error);
       throw error;
     }
   };
+
+  const sendPDFToServer = async (doc) => {
+    // Convert to Blob (recommended for FormData)
+    const pdfBlob = doc.output("blob");
+
+    // Create FormData and append the Blob
+    const formData = new FormData();
+    formData.append("document", pdfBlob, "contract.pdf");
+    formData.append("houseId", id);
+    formData.append("documentType", "contract");
+
+    sendDoc(formData);
+  };
+
   const clearSignature = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -307,6 +271,7 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       const optimizedSignature = await optimizeSignatureImage(signatureDataURL);
       const doc = await generateContractPDF(optimizedSignature);
 
+      sendPDFToServer(doc);
       doc.save(`قولنامه_${contractData.contractNumber}.pdf`);
       setIsSaved(true);
       toast.success(t("contractSaved"));

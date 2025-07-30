@@ -3,6 +3,7 @@ import SectionName from "../SectionName";
 import { MessageCircleMoreIcon } from "lucide-react";
 import SaveProperty from "../SaveProperty";
 import formatToPersianDate from "@/utils/helper/format-date";
+import ChatComponent from "../ChatComponent";
 
 export default async function RentForm({
   houseId,
@@ -59,7 +60,9 @@ export default async function RentForm({
         <div className="flex gap-x-3">
           <div className="h-12 bg-gray-600 aspect-square rounded-full"></div>
           <div className="flex flex-col justify-between">
-            <h4 className="text-text whitespace-nowrap">{sellerName || "کاربر"}</h4>
+            <h4 className="text-text whitespace-nowrap">
+              {sellerName || "کاربر"}
+            </h4>
             <h4 className="text-text-secondary text-sm whitespace-nowrap">
               {formatToPersianDate(date)}
             </h4>
@@ -68,9 +71,7 @@ export default async function RentForm({
         {/* Chat and phone number section */}
         <div className="flex gap-x-2 h-12">
           {/* Chat */}
-          <span className="border-primary border rounded-full h-full aspect-square flex items-center justify-center">
-            <MessageCircleMoreIcon className="text-primary" />
-          </span>
+          <ChatComponent />
           <SaveProperty houseId={houseId} />
           {/* Phone number */}
           <span className="h-full w-[292px] text-white rounded-full  flex justify-center items-center bg-primary">

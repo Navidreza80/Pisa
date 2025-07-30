@@ -29,7 +29,6 @@ import Map from "../contents/Map";
 import SavedSearchList from "../contents/SavedSearchList";
 import { FilterModal } from "../modals/BookingFilterModal";
 import SaveSearchModal from "../modals/SaveSearchModal";
-import "../styles/scrollbar.css";
 
 export default function ReserveListContainer() {
   // Pagination states
@@ -105,7 +104,7 @@ export default function ReserveListContainer() {
         {/* Left Column: Filter + Results */}
         <div className="flex-grow animate-fade-left w-[55%]">
           {/* Top Bar: Filters + Search + Result Count */}
-          <div className="h-[62px] w-full pb-6 rtl:lg:pl-7 ltr:lg:pr-7 flex gap-4">
+          <div className="md:h-[62px] w-full pb-6 rtl:lg:pl-7 ltr:lg:pr-7 flex gap-4 md:flex-nowrap flex-wrap">
             <FilterModal />
             <div className="flex items-center gap-1 text-sm font-medium border rounded-2xl px-2 h-12 whitespace-nowrap">
               <Megaphone />
@@ -115,7 +114,7 @@ export default function ReserveListContainer() {
             {/* Search Input & Saved Searches Dropdown */}
             <div
               ref={containerRef}
-              className="relative w-[calc(100%-242px)] flex gap-2 items-center"
+              className="relative md:w-[calc(100%-242px)] w-[90%] flex gap-2 items-center"
             >
               <input
                 value={filters.search || ""}

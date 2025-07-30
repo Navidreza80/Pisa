@@ -34,6 +34,35 @@ body {
   --animation-content-pop: linear content-pop both;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #7575fe;
+  border-radius: 3.5px;
+  height: 101px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6565ee;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #7575fe transparent;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant solarized (&:where(.solarized, .solarized *));
 

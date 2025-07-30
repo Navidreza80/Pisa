@@ -51,7 +51,6 @@ export const useLoginUser = (href: string = "/") => {
       await setServerCookie("serverRefreshToken", response.refreshToken);
       setClientCookie("clientAccessToken", response.accessToken);
       handleSaveId(response.accessToken);
-      console.log(response.accessToken);
       router.push(href);
     },
     onError: (error: AxiosError) => {
