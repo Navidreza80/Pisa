@@ -129,9 +129,7 @@ export default function BlogPage() {
           </div>
 
           {/* Blog Cards */}
-          <div
-            className="custom-scrollbar overflow-y-auto  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between"
-          >
+          <div className="grid grid-cols-1 max-[600px]:w-full max-[872px]:w-2/3  max-[872px]:!grid-cols-1 max-[1060px]:w-full max-[1274px]:w-[80%] mx-auto md:grid-cols-2 min-[1274px]:!grid-cols-3 gap-5 p-5">
             {isLoading &&
               [...Array(6)].map((_, i) => (
                 <BlogCardSkeleton />

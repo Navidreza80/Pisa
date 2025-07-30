@@ -52,10 +52,10 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
 
   return (
     <Container>
-      <div className="w-full justify-center flex flex-col gap-10 pt-8 pb-16 px-4 sm:px-6">
+      <div className="lg:w-[85.5%] md:w-[94%] mx-auto w-full justify-center flex flex-col gap-10 pt-8 pb-16 px-4 sm:px-6">
 
         {/* Title & Meta */}
-        <div className="flex xl:w-[85.5%] flex-col gap-4 border-b border-border pb-6">
+        <div className="flex flex-col gap-4 border-b border-border pb-6">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-text leading-snug">{blog.title}</h1>
 
           <div className="text-sm text-text-secondary flex flex-wrap gap-4 sm:gap-6">
@@ -67,7 +67,7 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
         </div>
 
         {/* Content */}
-        <div className="prose prose-lg xl:w-[85.5%] max-w-none text-text-secondary leading-8 tracking-wide">
+        <div className="prose prose-lg max-w-none text-text-secondary leading-8 tracking-wide">
           <p>{blog.caption}</p>
         </div>
 
@@ -116,7 +116,7 @@ export default function BlogDetailContainer({ blog, relatedBlogs }: Props) {
                     }}
                   >
                     {relatedBlogs.map((item) => (
-                      <SwiperSlide key={item.id}>
+                      <SwiperSlide className="pt-5 pb-10" key={item.id}>
                         <BlogCard blog={item} />
                       </SwiperSlide>
                     ))}
