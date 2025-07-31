@@ -182,7 +182,9 @@
     "FP_emailNotFound": "The entered email was not found in our system.",
     "FP_invalidCode": "The entered code is invalid.",
     "FP_serverError": "A server error occurred. Please try again later.",
-    "FP_genericError": "An error occurred. Please try again."
+    "FP_genericError": "An error occurred. Please try again.",
+    "title": "Forgot your password?",
+    "resetPassword": "Password Reset"
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",
@@ -758,7 +760,8 @@
     "seller": "Seller",
     "recentBookings": "Recent bookings",
     "uploadSuccess": "Image uploaded successfully.",
-    "uploadError": "Error uploading image. Please try again."
+    "uploadError": "Error uploading image. Please try again.",
+    "BlogsManagement": "Blogs Management"
   },
   "Sidebar": {
     "dashboard": "Dashboard",

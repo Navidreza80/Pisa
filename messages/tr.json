@@ -181,7 +181,9 @@
     "FP_emailNotFound": "Girilen e-posta sistemde bulunamadı.",
     "FP_invalidCode": "Girilen kod geçersiz.",
     "FP_serverError": "Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
-    "FP_genericError": "Bir hata oluştu. Lütfen tekrar deneyin."
+    "FP_genericError": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "title": "Şifrenizi mi unuttunuz?",
+    "resetPassword": "Şifre Sıfırlama"
   },
   "AboutUs": {
     "mentor": "Sobhan Arab Khazaeli",
@@ -757,7 +759,8 @@
     "seller": "Satıcı",
     "recentBookings": "Son rezervasyonlar",
     "uploadSuccess": "Resim başarıyla yüklendi.",
-    "uploadError": "Resim yüklenirken bir hata oluştu. Lütfen tekrar deneyin."
+    "uploadError": "Resim yüklenirken bir hata oluştu. Lütfen tekrar deneyin.",
+    "BlogsManagement": "Blog Yönetimi"
   },
   "Sidebar": {
     "dashboard": "Pano",

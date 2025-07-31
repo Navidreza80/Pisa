@@ -1,12 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import {
-  Bell,
-  Bookmark,
-  MessageCircleMoreIcon,
-  MessageSquare,
-} from "lucide-react";
+import { Bell, Bookmark, FileText, MessageCircleMoreIcon, MessageSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
@@ -52,6 +47,11 @@ function BuyerSideBar() {
       name: "گفتگو",
       icon: <MessageCircleMoreIcon />,
       href: "/dashboard/seller/chats",
+    },
+    {
+      name: "مدیریت بلاگ‌ها",
+      icon: <FileText /> ,
+      href: "/dashboard/seller/Blogs",
     },
   ];
 
