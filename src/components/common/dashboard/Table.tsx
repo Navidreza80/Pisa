@@ -49,7 +49,7 @@ const TableDashboard = ({
         >
           <thead>
             <tr
-              className={` ${headerSecondary ? "bg-table-header" : headerCLX ? headerCLX : "bg-table-main"} p-2 font-yekan text-text`}
+              className={` ${headerSecondary ? "bg-border/50" : headerCLX ? headerCLX : "bg-table-main"} p-2 font-yekan text-text`}
             >
               {tableHeader.map((item, index) => {
                 return (
