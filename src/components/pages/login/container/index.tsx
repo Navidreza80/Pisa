@@ -98,15 +98,6 @@ function LoginContainer() {
             </span>
           )}
         </InputAuth>
-        {/* Forget Pass */}
-        <div className="flex justify-center mt-2 gap-[5px]">
-          <span className="text-[14px] font-[500] text-text">
-            رمز عبور خود را فراموش کرده اید؟
-          </span>
-          <span className="text-[14px] font-[500] underline text-primary">
-            <Link href="/auth/forget-password/step-1">فراموشی رمز عبور</Link>
-          </span>
-        </div>
         <Button
           text={t("loginAccount")}
           created_at={new Date().toISOString()}
@@ -125,6 +116,7 @@ function LoginContainer() {
           <Link href="/auth/register/step-1">{t("SignUpTitle")}</Link>
         </span>
       </div>
+      {/* Forget Pass */}
       <div className="flex justify-center mt-2 gap-[5px]">
         <span className="text-[14px] font-[500] text-text">
           {t('title')}

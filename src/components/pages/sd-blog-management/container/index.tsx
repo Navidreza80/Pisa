@@ -20,7 +20,7 @@ export default function BlogDashboard() {
   const [editData, setEditData] = useState(null);
   const [filters, setFilters] = useState({
     page: 1,
-    limit: 10,
+    limit: 5,
     sort: "created_at",
     order: "DESC",
     title: "",
