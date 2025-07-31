@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import SaveProperty from "../SaveProperty";
 import SectionName from "../SectionName";
-import { useHandleAuth } from "@/utils/hooks/useAuth";
+import useAuth, { useHandleAuth } from "@/utils/hooks/useAuth";
 import ChatComponent from "../ChatComponent";
 
 export default function ReserveForm({
@@ -25,6 +25,7 @@ export default function ReserveForm({
   houseId: string;
   sellerId: string;
 }) {
+  const { isLoggedIn } = useAuth();
   const t = useTranslations("SingleHouse");
   const dispatch = useAppDispatch();
   const { id } = useParams();
@@ -113,7 +114,9 @@ export default function ReserveForm({
           {/* Save */}
           <SaveProperty houseId={id} />
           {/* Chat */}
-          <ChatComponent houseId={houseId} sellerId={sellerId} />
+          {isLoggedIn && (
+            <ChatComponent houseId={houseId} sellerId={sellerId} />
+          )}
           {/* Share */}
           <p
             className="w-12 h-12 bg-primary rounded-full flex justify-center items-center cursor-pointer hover:opacity-90 active:scale-95 transition-all duration-300"
