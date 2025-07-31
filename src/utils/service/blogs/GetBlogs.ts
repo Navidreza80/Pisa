@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
@@ -38,7 +40,9 @@ export function useBlogs(params: BlogQueryParams) {
         Object.entries(params).filter(([_, v]) => v !== undefined && v !== "")
       );
 
-      const response = await http.get<BlogResponse>("/blogs", { params: filteredParams });
+      const response = await http.get<BlogResponse>("/blogs", {
+        params: filteredParams,
+      });
       return response;
     },
     keepPreviousData: true,

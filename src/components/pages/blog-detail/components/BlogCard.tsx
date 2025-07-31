@@ -1,12 +1,12 @@
 "use client";
 
+import formatToPersianDate from "@/utils/helper/format-date";
 import { Blog } from "@/utils/service/blogs/GetBlogs";
 import { motion } from "framer-motion";
-import { CalendarDays, Clock3 } from "lucide-react";
+import { Clock3 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Tilt from "react-parallax-tilt";
-import { useTranslations } from "next-intl";
-import formatToPersianDate from "@/utils/helper/format-date";
 
 interface BlogCardProps {
   blog: Blog;

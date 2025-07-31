@@ -1,9 +1,8 @@
-import { getTranslations } from "next-intl/server";
-import SectionName from "../SectionName";
-import { MessageCircleMoreIcon } from "lucide-react";
-import SaveProperty from "../SaveProperty";
 import formatToPersianDate from "@/utils/helper/format-date";
+import { getTranslations } from "next-intl/server";
 import ChatComponent from "../ChatComponent";
+import SaveProperty from "../SaveProperty";
+import SectionName from "../SectionName";
 
 export default async function RentForm({
   houseId,

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import SearchSVG from "@/components/common/svg/search";
@@ -10,12 +12,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useBlogs } from "@/utils/service/blogs/GetBlogs";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import BlogCard from "../../blog-detail/components/BlogCard";
-import FilterModal from "../modals/FilterModal";
 import BlogCardSkeleton from "../../blog-detail/components/BlogCardSkeleton";
-import { useTranslations } from "next-intl";
+import FilterModal from "../modals/FilterModal";
 
 export default function BlogPage() {
   const t = useTranslations("Blog");
@@ -30,7 +31,11 @@ export default function BlogPage() {
     category_id: undefined as number | undefined,
   });
 
-  const { data: blogs, isLoading, isError } = useBlogs({
+  const {
+    data: blogs,
+    isLoading,
+    isError,
+  } = useBlogs({
     page: filters.page,
     limit: filters.limit,
     sort: filters.sort,
@@ -87,9 +92,11 @@ export default function BlogPage() {
                     handleChange("order", item.order);
                   }}
                   className={`px-4 py-3.5 h-12 flex items-center text-center rounded-[16px] border text-[16px] transition cursor-pointer
-                    ${filters.sort === item.value && filters.order === item.order
-                      ? "bg-[#586CFF] text-white"
-                      : "bg-white text-[#272727] border-[#EAEAEA] border-[1.5px]"
+                    ${
+                      filters.sort === item.value &&
+                      filters.order === item.order
+                        ? "bg-[#586CFF] text-white"
+                        : "bg-white text-[#272727] border-[#EAEAEA] border-[1.5px]"
                     }
               `}
                 >
@@ -136,9 +143,7 @@ export default function BlogPage() {
           {/* Blog Cards */}
           <div className="grid grid-cols-1 max-[600px]:w-full max-[872px]:w-2/3  max-[872px]:!grid-cols-1 max-[1060px]:w-full max-[1274px]:w-[80%] mx-auto md:grid-cols-2 min-[1274px]:!grid-cols-3 gap-5 p-5">
             {isLoading &&
-              [...Array(6)].map((_, i) => (
-                <BlogCardSkeleton key={i} />
-              ))}
+              [...Array(6)].map((_, i) => <BlogCardSkeleton key={i} />)}
 
             {!isLoading && !isError && blogs?.data.length === 0 && (
               <div className="font-bold text-2xl mt-4 w-full text-center">
@@ -147,9 +152,7 @@ export default function BlogPage() {
             )}
 
             {blogs?.data.length > 0 &&
-              blogs.data.map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
-              ))}
+              blogs.data.map((blog) => <BlogCard key={blog.id} blog={blog} />)}
           </div>
 
           {/* Pagination */}
@@ -159,7 +162,9 @@ export default function BlogPage() {
                 <PaginationContent>
                   <PaginationItem>
                     <PaginationPrevious
-                      onClick={() => filters.page > 1 && handlePageChange(filters.page - 1)}
+                      onClick={() =>
+                        filters.page > 1 && handlePageChange(filters.page - 1)
+                      }
                       className={`cursor-pointer ${filters.page === 1 ? "pointer-events-none opacity-50" : ""}`}
                     />
                   </PaginationItem>
@@ -177,7 +182,10 @@ export default function BlogPage() {
 
                   <PaginationItem>
                     <PaginationNext
-                      onClick={() => filters.page < totalPages && handlePageChange(filters.page + 1)}
+                      onClick={() =>
+                        filters.page < totalPages &&
+                        handlePageChange(filters.page + 1)
+                      }
                       className={`cursor-pointer ${filters.page === totalPages ? "pointer-events-none opacity-50" : ""}`}
                     />
                   </PaginationItem>

@@ -6,6 +6,7 @@ import Title from "@/components/common/dashboard/Title";
 import InputSelect from "@/components/common/inputs/select-input";
 import Modal from "@/components/common/modal/modal";
 import FilterModal from "@/components/dashboard/filter-modal";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Popover,
@@ -14,11 +15,10 @@ import {
 } from "@/components/ui/popover";
 import { Comments } from "@/types/comments";
 import formatToPersianDate from "@/utils/helper/format-date";
-import { Eye, MoreVertical, Star } from "lucide-react";
+import { Eye, Star } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PopoverItem from "../../sd-property-management/content/PopoverItem";
 import ViewComment from "../content/ViewComment";
-import { Button } from "@/components/ui/button";
 
 export const tableHeaderItems = [
   { text: "عنوان", clx: "rounded-r-xl" },

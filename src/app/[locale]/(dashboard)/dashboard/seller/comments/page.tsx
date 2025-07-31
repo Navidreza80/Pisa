@@ -1,11 +1,6 @@
 import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
 import SellerDashboardComments from "@/components/pages/sd-comments/container";
-import SellerDashboardProperties from "@/components/pages/sd-property-management/container";
-import {
-  getAllPropertyComments,
-  getSellerComments,
-} from "@/utils/service/comments/get";
-import { getTranslations } from "next-intl/server";
+import { getSellerComments } from "@/utils/service/comments/get";
 
 const Page = async ({
   searchParams,

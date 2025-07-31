@@ -13,7 +13,6 @@ import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
 import FavoriteSVG from "../../dashboard/svg/FavoriteSVG";
 import InfoSVG from "../../dashboard/svg/InfoSVG";
-import MoneySVG from "../../dashboard/svg/MoneySVG";
 import PaymentSVG from "../../dashboard/svg/PaymentSVG";
 import PropertySVG from "../../dashboard/svg/propertySVG";
 import ReserveSVG from "../../dashboard/svg/ReserveSVG";

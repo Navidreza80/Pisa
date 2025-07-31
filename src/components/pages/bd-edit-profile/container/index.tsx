@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
@@ -13,7 +15,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import NoImage from "@/assets/images/no.jpg"
+import NoImage from "@/assets/images/no.jpg";
 
 export default function BuyerInformation({ decodedUser }) {
   const t = useTranslations("UserInformation");
@@ -86,7 +88,11 @@ export default function BuyerInformation({ decodedUser }) {
           </p>
           <div className="w-30 h-30 bg-border mx-auto rounded-full relative">
             <Image
-              src={decodedUser?.profilePicture && decodedUser.profilePicture !== "" ? decodedUser?.profilePicture : NoImage}
+              src={
+                decodedUser?.profilePicture && decodedUser.profilePicture !== ""
+                  ? decodedUser?.profilePicture
+                  : NoImage
+              }
               alt="User profile pic"
               width={1024}
               height={1024}

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import HeaderDashboard from "@/components/common/dashboard/HeaderDashboard";
 import ProfileCard from "@/components/common/dashboard/ProfileCard";
 import Tag from "@/components/common/dashboard/Tag";
