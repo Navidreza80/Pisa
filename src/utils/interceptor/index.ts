@@ -1,18 +1,17 @@
 /* eslint-disable */
 
+import { handleLogout } from "@/lib/actions/auth";
 import axios, {
   AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { deleteClientCookie } from "../service/storage/client-cookie";
+import { redirect } from "next/navigation";
 import {
-  deleteServerCookie,
   getServerCookie,
   setServerCookie,
 } from "../service/storage/server-cookie";
-import deleteServerCookieAction from "./deleteServerCookieAction";
 
 export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -30,14 +29,9 @@ export const onError = async (error: AxiosError): Promise<never> => {
     const { status, data } = error.response;
 
     if (status === 401 || status === 403) {
-      await deleteServerCookie("serverAccessToken");
-      deleteClientCookie("clientAccessToken");
-      console.log("unauthorized");
-      setTimeout(() => {
-        window.location.href = "/auth/login";
-      }, 1500);
+      handleLogout();
+      redirect("/auth/login");
     } else if (status >= 400 && status < 500) {
-      const message = (data as any)?.message || `خطای کاربر: ${status}`;
       console.warn("Client Error:", status, data);
     } else if (status >= 500) {
       console.error("Server Error:", status, data);

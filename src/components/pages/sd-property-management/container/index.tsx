@@ -77,7 +77,7 @@ export default function SellerDashboardProperties({
 
   const { mutate: handleEdit } = useMutation({
     mutationKey: ["EDIT_HOUSE"],
-    mutationFn: (payload: { data: HouseItemsInterface; id: number }) =>
+    mutationFn: (payload: { data: HouseItemsInterface; id: string }) =>
       toast.promise(() => putHouse(payload.data, payload.id), {
         error: t("editError"),
         success: t("editSuccess"),
@@ -87,7 +87,7 @@ export default function SellerDashboardProperties({
   });
   const { mutate: handleDelete } = useMutation({
     mutationKey: ["DELETE_HOUSE"],
-    mutationFn: (id: number) =>
+    mutationFn: (id: string) =>
       toast.promise(() => deleteHouse(id), {
         error: t("deleteError"),
         success: t("deleteSuccess"),
@@ -173,7 +173,7 @@ export default function SellerDashboardProperties({
                         {t("tableHeaders.price")}:
                       </p>
                       <p className="font-medium">
-                        {formatNumber(property.price)}
+                        {formatNumber(Number(property.price))}
                       </p>
                     </div>
 

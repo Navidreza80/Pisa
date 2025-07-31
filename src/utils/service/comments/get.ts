@@ -12,12 +12,35 @@ import http from "@/utils/interceptor";
 
 export async function getAllPropertyComments(
   id: string,
-  rows: number
+  params: {
+    page?: string;
+    sort?: string;
+    limit?: string;
+    order?: string;
+  }
 ): Promise<Comments[]> {
   try {
-    const response = await http.get<Comments[]>(
-      `/houses/${id}/comments?page=1&limit=${rows}`
-    );
+    const response = await http.get<Comments[]>(`/houses/${id}/comments`, {
+      params,
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getSellerComments(params: {
+  page?: string;
+  sort?: string;
+  rating?: string;
+  house_id?: string;
+  limit?: string;
+  order?: string;
+}): Promise<Comments[]> {
+  try {
+    const response = await http.get<Comments[]>(`/comments`, {
+      params,
+    });
     return response;
   } catch (error) {
     throw error;

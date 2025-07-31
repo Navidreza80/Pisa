@@ -11,6 +11,7 @@ export interface HouseInterFace {
 
 export interface HouseItemsInterface {
   favoriteId: string | null;
+  rating: string;
   isFavorite: boolean;
   parking: number;
   caption: string;
