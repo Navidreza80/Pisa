@@ -1,9 +1,8 @@
 import formatToPersianDate from "@/utils/helper/format-date";
 import { getTranslations } from "next-intl/server";
-import ChatComponent from "../ChatComponent";
+import ChatComponentAuthProtected from "../ChatComponentAuthProtected";
 import SaveProperty from "../SaveProperty";
 import SectionName from "../SectionName";
-import ChatComponentAuthProtected from "../ChatComponentAuthProtected";
 
 export default async function RentForm({
   houseId,
