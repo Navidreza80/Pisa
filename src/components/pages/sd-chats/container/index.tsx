@@ -16,7 +16,7 @@ const ChatContainer = async ({
   return (
     <>
       {/* Chat Container */}
-      <div className="h-[85vh] custom-scrollbar flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden">
+      <div className="h-[85vh] md:mb-none mb-20 custom-scrollbar flex flex-col md:flex-row bg-gray-50 rounded-lg overflow-hidden">
         {/* Sidebar (Chat List) */}
         <div className="w-full md:w-1/4 lg:w-1/5 h-full bg-surface border-l border-border overflow-y-auto">
           {res.length === 0 ? (
