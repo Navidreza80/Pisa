@@ -71,7 +71,7 @@ const Page = async () => {
           <Tag key={tag.text} item={tag} />
         ))}
       </div>
-      <div className="grid grid-cols-2 w-full gap-[19px]">
+      <div className="grid lg:grid-cols-2 grid-cols-1 w-full gap-[19px]">
         <ReservationChart data={chartData} title={"نمودار رزرو های شما"} />
         {profileInfo && (
           <ProfileCard
