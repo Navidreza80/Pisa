@@ -34,6 +34,7 @@ export async function getSellerComments(params: {
   sort?: string;
   rating?: string;
   house_id?: string;
+  parent_comment_id?: string;
   limit?: string;
   order?: string;
 }): Promise<Comments[]> {

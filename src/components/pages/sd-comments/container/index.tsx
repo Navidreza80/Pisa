@@ -19,6 +19,7 @@ import { Eye, Star } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PopoverItem from "../../sd-property-management/content/PopoverItem";
 import ViewComment from "../content/ViewComment";
+import ViewReplies from "../content/ViewReplies";
 
 export const tableHeaderItems = [
   { text: "عنوان", clx: "rounded-r-xl" },
@@ -132,12 +133,22 @@ export default function SellerDashboardComments({
                     </div>
                     <Modal
                       trigger={
-                        <Button className="w-full text-surface">
+                        <Button className="lg:w-full w-[90vw] text-surface">
                           مشاهده نظر
                         </Button>
                       }
                     >
                       <ViewComment comment={comment} />
+                    </Modal>
+                    <Modal
+                      className="lg:w-[50vw] w-[90vw] overflow-y-scroll h-[80vh]"
+                      trigger={
+                        <Button className="w-full text-surface">
+                          مشاهده پاسخ ها
+                        </Button>
+                      }
+                    >
+                      <ViewReplies commentId={comment.id} />
                     </Modal>
                   </div>
                 </CardContent>
@@ -171,12 +182,20 @@ export default function SellerDashboardComments({
                   <div className="flex flex-col gap-y-2">
                     {/* View Comment */}
                     <Modal
-                      className="w-[50vw]"
+                      className="lg:w-[50vw] w-[90vw]"
                       trigger={
                         <PopoverItem icon={<Eye />} title="مشاهده نظر" />
                       }
                     >
                       <ViewComment comment={comment} />
+                    </Modal>
+                    <Modal
+                      className="lg:w-[50vw] w-[90vw] overflow-y-scroll h-[80vh]"
+                      trigger={
+                        <PopoverItem icon={<Eye />} title="مشاهده پاسخ ها" />
+                      }
+                    >
+                      <ViewReplies commentId={comment.id} />
                     </Modal>
                   </div>
                 </PopoverContent>
