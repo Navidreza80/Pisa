@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import http from "@/utils/interceptor";
 import { getClientCookie } from "../storage/client-cookie";
 import { useMutation } from "@tanstack/react-query";
@@ -30,7 +32,7 @@ export async function uploadPicture(file: File): Promise<UploadResponse> {
 }
 
 export const useUploadPicture = () => {
-  const t = useTranslations("Dashboard"); 
+  const t = useTranslations("Dashboard");
 
   return useMutation({
     mutationFn: uploadPicture,

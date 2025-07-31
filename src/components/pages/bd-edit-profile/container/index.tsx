@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 "use client";
 
 import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard";
