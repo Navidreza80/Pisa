@@ -756,7 +756,9 @@
     "sellerPanel": "Seller Panel",
     "buyer": "Buyer",
     "seller": "Seller",
-    "recentBookings": "Recent bookings"
+    "recentBookings": "Recent bookings",
+    "uploadSuccess": "Image uploaded successfully.",
+    "uploadError": "Error uploading image. Please try again."
   },
   "Sidebar": {
     "dashboard": "Dashboard",
@@ -990,5 +992,20 @@
       "subtitle2": "Increase your property's visibility by 5x with photos",
       "imageLinkLabel": "Image URL:"
     }
+  },
+  "Blog": {
+    "title": "Blogs",
+    "searchPlaceholder": "Search in title...",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "notFound": "No results found",
+    "author": "Author",
+    "category": "Category",
+    "relatedBlogs": "Related Articles",
+    "noRelated": "No related content found.",
+    "readTime": "{{minutes}} min read",
+    "readArticle": "Read Article",
+    "filters": "Filters",
+    "resetFilters": "Reset Filters"
   }
 }

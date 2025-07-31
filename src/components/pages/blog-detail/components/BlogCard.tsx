@@ -19,7 +19,7 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
   return (
     <Tilt
       options={{ max: 15, scale: 1.02 }}
-      className="group w-[390px] bg-text-surface border border-border rounded-[40px] p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+      className="group max-[600px]:!w-full w-[390px] bg-text-surface border border-border rounded-[40px] p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -28,11 +28,11 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col gap-4"
       >
-        <h2 className="text-2xl font-extrabold text-text line-clamp-2 group-hover:text-primary transition">
+        <h2 className="text-2xl font-extrabold text-text truncate w-full group-hover:text-primary transition">
           {blog.title}
         </h2>
 
-        <p className="text-text-secondary text-sm leading-6 line-clamp-3">
+        <p className="text-text-secondary text-sm truncate w-full">
           {blog.caption}
         </p>
 

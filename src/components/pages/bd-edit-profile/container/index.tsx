@@ -10,10 +10,12 @@ import { useUploadPicture } from "@/utils/service/user/uploadUserPicture";
 import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import NoImage from "@/assets/images/no.jpg"
 
-export default function BuyerInformation() {
+export default function BuyerInformation({ decodedUser }) {
   const t = useTranslations("UserInformation");
   const { mutate: uploadPicture } = useUploadPicture();
   const { data } = useUser();
@@ -83,6 +85,13 @@ export default function BuyerInformation() {
             {t("profileImage.description")}
           </p>
           <div className="w-30 h-30 bg-border mx-auto rounded-full relative">
+            <Image
+              src={decodedUser?.profilePicture && decodedUser.profilePicture !== "" ? decodedUser?.profilePicture : NoImage}
+              alt="User profile pic"
+              width={1024}
+              height={1024}
+              className="w-full h-full rounded-full aspect-square border border-border"
+            />
             <input
               type="file"
               id="file-upload"

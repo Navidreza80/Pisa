@@ -15,8 +15,11 @@ import { useState } from "react";
 import BlogCard from "../../blog-detail/components/BlogCard";
 import FilterModal from "../modals/FilterModal";
 import BlogCardSkeleton from "../../blog-detail/components/BlogCardSkeleton";
+import { useTranslations } from "next-intl";
 
 export default function BlogPage() {
+  const t = useTranslations("Blog");
+
   const [filters, setFilters] = useState({
     page: 1,
     limit: 10,
@@ -43,7 +46,7 @@ export default function BlogPage() {
     setFilters((prev) => ({
       ...prev,
       [key]: value,
-      ...(key !== "page" ? { page: 1 } : {}),
+      ...(key !== "page" ? { page: 2 } : {}),
     }));
   };
 
@@ -52,8 +55,8 @@ export default function BlogPage() {
   };
 
   const filtersItems = [
-    { text: "جدیدترین", value: "created_at", order: "DESC" as "DESC" },
-    { text: "قدیمی‌ترین", value: "created_at", order: "ASC" as "ASC" },
+    { text: t("newest"), value: "created_at", order: "DESC" as "DESC" },
+    { text: t("oldest"), value: "created_at", order: "ASC" as "ASC" },
   ];
 
   return (
@@ -62,7 +65,9 @@ export default function BlogPage() {
         <div className="flex flex-col gap-6">
           {/* Title & Search Tags */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-down">
-            <h1 className="text-text text-[40px] sm:text-[50px] md:text-[45px] font-bold">بلاگ‌ها</h1>
+            <h1 className="text-text text-[40px] sm:text-[50px] md:text-[45px] font-bold">
+              {t("title")}
+            </h1>
             {filters.search && (
               <div className="bg-primary text-white px-3 py-1 rounded-[16px] text-[18px] sm:text-[22px] font-bold">
                 {filters.search}
@@ -120,7 +125,7 @@ export default function BlogPage() {
                   value={filters.search || ""}
                   onChange={(e) => handleChange("search", e.target.value)}
                   type="text"
-                  placeholder="جستجو در عنوان..."
+                  placeholder={t("searchPlaceholder")}
                   className="w-full h-full rounded-[12px] bg-surface text-text text-sm border border-border placeholder:text-fade outline-none px-4 pr-10 ltr:pl-10"
                 />
                 <SearchSVG className="absolute top-3 right-3 ltr:left-3" />
@@ -129,29 +134,27 @@ export default function BlogPage() {
           </div>
 
           {/* Blog Cards */}
-          <div
-            className="custom-scrollbar overflow-y-auto  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between"
-          >
+          <div className="grid grid-cols-1 max-[600px]:w-full max-[872px]:w-2/3  max-[872px]:!grid-cols-1 max-[1060px]:w-full max-[1274px]:w-[80%] mx-auto md:grid-cols-2 min-[1274px]:!grid-cols-3 gap-5 p-5">
             {isLoading &&
               [...Array(6)].map((_, i) => (
-                <BlogCardSkeleton />
+                <BlogCardSkeleton key={i} />
               ))}
 
             {!isLoading && !isError && blogs?.data.length === 0 && (
               <div className="font-bold text-2xl mt-4 w-full text-center">
-                نتیجه‌ای یافت نشد
+                {t("notFound")}
               </div>
             )}
 
             {blogs?.data.length > 0 &&
               blogs.data.map((blog) => (
-                <BlogCard blog={blog} />
+                <BlogCard key={blog.id} blog={blog} />
               ))}
           </div>
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div dir="ltr" className="w-full my-6 flex justify-center">
+            <div dir="rtl" className="w-full my-6 flex justify-center">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>
