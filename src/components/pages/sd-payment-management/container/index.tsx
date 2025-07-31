@@ -10,6 +10,10 @@ import ContainerDashboard from "@/components/common/dashboard/ContainerDashboard
 import formatToPersianDate from "@/utils/helper/format-date";
 import Status from "../../sd-booking-management/content/Status";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { verifyPayment } from "@/utils/service/payments/VerifyPayment";
 
 export const tableHeaderItems = (t) => [
   { text: t("tableHeaders.date"), clx: "rounded-r-xl" },
@@ -31,13 +35,32 @@ export default function SellerFinanceManagement({ payments, totalCount }) {
     router.push(`?${params.toString()}`);
   };
 
+  const { mutate: verify } = useMutation({
+    mutationKey: ["VERIFY_PAYMENT"],
+    mutationFn: (id: string) =>
+      toast.promise(verifyPayment(id), {
+        pending: "درحال تایید...",
+        success: "پرداخت با موفقیت تایید شد",
+        error: "خطا در تایید",
+      }),
+    onSuccess: () => router.refresh(),
+  });
+
   return (
     <ContainerDashboard>
       <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
         <Title text={t("title")} />
         <div className="flex gap-[19px] flex-wrap">
-          <InputSelect className="flex-1" withLabel label={t("transactionType")} />
-          <InputSelect className="flex-1" withLabel label={t("paymentStatus")} />
+          <InputSelect
+            className="flex-1"
+            withLabel
+            label={t("transactionType")}
+          />
+          <InputSelect
+            className="flex-1"
+            withLabel
+            label={t("paymentStatus")}
+          />
         </div>
       </div>
       <Line />
@@ -105,9 +128,13 @@ export default function SellerFinanceManagement({ payments, totalCount }) {
 
                   {/* View receipt button */}
                   <div className="flex pt-1">
-                    <button className="text-primary text-sm font-medium">
-                      {t("viewReceipt")}
-                    </button>
+                    <Button
+                      onClick={() => verify(payment.id)}
+                      className="text-green-500 cursor-pointer w-full"
+                      variant="outline"
+                    >
+                      تایید
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -132,7 +159,13 @@ export default function SellerFinanceManagement({ payments, totalCount }) {
             </td>
             <td className="px-6 py-7  text-[16px] font-medium">رزرو</td>
             <td className="px-6 py-2  text-[16px] font-medium relative rounded-l-xl cursor-pointer">
-              {t("viewReceipt")}
+              <Button
+                onClick={() => verify(payment.id)}
+                className="text-green-500 cursor-pointer"
+                variant="outline"
+              >
+                تایید
+              </Button>
             </td>
           </tr>
         ))}
