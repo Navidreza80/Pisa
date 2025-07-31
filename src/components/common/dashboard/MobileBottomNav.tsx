@@ -1,7 +1,15 @@
 "use client";
 
+import FavoriteSVG from "@/components/dashboard/svg/FavoriteSVG";
+import PaymentSVG from "@/components/dashboard/svg/PaymentSVG";
 import PropertySVG from "@/components/dashboard/svg/propertySVG";
 import { usePathname } from "@/i18n/navigation";
+import {
+  Bell,
+  Bookmark,
+  MessageCircleMoreIcon,
+  MessageSquare,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
@@ -20,7 +28,26 @@ export default function MobileBottomNavbar() {
       name: t("propertyManagement"),
       icon: <PropertySVG />,
       href: "/dashboard/seller/properties",
-      management: true,
+    },
+    {
+      name: t("financialManagement"),
+      icon: <PaymentSVG />,
+      href: "/dashboard/seller/finance",
+    },
+    {
+      name: t("reservationManagement"),
+      icon: <ReserveSVG />,
+      href: "/dashboard/seller/reservations",
+    },
+    {
+      name: "نظرات",
+      icon: <MessageSquare />,
+      href: "/dashboard/seller/comments",
+    },
+    {
+      name: "گفتگو",
+      icon: <MessageCircleMoreIcon />,
+      href: "/dashboard/seller/chats",
     },
   ];
 
@@ -35,6 +62,31 @@ export default function MobileBottomNavbar() {
       name: t("reservationManagement"),
       icon: <ReserveSVG />,
       href: "/dashboard/buyer/reservations",
+    },
+    {
+      name: t("notifications"),
+      icon: <Bell />,
+      href: "/dashboard/buyer/notifications",
+    },
+    {
+      name: t("payments"),
+      icon: <PaymentSVG />,
+      href: "/dashboard/buyer/payments",
+    },
+    {
+      name: t("favorites"),
+      icon: <FavoriteSVG />,
+      href: "/dashboard/buyer/favorites",
+    },
+    {
+      name: "ذخیره شده ها",
+      icon: <Bookmark />,
+      href: "/dashboard/buyer/whishlist",
+    },
+    {
+      name: "گفتگو",
+      icon: <MessageCircleMoreIcon />,
+      href: "/dashboard/buyer/chats",
     },
   ];
 
@@ -53,7 +105,6 @@ export default function MobileBottomNavbar() {
             }`}
           >
             <div className="w-6 h-6">{item.icon}</div>
-            <span className="text-xs mt-1">{item.name}</span>
             {pathname === item.href && (
               <div className="w-1/2 h-1 bg-primary rounded-t-full mt-1"></div>
             )}

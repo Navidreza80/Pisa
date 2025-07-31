@@ -10,7 +10,6 @@ import * as Yup from "yup";
 // Components
 import Button from "@/components/common/auth/button";
 import InputAuth from "@/components/common/auth/input-auth";
-import OrUnderline from "@/components/common/auth/or-underline";
 import WelcomeTitle from "@/components/common/auth/welcome-title";
 
 // SVGs

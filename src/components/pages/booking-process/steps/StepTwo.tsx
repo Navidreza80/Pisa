@@ -123,15 +123,15 @@ export default function BookingStepTwo() {
             {t("announcement")} <MegaphoneIcon className="w-4 md:w-5" />
           </h1>
         </Header>
-        <div className="w-full flex flex-col md:flex-row px-2 md:px-4 py-3 md:py-5 md:justify-end items-start md:items-center gap-2 md:gap-[25px]">
-          <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
+        <div className="w-full flex flex-col md:flex-row px-2 md:px-4 py-3 md:py-5 items-start md:items-center gap-2 md:gap-[25px]">
+          <div className="flex items-center gap-1 flex-row text-sm md:text-base">
             <Dot className="w-4 md:w-5" /> {t("email")}
             <span className="text-primary break-all">
               {booking.sharedEmail}
             </span>
           </div>
           <span className="hidden md:block bg-border h-4 w-0.5" />
-          <div className="flex items-center gap-1 flex-row-reverse text-sm md:text-base">
+          <div className="flex items-center gap-1 flex-row text-sm md:text-base">
             <Dot className="w-4 md:w-5" /> {t("phoneNumber")}
             <span className="text-primary">{booking.sharedMobile}</span>
           </div>
@@ -145,7 +145,7 @@ export default function BookingStepTwo() {
             {t("discountCode")} <MdDiscount className="w-4 md:w-5" />
           </h1>
         </Header>
-        <div className="w-full flex flex-col-reverse md:flex-row px-2 md:px-4 py-3 md:py-5 md:justify-end items-center gap-3 md:gap-[25px]">
+        <div className="w-full flex flex-col md:flex-row px-2 md:px-4 py-3 md:py-5 items-center gap-3 md:gap-[25px]">
           <Button className="bg-transparent !text-text border-2 border-primary text-sm md:text-base w-full md:w-auto">
             {t("applyCode")}
           </Button>
@@ -161,24 +161,24 @@ export default function BookingStepTwo() {
       <div className="flex flex-col md:flex-row justify-between items-center border-2 border-dashed px-3 md:px-6 py-3 rounded-2xl md:rounded-4xl gap-3 md:gap-0">
         <div className="flex gap-2 w-full md:w-auto">
           <Button
-            startContent={<ChevronLeft />}
-            handleClick={() => {
-              handleClick();
-            }}
-            className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
-          >
-            {"reserveHotel"}
-          </Button>
-          <Button
-            endContent={<ChevronRight />}
+            startContent={<ChevronRight />}
             handleClick={() => dispatch(setBookingSteps(1))}
             className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
           >
             {t("previousStep")}
           </Button>
+          <Button
+            endContent={<ChevronLeft />}
+            handleClick={() => {
+              handleClick();
+            }}
+            className="bg-transparent !text-text border-2 border-primary text-sm md:text-base !w-full md:!w-auto"
+          >
+            رزرو هتل
+          </Button>
         </div>
 
-        <div className="flex gap-1 flex-row-reverse text-lg md:text-2xl">
+        <div className="flex gap-1 flex-row text-lg md:text-2xl">
           <h1>{t("hotelPrice")}</h1>
           <h3 className="text-primary">{formatNumber(1500000)}ت</h3>
         </div>

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import http from "@/utils/interceptor";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";

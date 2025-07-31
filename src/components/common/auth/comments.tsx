@@ -1,11 +1,10 @@
 "use client";
 // React & Next
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 
 // Dependencies
-import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,40 +17,57 @@ import ToLeft from "@/components/common/svg/to-left";
 import ToRight from "@/components/common/svg/to-right";
 
 // Types
-import type Comment from "@/types/auth";
-import { Swiper as SwiperType } from 'swiper';
 import formatToPersianDate from "@/utils/helper/format-date";
+import { Swiper as SwiperType } from "swiper";
+
+const comments = [
+  {
+    id: "1",
+    createdAt: "2025-07-31T09:12:00Z",
+    caption: "خیلی راحت تونستم خونه مورد نظرم رو پیدا کنم!",
+    userName: "مهدی رضایی",
+    profilePicture: "/images/sara.jpg",
+  },
+  {
+    id: "2",
+    createdAt: "2025-07-30T16:45:00Z",
+    caption: "طراحی سایت عالیه و خیلی کاربرپسنده.",
+    userName: "سارا احمدی",
+    profilePicture: "/images/sara.jpg",
+  },
+  {
+    id: "3",
+    createdAt: "2025-07-29T13:20:00Z",
+    caption: "رزرو هتل خیلی سریع انجام شد، ممنون از پلتفرم خوبتون.",
+    userName: "علی کرمی",
+    profilePicture: "/images/sara.jpg",
+  },
+  {
+    id: "4",
+    createdAt: "2025-07-28T10:05:00Z",
+    caption: "فقط کاش گزینه‌های بیشتری برای فیلتر کردن بود.",
+    userName: "نگار موسوی",
+    profilePicture: "/images/sara.jpg",
+  },
+  {
+    id: "5",
+    createdAt: "2025-07-27T18:30:00Z",
+    caption: "پشتیبانی خیلی سریع پاسخ داد، تجربه خوبی بود.",
+    userName: "رضا عباسی",
+    profilePicture: "/images/sara.jpg",
+  },
+];
 
 export default function CommentsSwiper() {
   const t = useTranslations("Auth");
   const SLIDE_DURATION = 5000;
   const swiperRef = useRef<SwiperType | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
   const pausedProgress = useRef(0);
   const startTimeRef = useRef(Date.now());
   const remainingTimeRef = useRef(SLIDE_DURATION);
   const isHovered = useRef(false);
-
-  useEffect(() => {
-    async function fetchComments() {
-      try {
-        const response = await axios.get<{ data: Comment[] }>(
-          "https://delta-project.liara.run/api/comments"
-        );
-        setComments(response.data.data);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-        setError(t("error"));
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchComments();
-  }, [t]);
 
   const startTimer = (reset = true) => {
     if (progressInterval.current) {
@@ -63,14 +79,16 @@ export default function CommentsSwiper() {
       remainingTimeRef.current = SLIDE_DURATION;
       startTimeRef.current = Date.now();
     } else {
-      startTimeRef.current = Date.now() - (pausedProgress.current / 100) * SLIDE_DURATION;
+      startTimeRef.current =
+        Date.now() - (pausedProgress.current / 100) * SLIDE_DURATION;
     }
 
     setProgress(pausedProgress.current);
 
     progressInterval.current = setInterval(() => {
       if (isHovered.current) {
-        remainingTimeRef.current = SLIDE_DURATION - (Date.now() - startTimeRef.current);
+        remainingTimeRef.current =
+          SLIDE_DURATION - (Date.now() - startTimeRef.current);
         return;
       }
 
@@ -122,12 +140,12 @@ export default function CommentsSwiper() {
 
     const swiperInstance = swiperRef.current;
     if (swiperInstance) {
-      swiperInstance.on('slideChange', onSlideChange);
+      swiperInstance.on("slideChange", onSlideChange);
     }
 
     return () => {
       if (swiperInstance) {
-        swiperInstance.off('slideChange', onSlideChange);
+        swiperInstance.off("slideChange", onSlideChange);
       }
     };
   }, []);
@@ -136,24 +154,20 @@ export default function CommentsSwiper() {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
-  if (loading) {
-    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("loading")}</div></div>;
-  }
-
-  if (error) {
-    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl my-auto mx-auto px-4 text-center py-8 text-red-500">{error}</div></div>;
-  }
 
   if (comments.length === 0) {
-    return <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md"><div className="w-full max-w-4xl mx-auto px-4 text-center py-8">{t("noComments")}</div></div>;
+    return (
+      <div className="max-w-4xl mx-auto px-4 w-[656px] h-[230px] bg-white rounded-[24px] p-[24px] flex flex-col gap-[9px] overflow-hidden shadow-md">
+        <div className="w-full max-w-4xl mx-auto px-4 text-center py-8">
+          {t("noComments")}
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 ">
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <Swiper
           modules={[Navigation, Autoplay]}
           onSwiper={(swiper) => {
@@ -172,7 +186,6 @@ export default function CommentsSwiper() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 1 },
           }}
-          
         >
           {comments.map((comment) => (
             <SwiperSlide key={comment.id}>
@@ -185,7 +198,6 @@ export default function CommentsSwiper() {
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={comment.id}
-                      
                       className=" text-[#232323] text-[16px] font-[600]"
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -200,34 +212,37 @@ export default function CommentsSwiper() {
                 <div className="flex justify-between items-end">
                   <div className="flex gap-x-[8px] items-center">
                     <Image
-                      src="https://thumbs.dreamstime.com/b/male-default-avatar-profile-icon-man-face-silhouette-person-placeholder-vector-illustration-male-default-avatar-profile-icon-man-189495143.jpg"
-                      alt="profile"
+                      src={comment.profilePicture}
                       width={48}
+                      alt="User Profile"
                       height={48}
-                      className="rounded-full border-black border-[1px]"
+                      className="rounded-full w-12 h-12"
                     />
                     <div className="flex flex-col ">
                       <p className="font-[600] text-[16px] text-[#232323]">
-                        {comment.user?.name || t("unknownUser")}
+                        {comment.userName || t("unknownUser")}
                       </p>
-                      <p
-                        
-                        className="font-[500]  text-[14px] text-[#5F5F5F]"
-                      >
-                        {formatToPersianDate(comment.created_at)}
+                      <p className="font-[500]  text-[14px] text-[#5F5F5F]">
+                        {formatToPersianDate(comment.createdAt)}
                       </p>
                     </div>
                   </div>
                   <div className="flex justify-center gap-4">
-                    <button className="my-auto" onClick={() => handleNavigation("prev")}>
+                    <button
+                      className="my-auto"
+                      onClick={() => handleNavigation("prev")}
+                    >
                       <span className="sr-only">{t("prev")}</span>
                       <ToRight />
                     </button>
-                    <button className="my-auto" onClick={() => handleNavigation("next")}>
+                    <button
+                      className="my-auto"
+                      onClick={() => handleNavigation("next")}
+                    >
                       <span className="sr-only">{t("next")}</span>
                       <ToLeft />
                     </button>
-                    <div  className="flex !justify-start items-center my-auto gap-6">
+                    <div className="flex !justify-start items-center my-auto gap-6">
                       <div className="relative w-11 h-11">
                         <svg className="w-full h-full" viewBox="0 0 40 40">
                           <circle

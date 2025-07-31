@@ -24,7 +24,7 @@ import { formatNumber } from "@/utils/helper/format-number";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { MdRestore } from "react-icons/md";
-import ReserveDetail from "../../bd-bookings/contents/reserveDetail";
+import dynamic from "next/dynamic";
 import PopoverItem from "../../sd-property-management/content/PopoverItem";
 import useCancelBooking from "../content/hooks/useCancelBooking";
 import useConfirmBooking from "../content/hooks/useConfirmBooking";
@@ -32,6 +32,13 @@ import useContinueBooking from "../content/hooks/useContinueBooking";
 import useDeleteBooking from "../content/hooks/useDeleteBooking";
 import { InfoRow } from "../content/InFrow";
 import Status from "../content/Status";
+const ReserveDetail = dynamic(
+  () => import("../../bd-bookings/contents/reserveDetail"),
+  {
+    loading: () => <p>در حال بارگذاری...</p>,
+    ssr: false,
+  }
+);
 
 const tableHeaderItems = [
   { text: "propertyName", clx: "rounded-r-xl" },

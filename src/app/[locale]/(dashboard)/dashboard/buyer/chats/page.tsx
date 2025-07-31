@@ -28,7 +28,7 @@ const Page = async ({
 
   return (
     <>
-      <HeaderDashboard title="گفتگو با خریداران" />
+      <HeaderDashboard title="گفتگو با فروشندگان" />
       <ChatContainer
         isActiveRoom={isActiveRoom}
         room={room}

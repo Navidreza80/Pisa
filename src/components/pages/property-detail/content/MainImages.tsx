@@ -2,13 +2,20 @@ import clsx from "clsx";
 import RightImg from "./RightImg";
 import Image from "next/image";
 import NoImage from "@/assets/images/no.jpg";
+import FavoriteButton from "./FavoriteButton";
 
 export default async function MainImages({
   photos,
   sticky,
+  houseId,
+  favorite,
+  favoriteId,
 }: {
   photos: string[];
   sticky: boolean;
+  houseId: string;
+  favorite: boolean;
+  favoriteId: string | null;
 }) {
   return (
     <>
@@ -21,6 +28,7 @@ export default async function MainImages({
           }
         )}
       >
+        <FavoriteButton className="absolute right-40 top-[12px] z-10" favorite={favorite} favoriteId={favoriteId} houseId={houseId} />
         <RightImg photos={photos} />
         {/* + n other pictures section */}
         {photos.length > 3 ? (

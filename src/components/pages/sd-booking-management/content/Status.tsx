@@ -6,27 +6,26 @@ import { cn } from "@/lib/utils";
 const Status = ({
   status,
 }: {
-  status: "pending" | "confirmed" | "canceled";
+  status: "pending" | "confirmed" | "completed" | "canceled";
 }) => {
   return (
     <span
       className={cn(
-        "px-[2.5px] py-1 rounded-full text-[13px] font-medium flex gap-1 w-[89px] whitespace-nowrap items-center",
-        status === "confirmed" && "bg-[#8CFF45]",
-        status === "pending" && "bg-[#FAC100]",
-        status === "canceled" && "bg-[#FF989A]"
+        "px-[2.5px] py-1 rounded-full text-[13px] font-medium bg-[#FF989A] flex gap-1 w-[89px] whitespace-nowrap items-center",
+        (status === "confirmed" || "completed") && "bg-[#8CFF45]",
+        status === "pending" && "bg-[#FAC100]"
       )}
     >
       {status == "pending" ? (
         <PendingSVG />
-      ) : status == "confirmed" ? (
+      ) : status == "confirmed" || "completed" ? (
         <ConfirmedSVG />
       ) : (
         <CanceledSVG />
       )}
       {status == "pending"
         ? "در انتظار"
-        : status == "confirmed"
+        : status == "confirmed" || "completed"
           ? "تایید شده"
           : "لغو شده"}
     </span>

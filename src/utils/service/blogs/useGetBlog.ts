@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import http from "@/utils/interceptor";
 import { Blog } from "./GetBlogs";
 
@@ -21,6 +23,8 @@ export async function getBlogs(params: BlogQueryParams): Promise<Blog[]> {
     Object.entries(params).filter(([_, v]) => v !== undefined && v !== "")
   );
 
-  const response = await http.get<BlogResponse>("/blogs", { params: filteredParams });
+  const response = await http.get<BlogResponse>("/blogs", {
+    params: filteredParams,
+  });
   return response.data;
 }

@@ -1,6 +1,5 @@
 "use client";
 import Line from "@/components/common/dashboard/line";
-import InfoSVG from "@/components/dashboard/svg/InfoSVG";
 import ViewMoreSVG from "@/components/dashboard/svg/ViewMoreSVG";
 import { getProfileHint } from "@/utils/helper/profile-hint";
 import { timeAgo } from "@/utils/helper/time-identifier";
@@ -21,7 +20,6 @@ const ProfileCard = ({ completed, lastUpdated }) => {
       {/* Top: Edit + Status */}
       <div className="flex flex-col-reverse md:flex-row justify-between gap-4">
         <div className="flex gap-2 items-center rtl">
-          <InfoSVG />
           <h2 className="text-lg font-semibold">{t("profileStatus")}</h2>
         </div>
         <Link

@@ -56,7 +56,7 @@ export default function UserProfile({ user }: UserProfileProps) {
         {/* Menu Items */}
         <div className="py-2">
           <Link
-            href="/dashboard/seller"
+            href="/dashboard/buyer"
             className="flex items-center gap-2 px-4 py-2 hover:bg-muted transition text-sm"
           >
             <User className="h-4 w-4" />

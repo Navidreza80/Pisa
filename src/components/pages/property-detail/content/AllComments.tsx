@@ -2,9 +2,9 @@
 
 import Button from "@/components/common/button";
 import { Input } from "@/components/ui/input";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 import { getAllPropertyComments } from "@/utils/service/comments/get";
 import { usePostComment } from "@/utils/service/comments/post";
-import { getClientCookie } from "@/utils/service/storage/client-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
@@ -13,7 +13,6 @@ import { useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import * as Yup from "yup";
 import RenderComments from "./RenderComments";
-import { useHandleAuth } from "@/utils/hooks/useAuth";
 const StarRatings = dynamic(() => import("react-star-ratings"), { ssr: false });
 
 // Dynamically importing the SectionName component
@@ -43,7 +42,7 @@ export default function AllComments({ houseId }: AllCommentsProps) {
 
   const { data } = useQuery({
     queryKey: ["comments", houseId, rows],
-    queryFn: () => getAllPropertyComments(houseId, rows),
+    queryFn: () => getAllPropertyComments(houseId, { page: "1", limit: rows.toString() }),
     staleTime: 0,
   });
 

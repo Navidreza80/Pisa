@@ -7,14 +7,15 @@ import { ClipLoader } from "react-spinners";
 import SendIcon from "@/assets/icons/send.png";
 import Image from "next/image";
 
-const SendMessage = ({ roomId }) => {
+const SendMessage = ({ roomId, getterId }) => {
   const router = useRouter();
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { mutate: sendRealtimeMessage, isPending } = useMutation({
     mutationKey: ["SEND_MESSAGE"],
-    mutationFn: () => sendMessage({ message: message.trim(), room: roomId }),
+    mutationFn: () =>
+      sendMessage({ getterId, message: message.trim(), room: roomId }),
     onSuccess: () => {
       setMessage("");
       router.refresh();

@@ -1,6 +1,3 @@
-// Types
-import { Question } from "@/types/qa";
-
 // Interceptor
 import http from "@/utils/interceptor";
 

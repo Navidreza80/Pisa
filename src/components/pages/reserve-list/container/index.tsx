@@ -99,8 +99,11 @@ export default function ReserveListContainer() {
   }, []);
 
   return (
-    <div className="w-full flex justify-end">
-      <div className="lg:h-[calc(100vh-80px)] md:h-auto w-[calc(100%-7.25%)] flex flex-wrap lg:flex-nowrap">
+    <div className="w-full flex lg:justify-end md:justify-center justify-center">
+      <div className="lg:h-[calc(100vh-80px)] md:h-auto lg:w-[calc(100%-7.25%)] w-[85.5%] flex flex-row-reverse justify-center flex-wrap lg:flex-nowrap">
+        {/* Right Column: Map */}
+        <Map currentLoc={currentLoc} houses={data?.houses} />
+
         {/* Left Column: Filter + Results */}
         <div className="flex-grow animate-fade-left w-[55%]">
           {/* Top Bar: Filters + Search + Result Count */}
@@ -114,7 +117,7 @@ export default function ReserveListContainer() {
             {/* Search Input & Saved Searches Dropdown */}
             <div
               ref={containerRef}
-              className="relative md:w-[calc(100%-242px)] w-[90%] flex gap-2 items-center"
+              className="relative md:w-[calc(100%-242px)] w-[100%] flex gap-2 items-center"
             >
               <input
                 value={filters.search || ""}
@@ -145,7 +148,7 @@ export default function ReserveListContainer() {
           </div>
 
           {/* Results List: Houses or Skeleton */}
-          <div className="custom-scrollbar overflow-y-auto lg:max-h-[calc(100vh-142px)]  pl-[20px] flex flex-wrap gap-[24.95px] justify-center lg:justify-between">
+          <div className="custom-scrollbar justify-center overflow-y-auto lg:max-h-[calc(100vh-142px)]  pl-[20px] flex flex-wrap gap-[24.95px] lg:justify-between">
             {isLoading &&
               [...Array(6)].map((_, i) => (
                 <HouseSkeleton
@@ -224,9 +227,6 @@ export default function ReserveListContainer() {
             )}
           </div>
         </div>
-
-        {/* Right Column: Map */}
-        <Map currentLoc={currentLoc} houses={data?.houses} />
       </div>
     </div>
   );

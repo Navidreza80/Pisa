@@ -83,7 +83,13 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
         <div className="w-full flex justify-between flex-wrap gap-8">
           {/* Main images */}
           <div className="lg:w-[47%] md:w-full w-full">
-            <MainImages photos={photos ? photos : []} sticky={true} />
+            <MainImages
+              houseId={id}
+              favorite={propertyDetails.isFavorite}
+              favoriteId={propertyDetails.favoriteId}
+              photos={photos ? photos : []}
+              sticky={true}
+            />
           </div>
           {/* Left section */}
           <div className="lg:w-[50%] md:w-full w-full flex flex-col gap-5">
@@ -101,7 +107,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
                     width={500}
                     height={500}
                     alt={title || "houseImage"}
-                    src={photos !== null && photos[1] || NoImage}
+                    src={(photos !== null && photos[1]) || NoImage}
                     className="h-[253px] w-full rounded-3xl"
                     unoptimized
                   />
@@ -135,9 +141,14 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
 
             {/* Reserve section */}
             {isHotel ? (
-              <ReserveForm price={price} />
+              <ReserveForm
+                houseId={id}
+                sellerId={propertyDetails.sellerId}
+                price={price}
+              />
             ) : (
               <RentForm
+                sellerId={propertyDetails.sellerId}
                 houseId={id}
                 sellerName={sellerName}
                 date={createdAt}
@@ -151,9 +162,7 @@ export default async function PropertyDetailContainer({ id }: { id: string }) {
           </div>
         </div>
         {/* Bottom section */}
-        <RelatedHouse
-          relatedHouses={houses.filter((e) => e.id != Number(id))}
-        />
+        <RelatedHouse relatedHouses={houses.filter((e) => e.id != id)} />
       </div>
     </Container>
   );

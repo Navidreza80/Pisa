@@ -1,12 +1,12 @@
-import { getTranslations } from "next-intl/server";
-import SectionName from "../SectionName";
-import { MessageCircleMoreIcon } from "lucide-react";
-import SaveProperty from "../SaveProperty";
 import formatToPersianDate from "@/utils/helper/format-date";
+import { getTranslations } from "next-intl/server";
 import ChatComponent from "../ChatComponent";
+import SaveProperty from "../SaveProperty";
+import SectionName from "../SectionName";
 
 export default async function RentForm({
   houseId,
+  sellerId,
   sellerName,
   date,
   price,
@@ -14,6 +14,7 @@ export default async function RentForm({
   houseId: string;
   sellerName: string;
   date: Date;
+  sellerId: string;
   price: number;
 }) {
   const t = await getTranslations("SingleHouse");
@@ -71,7 +72,7 @@ export default async function RentForm({
         {/* Chat and phone number section */}
         <div className="flex gap-x-2 h-12">
           {/* Chat */}
-          <ChatComponent />
+          <ChatComponent sellerId={sellerId} houseId={houseId} />
           <SaveProperty houseId={houseId} />
           {/* Phone number */}
           <span className="h-full w-[292px] text-white rounded-full  flex justify-center items-center bg-primary">

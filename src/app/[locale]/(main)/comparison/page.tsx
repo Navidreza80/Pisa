@@ -28,6 +28,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setComparisonIds } from "@/utils/hooks/react-redux/store/slices/comparison";
 import Image from "next/image";
+import NoImage from "@/assets/images/no.jpg";
 import { HouseItemsInterface } from "@/types/house";
 
 /**
@@ -132,7 +133,7 @@ const ComparisonPage = () => {
                     <Image
                       unoptimized
                       fill
-                      src={house.photos[0]}
+                      src={house.photos ? house.photos[0] : NoImage}
                       alt={house.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
@@ -276,7 +277,7 @@ const ComparisonPage = () => {
                       <td key={house.id} className="p-3 sm:p-4 text-center">
                         <div className="relative h-16 sm:h-24 w-24 sm:w-32 mx-auto rounded-lg overflow-hidden">
                           <Image
-                            src={house.photos[0]}
+                            src={house.photos ? house.photos[0] : NoImage}
                             alt={house.title}
                             fill
                             className="object-cover"

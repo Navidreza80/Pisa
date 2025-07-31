@@ -1,6 +1,6 @@
 import React from "react";
 
-function SignoutSVG({ size = "24" }: { size: string }) {
+function SignoutSVG({ size = "24" }: { size?: string }) {
   return (
     <svg
       width={size}

@@ -11,7 +11,6 @@ import { HouseItemsInterface } from "@/types/house";
 import { formatNumber } from "@/utils/helper/format-number";
 import { getTransactionType } from "@/utils/helper/GetTransactionType";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 interface IProps {
   createdProperty: HouseItemsInterface | undefined;
@@ -51,10 +50,6 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
   ];
   return (
     <div className="w-full border border-border flex-wrap rounded-3xl mt-6 md:mt-[24px] gap-y-4 md:gap-y-[28px] p-3 md:p-[13px] flex flex-col md:justify-between md:flex-row-reverse">
-      {/* Image Section */}
-      <div className="w-full md:w-[41.8%] order-1 md:order-none">
-        <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />
-      </div>
       {/* Description Section */}
       <div className="w-full md:w-[53.4%] order-2 md:order-none">
         <h1 className="text-xl md:text-2xl font-semibold mb-3 md:mb-[18px] ">
@@ -64,6 +59,11 @@ const AddPropertyStepFive: React.FC<IProps> = ({ createdProperty }) => {
           {caption}
         </p>
       </div>
+      {/* Image Section */}
+      <div className="w-full md:w-[41.8%] order-1 md:order-none">
+        <div className="h-[200px] md:h-[226px] bg-fade w-full rounded-xl" />
+      </div>
+
       {/* Facilities Section 1 */}
       <div className="w-full md:w-[41.8%] flex flex-col flex-wrap gap-y-3 md:gap-y-[17px] order-3 md:order-none mt-4 md:mt-0">
         {facilities.map((item, index) => {

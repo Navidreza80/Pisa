@@ -1,14 +1,13 @@
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
-import { Bell, Bookmark, FileText, House, MessageSquare } from "lucide-react";
+import { Bell, Bookmark, FileText, MessageCircleMoreIcon, MessageSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 import DashboardSVG from "../../dashboard/svg/DashboardSVG";
 import FavoriteSVG from "../../dashboard/svg/FavoriteSVG";
 import InfoSVG from "../../dashboard/svg/InfoSVG";
-import MoneySVG from "../../dashboard/svg/MoneySVG";
 import PaymentSVG from "../../dashboard/svg/PaymentSVG";
 import PropertySVG from "../../dashboard/svg/propertySVG";
 import ReserveSVG from "../../dashboard/svg/ReserveSVG";
@@ -40,8 +39,13 @@ function BuyerSideBar() {
       href: "/dashboard/seller/reservations",
     },
     {
-      name: "گفتگو",
+      name: "نظرات",
       icon: <MessageSquare />,
+      href: "/dashboard/seller/comments",
+    },
+    {
+      name: "گفتگو",
+      icon: <MessageCircleMoreIcon />,
       href: "/dashboard/seller/chats",
     },
     {
@@ -83,6 +87,11 @@ function BuyerSideBar() {
       icon: <Bookmark />,
       href: "/dashboard/buyer/whishlist",
     },
+    {
+      name: "گفتگو",
+      icon: <MessageCircleMoreIcon />,
+      href: "/dashboard/buyer/chats",
+    },
   ];
 
   const items = isSeller ? sellerItems : buyerItems;
@@ -123,7 +132,7 @@ function BuyerSideBar() {
               <BuyerSideBarItems collapsed={collapsed} items={items} />
             </div>
           </div>
-          {isSeller && !collapsed ? (
+          {isSeller && (
             <div className="mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] lg:flex md:hidden hidden justify-end gap-2">
               <div className="flex flex-col flex-wrap justify-between">
                 <p className="text-[20px] text-text ">{t("newReviews")}</p>
@@ -135,20 +144,6 @@ function BuyerSideBar() {
                 <ReviewsSVG />
               </div>
             </div>
-          ) : (
-            !collapsed && (
-              <div className="lg:flex md:hidden hidden mt-6 py-3 px-5 border-[2px] border-text-secondary border-dashed rounded-[18px] justify-end gap-2">
-                <div className="flex flex-col flex-wrap justify-between">
-                  <p className="text-[20px] text-text ">{t("wallet")}</p>
-                  <p className="text-text-secondary text-[14px] ">
-                    {t("noBalance")}
-                  </p>
-                </div>
-                <div className="my-auto">
-                  <MoneySVG />
-                </div>
-              </div>
-            )
           )}
         </div>
       </div>

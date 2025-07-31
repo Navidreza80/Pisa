@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 "use client";
 
 import ModalStep2 from "@/components/common/dashboard/modalStep2";

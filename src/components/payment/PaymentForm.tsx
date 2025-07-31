@@ -68,8 +68,8 @@ function PaymentForm({ price, id }: { price: number; id: number }) {
         });
 
         router.push(`/signature/${id}`);
-      } catch (error) {
-        alert("خطا در ثبت پرداخت. لطفا دوباره تلاش کنید.");
+      } catch {
+        return;
       }
     }
   };

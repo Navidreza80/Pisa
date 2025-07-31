@@ -44,8 +44,8 @@ export default function BuyerWishlists({ wishlists, totalCount }) {
 
   const { mutate: handleDelete } = useMutation({
     mutationKey: ["DELETE_WISHLIST"],
-    mutationFn: (houseId: string) =>
-      toast.promise(deleteWishlist(houseId), {
+    mutationFn: (id) =>
+      toast.promise(deleteWishlist(id), {
         pending: "درحال حذف...",
         success: "ملک با موفقیت از لیست حذف شد",
         error: "خطا در حذف",
@@ -140,7 +140,9 @@ export default function BuyerWishlists({ wishlists, totalCount }) {
                       {t("actions.reserve")}
                     </Button>
                     <Button
-                      onClick={() => handleDelete(wishlist.id)}
+                      onClick={() =>
+                        handleDelete(wishlist.houseId)
+                      }
                       variant="outline"
                       size="sm"
                       className="border-red-200 text-red-500 cursor-pointer flex-1"
@@ -179,7 +181,9 @@ export default function BuyerWishlists({ wishlists, totalCount }) {
                   />
                   <PopoverItem
                     icon={<DeletePopover />}
-                    handleClick={() => handleDelete(wishlist.id)}
+                    handleClick={() =>
+                      handleDelete(wishlist.houseId)
+                    }
                     title={t("actions.delete")}
                   />
                 </PopoverContent>

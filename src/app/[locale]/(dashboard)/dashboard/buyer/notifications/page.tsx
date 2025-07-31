@@ -14,9 +14,11 @@ const Page = async ({
   }>;
 }) => {
   const t = await getTranslations("Dashboard");
-  const { page } = await searchParams;
+  const { page, sort, order } = await searchParams;
   const notifications = await getAllNotifications({
     page,
+    sort,
+    order,
     limit: "5",
   });
 
