@@ -2,17 +2,15 @@
 
 "use client";
 
-import { numberToPersianWords } from "@/app/[locale]/payment/[id]/numToWord";
+import sendDocument from "@/utils/service/documents/post";
+import { useMutation } from "@tanstack/react-query";
 import { jsPDF } from "jspdf";
+import { useLocale, useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import iranYekanFont from "./iranYekanBase64";
-import { formatNumber } from "@/utils/helper/format-number";
-import { useLocale, useTranslations } from "next-intl";
-import { useMutation } from "@tanstack/react-query";
-import sendDocument from "@/utils/service/documents/post";
-import { useParams } from "next/navigation";
 
 interface ContractData {
   contractNumber: string;
@@ -50,7 +48,7 @@ const initialContractData: ContractData = {
   pages: 3,
 };
 
-const Signature = ({ HouseDetails, decodedUser }) => {
+const Signature = ({ decodedUser }) => {
   const { id } = useParams();
   const t = useTranslations("Signature");
   const locale = useLocale();
@@ -274,7 +272,6 @@ const Signature = ({ HouseDetails, decodedUser }) => {
       sendPDFToServer(doc);
       doc.save(`قولنامه_${contractData.contractNumber}.pdf`);
       setIsSaved(true);
-      toast.success(t("contractSaved"));
     } catch (error) {
       console.error("خطا در ایجاد قولنامه:", error);
       toast.error(t("contractError"));

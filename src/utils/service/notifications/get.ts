@@ -1,5 +1,6 @@
 // Interceptor
 import http from "@/utils/interceptor";
+import { getServerCookie } from "../storage/server-cookie";
 
 /**
  * Get all users notifications.
@@ -9,9 +10,12 @@ import http from "@/utils/interceptor";
 export async function getAllNotifications(params: {
   page?: string;
   limit?: string;
+  sort?: string;
+  order?: string;
 }) {
   try {
-    const response = await http.get(`/notifications`, { ...params, sort: "createdAt", order: "DESC" });
+    const userId = getServerCookie("userId");
+    const response = await http.get(`/notifications/${userId}`, { params });
     return response;
   } catch (error) {
     console.error("Error fetching notifications:", error);

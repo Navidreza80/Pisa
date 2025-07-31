@@ -11,10 +11,9 @@ const Status = ({
   return (
     <span
       className={cn(
-        "px-[2.5px] py-1 rounded-full text-[13px] font-medium flex gap-1 w-[89px] whitespace-nowrap items-center",
+        "px-[2.5px] py-1 rounded-full text-[13px] font-medium bg-[#FF989A] flex gap-1 w-[89px] whitespace-nowrap items-center",
         status === "confirmed" && "bg-[#8CFF45]",
-        status === "pending" && "bg-[#FAC100]",
-        status === "canceled" && "bg-[#FF989A]"
+        status === "pending" && "bg-[#FAC100]"
       )}
     >
       {status == "pending" ? (

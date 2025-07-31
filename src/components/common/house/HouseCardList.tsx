@@ -47,6 +47,7 @@ import createFavorite from "@/utils/service/favorites/post";
 import { toast } from "react-toastify";
 import deleteFavorite from "@/utils/service/favorites/delete";
 import useFavorite from "@/utils/hooks/useFavorite";
+import { useHandleAuth } from "@/utils/hooks/useAuth";
 
 /**
  * Filter reservation houses component.
@@ -75,7 +76,7 @@ export default function HouseCardList({
   const Ids = useAppSelector((state) => state.comparisonIds);
   const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(card.isFavorite);
-
+  const { handler } = useHandleAuth();
   const { handleFavorite } = useFavorite(
     isFavorite,
     card.id,
@@ -205,7 +206,7 @@ export default function HouseCardList({
           className={`cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-2 ltr:left-2 ${Ids.ids?.includes(String(card.id)) ? "bg-primary compareIconSelected" : "bg-white compareIcon"}`}
         ></button>
         <button
-          onClick={handleFavorite}
+          onClick={() => handler(() => handleFavorite())}
           className={`${isFavorite ? "bg-primary" : "bg-white"} cursor-pointer absolute z-10 py-1 px-3 hover:scale-105 hover:animate-rotate-y transition-all duration-300 w-10 aspect-square rounded-full top-2 rtl:right-14 ltr:left-14 flex justify-center items-center`}
         >
           <Heart className={`${isFavorite ? "text-white" : "text-black"}`} />

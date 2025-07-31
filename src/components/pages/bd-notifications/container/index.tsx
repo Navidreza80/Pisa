@@ -14,7 +14,10 @@ import {
   tableHeaderItems,
 } from "@/utils/constant/folder";
 import formatToPersianDate from "@/utils/helper/format-date";
-import { MarkAllAsRead } from "@/utils/service/notifications/MarkAsRead";
+import {
+  MarkAllAsRead,
+  MarkAsRead,
+} from "@/utils/service/notifications/MarkAsRead";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -45,6 +48,17 @@ export default function BuyerNotifications({ notifications, totalCount }) {
     mutationKey: ["MARK_ALL_AS_READ"],
     mutationFn: () =>
       toast.promise(MarkAllAsRead(), {
+        success: "عملیات با موفقیت انجام شد",
+        pending: "درحال پردازش",
+        error: "خطا ",
+      }),
+    onSuccess: () => router.refresh(),
+  });
+
+  const { mutate: MarkAsReadAction } = useMutation({
+    mutationKey: ["MARK_AS_READ"],
+    mutationFn: (id: string) =>
+      toast.promise(MarkAsRead(id), {
         success: "عملیات با موفقیت انجام شد",
         pending: "درحال پردازش",
         error: "خطا ",
@@ -104,7 +118,10 @@ export default function BuyerNotifications({ notifications, totalCount }) {
                   </div>
 
                   {/* Action button */}
-                  <div className="flex">
+                  <div
+                    className="flex"
+                    onClick={() => MarkAsReadAction(item.id)}
+                  >
                     <ButtonDashboard text={t("markAsRead")} clx="bg-primary">
                       <TickSVG />
                     </ButtonDashboard>
@@ -121,7 +138,7 @@ export default function BuyerNotifications({ notifications, totalCount }) {
               onClick={() => setShowUnRead((prev) => !prev)}
               text={t("status.unread")}
             />
-            {readMessages.map(
+            {unReadMessages.map(
               (tx) =>
                 showUnRead && (
                   <tr
@@ -135,9 +152,15 @@ export default function BuyerNotifications({ notifications, totalCount }) {
                       {formatToPersianDate(tx.createdAt)}
                     </td>
                     <td>
-                      <ButtonDashboard text={t("markAsRead")} clx="bg-primary">
-                        <TickSVG />
-                      </ButtonDashboard>
+                      <div onClick={() => MarkAsReadAction(tx.id)}>
+                        {" "}
+                        <ButtonDashboard
+                          text={t("markAsRead")}
+                          clx="bg-primary"
+                        >
+                          <TickSVG />
+                        </ButtonDashboard>
+                      </div>
                     </td>
                   </tr>
                 )
@@ -147,7 +170,7 @@ export default function BuyerNotifications({ notifications, totalCount }) {
               onClick={() => setShowRead((prev) => !prev)}
               text={t("status.read")}
             />
-            {unReadMessages.map(
+            {readMessages.map(
               (tx) =>
                 showRead && (
                   <tr

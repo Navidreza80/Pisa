@@ -8,7 +8,7 @@ export default async function postHouse(
   try {
     const result = await http.post("/houses", formData);
     return result;
-  } catch () {
+  } catch {
     return
   }
 }

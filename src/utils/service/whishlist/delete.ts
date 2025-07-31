@@ -5,11 +5,11 @@ import { getServerCookie } from "../storage/server-cookie";
 /**
  * Delete users wishlist.
  */
-export async function deleteWishlist(houseId: string) {
+export async function deleteWishlist(id) {
   try {
     const userId = await getServerCookie("userId");
     const response = await http.delete(`/wishlist/${userId}`, {
-      data: { houseId },
+      data: { houseId: id },
     });
     return response;
   } catch (error) {
