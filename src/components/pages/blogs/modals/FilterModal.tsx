@@ -34,8 +34,8 @@ export default function FilterModal({
   ];
 
   const orderOptions = [
-    { id: 2, text: t("oldest"), value: "DESC" }, // توجه: ترجمه "نزولی" نداریم تو کلیدها، پس کلمه "oldest" رو اینجا استفاده کردم به صورت فرضی
-    { id: 3, text: t("newest"), value: "ASC" }, // برای "صعودی" کلمه "newest" رو گذاشتم چون کلید خاصی نبود؛ اگه لازم باشه کلید جدا تعریف کن
+    { id: 2, text: t("oldest"), value: "DESC" },
+    { id: 3, text: t("newest"), value: "ASC" }, 
   ];
 
   const handleReset = () => {

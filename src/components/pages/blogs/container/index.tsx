@@ -65,8 +65,8 @@ export default function BlogPage() {
   ];
 
   return (
-    <section className="w-full px-4 sm:px-6 md:px-8 py-10">
-      <div className="max-w-screen-xl mx-auto">
+    <section className="py-10 w-[85.5%]">
+      <div className="mx-auto">
         <div className="flex flex-col gap-6">
           {/* Title & Search Tags */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-down">
@@ -141,7 +141,7 @@ export default function BlogPage() {
           </div>
 
           {/* Blog Cards */}
-          <div className="grid grid-cols-1 max-[600px]:w-full max-[872px]:w-2/3  max-[872px]:!grid-cols-1 max-[1060px]:w-full max-[1274px]:w-[80%] mx-auto md:grid-cols-2 min-[1274px]:!grid-cols-3 gap-5 p-5">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 w-full">
             {isLoading &&
               [...Array(6)].map((_, i) => <BlogCardSkeleton key={i} />)}
 
@@ -157,7 +157,7 @@ export default function BlogPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div dir="rtl" className="w-full my-6 flex justify-center">
+            <div dir="ltr" className="w-full my-6 flex justify-center">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>

@@ -19,7 +19,7 @@ export default function BlogCard({ blog, onClick }: BlogCardProps) {
   return (
     <Tilt
       options={{ max: 15, scale: 1.02 }}
-      className="group max-[600px]:!w-full w-[390px] bg-text-surface border border-border rounded-[40px] p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
+      className="group w-full md:w-[390px] bg-text-surface border border-border rounded-[40px] p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
