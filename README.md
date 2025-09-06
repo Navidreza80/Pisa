@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pisa
 
-## Getting Started
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://your-demo-url.com)  
+[![Last Commit](https://img.shields.io/github/last-commit/Navidreza80/Pisa)]  
+[![License](https://img.shields.io/github/license/Navidreza80/Pisa)]  
 
-First, run the development server:
+**Pisa** is a complete real-time booking platform designed for buying, renting, or reserving properties with absolute ease. Fast, intuitive, and reliable.
+
+---
+
+<img width="1919" height="969" alt="Screenshot 2025-09-06 211902" src="https://github.com/user-attachments/assets/7b4fd0bc-f765-4fcc-8f0f-da1538fdf460" />
+*Hero section*
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/ec3e8fa1-e172-4c62-9e61-4c2760396900" />
+*Real-estate listing*
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/f98a11fd-a6b9-4e0a-ace9-6b071cbd6040" />
+*Authentication*
+<img width="1919" height="972" alt="image" src="https://github.com/user-attachments/assets/db674b03-a718-417a-9dc1-38deb9b92fc9" />
+*Dashboard*
+
+---
+
+##  Live Demo
+
+Check out the live demo: https://pizarealestateapp.netlify.app/
+
+---
+
+##  Core Features
+
+- **Real-Time Booking** – Instantly view real-time availability and reserve any property.
+- **Advanced Search & Filters** – Find properties by type, price, location, and more.
+- **Secure Payments** – Safe and smooth checkout with integrated payment processing.
+- **User Accounts & Management** – Register, log in, manage bookings, and view history.
+- **Notifications** – Receive real-time updates via email or in-app alerts.
+- **Responsive Design** – Seamless experience on both desktop and mobile devices.
+
+---
+
+##  Tech Stack
+
+- **Frontend**: React, Next.js, (Tailwind CSS / styled-components)
+- **Backend**: Node.js, Express (or your backend stack)
+- **Authentication**: JWT, OAuth
+
+---
+
+##  Installation
 
 ```bash
+git clone https://github.com/Navidreza80/Pisa.git
+cd Pisa
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000/ (or your configured port) to explore locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Feature               | Description                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| **Fast Setup**        | Clone and run in minutes with streamlined dev workflow          |
+| **Modern UI/UX**      | Designed for clarity, speed, and engagement across devices      |
+| **Real-Time Sync**    | Dynamic availability updates ensure seamless booking experience |
+| **Secure & Scalable** | Built for reliability and future expansion                      |
+| **Payment Workflow**  | Complete, secure process for a fully integrated user journey    |
