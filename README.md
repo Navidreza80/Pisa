@@ -60,4 +60,3 @@ Visit http://localhost:3000/ (or your configured port) to explore locally.
 | **Modern UI/UX**      | Designed for clarity, speed, and engagement across devices      |
 | **Real-Time Sync**    | Dynamic availability updates ensure seamless booking experience |
 | **Secure & Scalable** | Built for reliability and future expansion                      |
-| **Payment Workflow**  | Complete, secure process for a fully integrated user journey    |
