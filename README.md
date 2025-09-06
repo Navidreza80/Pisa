@@ -39,7 +39,6 @@ Check out the live demo: https://pizarealestateapp.netlify.app/
 ##  Tech Stack
 
 - **Frontend**: React, Next.js, (Tailwind CSS / styled-components)
-- **Backend**: Node.js, Express (or your backend stack)
 - **Authentication**: JWT, OAuth
 
 ---
